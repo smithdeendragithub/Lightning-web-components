@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimated_People_Hours__c</fullName>
+    <description>Original Project Estimate (TShirt) for the level of effort for this project.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter in the estimated level of effort for this project.  Initial estimate must be provided for Gate 0 approval and should be revised/verified prior to Gate 1 approval.</inlineHelpText>
+    <label>Estimated People Hours</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

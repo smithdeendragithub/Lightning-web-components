@@ -1,0 +1,51 @@
+<apex:page StandardController="User" extensions="UserNotesControllerExtension">
+    <apex:form >
+        <apex:pageBlock id="table">
+            <!-- Buttons open a new window and pass parameters to new page -->
+            <apex:commandButton value="New Note" onclick="window.open('/apex/UserNotesRecord?&user={!Id}','_blank','height=500,width=500');"/>
+            <apex:commandButton value="Refresh" rerender="table"/>
+            <apex:pageBlockTable value="{!Notes}" var="Note">
+                <apex:column headerValue="Action">
+                    <apex:commandLink value="Edit" onclick="window.open('/apex/UserNotesRecord?&id={!Note.Id}&user={!Note.User__c}','_blank','height=500,width=500');" rerender="table"/>
+                    &nbsp;
+                    <!-- Tell the controller extension which record to delete -->
+                    <apex:commandLink value="Del" action="{!RemoveNote}" rerender="table">
+                        <apex:param name="DelRecordID" assignTo="{!DelRecordID}" value="{!Note.Id}"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column width="70%">
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sortComments}" rerender="table">
+                            Comments
+                        </apex:commandLink>                    	
+                    </apex:facet>
+                    <apex:outputField value="{!Note.Name}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sortModifiedBy}" rerender="table">
+                            Modified By
+                        </apex:commandLink>                    	
+                    </apex:facet>
+                    <apex:outputField value="{!Note.LastModifiedById}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sortDateModified}" rerender="table">
+                            Date Modified
+                        </apex:commandLink>                  	
+                    </apex:facet>
+                    <apex:outputField value="{!Note.LastModifiedDate}"/>                      	
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">
+                        <apex:commandLink action="{!sortDateCreated}" rerender="table">
+                            Date Created
+                        </apex:commandLink>                  	
+                    </apex:facet>
+                    <apex:outputField value="{!Note.CreatedDate}"/>                     	
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

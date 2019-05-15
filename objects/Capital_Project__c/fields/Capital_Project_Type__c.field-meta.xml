@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Capital_Project_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Capital Project Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ARC</fullName>
+                <default>false</default>
+                <label>ARC</label>
+            </value>
+            <value>
+                <fullName>ARC - Fulfilled</fullName>
+                <default>false</default>
+                <label>ARC - Fulfilled</label>
+            </value>
+            <value>
+                <fullName>ARC – NNI</fullName>
+                <default>false</default>
+                <label>ARC – NNI</label>
+            </value>
+            <value>
+                <fullName>EdgeConneX</fullName>
+                <default>false</default>
+                <label>EdgeConneX</label>
+            </value>
+            <value>
+                <fullName>MN CBD - ARC</fullName>
+                <default>false</default>
+                <label>MN CBD - ARC</label>
+            </value>
+            <value>
+                <fullName>No Regrets – Business Parks</fullName>
+                <default>false</default>
+                <label>No Regrets – Business Parks</label>
+            </value>
+            <value>
+                <fullName>No Regrets – Data Centers</fullName>
+                <default>false</default>
+                <label>No Regrets – Data Centers</label>
+            </value>
+            <value>
+                <fullName>Customer Capital Project</fullName>
+                <default>true</default>
+                <label>Customer Capital Project</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

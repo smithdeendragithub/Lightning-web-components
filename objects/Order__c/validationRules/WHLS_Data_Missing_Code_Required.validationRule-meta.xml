@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>WHLS_Data_Missing_Code_Required</fullName>
+    <active>true</active>
+    <description>If the Opportunity Status is Returned to Account Specialists - Wholesale the user must pick at least one Data Missing Code value.</description>
+    <errorConditionFormula>ISPICKVAL(Status__c, &quot;Returned to Account Specialists - Wholesale&quot;) &amp;&amp; ISBLANK( Data_Missing_Codes__c )</errorConditionFormula>
+    <errorDisplayField>Data_Missing_Codes__c</errorDisplayField>
+    <errorMessage>You must select at least one Data Missing Code since you have indicated the Opportunity Status is Returned to Account Specialists - Wholesale</errorMessage>
+</ValidationRule>

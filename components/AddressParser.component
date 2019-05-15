@@ -1,0 +1,194 @@
+<apex:component >
+<!-- 	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" /> -->
+	<apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-1.6.2.min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-ui-1.8.16.custom.min.js')}" />
+	<!--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places&client=gme-integratelecominc&channel=SF"/>-->
+	<script type="text/javascript" src="https://www.google.com/jsapi"/>
+	<script type="text/javascript" src="../../soap/ajax/26.0/connection.js"/>
+	
+	<apex:attribute name="addressGeocodedFunction" description="The name of the function to pass the geocode results to." type="String" required="true"/>
+   	
+   	<!-- Use this template on the page to pass results to the AddressParser class -->
+   	<!-- <apex:actionFunction name="gotoAddressParsed" action="{!addressParsed}">
+		<apex:param name="streetNumber" value="" />
+	 	<apex:param name="street" value="" />
+	 	<apex:param name="suite" value="" />
+	 	<apex:param name="city" value="" />
+	 	<apex:param name="state" value="" />
+	 	<apex:param name="postalCode" value="" />
+		<apex:param name="latitude" value=""/>
+		<apex:param name="longitude" value=""/>
+        <apex:param name="country" value=""/>    
+	</apex:actionFunction> -->
+	<div id="addressParserBinding" style="display:none;"></div>
+	<script type="text/javascript">
+		
+		function loadGoogleMapAPI(callback){
+			if(sfdcPage.googleMapAPILoaded == undefined){
+				sfdcPage.googleMapAPILoaded = true;
+				
+				var script = document.createElement('script');
+				script.type = 'text/javascript';
+				script.src = 'https://maps.googleapis.com/maps/api/js?libraries=places&client=gme-integratelecominc&channel=SF';
+				if(callback != null){
+					var functionName = callback.toString();
+					functionName = functionName.substr('function '.length);
+					functionName = functionName.substr(0, functionName.indexOf('('));
+					script.src += '&callback=' + functionName;
+				}
+				
+				document.body.appendChild(script);
+			}
+			else if(callback != null){
+				callback();
+			}
+		}
+		
+		var ap_bindingSearchBox = null;
+		var ap_maxZIndex = false;	//Set if you need to have the auto-complete container float over a popup for example
+		
+		function asynch_bindGoogleAddressSearchBoxFromFocus(txtBox, focusTarget){
+			jQuery(focusTarget).focus(onFocus_bindGoogleAddressSearchBox);
+			ap_bindingSearchBox = jQuery(txtBox);
+		}
+		
+		function asynch_bindGoogleAddressSearchBox(txtBox){
+			jQuery(txtBox).focus(onFocus_bindGoogleAddressSearchBox);
+		}
+		
+		function onFocus_bindGoogleAddressSearchBox(){
+			if(!ap_bindingSearchBox){
+				ap_bindingSearchBox = jQuery(this);
+			}
+			
+			jQuery(this).unbind('focus');
+			loadGoogleMapAPI(bindGoogleAddressSearchBox);
+		}
+		
+		function bindGoogleAddressSearchBox(sb){
+			if(sb != null && sb != undefined)
+				ap_bindingSearchBox = sb;
+		
+			//Bind the google textbox
+			if(ap_bindingSearchBox){
+				
+                //MNK commented out below to support Canadian addresses
+                //var options = { componentRestrictions: { country: 'us'} };
+                var options = {};
+				try{
+		        	var autocomplete = new google.maps.places.Autocomplete(ap_bindingSearchBox[0], options);
+		        	autocomplete.setTypes(['geocode']);
+				}
+				catch(e){ }
+				
+				if(ap_maxZIndex){
+					jQuery('.pac-container').css('z-index', '9999'); 
+				}
+			}
+			
+			var e = jQuery.Event("googleMapBound");
+			jQuery("[id$='addressParserBinding']").trigger(e);
+		}
+		
+		var ap_addressToGeocode = null;
+		var ap_callBackFunction = null;
+		
+		function geocodeAddress(addressToGeocode, callBack){
+			if(addressToGeocode != undefined && addressToGeocode != ''){
+				ap_addressToGeocode = addressToGeocode;
+				ap_callBackFunction = callBack;
+				
+				loadGoogleMapAPI(doGeocodeAddress);
+			}
+		}
+		
+		function doGeocodeAddress(){
+			var geocoder = new google.maps.Geocoder();				
+			geocoder.geocode( { 'address': ap_addressToGeocode}, function geocodeCallback(results, status){
+				ap_callBackFunction(handleGeocodeResults(results, status));
+			});
+		}
+		
+		function handleGeocodeResults(results, status){
+
+			var result = {success: false
+						,error: ''
+						,formattedAddress: null
+						,streetNum: null
+						,route: null
+						,subPremise: null
+						,city: null
+						,adminArea1: null
+						,adminArea2: null
+						,postalCode: null
+						,neighborhood: null
+						,location: null
+						,country: null
+						,latitude: null
+						,longitude: null};
+			
+			if (status != google.maps.GeocoderStatus.ZERO_RESULTS && results.length > 0) {
+   				jQuery.each(results[0].address_components, function(i,address_component){
+   					
+                    switch(address_component.types[0]){
+   						case 'street_number':
+   							result.streetNum = address_component.long_name;
+   							break;
+   						case 'route':
+   							result.route = address_component.short_name;
+   							break;
+   						case 'locality':
+   							result.city = address_component.long_name;
+   							break;
+   						case 'sublocality':
+   							if(result.city == '')
+   								result.city = address_component.long_name;
+   							break;
+   						case 'administrative_area_level_1':
+   							result.adminArea1 = address_component.short_name;
+   							break;
+     					case 'administrative_area_level_2':
+   							result.adminArea2 = address_component.long_name;
+     						break;
+     					case 'neighborhood':
+     						result.neighborhood = address_component.long_name;
+     						break;
+     					case 'country':
+                            //MNK this is returning country names, not codes
+                            result.country = address_component.long_name;
+     						break;
+   						case 'postal_code':
+   							result.postalCode = address_component.long_name;
+   							break;        		
+   						case 'subpremise':
+   							result.subPremise = address_component.long_name;					        							        							        							        							        							        						
+   					}
+   				});
+   				
+ 				result.success = true;
+ 				result.formattedAddress = results[0].formatted_address;
+ 				result.latitude = results[0].geometry.location.lat();
+ 				result.longitude = results[0].geometry.location.lng();
+     			result.location = results[0].geometry.location;
+			}
+			else
+   				result.error = status;
+			
+			return result;
+		}
+		
+		function hasMinimumLocationRequirements(result){
+			return result.streetNum != undefined && result.streetNum != '' && result.streetNum != null
+				&& result.route != undefined && result.route != '' && result.route != null
+  				&& result.city != undefined && result.city != '' && result.city != null
+  				&& result.adminArea1 != undefined && result.adminArea1 != '' && result.adminArea1 != null
+  				&& result.postalCode != undefined && result.postalCode != '' && result.postalCode != null;
+		}
+	</script>
+	<style>
+		.pac-container {
+		  z-index: 1040 !important;
+		}
+	</style>
+</apex:component>

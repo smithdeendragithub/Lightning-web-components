@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SIP_Order_Management_Workstep</fullName>
+    <filterScope>Queue</filterScope>
+    <label>SIP-Order Management</label>
+    <queue>SIP_Order_Management</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

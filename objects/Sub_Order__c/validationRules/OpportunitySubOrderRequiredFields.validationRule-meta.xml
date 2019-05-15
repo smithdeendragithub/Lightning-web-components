@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OpportunitySubOrderRequiredFields</fullName>
+    <active>true</active>
+    <errorConditionFormula>Order__r.RecordType.DeveloperName = &#39;Opportunity_Order&#39; &amp;&amp; ISNULL(SPC_Product__c)</errorConditionFormula>
+    <errorMessage>Sub-Orders under an order related to an opportunity require an SPC Product to be set.</errorMessage>
+</ValidationRule>

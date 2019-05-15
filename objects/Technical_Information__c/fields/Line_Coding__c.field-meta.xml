@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Line_Coding__c</fullName>
+    <externalId>false</externalId>
+    <label>Line Coding/Line Framing</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>B8ZS/ESF</fullName>
+                <default>true</default>
+                <label>B8ZS/ESF</label>
+            </value>
+            <value>
+                <fullName>AMI/SF</fullName>
+                <default>false</default>
+                <label>AMI/SF</label>
+            </value>
+            <value>
+                <fullName>B8ZS</fullName>
+                <default>false</default>
+                <label>B8ZS</label>
+            </value>
+            <value>
+                <fullName>AMI</fullName>
+                <default>false</default>
+                <label>AMI</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

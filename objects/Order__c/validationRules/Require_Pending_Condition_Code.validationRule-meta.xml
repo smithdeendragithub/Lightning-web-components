@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Pending_Condition_Code</fullName>
+    <active>true</active>
+    <description>Require pending condition code value when the credit check approval code is set to pending condition.</description>
+    <errorConditionFormula>ISPICKVAL( Credit_Check_Approval__c , &quot;Credit Approved pending condition&quot;) &amp;&amp; 
+ISBLANK(TEXT(Credit_Hold_Reason__c))</errorConditionFormula>
+    <errorDisplayField>Credit_Check_Approval__c</errorDisplayField>
+    <errorMessage>Pending condition code value required when the credit check approval code is set to pending condition.</errorMessage>
+</ValidationRule>

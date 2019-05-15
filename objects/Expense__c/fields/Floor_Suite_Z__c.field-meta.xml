@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Floor_Suite_Z__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>This data is pulled from the Floor/Suite/Room/Cage field from the Location that is being used in the Location Z field.</inlineHelpText>
+    <label>Floor/Suite Z</label>
+    <length>64</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

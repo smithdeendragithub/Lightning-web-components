@@ -1,0 +1,154 @@
+<apex:component controller="ProposalGenericController">
+  <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+  
+  <apex:outputPanel >
+    <table width="700" border="0" cellspacing="0" cellpadding="0" id="Records_Only_LOA">
+      <tr>
+        <td><table width="700" border="0" cellspacing="0" cellpadding="0" class="dividerBottom">
+            <tr>
+             <td>
+             <div  style="text-align: center; font-size: large"><b>Letter of Authorization</b></div>
+             <div class="subTitle" style="text-align: center; font-size: small">Agent Authority / Approval for Use of Customer Proprietary Network Information<br /></div></td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td><table width="700px" border="0" cellspacing="0" cellpadding="0" class="dividerBottom">
+            <tr>
+              <td width="500"><table width="500" border="0" cellspacing="0" cellpadding="0">
+                </table>
+                <table border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td class="subTitle" align="right" valign="top">&nbsp;</td>
+                    <td>&nbsp;</td>
+                  </tr>
+                  <tr>
+                    <td width="195" class="subTitle" align="right" valign="top"><table width="195" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td class="titleRef">Customer Name:</td>
+                        </tr>
+                        <tr>
+                          <td class="titleRef">Address:</td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td>&nbsp;</td>
+                        </tr>
+                      </table></td>
+                    <td><table border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="263px"></td>
+                          <td width="103px"></td>
+                          <td width="97px"></td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="emptyRef">{!clientMainAddress.Name}</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="normalRef">{!clientMainAddress.Street}</td>
+                        </tr>
+                        <tr>
+                          <td width="263" class="miniRef"><div class="floatLeft">Number</div>
+                            <div class="floatRight">Street</div></td>
+                          <td width="103">&nbsp;</td>
+                          <td width="97">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td colspan="3" class="normalRef">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td class="miniRef" align="left">please specify suite, room and/or building</td>
+                          <td>&nbsp;</td>
+                          <td>&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td class="normalRef">{!clientMainAddress.City}</td>
+                          <td class="normalRef">{!clientMainAddress.State}</td>
+                          <td class="normalRef">{!clientMainAddress.Zip}</td>
+                        </tr>
+                        <tr class="miniRef">
+                          <td>City</td>
+                          <td>State</td>
+                          <td>Zip</td>
+                        </tr>
+                        <tr><td>&nbsp;</td></tr>
+                      </table></td>
+                  </tr>
+                </table></td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td class="dividerBottom"><table width="700" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td class="textBlock">The above-named party ("Customer") hereby designates 
+              <u>&nbsp;{!CurrentOpportunity.Account2__r.Name}&nbsp;</u>
+              (Agent) as its authorized representative(s) and agent to act on its behalf in the procurement and maintenance of Customer's telecommunications and related services.  
+              Electric Lightwave 
+              {!CASE(   CurrentOpportunity.Account.Account_Sales_Channel__c, "Integra Business", "and its Integra business", "Integra Legacy", "and its Integra business", "ILEC", "and its Integra business", "")}     
+              is hereby authorized and requested to provide all information requested by Agent as it pertains to Customer Proprietary Network Information ("CPNI"), 
+              including but not limited to call detail records, contracts, configuration and service information.  This authorization will remain in effect until modified or 
+              rescinded in writing by Customer.</td>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td class="textBlock_center"><strong>This authorization shall remain in effect until canceled by the written authorization of Customer.  
+        This Letter of  Authorization rescinds all other Letters of Authorization previously entered into by Customer.  
+        This letter also authorizes the use of a facsimile copy to be used as a valid and binding authorization.</strong></td>
+      </tr>
+      <tr><td>&nbsp;</td></tr>
+      <tr>
+        <td><table width="700" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td width="351" class="emptyRef highlightArea">{!decisionMaker.Name}</td>
+              <td width="22">&nbsp;</td>
+              <td width="327" class="emptyRef highlightArea"><div class="docusignID">DS-DATE</div></td>
+            </tr>
+            <tr>
+              <td class="smallPrint">Customer Authorized Representative (Print name)</td>
+              <td>&nbsp;</td>
+              <td class="smallPrint">Date</td>
+            </tr>
+            <tr>
+              <td class="emptyRef highlightArea"><div class="docusignID">DS-SIG</div></td>
+              <td>&nbsp;</td>
+              <td style="vertical-align: top;"><div class="docusignID">DS-FILL</div></td>
+            </tr>
+            <tr>
+              <td class="smallPrint">Signature</td>
+              <td>&nbsp;</td>
+              <td class="smallPrint">SS# or Tax ID#</td>
+            </tr>
+            <tr>
+            <apex:outputPanel rendered="{!NOT(ISNULL(decisionMaker.Title))}" layout="none">
+              <td class="emptyRef highlightArea">{!decisionMaker.Title}</td>
+              </apex:outputPanel>
+              <apex:outputPanel rendered="{!ISNULL(decisionMaker.Title)}" layout="none">
+              <td style="vertical-align: top;"><div class="docusignID">DS-FILL</div></td>
+              <td>&nbsp;</td>
+              </apex:outputPanel> 
+              
+            </tr>
+            <tr>
+            <td class="smallPrint">Title</td>
+            </tr>
+          </table></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+  </apex:outputPanel>
+</apex:component>

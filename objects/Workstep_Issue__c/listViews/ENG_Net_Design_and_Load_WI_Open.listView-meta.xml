@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ENG_Net_Design_and_Load_WI_Open</fullName>
+    <booleanFilter>(1 Or 2) and 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Workstep__c</columns>
+    <columns>Date_Resolved__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <columns>OrderNumber__c</columns>
+    <columns>Sub_Order__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Reason__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATEDBY_USER</field>
+        <operation>equals</operation>
+        <value>,peggy lindley,todd miller,anne krinsky,mary muessig,carolyn dykstra</value>
+    </filters>
+    <filters>
+        <field>CREATEDBY_USER</field>
+        <operation>equals</operation>
+        <value>denie mayne,laurie kesgard,janel kirby,tami zimbrick</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Open</value>
+    </filters>
+    <label>ENG - Net Design and Load WI Open</label>
+</ListView>

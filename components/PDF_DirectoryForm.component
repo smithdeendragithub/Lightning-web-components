@@ -1,0 +1,176 @@
+<apex:component controller="ProposalDirectoryForm">
+<apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+<div style="margin-top:3em;margin-bottom:2em;">
+	<div class="mainTitle" style="float:left; padding:20px; max-width:300px;">
+		Directory Listing and Billing Address Confirmation Form
+	</div>
+	<div style="float:right;">
+		
+		<div>{!integraDecisionMaker.Street}</div>
+		<div>{!integraDecisionMaker.CityStateZip}</div>
+		<div>(P) {!integraDecisionMaker.Phone}</div>
+		<div>(F) {!integraDecisionMaker.Fax}</div>
+		<div><a href="mailto:{!integraDecisionMaker.Email}" target="_parent">{!integraDecisionMaker.Email}</a></div>
+		
+	</div>
+	<div style="clear:both;"></div>
+</div>
+<div class="finePrintBlock">
+	Please complete the listing section of this form exactly as you would like it to appear in directory services for your area.  The information that you provide will be used to submit a request for inclusion of your printed listing in the white pages of the telephone directory service in your area as well as directory assistance services such as 411 and (XXX) 555-1212.  Please provide complete information for all listings-use additional sheets if necessary.
+</div>
+<div>
+	<div style="float:right; margin-bottom:.5em;">
+		<div style="float:left; text-align:right; width:100px; margin-right:2em;">
+			AE:
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:200px; font-weight:bold;">
+			{!integraDecisionMaker.Name}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; text-align:right; width:100px; margin-right:2em;">
+			Account#:
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:200px; font-weight:bold;">
+			{!currentOpportunity.Account.ICC_Account_Number__c}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div style="clear:both;"></div>
+	<div style="font-size:1.2em; margin-bottom:.5em;">
+		<div style="float:left; width:30%;">
+			Customer Name:
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!clientBillingAddress.Name}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; width:30%;">
+			Billing Address:
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!clientBillingAddress.Street}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; width:30%;">
+			City, State, Zip:
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!clientBillingAddress.CityStateZip}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+<div style="font-size:1.2em;">
+	<apex:repeat value="{!listings}" var="nextListing">
+	<div style="margin-bottom:10px; page-break-inside: avoid;">
+		<div class="directoryTitle">
+			{!IF(nextListing.rawListing.Main_Listing__c, 'Primary ', 'Additional ')}Listing
+		</div>
+		<div style="float:left; width:30%;">
+			Company Name
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!nextListing.listingAddress.Name}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; width:30%;">
+			Telephone Number to List
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!nextListing.listingAddress.Phone}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; width:30%;">
+			Address
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!nextListing.listingAddress.Street}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; width:30%;">
+			City, State, Zip
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!nextListing.listingAddress.CityStateZip}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; width:30%;">
+			Listing Type:
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!nextListing.rawListing.Type__c}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; width:30%;">
+			Directory:
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:70%; font-weight:bold;">
+			{!nextListing.rawListing.Which_Directory__c}&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	</apex:repeat>
+	<div style="clear:both;"></div>
+	<hr />
+</div>
+<div style="page-break-inside: avoid;">
+	
+	<div>
+		<p>Customer represents and warrants the above information is true and correct and understands that its name, address and phone number, as set forth above, will be delivered to the appropriate directory publishers and directory assistance data bases.   Customer will advise Allstream (“Company”)  immediately of any changes in the above information.  Customer assumes full responsibility concerning the right to use any name as a directory listing and agrees to hold Company free and harmless of and from any claims, loss, damage, or liability that may result from the use of such listing. Company will take all reasonable steps to ensure that the above information appears in the next directory to be published, however, Company does not warrant that the listing will be error-free.  Company’s liability for errors or omissions in Customer directory listings shall be limited to the charge for that listing, if any, during the effective life of the directory containing the error or omission.</p>
+		<p>This Service Agreement including the most recent Master Service Agreement executed by Customer and Company, together with any schedules or attachments (including all applicable Product Exhibits) are incorporated by reference herein, and constitute a binding commitment between the Company and Customer, effective upon execution of this Service Agreement, and supersede all prior written or verbal agreements or understandings. Each Party represents and warrants to the other Party that the execution, delivery and performance of this Service Agreement by such Party has been duly authorized by all requisite corporate action, that the signatory hereto for such Party is authorized to sign this Service Agreement. Early termination fees may apply as set forth of the Master Service Agreement. </p>
+	</div>
+	<div>
+		<div style="font-weight:bold;">
+			Customer Acceptance
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:20%; font-size:1em; min-height:16px;">
+			{!decisionMaker.Name}&nbsp;
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:60%; font-size:1em; min-height:16px;">
+			<div class="docusignID">DS-SIG</div>&nbsp;
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:20%; font-size:1em; min-height:16px;">
+			<div class="docusignID">DS-DATE</div>&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; color:#aaa; width:20%; font-size:.85em;">
+			Print Name
+		</div>
+		<div style="float:left; color:#aaa; width:60%; font-size:.85em;">
+			Authorized Signature
+		</div>
+		<div style="float:left; color:#aaa; width:20%; font-size:.85em;">
+			Date
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div>
+		<div style="font-weight:bold;">
+			Allstream Acceptance
+
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:20%; font-size:1em; min-height:16px;">
+			<div class="docusignID">DS-CTRNAME</div>&nbsp;
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:60%; font-size:1em; min-height:16px;">
+			<div class="docusignID">DS-CTRSIG</div>&nbsp;
+		</div>
+		<div style="float:left; border-bottom:solid 1px #aaa; width:20%; font-size:1em; min-height:16px;">
+			<div class="docusignID">DS-CTRDATE</div>&nbsp;
+		</div>
+		<div style="clear:both;"></div>
+		<div style="float:left; color:#aaa; width:20%; font-size:.85em;">
+			Print Name
+		</div>
+		<div style="float:left; color:#aaa; width:60%; font-size:.85em;">
+			Authorized Signature
+		</div>
+		<div style="float:left; color:#aaa; width:20%; font-size:.85em;">
+			Date
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+</div> 
+</apex:component>

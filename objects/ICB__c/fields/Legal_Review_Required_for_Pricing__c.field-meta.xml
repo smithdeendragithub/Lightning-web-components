@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legal_Review_Required_for_Pricing__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checkbox indicating whether Legal should be included in the Pricing approval flow</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Maintained Offer Management:  Indicate whether you need Legal to review this pricing ICB.  They will be added to the approval flow.</inlineHelpText>
+    <label>Legal Review Required for Pricing</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

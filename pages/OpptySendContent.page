@@ -1,0 +1,320 @@
+<apex:page standardcontroller="Opportunity" tabStyle="Opportunity" extensions="OpptySendContentController"> 
+
+<apex:includeScript value="{!$Resource.jquery}"/>
+<apex:includeScript value="{!$Resource.jquery_tablesorter}"/>
+<apex:includeScript value="{!$Resource.jquery_ui}"/>
+<apex:stylesheet value="{!$Resource.jquery_ui_css}"/>
+  
+<style type="text/css">
+    .headerSortUp {
+        background-position: right;
+        background-repeat: no-repeat;
+        background-image: url({!$Resource.sort_icon_up});
+        background-color: #e9e7d7;
+    }
+    .headerSortDown {
+        background-position: right;
+        background-repeat: no-repeat;
+        background-image: url({!$Resource.sort_icon_down});
+        background-color: #e9e7d7;
+    }
+    .recipients TABLE {
+    }
+    .relatedContent TABLE {
+    }
+    .featuredContent TABLE {
+    }
+    .msaContent TABLE {
+    }
+    .otherContent TABLE {
+    }
+    .txtSelectedContact INPUT {
+    }
+    .txtSelectedUser INPUT {
+    }
+</style>
+
+<style>
+    #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+    #sortable li { margin: 0 1px 1px 1px; padding: 0.2em; padding-left: .5em; font-size: 1.0em; height: 18px; }
+    #sortable li span { position: absolute; margin-left: -1.3em; }
+</style>    
+
+<script>
+
+    var j$ = jQuery.noConflict();
+    
+    j$(document).ready(function()
+        {   
+            j$('table.recipients').tablesorter();
+            j$('table.relatedContent').tablesorter();
+            j$('table.featuredContent').tablesorter();
+            j$('table.msaContent').tablesorter();
+            
+            initSortable();
+        } 
+    );
+    
+    function initSortable() {
+        j$( "#sortable" ).sortable({update: listUpdated, placeholder: 'ui-state-highlight'});
+        j$( "#sortable" ).disableSelection();
+    }
+    
+    function pnlSelectedDocsRerender_OnStop() {
+        initSortable();
+    }
+
+    function pnlSearchResultsRerender_OnStop() {
+        j$('table.otherContent').tablesorter();
+    }
+    
+    function listUpdated(event, ui) {
+        var result = j$("#sortable").sortable('toArray');
+        var ids = "";
+        for(var i = 0; i < result.length; i++) {
+            ids = ids + result[i] + ",";
+        }
+        reorderDocs(ids);
+    }
+    
+    function chkRecipientTypeTo_OnClick(element) {
+        if(element.checked) {
+            document.getElementById(element.id.substr(0, element.id.length - 2) + "CC").checked = false;
+        }
+    }
+    
+    function chkRecipientTypeCC_OnClick(element) {
+        if(element.checked) {
+            document.getElementById(element.id.substr(0, element.id.length - 2) + "To").checked = false;
+        }
+    }
+    
+    function txtSelectedContact_OnChange(element) {
+        addRecipient();
+    }
+    
+    function txtSelectedUser_OnChange(element) {
+        addUserAsRecipient();
+    }
+    
+    function pnlDeliverToRerender_OnComplete() {
+        j$('table.recipients').tablesorter();
+    }
+
+    
+</script>
+
+<!-- These fields need to be present on the page because the Controller relies on them -->
+<apex:outputText rendered="false" value="{!Opportunity.RecordType.DeveloperName}" />
+<apex:outputText rendered="false" value="{!Opportunity.AccountId}" />
+
+<apex:form >
+
+<apex:pageMessages id="pageMessages"/>
+
+<apex:pageBlock title="Send Content Documents">
+
+    <apex:PageBlockButtons location="bottom">
+        <apex:commandButton value="Send" action="{!SendNow}" disabled="{!sendDisabled}" id="sendButton"/>
+        <apex:commandButton value="Cancel" action="{!cancel}"/> 
+    </apex:PageBlockButtons>
+
+    <apex:PageBlockSection title="Delivery Options" columns="1" id="pnlDeliveryOptions"> 
+
+        <apex:PageBlockSectionItem rendered="{!isDocuSignEnabled}">
+            <apex:outputLabel value="Delivery Method:" />
+            <apex:selectRadio value="{!selectedDeliveryMethod}">
+                <apex:selectOptions value="{!deliveryMethods}" />
+                <apex:actionSupport event="onclick" rerender="pnlDeliverTo,pnlDeliveryOptions,pageMessages,sendButton" action="{!changeDeliveryMethod}" oncomplete="pnlDeliverToRerender_OnComplete()"/>
+            </apex:selectRadio>
+        </apex:PageBlockSectionItem>
+
+        <apex:PageBlockSectionItem >
+            <apex:outputLabel value="Templates" /> 
+            <apex:selectList value="{!selectedTemplate}" size="1" disabled="{!IF(selectedDeliveryMethod == DELIVERY_METHOD_TYPE_DOCUSIGN, true, false)}">
+                <apex:selectOptions value="{!lstTemplates}" />
+                <apex:actionSupport event="onchange" rerender="pnlDeliveryOptions" action="{!updateCurrentTemplate}"/>
+            </apex:selectList>
+        </apex:PageBlockSectionItem>             
+
+        <apex:PageBlockSectionItem rendered="{!bUseTemplate}" >
+            <apex:outputLabel value="Subject" />            
+            <apex:outputText value="{!subject}" />
+        </apex:PageBlockSectionItem>
+        
+        <apex:PageBlockSectionItem rendered="{!bUseTemplate}" >
+            <apex:outputLabel value="Message" />
+            <apex:outputText value="{!message}" />
+        </apex:PageBlockSectionItem>             
+
+        <apex:PageBlockSectionItem rendered="{!!bUseTemplate}">
+            <apex:outputLabel value="Subject" />            
+            <apex:inputText style="width: 350px" value="{!subject}" />
+        </apex:PageBlockSectionItem>
+        
+        <apex:PageBlockSectionItem rendered="{!!bUseTemplate && selectedDeliveryMethod != DELIVERY_METHOD_TYPE_DOCUSIGN}">
+            <apex:outputLabel value="Message" /> 
+            <apex:inputTextArea rows="8" style="width: 350px" value="{!message}" />
+        </apex:PageBlockSectionItem>
+        
+        <apex:PageBlockSectionItem rendered="{!!bUseTemplate && selectedDeliveryMethod == DELIVERY_METHOD_TYPE_DOCUSIGN}">
+            <apex:outputLabel value="Signer Note" /> 
+            <apex:inputTextArea rows="8" style="width: 350px" value="{!message}" />
+        </apex:PageBlockSectionItem>             
+
+
+    </apex:PageBlockSection>
+    <apex:actionFunction name="addRecipient" action="{!addRecipient}" rerender="pnlDeliverTo" oncomplete="pnlDeliverToRerender_OnComplete()"/>
+    <apex:actionFunction name="addUserAsRecipient" action="{!addUserAsRecipient}" rerender="pnlDeliverTo" oncomplete="pnlDeliverToRerender_OnComplete()"/> 
+    <apex:PageBlockSection title="Deliver To" columns="1" id="pnlDeliverTo">
+        
+        <apex:dataTable value="{!selectedRecipients}" var="nextRecipient" cellpadding="5px"  rules="all" styleClass="recipients">
+            <apex:column >
+                <apex:facet name="header">
+                    <apex:outputText value="{!IF(selectedDeliveryMethod == DELIVERY_METHOD_TYPE_DOCUSIGN, 'Signer', 'To')}"/>
+                </apex:facet>
+                <apex:inputCheckbox value="{!nextRecipient.to}" disabled="{!LEN(nextRecipient.c.EMail) = 0}" id="chkRecipientTypeTo" onclick="chkRecipientTypeTo_OnClick(this)"/> 
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">CC</apex:facet>
+                <apex:inputCheckbox value="{!nextRecipient.cc}" disabled="{!LEN(nextRecipient.c.EMail) = 0}" id="chkRecipientTypeCC" onclick="chkRecipientTypeCC_OnClick(this)"/> 
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Name</apex:facet>
+                <a href="/{!IF(nextRecipient.c.Id == null, nextRecipient.c.AssistantName, nextRecipient.c.Id)}" target="_blank"><apex:outputText value="{!IF(nextRecipient.c.Name == null, nextRecipient.c.LastName, nextRecipient.c.Name)}" /></a> 
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Account</apex:facet>
+                <a href="/{!nextRecipient.c.Account.Id}" target="_blank"><apex:outputText value="{!nextRecipient.c.Account.Name}"/></a>
+            </apex:column>
+            <apex:column >
+                <apex:facet name="header">Email</apex:facet> 
+                <apex:outputText value="{!nextRecipient.c.EMail}"/>
+            </apex:column>
+            <apex:column style="width: 130px;">
+                <apex:facet name="header">Opportunity Role</apex:facet> 
+                <apex:outputText value="{!nextRecipient.opptyRole}" rendered="{!nextRecipient.opptyRole != null}"/>
+                <apex:outputText value="Undefined" rendered="{!nextRecipient.opptyRole == null}"/>
+            </apex:column>
+            <apex:column style="width: 90px;" rendered="{!selectedDeliveryMethod == DELIVERY_METHOD_TYPE_DOCUSIGN}">
+                <apex:facet name="header">Signer Type</apex:facet> 
+                <apex:outputText value="{!nextRecipient.recipientType}"/>
+            </apex:column>
+        </apex:dataTable>
+
+        <apex:PageBlockSectionItem >
+            <b>Add {!IF(selectedDeliveryMethod == DELIVERY_METHOD_TYPE_DOCUSIGN, 'Signer', 'Contact')}...</b><apex:inputField value="{!selectedCase.ContactId}" id="txtSelectedContact" onchange="txtSelectedContact_OnChange(this)" styleClass="txtSelectedContact" onfocus="this.blur(); return false;"/>
+        </apex:PageBlockSectionItem>
+        <apex:PageBlockSectionItem >
+            <span style="{!IF(selectedDeliveryMethod == DELIVERY_METHOD_TYPE_DOCUSIGN, '', 'display:none')};"><b>Add Countersigner...</b></span><apex:inputField value="{!selectedOpportunity.InternalSigner__c}" id="txtSelectedUser" onchange="txtSelectedUser_OnChange(this)" styleClass="txtSelectedUser" onfocus="this.blur(); return false;" style="{!IF(selectedDeliveryMethod == DELIVERY_METHOD_TYPE_DOCUSIGN, '', 'display:none')};"/>
+        </apex:PageBlockSectionItem>
+        <script>
+            j$('input.txtSelectedContact').css('width', '0');
+            j$('input.txtSelectedContact').css('opacity', '0.0');
+            j$('input.txtSelectedUser').css('width', '0');
+            j$('input.txtSelectedUser').css('opacity', '0.0');
+        </script>
+
+
+    </apex:PageBlockSection> 
+    
+    <apex:PageBlockSection title="Attachments" columns="1">
+    
+        <apex:actionFunction name="reorderDocs" action="{!reorderDocs}" rerender="pnlSelectedDocs" oncomplete="pnlSelectedDocsRerender_OnStop()"> 
+            <apex:param name="ids" assignTo="{!sortOrder}" value="" /> 
+        </apex:actionFunction> 
+        
+        <apex:actionStatus id="pnlSelectedDocsRerenderStatus" onstop="pnlSelectedDocsRerender_OnStop()"/>
+        <div style="border:thin"><b>Selected Attachments (drag to sort):</b>
+        <apex:outputPanel id="pnlSelectedDocs" layout="block">
+        
+            <ul id="sortable">
+                <apex:variable var="count" value="{!1}"/>
+                <apex:repeat value="{!selectedDocs}" var="nextDoc"> 
+                    <li id="{!IF(ISNULL(nextDoc.cv), nextDoc.at.Id, nextDoc.cv.Id)}" class="ui-state-default">
+                        <table width="100%">
+                            <tr>
+                                <td width="16px" align="left"><img src="{!$Resource.sort_icon}" width="16px" height="16px"/></td>
+                                <td align="left"><a target="_blank" href="{!IF(ISNULL(nextDoc.cv), '/servlet/servlet.FileDownload?file='+nextDoc.at.Id, '/'+nextDoc.cv.Id)}">{!Round(count, 0)} - {!IF(ISNULL(nextDoc.cv), nextDoc.at.Name, nextDoc.cv.Title)}</a></td>
+                                <td align="right">
+                                    <apex:commandLink value="X" action="{!removeDoc}" rerender="pnlSelectedDocs" status="pnlSelectedDocsRerenderStatus" title="Remove attachment from list" style="color: red; font-weight: bold;">
+                                        <apex:param name="selectedDocId" value="{!IF(ISNULL(nextDoc.cv), nextDoc.at.Id, nextDoc.cv.Id)}" assignTo="{!selectedDocId}"/>
+                                    </apex:commandLink>
+                                </td>
+                            </tr>
+                        </table>    
+                    </li>
+                    <apex:variable var="count" value="{!count + 1}"/>
+                </apex:repeat>
+            </ul>
+        </apex:outputPanel>
+        </div>
+        <apex:tabPanel switchType="client" selectedTab="tabRelatedAttachment" id="tpnlAttachment">
+            <apex:tab label="Related Attachments" name="tabRelatedAttachment" id="tabRelatedAttachment">
+                <apex:dataTable value="{!RelatedAttachments}" var="d" cellpadding="5px"  rules="all" styleClass="relatedContent">
+                    <apex:column style="width: 45px;">
+                        <apex:facet name="header"></apex:facet>
+                        <apex:commandButton value="Add" action="{!addDoc}" rerender="pnlSelectedDocs" status="pnlSelectedDocsRerenderStatus">
+                            <apex:param name="selectedDocId" value="{!d.at.Id}" assignTo="{!selectedDocId}"/>
+                        </apex:commandButton>
+                    </apex:column>      
+                    <apex:column >
+                        <apex:facet name="header">Name</apex:facet>
+                        <a target="_blank" href="/servlet/servlet.FileDownload?file={!d.at.Id}">{!d.at.Name}</a>
+                    </apex:column>
+                    <apex:column >      
+                        <apex:facet name="header">Created Date</apex:facet>
+                        <apex:outputField value="{!d.at.CreatedDate}"/>
+                    </apex:column>
+                    <apex:column style="width: 115px;">
+                        <apex:facet name="header">Last Modified Date</apex:facet>
+                        <apex:outputField value="{!d.at.LastModifiedDate}"/>
+                    </apex:column>
+                    <apex:column style="width: 105px;">
+                        <apex:facet name="header">Last Modified By</apex:facet>
+                        <apex:outputText value="{!d.at.LastModifiedBy.Name}"/>
+                    </apex:column>          
+                    <apex:column style="width: 95px;">
+                        <apex:facet name="header">Size (KB)</apex:facet>
+                        <apex:outputText value="{!d.sizeLabel}"/>
+                    </apex:column>          
+                </apex:dataTable>
+            </apex:tab>
+            <apex:tab label="Related Content" name="tabRelatedContent" id="tabRelatedContent">
+                <apex:dataTable value="{!ContentDocs}" var="nextDoc" cellpadding="5px"  rules="all" styleClass="relatedContent">
+                    <apex:column style="width: 45px;">
+                        <apex:facet name="header"></apex:facet>
+                        <apex:commandButton value="Add" action="{!addDoc}" rerender="pnlSelectedDocs" status="pnlSelectedDocsRerenderStatus">
+                            <apex:param name="selectedDocId" value="{!nextDoc.cv.Id}" assignTo="{!selectedDocId}"/>
+                        </apex:commandButton>
+                    </apex:column>      
+                    <apex:column >
+                        <apex:facet name="header">Title</apex:facet>
+                        <a target="_blank" href="/{!nextDoc.cv.Id}"><apex:outputText value="{!nextDoc.cv.Title}"/></a>
+                    </apex:column>
+                    <apex:column >      
+                        <apex:facet name="header">Created Date</apex:facet>
+                        <apex:outputField value="{!nextDoc.cv.CreatedDate}"/>
+                    </apex:column>
+                    <apex:column style="width: 115px;">
+                        <apex:facet name="header">Last Modified Date</apex:facet>
+                        <apex:outputField value="{!nextDoc.cv.LastModifiedDate}"/>
+                    </apex:column>
+                    <apex:column style="width: 105px;">
+                        <apex:facet name="header">Last Modified By</apex:facet>
+                        <apex:outputText value="{!nextDoc.cv.LastModifiedBy.Name}"/>
+                    </apex:column>          
+                    <apex:column style="width: 95px;">
+                        <apex:facet name="header">Size (KB)</apex:facet>
+                        <apex:outputText value="{!nextDoc.sizeLabel}"/>
+                    </apex:column>          
+                </apex:dataTable>
+            </apex:tab>
+        </apex:tabPanel>
+        
+    </apex:PageBlockSection>    
+    
+</apex:pageBlock>
+
+</apex:form>
+</apex:page>

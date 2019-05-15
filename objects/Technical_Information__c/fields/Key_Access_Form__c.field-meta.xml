@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Key_Access_Form__c</fullName>
+    <externalId>false</externalId>
+    <label>Key/Access Form</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No, I forgot</fullName>
+                <default>false</default>
+                <label>No, I forgot</label>
+            </value>
+            <value>
+                <fullName>Yes, customer has forms</fullName>
+                <default>false</default>
+                <label>Yes, customer has forms</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

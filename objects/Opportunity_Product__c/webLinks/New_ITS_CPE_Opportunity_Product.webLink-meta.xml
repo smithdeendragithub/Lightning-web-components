@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_ITS_CPE_Opportunity_Product</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>New ITS CPE Opportunity Product</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>/a23/e?
+
+CF00NC0000005gStS={!Opportunity.Name}
+
+&amp;CF00NC0000005gStS_lkid={!Opportunity.Id}
+
+&amp;retURL={!Opportunity.Id}
+
+&amp;RecordType=0121A000000GUW9
+
+&amp;ent=01IC0000000ps45</url>
+</WebLink>

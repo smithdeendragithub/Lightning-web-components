@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feature_Required_on_Network_Build</fullName>
+    <active>true</active>
+    <description>If a Build Order has the Build Category of Network and the user tries to complete the Initiate ESO workstep without a Network Feature added, the user will get an error message and cannot complete the Initiate ESO Workstep.</description>
+    <errorConditionFormula>ISPICKVAL (Order__r.Build_Category__c, &#39;Network&#39;) &amp;&amp; 
+NOT(INCLUDES(Order__r.Features__c, &quot;Network OSP Only&quot;)) &amp;&amp; 
+NOT(INCLUDES(Order__r.Features__c, &quot;Network with OSP Planners and No Construction&quot;)) &amp;&amp; 
+NOT(INCLUDES(Order__r.Features__c, &quot;Network with OSP Construction&quot;)) &amp;&amp; 
+NOT(INCLUDES(Order__r.Features__c, &quot;Network without OSP&quot;)) &amp;&amp; 
+Name=&#39;Initiate ESO&#39; &amp;&amp; 
+ISPICKVAL(Status__c , &#39;Complete&#39;)</errorConditionFormula>
+    <errorMessage>You must choose a network feature for network build orders.</errorMessage>
+</ValidationRule>

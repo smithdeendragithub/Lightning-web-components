@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hardware_Install_and_Test_Date_Required</fullName>
+    <active>false</active>
+    <description>Hardware Install and Test Date must be populated on the suborder before the schedule resources attribute task can be set to complete.</description>
+    <errorConditionFormula>ISNULL( Sub_Order__r.Hardware_Install_and_Test_Date__c ) &amp;&amp;  ISPICKVAL( Attribute__c , &#39;Schedule Resources&#39;) &amp;&amp;  ISPICKVAL( Status__c , &#39;Complete&#39;)</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>Hardware Install and Test Date must be populated on the suborder before you can set the Schedule Resources attribute task to complete.</errorMessage>
+</ValidationRule>

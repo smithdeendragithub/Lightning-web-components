@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IntegraAssignmentProhibited_Inputs_blank</fullName>
+    <active>true</active>
+    <description>If &quot;Integra Assignment Prohibited&quot; is &quot;No&quot; or &quot;Silent&quot; then &quot;If Prohibited, Exeptions&quot; and &quot;Required Action&quot; should be blank.</description>
+    <errorConditionFormula>AND( 
+OR( 
+TEXT (If_Prohibited_Exceptions__c)&lt;&gt;&quot;&quot;, 
+TEXT (Required_Action__c )&lt;&gt;&quot;&quot;), 
+TEXT(Integra_Assignment_Prohibited__c)&lt;&gt; &quot;Yes&quot; 
+)</errorConditionFormula>
+    <errorDisplayField>If_Prohibited_Exceptions__c</errorDisplayField>
+    <errorMessage>Please clear the &quot;If Prohibited, Exceptions&quot; and &quot;Required Actions&quot; fields.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Amount_Required_Credit_Issued_Yes</fullName>
+    <active>false</active>
+    <description>If Credit issued = yes then require credit amount</description>
+    <errorConditionFormula>ISPICKVAL( Credit_Issued__c , &quot;yes&quot;)
+&amp;&amp; ISBLANK( Credit_Amount__c )</errorConditionFormula>
+    <errorDisplayField>Credit_Amount__c</errorDisplayField>
+    <errorMessage>If credit is given, credit amount is required</errorMessage>
+</ValidationRule>

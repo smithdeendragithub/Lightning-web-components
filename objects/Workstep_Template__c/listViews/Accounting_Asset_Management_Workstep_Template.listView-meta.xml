@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accounting_Asset_Management_Workstep_Template</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Accounting - Asset Management</label>
+    <queue>Accounting_Asset_Management</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

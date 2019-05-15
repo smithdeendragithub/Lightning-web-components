@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Additional_Build_Order</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Create Additional Build Order</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/apex.js&quot;)} 
+var id = sforce.apex.execute(&quot;GlobalActions&quot;, &quot;CreateAdditionalBuildOrder&quot;, {orderID:&#39;{!Order__c.Id}&#39;, extraOrder:&#39;true&#39;}); 
+
+if(id != null) window.open(&#39;../&#39; + id); 
+else alert(&#39;Build order could not be created&#39;);</url>
+</WebLink>

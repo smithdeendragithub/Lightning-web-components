@@ -1,0 +1,446 @@
+<apex:page controller="BuildingMergeController" tabStyle="Access_Technology__c">
+	<apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'css/smoothness/jquery-ui-1.8.16.custom.css')}" />
+	<apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-1.6.2.min.js')}" />
+	<apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-ui-1.8.16.custom.min.js')}" />
+
+	<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&client=gme-integratelecominc&channel=SFBuilding"></script>
+	
+	<apex:outputPanel id="out">
+		<apex:pageMessages />
+	</apex:outputPanel>
+	
+	<div id="popupHolder" class="popupDiv" style="width:50%">
+		<c:RecordSelector sObjectType="Building__c" id="buildingSelector" fields="Id,Address__c,City__c,State__c,Postal_Code__c,Net_Classification__c" useRecentRecords="true" useSoslSearch="true"/>
+	</div>
+	
+	<apex:form >
+		<apex:pageBlock >
+			<apex:pageBlockSection title="Merge From:" columns="1">
+				<apex:outputPanel >
+						<apex:inputText id="txtMergeFromId" value="{!mergeFrom.Id}" style="display:none;"></apex:inputText>
+						<apex:inputText id="txtMergeFromName" value="{!mergeFrom.Name}" style="width:300px;" onclick="doOpenRecordSelector(this,'from'); return false;"></apex:inputText>
+				</apex:outputPanel>
+				<apex:outputPanel id="BuildingDataFrom" style="display:none;">
+					<div class="childSection">
+						<apex:dataTable value="{!mergeFrom}" id="buildingFromTable" var="fromBuilding" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">Building Name</apex:facet>
+								<apex:outputLink id="buildingName" target="_blank" value="/{!fromBuilding.Id}">{!fromBuilding.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Hash</apex:facet>
+								<apex:outputText value="{!fromBuilding.Building_Hash__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Type</apex:facet>
+								<apex:outputText value="{!fromBuilding.Building_Type__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Net Classification</apex:facet>
+								<apex:outputText value="{!fromBuilding.Net_Classification__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Address</apex:facet>
+								<apex:outputText value="{!fromBuilding.Address__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">City</apex:facet>
+								<apex:outputText value="{!fromBuilding.City__c}" ></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">State</apex:facet>
+								<apex:outputText value="{!fromBuilding.State__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Zip</apex:facet>
+								<apex:outputText value="{!fromBuilding.Postal_Code__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building CLLI</apex:facet>
+								<apex:outputText value="{!fromBuilding.Building_CLLI__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Latitude</apex:facet>
+								<apex:outputText id="txtFromLat" value="{!fromBuilding.Latitude__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Longitude</apex:facet>
+								<apex:outputText id="txtFromLng" value="{!fromBuilding.Longitude__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+						
+						<apex:dataTable value="{!mergeFrom.Access_Availabilities__r}" id="buildingFromBAATable" var="fromBuildingBAA" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">BAA</apex:facet>
+								<apex:outputLink id="buildingName" target="_blank" value="/{!fromBuildingBAA.Id}">{!fromBuildingBAA.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Status</apex:facet>
+								<apex:outputText value="{!fromBuildingBAA.Status__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Maximum Bandwidth</apex:facet>
+								<apex:outputText value="{!fromBuildingBAA.Maximum_Bandwidth__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Hurdle Rate</apex:facet>
+								<apex:outputText value="{!fromBuildingBAA.Minimum_Required_Revenue__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+					</div>
+					<br />
+					<apex:pageBlockSection title="GeoResults Businesses({!mergeFrom.Georesults_Businesses__r.size})" columns="1"  id="pbsMergeFromGRBs" rendered="{!mergeFrom.Georesults_Businesses__r.size > 0}">
+						<apex:dataTable value="{!mergeFrom.Georesults_Businesses__r}" id="buildingFromGRBTable" var="fromBuildingGRB" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">Name</apex:facet>
+								<apex:outputLink id="buildingName" target="_blank" value="/{!fromBuildingGRB.Id}">{!fromBuildingGRB.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Geo ID</apex:facet>
+								<apex:outputText value="{!fromBuildingGRB.GeoId__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Business</apex:facet>
+								<apex:outputText value="{!fromBuildingGRB.CleanBusiness__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Contact</apex:facet>
+								<apex:outputText value="{!fromBuildingGRB.Contact__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+					</apex:pageBlockSection>
+					<apex:pageBlockSection title="Buildings({!mergeFrom.Buildings__r.size})" columns="1" id="pbsMergeFromBuildings" rendered="{!mergeFrom.Buildings__r.size > 0}">
+						<apex:dataTable value="{!mergeFrom.Buildings__r}" id="buildingFromServingBuildingsTable" var="fromBuildingChild" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">Building Name</apex:facet>
+								<apex:outputLink id="buildingName" target="_blank" value="/{!fromBuildingChild.Id}">{!fromBuildingChild.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Hash</apex:facet>
+								<apex:outputText value="{!fromBuildingChild.Building_Hash__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Type</apex:facet>
+								<apex:outputText value="{!fromBuildingChild.Building_Type__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Net Classification</apex:facet>
+								<apex:outputText value="{!fromBuildingChild.Net_Classification__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Address</apex:facet>
+								<apex:outputText value="{!fromBuildingChild.Address__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">City</apex:facet>
+								<apex:outputText value="{!fromBuildingChild.City__c}" ></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">State</apex:facet>
+								<apex:outputText value="{!fromBuildingChild.State__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Zip</apex:facet>
+								<apex:outputText value="{!fromBuildingChild.Postal_Code__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building CLLI</apex:facet>
+								<apex:outputText value="{!fromBuildingChild.Building_CLLI__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+					</apex:pageBlockSection>
+					<apex:pageBlockSection title="Locations({!mergeFrom.Locations__r.size})" columns="1" id="pbsMergeFromLocations" rendered="{!mergeFrom.Locations__r.size > 0}">
+						<apex:dataTable value="{!mergeFrom.Locations__r}" id="buildingFromLocationsTable" var="fromLocation" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">Location Name</apex:facet>
+								<apex:outputLink id="locationName" target="_blank" value="/{!fromLocation.Id}">{!fromLocation.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Room/Suite</apex:facet>
+								<apex:outputText value="{!fromLocation.Room_Suite__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+					</apex:pageBlockSection>
+				</apex:outputPanel>	
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="Merge To:" columns="1" id="pbsMergeTo">
+				<apex:outputPanel >
+					<apex:inputText id="txtMergeToId" value="{!mergeTo.Id}" style="display:none;"></apex:inputText>
+					<apex:inputText id="txtMergeTo" value="{!mergeTo.Name}" style="width:300px;" onclick="doOpenRecordSelector(this,'to'); return false;"></apex:inputText>
+				</apex:outputPanel>
+				<apex:outputPanel id="BuildingDataTo" style="display:none;" >
+					<div class="childSection">
+						<apex:dataTable value="{!mergeTo}" id="buildingToTable" var="toBuilding" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">Building Name</apex:facet>
+								<apex:outputLink id="buildingName" target="_blank" value="/{!toBuilding.Id}">{!toBuilding.Name}</apex:outputLink>
+							</apex:column>
+							<apex:column >
+								<apex:facet name="header">Building Hash</apex:facet>
+								<apex:outputText value="{!toBuilding.Building_Hash__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Type</apex:facet>
+								<apex:outputText value="{!toBuilding.Building_Type__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Net Classification</apex:facet>
+								<apex:outputText value="{!toBuilding.Net_Classification__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Address</apex:facet>
+								<apex:outputText value="{!toBuilding.Address__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">City</apex:facet>
+								<apex:outputText value="{!toBuilding.City__c}" ></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">State</apex:facet>
+								<apex:outputText value="{!toBuilding.State__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Zip</apex:facet>
+								<apex:outputText value="{!toBuilding.Postal_Code__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building CLLI</apex:facet>
+								<apex:outputText value="{!toBuilding.Building_CLLI__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Latitude</apex:facet>
+								<apex:outputText id="txtToLat" value="{!toBuilding.Latitude__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Longitude</apex:facet>
+								<apex:outputText id="txtToLng" value="{!toBuilding.Longitude__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+						<apex:dataTable value="{!mergeTo.Access_Availabilities__r}" id="buildingToBAATable" var="toBuildingBAA" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">BAA</apex:facet>
+								<apex:outputLink id="buildingName" target="_blank" value="/{!toBuildingBAA.Id}">{!toBuildingBAA.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Status</apex:facet>
+								<apex:outputText value="{!toBuildingBAA.Status__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Maximum Bandwidth</apex:facet>
+								<apex:outputText value="{!toBuildingBAA.Maximum_Bandwidth__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Hurdle Rate</apex:facet>
+								<apex:outputText value="{!toBuildingBAA.Minimum_Required_Revenue__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+					</div>
+					<apex:pageBlockSection title="GeoResults Businesses({!mergeTo.Georesults_Businesses__r.size})" columns="1" id="pbsMergeToGRBs" rendered="{!mergeTo.Georesults_Businesses__r.size > 0}">
+						<apex:dataTable value="{!mergeTo.Georesults_Businesses__r}" id="buildingToGRBTable" var="toBuildingGRB" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">Name</apex:facet>
+								<apex:outputLink id="buildingName" target="_blank" value="/{!toBuildingGRB.Id}">{!toBuildingGRB.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Geo ID</apex:facet>
+								<apex:outputText value="{!toBuildingGRB.GeoId__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Business</apex:facet>
+								<apex:outputText value="{!toBuildingGRB.CleanBusiness__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Contact</apex:facet>
+								<apex:outputText value="{!toBuildingGRB.Contact__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+					</apex:pageBlockSection>
+					<apex:pageBlockSection title="Buildings({!mergeTo.Buildings__r.size})" columns="1" id="pbsMergeToBuildings" rendered="{!mergeTo.Buildings__r.size > 0}">
+						<apex:dataTable value="{!mergeTo.Buildings__r}" id="buildingToServingBuildingsTable" var="toBuildingChild" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">Building Name</apex:facet>
+								<apex:outputLink id="buildingName" target="_blank" value="/{!toBuildingChild.Id}">{!toBuildingChild.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Hash</apex:facet>
+								<apex:outputText value="{!toBuildingChild.Building_Hash__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building Type</apex:facet>
+								<apex:outputText value="{!toBuildingChild.Building_Type__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Net Classification</apex:facet>
+								<apex:outputText value="{!toBuildingChild.Net_Classification__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Address</apex:facet>
+								<apex:outputText value="{!toBuildingChild.Address__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">City</apex:facet>
+								<apex:outputText value="{!toBuildingChild.City__c}" ></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">State</apex:facet>
+								<apex:outputText value="{!toBuildingChild.State__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Zip</apex:facet>
+								<apex:outputText value="{!toBuildingChild.Postal_Code__c}"></apex:outputText>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Building CLLI</apex:facet>
+								<apex:outputText value="{!toBuildingChild.Building_CLLI__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+					</apex:pageBlockSection>
+					<apex:pageBlockSection title="Locations({!mergeTo.Locations__r.size})" columns="1" id="pbsMergeToLocations" rendered="{!mergeTo.Locations__r.size > 0}">
+						<apex:dataTable value="{!mergeTo.Locations__r}" id="buildingToLocationsTable" var="toLocation" styleClass="list" headerClass="headerRow">
+							<apex:column >
+								<apex:facet name="header">Location Name</apex:facet>
+								<apex:outputLink id="locationName" target="_blank" value="/{!toLocation.Id}">{!toLocation.Name}</apex:outputLink>
+							</apex:column> 
+							<apex:column >
+								<apex:facet name="header">Room/Suite</apex:facet>
+								<apex:outputText value="{!toLocation.Room_Suite__c}"></apex:outputText>
+							</apex:column> 
+						</apex:dataTable>
+					</apex:pageBlockSection>
+				</apex:outputPanel>	
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+		
+		<apex:outputPanel id="mergeBtnPanel">
+			<apex:commandButton value="Merge" action="{!mergeObjs}" reRender="out" rendered="{!mergeFrom.id != null && mergeTo.id != null}"/>
+		</apex:outputPanel>
+		
+		<div id="map" style="border:1px solid;float:left;width:100%;height:400px;display:none;"></div>
+		
+		<apex:actionFunction name="getBuildingData" action="{!GetBuildingData}" reRender="BuildingDataFrom,BuildingDataTo,mergeBtnPanel" oncomplete="formatPage();displayBuildingsOnMap();">
+			<apex:param name="buildingID" assignTo="{!buildingID}" value=""/>	
+			<apex:param name="mergeType" assignTo="{!mergeType}" value=""/>	
+		</apex:actionFunction>
+		
+	</apex:form>
+	
+	
+
+	
+	<script type="text/javascript">
+		var selectedInput = null;
+		var mergeType = null;
+		var map = null;
+		
+		jQuery(document).ready(function(){
+			jQuery('#popupHolder').dialog({
+				autoOpen: false,
+				modal: true,
+				minWidth: 750,
+				title: 'Select Records',
+				buttons: [{ text: 'Select', click: recordSelector_gatherSelection }],
+				open: function(){ showHideSelectButton(); },
+				show: 'blind',
+				hide: 'blind'
+			});
+			jQuery("[id$='buildingSelector']").bind('recordSelected', addRecordsSelected);
+			initMap();
+		});
+				
+		function addRecordsSelected(e){
+			if(jQuery("[id$='txtMergeFromId']").val() == e.id || jQuery("[id$='txtMergeToId']").val() == e.id){
+				alert('Can\'t merge from and to the same building');
+			}
+			else{
+				jQuery(selectedInput).prev().val(e.id);
+				jQuery(selectedInput).val(e.label);
+				jQuery('#popupHolder').dialog('close');
+
+				getBuildingData(e.id,mergeType);
+			}
+		}
+		
+		function doOpenRecordSelector(source,mtype){
+			selectedInput = jQuery(source);
+			mergeType = mtype;
+			jQuery('#popupHolder').dialog('open');
+		}
+		
+		function showHideSelectButton(){
+		}
+		
+		function formatPage(){
+			if(jQuery("[id$='txtMergeFromId']").val() != ''){
+				jQuery("[id$='pbsMergeFromBuildings'],[id$='pbsMergeFromGRBs'],[id$='pbsMergeFromLocations']").addClass("childSection");
+				jQuery("[id$='BuildingDataFrom']").show();
+				jQuery("img[id$='pbsMergeFromBuildings'],img[id$='pbsMergeFromGRBs'],img[id$='pbsMergeFromLocations']").click();	
+			}
+			if(jQuery("[id$='txtMergeToId']").val() != ''){
+				jQuery("[id$='pbsMergeToBuildings'],[id$='pbsMergeToGRBs'],[id$='pbsMergeToLocations']").addClass("childSection");
+				jQuery("[id$='BuildingDataTo']").show();
+				jQuery("img[id$='pbsMergeToBuildings'],img[id$='pbsMergeToGRBs'],img[id$='pbsMergeToLocations']").click();	
+			}
+		}
+
+		function initMap(){
+		jQuery('#map').show();
+		  	var myOptions = {
+                mapTypeId: google.maps.MapTypeId.TERRAIN,
+                disableDefaultUI: true,
+                scrollwheel: true,
+                draggable: true,
+                disableDoubleClickZoom: true,
+                maxZoom: 18
+            };
+        	map = new google.maps.Map(document.getElementById("map"), myOptions); 
+		}
+		
+		function displayBuildingsOnMap(){
+						
+			if(jQuery('[id$=txtFromLat]').text() != null && jQuery('[id$=txtFromLat]').text() != '')
+	  			var fromLatlng = new google.maps.LatLng(jQuery('[id$=txtFromLat]').text(),jQuery('[id$=txtFromLng]').text());
+			if(jQuery('[id$=txtToLat]').text() != null && jQuery('[id$=txtToLat]').text() != '')
+				var toLatlng = new google.maps.LatLng(jQuery('[id$=txtToLat]').text(),jQuery('[id$=txtToLng]').text());
+			
+            var markerBounds = new google.maps.LatLngBounds();
+		
+			if(fromLatlng != null){
+				var markerFrom = new google.maps.Marker({
+	                                position: fromLatlng,
+	                                map: map,
+	                                title: "Merge From",
+									icon: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+	                            });
+		 		markerBounds.extend(fromLatlng);
+			}	
+			if(toLatlng != null){
+	            var markerTo = new google.maps.Marker({
+	                                position: toLatlng,
+	                                map: map,
+	                                title: "Merge To",
+									icon: 'https://maps.google.com/mapfiles/ms/icons/green-dot.png'
+	                            });
+				markerBounds.extend(toLatlng);
+			}
+
+            map.fitBounds(markerBounds);
+        }
+		
+	</script>
+	
+	<style type="text/css">
+		div.popupDiv{
+			max-height:600px;
+			overflow-y:auto;
+		}
+		
+		div.popupDiv table{
+			width:100%
+		}
+		
+		.childSection {
+			padding-left:20px;
+		}
+	</style>
+		
+</apex:page>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approval_Waiting_Since__c</fullName>
+    <description>Field updated by the approval processes to indicate when the approval was moved to the next step.  This is used for reporting for users who cannot access Administrative reports.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>System Maintained Field:  During the approval process, this field displays the date and time when this ICB was sent to the current approver(s).</inlineHelpText>
+    <label>Approval Waiting Since</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

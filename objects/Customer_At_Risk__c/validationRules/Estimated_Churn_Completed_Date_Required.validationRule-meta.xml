@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimated_Churn_Completed_Date_Required</fullName>
+    <active>true</active>
+    <description>Require date when &quot;Intends to Disconnect&quot; is selected in &quot;Risk Level&quot; field.</description>
+    <errorConditionFormula>ISPICKVAL( Risk_Level__c , &quot;Intends to Disconnect&quot;) 
+&amp;&amp; ISBLANK( Estimated_Term_Date__c )</errorConditionFormula>
+    <errorDisplayField>Estimated_Term_Date__c</errorDisplayField>
+    <errorMessage>Estimated Churn Completed Month is required when Risk Level is &quot;Intends to Disconnect&quot;</errorMessage>
+</ValidationRule>

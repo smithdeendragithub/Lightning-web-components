@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>A_Workstep_is_Blocked</fullName>
+        <description>A Workstep is Blocked</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Workstep_Issue_Assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>Workstep_Issue_Alert_to_Build_Order_Owner</fullName>
+        <description>Workstep Issue Alert to Build Order Owner</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Project_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Workstep_Issue_Alert_to_Build_Order_Owner</template>
+    </alerts>
+    <alerts>
+        <fullName>Workstep_Issue_Alert_to_CPM</fullName>
+        <description>Workstep Issue Alert to CPM</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Project_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Workstep_Issue_Alert_to_CPM</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Update_PM_Email_to_equal_Order_Owner</fullName>
+        <description>Update the PM Email field on the Workstep Issue with the Order Owner that exists at time of Workstep Issue creation.</description>
+        <field>Project_Manager_Email__c</field>
+        <formula>Workstep__r.Order__r.Owner:User.Email</formula>
+        <name>Update PM Email to equal Order Owner</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Update PM Email to match Order Owner</fullName>
+        <actions>
+            <name>Update_PM_Email_to_equal_Order_Owner</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Workstep_Issue__c.CreatedDate</field>
+            <operation>greaterThan</operation>
+            <value>1/1/2000</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Workstep Issue Alert to Build Order Owner</fullName>
+        <actions>
+            <name>Workstep_Issue_Alert_to_Build_Order_Owner</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>Contains (Workstep__r.Order__r.RecordType.Name, &quot;Build&quot;) &amp;&amp; 
+ISPICKVAL( Workstep__r.Order__r.Build_Category__c , &quot;Customer&quot;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Workstep Issue Alert to CPM</fullName>
+        <actions>
+            <name>Workstep_Issue_Alert_to_CPM</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Workstep_Issue__c.Sub_Order__c</field>
+            <operation>contains</operation>
+            <value>-</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Workstep Issue Assigned Notification</fullName>
+        <actions>
+            <name>A_Workstep_is_Blocked</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Sends an email notification when a workstep issue is assigned to sales, offer management, CSR&#39;s</description>
+        <formula>OR( 
+Owner:User.Is_AC__c ,
+Owner:User.Is_Account_Specialist__c, 
+Owner:User.Is_CAM__c , 
+Owner:User.Is_CSR__c , 
+Owner:User.Is_Offer_Management__c , 
+Owner:User.Is_Sales__c , 
+Owner:User.Is_Sales_Engineer__c
+)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Workstep Issue Created</fullName>
+        <actions>
+            <name>A_Workstep_is_Blocked</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Workstep_Issue__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Open</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

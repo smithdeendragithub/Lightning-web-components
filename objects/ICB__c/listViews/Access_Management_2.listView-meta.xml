@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Access_Management_2</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>ASD_Queued__c</columns>
+    <columns>ASD_Reviewer__c</columns>
+    <columns>ASD_Start__c</columns>
+    <columns>ASD_Cycle_Time__c</columns>
+    <columns>ASD_Delay_Time__c</columns>
+    <columns>ASD_OM_Wait_Time__c</columns>
+    <columns>ASD_Quote_Status__c</columns>
+    <columns>ASD_Reject_Reason__c</columns>
+    <columns>ASD_Complete__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>In Progress</value>
+    </filters>
+    <filters>
+        <field>Off_Net_Quoting_Required__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Access Management 2</label>
+    <sharedTo>
+        <allInternalUsers/>
+        <group>Sales_Enablement</group>
+    </sharedTo>
+</ListView>

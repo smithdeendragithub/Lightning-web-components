@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_Opportunity_Must_Match_Opportunity</fullName>
+    <active>true</active>
+    <errorConditionFormula>Opportunity__c != Order__r.Opportunity__c</errorConditionFormula>
+    <errorDisplayField>Order__c</errorDisplayField>
+    <errorMessage>The order associated with this object must match the master opportunity.</errorMessage>
+</ValidationRule>

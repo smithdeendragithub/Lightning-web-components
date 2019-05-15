@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Engineering_Projects</fullName>
+    <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Project_Type__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Status__c</columns>
+    <columns>Project_Health__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Decommission</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Strategic Network Expansion</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Network Evolution</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Network Growth</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Technology Refresh</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Network Resource Automation</value>
+    </filters>
+    <label>Engineering Projects</label>
+</ListView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Communication_Site_Information_Form</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Business Communication Site Information Form</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/apex.js&quot;)} 
+var id = sforce.apex.execute(&quot;GlobalActions&quot;, &quot;GetSalesFormsContentVersionIDByTitle&quot;, {title:&#39;Business Communication Site Information Form&#39;});
+
+if(id != null) window.open(&#39;../&#39; + id);
+else alert(&#39;Could not find the requested document&#39;);</url>
+</WebLink>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Technical_Update_VerbiageAESE__c</fullName>
+    <description>Formula field used in email templates to the AE and Sales Engineer to display whether the Technical Update checkbox field is checked or not.</description>
+    <externalId>false</externalId>
+    <formula>IF( Technical_Update__c, &quot;A Technical Update is required.  You will be updated within 48 hours.&quot;, &quot;.&quot;)</formula>
+    <inlineHelpText>System Maintained Field:  Used in email templates to display whether the Technical Update checkbox field is checked or not.</inlineHelpText>
+    <label>Technical Update Verbiage AESE</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

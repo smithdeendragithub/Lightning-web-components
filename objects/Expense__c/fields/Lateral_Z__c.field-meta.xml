@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lateral_Z__c</fullName>
+    <externalId>false</externalId>
+    <label>Lateral Z</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>One (Single)</fullName>
+                <default>false</default>
+                <label>One (Single)</label>
+            </value>
+            <value>
+                <fullName>Two (Diverse)</fullName>
+                <default>false</default>
+                <label>Two (Diverse)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

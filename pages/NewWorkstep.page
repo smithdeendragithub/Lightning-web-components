@@ -1,0 +1,244 @@
+<apex:page tabstyle="Workstep__c">
+	<apex:includeScript value="/soap/ajax/31.0/connection.js" />
+	<apex:includeScript value="/soap/ajax/31.0/apex.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" />
+    <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_10_3_custom, 'css/redmond/jquery-ui-1.10.3.custom.min.css')}"/>
+	
+	<apex:pageBlock id="pbMain">
+		<apex:pageBlockButtons >
+			<apex:form >
+				<apex:commandButton value="Configure Selected" id="btnConfigure" onclick="recordSelector_gatherSelection(); return false;"/>
+				<apex:commandButton value="Save" id="btnSave" onclick="doSave(); return false;" style="display:none;"/>
+				<apex:commandButton value="Cancel" onclick="doCancel(); return false;"/>
+			</apex:form>
+		</apex:pageBlockButtons>
+		<div id="libSelectorContainer">
+			<c:RecordSelector sObjectType="Workstep_Library__c" id="libSelector" fields="Id,Non_Access_SLA__c,Non_Access_Duration__c,Attribute__c" multiSelectMode="true" openLinksInTabs="true" 
+			    whereClause="Non_Access_Duration__c > 0"/>
+		</div>
+		<div id="libSelectedContainer" style="display:none;">
+			<table cellspacing="0" cellpadding="0" border="0" class="list">
+				<tr>
+					<th class="wsid hide">Library ID</th>
+					<th class="wsname">Workstep</th>
+					<th class="wstag">Tag</th>
+					<th class="wsowner">Owner</th>
+					<th class="wsworkgroup hide">Work Group</th>
+					<th class="wslag hide">Non-Access Lag</th>
+					<th class="wsduration hide">Non-Access Duration</th>
+					<th class="wssla hide">Non-Access SLA</th>
+					<th class="wsattribute hide">Attribute</th>
+				</tr>
+			</table>
+		</div>
+		<div id="modalParent">
+			<div id="modal">
+		        <iframe src="" style="width:100%;height:500px;">
+		            <p>Your browser does not support iframes.</p>
+		        </iframe>
+			</div>
+		</div>
+	</apex:pageBlock>
+	<script type="text/javascript">
+		var orderId = null;
+		var subOrderId = null;
+		
+		jQuery(document).ready(function(){
+			jQuery("[id$='libSelector']").bind('recordSelected', selectLibraries);
+			
+			window.addEventListener("message", changeOwnerSelected, false);
+			
+			sforce.connection.sessionId = '{!$Api.Session_ID}';
+			
+			orderId = {!IF(NOT(ISBLANK($CurrentPage.parameters.oid)), '"' + $CurrentPage.parameters.oid + '"', 'null')};
+			if(orderId == null){
+				subOrderId = {!IF(NOT(ISBLANK($CurrentPage.parameters.id)), '"' + $CurrentPage.parameters.id + '"', 'null')};
+				if(subOrderId != null){
+					var query = "select Id, Order__c from Sub_Order__c where Id = '" + subOrderId + "'";
+					var rList = sforce.connection.query(query).getArray("records");
+					
+					if(rList.length > 0){
+						orderId = rList[0].Order__c;
+					}
+				}
+			}
+		
+			if(orderId == null){
+				jQuery('input[id$="pbMain"]').hide();
+				//todo: error message?
+			}
+			
+			jQuery('#modal').dialog({
+				autoOpen: false,
+				modal: true,
+				minWidth: 750,
+				title: 'Select a new owner',
+				show: 'blind',
+				hide: 'blind'
+			});
+		});
+        
+        function selectLibraries(e){
+			if(e.records.length == 0){
+				alert('Select one or more workstep library to configure');
+				return;
+			}
+			
+			var t = jQuery('div[id$="libSelectedContainer"]').find('table');
+			t.find('td').parent().remove();
+			
+			var query = "select Id, Name, Work_Group__c, Non_Access_Lag__c, Non_Access_Duration__c, Non_Access_SLA__c, Attribute__c from Workstep_Library__c where Id in ('" + e.records.join("','") + "') order by Name";
+			var rList = sforce.connection.query(query).getArray("records");
+			
+			for(var i = 0; rList.length > i; i++){
+				t.append('<tr>'
+						+ '<td class="wsid hide">' + rList[i].Id + '</td>'
+						+ '<td class="wsname">' + rList[i].Name + '</td>'
+						+ '<td class="wstag"><input type="text" onkeydown="limitText(this, 20);" onkeyup="limitText(this, 20);" onchange="limitText(this, 20);"/></td>'
+						+ '<td class="wsowner">'
+								+ '<span class="wsownername">Default to me</span>'
+								+ '<div style="float:right;"><a class="wsownerlink" href="#" onclick="changeOwner(this, true); return false;">Select User</a>'
+								+ '<br/><a class="wsownerlink" href="#" onclick="changeOwner(this, false); return false;">Select Queue</a></div>'
+								+ '<span class="wsownerid hide"></span>'
+							+ '</td>'
+						+ '<td class="wsworkgroup hide">' + (rList[i].Work_Group__c != null ? rList[i].Work_Group__c : '') + '</td>'
+						+ '<td class="wslag hide">' + (rList[i].Non_Access_Lag__c != null ? rList[i].Non_Access_Lag__c : '') + '</td>'
+						+ '<td class="wsduration hide">' + (rList[i].Non_Access_Duration__c != null ? rList[i].Non_Access_Duration__c : '') + '</td>'
+						+ '<td class="wssla hide">' + (rList[i].Non_Access_SLA__c != null ? rList[i].Non_Access_SLA__c : '') + '</td>'
+						+ '<td class="wsattribute hide">' + (rList[i].Attribute__c != null ? rList[i].Attribute__c : '') + '</td>'
+						+ '</tr>');
+			}
+			
+			updateState();
+        }
+		
+		var ownerRow = null;
+		function changeOwner(target, userMode){
+			var row = jQuery(target).closest('tr');
+			ownerRow = row;
+			
+			if(userMode){
+				jQuery('#modal').find('iframe').attr('src', "/apex/RecordSelector?sObjectType=User&fields=id,department,phone,email&where=IsActive%3Dtrue");
+			}
+			else{
+				jQuery('#modal').find('iframe').attr('src', "/apex/RecordSelector?sObjectType=Group&fields=id&where=Type%3D%27Queue%27");
+			}
+			
+			jQuery('#modal').dialog('open');
+		}
+		
+		function changeOwnerSelected(e){
+			if(e.data != undefined && e.data != null && e.data.selectedRecords == true){
+				ownerRow.find('.wsownername').text(e.data.label);
+				ownerRow.find('.wsownerid').text(e.data.id);
+				ownerRow = null;
+				
+				jQuery('#modal').dialog('close');
+			}
+		}
+		
+		function doSave(){
+			var libRows = jQuery('div[id$="libSelectedContainer"]').find('tr');
+			
+			//var startDate = new Date();
+			
+			var newWorksteps = [];
+			for(var i = 1; libRows.length > i; i++){
+				var row = jQuery(libRows[i]);
+				var ownerID = row.find('.wsownerid').text();
+				
+				var ws = new sforce.SObject("Workstep__c");
+				ws.Workstep_Library__c = row.find('.wsid').text();
+				ws.Name = row.find('.wsname').text();
+				ws.Status__c = 'Open';
+				ws.Order__c = orderId;
+				ws.Work_Group__c = row.find('.wsworkgroup').text();
+				ws.Attribute__c = row.find('.wsattribute').text();
+				ws.workstep_tag__c = row.find('.wstag').find('input').val();
+				
+				//Let the trigger set all the defaults from the library
+				/*ws.Lag__c = row.find('.wslag').text() * 1;
+				ws.SLA__c = row.find('.wssla').text() * 1;
+				var endDate = new Date(startDate);
+				if(row.find('.wsduration').text() != ''){
+					ws.Duration__c = row.find('.wsduration').text() * 1;
+					endDate = new Date(endDate.setDate(endDate.getDate() + ws.Duration__c));
+				}
+				ws.Start_Date__c = startDate;
+				ws.End_Date__c = endDate;*/
+				
+				if(subOrderId != null){
+					ws.Sub_Order__c = subOrderId;
+				}
+				
+				if(ownerID != ''){
+					ws.OwnerId = ownerID;
+				}
+				
+				newWorksteps.push(ws);
+			}
+			
+			try{
+				var results = sforce.connection.create(newWorksteps);
+				for(var i = 0; results.length > i; i++){
+					if(results[i].success != 'true'){
+						alert('Save error: ' + results[i].errors.message);
+						return;
+					}
+				}
+				
+				returnPage();
+			}
+			catch(e){
+				alert(e);
+			}
+		}
+		
+		function doCancel(){
+			if(displaySave()){
+				updateState();
+			}
+			else{
+				returnPage();
+			}
+		}
+		
+		function returnPage(){
+			window.location = '../' + (subOrderId != null ? subOrderId : orderId);
+		}
+		
+		function updateState(){
+			if(displaySave()){
+				jQuery('input[id$="btnConfigure"]').show();
+				jQuery('input[id$="btnSave"]').hide();
+				jQuery('div[id$="libSelectorContainer"]').show();
+				jQuery('div[id$="libSelectedContainer"]').hide();
+			}
+			else{
+				jQuery('input[id$="btnConfigure"]').hide();
+				jQuery('input[id$="btnSave"]').show();
+				jQuery('div[id$="libSelectorContainer"]').hide();
+				jQuery('div[id$="libSelectedContainer"]').show();
+			}
+		}
+		
+		function displaySave(){
+			return jQuery('input[id$="btnSave"]').is(':visible');
+		}
+		
+		function limitText(field, limit){
+			if (field.value.length > limit)
+				field.value = field.value.substring(0, limit);
+		}
+	</script>
+	<style type="text/css">
+		.hide{
+			display:none;
+		}
+		
+		.wsownerlink{
+			cursor:pointer;
+		}
+	</style>
+</apex:page>

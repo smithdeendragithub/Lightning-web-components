@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accepted_Req_Opp_Cont_Signed</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISCHANGED( Status__c ) &amp;&amp; TEXT(Status__c) == &#39;Order Accepted&#39; &amp;&amp; 
+TEXT( Opportunity__r.StageName ) != &#39;Contract Signed&#39; &amp;&amp; TEXT( Opportunity__r.StageName ) != &#39;Closed Won&#39; &amp;&amp; TEXT( Opportunity__r.StageName ) != &#39;Stage 4 - Contract Signed / Won&#39; &amp;&amp; TEXT( Opportunity__r.StageName ) != &#39;Stage 5 - Accepted / Order Pending&#39;</errorConditionFormula>
+    <errorMessage>The opportunity must be in the Contract Signed stage/Stage 4 - Contract Signed / Won</errorMessage>
+</ValidationRule>

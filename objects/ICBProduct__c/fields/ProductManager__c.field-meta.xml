@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ProductManager__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lookup to User object for the Product Manager for this product.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the Product Manager responsible for this Product.</inlineHelpText>
+    <label>Product Manager</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>ProductProductManagers</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

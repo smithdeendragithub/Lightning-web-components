@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active</fullName>
+    <columns>Section__c</columns>
+    <columns>Print_Order__c</columns>
+    <columns>NAME</columns>
+    <columns>Document_Name__c</columns>
+    <columns>Display_Criteria__c</columns>
+    <columns>Parent_Element__c</columns>
+    <columns>Signature_Grouping__c</columns>
+    <columns>Add_Signature__c</columns>
+    <columns>Hide_When_Invalid__c</columns>
+    <columns>Default_Selection__c</columns>
+    <columns>Criteria_Help_Text__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Active__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Active</label>
+</ListView>

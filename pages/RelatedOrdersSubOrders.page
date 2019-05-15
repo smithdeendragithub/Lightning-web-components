@@ -1,0 +1,501 @@
+<apex:page standardController="Order__c" extensions="RelatedOrdersSubOrders">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" />
+    <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_10_3_custom, 'css/redmond/jquery-ui-1.10.3.custom.min.css')}"/>    
+    <apex:outputPanel id="out">
+		<apex:pageMessages />
+		<script type="text/javascript">
+			var error = '{!error}';
+		</script>
+	</apex:outputPanel>
+	<input id="hiddenSO" value="{!isSubOrder}" type="hidden" />
+	<apex:pageBlock id="Page1" title="Related Build Orders"  rendered="{!ISNULL(error) && isSubOrder == false}">
+		<apex:form >
+			<div style="display:inline-block; zoom:1; min-width:600px;">
+				<br/><br/>
+				<div>
+				<table id="tblSubOrderDetail">
+					<thead>
+						<tr>
+							<td></td>
+							<td>Order Name</td>							
+							<td>Location</td>
+							<td>ESO Number</td>
+							<td>iCert Number</td>
+							<td>Site Survey Date</td>
+							<td>Proj. Network Ready Date</td>
+						</tr>
+					</thead>
+					<tbody id="subOrderDetailRows">
+						<apex:repeat value="{!rItem}" var="sOrder">
+							<tr>
+								<td>
+									
+								</td>
+								<td>
+									<apex:outputLink value="../{!sOrder.sub.Id}" target="_blank">{!sOrder.sub.Name}</apex:outputLink>
+								</td>								
+								<td>
+									<apex:outputField value="{!sOrder.sub.Location__c}" />
+								</td>	
+								<td>
+									<apex:outputField value="{!sOrder.sub.ESO_Number__c}" />
+								</td>
+								<td>
+									<apex:outputText value="{!sOrder.sub.iCert_Number__c}" />
+								</td>							
+								<td>
+									<apex:outputField value="{!sOrder.sub.Site_Survey_Date__c}" />
+								</td>
+								<td>
+									<apex:outputField value="{!sOrder.sub.Projected_Network_Ready_Date__c}" />
+								</td>
+							</tr>
+						</apex:repeat>
+					</tbody>
+				</table>
+				</div>
+			</div>
+			</apex:form>
+		</apex:pageBlock>		
+	<apex:form >
+	<apex:pageBlock id="Page2" title="Build Orders Available to be Related" rendered="{!ISNULL(error) && isSubOrder == false}">
+		<div style="display:inline-block; zoom:1; min-width:600px;">
+			<div id="divPage1Buttons" class="Data">
+						<div style="float:left;">
+							<input id="btnSave" type="button" value="Save"/>
+							<input id="btnCancel" type="button" value="Cancel" />
+						</div>
+						<div class="Clear"/>
+			</div>
+			<br/><br/>
+			<div>
+				<table id="tblSubOrderDetail">
+					<thead>
+						<tr>
+							<td><input id="cbSelectAllOrders" type="checkbox"/></td>
+							<td>Order Name</td>							
+							<td>Location</td>
+							<td>ESO Number</td>
+							<td>iCert Number</td>
+							<td>Site Survey Date</td>
+							<td>Proj. Network Ready Date</td>
+						</tr>
+					</thead>
+					<tbody id="subOrderDetailRows">
+						<apex:repeat value="{!oItem}" var="sOrder">
+							<tr>
+								<td>
+									<input class="SuborderSelect" type="checkbox" data-orderNumber="{!sOrder.sub.Id}" data-modified="{!sOrder.isSelected}" data-tempId="{!sOrder.sub.Id}"/>
+								</td>
+								<td>
+									<apex:outputLink value="../{!sOrder.sub.Id}" target="_blank">{!sOrder.sub.Name}</apex:outputLink>
+								</td>								
+								<td>
+									<apex:outputField value="{!sOrder.sub.Location__c}" />
+								</td>	
+								<td>
+									<apex:outputField value="{!sOrder.sub.ESO_Number__c}" />
+								</td>
+								<td>
+									<apex:outputText value="{!sOrder.sub.iCert_Number__c}" />
+								</td>							
+								<td>
+									<apex:outputField value="{!sOrder.sub.Site_Survey_Date__c}" />
+								</td>
+								<td>
+									<apex:outputField value="{!sOrder.sub.Projected_Network_Ready_Date__c}" />
+								</td>
+							</tr>
+						</apex:repeat>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</apex:pageBlock>
+		<apex:actionFunction action="{!Save}" name="save" rerender="out">
+			<apex:param assignTo="{!ModifiedTempIds}" name="ModifiedTempIds" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction action="{!Remove}" name="remove" rerender="out">
+				<apex:param assignTo="{!ModifiedTempIds}" name="ModifiedTempIds" value="" />
+		</apex:actionFunction>
+		</apex:form>
+			<apex:pageBlock id="Page3" title="Related Sub-Orders"  rendered="{!ISNULL(error) && isSubOrder == true}">
+		<apex:form >
+			<div style="display:inline-block; zoom:1; min-width:600px;">
+				<div id="divPage1Buttons" class="Data">
+							<div style="float:left;">
+								<input id="btnGoToAssign" type="button" value="Assign Related Sub-Orders"/>
+								<input id="btnRemoveRelated" type="button" value="Remove Related Sub-Orders" />
+								&nbsp;&nbsp;&nbsp;
+								<apex:commandButton value="Assign Manual Relationship" onclick="assignManualClicked(); return false;"/>
+									<apex:actionFunction id="manualRelate" name="manualRelate" action="{!SaveManual}" rerender="out" >
+										<apex:param name="AddSubOrder" assignTo="{!AddSubOrder}" value="" />
+								</apex:actionFunction>
+							</div>
+							<div class="Clear"/>
+				</div>
+				<br/><br/>
+				<div>
+				<table id="tblSubOrderDetail">
+					<thead>
+						<tr>
+							<td><input id="cbSelectAllOrders" type="checkbox"/></td>
+							<td>Sub-Order Name</td>
+							<td>Status</td>
+							<td>Account Name</td>
+							<td>Location</td>
+							<td>SPC Product</td>
+							<td>Customer Requested Date</td>
+						</tr>
+					</thead>
+					<tbody id="subOrderDetailRows">
+						<apex:repeat value="{!relItem}" var="sOrder">
+							<tr>
+								<td>
+									<input class="SuborderSelect" type="checkbox" data-orderNumber="{!sOrder.sub.Id}" data-modified="{!sOrder.isSelected}" data-tempId="{!sOrder.sub.Id}"/>
+								</td>
+								<td>
+									<apex:outputLink value="../{!sOrder.sub.Id}" target="_blank">{!sOrder.sub.Name}</apex:outputLink>
+								</td>
+								<td>
+									<apex:outputField value="{!sOrder.sub.Status__c}" />
+								</td>
+								<td>
+									<apex:outputText value="{!sOrder.sub.Order__r.AccountName__c}" />
+								</td>
+								<td>
+									<apex:outputField value="{!sOrder.sub.Location__c}" />
+								</td>
+								<td>
+									<apex:outputText value="{!sOrder.sub.SPC_Product__r.Name}" />
+								</td>
+								<td>
+									<apex:outputField value="{!sOrder.sub.Customer_Requested_Date__c}" />
+								</td>
+							</tr>
+						</apex:repeat>
+					</tbody>
+				</table>
+				</div>
+			</div>
+			<div id="SelectSubOrderDialogParent">
+				<div id="SelectSubOrderDialog">
+					<apex:pageBlockSection columns="1">
+						<apex:outputText id="confirmText"/>
+						<tr>
+							<td style="font-weight:bold;">Enter Sub-Order Number (Ex: 0000119999-19):</td>
+							<td><input id="subOrder" type="textbox" /></td>
+						</tr>
+						
+					</apex:pageBlockSection>
+				</div>
+			</div>
+			</apex:form>
+		</apex:pageBlock>		
+	<apex:form >
+	<apex:pageBlock id="Page4" title="Sub-Orders Available to be Related" rendered="{!ISNULL(error) && isSubOrder == true}">
+		<div style="display:inline-block; zoom:1; min-width:600px;">
+			<div id="divPage1Buttons" class="Data">
+						<div style="float:left;">
+							<input id="btnSave" type="button" value="Save"/>
+							<input id="btnCancel" type="button" value="Cancel" />
+						</div>
+						<div class="Clear"/>
+			</div>
+			<br/><br/>
+			<div>
+				<table id="tblSubOrderDetail">
+					<thead>
+						<tr>
+							<td><input id="cbSelectAllOrders" type="checkbox"/></td>
+							<td>Sub-Order Name</td>
+							<td>Status</td>
+							<td>Account Name</td>
+							<td>Location</td>
+							<td>SPC Product</td>
+							<td>Customer Requested Date</td>
+						</tr>
+					</thead>
+					<tbody id="subOrderDetailRows">
+						<apex:repeat value="{!aItem}" var="sOrder">
+							<tr>
+								<td>
+									<input class="SuborderSelect" type="checkbox" data-orderNumber="{!sOrder.sub.Id}" data-modified="{!sOrder.isSelected}" data-tempId="{!sOrder.sub.Id}"/>
+								</td>
+								<td>
+									<apex:outputLink value="../{!sOrder.sub.Id}" target="_blank">{!sOrder.sub.Name}</apex:outputLink>
+								</td>
+								<td>
+									<apex:outputField value="{!sOrder.sub.Status__c}" />
+								</td>
+								<td>
+									<apex:outputText value="{!sOrder.sub.Order__r.AccountName__c}" />
+								</td>
+								<td>
+									<apex:outputField value="{!sOrder.sub.Location__c}" />
+								</td>
+								<td>
+									<apex:outputText value="{!sOrder.sub.SPC_Product__r.Name}" />
+								</td>
+								<td>
+									<apex:outputField value="{!sOrder.sub.Customer_Requested_Date__c}" />
+								</td>
+							</tr>
+						</apex:repeat>
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</apex:pageBlock>
+		<apex:actionFunction action="{!Save}" name="save" rerender="out">
+			<apex:param assignTo="{!ModifiedTempIds}" name="ModifiedTempIds" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction action="{!Remove}" name="remove" rerender="out">
+				<apex:param assignTo="{!ModifiedTempIds}" name="ModifiedTempIds" value="" />
+		</apex:actionFunction>
+		</apex:form>
+
+        <script type="text/javascript">
+        var $ = jQuery.noConflict();
+        Array.prototype.toApexJsonString = function(){
+			var retVal = '[';
+			var comma = '';
+			for(var i = 0; i < this.length; ++i){
+				retVal += comma + "\"" + this[i] + "\"";
+				comma = ', ';
+			}
+			return retVal + ']';
+		};
+			
+            (function(j$){
+             var bSubOrder = $('[id$=hiddenSO]').val();
+             if(bSubOrder == 'false'){
+             	jQuery(document).ready(function(){             
+					$('div[id$="Page2"]').effect('drop', function(){
+						$('div[id$="Page1"]').effect('slide');
+					});
+
+				});
+				$(document).delegate('#btnGoToAssign','click',function(){
+					$('div[id$="Page1"]').effect('drop', function(){
+								$('div[id$="Page2"]').effect('slide');
+					});
+				});
+				$(document).delegate('#btnSave','click',function(){
+					IntegrateOrders();
+					$('div[id$="Page2"]').effect('drop', function(){
+								$('div[id$="Page1"]').effect('slide');
+					});
+				});
+				$(document).delegate('#btnCancel','click',function(){
+					$('div[id$="Page2"]').effect('drop', function(){
+								$('div[id$="Page1"]').effect('slide');
+					});
+				});
+			}
+			else{
+				jQuery(document).ready(function(){
+					$('div[id$="Page4"]').effect('drop', function(){
+						$('div[id$="Page3"]').effect('slide');
+					});
+					
+					$('#SelectSubOrderDialog').dialog({
+					modal: true,
+					title: 'Search for Sub-Order',
+					autoOpen: false,
+					show: 'fade',
+					width: 500,
+					resizable: false,
+					buttons: [
+						{ text: 'Save', id: 'btnSelectSO', click: function(){
+								jQuery('#SelectSubOrderDialog').dialog('close');
+								assignSubOrder();
+							} },
+						{ text: 'Cancel', click: function(){ jQuery(this).dialog('close'); } }
+					],
+					open: function(){bindDialogBackToParent(jQuery(this), '#SelectSubOrderDialogParent');}
+				});
+
+				});
+				$(document).delegate('#btnGoToAssign','click',function(){
+					$('div[id$="Page3"]').effect('drop', function(){
+								$('div[id$="Page4"]').effect('slide');
+					});
+				});
+				$(document).delegate('#btnSave','click',function(){
+					IntegrateOrders();
+					$('div[id$="Page4"]').effect('drop', function(){
+								$('div[id$="Page3"]').effect('slide');
+					});
+				});
+				$(document).delegate('#btnCancel','click',function(){
+					$('div[id$="Page4"]').effect('drop', function(){
+								$('div[id$="Page3"]').effect('slide');
+					});
+				});
+			}
+			$(document).delegate('#btnRemoveRelated','click',function(){
+				RemoveRelated();				
+			});
+			$(document).delegate('#cbSelectAllOrders','click',function ToggleAllChildCheckBoxes(){
+					var checked = $(this).is(':checked');
+					$('input[type="checkbox"]', '[id$="subOrderDetailRows"]').each(function(index,ele){
+						if(checked){
+							$(ele).attr('checked', 'checked');
+							$(ele).prop('checked', 'checked');
+						}
+						else{
+							$(ele).attr('checked', '');
+							$(ele).prop('checked', '');
+						}
+						$(ele).change();
+					});
+				});
+		})(jQuery);
+		
+		function assignManualClicked() {				
+			var d = jQuery('#SelectSubOrderDialog');					
+			d.dialog('open');
+		}
+		
+		function assignSubOrder() {		
+			var d = jQuery('#SelectSubOrderDialog');
+			var tempId = '';		
+			tempId = d.find('[id$=subOrder]').val();				
+			var text = null;			
+			if(tempId == ''){
+				text = 'Please enter a Sub-Order to relate.';
+			}			
+			d.find('[id$=confirmText]').text(text != null ? text : 'You must enter a SubOrder ID to relate.');			
+			manualRelate(tempId);						
+		}
+			
+			function assignSubOrdersClicked() {
+				if(bSubOrder == 'false'){
+					$('div[id$="Page2"]').show();
+					$('div[id$="Page1"]').hide();
+				}
+				else{
+					$('div[id$="Page4"]').show();
+					$('div[id$="Page3"]').hide();
+				}
+            }
+			
+			function IntegrateOrders(){		
+			var tempIds = new Array();
+
+			jQuery('input:checked[data-modified="false"]', '[id$="subOrderDetailRows"]').each(function(index,ele){			
+					var tempId = jQuery(ele).attr('data-tempId');		
+					tempIds.push(tempId);
+
+				});			
+				save(tempIds.toApexJsonString());
+			}
+			
+			function RemoveRelated() {
+ 				var tempIds = new Array();
+
+				jQuery('input:checked[data-modified="false"]', '[id$="subOrderDetailRows"]').each(function(index,ele){			
+					var tempId = jQuery(ele).attr('data-tempId');		
+					tempIds.push(tempId);
+
+				});			
+				remove(tempIds.toApexJsonString());
+			}
+			
+			function bindDialogBackToParent(x, p){
+				jQuery(p).append(x.parent());		//Bind back to where it got pulled from so inputFields still work
+			}
+             
+            </script>
+    <style>
+		ol.Selectable
+		{
+			list-style-type:none;
+			margin:0;
+			padding:0;
+			cursor: pointer;
+		}
+		li.ui-selectee
+		{
+			border:solid 1px #CCC;
+			margin:3px; 
+			padding: 0.4em; 
+		}
+		li.ui-selectee:hover
+		{
+			background: #FECA40;
+		}
+		li.ui-selecting
+		{
+			background: #FECA40;
+		}
+		li.ui-selected
+		{
+			background: #F39814;
+			color: #FFF;
+		}
+		div.Data
+		{
+			float:left;
+			font-size:16px;
+			color:#000;
+			line-height:18px;
+			margin-left:5px;
+			padding:3px;
+		}
+		div.Info
+		{
+			float:left;
+			font-weight:bold;
+			font-size:18px;
+			color: #AAA;
+			width: 10em;
+			line-height:18px;
+			min-width:10em;
+			text-align: right;
+			padding:3px;
+		}
+		div.Clear
+		{
+			clear:both;
+		}
+		#divMasterOrders
+		{
+			max-height:200px;
+			overflow-y:hidden;
+			border:solid 1px #000;
+			min-width: 500px;
+		}
+		#divSubOrders
+		{
+			max-height:300px;
+			overflow-y:hidden;
+			border:solid 1px #000;
+			min-width:300px;
+		}
+		#tblSubOrderDetail
+		{
+			border-collapse: collapse;
+		}
+		#tblSubOrderDetail > thead > tr > td
+		{
+			padding:3px;
+			font-weight:bold;
+		}
+		#tblSubOrderDetail > tbody > tr > td
+		{
+			padding:3px;
+			padding-left:7px;
+			border:solid 1px black;
+		}
+		.datePicker{
+			z-index:10000000;
+		}
+		.noclose .ui-dialog-titlebar-close
+		{
+		    display:none;
+		}
+	</style>
+</apex:page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Combined_Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR(ISPICKVAL(Schedule__c, &quot;Red&quot;), ISPICKVAL(Scope__c, &quot;Red&quot;), ISPICKVAL(Resources__c, &quot;Red&quot;), ISPICKVAL(Budget__c, &quot;Red&quot;), ISPICKVAL(Project_Issues_Overall_Status__c, &quot;Red&quot;)), &quot;Red&quot;,  IF(OR(ISPICKVAL(Schedule__c, &quot;Yellow&quot;), ISPICKVAL(Scope__c, &quot;Yellow&quot;), ISPICKVAL(Resources__c, &quot;Yellow&quot;), ISPICKVAL(Budget__c, &quot;Yellow&quot;), ISPICKVAL(Project_Issues_Overall_Status__c, &quot;Yellow&quot;)), &quot;Yellow&quot;, &quot;Green&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This field is based on the combined BP&amp;T statuses indicated for Scope, Resources and Schedule for this project.</inlineHelpText>
+    <label>BP&amp;T Overall Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

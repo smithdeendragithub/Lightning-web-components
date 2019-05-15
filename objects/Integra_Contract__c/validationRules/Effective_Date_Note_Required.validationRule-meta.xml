@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Effective_Date_Note_Required</fullName>
+    <active>false</active>
+    <description>&quot;Effective Date Note&quot; required if anything besides &quot;Execution Date&quot; is selected in  “Effective Date Type”</description>
+    <errorConditionFormula>AND(
+TEXT( Effective_Date_Type__c )&lt;&gt; &quot;Execution Date&quot;,
+ISBLANK( Effective_Date_Note__c )
+)</errorConditionFormula>
+    <errorDisplayField>Effective_Date_Note__c</errorDisplayField>
+    <errorMessage>Please enter appropriate Effective Date Notes.</errorMessage>
+</ValidationRule>

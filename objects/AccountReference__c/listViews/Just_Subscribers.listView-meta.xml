@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Just_Subscribers</fullName>
+    <columns>NAME</columns>
+    <columns>ICC_Account_Number__c</columns>
+    <columns>Sales_Channel__c</columns>
+    <columns>Account__c</columns>
+    <columns>Account_Owner_Name__c</columns>
+    <columns>Phone__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Type__c</field>
+        <operation>equals</operation>
+        <value>Customer</value>
+    </filters>
+    <label>Just Subscribers</label>
+</ListView>

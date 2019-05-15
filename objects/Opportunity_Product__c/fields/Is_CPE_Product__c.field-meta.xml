@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_CPE_Product__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Sales_Product__c, 
+&quot;PBX Services AMAC&quot;,1, 
+&quot;PBX Services MAC&quot;,1, 
+&quot;PBX Services New&quot;,1,
+&quot;UC Equipment&quot;,1, 
+&quot;NRO Professional Services&quot;,1,
+0) = 1</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Is CPE Product</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

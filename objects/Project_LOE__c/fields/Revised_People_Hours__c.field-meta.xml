@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Revised_People_Hours__c</fullName>
+    <description>Revision of Estimated People Hours as the project objectives are more clearly defined.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter Revised People hours after requirements and design is complete.  Revised People hours should be evaluated and filled in after the requirements/design gathering is completed and before the project moves into the build/test phase.</inlineHelpText>
+    <label>Revised People Hours</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

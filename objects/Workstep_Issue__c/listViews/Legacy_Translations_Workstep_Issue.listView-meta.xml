@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legacy_Translations_Workstep_Issue</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Legacy- Translations</label>
+    <queue>Legacy_Translations</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

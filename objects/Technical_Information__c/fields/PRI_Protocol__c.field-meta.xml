@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PRI_Protocol__c</fullName>
+    <externalId>false</externalId>
+    <label>PRI Protocol</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NI-2</fullName>
+                <default>true</default>
+                <label>NI-2</label>
+            </value>
+            <value>
+                <fullName>NI-1</fullName>
+                <default>false</default>
+                <label>NI-1</label>
+            </value>
+            <value>
+                <fullName>Custom 5E</fullName>
+                <default>false</default>
+                <label>Custom 5E</label>
+            </value>
+            <value>
+                <fullName>Custom DS</fullName>
+                <default>false</default>
+                <label>Custom DS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

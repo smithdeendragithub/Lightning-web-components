@@ -1,0 +1,266 @@
+<apex:component controller="ProposalGenericController" >
+  <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+
+<apex:outputPanel layout="none" id="pepe" >
+        <table width="700" border="0" cellspacing="0" cellpadding="0"
+            id="MSACollaboration_Form" class="mainTable standardBackground">
+            <tr>
+                <td>
+                <table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="500">
+                        <div class="mainTitle">COLLABORATION &amp; MESSAGING SERVICES ADDENDUM</div>
+                        <div class="subTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to the Master Service Agreement</div>
+                        </td>
+                        <td>
+                        <table align="left" width="200px" class="topRightSmall" border="0"
+                            cellspacing="0" cellpadding="0">
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>{!integraDecisionMaker.Street}</td>
+                            </tr>
+                            <tr>
+                                <td>{!integraDecisionMaker.CityStateZip}</td>
+                            </tr>
+                            <tr>
+                                <td>(P) {!integraDecisionMaker.Phone}</td>
+                            </tr>
+                            <tr>
+                                <td>(F) {!integraDecisionMaker.Fax}</td>
+                            </tr>
+                            <tr>
+                                <td><a href="mailto:{!integraDecisionMaker.Email}"
+                                    target="_parent">{!integraDecisionMaker.Email}</a></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <table border="0" cellspacing="0" cellpadding="0"
+                    class="smallCluster-left avoidBreak">
+                    <tr>
+                        <td width="15" height="4px"></td>
+                        <td width="15" height="4px"></td>
+                        <td width="650" height="4px"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="textBlock">                          
+                            This COLLABORATION &amp; MESSAGING SERVICES ADDENDUM (“Addendum”) shall be attached to and become part of the Master Service Agreement (“Agreement”) 
+                            between Electric Lightwave Holdings, Inc., by and through certain of its subsidiaries 
+                            {!CASE( CurrentOpportunity.Account.Account_Sales_Channel__c, "Integra Business", "and its Integra business", "Integra Legacy", "and its Integra business", "Indirect Sales", "and its Integra business", "")}
+                            (hereinafter “Company”), and <u>{!CurrentOpportunity.Account.Name}</u> (“Customer”).  
+                            This Addendum is effective as of the <u>{!currentDayOrdinal}</u> day of <u>{!currentMonthName}</u>, <u>{!currentYear}</u> (the “Effective Date”).  Unless otherwise set forth, capitalized terms in this 
+                            Addendum shall have the same meaning as given in Master Service Agreement.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">1. </td>
+                        <td class="textBlock"><b>SCOPE OF THE ADDENDUM</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">
+                            This Addendum, including all attachments hereto, sets forth the terms and conditions under which Company agrees to provide and Customer
+                            agrees to procure from Company certain Collaboration and Messaging Services as further described and defined herein. 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">2. </td>
+                        <td class="textBlock"><b>DESCRIPTION OF SERVICES</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">
+                            Company’s Collaboration and Messaging Service provides hosted Microsoft® Communication Services, which include Microsoft Exchange, 
+                            Microsoft Outlook® 2010, Microsoft Lync™, Microsoft SharePoint®, enhanced encryption and other features (collectively the “Services”). 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">3. </td>
+                        <td class="textBlock"><b>ORDERING OF SERVICES</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">
+                            The Services shall be ordered through completion of the Service Agreement form attached hereto as Exhibit A (the “Order Form”).  
+                            Thereafter, the Customer may modify the Services or add additional Customer users using Company’s self-service portal (the “Portal”). 
+                            Company’s Portal provides Customer the ability to add or delete Customer users as well as access to additional features to customize Customer’s Service. 
+                            By requesting additional Services or users through the Portal Customer agrees to pay any additional charges associated with the additional Services or users requested.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" >4. </td>
+                        <td class="textBlock"><b>RATES AND CHARGES</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">
+                            The rates for Services initially ordered by Customer shall be set forth on the Order Form.  Rates for any additional Services or additional Customer 
+                            users can be found on the Portal. Estimated Monthly Charges do not include: federal, state, and local taxes and fees, federal USF or the 
+                            Company-imposed Network Access Assessment (“NAA”), applied dependent on service type, as set forth in the Order Form.  If a discount is specified on 
+                            the Order Form for the Services, such discount shall be applied only to the Services provided during the Initial Term of the Services and shall not 
+                            be applied to any automatic renewals.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">5. </td>
+                        <td class="textBlock"><b>BILLING </b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">
+                            Company will provide a summary bill format unless contacted by the Customer to revert to a detailed invoice option.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">6. </td>
+                        <td class="textBlock"><b>NO GUARANTEE OF DELIVERY TIME</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">
+                            Company does not guarantee incoming and outgoing email delivery time.  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">7. </td>
+                        <td class="textBlock"><b>THIRD PARTY SOFTWARE </b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">Customer acknowledges and agrees that (i) neither the Services nor any support for those Services are in any way provided by any third party provider, 
+                            including Microsoft; (ii) Microsoft is in no way responsible or liable for such Services or support, and; (iii) this Agreement will automatically terminate upon the
+                            expiration or termination of Company’s underlying agreement(s) with Microsoft Corporation or other third-party software providers.  In the event that Company
+                            knows, or reasonably believes, that the underlying agreement will not remain in effect, Company shall give notice to Customer as soon as reasonably possible, 
+                            and  use commercially reasonable efforts to assist in migrating Customer data, at Customer’s cost and expense, to an alternate provider.   A condition to 
+                            Customer receiving McAfee protection as part of the Services is Customer’s continued compliance with applicable McAfee terms and conditions, including 
+                            McAfee’s “Software as Service Agreement,” which is posted on McAfee’s website at: <a>http://www.mcafee.com/us/about/legal/saas-terms.aspx</a> , or such other 
+                            site location at <a>http://www.mcafee.com</a> as McAfee may determine.  Notwithstanding Customer’s use of such third party software, Customer understands that 
+                            additional anti-virus and anti-spam applications are necessary for other services or software Customer may possess or utilize. 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">8. </td>
+                        <td class="textBlock"><b>RESTRICTIONS ON USE; POLICIES </b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">
+                            Customer represents and warrants that Customer and Customer users will abide by Company’s Acceptable Use Policy located at: 
+                            <a>http://www.integratelecom.com/about/Public_Information_and_Policy/Acceptable_Use_Policy.php</a> .
+                            If Company determines that the use of Services by Customer or Customer’s users (i) fails to comply with the terms and 
+                            conditions of this Addendum (including any Company or third party terms and conditions noted herein), or (ii) interferes 
+                            with Company’s ability to provide the Services to Company customers or resellers, then Company may immediately suspend 
+                            the Services to Customer or any Customer user after prior notice to Customer until such non-conformity or interference is cured.  
+                            Whether a non-conformity or interference is cured shall be determined by Company in its sole discretion.  Termination of Services 
+                            may follow a suspension of Services if Customer does not timely cure the non-conformity or interference to Company’s satisfaction.  
+                            Customer acknowledges and agrees that the terms of Company’s Privacy Policy shall apply to Customer’s and Customer’s users data. 
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">9. </td>
+                        <td class="textBlock"><b>ENTIRE AGREEMENT; NO OTHER CHANGES</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">
+                            This Addendum constitutes a binding commitment between Company and Customer, effective upon execution of this Addendum.  
+                            Customer acknowledges that Customer has received, read, and understands this Addendum and the Agreement and Company’s Policies and Procedures, 
+                            and agrees to be bound by all of the terms and conditions herein.  Early Termination fees may apply as set forth in the Agreement.
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="3" class="textBlock">
+                            <b>IN WITNESS WHEREOF</b>, the parties have caused this Addendum to be executed by their duly authorized representatives.
+                    
+                        </td>
+                    </tr>
+                </table>
+                
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <table class="Signature_table avoidBreak" border="0" cellspacing="5" cellpadding="0">
+                    <tr>
+                        <td width="15">&nbsp;</td>
+                        <td width="200">&nbsp;</td>
+                        <td width="150">&nbsp;</td>
+                        <td width="15">&nbsp;</td>
+                        <td width="200">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Electric Lightwave Holdings, Inc.</td>
+                        <td>&nbsp;</td>
+                        <td colspan="2">{!CurrentOpportunity.Account.Name}</td>
+                    </tr>
+                    <tr>
+                        <td>By:</td>
+                        <td class="normalRef">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>By:</td>
+                        <td class="normalRef">{!decisionMaker.Name}</td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td class="normalRef"><div class="docusignID">DS-CTRSIG</div></td>
+                        <td>&nbsp;</td>
+                        <td>Name:</td>
+                        <td class="normalRef"><div class="docusignID">DS-SIG</div></td>
+                    </tr>
+                    <tr>
+                        <td>Title:</td>
+                        <td class="normalRef"><div class="docusignID">&nbsp;</div></td>
+                        <td>&nbsp;</td>
+                        <td>Title:</td>
+                        <td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}">
+                        </apex:outputText>
+                        <div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL">
+                        </apex:outputText></div> </td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td class="normalRef"><div class="docusignID">DS-CTRDATE</div></td>
+                        <td>&nbsp;</td>
+                        <td>Date:</td>
+                        <td class="normalRef"><div class="docusignID">DS-DATE</div></td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+</apex:component>

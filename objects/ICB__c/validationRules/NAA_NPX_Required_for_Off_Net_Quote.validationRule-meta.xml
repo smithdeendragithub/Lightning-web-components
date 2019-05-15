@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NAA_NPX_Required_for_Off_Net_Quote</fullName>
+    <active>false</active>
+    <description>If Off-Net Quoting Required is checked, then NAA-NPX or CLLI is required</description>
+    <errorConditionFormula>(Off_Net_Quoting_Required__c ) &amp;&amp;
+(ISBLANK( NPA_NXX_or_CLLI__c ) )</errorConditionFormula>
+    <errorDisplayField>NPA_NXX_or_CLLI__c</errorDisplayField>
+    <errorMessage>NAA-NPX or CLLI is required for Off-Net Costing Quotes</errorMessage>
+</ValidationRule>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SIP_Solutions1</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+    <columns>Sales_Product_Name__c</columns>
+    <columns>Component_Group__c</columns>
+    <columns>Component_Name__c</columns>
+    <columns>Market__c</columns>
+    <columns>Term__c</columns>
+    <columns>MRR__c</columns>
+    <columns>MRR_Floor__c</columns>
+    <columns>NRR__c</columns>
+    <columns>Is_Quote_Price__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Is_Expired__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Sales_Product_Name__c</field>
+        <operation>contains</operation>
+        <value>SIP</value>
+    </filters>
+    <filters>
+        <field>Component_Name__c</field>
+        <operation>contains</operation>
+        <value>Caller</value>
+    </filters>
+    <label>SIP Solutions</label>
+</ListView>

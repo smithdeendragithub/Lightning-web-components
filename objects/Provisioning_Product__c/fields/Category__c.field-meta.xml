@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <externalId>false</externalId>
+    <label>Category</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ethernet Services</fullName>
+                <default>false</default>
+                <label>Ethernet Services</label>
+            </value>
+            <value>
+                <fullName>Integrated Access</fullName>
+                <default>false</default>
+                <label>Integrated Access</label>
+            </value>
+            <value>
+                <fullName>Voice Trunking</fullName>
+                <default>false</default>
+                <label>Voice Trunking</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

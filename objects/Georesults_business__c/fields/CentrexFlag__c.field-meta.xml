@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CentrexFlag__c</fullName>
+    <description>Flag indicating that this business is a likely user of Centrex service. 1 indicates this business has a high probability of being able to use Centrex technology considering cost, availability and features. 0 indicates that this business is more likely to use other technologies.</description>
+    <externalId>false</externalId>
+    <label>Centrex Flag</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

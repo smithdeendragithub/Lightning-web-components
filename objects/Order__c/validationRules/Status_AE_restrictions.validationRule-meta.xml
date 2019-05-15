@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status_AE_restrictions</fullName>
+    <active>true</active>
+    <description>Do not allow AEs to pick certain Order Statuses.</description>
+    <errorConditionFormula>$User.Is_Sales__c &amp;&amp; NOT($User.Is_CAM__c) &amp;&amp; NOT($User.Is_Account_Specialist__c) &amp;&amp; NOT($User.Is_AC__c)&amp;&amp; NOT($User.Is_CSR__c) &amp;&amp; ISCHANGED( Status__c ) &amp;&amp; 
+NOT(ISPICKVAL(Status__c, &quot;Sales Working&quot;)) &amp;&amp;
+NOT(ISPICKVAL(Status__c, &quot;SE Received&quot;)) &amp;&amp;
+NOT(ISPICKVAL(Status__c, &quot;SE Held&quot;)) &amp;&amp;
+NOT(ISPICKVAL(Status__c, &quot;SE Complete&quot;)) &amp;&amp;
+NOT(ISPICKVAL(Status__c, &quot;Sales Complete&quot;)) &amp;&amp;
+NOT(ISPICKVAL(Status__c, &quot;Split Order w/Agent - Sales Complete&quot;)) &amp;&amp;
+NOT( ISBLANK(TEXT(Status__c)) )</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>You are limited to only select Sales Working , Sales Complete, SE Received, SE Held or SE Complete</errorMessage>
+</ValidationRule>

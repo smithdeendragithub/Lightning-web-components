@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Workstep_Help</fullName>
+    <availability>online</availability>
+    <description>Links to Managing Worksteps document</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Workstep Help</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/connection.js&quot;)}
+{!REQUIRESCRIPT(&quot;/soap/ajax/29.0/apex.js&quot;)}
+sforce.connection.sessionId = &quot;{!$Api.Session_ID}&quot;;
+var result = &quot;THIS FEATURE IS NOT CURRENTLY AVAILABLE BECAUSE IT IS UNDER DEVELOPMENT. \n\n PLEASE CONTACT YOUR WORKFLOW SME OR MANAGER IF YOU NEED ASSISTANCE&quot;;
+alert(result);</url>
+</WebLink>

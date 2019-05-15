@@ -1,0 +1,19 @@
+<apex:page controller="ContactEmailOptOutController">
+<div>
+	<img src="https://c.cs7.content.force.com/servlet/servlet.ImageServer?id=015M0000000JtJO&oid=00DM0000001d92j&lastMod=1422394615000" alt="Integra Logo" />
+</div>
+	<apex:form id="theForm">
+		<apex:pageBlock title="Communication Unsubscribe">
+			<div style="margin-top:4em; text-align:center;">
+				<span>Hi <apex:outputText value=" {!ContactName}" />,</span><br />
+				<apex:outputPanel id="outUnsubscribe" rendered="{!NOT(HasOptedOut)}" layout="block">
+					<span>To unsubscribe, please click the unsubscribe button.</span><br />
+					<apex:commandButton action="{!OptOut}" reRender="theForm" value="Unsubscribe" />
+				</apex:outputPanel>
+				<apex:outputPanel id="out" layout="block" rendered="{!HasOptedOut}">
+					<apex:outputText value="You have been unsubscribed"  />
+				</apex:outputPanel>
+			</div>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

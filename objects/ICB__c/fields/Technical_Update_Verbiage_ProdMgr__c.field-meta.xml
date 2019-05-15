@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Technical_Update_Verbiage_ProdMgr__c</fullName>
+    <description>Formula field used in email templates to the Product Manager to display whether the Technical Update checkbox field is checked or not.</description>
+    <externalId>false</externalId>
+    <formula>IF( Technical_Update__c, &quot;Additional Technical Information has been requested, please create a task and assign it to Angie Johnson. Select Sales Enablement - ICB as the task type and  subject. Please attach a mockup of what is required.&quot;, &quot;.&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>System Maintained Field:  Used in email templates to display whether the Technical Update checkbox field is checked or not.</inlineHelpText>
+    <label>Technical Update Verbiage ProdMgr</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

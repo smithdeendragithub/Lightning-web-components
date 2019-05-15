@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Portal Web Service</description>
+    <enableFeeds>false</enableFeeds>
+    <label>Portal Web Service</label>
+    <visibility>Public</visibility>
+</CustomObject>

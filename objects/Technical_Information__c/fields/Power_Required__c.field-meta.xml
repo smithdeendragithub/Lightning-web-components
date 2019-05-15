@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Power_Required__c</fullName>
+    <externalId>false</externalId>
+    <label>Power Required</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>20A, 120V – single</fullName>
+                <default>false</default>
+                <label>20A, 120V – single</label>
+            </value>
+            <value>
+                <fullName>20A, 120V – double</fullName>
+                <default>false</default>
+                <label>20A, 120V – double</label>
+            </value>
+            <value>
+                <fullName>30A, 120V – single</fullName>
+                <default>false</default>
+                <label>30A, 120V – single</label>
+            </value>
+            <value>
+                <fullName>30A, 120V – double</fullName>
+                <default>false</default>
+                <label>30A, 120V – double</label>
+            </value>
+            <value>
+                <fullName>40A, 220V – single</fullName>
+                <default>false</default>
+                <label>40A, 220V – single</label>
+            </value>
+            <value>
+                <fullName>40A, 220V – double</fullName>
+                <default>false</default>
+                <label>40A, 220V – double</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Rate_Plan_ExternalID__c</fullName>
+    <externalId>false</externalId>
+    <formula>Sales_Product_Rate_Plan__r.Sales_Rate_Plan_Description__r.SalesRatePlanDescExternalID__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sales Rate Plan ExternalID</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resolution_Comments_Blank</fullName>
+    <active>true</active>
+    <description>Resolution Comments should be blank until Status is changed to &quot;Resolved&quot;</description>
+    <errorConditionFormula>( 
+ISPICKVAL( Status__c , &quot;New&quot;)) 
+&amp;&amp; 
+NOT 
+( 
+ISBLANK( Resolution_Comment__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>Resolution_Comment__c</errorDisplayField>
+    <errorMessage>Please clear &quot;Resolution Comments&quot; field. Resolution Comments should only be populated when the status is &quot;Resolved.&quot;</errorMessage>
+</ValidationRule>

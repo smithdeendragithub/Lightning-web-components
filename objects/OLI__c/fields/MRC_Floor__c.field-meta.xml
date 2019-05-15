@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MRC_Floor__c</fullName>
+    <description>The lowest amount allowed for MRC (Monthly Recurring Charge) on this product, at the time of its creation.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The lowest amount allowed for MRC (Monthly Recurring Charge) on this product, at the time of its creation.</inlineHelpText>
+    <label>MRC Floor</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

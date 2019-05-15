@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>busid__c</fullName>
+    <description>Unique identification number permanently assigned by GeoResults to this business. All records in the national business database which refer to a single business are assigned a unique BusID.  Multiple appearances of a business in the national database at a common location will be assigned the same BusID.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Unique identification number permanently assigned by GeoResults to this business.</inlineHelpText>
+    <label>Business ID</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

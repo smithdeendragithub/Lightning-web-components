@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Network_Security_Suite</fullName>
+    <columns>Sales_Product_Name__c</columns>
+    <columns>Component_Name__c</columns>
+    <columns>Market__c</columns>
+    <columns>Term__c</columns>
+    <columns>MRR__c</columns>
+    <columns>NRR__c</columns>
+    <columns>Is_Quote_Price__c</columns>
+    <columns>Max_Qty__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Sales_Product_Name__c</field>
+        <operation>contains</operation>
+        <value>Suite</value>
+    </filters>
+    <filters>
+        <field>Is_Expired__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Network Security Suite</label>
+</ListView>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Functional_Group__c</fullName>
+    <externalId>false</externalId>
+    <label>Functional Group</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Billing Operations</fullName>
+                <default>false</default>
+                <label>Billing Operations</label>
+            </value>
+            <value>
+                <fullName>Care: Customer Care</fullName>
+                <default>false</default>
+                <label>Care: Customer Care</label>
+            </value>
+            <value>
+                <fullName>Care: Order Entry</fullName>
+                <default>false</default>
+                <label>Care: Order Entry</label>
+            </value>
+            <value>
+                <fullName>Engineering: Data</fullName>
+                <default>false</default>
+                <label>Engineering: Data</label>
+            </value>
+            <value>
+                <fullName>Engineering: OSP</fullName>
+                <default>false</default>
+                <label>Engineering: OSP</label>
+            </value>
+            <value>
+                <fullName>Engineering: Switch</fullName>
+                <default>false</default>
+                <label>Engineering: Switch</label>
+            </value>
+            <value>
+                <fullName>Engineering: Transport</fullName>
+                <default>false</default>
+                <label>Engineering: Transport</label>
+            </value>
+            <value>
+                <fullName>BP&amp;T: Process</fullName>
+                <default>false</default>
+                <label>BP&amp;T: Process</label>
+            </value>
+            <value>
+                <fullName>BP&amp;T: Training</fullName>
+                <default>false</default>
+                <label>BP&amp;T: Training</label>
+            </value>
+            <value>
+                <fullName>BP&amp;T: Information Technology</fullName>
+                <default>false</default>
+                <label>BP&amp;T: Information Technology</label>
+            </value>
+            <value>
+                <fullName>Marketing: Graphic Design</fullName>
+                <default>false</default>
+                <label>Marketing: Graphic Design</label>
+            </value>
+            <value>
+                <fullName>Marketing: Marketing Operations</fullName>
+                <default>false</default>
+                <label>Marketing: Marketing Operations</label>
+            </value>
+            <value>
+                <fullName>Marketing: PR</fullName>
+                <default>false</default>
+                <label>Marketing: PR</label>
+            </value>
+            <value>
+                <fullName>Marketing: Product Development</fullName>
+                <default>false</default>
+                <label>Marketing: Product Development</label>
+            </value>
+            <value>
+                <fullName>Marketing: Product Management</fullName>
+                <default>false</default>
+                <label>Marketing: Product Management</label>
+            </value>
+            <value>
+                <fullName>Marketing: Product Marketing</fullName>
+                <default>false</default>
+                <label>Marketing: Product Marketing</label>
+            </value>
+            <value>
+                <fullName>Marketing: Project Management</fullName>
+                <default>false</default>
+                <label>Marketing: Project Management</label>
+            </value>
+            <value>
+                <fullName>Marketing: Sales Enablement</fullName>
+                <default>false</default>
+                <label>Marketing: Sales Enablement</label>
+            </value>
+            <value>
+                <fullName>Marketing: Solution Marketing</fullName>
+                <default>false</default>
+                <label>Marketing: Solution Marketing</label>
+            </value>
+            <value>
+                <fullName>Marketing: Technical Writing</fullName>
+                <default>false</default>
+                <label>Marketing: Technical Writing</label>
+            </value>
+            <value>
+                <fullName>Operations: Field Services</fullName>
+                <default>false</default>
+                <label>Operations: Field Services</label>
+            </value>
+            <value>
+                <fullName>Operations: Network</fullName>
+                <default>false</default>
+                <label>Operations: Network</label>
+            </value>
+            <value>
+                <fullName>Operations: Repair</fullName>
+                <default>false</default>
+                <label>Operations: Repair</label>
+            </value>
+            <value>
+                <fullName>Provisioning: Deployment/Structure Load</fullName>
+                <default>false</default>
+                <label>Provisioning: Deployment/Structure Load</label>
+            </value>
+            <value>
+                <fullName>Provisioning: MSS Equipment Design</fullName>
+                <default>false</default>
+                <label>Provisioning: MSS Equipment Design</label>
+            </value>
+            <value>
+                <fullName>Provisioning: OSS Arch/NPD</fullName>
+                <default>false</default>
+                <label>Provisioning: OSS Arch/NPD</label>
+            </value>
+            <value>
+                <fullName>Sales: Sales</fullName>
+                <default>false</default>
+                <label>Sales: Sales</label>
+            </value>
+            <value>
+                <fullName>Sales: Sales Engineering</fullName>
+                <default>false</default>
+                <label>Sales: Sales Engineering</label>
+            </value>
+            <value>
+                <fullName>Sales: Sales Operations</fullName>
+                <default>false</default>
+                <label>Sales: Sales Operations</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

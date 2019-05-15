@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Product_Families</fullName>
+    <columns>NAME</columns>
+    <columns>ProductFamilyExternalID__c</columns>
+    <columns>NeedsLSOQual__c</columns>
+    <columns>NeedsBandwidthQual__c</columns>
+    <columns>OBJECT_ID</columns>
+    <columns>AvailableInWizard__c</columns>
+    <columns>Bundle__c</columns>
+    <columns>Expiration__c</columns>
+    <columns>Expired__c</columns>
+    <columns>Number_of_Voice_Products__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Expiration__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Active Product Families</label>
+</ListView>

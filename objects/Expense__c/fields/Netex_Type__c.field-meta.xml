@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Netex_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Netex Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Customer</fullName>
+                <default>false</default>
+                <label>Customer</label>
+            </value>
+            <value>
+                <fullName>Disconnect List</fullName>
+                <default>false</default>
+                <label>Disconnect List</label>
+            </value>
+            <value>
+                <fullName>Disputes</fullName>
+                <default>false</default>
+                <label>Disputes</label>
+            </value>
+            <value>
+                <fullName>FTT</fullName>
+                <default>false</default>
+                <label>FTT</label>
+            </value>
+            <value>
+                <fullName>ILEC Colo</fullName>
+                <default>false</default>
+                <label>ILEC Colo</label>
+            </value>
+            <value>
+                <fullName>Infrastructure</fullName>
+                <default>false</default>
+                <label>Infrastructure</label>
+            </value>
+            <value>
+                <fullName>Interco Customer</fullName>
+                <default>false</default>
+                <label>Interco Customer</label>
+            </value>
+            <value>
+                <fullName>Interco Infrastructure</fullName>
+                <default>false</default>
+                <label>Interco Infrastructure</label>
+            </value>
+            <value>
+                <fullName>Intercompany Expenses</fullName>
+                <default>false</default>
+                <label>Intercompany Expenses</label>
+            </value>
+            <value>
+                <fullName>LPC</fullName>
+                <default>false</default>
+                <label>LPC</label>
+            </value>
+            <value>
+                <fullName>OVS</fullName>
+                <default>false</default>
+                <label>OVS</label>
+            </value>
+            <value>
+                <fullName>RCP Credit</fullName>
+                <default>false</default>
+                <label>RCP Credit</label>
+            </value>
+            <value>
+                <fullName>Taxes</fullName>
+                <default>false</default>
+                <label>Taxes</label>
+            </value>
+            <value>
+                <fullName>Usage</fullName>
+                <default>false</default>
+                <label>Usage</label>
+            </value>
+            <value>
+                <fullName>ZEN</fullName>
+                <default>false</default>
+                <label>ZEN</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

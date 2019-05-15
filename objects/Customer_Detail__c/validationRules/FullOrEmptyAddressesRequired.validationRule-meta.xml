@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FullOrEmptyAddressesRequired</fullName>
+    <active>true</active>
+    <description>Addresses not connected to a location must be empty or have all basic fields set.</description>
+    <errorConditionFormula>((NOT(ISBLANK(Billing_Main_City__c))
+|| NOT(ISBLANK(Billing_Main_Postal_Code__c))
+|| NOT(ISBLANK(Billing_Main_State__c))
+|| NOT(ISBLANK(Billing_Main_Street__c)))
+  &amp;&amp;
+(ISBLANK(Billing_Main_City__c)
+|| ISBLANK(Billing_Main_Postal_Code__c)
+|| ISBLANK(Billing_Main_State__c)
+|| ISBLANK(Billing_Main_Street__c)))
+||
+((NOT(ISBLANK(Billing_Final_City__c))
+|| NOT(ISBLANK(Billing_Final_Postal_Code__c))
+|| NOT(ISBLANK(Billing_Final_State__c))
+|| NOT(ISBLANK(Billing_Final_Street__c)))
+  &amp;&amp;
+(ISBLANK(Billing_Final_City__c)
+|| ISBLANK(Billing_Final_Postal_Code__c)
+|| ISBLANK(Billing_Final_State__c)
+|| ISBLANK(Billing_Final_Street__c)))</errorConditionFormula>
+    <errorMessage>Addresses not connected to a location must be empty or have all basic fields set.</errorMessage>
+</ValidationRule>

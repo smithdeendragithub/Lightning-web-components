@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Accounts_Receivable_Support_Case_Closed</fullName>
+        <ccEmails>arpaymentprocessing@allstream.com</ccEmails>
+        <description>Accounts Receivable Support Case Closed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Closed_Accounts_Receivable_Canada_Team</template>
+    </alerts>
+    <alerts>
+        <fullName>Accounts_Receivable_Support_Case_New</fullName>
+        <ccEmails>arpaymentprocessing@allstream.com</ccEmails>
+        <description>Accounts Receivable Support Case New</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Accounts_Receivable_Canada_Team</template>
+    </alerts>
+    <alerts>
+        <fullName>Alert_AC_Of_Closed_Case</fullName>
+        <description>Alert AC Of Closed Case</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>accountTeam</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Case_Closed</template>
+    </alerts>
+    <alerts>
+        <fullName>Billing_Investigation_Support_Case</fullName>
+        <description>Billing Investigation Support Case New</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Billing_Investigations</template>
+    </alerts>
+    <alerts>
+        <fullName>Billing_Investigation_Support_Case_Closed</fullName>
+        <description>Billing Investigation Support Case Closed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Closed_Billing_Investigations</template>
+    </alerts>
+    <alerts>
+        <fullName>Billing_Research_Support_Case</fullName>
+        <ccEmails>itbillingall@allstream.com</ccEmails>
+        <description>Billing Research Support Case New</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Billing_Research_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Billing_Research_Support_Case_Closed</fullName>
+        <ccEmails>itbillingall@allstream.com</ccEmails>
+        <description>Billing Research Support Case Closed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Closed_Billing_Research_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Credit_and_Collection_Support_Case_Closed</fullName>
+        <description>Credit and Collection Support Case Closed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Credit_and_Collections</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Closed_Credit_and_Collections</template>
+    </alerts>
+    <alerts>
+        <fullName>Credit_and_Collection_Support_Case_New</fullName>
+        <description>Credit and Collection Support Case New</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Credit_and_Collections</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Credit_and_Collections</template>
+    </alerts>
+    <alerts>
+        <fullName>EPC_Request_Case_New</fullName>
+        <description>EPC Request Case New</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_EPC_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>EPC_request_Case_Closed</fullName>
+        <description>EPC request Case Closed</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Closed_EPC_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_To_Mid_Major_Can_F_Queue_For_New_Web_to_Case</fullName>
+        <ccEmails>Entreprise@allstream.com</ccEmails>
+        <description>Email To Mid Major Can F Queue For New Web to Case</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Web_to_Case</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_To_Mid_Major_Can_Queue_For_New_Web_to_Case</fullName>
+        <ccEmails>CanEnterprise@allstream.com</ccEmails>
+        <description>Email To Mid Major Can Queue For New Web to Case</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Web_to_Case</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_To_Queue_For_New_Support_Case</fullName>
+        <description>Email To Queue For New Support Case</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Support_Case</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_To_Small_Biz_Can_F_Queue_For_New_Web_to_Case</fullName>
+        <ccEmails>Soutien@allstream.com</ccEmails>
+        <description>Email To Small Biz Can F Queue For New Web to Case</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Web_to_Case</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_To_Small_Biz_Can_Queue_For_New_Web_to_Case</fullName>
+        <ccEmails>CanCustomerService@allstream.com</ccEmails>
+        <description>Email To Small Biz Can Queue For New Web to Case</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Web_to_Case</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_to_SIP_Engineering_FallOut</fullName>
+        <ccEmails>sipengfallout@allstream.com</ccEmails>
+        <description>Email to SIP Engineering FallOut</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>michael.salinas@allstream.com.eli</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Web_to_Case</template>
+    </alerts>
+    <alerts>
+        <fullName>Manual_Billing_Team_Support_Case</fullName>
+        <ccEmails>Delton.Alves@allstream.com</ccEmails>
+        <description>Manual Billing Team Support Case New</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Manual_Billing_Team</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Manual_Billing_Team</template>
+    </alerts>
+    <alerts>
+        <fullName>Manual_Billing_Team_Support_Case_Closed</fullName>
+        <ccEmails>Delton.Alves@allstream.com</ccEmails>
+        <description>Manual Billing Team Support Case Closed</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Manual_Billing_Team</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assign_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Closed_Manual_Billing_Team</template>
+    </alerts>
+    <alerts>
+        <fullName>NetX_Case_Internal_Request_Contact</fullName>
+        <description>NetX  Case Internal Request Contact</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Internal_Request_Contact__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/SUPPORT_Case_NetEx_New_Internal_Req_contact_Html</template>
+    </alerts>
+    <alerts>
+        <fullName>New_Net_Ex_Case</fullName>
+        <ccEmails>AllstreamNetEx@allstream.com</ccEmails>
+        <description>New Net Ex Case</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/SUPPORT_Case_New_NetEx_Ticket</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Clear_Closed_Case_Change_Confirmation</fullName>
+        <field>Closed_Case_Change_Confirmation__c</field>
+        <literalValue>0</literalValue>
+        <name>Clear Closed Case Change Confirmation</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>CASE NetX-Create</fullName>
+        <actions>
+            <name>New_Net_Ex_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>NetEx Case</value>
+        </criteriaItems>
+        <description>Email notification when a NetX Case is created, send to standard email address</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case Confirmation Set</fullName>
+        <actions>
+            <name>Clear_Closed_Case_Change_Confirmation</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>Closed_Case_Change_Confirmation__c</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case NetX Internal Request Contact Create Time</fullName>
+        <actions>
+            <name>NetX_Case_Internal_Request_Contact</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Internal_Request_Contact__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>NetEx Case</value>
+        </criteriaItems>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Case NetX New Internal Request Contact</fullName>
+        <actions>
+            <name>NetX_Case_Internal_Request_Contact</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>RecordType.Name  = &#39;NetEx Case&#39; &amp;&amp; ISCHANGED(Internal_Request_Contact__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notify AC Of Closed Case</fullName>
+        <actions>
+            <name>Alert_AC_Of_Closed_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+        <criteriaItems>
+            <field>Case.IsClosed</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Is_CSR__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.Sales_Channel__c</field>
+            <operation>equals</operation>
+            <value>Government and Education</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Account.Sales_Channel__c</field>
+            <operation>equals</operation>
+            <value>Electric Lightwave Premier</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send SIP Engineering FallOutQueueEmail</fullName>
+        <actions>
+            <name>Email_to_SIP_Engineering_FallOut</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Origin</field>
+            <operation>equals</operation>
+            <value>ICMS/MSS</value>
+        </criteriaItems>
+        <description>Send SIP Engineering FallOutQueueEmail</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Accounts Receivable Canada Closed</fullName>
+        <actions>
+            <name>Accounts_Receivable_Support_Case_Closed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Accounts Receivable Canada</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <description>send email for Closed Accounts Receivable Canada case where type is Accounts Receivable Canada</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Accounts Receivable Canada New</fullName>
+        <actions>
+            <name>Accounts_Receivable_Support_Case_New</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Accounts Receivable Canada</value>
+        </criteriaItems>
+        <description>send email for New Accounts Receivable Canada case where type is Accounts Receivable Canada</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Billing Investigation Closed</fullName>
+        <actions>
+            <name>Billing_Investigation_Support_Case_Closed</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Billing Canada,Refund Requests Canada</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <description>send email for closed Billing Investigation case where type is Billing Canada or Refund Requests Canada</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Billing Investigation New</fullName>
+        <actions>
+            <name>Billing_Investigation_Support_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Billing Canada,Refund Requests Canada</value>
+        </criteriaItems>
+        <description>send email for New Billing Investigation case where type is Billing Canada or Refund Requests Canada</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Billing Request</fullName>
+        <actions>
+            <name>Billing_Research_Support_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Billing US</value>
+        </criteriaItems>
+        <description>send email for new Billing Team case where type is where type is Billing US</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Billing Request Closed</fullName>
+        <actions>
+            <name>Billing_Research_Support_Case_Closed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Billing US</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <description>send email for closed Billing Team case where type is Billing US</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Credit and Collections Closed</fullName>
+        <actions>
+            <name>Credit_and_Collection_Support_Case_Closed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Collections Canada</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <description>send email for closed Credit and Collection case where type Collections Canada</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Credit and Collections New</fullName>
+        <actions>
+            <name>Credit_and_Collection_Support_Case_New</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>Collections Canada</value>
+        </criteriaItems>
+        <description>send email for New Credit and Collection case where type is Collections Canada</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail EPC Request</fullName>
+        <actions>
+            <name>EPC_Request_Case_New</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>EPC Request</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail EPC Request Closed</fullName>
+        <actions>
+            <name>EPC_request_Case_Closed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>EPC Request</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Manual Billing  Closed</fullName>
+        <actions>
+            <name>Manual_Billing_Team_Support_Case_Closed</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND 2</booleanFilter>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>ASAP Hosting Billing Disputes,Manual Billing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Case.Status</field>
+            <operation>equals</operation>
+            <value>Closed</value>
+        </criteriaItems>
+        <description>send email for closed Manual Billing Team case where type is Manual Billing or ASAP Hosting Billing Disputes</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendEmail Manual Billing New</fullName>
+        <actions>
+            <name>Manual_Billing_Team_Support_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>Case.Type</field>
+            <operation>equals</operation>
+            <value>ASAP Hosting Billing Disputes,Manual Billing</value>
+        </criteriaItems>
+        <description>send email for new Manual Billing Team case where type is &quot;Manual Billing&quot;  or &quot;ASAP Hosting Billing Disputes&quot;</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendMidMajorCanFrenchQueueEmail</fullName>
+        <actions>
+            <name>Email_To_Mid_Major_Can_F_Queue_For_New_Web_to_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(Owner:Queue.DeveloperName = &#39;Mid_and_Major_Market_CAN&#39;,   ISPICKVAL(Account.Language_Preference__c, &#39;French&#39;)  
+, NOT ( ISPICKVAL( Origin , &#39;ICMS/MSS&#39;)))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendMidMajorCanQueueEmail</fullName>
+        <actions>
+            <name>Email_To_Mid_Major_Can_Queue_For_New_Web_to_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(Owner:Queue.DeveloperName = &#39;Mid_and_Major_Market_CAN&#39;,  NOT( ISPICKVAL( Account.Language_Preference__c , &#39;French&#39;) ),
+NOT ( ISPICKVAL( Origin , &#39;ICMS/MSS&#39;)))</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendQueueEmail</fullName>
+        <actions>
+            <name>Email_To_Queue_For_New_Support_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>Owner:Queue.DeveloperName = &#39;Small_Business_US&#39; ||  Owner:Queue.DeveloperName = &#39;Mid_and_Major_Market_US&#39;</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendSmallBizCanFrenchQueueEmail</fullName>
+        <actions>
+            <name>Email_To_Small_Biz_Can_F_Queue_For_New_Web_to_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(Owner:Queue.DeveloperName = &#39;Small_Business_CAN&#39;, ISPICKVAL( Account.Language_Preference__c , &#39;French&#39;) ,NOT ( ISPICKVAL( Origin , &#39;ICMS/MSS&#39;)))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>SendSmallBizCanQueueEmail</fullName>
+        <actions>
+            <name>Email_To_Small_Biz_Can_Queue_For_New_Web_to_Case</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(Owner:Queue.DeveloperName = &#39;Small_Business_CAN&#39;, NOT( ISPICKVAL( Account.Language_Preference__c , &#39;French&#39;) )
+,NOT ( ISPICKVAL( Origin , &#39;ICMS/MSS&#39;)))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

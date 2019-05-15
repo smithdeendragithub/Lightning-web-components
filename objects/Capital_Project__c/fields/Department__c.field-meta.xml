@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department__c</fullName>
+    <externalId>false</externalId>
+    <label>Department</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Infrastructure</fullName>
+                <default>false</default>
+                <label>Infrastructure</label>
+            </value>
+            <value>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+                <label>Engineering</label>
+            </value>
+            <value>
+                <fullName>Common Systems</fullName>
+                <default>false</default>
+                <label>Common Systems</label>
+            </value>
+            <value>
+                <fullName>OSP</fullName>
+                <default>false</default>
+                <label>OSP</label>
+            </value>
+            <value>
+                <fullName>Transport Data</fullName>
+                <default>false</default>
+                <label>Transport Data</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

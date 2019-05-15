@@ -1,0 +1,14 @@
+<apex:page standardController="User_Note__c" extensions="UserNotesRecordControllerExtension" showHeader="false">  
+    <apex:form id="form">
+        <apex:pageBlock title="Note For {!UserName.FirstName} {!UserName.LastName}">     
+            <apex:pageBlockSection >
+                <apex:inputField value="{!User_Note__c.Name}" style="width:350px"/>    
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+                <!-- Close window once user presses Save button -->
+                <apex:commandButton action="{!CustomSave}" value="Save" oncomplete="{!CloseWindow}"  rerender="form"/>  
+            </apex:pageBlockButtons>
+            <apex:pagemessages /> 
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

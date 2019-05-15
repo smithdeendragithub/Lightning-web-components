@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Test_Case_Changed</fullName>
+    <active>true</active>
+    <errorConditionFormula>PRIORVALUE( Test_Case__c ) &lt;&gt; null &amp;&amp;
+ISCHANGED( Test_Case__c )</errorConditionFormula>
+    <errorDisplayField>Test_Case__c</errorDisplayField>
+    <errorMessage>You cannot change the Parent Test Case field once it has been set</errorMessage>
+</ValidationRule>

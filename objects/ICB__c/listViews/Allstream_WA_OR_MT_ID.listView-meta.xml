@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allstream_WA_OR_MT_ID</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>ICB_Type__c</columns>
+    <columns>Product__c</columns>
+    <columns>Expected_MRR__c</columns>
+    <columns>Approval_Status__c</columns>
+    <columns>ASD_Quote_Status__c</columns>
+    <columns>Approval_Waiting_Since__c</columns>
+    <columns>AccountExecutive__c</columns>
+    <columns>AEs_Manager__c</columns>
+    <columns>Service_State__c</columns>
+    <columns>Account_Executive_Sales_Channel__c</columns>
+    <columns>Solicited_RFP_RFI__c</columns>
+    <columns>Status__c</columns>
+    <columns>Account_Business_Segment__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>In Progress</value>
+    </filters>
+    <filters>
+        <field>Approval_Status__c</field>
+        <operation>equals</operation>
+        <value>Offer Mgt Pending,Offer Mgt Pending Again,Off-Net Costing Pending</value>
+    </filters>
+    <filters>
+        <field>Service_State__c</field>
+        <operation>equals</operation>
+        <value>WA,OR,MT,ID</value>
+    </filters>
+    <filters>
+        <field>Account_Executive_Sales_Channel__c</field>
+        <operation>notContain</operation>
+        <value>Wholesale</value>
+    </filters>
+    <label>Allstream US - WA, OR, MT, ID</label>
+    <sharedTo>
+        <group>Offer_Management</group>
+    </sharedTo>
+</ListView>

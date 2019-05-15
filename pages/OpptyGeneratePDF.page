@@ -1,0 +1,394 @@
+<apex:page standardController="Opportunity" extensions="OpptyGeneratePDFController" title="Generate PDF">
+<apex:param name="parentId" value="" assignTo="{!parentId}" />
+<apex:param name="blobData" value="" assignTo="{!fileContentsUpload}" />
+	<apex:includeScript value="{!$Resource.jquery}"/>
+	<apex:includeScript value="{!$Resource.jquery_ui}"/>
+	<apex:stylesheet value="{!$Resource.jquery_ui_css}"/>
+
+	<script>
+
+		var j$ = jQuery.noConflict();
+		
+		var activeProps = '{!JSENCODE(activeProps)}';
+		var ActiveProps = j$.parseJSON(activeProps);
+		var existingProps = '{!JSENCODE(existingProps)}';
+		var ExistingProps = j$.parseJSON(existingProps);
+		var SelectedProps = [];
+		
+		if(Array.prototype.indexOf === undefined){
+			Array.prototype.indexOf = function(n){
+				var idx = -1;				
+				for(var i = 0; i < this.length; ++i){
+					if(this[i] == n){
+						idx = i;
+						break;
+					}
+				}
+				return idx;
+			};
+		}
+		
+		j$(document).ready(function() {	
+			//Disable Service Agreement if there are active solutions with OLI's not approved
+			debugger;
+			if(!{!overrideGenerateSA})
+			{
+				j$('td').filter(function(){ return j$(this).text().indexOf('Service Agreement') > -1;}).each(function() {
+					//if custom setting is checked override the logic
+					if({!canGenerateSA} == false){
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+					}
+				});
+			}
+					
+					
+			if({!canGenerateMonthToMonth} == false){
+				j$('td').filter(function(){ return j$(this).text().indexOf('Month to Month Renewal') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+			}
+					
+			if({!canGeneratePrdOrderProfile} == false){
+				j$('td').filter(function(){ return j$(this).text().indexOf('Partner Order') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+			}
+
+			var canGen = '{!canGenerateETFIncentives}';
+			if(canGen == "ETF Program")
+			{
+				j$('td').filter(function(){ return j$(this).text().indexOf('Incentive') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+			}
+			else if(canGen == "Incentive Credit MRC"){
+				j$('td').filter(function(){ return j$(this).text().indexOf('ETF Assistance Credit Addendum') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+				j$('td').filter(function(){ return j$(this).text().indexOf('Incentive Credit Dollar Amount Addendum') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+			}
+			else if(canGen == "Incentive Credit OneTime"){
+				j$('td').filter(function(){ return j$(this).text().indexOf('ETF Assistance Credit Addendum') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+				j$('td').filter(function(){ return j$(this).text().indexOf('Incentive Credit MRC Multiple Addendum') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+			}
+			else{
+				j$('td').filter(function(){ return j$(this).text().indexOf('ETF Assistance Credit Addendum') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+				j$('td').filter(function(){ return j$(this).text().indexOf('Incentive') > -1;}).each(function() {
+						j$(j$(this).prev().children()[0]).attr('disabled', 'disabled');
+				});
+			}
+
+			var url = '{!storeDocURL}'; 
+			if( url  != '') {
+				newwindow = window.open(url);
+				if ((newwindow != null) && (window.focus)) {
+					newwindow.focus();
+				}
+			}
+
+			var stringJS = '{!JSENCODE(AutoCheckPDFs)}';
+	    	var jsProds = j$.parseJSON(stringJS);
+			
+			j$(j$('td').filter(function(){ return j$(this).text() === 'Service Agreement';}).prev().children()[0]).click(function(){
+				var isChecked = j$(this).is(':checked');
+				if(isChecked)
+				{
+					j$.each(jsProds, function(index,element) {
+						
+						j$('td').filter(function(){ return j$(this).text() === element;}).each(function(){
+							if(j$(this).text().trim() == element){
+								j$(j$(this).prev().children()[0]).attr('checked', true).change();								
+							}
+						});
+					});
+				}
+			});	
+		
+			j$('input[id$=":Active"]').each(function(idx,ele){
+				var name = j$(ele).parent().next().next().text();				
+				if(ExistingProps.indexOf(name) > -1){
+					if(ActiveProps.indexOf(name) > -1){
+						j$(ele).prop('checked', 'checked');
+							
+					}
+				}
+				else
+					j$(ele).prop('disabled', 'disabled');
+			}).change(function(){
+				var active = j$(this).is(':checked');
+				var name = j$(j$(this).parent().next().next()).text();
+				var idx = ActiveProps.indexOf(name);
+				if(idx > -1 && !active){
+					ActiveProps.splice(idx,1);
+				}
+				else if(idx == -1 && active){
+					ActiveProps.push(name);
+				}					
+				j$('input[id$="activeProps"]').val(JSON.stringify(ActiveProps));
+			});
+			j$('input[id$=":Generate"]').change(function(){
+				var doGenerate = j$(this).is(':checked');
+				var name = j$(j$(this).parent()).attr('value');						
+				
+				var idx = SelectedProps.indexOf(name);				
+				if(idx > -1 && !doGenerate){			
+					SelectedProps.splice(idx,1);
+				}
+				else if(idx == -1 && doGenerate){				
+					SelectedProps.push(name);
+				}			
+				j$('input[id$="selectedProps"]').val(JSON.stringify(SelectedProps));
+			});
+					
+			generateOrStore();
+					
+			return false;
+		});
+		
+		function toggleChecks(valueToSet, prefix) {
+		
+			j$('input[id*=":' + prefix + ':"]').each(function (){			
+				if(j$(this).attr('id').indexOf('Generate') < 0) return;
+				/*if(j$(this).next().text() == " Service Agreement"){
+					if(!{!overrideGenerateSA})
+					{
+						if({!canGenerateSA} == false)
+							j$(this).prev().attr('disabled', 'disabled');
+						else
+							j$(this).attr('checked', valueToSet);
+					}
+					else
+						j$(this).attr('checked', valueToSet);
+				}
+				else*/{
+					if(j$(this).attr('disabled') == null)
+						j$(this).attr('checked', valueToSet).change();
+				}
+			});
+		
+		}
+		
+		function generateAllActive(prefix){
+			j$('input[id*=":' + prefix + ':"]').each(function(){
+				var gcb = j$(this);
+				var acb = j$(gcb.parent().prev().children()[0]);
+				if(acb.is(':checked') && acb.attr('disabled') == null)
+					gcb.prop('checked', 'checked').change();
+			});
+		}
+				
+				
+		function generateOrStore(){
+			var action = j$("input[name$='selAction']:checked").val();
+			if(action == 'Store'){
+				//Show component
+				j$("[id$='divStoreOptions']").show();
+			}
+			else{
+				
+				j$("[id$='divStoreOptions']").hide();
+				//generate();
+			}
+		}
+		
+</script>
+
+
+
+<apex:pageMessages rendered="{!ShowSelectionPanel}" />
+<apex:form id="pageForm">
+    
+	<apex:inputHidden id="activeProps" value="{!activeProps}" />
+	<apex:inputHidden id="existingProps" value="{!existingProps}" />
+	<apex:inputHidden id="selectedProps" value="{!JSONSelectedProps}" />
+	
+	<apex:pageBlock title="Opportunity Details" >
+		<apex:pageBlockSection columns="1">
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="Account" />
+				<apex:outputText ><a href="{!URLFOR($Action.Account.View, Opportunity.Account.Id)}">{!Opportunity.Account.Name}</a></apex:outputText>
+			</apex:pageBlockSectionItem>
+			<apex:pageBlockSectionItem >
+				<apex:outputLabel value="Opportunity" />
+				<apex:outputText ><a href="{!URLFOR($Action.Opportunity.View, Opportunity.Id)}">{!Opportunity.Name}</a></apex:outputText>
+			</apex:pageBlockSectionItem>			
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+
+	
+<apex:outputPanel rendered="{!ShowSelectionPanel}" id="InitialPanel">
+	<apex:pageBlock title="Document Options" >
+		<apex:pageBlockButtons >
+           <apex:commandButton value="Generate" action="{!generate}" />
+	       <apex:commandButton action="{!cancel}" value="Cancel" immediate="true"/>
+        </apex:pageBlockButtons>
+		<apex:pageBlockSection title="Actions" columns="1">
+	        <apex:selectRadio value="{!selectedAction}" id="selAction" onchange="generateOrStore();return true;">
+	            <apex:selectOptions value="{!documentActions}" />
+	        </apex:selectRadio> 
+			
+			<apex:outputPanel id="divStoreOptions">
+				 <apex:PageBlockSection title="Document" columns="1">
+     			        <apex:PageBlockSectionItem >
+			            <apex:outputLabel value="Library" />
+			            <apex:selectList value="{!selectedWorkspace}" size="1">
+			                <apex:selectOptions value="{!workspaces}" />
+			            </apex:selectList>
+			        </apex:PageBlockSectionItem>        
+
+			         <apex:PageBlockSectionItem >
+			            <apex:outputLabel value="Title" />
+			            <apex:outputText >{!titlePrefix}<apex:inputText value="{!cv.Title}"/></apex:outputText>
+			        </apex:PageBlockSectionItem>        
+			            
+			            
+			        <apex:PageBlockSectionItem >
+			            <apex:outputLabel value="Description" />
+			            <apex:inputTextArea style="width:280px;" rows="3" value="{!cv.Description}" />
+			        </apex:PageBlockSectionItem>
+				
+			    </apex:PageBlockSection>
+			</apex:outputPanel>
+				
+	        
+	    </apex:pageBlockSection>
+	    <apex:PageBlockSection title="Document Addressee/Signee" columns="1" id="pnlDeliverTo">
+			<apex:selectRadio value="{!selectedContactRecipent}" layout="pageDirection" >
+            	<apex:selectOptions value="{!potentialRecipients}"/>
+            </apex:selectRadio>
+		
+		</apex:PageBlockSection>
+	    <apex:pageBlockSection title="Proposal Sections" columns="1">
+			<apex:outputPanel >
+				<div>
+	       			<input type="button" class="btn" value="Check All" onclick="toggleChecks(true, 'chkProp')"/>
+	       			<input type="button" class="btn" value="Uncheck All" onclick="toggleChecks(false, 'chkProp')"/>
+		   			<input type="button" class="btn" value="Check All Active" onclick="generateAllActive('chkProp')" />
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Active</th>
+								<th>Generate</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<apex:repeat value="{!proposalSections}" id="chkProp" var="pcon">
+								<tr>
+									<td><apex:inputCheckbox value="{!pcon.Active}" id="Active" /></td>
+									<td value="{!pcon.Value}"><apex:inputCheckbox value="{!pcon.Selected}" id="Generate" /></td>
+									<td><apex:outputText value="{!pcon.Label}" /></td>
+								</tr>
+		   					</apex:repeat>
+						</tbody>
+					</table>
+				</div>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<apex:pageBlockSection title="Contract Sections" columns="1">
+			<apex:outputPanel >
+				<div>
+	       			<input type="button" class="btn" value="Check All" onclick="toggleChecks(true, 'chkCont')"/>
+	       			<input type="button" class="btn" value="Uncheck All" onclick="toggleChecks(false, 'chkCont')"/>
+		   			<input type="button" class="btn" value="Check All Active" onclick="generateAllActive('chkCont')" />
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Active</th>
+								<th>Generate</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<apex:repeat value="{!contractSections}" id="chkCont" var="con">
+								<tr>
+									<td><apex:inputCheckbox value="{!con.Active}" id="Active" /></td>
+									<td value="{!con.Value}"><apex:inputCheckbox value="{!con.Selected}" id="Generate" /></td>
+									<td><apex:outputText value="{!con.Label}" /></td>
+								</tr>
+		   					</apex:repeat>
+						</tbody>
+					</table>
+				</div>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		<apex:pageBlockSection title="Other Sections" columns="1">
+			<apex:outputPanel >
+				<div>
+	       			<input type="button" class="btn" value="Check All" onclick="toggleChecks(true, 'chkOther')"/>
+	       			<input type="button" class="btn" value="Uncheck All" onclick="toggleChecks(false, 'chkOther')"/>
+		   			<input type="button" class="btn" value="Check All Active" onclick="generateAllActive('chkOther')" />
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Active</th>
+								<th>Generate</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<apex:repeat value="{!otherSections}" id="chkOther" var="ocon">
+								<tr>
+									<td><apex:inputCheckbox value="{!ocon.Active}" id="Active" /></td>
+									<td value="{!ocon.Value}"><apex:inputCheckbox value="{!ocon.Selected}" id="Generate" /></td>
+									<td><apex:outputText value="{!ocon.Label}" /></td>
+								</tr>
+		   					</apex:repeat>
+						</tbody>
+					</table>
+				</div>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+		
+
+		<apex:pageBlockSection id="indirectBlock" title="Indirect Sections" columns="1">
+			<apex:outputPanel >
+				<div>
+	       			<input type="button" class="btn" value="Check All" onclick="toggleChecks(true, 'chkIndirect')"/>
+	       			<input type="button" class="btn" value="Uncheck All" onclick="toggleChecks(false, 'chkIndirect')"/>
+		   			<input type="button" class="btn" value="Check All Active" onclick="generateAllActive('chkIndirect')" />
+				</div>
+				<div>
+					<table>
+						<thead>
+							<tr>
+								<th>Active</th>
+								<th>Generate</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody>
+							<apex:repeat value="{!indirectSections}" id="chkIndirect" var="icon">
+								<tr>
+									<td><apex:inputCheckbox value="{!icon.Active}" id="Active" /></td>
+									<td value="{!icon.Value}"><apex:inputCheckbox value="{!icon.Selected}" id="Generate" /></td>
+									<td><apex:outputText value="{!icon.Label}" /></td>
+								</tr>
+		   					</apex:repeat>
+						</tbody>
+					</table>
+				</div>
+			</apex:outputPanel>
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+	
+</apex:outputPanel>
+<apex:actionFunction name="generate" action="{!generate}"/>
+</apex:form>
+
+
+</apex:page>

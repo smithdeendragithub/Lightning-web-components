@@ -1,0 +1,44 @@
+<apex:page standardcontroller="Tax_Exemption__c">
+<style> 
+input[name=newNote] { 
+    display: none; 
+} 
+</style>
+    <apex:sectionHeader title="Tax Exemption" subtitle="{!IF(Tax_Exemption__c.Id == null, 'New Tax Exemption', Tax_Exemption__c.Name)}"/>
+    <!--<apex:image id="theImage" value="/servlet/servlet.FileDownload?file=0150h000002w7FA" alt="Matrix" />-->
+    <apex:form >
+       <apex:pageBlock title="Tax Exemption Edit">
+            <apex:pageBlockSection collapsible="true" title="Matrix">
+                <apex:image id="theImage" value="/servlet/servlet.FileDownload?file=0150h000002w7FA" alt="Matrix" />
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons ><apex:commandButton action="{!save}" value="Save" rendered="{!IF(ISBLANK(Tax_Exemption__c.Expire_Date__c), true, IF(Tax_Exemption__c.Expire_Date__c < TODAY(), false, true))}"/><apex:commandButton action="{!cancel}" value="Cancel"/></apex:pageBlockButtons>
+            <apex:pageBlockSection title="Information" columns="2" rendered="{!IF(ISBLANK(Tax_Exemption__c.Expire_Date__c), true, IF(Tax_Exemption__c.Expire_Date__c < TODAY(), false, true))}">
+                <apex:inputField value="{!Tax_Exemption__c.Customer_Detail__c}" required="true"/>
+                <apex:inputField value="{!Tax_Exemption__c.Legacy_ID__c}"/>
+                <apex:inputField value="{!Tax_Exemption__c.Customer_Name__c}"/>
+                <apex:inputField value="{!Tax_Exemption__c.Billing_ID__c}"/>
+                <apex:inputField value="{!Tax_Exemption__c.BAN_Resale_Indicator__c}"/>
+                <apex:inputField value="{!Tax_Exemption__c.Certificate_Number__c}"/>
+                <apex:inputField value="{!Tax_Exemption__c.Reason_Code__c}"/>
+                <apex:inputField value="{!Tax_Exemption__c.Start_Date__c}"/>
+                <apex:inputField value="{!Tax_Exemption__c.Province__c}"/>
+                <apex:inputField value="{!Tax_Exemption__c.Expire_Date__c}" />
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Information" columns="2" rendered="{!IF(ISBLANK(Tax_Exemption__c.Expire_Date__c), false, IF(Tax_Exemption__c.Expire_Date__c < TODAY(), true, false))}">
+                <apex:outputField value="{!Tax_Exemption__c.Customer_Detail__c}" />
+                <apex:outputField value="{!Tax_Exemption__c.Legacy_ID__c}"/>
+                <apex:outputField value="{!Tax_Exemption__c.Customer_Name__c}"/>
+                <apex:outputField value="{!Tax_Exemption__c.Billing_ID__c}"/>
+                <apex:outputField value="{!Tax_Exemption__c.BAN_Resale_Indicator__c}"/>
+                <apex:outputField value="{!Tax_Exemption__c.Certificate_Number__c}"/>
+                <apex:outputField value="{!Tax_Exemption__c.Reason_Code__c}"/>
+                <apex:outputField value="{!Tax_Exemption__c.Start_Date__c}"/>
+                <apex:outputField value="{!Tax_Exemption__c.Province__c}"/>
+                <apex:outputField value="{!Tax_Exemption__c.Expire_Date__c}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:relatedList title="Attachments" list="CombinedAttachments" ></apex:relatedList> 
+    <apex:relatedList title="Change History" list="Histories" />
+    <br/>
+</apex:page>

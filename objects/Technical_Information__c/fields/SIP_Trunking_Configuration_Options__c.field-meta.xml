@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SIP_Trunking_Configuration_Options__c</fullName>
+    <externalId>false</externalId>
+    <label>Configuration Options</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Integra Providing SIP Proxy, NAT &amp; DHCP [SS_Int_P_N_D ]</fullName>
+                <default>false</default>
+                <label>Integra Providing SIP Proxy, NAT &amp; DHCP [SS_Int_P_N_D ]</label>
+            </value>
+            <value>
+                <fullName>Integra Providing SIP Proxy Only [SS_Int_P_only]</fullName>
+                <default>false</default>
+                <label>Integra Providing SIP Proxy Only [SS_Int_P_only]</label>
+            </value>
+            <value>
+                <fullName>Customer Providing SIP Proxy, NAT &amp; DHCP [SS_Cus_P_N_D]</fullName>
+                <default>false</default>
+                <label>Customer Providing SIP Proxy, NAT &amp; DHCP [SS_Cus_P_N_D]</label>
+            </value>
+            <value>
+                <fullName>Integra providing SIP Proxy, NAT, Method 3 Internet [VPN_Int_PN_M3INT]</fullName>
+                <default>false</default>
+                <label>Integra providing SIP Proxy, NAT, Method 3 Internet [VPN_Int_PN_M3INT]</label>
+            </value>
+            <value>
+                <fullName>Integra providing SIP Proxy, NAT, No Internet [VPN_Int_PN_NoINT]</fullName>
+                <default>false</default>
+                <label>Integra providing SIP Proxy, NAT, No Internet [VPN_Int_PN_NoINT]</label>
+            </value>
+            <value>
+                <fullName>Customer providing SIP Proxy, NAT, Method 3 Internet [VPN_Cus_PN_M3INT]</fullName>
+                <default>false</default>
+                <label>Customer providing SIP Proxy, NAT, Method 3 Internet [VPN_Cus_PN_M3INT]</label>
+            </value>
+            <value>
+                <fullName>Customer providing SIP Proxy, NAT, No Internet [VPN_Cus PN_NoINT]</fullName>
+                <default>false</default>
+                <label>Customer providing SIP Proxy, NAT, No Internet [VPN_Cus PN_NoINT]</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

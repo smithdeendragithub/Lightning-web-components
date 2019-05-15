@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Downturn_Location_Downturn__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Check box field for approval of Business Downturn Addendum Location Downturn</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Checked by Offer Management if Business Downturn Addendum Location Downturn is approved</inlineHelpText>
+    <label>Business Downturn - Location Downturn</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

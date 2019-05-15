@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Location_Must_Belong_To_Account</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(ISBLANK(Primary_Service_Location__r.Account__c))
+,Primary_Service_Location__r.Account__c &lt;&gt;  Opportunity__r.AccountId)
+&amp;&amp; NOT($Setup.Validation_Rule_Settings__c.Disable_Validation_Rules__c)</errorConditionFormula>
+    <errorDisplayField>Primary_Service_Location__c</errorDisplayField>
+    <errorMessage>Service Location must belong to this Account in order to pick products for it.</errorMessage>
+</ValidationRule>

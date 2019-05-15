@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legacy_Building_On_Net_Restricted_Reason__c</fullName>
+    <description>To hold data from Zayo SFDC</description>
+    <externalId>false</externalId>
+    <label>Restricted Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Building Fees</fullName>
+                <default>false</default>
+                <label>Building Fees</label>
+            </value>
+            <value>
+                <fullName>Capped</fullName>
+                <default>false</default>
+                <label>Capped</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber Leased/IRU</fullName>
+                <default>false</default>
+                <label>Dark Fiber Leased/IRU</label>
+            </value>
+            <value>
+                <fullName>Degraded / Embargoed network</fullName>
+                <default>false</default>
+                <label>Degraded / Embargoed network</label>
+            </value>
+            <value>
+                <fullName>End User Specific</fullName>
+                <default>false</default>
+                <label>End User Specific</label>
+            </value>
+            <value>
+                <fullName>Limited Zayo Fiber</fullName>
+                <default>false</default>
+                <label>Limited Zayo Fiber</label>
+            </value>
+            <value>
+                <fullName>Required Cross Connect Fee</fullName>
+                <default>false</default>
+                <label>Required Cross Connect Fee</label>
+            </value>
+            <value>
+                <fullName>Restricted CATT LSO Bldg</fullName>
+                <default>false</default>
+                <label>Restricted CATT LSO Bldg</label>
+            </value>
+            <value>
+                <fullName>Served via Type 2 Circuit</fullName>
+                <default>false</default>
+                <label>Served via Type 2 Circuit</label>
+            </value>
+            <value>
+                <fullName>Zayo Amplification Location</fullName>
+                <default>false</default>
+                <label>Zayo Amplification Location</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

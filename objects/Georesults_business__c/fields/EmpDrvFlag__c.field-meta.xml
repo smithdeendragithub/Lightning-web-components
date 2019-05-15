@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EmpDrvFlag__c</fullName>
+    <description>Flag indicating the method for populating the Employees field. 0 = the number of employees is an actual verified count. 1 = the number of employees is an estimated count using modeling or additional research techniques.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Flag indicating the method for populating the Employees field. 0 = the number of employees is an actual verified count. 1 = the number of employees is an estimated count using modeling or additional research techniques.</inlineHelpText>
+    <label>Employee Derivation Flag</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

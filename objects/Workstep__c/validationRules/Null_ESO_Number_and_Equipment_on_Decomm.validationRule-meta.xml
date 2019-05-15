@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Null_ESO_Number_and_Equipment_on_Decomm</fullName>
+    <active>true</active>
+    <description>Must enter an ESO# and choose equipment on a decomm order before completing the first workstep of Initiate Decomm.</description>
+    <errorConditionFormula>Name=&#39;Initiate Decomm&#39; &amp;&amp; 
+ISPICKVAL(Status__c , &#39;Complete&#39;) &amp;&amp; 
+Or ( 
+ISNULL (Order__r.ESO_Number__c), 
+ISNULL (Order__r.Equipment__c) 
+)</errorConditionFormula>
+    <errorMessage>You must enter both the ESO Number and the Equipment associated to this decommission before completing your workstep.</errorMessage>
+</ValidationRule>

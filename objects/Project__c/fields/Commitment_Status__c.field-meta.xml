@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commitment_Status__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>This field is used to track whether a project schedule/plan has been committed to or if it is still in the planning stages.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Has the implementation plan for this project been finalized and committed?  If yes, check this box.</inlineHelpText>
+    <label>Commitment Status</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

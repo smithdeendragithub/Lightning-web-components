@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <description>Picklist - Product</description>
+    <externalId>false</externalId>
+    <label>Product</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product_Family__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dedicated Internet</fullName>
+                <default>false</default>
+                <label>Dedicated Internet</label>
+            </value>
+            <value>
+                <fullName>VPN/MPLS</fullName>
+                <default>false</default>
+                <label>VPN/MPLS</label>
+            </value>
+            <value>
+                <fullName>Ethernet Services</fullName>
+                <default>false</default>
+                <label>Ethernet Services</label>
+            </value>
+            <value>
+                <fullName>Wavelength</fullName>
+                <default>false</default>
+                <label>Wavelength</label>
+            </value>
+            <value>
+                <fullName>Private Line</fullName>
+                <default>false</default>
+                <label>Private Line</label>
+            </value>
+            <value>
+                <fullName>VPLS</fullName>
+                <default>false</default>
+                <label>VPLS</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber</fullName>
+                <default>false</default>
+                <label>Dark Fiber</label>
+            </value>
+            <value>
+                <fullName>Basic Voice</fullName>
+                <default>false</default>
+                <label>Basic Voice</label>
+            </value>
+            <value>
+                <fullName>Long Distance</fullName>
+                <default>false</default>
+                <label>Long Distance</label>
+            </value>
+            <value>
+                <fullName>Toll Free</fullName>
+                <default>false</default>
+                <label>Toll Free</label>
+            </value>
+            <value>
+                <fullName>ISDN/PRI</fullName>
+                <default>false</default>
+                <label>ISDN/PRI</label>
+            </value>
+            <value>
+                <fullName>Managed PBX</fullName>
+                <default>false</default>
+                <label>Managed PBX</label>
+            </value>
+            <value>
+                <fullName>Hosted Voice</fullName>
+                <default>false</default>
+                <label>Hosted Voice</label>
+            </value>
+            <value>
+                <fullName>Hosted PBX</fullName>
+                <default>false</default>
+                <label>Hosted PBX</label>
+            </value>
+            <value>
+                <fullName>SIP Solutions/NGN SIP Trunking</fullName>
+                <default>false</default>
+                <label>SIP Solutions/NGN SIP Trunking</label>
+            </value>
+            <value>
+                <fullName>UC (UCCV &amp; MiCloud)</fullName>
+                <default>false</default>
+                <label>UC (UCCV &amp; MiCloud &amp; HCS)</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Data Services</controllingFieldValue>
+            <valueName>Dedicated Internet</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Data Services</controllingFieldValue>
+            <valueName>VPN/MPLS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Data Services</controllingFieldValue>
+            <valueName>Ethernet Services</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Data Services</controllingFieldValue>
+            <valueName>Wavelength</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Data Services</controllingFieldValue>
+            <valueName>Private Line</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Data Services</controllingFieldValue>
+            <valueName>VPLS</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Data Services</controllingFieldValue>
+            <valueName>Dark Fiber</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legacy Voice Services</controllingFieldValue>
+            <valueName>Basic Voice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legacy Voice Services</controllingFieldValue>
+            <valueName>Long Distance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legacy Voice Services</controllingFieldValue>
+            <valueName>Toll Free</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legacy Voice Services</controllingFieldValue>
+            <valueName>ISDN/PRI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legacy Hosted/Managed Services</controllingFieldValue>
+            <valueName>Managed PBX</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legacy Hosted/Managed Services</controllingFieldValue>
+            <valueName>Hosted Voice</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Legacy Hosted/Managed Services</controllingFieldValue>
+            <valueName>Hosted PBX</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cloud Voice (SIP &amp; UC)</controllingFieldValue>
+            <valueName>SIP Solutions/NGN SIP Trunking</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cloud Voice (SIP &amp; UC)</controllingFieldValue>
+            <valueName>UC (UCCV &amp; MiCloud)</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

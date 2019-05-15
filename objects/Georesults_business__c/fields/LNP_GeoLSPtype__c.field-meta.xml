@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LNP_GeoLSPtype__c</fullName>
+    <description>The Telephone Industry Type associated with the GeoName Local Service Provider (LSP). The GeoLSP Type indicates the type or category of Telecommunications Service Provider associated with the Operating Company Number (OCN) and Operating Company Name (OCN Name). The list of OCN Types or Categories was established following the 1984 divestiture of the Bell System to help classify Telecommunications Service Providers.</description>
+    <externalId>false</externalId>
+    <label>Provisioning GeoLSP Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

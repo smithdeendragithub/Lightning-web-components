@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ref_PDF_Element__c</fullName>
+    <description>element that supports this clause</description>
+    <externalId>false</externalId>
+    <label>Ref PDF Element</label>
+    <referenceTo>Ref_PDF_Element__c</referenceTo>
+    <relationshipLabel>Ref PDF Clauses</relationshipLabel>
+    <relationshipName>Ref_PDF_Clauses</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

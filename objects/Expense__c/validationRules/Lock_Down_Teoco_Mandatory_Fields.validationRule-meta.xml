@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lock_Down_Teoco_Mandatory_Fields</fullName>
+    <active>false</active>
+    <description>Prevents Vendor Circuit Id and Vendor Account from being changed if Expense in &#39;Active&#39; status</description>
+    <errorConditionFormula>TEXT(Status__c)   = &quot;Active&quot;  &amp;&amp; (ISCHANGED(Vendor_Circuit_Id__c)  ||  ISCHANGED( Vendor_Account__c ))</errorConditionFormula>
+    <errorMessage>Vendor Circuit Id or Vendor Account can not be changed if Expense is &#39;Active&#39;. Please Contact Support.</errorMessage>
+</ValidationRule>

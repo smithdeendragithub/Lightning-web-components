@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Address__c</fullName>
+    <description>Street address where this business is located, generally including the street number and street name.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Street address where this business is located, generally including the street number and street name.</inlineHelpText>
+    <label>Address</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IT_LOE_Actuals</fullName>
+    <columns>NAME</columns>
+    <columns>Project__c</columns>
+    <columns>Project_Status__c</columns>
+    <columns>Functional_Group__c</columns>
+    <columns>Estimated_People_Hours__c</columns>
+    <columns>Revised_People_Hours__c</columns>
+    <columns>Actual_People_Hours__c</columns>
+    <columns>Earliest_Start_Date__c</columns>
+    <columns>Target_Completion_Date__c</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>OBJECT_ID</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Functional_Group__c</field>
+        <operation>startsWith</operation>
+        <value>IT</value>
+    </filters>
+    <filters>
+        <field>Project_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled,Completed</value>
+    </filters>
+    <filters>
+        <field>Actual_People_Hours__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </filters>
+    <label>IT LOE-Actuals</label>
+</ListView>

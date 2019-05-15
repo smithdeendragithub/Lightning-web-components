@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EVC_Mileage__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>EPL Mileage = Site 1 to Site 2.  EVPL Mileage = Remote Site to Site 1 (Aggregation), E-LAN = Site to Integra Hub</inlineHelpText>
+    <label>EVC Mileage</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>0 - 24 Miles</fullName>
+                <default>false</default>
+                <label>0 - 24 Miles</label>
+            </value>
+            <value>
+                <fullName>25 - 99 Miles</fullName>
+                <default>false</default>
+                <label>25 - 99 Miles</label>
+            </value>
+            <value>
+                <fullName>100 - 249 Miles</fullName>
+                <default>false</default>
+                <label>100 - 249 Miles</label>
+            </value>
+            <value>
+                <fullName>250 - 500 Miles</fullName>
+                <default>false</default>
+                <label>250 - 500 Miles</label>
+            </value>
+            <value>
+                <fullName>501 - 999 Miles</fullName>
+                <default>false</default>
+                <label>501 - 999 Miles</label>
+            </value>
+            <value>
+                <fullName>1000 - 2499 Miles</fullName>
+                <default>false</default>
+                <label>1000 - 2499 Miles</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

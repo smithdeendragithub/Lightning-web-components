@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legacy_Building_Subtype__c</fullName>
+    <description>To hold data from Zayo SFDC</description>
+    <externalId>false</externalId>
+    <label>Subtype</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Close</fullName>
+                <default>false</default>
+                <label>Close</label>
+            </value>
+            <value>
+                <fullName>3rd Party ILA</fullName>
+                <default>false</default>
+                <label>3rd Party ILA</label>
+            </value>
+            <value>
+                <fullName>Zayo Owned ILA</fullName>
+                <default>false</default>
+                <label>Zayo Owned ILA</label>
+            </value>
+            <value>
+                <fullName>Utility Pole</fullName>
+                <default>false</default>
+                <label>Utility Pole</label>
+            </value>
+            <value>
+                <fullName>Street Light</fullName>
+                <default>false</default>
+                <label>Street Light</label>
+            </value>
+            <value>
+                <fullName>Signal Pole</fullName>
+                <default>false</default>
+                <label>Signal Pole</label>
+            </value>
+            <value>
+                <fullName>Building</fullName>
+                <default>false</default>
+                <label>Building</label>
+            </value>
+            <value>
+                <fullName>In-Building DAS</fullName>
+                <default>false</default>
+                <label>In-Building DAS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

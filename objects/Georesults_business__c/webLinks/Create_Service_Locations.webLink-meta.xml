@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Service_Locations</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Create Service Locations</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/35.0/connection.js&quot;)}
+
+var accountID = &#39;{!Account.Id}&#39;;
+var grbs = {!GETRECORDIDS($ObjectType.Georesults_business__c)};
+
+if(accountID != &#39;&#39;){
+	sforce.connection.sessionId = &#39;{!$Api.Session_ID}&#39;;
+	grbs = sforce.connection.query(&quot;SELECT Id, Name, Building__c FROM Georesults_business__c WHERE Id in (&#39;&quot; + grbs.join(&quot;&#39;,&#39;&quot;) + &quot;&#39;) and Building__c != null&quot;).getArray(&#39;records&#39;);
+	
+	var bldgIDs = [];
+	var roomSuites = [];
+	for(var i=0; i&lt;grbs.length; i++){
+		bldgIDs.push(grbs[i].Building__c);
+		
+		var rs = prompt(&quot;Enter a room/suite for &quot; + grbs[i].Name, &quot;&quot;);
+		roomSuites.push(rs);
+	}
+	
+	var locs = sforce.connection.query(&quot;SELECT Id, Building__c, Room_Suite__c FROM Location__c WHERE Building__c in (&#39;&quot; + bldgIDs.join(&quot;&#39;,&#39;&quot;) + &quot;&#39;) and Room_Suite__c in (&#39;&quot; + roomSuites.join(&quot;&#39;,&#39;&quot;) + &quot;&#39;)&quot;).getArray(&#39;records&#39;);
+	var lMap = {};
+	for(var i=0; i&lt;locs.length; i++){
+		lMap[locs[i].Building__c + &#39;_&#39; + locs[i].Room_Suite__c] = locs[i];
+	}
+	
+	var newLocs = [];
+	for(var i=0; i&lt;bldgIDs.length; i++){
+		var k = bldgIDs[i] + &#39;_&#39; + roomSuites[i];
+		if(!(k in lMap)){
+			var loc = new sforce.SObject(&#39;Location__c&#39;);
+			loc.Building__c = bldgIDs[i];
+			loc.Room_Suite__c = roomSuites[i];
+			lMap[k] = loc;
+			newLocs.push(loc);
+		}
+	}
+	
+	if(newLocs.length &gt; 0){
+		var locResult = sforce.connection.create(newLocs);
+		for(var i=0; i&lt;locResult.length; i++){
+			if(locResult[i].success == &#39;true&#39;){
+				var k = newLocs[i].Building__c + &#39;_&#39; + newLocs[i].Room_Suite__c;
+				lMap[k].Id = locResult[i].Id;
+			}
+		}
+	}
+	
+	var sLocs = [];
+	for(var i=0; i&lt;grbs.length; i++){
+		var k = grbs[i].Building__c + &#39;_&#39; + roomSuites[i];
+		
+		var sLoc = new sforce.SObject(&#39;Service_Location__c&#39;);
+		sLoc.Account__c = accountID;
+		sLoc.Location__c = lMap[k].Id;
+		sLocs.push(sLoc);
+	}
+	sforce.connection.create(sLocs);
+	document.location.reload(true); 
+}</url>
+</WebLink>

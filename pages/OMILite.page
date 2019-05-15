@@ -1,0 +1,663 @@
+<apex:page controller="OrderManagementController">
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" />
+    <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_10_3_custom, 'css/redmond/jquery-ui-1.10.3.custom.min.css')}"/>
+	<script type="text/javascript">
+		var error = '';
+	</script>
+	<c:ModalWaitDialog />
+	<apex:outputPanel id="out">
+		<apex:pageMessages />
+		<script type="text/javascript">
+			error = '{!error}';
+		</script>
+	</apex:outputPanel>
+	<apex:pageBlock id="Page1" title="Master Order Selection" rendered="{!ISNULL(error)}">
+		<div style="display:inline-block; zoom:1 min-width:600px;">
+			<div class="Info"> 
+				Account:
+			</div>
+			<div class="Data">
+				<span style="font-weight:bold;"><a href="../{!account.Id}" target="_blank">{!account.Name}</a> ({!account.ICC_Account_Number__c})</span>
+			</div>
+			<div class="Clear"></div>
+			<div class="Info">
+				&nbsp;
+			</div>
+			<div class="Data">
+				<input type="text" value="Search to refine list below..." id="tbMOSearchBox"/>
+			</div>
+			<div class="Clear"></div>
+			<div class="Info">
+				Open Salesforce Master Orders:
+			</div>
+			<div id="divMasterOrders" class="Data SelectionHolder">
+				<ol id="olMasterOrders" class="Selectable">
+					<apex:repeat value="{!orderDisplay}" var="MasterOrderInfo">
+						<li id="MasterOrder_{!MasterOrderInfo.Order.Id}" class="MasterOrder" data-selectionText='{!MasterOrderInfo.Order.Name} - {!MasterOrderInfo.Opp.Name}' data-searchText='{!MasterOrderInfo.Order.Name}{!MasterOrderInfo.Opp.Name}' data-id='{!MasterOrderInfo.Order.Id}' data-name='{!MasterOrderInfo.Order.Name}' data-oppName='{!MasterOrderInfo.Opp.Name}'>
+							<span>Master Order : </span><a href="../{!MasterOrderInfo.Order.Id}" target="_blank">{!MasterOrderInfo.Order.Name}</a><span> - {!MasterOrderInfo.Opp.Name}</span>
+						</li>
+					</apex:repeat>	
+				</ol>
+			</div>
+			<div class="Clear"></div>
+			<div class="Info">
+				Associate To:
+			</div>
+			<div class="Data" >
+				<div id="MOSelected" style="text-align:center; border:solid 1px #000; margin-left:-3px; float:left; padding:3px; font-weight:bold;">
+					New Master Order
+				</div>
+				<div style="float:left;">
+					<input id="btnClearMOSelection" type="button" value="Clear"/>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div class="Clear"></div>
+			<div class="Info">
+				Available ICC Orders:
+			</div>
+			<div id="divSubOrders" class="Data SelectionHolder">
+				<apex:outputPanel id="olSubOrdersPanel">
+				<ol id="olSubOrders" class="Selectable">
+					<apex:repeat value="{!subOrderDisplay}" var="SubOrder">
+						<li id="SubOrder_{!SubOrder.property.External_ID__c}" class="SubOrder" data-orderNumber="{!SubOrder.property.External_ID__c}" data-orderType="{!SubOrder.property.Type__c}" data-subscriberID="{!SubOrder.subOrder.Service_Location__r.ICC_Subscriber_ID__c}" data-productDescription="{!SubOrder.subOrder.SPC_Product__r.Name}" title="{!SubOrder.groupDisplay}">
+							<span>{!SubOrder.property.Type__c}: {!SubOrder.property.External_ID__c} ({!SubOrder.subOrder.Service_Location__r.ICC_Subscriber_ID__c}) - {!SubOrder.subOrder.SPC_Product__r.Name} : {!SubOrder.groupDisplay} Total MRR: {!SubOrder.totalMRR}</span>
+							<apex:repeat value="{!SubOrder.Groups}" var="SoG">
+								<span>{!SoG.External_ID__c}</span>
+							</apex:repeat>
+						</li>
+					</apex:repeat>
+				</ol>
+				</apex:outputPanel>
+			</div>
+			<div class="Clear"></div>
+			<div class="Info">
+				&nbsp;
+			</div>
+			<div id="divCancelPreview" class="Data" style="min-width:300px;">
+				<div style="float:right;">
+					<input id="btnRefresh" type="button" value="Refresh Orders"/>
+					<input id="btnCancel" type="button" value="Cancel"/>
+					<input id="btnPreview" type="button" value="Preview"/>
+				</div>
+				<div class="Clear"></div>
+			</div>
+			<div class="Clear"></div>
+		</div>
+	</apex:pageBlock>
+	<apex:pageBlock id="Page2" title="Master Order Configuration" rendered="{!ISNULL(error)}">
+		<apex:form >
+		<div style="display:inline-block; zoom:1; min-width:600px;">
+			<div style="float:left;">
+				<div class="Info">
+					Account:
+				</div>
+				<div class="Data">
+					<a href="../{!account.Id}" target="_blank">{!account.Name}</a> ({!Account.ICC_Account_Number__c})
+				</div>
+				<div class="Clear"></div>
+				<div class="Info">
+					Master Order:
+				</div>
+				<div class="Data">
+					<a href="../{!selectedOrderInfo.Order.Id}" target="_blank"><apex:outputText value="{!selectedOrderInfo.Order.Name} - {!selectedOrderInfo.Opp.Name}" rendered="{!NOT(ISNULL(selectedOrderInfo.Order.Id))}" /></a>
+				</div>
+				<div class="Clear"></div>
+			</div>
+			<div style="float:left;">
+				<div class="Info">
+					MO Prov Plan:
+				</div>
+				<div class="Data">
+					<input type="checkbox" disabled="disabled" />
+				</div>
+				<div class="Clear"></div>
+				<div class="Info">
+					Assigned To:
+				</div>
+				<div class="Data">
+					<input type="text" style="width:200px;" id="tbOwner" disabled="disabled" />
+				</div>
+				<div class="Clear"></div>
+			</div>
+			<div class="Clear"></div>
+			<hr/>
+			<table id="tblSubOrderDetail">
+				<thead>
+					<tr>
+						<td><input checked="checked" id="cbSelectAllOrders" type="checkbox"/></td>
+						<td>Sub-order Details</td>
+						<td>Access Type</td>
+						<td>Work Plan Features</td>
+						<td>Provisioning Product</td>
+						<td>Work Plan Start Date</td>
+						<td>Remove</td>
+					</tr>
+				</thead>
+				<tbody id="subOrderDetailRows">
+					<apex:repeat value="{!selectedSubOrders}" var="subOrder">
+						<tr data-orderType="{!subOrder.property.Type__c}">
+							<td>
+								<input checked="checked" class="SuborderSelect" type="checkbox" data-orderNumber="{!subOrder.property.External_ID__c}" data-modified="{!subOrder.Modified}" data-tempId="{!subOrder.tempId}"/>
+							</td>
+							<td>
+								<span>{!subOrder.property.Type__c}: <span>{!subOrder.property.External_ID__c} </span><span>({!subOrder.subOrder.Service_Location__r.ICC_Subscriber_Id__c}), </span><span>{!subOrder.subOrder.SPC_Product__r.Name} </span><span>{!subOrder.groupDisplay} Total MRR: {!subOrder.totalMRR}</span></span>
+							</td>
+							<td>
+								N/A
+							</td>
+							<td>
+								N/A
+							</td>
+							<td>
+								N/A
+							</td>
+							<td>
+								N/A
+							</td>
+							<td>
+								<input type="button" id="btnRemove_{!subOrder.property.External_ID__c}" class="RemoveButton" value="Remove" data-suborderNumber="{!subOrder.property.External_ID__c}" />
+							</td>
+						</tr>
+					</apex:repeat>
+				</tbody>
+			</table>
+			<div id="divIntegrateButtons" class="Data">
+				<div style="float:left;">
+					<input id="btnEdit" type="button" value="Edit Selected" disabled="disabled" style="display:none;"/>
+				</div>
+				<div style="float:right;">
+					<input id="btnGoBack" type="button" value="Cancel" />
+					<input id="btnIntegrate" type="button" value="Integrate Selected" />
+				</div>
+				<div class="Clear"></div>
+			</div>
+			<div class="Clear"></div>
+		</div>
+		</apex:form>
+	</apex:pageBlock>
+	
+	
+		<apex:outputPanel id="IntegrationCompletePanel">
+	<div id="integrationCompleteDialog_{!NOT(ISNULL(IntegratedOrder))}">
+		<div>
+			<span style="font-weight:bold; font-size:14px;">Integration completed successfully!</span>
+		</div>
+		<div>
+			<span>You may use the links below to view the results.</span>
+		</div>
+		<hr />
+		<div>
+		<span style="font-weight:bold;">Order: </span><a href="../{!IntegratedOrder.Id}" target="_blank">{!IntegratedOrder.Name}</a>
+		<table>
+			<apex:repeat value="{!IntegratedSubOrders}" var="SubOrder">
+				<tr>
+					<td style="font-weight:bold;">SubOrder:</td>
+					<td><a href="../{!SubOrder.Id}" target="_blank">{!SubOrder.Id}</a></td>
+				</tr>
+			</apex:repeat>
+		</table>
+		</div>
+		<hr />
+		<div>
+			<span>Clicking 'Refresh' will refresh this page and take you back to the list of orders.</span>
+		</div>
+		<div>
+			<span>Clicking 'Continue' will close this and allow you to continue to integrate any unintegrated orders.</span>
+		</div>
+	</div>
+	
+		</apex:outputPanel>
+	<!--<div id="tooltip" style="border:solid 1px #CCC; padding:3px; font-size:8px; position:absolute; display:none;"></div>-->
+
+		<apex:form >
+		<apex:actionFunction action="{!GetICCOrders}" name="GetICCOrders" reRender="GetICCOrdersScript, out, olSubOrdersPanel" oncomplete="DisplayICCOrders();">
+		</apex:actionFunction>
+		<apex:actionFunction action="{!SaveModifiedSubOrders}" name="SaveOrders" reRender="out, ConfigPage, Page2, IntegrationCompletePanel" oncomplete="IntegrationComplete();">
+			<apex:param assignTo="{!ModifiedTempIds}" name="ModifiedTempIds" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction action="{!PrepareConfigurationPage}" name="PrepareConfigPage" reRender="ConfigPage, Page2, out" oncomplete="SetupPreviewScreen();">
+			<apex:param assignTo="{!SelectedOrderId}" name="SelectedOrderId" value="" />
+			<apex:param assignTo="{!SelectedICCOrderIds}" name="SelectedICCOrderIds" value="" />
+		</apex:actionFunction>
+	</apex:form>
+<script type="text/javascript">
+	var selectedMasterOrderId = '';
+	var selectedICCOrders = new Array();
+	
+	var configObject = new Object();
+	configObject.SelectedMasterOrder = null;
+	configObject.SelectedICCOrders = new Array();
+	Array.prototype.toApexJsonString = function(){
+		var retVal = '[';
+		var comma = '';
+		for(var i = 0; i < this.length; ++i){
+			retVal += comma + "\"" + this[i] + "\"";
+			comma = ', ';
+		}
+		return retVal + ']';
+	};
+	
+	(function($){
+		$(document).ready(function(){
+			$('#olMasterOrders').selectable({
+				stop: function moSelectionStop(){
+					var selectedEle = $('.ui-selected', this);
+					$('#MOSelected').html(selectedEle.attr('data-selectionText'));
+					selectedMasterOrderId = selectedEle.attr('data-id');
+				},
+				filter: 'li',
+				cancel: 'a'
+			});
+			$('div.SelectionHolder').mouseenter(ShowScrollBars);
+			$('div.SelectionHolder').mouseleave(HideScrollBars);
+			var moWidth = $('#divMasterOrders').width();
+			$('#tbMOSearchBox').width(moWidth);
+			$('#MOSelected').width(moWidth);
+			$('#btnClearMOSelection').click(function btnClearMOSelection_Click(){
+				$('#olMasterOrders .ui-selected').removeClass('ui-selected');
+				$('#MOSelected').html('New Master Order');
+				selectedMasterOrderId = '';
+			});
+			$('#tbMOSearchBox').keyup(function SearchOrders_Keyup(){
+				var searchText = $(this).val();
+				$('#olMasterOrders>li').each(function(index,ele){
+					var $ele = $(ele);
+					if($ele.attr('data-searchText').toLowerCase().indexOf(searchText.toLowerCase()) > -1 || searchText == '')
+						$ele.show();
+					else
+						$ele.hide();
+				});
+			}).focus(function SearchOrders_Focus(){
+				var val = $(this).val();
+				if(val.toLowerCase() == 'search to refine list below...')
+					$(this).val('').trigger('keyup');
+			}).blur(function SearchOrders_Blur(){
+				var val = $(this).val();
+				if(val == '') $(this).val('Search to refine list below...');
+			});
+			$('#btnRefresh').click(function(){
+				GetICCOrderInformation();
+			}).trigger('click');
+			$('#btnPreview').click(function(){
+				LoadConfig('Preparing configuration page.');
+			}).hide();
+			$(document).delegate('#btnGoBack','click',function(){
+				$('div[id$="Page2"]').effect('drop', function(){
+					$('div[id$="Page1"]').effect('slide');
+				});
+			});
+			$('#EditDialog').dialog({
+				modal: true,
+				title: 'Suborder Edit',
+				autoOpen: false,
+				show: 'fade',
+				width: 500,
+				height: 300,
+				resizable: false,
+				buttons: [
+					{ 
+						text: 'Save',
+						click: function(){
+							doSaveEdits();
+						}
+					},
+					{
+						text: 'Cancel',
+						click: function(){
+							$(this).dialog('close');
+						}
+					}
+				]
+			});
+			$('#integrationCompleteDialog').dialog({
+				title: 'Integration Successful!',
+				modal: true,
+				autoOpen: false,
+				show: 'fade',
+				width: 500,
+				height: 300,
+				resizeable: true,
+				buttons: [
+					{
+						text: 'OK',
+						click: function(){
+							jQuery(this).dialog('close');
+							location.reload();
+						}
+					}
+				]
+			});
+			$(document).delegate('#btnEdit','click',function(){
+				if(EditContainsInstallOrder()){
+					window.alert('You are editing 1 or more "Install Orders".\nProvisioning product will not be selectable.');
+					$('.ProvProd').hide();
+				}
+				else{
+					$('.ProvProd').show();
+				}
+				$('#EditDialog').dialog('open');		
+			});
+			$(document).delegate('#btnIntegrate','click',function(){
+				IntegrateOrders();
+			});
+			$('div[id$="Page2"]').hide();
+			$(document).delegate('.RemoveButton','click',RemoveSubOrderClick);
+			$(document).delegate('#cbSelectAllOrders','click',function ToggleAllChildCheckBoxes(){
+				var checked = $(this).is(':checked');
+				$('input[type="checkbox"]', '#subOrderDetailRows').each(function(index,ele){
+					if(checked){
+						$(ele).attr('checked', 'checked');
+						$(ele).prop('checked', 'checked');
+					}
+					else{
+						$(ele).attr('checked', '');
+						$(ele).prop('checked', '');
+					}
+					$(ele).change();
+				});
+			});
+			$(document).delegate('.SuborderSelect', 'change', function ToggleEditButton(){
+				var enabled = false;
+				var modified = false;
+				$('.SuborderSelect').each(function(index,ele){
+					if($(ele).is(':checked')){
+						enabled |= true;
+						//if($(ele).attr('data-modified') == 'true'){
+						//	modified |= true;
+						//}
+						//else{
+						//	modified |= false;
+						//}
+						modified |= true;
+					}
+					else{
+						enabled |= false;	
+						modified |= false;
+					}
+				});
+				if(enabled){
+					//$('#btnEdit').attr('disabled', '');
+					//$('#btnEdit').prop('disabled', '');
+					if(modified){
+						$('#btnIntegrate').attr('disabled', '');
+						$('#btnIntegrate').prop('disabled', '');
+					}
+					else{
+						$('#btnIntegrate').attr('disabled', 'disabled');
+						$('#btnIntegrate').prop('disabled', 'disabled');
+					}
+				}
+				else{
+					//$('#btnEdit').attr('disabled', 'disabled');
+					//$('#btnEdit').prop('disabled', 'disabled');
+					$('#btnIntegrate').attr('disabled', 'disabled');
+					$('#btnIntegrate').prop('disabled', 'disabled');
+				}
+			});
+			$('#integrationCompleteDialog_false').hide();
+			$('.requiredBlock').hide();
+		});
+		
+	})(jQuery);
+
+	//apex related functions
+	function DisplayICCOrders(){
+		var $olSuborders = jQuery('[id$="olSubOrders"]');
+		$olSuborders.selectable('destroy');
+		$olSuborders.selectable({
+			filter: 'li',
+			stop: function(event, ui){
+				selectedICCOrders = new Array();
+				jQuery('.ui-selected', '[id$="olSubOrders"]').each(function(index,ele){
+					var orderNumber = jQuery(ele).attr('data-orderNumber');
+					selectedICCOrders.push(orderNumber);
+					jQuery('[data-orderNumber="'+orderNumber+'"]', '[id$="olSubOrders"]').each(function(idx,elm){
+						if(!$(elm).hasClass('ui-selected')) $(elm).addClass('ui-selected');
+					});
+				});
+				if(selectedICCOrders.length > 0){
+					jQuery('input[id$="btnPreview"]').show();
+				}
+				else{
+					jQuery('input[id$="btnPreview"]').hide();		
+				}
+			}
+		}).on('mousedown', '*', function(e){
+			if(e.ctrlKey)
+				e.metaKey = e.ctrlKey;
+		});
+		var soWidth = $('#divSubOrders').width();
+		$('#divCancelPreview').width(soWidth);
+		closeModalWaitDialog();
+	}
+			
+	function LoadConfig(message){
+		openModalWaitDialog(message + '<br />Please wait...');
+		PrepareConfigPage(selectedMasterOrderId, selectedICCOrders.toApexJsonString());		
+	}
+	//
+	function EditContainsInstallOrder(){
+		var containsInstallOrder = false;
+		jQuery('input:checked', '[id$="subOrderDetailRows"]').each(function(index,ele){
+			var row = jQuery(ele).closest('tr');
+			containsInstallOrder |= row.attr('data-orderType').toLowerCase() == 'install order';
+		});
+		return containsInstallOrder;
+	}
+	function GetOPGToolTip(soc){
+		var tt = '';
+		var br = '';
+		for(var i = 0; i < soc.Groups.length; ++i){
+			tt += br + soc.Groups[i];
+			br = '<br />';
+		}
+		return tt;
+	}
+	function GetDateString(date){
+		var s = (date.getMonth() + 1).toString() + '/';
+		s += (date.getDate()).toString() + '/';
+		s += (date.getFullYear()).toString();
+		return s;
+	}
+	function doSaveEdits(){
+		var tempIds = new Array();
+		jQuery('input:checked', '[id$="subOrderDetailRows"]').each(function(index,ele){
+			var tempId = jQuery(ele).attr('data-tempId');
+			tempIds.push(tempId);
+		});
+		var inpAccessType = jQuery('[id$="inpAccessType_lkid"]').val();
+		var selFeatures = jQuery('[id$="selFeatures"]').val();
+		var inpWorkPlan = jQuery('[id$="inpWorkPlan_lkid"]').val();
+		var inpWorkPlanStartDate = jQuery('[id$="inpWorkPlanStartDate"]').val();
+		var ownerId = jQuery('[id$="tbOwner_lkid"]').val();
+		var addProvPlanMO = jQuery('input[id$="chkMoProvPlan"]').is(':checked');
+		openModalWaitDialog('Saving.<br />Please wait...');
+		SaveEdits(tempIds.toApexJsonString(), inpAccessType == "000000000000000"? null : inpAccessType, (selFeatures == null? null :selFeatures.toApexJsonString()), inpWorkPlan == "000000000000000"? null : inpWorkPlan, inpWorkPlanStartDate, ownerId, addProvPlanMO);
+		//apex update method
+	}
+	function IntegrateOrders(){
+		var tempIds = new Array();
+		jQuery('input:checked[data-modified="true"]', '[id$="subOrderDetailRows"]').each(function(index,ele){
+			var tempId = jQuery(ele).attr('data-tempId');
+			tempIds.push(tempId);
+		});
+		openModalWaitDialog('Integrating Selected Modified Orders.<br />Please wait...');
+		SaveOrders(tempIds.toApexJsonString());
+	}
+	function IntegrationComplete(){
+		closeModalWaitDialog();
+		if(error == ''){
+			jQuery('#integrationCompleteDialog_true').dialog({
+				title: 'Integration Successful!',
+				modal: true,
+				autoOpen: false,
+				show: 'fade',
+				width: 500,
+				height: 300,
+				resizeable: true,
+				buttons: [
+					{
+						text: 'Refresh',
+						click: function(){
+							jQuery(this).dialog('close');
+							location.reload();
+						}
+					},
+					{
+						text: 'Continue',
+						click: function(){
+							jQuery(this).dialog('close');
+						}
+					}
+				]
+			});
+			jQuery('#integrationCompleteDialog_true').dialog('open');
+		}
+		else{
+			$('#integrationCompleteDialog_false').hide();
+		}
+	}
+	function RemoveSubOrderClick(){
+		var soNum = jQuery(this).attr('data-suborderNumber');
+		RemoveSubOrderFromConfig(soNum);
+	}
+	function RemoveSubOrderFromConfig(soNum){
+		for(var i = 0; i < selectedICCOrders.length; ++i){
+			if(selectedICCOrders[i] == soNum){
+				selectedICCOrders.splice(i,1);
+				jQuery('.ui-selected[data-orderNumber="'+soNum+'"]', '[id$="olSubOrders"]').removeClass('ui-selected');
+				jQuery('[id$="olSubOrders"]').selectable('option', 'stop')();
+				break;
+			}
+		}
+		if(selectedICCOrders.length == 0)
+			jQuery('#btnGoBack').click();
+		else
+			LoadConfig('Refreshing orders.');
+	}
+	function ShowScrollBars(evnt){
+		jQuery(this).css('overflow-y','scroll');
+		
+		$('body').scroll(function(e){
+			e.preventDefault();
+			e.stopPropagation();
+		});
+	}
+	function HideScrollBars(evnt){
+		jQuery(this).css('overflow-y','hidden');
+		$('body').unbind('scroll');
+	}
+	
+	function GetICCOrderInformation(){
+		openModalWaitDialog('Fetching ICC Order information.<br />Please wait...');
+		GetICCOrders();
+	}
+	
+	function SetupPreviewScreen(){
+		//if(configObject.SelectedMasterOrder != null){
+		//	jQuery('#aMoConfigLink').attr('href', '../'+configObject.SelectedMasterOrder.MasterOrder.Id).html(configObject.SelectedMasterOrder.MasterOrder.Name);
+		//	jQuery('#spnOppName').html(configObject.SelectedMasterOrder.Opp.Name);
+		//	jQuery('intput[id$="tbOwner"]').val(configObject.SelectedMasterOrder.MasterOrder.OwnerId);
+		//}
+		//else{
+		//	jQuery('#aMoConfigLink').html('New');
+		//	jQuery('#spnOppName').html('');
+		//}
+		if(jQuery('div[id$="Page1"]').css('display') != 'none'){
+			jQuery('div[id$=""]').effect('drop', function(){
+				jQuery('div[id$="Page2"]').effect('slide');
+			});
+		}
+		closeModalWaitDialog();
+	}
+	
+	
+</script>
+<style>
+	ol.Selectable
+	{
+		list-style-type:none;
+		margin:0;
+		padding:0;
+		cursor: pointer;
+	}
+	li.ui-selectee
+	{
+		border:solid 1px #CCC;
+		margin:3px; 
+		padding: 0.4em; 
+	}
+	li.ui-selectee:hover
+	{
+		background: #FECA40;
+	}
+	li.ui-selecting
+	{
+		background: #FECA40;
+	}
+	li.ui-selected
+	{
+		background: #F39814;
+		color: #FFF;
+	}
+	div.Data
+	{
+		float:left;
+		font-size:16px;
+		color:#000;
+		line-height:18px;
+		margin-left:5px;
+		padding:3px;
+	}
+	div.Info
+	{
+		float:left;
+		font-weight:bold;
+		font-size:18px;
+		color: #AAA;
+		width: 10em;
+		line-height:18px;
+		min-width:10em;
+		text-align: right;
+		padding:3px;
+	}
+	div.Clear
+	{
+		clear:both;
+	}
+	#divMasterOrders
+	{
+		max-height:200px;
+		overflow-y:hidden;
+		border:solid 1px #000;
+		min-width: 500px;
+	}
+	#divSubOrders
+	{
+		max-height:300px;
+		overflow-y:hidden;
+		border:solid 1px #000;
+		min-width:300px;
+	}
+	#tblSubOrderDetail
+	{
+		border-collapse: collapse;
+	}
+	#tblSubOrderDetail > thead > tr > td
+	{
+		padding:3px;
+		font-weight:bold;
+	}
+	#tblSubOrderDetail > tbody > tr > td
+	{
+		padding:3px;
+		padding-left:7px;
+		border:solid 1px black;
+	}
+	.datePicker{
+		z-index:10000000;
+	}
+</style>
+</apex:page>

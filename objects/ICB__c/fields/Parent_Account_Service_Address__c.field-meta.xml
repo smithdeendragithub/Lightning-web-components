@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Account_Service_Address__c</fullName>
+    <description>Formula field to display the Service address from the Account</description>
+    <externalId>false</externalId>
+    <formula>Account__r.ShippingStreet  &amp;&quot; &quot; &amp;  Account__r.ShippingCity &amp;&quot; &quot; &amp;  Account__r.ShippingState &amp; &quot; &quot; &amp;  Account__r.ShippingPostalCode</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>System Maintained Field:  Service Address of the Account associated with the Opportunity.  Note that this ICB may be for an associated location, not the main address of the Account so please read description or uploaded content to be sure.</inlineHelpText>
+    <label>Parent Account Service Address</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

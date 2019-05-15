@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legacy_Legal_Entity_of_Vendor__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Lookup to Account. Set at Contract creations and should remain unchanged. If Legal Entity changes, Contracting Account will change. This field should never change.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Entity that originally signed the contract</inlineHelpText>
+    <label>Legacy Legal Entity of Vendor</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Related Contracts</relationshipLabel>
+    <relationshipName>Related_Contracts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

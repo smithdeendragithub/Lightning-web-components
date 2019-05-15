@@ -1,0 +1,247 @@
+<apex:page controller="OpportunityPDFController" tabStyle="Opportunity">
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" />
+    <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_10_3_custom, 'css/redmond/jquery-ui-1.10.3.custom.min.css')}" />
+    <head>
+        <style>
+            .container {
+                display: flex;
+                height: 100%;
+                width: 100%;
+            }
+
+            .item1 {
+                width: 400px;
+                padding-right:5px;
+            }
+
+            .item2 {
+                flex-grow: 2;
+            }
+        </style>
+    </head>
+	 <apex:outputPanel id="out">
+		<apex:pageMessages escape="false" />
+	</apex:outputPanel>
+    <apex:form id="infoForm">
+        <apex:pageblock title="Opportunity Details">
+            <apex:pageblockbuttons location="bottom">
+                <apex:commandbutton value="Configure Solution (CPQ)" action="{!$Page.ManageLocationProducts}?opportunityId={!opp.Id}" />
+                <apex:commandbutton value="CPQ Help" onclick="window.open('/069C0000000VyRP');" />
+            </apex:pageblockbuttons>
+            <apex:pageblocksection columns="2">
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Account" />
+                    <apex:outputtext ><a href="{!URLFOR($Action.Account.View, opp.Account.Id)}">{!opp.Account.Name}</a></apex:outputtext>
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Opportunity" />
+                    <apex:outputtext >
+						<a href="{!URLFOR($Action.Opportunity.View, opp.Id)}">{!opp.Name}</a>
+					</apex:outputtext>
+                </apex:pageblocksectionitem>
+            </apex:pageblocksection>
+        </apex:pageblock>
+    </apex:form>
+    <apex:form id="sectionsForm">
+        <apex:pageblock title="Document Generation">
+			<apex:pageBlockSection columns="2">
+				<apex:pageBlockSectionItem dataStyle="width:15%">
+				<apex:pageBlockSection columns="1">
+					<apex:pageBlockSection columns="1">
+		                <apex:pageblocksectionitem >
+		                    <apex:outputlabel value="Contact" />
+							<apex:outputPanel id="contact">
+								<apex:outputLink value="{!URLFOR($Action.Contact.View, decMaker.Id)}" rendered="{!NOT(ISNULL(decMaker))}">{!decMaker.Name}</apex:outputLink>
+								<apex:outputText value="None" rendered="{!ISNULL(decMaker)}"/>
+								&nbsp;
+								<apex:commandButton value="Select Contact" onclick="openContactSelector(); return false;"/>
+							</apex:outputPanel>
+		                </apex:pageblocksectionitem>
+					</apex:pageBlockSection>
+                    <apex:repeat value="{!sectionHeaders}" var="sectName">
+                        <apex:pageblocksection columns="1">
+							<apex:facet name="header"><apex:outputPanel ><apex:inputCheckbox onchange="selectAllToggled(this); return false;"/>{!sectName}</apex:outputPanel></apex:facet>
+							<apex:outputPanel >
+								
+							</apex:outputPanel>
+                            <apex:repeat value="{!selectableElements[sectName]}" var="item">
+								<apex:outputPanel >
+									<apex:inputCheckbox value="{!item.Selected}" disabled="{!NOT(item.Active)}" title="{!IF(item.Active, '', item.CriteriaHelpText)}" onchange="checkUncheckRelated(this, true); return false;"/>
+									<apex:outputText >{!item.Label}</apex:outputText>
+                       				<apex:pageblocksection id="subelements" columns="1" rendered="{!item.SubElements.size > 0 || item.Clauses.size > 0}">
+		                                <apex:repeat value="{!item.SubElements}" var="sItem">
+											<apex:outputPanel style="padding-left:20px;">
+												<apex:inputCheckbox value="{!sItem.Selected}" disabled="{!NOT(sItem.Active)}" title="{!IF(sItem.Active, '', sItem.CriteriaHelpText)}" onchange="checkUncheckRelated(this, false); return false;"/>
+												<apex:outputText >{!sItem.Label}</apex:outputText>
+											</apex:outputPanel>
+										</apex:repeat>
+		                                <apex:repeat value="{!item.Clauses}" var="clause">
+											<apex:outputPanel style="padding-left:20px;">
+												<apex:inputCheckbox value="{!clause.Selected}" disabled="{!NOT(item.Active)}" onchange="checkUncheckRelated(this, false); return false;"/>
+												<apex:outputText >{!clause.Label}</apex:outputText>
+											</apex:outputPanel>
+										</apex:repeat>
+									</apex:pageblocksection>
+								</apex:outputPanel>
+                            </apex:repeat>
+                        </apex:pageblocksection>
+                    </apex:repeat>
+				</apex:pageBlockSection>
+				</apex:pageBlockSectionItem>
+                <apex:pageblocksection columns="1" html-style="height:100%; width:100%">
+					<apex:outputPanel >
+						<apex:commandbutton id="btn_Generate" value="Preview" onclick="generatePDF(); return false;" style="float:left" disabled="{!ISNULL(decMaker)}"/>
+						<apex:commandbutton id="btn_Save" value="Save" onclick="doSavePDF(); return false;" style="float:right" disabled="{!ISNULL(decMaker)}"/>
+					</apex:outputPanel>
+                    <div id="embedContainer" style="height:100%; width:100%;"></div>
+                    <embed id="pdfEmbed" height="100%" width="100%" />
+                </apex:pageblocksection>
+			</apex:pageBlockSection>
+        </apex:pageblock>
+		<apex:actionFunction name="getPDF" action="{!getPDF}" rerender="opPDF, scriptData" oncomplete="loadPDFContent(request, event, data);"/>
+		<apex:actionFunction name="savePDF" action="{!SavePDF}" rerender="out, sectionsForm" oncomplete="closeModalWaitDialog(); bindOutputLinks();"/>
+		<apex:actionFunction name="selectContact" action="{!selectContact}" rerender="contact, btn_Save, btn_Generate, btn_GenerateText" oncomplete="closeContactSelector();">
+			<apex:param name="contactID" value=""/>
+		</apex:actionFunction>
+    </apex:form>
+	<div id="contactSelectorParent">
+		<div id="contactSelectorHolder" class="contactSelectorDiv">
+			<c:RecordSelector sObjectType="Contact" multiSelectMode="false" id="contactSelector" fields="Id,Phone,Email,Title" idset="{!validContactIDs}" idsAreValid="true"/>
+		</div>
+	</div>
+    <c:ModalWaitDialog />
+    <script type="text/javascript">
+        var blob = null;
+    </script>
+    <apex:outputpanel id="scriptData">
+        <script type="text/javascript">
+            blob = {!IF(pdfString == null, '""','"'+pdfString+'"')};
+        </script>
+    </apex:outputpanel>
+    <script type="text/javascript">
+		$(document).ready(function(){
+			$('#contactSelectorHolder').dialog({
+					autoOpen: false,
+					modal: true,
+					minWidth: 750,
+					title: 'Select a Contact',
+					buttons: [{ text: 'Cancel', click:closeContactSelector}],
+					position: "top",
+					show: 'blind',
+					hide: 'blind'
+				});
+			
+			jQuery("[id$='contactSelector']").bind('recordSelected', contactSelected);
+		});
+		
+		function generatePDF(){
+			openModalWaitDialog('Generating Preview.\nPlease Wait...');
+			getPDF();
+		}
+		
+		function doSavePDF(){
+			openModalWaitDialog('Saving PDF.\nPlease Wait...');
+			savePDF();
+		}
+
+        function loadPDFContent(req, evnt, data){
+            jQuery('#embedContainer').html('').append('<embed id="pdfEmbed"/>');
+            jQuery('#pdfEmbed').attr('src', 'data:application/pdf;base64,'+blob).css('height','500px').css('width','100%').css('min-height','500px');
+            closeModalWaitDialog();
+        }
+			
+		function contactSelected(e){
+			var contactID = e.id;
+			selectContact(contactID);
+		}
+			
+		function openContactSelector(){
+			recordSelector_reset();
+			jQuery('#contactSelectorHolder').dialog('open');
+		}
+		
+		function closeContactSelector(){
+			$('#contactSelectorHolder').dialog('close');
+		}
+		
+		var ignoreSelectAll = false;
+		function checkUncheckRelated(x, isParent){
+			var chk = jQuery(x);
+			
+			var cbVal = chk.attr('checked');
+			var checked = cbVal != null && cbVal != undefined && cbVal.toLowerCase() == 'checked';
+			
+			if(isParent && !checked){
+				chk.siblings("[id$='subelements']").find('input').removeAttr('checked');
+			}
+			else if(!isParent){
+				var parent = chk.closest("[id$='subelements']").siblings('input');
+				if(checked){
+					parent.attr('checked', 'checked');
+				}
+				else{
+					var checkedExists = chk.closest("[id$='subelements']").find('input').filter(function() { return jQuery(this).attr('checked') == 'checked'; });
+					checkedExists = checkedExists != undefined && checkedExists.length > 0;
+					
+					if(!checkedExists && parent.attr('disabled') == 'disabled'){
+						parent.removeAttr('checked');
+					}
+				}
+			}
+			
+			ignoreSelectAll = true;
+			var uncheckedExists = jQuery(x).closest('.pbSubsection').find('input').filter(function() { return !this.disabled && jQuery(this).attr('checked') != 'checked'; });
+			uncheckedExists = uncheckedExists != undefined && uncheckedExists.length > 0;
+			
+			var checkAllBox = jQuery(x).closest('.pbSubsection').siblings('.pbSubheader').find('input');
+			if(uncheckedExists){
+				checkAllBox.removeAttr('checked'); 
+			}
+			else{
+				checkAllBox.attr('checked', 'checked');
+			}
+			ignoreSelectAll = false;
+		}
+		
+		function selectAllToggled(x){
+			if(ignoreSelectAll) return;
+			
+			var chk = jQuery(x);
+			
+			var cbVal = chk.attr('checked');
+			var checked = cbVal != null && cbVal != undefined && cbVal.toLowerCase() == 'checked';
+			
+			var children = jQuery(x).closest('.pbSubheader').siblings('.pbSubsection').find('input').filter(function() { return !this.disabled; });
+			
+			if(checked){
+				children.attr('checked', 'checked'); 
+			}
+			else{
+				children.removeAttr('checked'); 
+			}
+		}
+		
+		function bindOutputLinks(){
+			jQuery(function(){
+				jQuery("span[id$='out']").find("a").attr("target", "_blank");
+			});
+		}
+    </script>
+	<style type="text/css">
+		div.contactSelectorDiv{
+			max-height:400px;
+			overflow-y:auto;
+		}
+		
+		div.contactSelectorDiv table{
+			width:100%
+		}
+		
+		.message .messageText a {
+		    color: blue;
+		    font-size: 100%;
+		    margin: 0 0px;
+		}
+	</style>
+</apex:page>

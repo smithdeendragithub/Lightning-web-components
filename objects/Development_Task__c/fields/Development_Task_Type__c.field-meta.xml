@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Development_Task_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Development Task Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Business Process Development</fullName>
+                <default>false</default>
+                <label>Business Process Development</label>
+            </value>
+            <value>
+                <fullName>Programmatic Configuration</fullName>
+                <default>false</default>
+                <label>Programmatic Configuration</label>
+            </value>
+            <value>
+                <fullName>Declarative Configuration</fullName>
+                <default>false</default>
+                <label>Declarative Configuration</label>
+            </value>
+            <value>
+                <fullName>Solution Design</fullName>
+                <default>false</default>
+                <label>Solution Design</label>
+            </value>
+            <value>
+                <fullName>Data Management</fullName>
+                <default>false</default>
+                <label>Data Management</label>
+            </value>
+            <value>
+                <fullName>Training &amp; Documentation</fullName>
+                <default>false</default>
+                <label>Training &amp; Documentation</label>
+            </value>
+            <value>
+                <fullName>Testing</fullName>
+                <default>false</default>
+                <label>Testing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

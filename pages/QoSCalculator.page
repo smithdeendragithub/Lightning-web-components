@@ -1,0 +1,312 @@
+<apex:page tabStyle="Report">
+	<apex:includeScript value="/soap/ajax/31.0/connection.js" />
+	<apex:includeScript value="/soap/ajax/31.0/apex.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	
+	<script>function setFocusOnLoad() {}</script>
+	<apex:pageBlock title="QoS Calculator">
+		<apex:form >
+		<apex:pageBlockSection columns="2">
+			<apex:pageBlockSection title="Calculation Type" collapsible="false" columns="2">
+				<apex:outputPanel title="Solve for QoS policies that can be used, when you know bandwidth and voice requirements (EL Sold voice & Customer WAN voice)">
+					<input type="radio" id="rdQP" name="locType" checked="checked" onclick="updateParameters();">Policy</input>
+				</apex:outputPanel>
+				<apex:outputPanel title="Solve for the maximum combined voice sessions (EL Sold voice & Customer WAN voice) when policy and bandwidth are known.">
+					<input type="radio" id="rdSIP" name="locType" onclick="updateParameters();">Max SIP</input>
+				</apex:outputPanel>
+				<apex:outputPanel title="Solve for bandwidth, when a Customer knows they need a particular policy and knows their voice requirements (EL Sold voice & Customer WAN voice)">
+					<input type="radio" id="rdBandwidth" name="locType" onclick="updateParameters();">Bandwidth</input>
+				</apex:outputPanel>
+				<apex:outputPanel title="Solve for voice sessions that EL can sell, when policy, bandwidth and Customer WAN voice sessions are known.  OR Solve for Customer WAN voice that can be used when policy, bandwidth and EL sold voice are known.">
+					<input type="radio" id="rdSIPr" name="locType" onclick="updateParameters();">Remaining SIP</input>
+				</apex:outputPanel>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection id="params" columns="2">
+				<apex:selectList id="pQP" label="Policy" disabled="true" title=""/>
+				<apex:inputText id="pSIP1" label="EL Sold PRI/Lines/SIP Trunks (VoIP to PSTN)" onfocus="clearOtherSIP(this);" disabled="true"/>
+				<apex:selectList id="pBandwidth" label="Bandwidth" disabled="true"/>
+				<apex:inputText id="pSIP2" label="Customer WAN (VoIP – site to site)" onfocus="clearOtherSIP(this);" disabled="true"/>
+			</apex:pageBlockSection>
+			&nbsp;
+			<apex:commandButton value="Calculate" onclick="refreshCalculation(true); return false;"/>
+		</apex:pageBlockSection>
+		</apex:form>
+		<apex:pageBlockSection columns="1" id="pbs_data">
+			<table id="tData" cellspacing="0" cellpadding="0" border="0" class="list" width="100%" style="width: 1%; white-space: nowrap;">
+				<tr>
+					<th class="headerRow policyName">QoS Policy</th>
+					<th class="headerRow voice">Voice</th>
+					<th class="headerRow pData">Priority Data</th>
+					<th class="headerRow bData">Bulk Data</th>
+					<th class="headerRow bestEffort">Best Effort</th>
+				</tr>
+			</table>
+		</apex:pageBlockSection>
+		<br/>
+		<apex:outputPanel id="outCalc" style="{!IF($CurrentPage.parameters.debug == '1', '', 'display:none')}">---</apex:outputPanel>
+		<br/>
+		<br/>
+		<apex:outputPanel >
+			<table id="tKey" cellspacing="0" cellpadding="0" border="0" class="list" style="background-color:lightgray; width: 1%; white-space: nowrap;">
+				<tr style="background-color:lightblue">
+					<th>Queue</th>
+					<th>DSCP</th>
+					<th>Precendence</th>
+					<th>COS</th>
+				</tr>
+				<tr>
+					<td>Voice</td>
+					<td>cs5 ef</td>
+					<td>5</td>
+					<td>5</td>
+				</tr>
+				<tr>
+					<td>Priority Data</td>
+					<td>
+						cs4 af41 af42 af43<br/>
+						cs5 af31 af32 af33<br/>
+						cs2 af21 af22 af23
+					</td>
+					<td>4, 3, 2</td>
+					<td>4, 3, 2</td>
+				</tr>
+				<tr>
+					<td>Bulk Data</td>
+					<td>cs1 af11 af12 af13</td>
+					<td>1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>Best Effort</td>
+					<td>0</td>
+					<td>0</td>
+					<td>0</td>
+				</tr>
+			</table>
+		</apex:outputPanel>
+	</apex:pageBlock>
+	
+	<script type="text/javascript">
+		var pSIP1Lbl = '';
+		
+		jQuery(document).ready(function(){
+			pSIP1Lbl = jQuery('input[id$="pSIP1"]').parent().prev().find('label').text();
+			
+			sforce.connection.sessionId = '{!$Api.Session_ID}';
+			
+			var pList = sforce.connection.query('select Id, Name, Best_Effort__c, Bulk_Data__c, Priority_Data__c, Voice__c from QoS_Policy__c order by Print_Order__c').getArray("records");
+			
+			var tbl = jQuery('table[id$="tData"]');
+			var sl = jQuery('select[id$="pQP"]');
+			if(pList.length > 0){
+				for(var i=0; pList.length>i; i++){
+					tbl.append('<tr>'
+							+ '<td class="policyName">' + pList[i].Name + '</td>'
+							+ '<td class="voice">' + Math.floor(pList[i].Voice__c) + '</td>'
+							+ '<td class="pData">' + Math.floor(pList[i].Priority_Data__c) + '</td>'
+							+ '<td class="bData">' + Math.floor(pList[i].Bulk_Data__c) + '</td>'
+							+ '<td class="bestEffort">' + Math.floor(pList[i].Best_Effort__c) + '</td>'
+							+ '</tr>');
+					sl.append('<option value="' + Math.floor(pList[i].Voice__c) + '">' + pList[i].Name + '</option>');
+				}
+			}
+			
+			var bwList = [];
+			var plVals = sforce.apex.execute("GlobalActions", "GetPicklistValues", {obj:'OpportunityLocationConfiguration__c', field:'Bandwidth__c'});
+			for(var i = 0; plVals.length > i; i++){
+				var val = plVals[i] * 1;
+				if(val <= 1000){		//Don't include anything over 1000
+					bwList.push(val);
+				}
+			}
+			bwList.sort(sortNumber);
+			
+			sl = jQuery('select[id$="pBandwidth"]');
+			for (var i = 0; bwList.length > i; i++) {
+				sl.append('<option value="' + bwList[i] + '">' + bwList[i] + '</option>');
+			}
+			
+			updateParameters();
+		});
+		
+		function getCurrentCalculationType(){
+			return jQuery('input[id$="rdBandwidth"]').attr('checked') == 'checked'
+								? 'bw'
+								: jQuery('input[id$="rdSIP"]').attr('checked') == 'checked'
+									? 'sip'
+									: jQuery('input[id$="rdSIPr"]').attr('checked') == 'checked'
+										? 'sipr'
+										: 'qp';
+		}
+		
+		function updateParameters(){
+			var calcType = getCurrentCalculationType();
+			
+			//Remove all values
+			jQuery('[id$="params"]').find('input, select').prop('disabled', false).removeClass('outputParam').val('');
+			jQuery('div[id$="pbs_data"]').removeClass('outputBox');
+			
+			//Put SIP fields back into their default states
+			setLabel(jQuery('input[id$="pSIP1"]'), pSIP1Lbl);
+			showHideField(jQuery('input[id$="pSIP2"]'), true);
+			
+			//Put the policy field back to into the default state
+			showHideField(jQuery('select[id$="pQP"]'), true);
+			
+			//Disable and mark output fields
+			switch(calcType){
+				case 'bw':
+					jQuery('select[id$="pBandwidth"]').prop('disabled', true).addClass('outputParam');
+					break;
+				case 'sip':
+					jQuery('input[id$="pSIP1"]').prop('disabled', true).addClass('outputParam');
+					setLabel(jQuery('input[id$="pSIP1"]'), 'Max SIP (EL Sold + Customer WAN)');
+					
+					showHideField(jQuery('input[id$="pSIP2"]'), false);
+					break;
+				case 'sipr':
+					jQuery('input[id$="pSIP1"]').addClass('outputParam');
+					jQuery('input[id$="pSIP2"]').addClass('outputParam');
+					break;
+				case 'qp':
+					showHideField(jQuery('select[id$="pQP"]'), false);
+					jQuery('div[id$="pbs_data"]').addClass('outputBox');
+					break;
+			}
+			refreshCalculation(false);
+		}
+		
+		function setLabel(field, lbl){
+			field.parent().prev().find('label').text(lbl);
+		}
+		
+		function showHideField(field, show){
+			if(show){
+				field.show();
+				field.parent().prev().find('label').show();
+			}
+			else{
+				field.hide();
+				field.parent().prev().find('label').hide();
+			}
+		}
+		
+		function clearOtherSIP(target){
+			var calcType = getCurrentCalculationType();
+			if(calcType == 'sipr'){
+				var sip1 = jQuery('input[id$="pSIP1"]');
+				var sip2 = jQuery('input[id$="pSIP2"]');
+				
+				if(jQuery(target)[0] == sip1[0]){
+					sip2.val('');
+				}
+				else{
+					sip1.val('');
+				}
+			}
+		}
+		
+		function refreshCalculation(showError){
+			var calcType = getCurrentCalculationType();
+			
+			var bw = jQuery('select[id$="pBandwidth"]').val();
+			var sip1 = jQuery('input[id$="pSIP1"]').val();
+			var sip2 = jQuery('input[id$="pSIP2"]').val();
+			var qp = jQuery('select[id$="pQP"]').val();
+			
+			jQuery('table[id$="tData"]').find('td').css('color', '');
+			
+			var outTxt = '---';
+			switch(calcType){
+				case 'bw':
+					if(sip1 != '' && sip2 != '' && qp != ''){
+						var div = (qp*1 / 100);
+						var val = div != 0 ? (((sip1*1 + sip2*1) * 0.1) / div) : 'NaN';
+						outTxt = '((' + sip1 + ' + ' + sip2 + ') * 0.1) / (' + qp + ' / 100) = ' + val;
+						
+						var pl = jQuery('select[id$="pBandwidth"]');
+						pl.val('');
+						
+						var options = pl.find('option');
+						for(var i=options.length-1; i>=0; i--){
+							var plVal = options[i].text;
+							if(plVal == '' || ((plVal * 1) > val)){
+								pl.val(options[i].text);
+								if(i == 1) break;		//Exit the loop if we hit the smallest value
+							}
+							else{
+								break;
+							}
+						}
+					}
+					break;
+				case 'sip':
+					if(bw != '' && qp != ''){
+						var val = (bw*1 * (qp*1 / 100)) / 0.1;
+						jQuery('input[id$="pSIP1"]').val(val);
+						outTxt =  '(' + bw + ' * (' + qp + ' / 100)) / 0.1 = ' + val;
+					}
+					break;
+				case 'sipr':
+					if(bw != '' && qp != '' && (sip1 != '' || sip2 != '') && !(sip1 != '' && sip2 != '')){
+						var sipOther = (sip1 != '' ? sip1 : sip2) * 1;
+						
+						var val = ((bw*1 * (qp*1 / 100)) / 0.1) - sipOther;
+						
+						if(sip1 != ''){
+							jQuery('input[id$="pSIP2"]').val(val);
+						}
+						else{
+							jQuery('input[id$="pSIP1"]').val(val);
+						}
+						
+						outTxt =  '(' + bw + ' * (' + qp + ' / 100)) / 0.1 - ' + sipOther + ' = ' + val;
+					}
+					break;
+				case 'qp':
+					if(bw != '' && sip1 != '' && sip2 != ''){
+						var div = bw*1;
+						var val = div != 0 ? (100 * (((sip1*1 + sip2*1) * 0.1) / div)) : 'NaN';
+						outTxt =  '100 * (((' + sip1 + ' + ' + sip2 + ') * 0.1) / ' + bw + ') = ' + val;
+						
+						jQuery('table[id$="tData"]').find('tr').each(function(){
+							updatePolicyVoiceLessThanVal(jQuery(this), val);
+						});
+					}
+					break;
+			}
+				
+			if(showError && outTxt == '---'){
+				alert('One or more input field is missing. Please populate all required fields before calculating again.');
+			}
+			
+			jQuery('[id$="outCalc"]').text(outTxt);
+		}
+		
+		function updatePolicyVoiceLessThanVal(row, val){
+			var voice = row.find('td.voice').text();
+			if(val > (voice*1)){
+				row.find('td').css('color', 'red');
+			}
+		}
+				
+		function sortNumber(a,b) {
+		    return a - b;
+		}
+	</script>
+	<style type="text/css">
+		.policyName{
+			font-weight: bold;
+		}
+		
+		.outputParam{
+			font-weight: bold;
+			border: 1px blue solid;
+		}
+		
+		.outputBox{
+			border: 1px blue solid;
+			display: inline-block;
+		}
+	</style>
+</apex:page>

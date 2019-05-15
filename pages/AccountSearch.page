@@ -1,0 +1,133 @@
+<apex:page controller="AccountSearchController">
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></apex:includeScript>
+	<apex:stylesheet value="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"></apex:stylesheet>
+	<apex:form >
+		<apex:outputPanel id="out">
+			<apex:pageMessages escape="false" />
+		</apex:outputPanel>
+		<apex:pageBlock id="hdrTop" title="Account Search" tabstyle="Account">
+			<apex:pageBlockSection id="hdrFullTextSearch" title="Full Text Search" collapsible="false" columns="2">
+				<apex:inputText label="All fields" value="{!allFieldSearch}"/>
+				&nbsp;
+				<apex:inputCheckbox label="Only search accounts" value="{!onlySearchAccounts}"/>
+				<apex:inputCheckbox label="Only search prospects" value="{!onlySearchProspects}"/>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection id="hdrFieldSearch" title="Field Search" collapsible="false" columns="2">
+				<apex:inputText label="Name" value="{!nameSearch.value}"/>
+				<apex:inputText label="Phone" value="{!phoneSearch.value}"/>
+				<apex:inputText label="Street" value="{!streetSearch.value}"/>
+				<apex:inputText label="City" value="{!citySearch.value}"/>
+				<apex:inputText label="State" value="{!stateSearch.value}"/>
+				<apex:inputText label="Zip" value="{!zipSearch.value}"/>
+				<apex:inputText label="Billing ID" value="{!billplexSubIDSearch.value}"/>
+				<apex:inputText label="MSS Account ID" value="{!mssAccountIDSearch.value}"/>
+				<apex:inputText label="Legacy ID" value="{!legacyIDSearch.value}"/>
+				<apex:inputCheckbox label="Past Due" value="{!pastDueSearch}"/>
+				<apex:inputText label="Subscriber ID" value="{!subscriberIDSearch.value}"/>
+				&nbsp;
+				<apex:commandButton value="Search" action="{!directSearch}"/>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection id="hdrContactFieldSearch" title="Contact Field Search" collapsible="false" columns="2">
+				<apex:inputText label="First Name" value="{!contactFirstNameSearch.value}"/>
+				<apex:inputText label="Last Name" value="{!contactLastNameSearch.value}"/>
+				<apex:inputText label="Phone" value="{!contactPhoneSearch.value}"/>
+				&nbsp;
+				<apex:commandButton value="Search by Contact" action="{!searchByContact}"/>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+		<apex:pageBlock title="Results" id="results" rendered="{!NOT(ISNULL(resultSets))}" tabstyle="Account">
+			<apex:repeat value="{!resultSets}" var="objName">
+				<apex:pageBlockSection title="{!objName} ({!IF(resultSets[objName].total == 1001, '1000+', resultSets[objName].total)} result{!IF(resultSets[objName].total == 1, '', 's')})" collapsible="true" columns="1" rendered="{!NOT(ISNULL(resultSets[objName]))}">
+					<apex:outputText value="No results" rendered="{!resultSets[objName].total == 0}"/>
+					<apex:dataTable value="{!resultSets[objName].results}" var="result" rendered="{!resultSets[objName].total > 0}"
+						 cellspacing="0" cellpadding="0" border="0" styleClass="list" headerClass="headerRow">
+		            	<apex:column headerValue="Name">
+		            		<a href="/{!result.id}" id="{!result.id}" onblur="LookupHoverDetail.getHover('{!result.id}').hide();" onfocus="LookupHoverDetail.getHover('{!result.id}', '/{!result.id}/m?retURL=%2F{!result.id}&isAjaxRequest=1').show();" onmouseout="LookupHoverDetail.getHover('{!result.id}').hide();" onmouseover="LookupHoverDetail.getHover('{!result.id}', '/{!result.id}/m?retURL=%2F{!result.id}&isAjaxRequest=1').show();">{!result.Name}</a> 
+						</apex:column>
+						<apex:repeat value="{!sortedFields[resultSets[objName].objectName]}" var="f">
+			            	<apex:column headerValue="{!headers[resultSets[objName].objectName][f]}">{!result.fieldMap[f]}</apex:column>
+		                </apex:repeat>
+					</apex:dataTable>
+				</apex:pageBlockSection>
+			</apex:repeat>
+		</apex:pageBlock>
+	</apex:form>
+	<style>
+		.helpIconHelper {
+			margin-left:3px;
+			height:16px !important;
+			width:16px !important;
+			position:absolute;
+			cursor:pointer;
+		}
+	</style>
+	<div id="FullTextSearchHelp">
+		<h3>Select the Context</h3>
+		<p>By default the search context is all Accounts, Service Locations and Customer Details. You can search only Accounts by checking the <b>Only search accounts</b> checkbox. If you would like to limit the search to just Prospects check the <b>Only search prospects</b> checkbox. </p>
+		<h3>Full-text keyword search</h3>
+		<p>Enter in the keyword that you would like to use to span multiple fields and hit search button.</p>
+	</div>
+	<div id="FieldSearchHelp">
+		<h3>Filter by specific fields</h3>
+		<p>To further refine the search you can enter in values for the specific fields provided.</p>
+	</div>
+	<div id="ContactFieldSearchHelp">
+		<h3>Search by Contact</h3>
+		<p>Refine the search to look for Account or Service Locations based on a contact’s information using the specific fields provided.</p>
+	</div>
+	<div id="TopHelp">
+		<h3>Wildcards</h3>
+		<p>Use an asterisk (*) at the beginning and/or the end of a keyword to expand the search results.</p>
+		<ul>
+			<li>When placed at the beginning of a keyword it finds all items that end with that word.</li>
+			<li>When used at the end of keyword it finds all items that begin with that keyword.</li> 
+			<li>When placed at both the beginning and end of the keyword it finds all items that contain that keyword.</li>
+		</ul>
+	</div>
+	<script type="text/javascript">
+		(function($){
+			$(document).ready(function(){
+				debugger;
+				$('.mainTitle', $('div[id$="hdrTop"]')).append('<img src="/s.gif" class="helpIcon helpIconHelper" id="TopHelpOpener"></img>');
+				$('h3',$('div[id$="hdrFullTextSearch"]')).append('<img src="/s.gif" class="helpIcon helpIconHelper" id="FullTextSearchOpener"></img>');
+				$('h3',$('div[id$="hdrFieldSearch"]')).append('<img src="/s.gif" class="helpIcon helpIconHelper" id="FieldSearchOpener"></img>');
+				$('h3',$('div[id$="hdrContactFieldSearch"]')).append('<img src="/s.gif" class="helpIcon helpIconHelper" id="ContactFieldSearchOpener"></img>');
+				
+				$('#TopHelpOpener').click(function(){
+					$('#TopHelp').dialog('open');
+				});
+				$('#FullTextSearchOpener').click(function(){
+					$('#FullTextSearchHelp').dialog('open');
+				});
+				$('#ContactFieldSearchOpener').click(function(){
+					$('#ContactFieldSearchHelp').dialog('open');
+				});
+				$('#FieldSearchOpener').click(function(){
+					$('#FieldSearchHelp').dialog('open');
+				});
+				
+				$('a', $('div[id$="results"]')).each(function(Index,Element){
+					$(Element).prop('target','_blank');
+				});
+			});
+			
+			$('#FullTextSearchHelp').dialog({
+				title: 'Full Text Search Help',
+				autoOpen: false
+			});
+			$('#FieldSearchHelp').dialog({
+				title: 'Field Search Help',
+				autoOpen: false
+			});
+			$('#ContactFieldSearchHelp').dialog({
+				title: 'Contact Field Search Help',
+				autoOpen: false
+			});
+			$('#TopHelp').dialog({
+				title: 'General Help',
+				autoOpen: false
+			});
+		})(jQuery);
+	</script>
+</apex:page>

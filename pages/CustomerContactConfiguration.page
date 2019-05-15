@@ -1,0 +1,143 @@
+<apex:page standardController="Contact" extensions="CustomerContactConfigurationController">
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	
+		<script>function setFocusOnLoad() {}</script>
+		<apex:form >
+			<apex:pageblock id="mainblock">
+			<div style="border:2px solid black; font-weight:bold; width:796px; text-align:center;">
+				<div style="float:left; border-right:2px solid black; padding:4px 0 4px 0; width:149px;">
+					Customer
+				</div>
+				<div style="float:left; border-right:2px solid black; padding:4px 0 4px 0; width:148px;">
+					Responsible Party
+				</div>
+				<div style="float:left; padding:4px 0 4px 0; width:492px;">
+					Roles
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div style="overflow-x:auto; overflow-y:scroll; max-height:250px; width:800px;">
+				<apex:dataTable id="dtRoles" value="{!customerContactsByDetailID}" var="detailID" border="1px" cellpadding="4px">
+					<apex:column style="width:150px; vertical-align:top;">
+						<apex:outputLink value="../{!detailID}" target="_parent">{!detailDesriptions[detailID]}</apex:outputLink>
+					</apex:column>
+					<apex:column style="width:150px; vertical-align:top;">						
+						<apex:outputLink value="../{!details[detailID].Customer_Contacts__r[0].Contact__r.Id}" target="_parent" rendered="{!NOT(ISNULL(details[detailID].Customer_Contacts__r)) && details[detailID].Customer_Contacts__r.size > 0}">{!details[detailID].Customer_Contacts__r[0].Contact__r.Name}</apex:outputLink>
+						&nbsp;
+					</apex:column>
+					<apex:column styleClass="contactRoles" style="width:500px">
+						<apex:repeat value="{!customerContactsByDetailID[detailID]}" var="mod" rendered="{!NOT(ISNULL(customerContactsByDetailID[detailID]))}">
+							<apex:outputPanel rendered="{!LEN(mod) > 0}">
+								<div class="contactRoleHeader">{!IF(LEN(customerContactsByDetailID[detailID][mod][0].Email__c) > 0, ('Email: ' + customerContactsByDetailID[detailID][mod][0].Email__c + ' '), '')}{!IF(LEN(customerContactsByDetailID[detailID][mod][0].Phone__c) > 0, ('Phone: ' + customerContactsByDetailID[detailID][mod][0].Phone__c), '')}</div>
+							</apex:outputPanel>
+							<apex:dataTable value="{!customerContactsByDetailID[detailID][mod]}" var="role" border="1px" cellpadding="4px" styleClass="contactRole">
+								<apex:column >
+									<apex:facet name="header">Type</apex:facet>
+									<apex:outputText value="{!role.Contact_Type__c}"/>
+								</apex:column>
+								<apex:column >
+									<apex:facet name="header">ID</apex:facet>
+									<apex:outputText value="{!role.ICC_Contact_ID__c}"/>
+								</apex:column>
+								<apex:column style="width: 1%;">
+									<apex:facet name="header"><input id="cb{!detailID}_{!mod}" type="checkbox" value="false" onclick="selectAllToggled(this)"/></apex:facet>
+									<input elemID="{!role.Id}" selectAllCheckboxID="cb{!detailID}_{!mod}" type="checkbox" value="false" class="tableCheckbox" onclick="checkboxToggled(this)"/>
+								</apex:column>
+							</apex:dataTable>
+						</apex:repeat>
+					</apex:column>
+				</apex:dataTable>
+			</div>
+			<apex:dataTable value="{!details}" var="detailID" border="1px" cellpadding="4px" width="800px">
+				<apex:facet name="footer">
+					<apex:outputPanel >
+						<apex:commandButton value="Remove Selected Assignments" onclick="doRemoveRoles(gatherSelection('dtRoles')); return false;"/>
+						<apex:commandButton value="Set Email & Phone For Selection" onclick="doUpdateRoles(gatherSelection('dtRoles')); return false;"/>
+					</apex:outputPanel>
+				</apex:facet>
+			</apex:dataTable>
+			<apex:pageBlockSection title="Update Customer Contacts" collapsible="false" columns="2" rendered="{!NOT(ISNULL(newCustomerContact))}">
+				<apex:selectList label="Email" value="{!newCustomerContact.Email__c}" multiselect="false" size="1">
+					<apex:selectOptions value="{!emails}"/>
+				</apex:selectList>
+				<apex:selectList label="Phone" value="{!newCustomerContact.Phone__c}" multiselect="false" size="1">
+					<apex:selectOptions value="{!phoneNumbers}"/>
+				</apex:selectList>
+				<apex:selectList label="Customers" value="{!selectedCustomers}" multiselect="true" size="5">
+					<apex:selectOptions value="{!availableCustomers}"/>
+				</apex:selectList>
+				<apex:selectList label="Contact Types" id="contactType" value="{!selectedContactTypes}" multiselect="true" size="5">
+					<apex:selectOptions value="{!availableContactTypes}"/>
+				</apex:selectList>
+				<apex:commandButton value="Update Responsible Parties" action="{!updateResponsibleParties}" disabled="{!ISNULL(availableCustomers) || availableCustomers.size == 0}"/>
+				<apex:commandButton value="Add New Customer Contacts" action="{!createNewCustomerContacts}" disabled="{!ISNULL(availableCustomers) || availableCustomers.size == 0}"/>
+			</apex:pageBlockSection>
+			<apex:actionFunction name="doRemoveRoles" action="{!removeRoles}" reRender="mainblock">
+				<apex:param name="roleIDs" assignTo="{!selectedRoleIds}" value=""/>
+			</apex:actionFunction>
+			<apex:actionFunction name="doUpdateRoles" action="{!updateRoles}" reRender="mainblock">
+				<apex:param name="roleIDs" assignTo="{!selectedRoleIds}" value=""/>
+			</apex:actionFunction>
+		
+		</apex:pageblock>	 
+		</apex:form>
+	
+	<style>
+		.contactRoles{
+			padding: 2px;
+		}
+        
+        div.contactRoleHeader{
+            font-weight: bold;
+            background-color: gray;
+            color: white;
+            padding: 3px;
+            margin-top: 8px;
+            border-style: solid;
+            border-width: 1px;
+            border-color: black;
+        }
+	</style>
+	<script>
+		function selectAllToggled(x){
+			var checkboxes = $('.tableCheckbox',$(x).closest('table'));
+			for(var idx = 0; checkboxes.length > idx; ++idx){
+				var checkbox = $(checkboxes[idx]);
+				var rowVisible = $(checkbox).closest('tr').is(':visible');
+				var cbVal = $(x).attr('checked');
+				var checked = cbVal != null && cbVal != undefined && cbVal.toLowerCase() == 'checked';
+				if(rowVisible)
+				{
+					if(checked)
+						checkbox.attr('checked', 'checked');
+					else
+						checkbox.removeAttr('checked'); 
+					checkboxToggled(checkbox);
+				}
+			}
+		}
+		
+		function checkboxToggled(x){
+			var checked = $(x).attr('checked');
+			if(checked == null || checked == undefined){
+				var selectAllCheckboxID = '#' + $(x).attr('selectAllCheckboxID');
+				$(selectAllCheckboxID).removeAttr('checked');
+			}
+		}
+		
+		function gatherSelection(tID){
+			var t = jQuery('table[id$='+ tID + ']');
+			var selectedIDs = "";
+			if(t.length > 0){
+				var comma = "";
+				t.find('.tableCheckbox').each(function(idx, ele){
+					if($(ele).attr('checked')){
+						selectedIDs += comma + $(ele).attr('elemID');
+						comma = ",";
+					}
+				});
+			}
+			return selectedIDs;
+		}
+	</script>
+</apex:page>

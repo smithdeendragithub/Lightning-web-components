@@ -1,0 +1,237 @@
+<apex:component >
+    <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" required="true" />
+    <apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+    <apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+
+    <apex:variable var="currentDay" value="{!IF(DAY(TODAY()) < 10, '0', '') + TEXT(DAY(TODAY()))}"/>    <!-- dd format -->        
+    <apex:variable var="currentDayOrdinal" value="{!TEXT(DAY(TODAY())) + IF(CASE(TEXT(DAY(TODAY())), '11', 1, '12', 1, '13', 1, 0) = 1, 'th', CASE(RIGHT(TEXT(DAY(TODAY())), 1), '1', 'st', '2', 'nd', '3', 'rd', 'th'))}"/>
+    <apex:variable var="currentMonthName" value="{!CASE(MONTH(TODAY()), 1, 'January', 2, 'February', 3, 'March', 4, 'April', 5, 'May', 6, 'June', 7, 'July', 8, 'August', 9, 'September', 10, 'October', 11, 'November', 'December')}"/>    <!-- MMMM format -->
+    <apex:variable var="currentYear" value="{!YEAR(TODAY())}"/>
+    
+    <apex:outputPanel layout="none" id="op">
+        <p style="text-align:center;"><strong>HIGH SPEED INTERNET ADDENDUM <br /> to the<br /> Master Service Agreement</strong></p>
+        <p>
+            This Addendum to the Service Agreement and the Master Service Agreement 
+            (this “Addendum”) is executed as of the <u>{!currentDayOrdinal}</u> day of <u>{!currentMonthName}</u>, 
+            <u>{!currentYear}</u> (the “Effective Date”), by and between Electric Lightwave Holdings, Inc., 
+            an Oregon company with headquarters at 18110 SE 34th Street, Vancouver, WA 
+            98683, by and through one of its wholly-owned subsidiaries 
+            {!CASE( CurrentOpportunity.Account.Account_Sales_Channel__c, "Integra Business", "and its Integra business", "Integra Legacy", "and its Integra business", "Indirect Sales", "and its Integra business", "")}
+            as may be certificated in the applicable state to provide services (“Company”), 
+            and <u>{!CurrentOpportunity.Account.Name}</u>(“Customer”), to supplement the Service Agreement 
+            dated <u>{!currentMonthName}</u> &nbsp; <u>{!currentDay}</u>, <u>{!currentYear}</u> 
+            (the “Service Agreement”), and the Master Service Agreement into which it is incorporated 
+            and made a part thereof (the “MSA”) (both the MSA and Service Agreement are collectively referred 
+            herein as the “Agreement”). For the purposes of this Addendum, Company or Customer may be individually 
+            referred to as a “Party” and collectively as “Parties.” Capitalized terms not defined herein shall have the 
+            meaning as defined in the Service Agreement and the MSA.            
+        </p>
+        <p>This Addendum, including all attachments hereto, sets for the terms and conditions under which Integra agrees to provide to Customer and Customer agrees to procure from Integra certain High Speed Internet services to be defined herein (the &ldquo;Services&rdquo;).</p>
+        <ol class="decimal">
+            <li><strong>SERVICE DESCRIPTION</strong>.
+                <p><ol class="lowerRoman">
+                    <li><strong>Unmanaged High Speed Internet Services</strong> provide dedicated connections to the public Internet. Unmanaged High Speed Internet services are configured, based on Customer specifications, with a fixed maximum bandwidth rate or Usage Based Internet (&ldquo;UBI&rdquo;) where Customers can burst to speeds higher than their contracted base rate, for additional charges.&nbsp; Border gateway protocol (&ldquo;BGP&rdquo;) enablement is also available for these services.&nbsp; Integra will generally provide a /29 with 3 usable IP addresses.&nbsp; Additional IP addresses can be requested for additional MRC. &nbsp;Unmanaged High Speed Internet services are a best effort service based on industry-wide standard protocols. Integra will provide Unmanaged High Speed Internet service unless Customer elects to upgrade to Managed High Speed Internet service. If the Customer purchases Unmanaged High Speed Internet services, the following features may be purchased for an additional charge:<br /> <br />
+                        <ul class="disc">
+                            <li>Utilization Reporting:<br /> Access to utilization reporting via the IntegraCare portal</li>
+                            <li>Configuration Changes: Customer may at any time submit a change order to modify an installed service, which will incur additional non-recurring charges, and additional monthly recurring charges, if applicable.</li>
+                            <li>Customer may at any time call the Integra NOC to request a change to a service configuration, which will incur a $150 charge</li>
+                        </ul><br />
+                    </li>
+                    <li><strong>Managed High Speed Internet Services </strong>provide managed routers, change management, configuration management, and outage notification as specified below. Integra may provide router equipment at a customer premises to terminate service delivered over the layer 3 Integra IP Network. Customer is a &ldquo;merchant&rdquo; as defined under PCI DSS v3.0, it is the Customer&rsquo;s responsibility to determine if the Services meet the requirements under Section 12.8 of PCI DSS v3.0, as may be applicable to Customer.&nbsp; Integra makes no representations that Customer&rsquo;s intended use of the Services will result in PCI DSS v3.0 compliance for the Customer. It is the Customer&rsquo;s responsibility to provide adequate space, power, temperature, and humidity controls for the operation of this equipment.&nbsp; Managed High Speed Internet services include: <br /> <br />
+                        <ul class="disc">
+                            <li>Premises Router:
+                                <ul class="circle">
+                                    <li>Includes installation and maintenance of router at Customer Premises</li>
+                                    <li>Router can accommodate up to 200Mb, Electrical Handoff</li>
+                                </ul>
+                            </li>
+                            <li>Service Configuration:
+                                <ul class="circle">
+                                    <li>Integra-provided NAT/PAT</li>
+                                    <li>Provisioning of read-only Simple Network Management Protocol (SNMP) access or Netflow to a customer collector</li>
+                                    <li>Integra-provided DHCP</li>
+                                    <li>BGP enablement</li>
+                                    <li>Failover enablement to a Customer-provided 3<sup>rd</sup> party DIA service
+                                        <ul class="square">
+                                            <li>Integra-managed failover</li>
+                                            <li>Failover mechanism is BGP</li>
+                                            <li>3<sup>rd</sup> party DIA circuit must be connected to Integra-provided customer premise equipment (CPE)</li>
+                                            <li>Customer must have a /24 IP address block or larger</li>
+                                            <li>Customer must have and provide their autonomous system number (ASN)</li>
+                                            <li>Customer must provide 3<sup>rd</sup> party ASN and IP information</li>
+                                            <li>Customer must establish BGP with both Integra and 3<sup>rd</sup> party</li>
+                                            <li>NAT will not be supported</li>
+                                        </ul>
+                                    </li>
+                                    <li>Failover enablement to a secondary Integra DIA circuit. Additional charges will apply.
+                                        <ul class="square">
+                                            <li>Integra-managed failover</li>
+                                            <li>Failover mechanism is BGP</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>Unlimited* post-installation Router Configurations such as:
+                                <ul class="circle">
+                                    <li>Initiation of bandwidth changes to the extent the access can support. Additional charges may apply.</li>
+                                    <li>IP subnet specifications<br />* Includes up 25 post-installation configuration changer/year</li>
+                                </ul>
+                            </li>
+                            <li>For Managed High Speed Internet services, Customer may submit, for no additional charge, up to 25 configuration change requests (per parameters set above in sections a and b) via the Integra Network Operating Center at (877) 953-7747 or other number or portal as notified by Integra.</li>
+                            <li>Proactive Notification with Automated Trouble Ticket Generation: notification of layer 3 service outage emailed or SMS texted to customer and automatic initiation of trouble ticket and repair by Integra if it is determined by Integra that Customer is at fault for outage, Integra reserves the right to charge for repair</li>
+                            <li>Includes access to IntegraCare Portal for utilization reporting</li>
+                        </ul>
+                        <p>If it is discovered in the installation and delivery process that Customer&rsquo;s needs warrant features associated with Managed High Speed Internet services, Integra reserves the right, upon notification to the Customer, to upgrade the associated service to a Managed Service and update billing accordingly.</p>
+                    </li>
+                    <li><strong>Customer Responsibilities.</strong> At the time of the order, and during the subsequent technical order review, Customer must provide technical information regarding their network in order for Integra to properly configure the service.&nbsp; Any inaccuracies or changes to the technical information provided may impact the service delivery interval and pricing.&nbsp; Technical information includes, but is not limited to:<br /> <br />
+                        <ul class="disc">
+                            <li>Demarcation location(s)</li>
+                            <li>If Customer needs a total of 12 or more usable IP addresses, they will need to fill out an IP Justification form, which can be found on the Integra website at <a href="http://www.integratelecom.com/support/internetsupport/pages/ip-justification-form-aspx.aspx">http://www.integratelecom.com/support/internetsupport/pages/ip-justification-form-aspx.aspx</a>. An order must be placed before a justification form will be reviewed</li>
+                            <li>Dynamic Host Configuration Protocol (DHCP):
+                                <ul class="circle">
+                                    <li>DHCP pool (scope of addresses)</li>
+                                    <li>IP addresses for the primary and secondary DNS servers</li>
+                                    <li>DHCP Gateway IP address<br /></li>
+                                </ul>
+                            </li>
+                            <li>Network Address Translation (NAT) for each public IP
+                                <ul class="circle">
+                                    <li>Protocol (TCP or UDP)</li>
+                                    <li>External IP</li>
+                                    <li>Internal IP<br /> </li>
+                                </ul>
+                            </li>
+                            <li>Port Address Translation (PAT): For each port (limited to up to 25):
+                                <ul class="circle">
+                                    <li>External IP and port</li>
+                                    <li>Internal IP and port</li>
+                                    <li>Protocol<br /> </li>
+                                </ul>
+                            </li>
+                            <li>BGP Enablement (Managed DIA or Unmanaged DIA). Specification of routes (among these options):
+                                <ul class="circle">
+                                    <li>Full Internet routes</li>
+                                    <li>Integra Telecom and customer routes</li>
+                                    <li>Integra Telecom and customer routes, plus default route</li>
+                                    <li>Default route only<br /> </li>
+                                    <li>If multi-homing to more than one provider, the customer must obtain an Autonomous System Number (ASN), available at <a href="http://www.arin.net">http://www.arin.net</a></li>
+                                    <li>Customer ASN and whether it&rsquo;s private or public</li>
+                                    <li>If BGP is being configured over an existing connection on an unmanaged DIA circuit, the IP address of the customer&rsquo;s router</li>
+                                    <li>Any downstream ASNs the customer wishes to route</li>
+                                    <li>Any netblocks the customer wishes to route</li>
+                                    <li>Outbound route filtering<br /> </li>
+                                </ul>
+                            </li>
+                            <li>Read-Only access to Integra SNMP or Netflow:
+                                <ul class="circle">
+                                    <li>SNMP Community String and the IP addresses for devices to provide the read-only access</li>
+                                    <li>Customer Netflow collector IP address</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <p>Customer shall, in a timely manner, provide all information and perform all actions reasonably requested by Integra in order to facilitate installation of High Speed Internet services. Service related outages requiring access to the device for troubleshooting and repair purposes will impact the eligibility of any associated SLA service credits. Customer shall be responsible for supporting Integra in access, troubleshooting, and configuration requests made in accordance with normal troubleshooting and repair support activities.</p>
+                    </li>
+                    <li><strong>Integra Responsibilities<br /> <br /> </strong>
+                        <ul class="disc">
+                            <li>Integra shall provide Customer with support from non-exclusive service engineer and repair personnel to address customer outages and configuration changes as subscribed to by Customer according to the governing level of service described above for High Speed Internet services.</li>
+                            <li>Adding email to website or domain: Integra will create the account and contact the customer to assist with the set-up. Email accounts may be added only under a Customer&rsquo;s domain name or under the domain name integra.net.&nbsp; <br /> </li>
+                        </ul><br />
+                    </li>
+                </ol></p>
+            </li>
+            <li><strong>EQUIPMENT AND INSTALLATION</strong>
+                <p><ol class="lowerRoman">
+                    <li><strong>Integra-provided Router</strong>. Integra, or its agent, may provide, install, maintain, repair, operate and control the Integra-provided router at the customer premise location.&nbsp; The router shall remain the sole and exclusive property of Integra, and nothing contained herein shall give or convey to Customer, or any other person, any right, title, or interest whatsoever in the router, notwithstanding that it may be, or become, attached to, or embedded, in realty.&nbsp; Customer shall not tamper with, remove, or conceal any identifying plates, tags, or labels identifying Integra&rsquo;s ownership interest in the router.&nbsp; Customer shall not adjust, align, repair, attempt to repair, relocate or remove the router, except as expressly authorized in writing by Integra.&nbsp; <br /><br /> </li>
+                    <li><strong>Access and Customer Premises Obligations. </strong>Customer, at its sole cost and expense, shall provide Integra with access to all locations on Customer premises necessary for purposes of installation, maintenance, and repair of the Integra equipment.&nbsp; For purposes of the preceding sentence, &ldquo;access&rdquo; shall include without limitation any necessary license(s) to access the building and or property for the Service Term.&nbsp; In the event that Integra is required by a third party to obtain and maintain any such license to access the building or property, Customer agrees to reimburse Integra for its reasonable costs related to obtaining and maintaining such licenses during the Service Term.&nbsp; Integra shall provide reasonable notice to Customer prior to entering Customer&rsquo;s point of presence to install, maintain, or repair any of the Integra equipment.&nbsp; Customer shall provide a safe place to work and comply with all applicable laws regarding the working conditions on the Customer premises.<br /><br /> </li>
+                    <li><strong>Customer Equipment. </strong>Equipment and Service beyond the Point of Demarcation and/or interconnection between Integra&rsquo;s facilities and terminal equipment and the wiring at the Point of Demarcation shall be the responsibility of the Customer (&ldquo;Customer Equipment&rdquo;).&nbsp; Customer must procure and maintain, at its sole cost and expense, Customer Equipment which is technically compatible with the Service and the Integra network.&nbsp; Integra shall have no obligation to install, maintain, or repair any non-Integra equipment, including any Customer Equipment.&nbsp; If, upon responding to a Customer initiated service call, Integra reasonably determines that the cause of the Service deficiency was a failure, malfunction, or inadequacy of equipment other than Integra&rsquo;s Equipment, ustomer shall compensate Integra for actual time and materials expended during the service call.<br /><br /> </li>
+                    <li><strong>Ordering Procedures for Services. </strong>Customer shall place an order for Services by submitting a Service Order.&nbsp; In addition to the form and information defined in the Agreement and this Addendum, the Service Order shall contain information such as location address, term length, access type, bandwidth, optional features, and charges.&nbsp; In the event Customer submits a Service Order that is inconsistent with any of the terms of Integra&rsquo;s standard the Agreement or this Addendum then the Service Agreement will be treated as a counteroffer and will be binding only if accepted by Integra in writing.<br /><br /> </li>
+                    <li><strong>Service Level Objectives</strong><br />
+                        <p>On Unmanaged High Speed Internet services, the Internet Service Level Agreement provides performance guarantees for the IP network. The metrics for satisfactory performance cover the network from POP to POP - not the transport circuit to the customer premises.&nbsp; &nbsp;</p>
+                        <p>On Managed High Speed Internet services, SLA guarantees are extended to include the transport circuit to the customer premises.</p>
+                        <p>Integra is committed to providing a high quality of IP network service for our Customers. In the event the Integra IP Network cannot meet the thresholds for network availability, latency, and packet loss as described in the following paragraphs, Customer may be entitled to service credits as set forth below.</p>
+                    </li>
+                    <li><strong>Network Definition. </strong>
+                        <p>This Service Level Agreement (&ldquo;SLA&rdquo;) includes the Customer&rsquo;s access port (the port on the Integra aggregation router upon which the Customer&rsquo;s circuit terminates, and in the case of Managed High Speed Internet services, the port on the Integra-provided CPE router) and the Integra owned and controlled IP backbone network (routers and circuits including any transit connections) (&ldquo;Integra IP Network&rdquo;). This SLA does not include networks owned and/or controlled by other carriers; Customer&rsquo;s local area network (LAN); interconnections to or from and connectivity within other Internet Service Provider (ISP) networks; scheduled maintenance and emergency maintenance; any act or omission by Customer, its officers, directors, employees, subcontractors, agents, or any other entity under Customer&rsquo;s control; and/or any circumstance beyond Integra&rsquo;s reasonable control including Internet attacks (denial of service, virus and work activity, etc.) or force majeure event as defined in the Services Agreement.&nbsp; For Unmanaged High Speed Internet services, SLA does not include local access circuit (e.g. local loop) or Customer premise equipment (CPE).&nbsp; SLA does not include any third party DIA service provided by Customer for Integra-managed failover.</p>
+                    </li>
+                    <li><strong>Network Availability Guarantee: 99.99%</strong><br />
+                        <p>The Integra IP Network, as defined above, is guaranteed to be available and capable of forwarding IP packets 99.99% of the time. If the Integra IP Network availability guarantee is not met in a calendar month, the Customer may receive a service credit of 1/30th of the monthly recurring charge (&ldquo;MRC&rdquo;) for that calendar month for each full hour of outage. Limits on the service credit amount and reporting procedures are detailed below.</p>
+                    </li>
+                    <li><strong>Latency Guarantee: 45 milliseconds (&ldquo;ms&rdquo;)</strong><br />
+                        <p>The Integra IP Network is guaranteed to have an average round trip packet transit time within the Integra IP Network over a calendar month of 45 ms or less. The average latency is measured as the average of 15-minute samples across the Integra IP Network taken throughout the month. If the Latency Guarantee is not met in a calendar month, the Customer may receive a service credit of 1/30th of the MRC for the month for each full 1 ms above the 45 ms average maximum guaranteed under this SLA. Limits on the service credit amount and reporting procedures are detailed below.</p>
+                    </li>
+                    <li><strong>Packet Loss: &lt; = 0.1%</strong><br />
+                        <p>The Integra IP Network is guaranteed to have a maximum average packet loss of 0.1 percent or less during any calendar month. If the Packet Loss guarantee is not met in a calendar month, the Customer may receive a service credit of 1/30th of the MRC for that month for each full 1 percent of packet loss above the 0.1 percent average maximum guaranteed under this SLA. Limits on the service credit and reporting procedures are detailed below.</p>
+                    </li>
+                    <li><strong>SLA Reporting Procedures</strong>
+                        <p>For Service Outages, a trouble ticket must be opened with Integra customer care upon the occurrence of a Service Outage.&nbsp; Upon notification from Customer, Integra will open a trouble ticket, test the affected Service, and attempt to isolate the problem.&nbsp; Integra&rsquo;s records and data will be the sole basis for all service credit calculations and determinations.&nbsp; Customer shall not be entitled to any service credits for any Service Outage unless a trouble ticket has been opened and a service credit has been requested within one (1) week of the Service Outage.&nbsp;</p>
+                    </li>
+                    <li><strong>Service Credit Limits</strong>
+                        <p>The provisions of this SLA state Customer&rsquo;s sole and exclusive remedy for Service interruptions or Service deficiencies of any kind whatsoever. Customer&rsquo;s total service credit(s) in any one month will not exceed the equivalent of 100 percent (100%) of the relevant MRCs for the affected Service for that month. Cumulative service credits in any one-month must exceed $25.00 to be processed. If a Customer fails to notify Integra in the manner set forth herein with respect to the applicable service credits, Customer will have waived its right to such service credits for that month. The service credits will apply to the MRCs of the affected circuit and do not apply to MRCs of other unaffected circuits or Services, whether at the same address or multiple addresses. To be eligible for service credits, the Customer must be in good standing with Integra and current in all of its obligations. <br /> </p>
+                    </li>
+                    <li><strong>Third Party Services</strong>
+                        <p>If Customer requests Service that requires Integra to procure Services from a third party provider on behalf of Customer (&ldquo;Third Party Services&rdquo;), Integra agrees to provide such Third Party Services subject to the following, to which the Customer acknowledges and agrees: (a) the Third Party Services will be provided by a third party provider; (b) the Third Party Services will function and perform in accordance with the service level obligations provided by the third party provider to Integra; (c) any rights, remedies, outage credits, or other service-specific terms that the Customer may have or be entitled to under this Addendum are limited to the same terms that Integra has in place with the Third Party Provider; (d) the costs for the Third Party Service will be incorporated into the Service Fees set forth in the applicable Service Order/Agreement; (e) if Integra purchases Third Party Services pursuant to third party provider&rsquo;s applicable tariff, Customer is responsible for any additional charges imposed on Integra pursuant to Third Party Provider&rsquo;s applicable tariff; and (f) if the Customer cancels or terminates any Service which includes a Third Party Service prior to the conclusion of the Service Term or Service Renewal Term, then the Customer will pay any and all cancellation and/or early termination charges that Integra actually incurs for the cancellation or termination of such third party services, plus any charges remaining under this Agreement.</p>
+                    </li>
+                </ol></p>
+            </li>
+            <li><strong>ENTIRE AGREEMENT. </strong><br />
+                <p>This Addendum, along with the Service Agreement, and MSA sets forth the entire understanding of the Parties and supersedes any and all prior agreements, arrangements, or understandings relating to the Services described above.&nbsp; The Agreement will remain in full force and effect except as modified herein.&nbsp; To the extent of any conflict between the terms of this Addendum, the Service Agreement/Order, or MSA, the order of ruling precedence will be Service Agreement, Addendum, and the MSA.</p>
+            </li>
+        </ol>
+        <p>IN WITNESS WHEREOF, the parties have caused this Addendum to be executed by their duly authorized representatives.</p>
+        <p>&nbsp;</p>
+        <table class="Signature_table avoidBreak" border="0" cellspacing="5" cellpadding="0">
+            <tr>
+                <td width="60">&nbsp;</td>
+                <td width="130">&nbsp;</td>
+                <td width="70">&nbsp;</td>
+                <td width="60">&nbsp;</td>
+                <td width="130">&nbsp;</td>
+            </tr>
+            <tr>
+                <td colspan="2">INTEGRA TELECOM HOLDINGS, INC.</td>
+                <td>&nbsp;</td>
+                <td colspan="2">{!CurrentOpportunity.Account.Name}</td>
+            </tr>
+            <tr>
+                <td>Signature:</td>
+                <td class="normalRef">
+                    <div class="docusignID">DS-CTRSIG</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>Signature:</td>
+                <td class="normalRef">
+                    <div class="docusignID">DS-SIG</div>
+                </td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td class="normalRef">&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>Name:</td>
+                <td class="normalRef">{!decisionMaker.Name}</td>
+            </tr>
+            <tr>
+                <td>Title:</td>
+                <td class="normalRef">
+                    <div class="docusignID">&nbsp;</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>Title:</td>
+                <td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}"></apex:outputText>
+                    <div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL"></apex:outputText></div> 
+                </td>
+            </tr>
+            <tr>
+                <td>Date:</td>
+                <td class="normalRef">
+                    <div class="docusignID">DS-CTRDATE</div>
+                </td>
+                <td>&nbsp;</td>
+                <td>Date:</td>
+                <td class="normalRef">
+                    <div class="docusignID">DS-DATE</div>
+                </td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+</apex:component>

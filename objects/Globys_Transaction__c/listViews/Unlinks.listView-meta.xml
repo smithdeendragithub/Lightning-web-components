@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unlinks</fullName>
+    <columns>NAME</columns>
+    <columns>Action__c</columns>
+    <columns>Status__c</columns>
+    <columns>Child_Identifer__c</columns>
+    <columns>Parent_Identifier__c</columns>
+    <columns>Child_Legacy_Biller__c</columns>
+    <columns>Parent_Identifier_Source__c</columns>
+    <columns>Child_Subscriber__c</columns>
+    <columns>Parent_Subscriber__c</columns>
+    <columns>Globys_Response__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Action__c</field>
+        <operation>equals</operation>
+        <value>unlink</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Ignore</value>
+    </filters>
+    <label>Unlinks</label>
+</ListView>

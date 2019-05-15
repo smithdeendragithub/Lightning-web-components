@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IT_Portal_Active</fullName>
+    <booleanFilter>(1 AND 2)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Team_Priority__c</columns>
+    <columns>Target_Start_Date__c</columns>
+    <columns>Phase__c</columns>
+    <columns>NPRF_Submitted__c</columns>
+    <columns>Customer_Commit_Date__c</columns>
+    <columns>IT_Revised_LOE__c</columns>
+    <columns>Resource_LOE__c</columns>
+    <columns>IT_Actual_Hours__c</columns>
+    <columns>Status__c</columns>
+    <columns>Requested_Date__c</columns>
+    <columns>User__c</columns>
+    <columns>Description__c</columns>
+    <columns>NPRF__c</columns>
+    <columns>Program__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>On Hold,Cancelled,Backlog,Completed</value>
+    </filters>
+    <filters>
+        <field>BP_T_Vertical__c</field>
+        <operation>equals</operation>
+        <value>Customer Interaction</value>
+    </filters>
+    <label>IT Portal - Active</label>
+</ListView>

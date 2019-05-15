@@ -1,0 +1,62 @@
+<apex:page StandardController="Workstep_Issue__c" recordSetVar="issues" extensions="AssignWorkstepIssues">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+    <apex:form >
+        <apex:pageMessages />
+        <apex:outputPanel rendered="{!isError}">
+            <br/><br/>Please choose at least one Workstep Issue!<br/><br/>
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!NOT(isError)}">
+        <apex:pageBlock >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!Save}" value="Save" style="width:130px;"/>
+                <apex:commandButton action="{!QuickSave}" value="Quick Save" style="width:130px;"/>
+                <apex:commandButton action="{!Cancel}" value="Cancel" style="width:130px;"/>
+            </apex:pageBlockButtons>
+            
+            <br/><br/>
+            <table style="width:100%">
+                <tr>
+                    <td style="width:30%"></td>
+                    <td>
+                        Select new owner &nbsp;&nbsp;&nbsp;
+                        <apex:inputField value="{!dummyWSIssue.OwnerId}"/>
+                    </td>
+                    <td>
+                        <!--<apex:inputCheckbox value="{!sendNotification}" />
+                        Send Notification Email-->
+                    </td>
+                    <td style="width:30%"></td>
+                </tr>
+            </table>
+            <br/><br/>
+            <div style="height:300px; overflow-y: scroll;">
+            <apex:pageBlockTable value="{!issueWrapperList}" var="item" id="mainTable">
+                <apex:column style="width:2%;">
+                    <apex:facet name="header">
+                        <input type="checkbox" value="true" onclick="checkAll(this);"/>
+                    </apex:facet>
+                    <apex:inputCheckbox id="chkSelected" value="{!item.isSelected}" />
+                </apex:column>
+                <apex:column value="{!item.issue.Name}"  style="width:30%;"/>
+                <apex:column >
+                    <apex:facet name="header">
+                        Owner
+                    </apex:facet>
+                    {!item.issue.Owner.Name}
+                </apex:column>
+            </apex:pageBlockTable>
+            </div>
+        </apex:pageBlock>
+        </apex:outputPanel>
+        <script type="text/javascript">
+            function checkAll(cb) {
+                var cbs = jQuery(cb).closest('table').find('input[id$=chkSelected]');
+                for (i=0 ; i < cbs.length; i++) {
+                    if(cbs[i] != cb){
+                        cbs[i].checked = cb.checked;
+                    }
+                }
+            };
+        </script>
+    </apex:form>
+</apex:page>

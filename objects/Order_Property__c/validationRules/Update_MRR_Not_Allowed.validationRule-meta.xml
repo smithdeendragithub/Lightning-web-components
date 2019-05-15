@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_MRR_Not_Allowed</fullName>
+    <active>true</active>
+    <description>Once order set to pending then no updates can be made to 	
+ICC Order MRR</description>
+    <errorConditionFormula>And( NOT( $User.ProfileId =&#39;00eC00000015naf&#39;), ISPICKVAL(Order__r.Status__c,&#39;Order to Pending&#39;),  ISCHANGED(ICC_Order_MRR__c))</errorConditionFormula>
+    <errorDisplayField>ICC_Order_MRR__c</errorDisplayField>
+    <errorMessage>Can&#39;t change ICC Order MRR when Order status is Order to Pending.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Building_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Building Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Meet Point</fullName>
+                <default>false</default>
+                <label>Meet Point</label>
+            </value>
+            <value>
+                <fullName>Commercial Building</fullName>
+                <default>false</default>
+                <label>Commercial Building</label>
+            </value>
+            <value>
+                <fullName>ILEC LSO</fullName>
+                <default>false</default>
+                <label>ILEC LSO</label>
+            </value>
+            <value>
+                <fullName>ILEC LSO: Collocated</fullName>
+                <default>false</default>
+                <label>ILEC LSO: Collocated</label>
+            </value>
+            <value>
+                <fullName>ILEC Remote Switch</fullName>
+                <default>false</default>
+                <label>ILEC Remote Switch</label>
+            </value>
+            <value>
+                <fullName>Wireless MSC</fullName>
+                <default>false</default>
+                <label>Wireless MSC</label>
+            </value>
+            <value>
+                <fullName>Wireless Tower</fullName>
+                <default>false</default>
+                <label>Wireless Tower</label>
+            </value>
+            <value>
+                <fullName>Integra Hut/Shelter</fullName>
+                <default>false</default>
+                <label>Integra Hut/Shelter</label>
+            </value>
+            <value>
+                <fullName>Pending Build</fullName>
+                <default>false</default>
+                <label>Pending Build</label>
+            </value>
+            <value>
+                <fullName>Carrier POP</fullName>
+                <default>false</default>
+                <label>Carrier POP</label>
+            </value>
+            <value>
+                <fullName>Data Center</fullName>
+                <default>false</default>
+                <label>Data Center</label>
+            </value>
+            <value>
+                <fullName>Integra Switch/Hub</fullName>
+                <default>false</default>
+                <label>Integra Switch/Hub</label>
+            </value>
+            <value>
+                <fullName>Carrier Hotel</fullName>
+                <default>false</default>
+                <label>Carrier Hotel</label>
+            </value>
+            <value>
+                <fullName>ILEC LSO: Off Footprint</fullName>
+                <default>false</default>
+                <label>ILEC LSO: Off Footprint</label>
+            </value>
+            <value>
+                <fullName>ILEC LSO: Extended Special</fullName>
+                <default>false</default>
+                <label>ILEC LSO: Extended Special</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

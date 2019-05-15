@@ -1,0 +1,31 @@
+<apex:page standardController="Building__c" extensions="BuildingAccounts">
+ <apex:outputPanel id="out">
+		<apex:pageMessages />
+</apex:outputPanel>
+<apex:form >
+<apex:pageBlock >
+	<apex:pageBlockTable value="{!bsl}" var="bsp">
+		<apex:column >
+		 	<apex:facet name="header">Location</apex:facet> 
+			<apex:outputText ><a href="/{!bsp.Location__r.Id}" target="_blank">{!bsp.Location__r.Name}</a></apex:outputText>
+		</apex:column>
+		<apex:column >
+		 	<apex:facet name="header">Account</apex:facet> 
+			<apex:outputText ><a href="/{!bsp.Account__r.Id}" target="_blank">{!bsp.Account__r.Name}</a></apex:outputText>
+		</apex:column>
+		<apex:column >
+		 	<apex:facet name="header">Account Type</apex:facet> 
+			<apex:outputText >{!bsp.Account__r.Type}</apex:outputText>
+		</apex:column>
+		<apex:column >
+		 	<apex:facet name="header">Account Owner</apex:facet> 
+			<apex:outputText >{!bsp.Account__r.Owner.Name}</apex:outputText>
+		</apex:column>
+		<apex:column >
+		 	<apex:facet name="header">Service Location</apex:facet> 
+			<apex:outputText ><a href="/{!bsp.Id}" target="_blank">{!bsp.Name}</a></apex:outputText>
+		</apex:column>
+	</apex:pageBlockTable>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

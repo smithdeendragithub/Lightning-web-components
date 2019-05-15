@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BldgDataTelSpend__c</fullName>
+    <description>Sum of the estimated data telecommunications expenditures of all businesses located in the same building as this business. This is the sum of Data TelSpend at the BldgID associated with this business.</description>
+    <externalId>false</externalId>
+    <label>Building Data TelSpend Per Year</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

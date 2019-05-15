@@ -1,0 +1,433 @@
+<apex:page controller="WorkstepManagementController" tabstyle="Workstep_Management_Page__tab">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" />
+    <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_10_3_custom, 'css/redmond/jquery-ui-1.10.3.custom.min.css')}"/>
+    
+    <apex:includeScript value="{!$Resource.DynamicTable}"/>
+    
+    <style>
+        .activeTab {color:black; background-image:none}
+        .inactiveTab { background-color: darkgrey; color:black; background-image:none}
+        
+        div.hideCurrDate span.dateInput span.dateFormat{
+            display:none;
+        }
+        
+        .errored{
+            color:red;
+        }
+        
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+
+        .pos{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+        }
+        
+        .center{
+            font-size: 16px;
+            margin: 0;
+            background: yellow;
+            position: absolute;
+            top: 5%;
+            left: 20%;
+            margin-right: -50%;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    
+    <apex:form id="mainForm">
+        <script type="text/javascript"> function setFocus() { }</script>
+        <apex:outputPanel id="out">
+            <apex:outputPanel id="errorPanel" rendered="{!NOT(isWorkstepTabVisible) && NOT(isOrdersIOwnVisible)}">
+                <br/><br/>You don't have permission to view this page!
+            </apex:outputPanel>
+            <apex:pageMessages />
+        </apex:outputPanel>
+        <apex:outputPanel rendered="{!isWorkstepTabVisible || isOrdersIOwnVisible}">
+            <apex:pageBlock >
+                <apex:dynamicComponent componentValue="{!sharedDynamicComponents}"/>
+                
+                <apex:actionStatus id="loadingStatus">
+                    <apex:facet name="start">
+                        <div id="bgBlurStatus" class="overlayBackground" style="z-index:105; width: 100%; height: 100%; display: block; position:fixed; top:0px; left:0px;"></div>
+                        <div id="StatusDialog_SimpleDialog" role="dialog" aria-live="assertive" class="overlayDialog cssDialog " style="width: 200px; display: block; margin-top: -56.5px; margin-left: -100px; visibility: visible;">
+                            <div class="middle">
+                                <div class="innerContent" id="StatusDialog_SimpleDialogContent">
+                                    <div class="overlayinnerbox" style="margin-top: 0px;">
+                                        <div style="padding:8px; text-align:center;">
+                                            <img src="/img/loading.gif" />
+                                            <br />Please wait...
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:facet>
+                </apex:actionStatus>
+                
+                <apex:tabPanel switchType="client">
+                    <apex:tab label="Worksteps" ontabenter="loadWorkStep();">
+                        <apex:pageBlockSection columns="1" id="pbs_worksteps">
+                            <apex:pageBlockSection columns="2">
+                                <apex:outputPanel >
+                                    <apex:commandButton value="Refresh" onclick="reselectWorksteps(); return false;"/>
+                                    <!-- <apex:commandButton value="Test_Save" action="{!Test_Save}" rerender="pbs_worksteps"/> -->
+                                    <apex:actionFunction name="reselectWorksteps" action="{!reselectWorksteps}" rerender="pbs_worksteps" status="loadingStatus" oncomplete="collapsePBSes();"/>
+                                    <!-- <apex:commandButton value="Clear filters" action="{!ClearFilters}" rerender="pbs_worksteps" status="loadingStatus"/> -->
+                                    <apex:commandButton value="Complete selected worksteps" onclick="completeWorkstepsClicked(); return false;"/>
+                                    <apex:commandButton value="Assign selected worksteps" onclick="assignWorkstepsClicked(); return false;"/>
+                                    <apex:actionFunction name="assignSelectedWorksteps" action="{!AssignSelectedWorksteps}" rerender="wsTablePanel, out" status="loadingStatus"/>
+                                    <apex:actionFunction name="completeSelectedWorksteps" action="{!CompleteSelectedWorksteps}" rerender="wsTablePanel, out" status="loadingStatus"/>
+                                </apex:outputPanel>
+                                <apex:inputCheckbox label="Worksteps assigned to me" value="{!ownedWorkstepsOnly}" id="chkMyWorksteps" disabled="{!wsParams.ctx == 'ANY' || wsParams.ctx == 'BY_OWNER'}">
+                                    <apex:actionSupport event="onchange" rerender="sl_wsctx"/> 
+                                </apex:inputCheckbox>
+                                <apex:outputText label="Show worksteps for">                                    <apex:selectList value="{!wsParams.ctx}" size="1" id="sl_wsctx">
+                                        <apex:selectOption itemValue="ANY" itemLabel="Any Order or Sub-Order" rendered="{!ownedWorkstepsOnly}"/>
+                                        <apex:selectOption itemValue="OWNED_ORDERS" itemLabel="Orders I own"/>
+                                        <apex:selectOption itemValue="BY_ORDER" itemLabel="Specific Order"/>
+                                        <apex:selectOption itemValue="BY_SUBORDER" itemLabel="Specific Sub-Order"/>
+                                        <apex:selectOption itemValue="BY_OWNER" itemLabel="Specific Owner"/>
+                                        <apex:actionSupport event="onchange" rerender="rd_ctx, chkMyWorksteps"/> 
+                                    </apex:selectList>
+                                    <apex:outputPanel id="rd_ctx">
+                                        <apex:inputField value="{!wsParams.ws.Order__c}" required="false" rendered="{!wsParams.ctx == 'BY_ORDER'}"/>
+                                        <apex:inputField value="{!wsParams.ws.Sub_Order__c}" required="false" rendered="{!wsParams.ctx == 'BY_SUBORDER'}"/>
+                                        <apex:inputField value="{!wsParams.ws.OwnerId}" required="false" rendered="{!wsParams.ctx == 'BY_OWNER'}"/>
+                                    </apex:outputPanel>
+                                </apex:outputText>
+                                <apex:outputText label="Preselect Filter Options">
+                                    <apex:dynamicComponent id="preselectFilters" componentValue="{!wsParams.config.GetFieldConfigOptions}"/>
+                                    <apex:commandButton value="Remove Selected Filter" action="{!Remove_Saved_Filter}" rerender="pbs_worksteps, pbs_workstepsAdvanced" status="loadingStatus">                                      
+                                        <apex:param name="tab" value="WorkstepManagement"/>
+                                        <apex:param name="tabmode" value="wsTable"/>    
+                                    </apex:commandButton>
+                                    <apex:commandButton value="Set as Default Filter" action="{!Set_Default_Filter}" rerender="pbs_worksteps, pbs_workstepsAdvanced" status="loadingStatus">                                        
+                                        <apex:param name="tab" value="WorkstepManagement"/>
+                                        <apex:param name="tabmode" value="wsTable"/>    
+                                    </apex:commandButton>                                                   
+                                </apex:outputText>                              
+                            </apex:pageBlockSection>
+                            <apex:pageBlockSection title="Advanced Page Setup" id="pbs_workstepsAdvanced" collapsible="true" columns="2">
+                                <apex:pageBlockSection columns="1">
+                                    <apex:pageBlockSection columns="2">
+                                        <apex:selectList value="{!wsParams.config.configSection.selectedVals}" size="8" multiselect="true" label="Available Fields">
+                                            <apex:SelectOptions value="{!wsParams.config.configSection.availableOptions}"/>
+                                        </apex:selectList>
+                                        <apex:outputPanel >
+                                            <apex:commandButton value="Add >>" action="{!UpdateColumnSelection}" rerender="pbs_workstepsAdvanced" status="loadingStatus">
+                                                <apex:param name="mode" value="wsTable"/>
+                                                <apex:param name="add" value="true"/>
+                                            </apex:commandButton>
+                                            <br/>
+                                            <apex:commandButton value="<< Remove" action="{!UpdateColumnSelection}" rerender="pbs_workstepsAdvanced" status="loadingStatus">
+                                                <apex:param name="mode" value="wsTable"/>
+                                                <apex:param name="add" value="false"/>
+                                            </apex:commandButton>
+                                        </apex:outputPanel>
+                                    </apex:pageBlockSection>
+                                </apex:pageBlockSection>
+                                <apex:pageBlockSection columns="1">
+                                    <apex:dynamicComponent componentValue="{!wsParams.config.configSection.GetSelectedTable}"/>
+                                    <apex:messages />
+                                     <!--<apex:outputLink onclick="saveDynamicFilterDialogClicked('wsTable'); return false;">Save New Group Filter</apex:outputLink> -->
+                                </apex:pageBlockSection>
+                            </apex:pageBlockSection>
+                            <apex:outputPanel id="wsTablePanel">
+                                <apex:dynamicComponent componentValue="{!wsParams.config.GetDynamicTable}"/>
+                            </apex:outputPanel>
+                        </apex:pageBlockSection>
+                    </apex:tab>
+                    <apex:tab label="Open Workstep Issues" rendered="{!isWorkstepTabVisible}" ontabenter="loadWorkStepIssue();">
+                        <apex:pageBlockSection columns="1" id="pbs_workstepIssues">
+                            <apex:pageBlockSection columns="3">
+                                <apex:outputPanel >
+                                    <apex:commandButton value="Refresh" onclick="reselectWorkstepIssues(); return false;"/>
+                                    <apex:actionFunction name="reselectWorkstepIssues" action="{!reselectWorkstepIssues}" rerender="pbs_workstepIssues" status="loadingStatus" oncomplete="collapsePBSes();"/>
+                                </apex:outputPanel>
+                                <apex:outputText label="Select issues from">
+                                    <apex:selectList value="{!wsiParams.ctx}" size="1" rendered="{!isOrdersIOwnVisible}">
+                                        <apex:selectOption itemValue="WORKSTEP_OWNER" itemLabel="Worksteps I own"/>
+                                        <apex:selectOption itemValue="ORDER_OWNER" itemLabel="Orders I own"/>
+                                        <apex:selectOption itemValue="ISSUE_OWNER" itemLabel="Workstep Issues I own"/>
+                                        <apex:selectOption itemValue="SPECIFIC_OWNER" itemLabel="Specific Owner"/>
+                                        <apex:actionSupport event="onchange" rerender="rd_workstepIssueContext"/>
+                                    </apex:selectList>
+                                    <apex:outputPanel id="rd_workstepIssueContext">
+                                        <apex:inputField value="{!wsiParams.ws.OwnerId}" required="false" rendered="{!wsiParams.ctx == 'SPECIFIC_OWNER'}"/>
+                                    </apex:outputPanel>
+                                </apex:outputText>
+                                <apex:outputText label="Preselect Filter Options">
+                                    <apex:dynamicComponent id="preselectWSIFilters" componentValue="{!wsiParams.config.GetFieldConfigOptions}"/>
+                                    <apex:commandButton value="Remove Selected Filter" action="{!Remove_Saved_Filter}" rerender="pbs_workstepsIssues, pbs_wsiAdvanced" status="loadingStatus">  
+                                        <apex:param name="tab" value="WorkstepIssue"/>
+                                        <apex:param name="tabmode" value="wsiTable"/>                       
+                                    </apex:commandButton>
+                                    <apex:commandButton value="Set as Default Filter" action="{!Set_Default_Filter}" rerender="pbs_workstepsIssues, pbs_wsiAdvanced" status="loadingStatus">                                        
+                                        <apex:param name="tab" value="WorkstepIssue"/>
+                                        <apex:param name="tabmode" value="wsiTable"/>   
+                                    </apex:commandButton>                                                   
+                                </apex:outputText>
+                            </apex:pageBlockSection>
+                            <apex:pageBlockSection title="Advanced Page Setup" id="pbs_wsiAdvanced" collapsible="true" columns="2">
+                                <apex:pageBlockSection columns="1">
+                                    <apex:pageBlockSection columns="2">
+                                        <apex:selectList value="{!wsiParams.config.configSection.selectedVals}" size="8" multiselect="true" label="Available Fields">
+                                            <apex:SelectOptions value="{!wsiParams.config.configSection.availableOptions}"/>
+                                        </apex:selectList>
+                                        <apex:outputPanel >
+                                            <apex:commandButton value="Add >>" action="{!UpdateColumnSelection}" rerender="pbs_wsiAdvanced" status="loadingStatus">
+                                                <apex:param name="mode" value="wsiTable"/>
+                                                <apex:param name="add" value="true"/>
+                                            </apex:commandButton>
+                                            <br/>
+                                            <apex:commandButton value="<< Remove" action="{!UpdateColumnSelection}" rerender="pbs_wsiAdvanced" status="loadingStatus">
+                                                <apex:param name="mode" value="wsiTable"/>
+                                                <apex:param name="add" value="false"/>
+                                            </apex:commandButton>
+                                        </apex:outputPanel>
+                                    </apex:pageBlockSection>
+                                </apex:pageBlockSection>
+                                <apex:dynamicComponent componentValue="{!wsiParams.config.configSection.GetSelectedTable}"/>
+                            </apex:pageBlockSection>
+                            <apex:outputPanel id="wsiTablePanel">
+                                <apex:dynamicComponent componentValue="{!wsiParams.config.GetDynamicTable}"/>
+                            </apex:outputPanel>
+                        </apex:pageBlockSection>
+                    </apex:tab>
+                </apex:tabPanel>
+                <apex:actionFunction action="{!loadwsiParams}" name="loadwsiParams" rerender="pbs_workstepIssues" status="loadingStatus"></apex:actionFunction>
+                <apex:actionFunction action="{!loadwsParams}" name="loadwsParams" rerender="pbs_workstepIssues" status="loadingStatus"></apex:actionFunction>
+                <div id="AssignWorkstepsDialogParent">
+                    <div id="AssignWorkstepsDialog">
+                        <apex:pageBlockSection columns="1">
+                            <apex:outputText id="confirmText"/>
+                            <apex:inputField id="ownerid" required="false" value="{!assignWS.OwnerId}" />
+                        </apex:pageBlockSection>
+                    </div>
+                </div>
+                <div id="CompleteWorkstepsDialogParent">
+                    <div id="CompleteWorkstepsDialog">
+                        <apex:pageBlockSection columns="1">
+                            <apex:outputText id="confirmText"/>
+                            <apex:inputField id="missedReason" required="false" value="{!assignWS.Missed_Reason__c}" style="width:100px"/>
+                        </apex:pageBlockSection>
+                    </div>
+                </div>
+                <div id="saveDynamicFilterDialogParent">
+                    <div id="saveDynamicFilterDialog" title="Save Dynamic Filter">
+                        <div>
+                            <span style="font-weight:bold; font-size:14px;">Save Dynamic Filter</span>
+                        </div>
+                        <hr />
+                        <div>
+                            <table>
+                                <tr>
+                                    <td style="font-weight:bold;">Filter Name:</td>
+                                    <td><apex:inputField value="{!newCSL.Label__c}" id="txtFilterName"></apex:inputField></td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:bold;">Filter Owner:</td>
+                                    <td><apex:inputField id="ownerlkp" required="false" value="{!newCSL.ownerId}"></apex:inputField></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <hr />
+                    </div>
+                </div>
+            </apex:pageBlock>
+        </apex:outputPanel> 
+    </apex:form>
+    <script type="text/javascript">
+        var j$ = jQuery.noConflict();
+        
+        (function(j$){
+            jQuery(document).ready(function(){
+                jQuery('#AssignWorkstepsDialog').dialog({
+                    modal: true,
+                    title: 'Assign worksteps',
+                    autoOpen: false,
+                    show: 'fade',
+                    width: 500,
+                    resizable: false,
+                    buttons: [
+                        { text: 'Save', id: 'btnAssignWS', click: function(){
+                                jQuery('#AssignWorkstepsDialog').dialog('close');
+                                assignSelectedWorksteps();
+                            } },
+                        { text: 'Cancel', click: function(){ jQuery(this).dialog('close'); } }
+                    ],
+                    open: function(){bindDialogBackToParent(jQuery(this), '#AssignWorkstepsDialogParent');}
+                });
+                jQuery('#CompleteWorkstepsDialog').dialog({
+                    modal: true,
+                    title: 'Complete worksteps',
+                    autoOpen: false,
+                    show: 'fade',
+                    width: 500,
+                    resizable: false,
+                    buttons: [
+                        { text: 'Save', id: 'btnCompleteWS', click: function(){
+                                jQuery('#CompleteWorkstepsDialog').dialog('close');
+                                completeSelectedWorksteps();
+                            } },
+                        { text: 'Cancel', click: function(){ jQuery(this).dialog('close'); } }
+                    ],
+                    open: function(){bindDialogBackToParent(jQuery(this), '#CompleteWorkstepsDialogParent');}
+                });
+                jQuery('#saveDynamicFilterDialog').dialog({
+                title: 'Save Dynamic Filter',
+                modal: true,
+                autoOpen: false,
+                show: 'fade',
+                width: 500,
+                height: 300,
+                resizeable: true,
+                buttons: [
+                    {
+                        text: 'Save',
+                        click: function(){                  
+                            if(jQuery.trim(jQuery('input[id$="ownerlkp"]').val()) != '' && jQuery('[id$=#ownerlkp]').val() != '') { 
+                                jQuery(this).dialog('close');
+                                dynamicTable_saveFilterConfig();
+                            } else {
+                                alert("The name cannot be empty."); 
+                            }
+                        }
+                    },
+                    {
+                        text: 'Close',
+                        click: function(){
+                            jQuery(this).dialog('close');
+                        }
+                    }
+                ],
+                open: function(){dynamicTable_bindDialogBackToParent(jQuery(this), '#saveDynamicFilterDialogParent');}
+            });
+                
+                collapsePBSes();
+            });
+        })(jQuery);
+        
+        function bindDialogBackToParent(x, p){
+            jQuery(p).append(x.parent());       //Bind back to where it got pulled from so inputFields still work
+        }
+        
+        function collapsePBSes(){
+            jQuery('img.hideListButton').each(function(){
+                twistSection(jQuery(this)[0]);
+            });
+        }
+        
+        function assignWorkstepsClicked() {
+            var d = jQuery('#AssignWorkstepsDialog');
+            var selected = jQuery('input[id$=chkSelected]:checked', '[id$=wsTable]').closest('td');
+            var owner = d.find('[id$=ownerid]');
+            owner.val('');
+            owner.siblings().val('');
+            
+            var showOwner = false;
+            var text = null;
+            if(selected.length > 0){
+                showOwner = true;
+                text = 'Please select a new owner.';
+            }
+            
+            if(showOwner){
+                owner.closest('tr').show();
+                jQuery('#btnAssignWS').show();
+            }
+            else{
+                owner.closest('tr').hide();
+                jQuery('#btnAssignWS').hide();
+            }
+            
+            d.find('[id$=confirmText]').text(text != null ? text : 'You must select at least one workstep to reassign.');
+            d.dialog('open');
+        }
+        
+        function saveDynamicFilterDialogClicked(mode) {
+            dynamicTable_setMode(mode);
+            jQuery('#saveDynamicFilterDialog').dialog('open');
+        }
+        
+        function completeWorkstepsClicked() {
+            var d = jQuery('#CompleteWorkstepsDialog');
+            var selected = jQuery('input[id$=chkSelected]:checked', '[id$=wsTable]').closest('td');
+            var canComplete = selected.find('[id$=canComplete]').filter(function(x) {
+               return this.innerHTML == 'true';
+            });
+            
+            var showSave = false;
+            var showMissedReason = false;
+            var text = null;
+            if(canComplete.length > 0){
+                showSave = true;
+                text = 'You have selected ' + canComplete.length + ' completable workstep' + (canComplete.length > 1 ? 's' : '');
+                var pastDue = canComplete.closest('td').find('[id$=isPastDue]').filter(function(x) {
+                   return this.innerHTML == 'true';
+                });
+                
+                if(pastDue.length > 0){
+                    text += ((canComplete.length > 1) ? (' of which ' + pastDue.length + (canComplete.length > 1 ? ' are' : ' is')) : ' which is') + ' overdue. Select a missed reason and click save to continue.';
+                    //onchange
+                    showMissedReason = true;
+                    showSave = false;
+                }
+                else{
+                    text += '. Click save to continue.';
+                }
+            }
+            
+            if(showSave)
+                jQuery('#btnCompleteWS').show();
+            else
+                jQuery('#btnCompleteWS').hide();
+            
+            if(showMissedReason){
+                jQuery('[id$=missedReason]').closest('tr').show();
+                if(jQuery('option:selected', '[id$=missedReason]').text() != '--None--')
+                    jQuery('#btnCompleteWS').show();
+                else
+                    jQuery('#btnCompleteWS').hide();
+
+                jQuery('[id$=missedReason]').change(function() {
+                    if(jQuery('option:selected', '[id$=missedReason]').text() != '--None--')
+                        jQuery('#btnCompleteWS').show();
+                    else
+                        jQuery('#btnCompleteWS').hide();
+                });
+            }
+            else
+                jQuery('[id$=missedReason]').closest('tr').hide();
+            
+            d.find('[id$=confirmText]').text(text != null ? text : 'You must select at least one completable workstep.');
+            d.dialog('open');
+        }
+        
+        function loadWorkStepIssue(){
+            loadwsiParams();
+        }
+        
+        function loadWorkStep(){
+            loadwsParams();
+        }
+        
+    </script>
+   
+</apex:page>

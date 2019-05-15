@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BldgID__c</fullName>
+    <description>Unique identification number assigned by GeoResults to this building address. A BldgID is permanently assigned to each building address in this national business database and can be used to select and group businesses at any address.       </description>
+    <externalId>false</externalId>
+    <label>BldgID</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

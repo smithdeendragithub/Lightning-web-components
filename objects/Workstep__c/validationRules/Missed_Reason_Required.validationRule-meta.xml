@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Missed_Reason_Required</fullName>
+    <active>true</active>
+    <description>You must enter a missed reason for late completion dates</description>
+    <errorConditionFormula>((ISCHANGED(Actual_Completion_Date__c) &amp;&amp; Actual_Completion_Date__c &gt; End_Date__c) &amp;&amp;  Duration__c != 0 ||(ISCHANGED(Status__c) &amp;&amp; TEXT(Status__c) == &#39;Complete&#39; &amp;&amp;  DATEVALUE(NOW()) &gt; End_Date__c)) &amp;&amp;  Duration__c != 0 
+&amp;&amp; ISBLANK(TEXT(Missed_Reason__c))</errorConditionFormula>
+    <errorDisplayField>Missed_Reason__c</errorDisplayField>
+    <errorMessage>You must enter a missed reason for late completion dates</errorMessage>
+</ValidationRule>

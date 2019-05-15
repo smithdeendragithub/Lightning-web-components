@@ -1,0 +1,78 @@
+<apex:page standardController="Building__c" extensions="BuildingAccessAvailabilityViewController"> 
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+     
+    <apex:outputPanel id="out">
+        <apex:pageMessages />
+    </apex:outputPanel>
+    <apex:form >
+        <table border="1" width="100%" id="tbl">
+            <tr>
+                <th>Access</th>
+                <th>Status</th>
+                <th>Description</th>
+                <th>Maximum Bandwidth</th>
+                <th>Hurdle Rate</th>
+            </tr>
+            <apex:repeat value="{!baas}" var="b">
+                <tr>
+                    <td class="tdName">{!b.Access_Technology__r.Friendly_Name__c}</td>
+                    <td class="tdStatus">{!b.Status__c}</td>
+                    <td>{!b.Access_Technology__r.Client_Interface__c}</td>
+                    <td>{!IF(TEXT(b.Maximum_Bandwidth__c) == null,"","Up to")} <apex:outputText value="{0, number, 00}"><apex:param value="{!b.Maximum_Bandwidth__c}" /></apex:outputText>{!IF(TEXT(b.Maximum_Bandwidth__c) == null,""," Mbps CIR")}</td>
+                    
+                    <td>{!IF(TEXT(b.Minimum_Required_Revenue__c) == null,"","$")}<apex:outputText value="{0, number,  ###,##0.00}"><apex:param value="{!b.Minimum_Required_Revenue__c}" /></apex:outputText></td>
+                    <td style="display:none">{!b.Building__r.Net_Classification__c}</td>
+                    
+                    
+                </tr>
+            </apex:repeat>
+        </table>
+    </apex:form>
+    <style>
+        .active {
+          background:#33CC33;
+        }
+        .auto {
+          background:#FFFF00;
+        }
+        .nearnet {
+          background:#FF0000;
+        }
+        .enni{
+        	background:#FFFFFF;
+        }
+    </style>
+    <script type="text/javascript"> 
+        var $j = jQuery.noConflict();
+        $j(document).ready(function() {
+            $j('.tdStatus').each(function() {
+                var str = $j(this).text();
+                
+                var netClass = $j(this).next().next().next().next().text();
+                //alert(netClass);
+                if((/Active$/i.test(str) || /Pending$/i.test(str)) && netClass == 'On-net'){
+                    //Mark Green
+                    $j(this).addClass("active");
+                    
+                }
+                else if(/Auto-Augment$/i.test(str) && netClass == 'On-net'){
+                    //Mark Yellow
+                    $j(this).addClass("auto");
+                    
+                }
+                else if(netClass == 'Near-net')
+                    $j(this).addClass("nearnet");
+                    
+                else if(netClass == 'eNNI')
+                	//No Color
+                	$j(this).addClass("enni");
+                    
+                else{
+                    //Mark Red
+                    $j(this).addClass("nearnet");
+                    
+                }
+            });
+        });
+    </script>
+</apex:page>

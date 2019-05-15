@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_ICB_Note</fullName>
+    <availability>online</availability>
+    <description>Creates a new note and passes the Acct, Opportunity, and ICB number.</description>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>New ICB Note</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>/a0A/e?CF00NC0000005Havn={!ICB__c.Opportunity__c}&amp;CF00NC0000005Havn_lkid={!ICB__c.OpportunityId__c}&amp;CF00NC0000005Havk={!ICB__c.Account__c}&amp;CF00NC0000005Havk_lkid={!ICB__c.AccountId__c}&amp;CF00NC0000005BsF8={!ICB__c.Name}&amp;CF00NC0000005BsF8_lkid={!ICB__c.Id}</url>
+</WebLink>

@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Lead_Assigned_Email_to_Lead_Owner</fullName>
+        <description>Lead Assigned - Email to Lead Owner</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderAddress>donotreply@integratelecom.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>Workflow_and_Approval_Templates/Lead_Assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_emails_to_lead_owners</fullName>
+        <description>Send emails to lead owners</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Workflow_and_Approval_Templates/LeadsNewassignmentnotificationSAMPLE</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_emails_to_new_lead_owners</fullName>
+        <description>Send emails to new lead owners</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>DefaultWorkflowUser</senderType>
+        <template>Workflow_and_Approval_Templates/LeadsNewassignmentnotificationSAMPLE</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Employees_update_No_Employees</fullName>
+        <description># Employees update No. Employees</description>
+        <field>NumberOfEmployees</field>
+        <formula>of_Employees__c</formula>
+        <name># Employees update No. Employees</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lead_Campaign_Name_Field_Update</fullName>
+        <field>Custom_Campaign_Name__c</field>
+        <formula>&#39;TMOne&#39;</formula>
+        <name>Lead Campaign Name Field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Sales_Channel_Update_Lead</fullName>
+        <description>Default Sales Channel for Indirect users to &quot;Electric Lightwave Business&quot; otherwise set to match Sales Channel on owner&#39;s user record.</description>
+        <field>Sales_Channel__c</field>
+        <formula>IF( ISPICKVAL(Owner:User.Sales_Channel__c, &quot;Indirect Sales&quot;), &quot;Electric Lightwave Business&quot;, TEXT(Owner:User.Sales_Channel__c) )</formula>
+        <name>Sales Channel Update Lead</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_to_Target</fullName>
+        <field>Status</field>
+        <literalValue>Target</literalValue>
+        <name>Set Status to Target</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Tiger_Team_Leads_put_in_Tiger_Team_Queue</fullName>
+        <description>Move Leads assigned to Tiger Team User to Tiger Team Queue</description>
+        <field>OwnerId</field>
+        <lookupValue>Tiger_Team</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Tiger Team Leads put in Tiger Team Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Lead_Owner_to_Lead_Queue</fullName>
+        <field>OwnerId</field>
+        <lookupValue>LeadQueue</lookupValue>
+        <lookupValueType>Queue</lookupValueType>
+        <name>Update Lead Owner to Lead Queue</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Lead_Score_Reference</fullName>
+        <description>Part of Lead Scoring Accelerator. Updates field with LS_WeightedScore__c value.</description>
+        <field>LS_LeadScoreReference__c</field>
+        <formula>LS_WeightedScore__c</formula>
+        <name>Update Lead Score Reference</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Lead_Score_Refresh</fullName>
+        <description>Updates LS_LeadScoreRefresh__c with NOW()</description>
+        <field>LS_ScoreRefresh__c</field>
+        <formula>NOW()</formula>
+        <name>Update Lead Score Refresh</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>%23 Employees update No%2E Employees</fullName>
+        <actions>
+            <name>Employees_update_No_Employees</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description># Employees update No. Employees</description>
+        <formula>of_Employees__c  &lt;&gt;  NumberOfEmployees</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Contract Term End Date - Follow Up</fullName>
+        <actions>
+            <name>Contract_Term_End_Date_Unknown</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.Contract_Term_End_Date_Unknown__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>When Contract Term End Date Unknown is checked (true) create a follow up task for AE to call lead to obtain date.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Emails when Leads Created</fullName>
+        <actions>
+            <name>Send_emails_to_lead_owners</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Emails will send automatically to lead owners when leads are created - this ignores the Tiger Team user</description>
+        <formula>AND(NOT(ISNULL(OwnerId)),  NOT(OwnerId == &#39;005C0000003X9PX&#39;))</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Emails when Leads Reassigned</fullName>
+        <actions>
+            <name>Send_emails_to_new_lead_owners</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Emails will send to new lead owners when reassigned - this ignores the Tiger Team user</description>
+        <formula>AND(ISCHANGED(OwnerId), NOT(OwnerId == &#39;005C0000003X9PX&#39;))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Lead - Contract Term End Date - Follow Up Regarding Contract</fullName>
+        <actions>
+            <name>Follow_Up_With_Lead_Regarding_Contract</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <description>When Contract Term End Date is entered and greater than 90 days in the future create a follow up task (60 days from today) for AE to call lead.</description>
+        <formula>Contract_Term_End_Date__c &gt; TODAY() + 90</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <timeLength>60</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Lead Update Sales Channel</fullName>
+        <actions>
+            <name>Sales_Channel_Update_Lead</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Lead.Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>&amp;</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Lead-Contract Term End Date - Follow Up Regarding Contract</fullName>
+        <actions>
+            <name>Follow_Up_With_Lead_Regarding_Contract</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <description>When Contract Term End Date is entered and greater than 90 days in the future create a follow up task (60 days from today) for AE to call lead.</description>
+        <formula>Contract_Term_End_Date__c &gt; TODAY() + 90</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Owned by User For 14 Days</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>User.ProfileId</field>
+            <operation>equals</operation>
+            <value>Business Services,System Administrator</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.OwnerId</field>
+            <operation>notEqual</operation>
+            <value>Lead Queue</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Lead.Cancel_Workflow__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <description>If a lead is owned by a user for 14 days return it to the queue.
+1. Owner is not a queue
+2. Owner is not user who created (prevents records created by users from being returned to the queue)
+3. Cancel_Workflow - Invalidates time-based workflow</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Update_Lead_Owner_to_Lead_Queue</name>
+                <type>FieldUpdate</type>
+            </actions>
+            <timeLength>14</timeLength>
+            <workflowTimeTriggerUnit>Days</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Set Status on Employee Referrals</fullName>
+        <actions>
+            <name>Set_Status_to_Target</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.LeadSource</field>
+            <operation>equals</operation>
+            <value>Employee Referral</value>
+        </criteriaItems>
+        <description>For Web to Lead Employee Referrals, set status to Target instead of Prospecting.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Tiger Team Leads put in Tiger Team Queue</fullName>
+        <actions>
+            <name>Tiger_Team_Leads_put_in_Tiger_Team_Queue</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Lead.OwnerId</field>
+            <operation>equals</operation>
+            <value>Tiger Team</value>
+        </criteriaItems>
+        <description>If Lead is assigned to Tiger Team user move to Tiger Team Queue</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Lead Campaign Name</fullName>
+        <actions>
+            <name>Lead_Campaign_Name_Field_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Campaign.Name</field>
+            <operation>contains</operation>
+            <value>TMOne</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Lead Score Reference</fullName>
+        <actions>
+            <name>Update_Lead_Score_Reference</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Lead_Score_Refresh</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Updates the Lead Score reference fields</description>
+        <formula>NOT(IsConverted)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Contract_Term_End_Date_Unknown</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Please follow-up with lead to obtain Contract Term End Date.
+
+If Contract Term End Date has been entered set this task to completed.
+
+Thanks!</description>
+        <dueDateOffset>60</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Contract Term End Date - Unknown</subject>
+    </tasks>
+    <tasks>
+        <fullName>Follow_Up_With_Lead_Regarding_Contract</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Please follow up with Lead regarding contract.</description>
+        <dueDateOffset>70</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Follow-Up With Lead Regarding Contract</subject>
+    </tasks>
+</Workflow>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Renewal_Exemption__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Field for flagging contracts where &quot;Evergreen Clause&quot; was removed from the final MSA and doesn&#39;t apply to this contract.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Field for flagging contracts where &quot;Evergreen Clause&quot; was removed from the final MSA and doesn&#39;t apply to this contract.</inlineHelpText>
+    <label>Auto-Renewal Exemption</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

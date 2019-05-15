@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allstream_CAN_SIP</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>ICB_Type__c</columns>
+    <columns>Status__c</columns>
+    <columns>Product__c</columns>
+    <columns>Product_Manager_2__c</columns>
+    <columns>Expected_MRR__c</columns>
+    <columns>Approval_Waiting_Since__c</columns>
+    <columns>ASD_Quote_Status__c</columns>
+    <columns>AccountExecutive__c</columns>
+    <columns>AEs_Manager__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>In Progress</value>
+    </filters>
+    <filters>
+        <field>Product_Manager_2__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Product__c</field>
+        <operation>equals</operation>
+        <value>SIP</value>
+    </filters>
+    <filters>
+        <field>Account_Executive_Sales_Channel__c</field>
+        <operation>contains</operation>
+        <value>CAN</value>
+    </filters>
+    <label>Allstream CAN - SIP</label>
+    <sharedTo>
+        <group>Offer_Management</group>
+    </sharedTo>
+</ListView>

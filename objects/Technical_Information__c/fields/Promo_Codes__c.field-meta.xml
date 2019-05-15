@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Promo_Codes__c</fullName>
+    <externalId>false</externalId>
+    <label>Promo Codes</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CFS 3 Months Free: CF-78912-042214-A</fullName>
+                <default>false</default>
+                <label>CFS 3 Months Free: CF-78912-042214-A</label>
+            </value>
+            <value>
+                <fullName>CMS10MB</fullName>
+                <default>false</default>
+                <label>CMS10MB</label>
+            </value>
+            <value>
+                <fullName>CMS20MB</fullName>
+                <default>false</default>
+                <label>CMS20MB</label>
+            </value>
+            <value>
+                <fullName>CMS30MB</fullName>
+                <default>false</default>
+                <label>CMS30MB</label>
+            </value>
+            <value>
+                <fullName>eRate(CFS/DIA) EoC/EoF:IP-35001-020113-A</fullName>
+                <default>false</default>
+                <label>eRate(CFS/DIA) EoC/EoF:IP-35001-020113-A</label>
+            </value>
+            <value>
+                <fullName>eRate(CFS/DIA)EoTDM:IP-35002-020113-A</fullName>
+                <default>false</default>
+                <label>eRate(CFS/DIA)EoTDM:IP-35002-020113-A</label>
+            </value>
+            <value>
+                <fullName>SIP1FREE</fullName>
+                <default>false</default>
+                <label>SIP1FREE</label>
+            </value>
+            <value>
+                <fullName>SIP2FREE</fullName>
+                <default>false</default>
+                <label>SIP2FREE</label>
+            </value>
+            <value>
+                <fullName>SIP5000</fullName>
+                <default>false</default>
+                <label>SIP5000</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

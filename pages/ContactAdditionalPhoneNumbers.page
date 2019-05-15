@@ -1,0 +1,56 @@
+<apex:page standardController="Contact">
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	
+	<c:ListField sObject="Contact" fieldName="Additional_Phone_Numbers__c" columnCount="2"/>
+	
+	<div id="content" class="bPageBlock brandSecondaryBrd bDetailBlock secondaryPalette">
+	</div>
+	<div style="text-align:center">
+		<input type="button" id="saveBtn" class="btn" value="Save Phone Numbers" onclick="doSave();"/>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			rerender();
+			jQuery('[id$="saveBtn"]').hide();
+		});
+		
+		function doSave(){
+			var vals = gatherValues_Additional_Phone_Numbers__c(jQuery('div[id$="content"]'));
+			
+			var error = false;
+			for(var i=0; vals.length>i; i++){
+				if(!vals[i][1].match(/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/)){
+					alert('Invalid phone number: ' + vals[i][1]);
+					error = true;
+				}
+			}
+			
+			if(!error){
+				saveValues_Additional_Phone_Numbers__c(vals, '{!Contact.Id}');
+				rerender();
+				jQuery('[id$="saveBtn"]').hide();
+			}
+		}
+		
+		function rerender(){
+			var markup = getKeyValueMarkup_Additional_Phone_Numbers__c('{!Contact.Id}', getOverridePhoneNumbers());
+			jQuery('div[id$="content"]').children().remove();
+			jQuery('div[id$="content"]').append(markup);
+			
+			jQuery('table').on('change', function(){ jQuery('[id$="saveBtn"]').show(); });
+		}
+		
+		function getOverridePhoneNumbers(){
+			sforce.connection.sessionId = '{!$Api.Session_ID}';
+			var r = sforce.connection.query("SELECT Id, Phone__c FROM Customer_Contact__c WHERE Contact__c = '{!Contact.Id}' and Phone__c != null");
+			r = r.getArray('records');
+			
+			var vals = [];
+			for(var i=0; r.length>i; i++){
+				vals.push(r[i].Phone__c);
+			}
+			
+			return vals;
+		}
+	</script>
+</apex:page>

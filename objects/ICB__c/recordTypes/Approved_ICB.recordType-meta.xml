@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_ICB</fullName>
+    <active>true</active>
+    <description>Approved ICBs uses layout that prevents users from editing.</description>
+    <label>Approved ICB</label>
+    <picklistValues>
+        <picklist>Additional_Conditions_Required__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>CAPX__c</picklist>
+        <values>
+            <fullName>CAPX %3C%3D 125K</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CAPX %3E 125K</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Credit_Type_Approval__c</picklist>
+        <values>
+            <fullName>ETF Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incentive Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ICB_Pricing_Reason__c</picklist>
+        <values>
+            <fullName>Competitive Response</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Incentive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETF Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inside Wiring - Integra Provided</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Move Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Price Schedule</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewal Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Signed Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Temporary Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Usage-Based Internet</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ICB_Technical_Reason__c</picklist>
+        <values>
+            <fullName>%3E 4G EVC or UNI%2FNNI Access</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 Fiber Protection</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Any Bandwidth %3E500 Mb</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Any Request for Multi-Cast</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Auto Mitigation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CALNET 3%3A Security Standards</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CFS over E-LAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer access to Netflow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer requires more than 15 POTS per location or more than 50 POTS across multiple locations%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer-Provided Router</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data Center Resale</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EoC %3E 8-Pair Bonding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EoC Other%3A  List Reason in Description</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EoF Dedicated %2F SONET-protected Access</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EoF Dedicated Access</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EoF Non-standard circuit routing %2F Diverse AR Termination</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EoF Other%3A  List Reason in Description</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EoTDM Other%3A  List Reason in Description</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EoTDM%3A Ethernet over N x DS3 access</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extended Other%3A  List Reason in Description</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>International VPN Node</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LAG Requirements on EVPL Hubs or E-LAN nodes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manual Toll-Free Re-Direction Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Market Expansion Line Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>More than 20 Active Mitigations per Month</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>More than 20 Reactive Mitigations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Standard Bandwidth</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Standard Cloud Service Provider</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Standard Configuration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Standard Protocol</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Standard circuit routing%2FDiverse AR Termination</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other Firewall Feature %28Describe in Comments%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other%3A  List Reason in Description</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other%3A  List Reason in Description %28Requires Data Center %26 Circuit Design%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outside the scope of Current Product Offerings</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>POE AC Plug %28Teleworker Phone Only%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pre- GA%3A Ethernet over N x DS3 access</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Primary Customer Site is Off-Net</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Prospect%27s call patterns exceed Short Call Duration threshold%3Aa%29 10%25 or more calls at 6 seconds or less or b%29 average length of calls at 2 minutes or less</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Request for PRI or Digital Trunk  Channels %3E 92</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Request for non-Standard billing increments%2C rounding%2C overages</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SIP Trunking %26 Internet%3A Single Handoff to Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Security Zone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service via 3rd Party Wavelength Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UA 2%2E0 Migration Exceptions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Usage-Based Internet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VPN Wireless Backup needed for Service greater than 10 Mbps</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ICB_Type__c</picklist>
+        <values>
+            <fullName>Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Incentive_Credit_Type__c</picklist>
+        <values>
+            <fullName>Free Month%28s%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>One Time</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>New_Notice_of_Days__c</picklist>
+        <values>
+            <fullName>120</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>360</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>60</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>90</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Number_of_Months__c</picklist>
+        <values>
+            <fullName>five %285%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>four %284%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>one %281%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>six %286%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>three %283%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>two %282%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product__c</picklist>
+        <values>
+            <fullName>Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SIP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Traditional Voice</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Selected_Vendor__c</picklist>
+        <values>
+            <fullName>ACS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CLICK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Comcast</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consolidated %28Enventis%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Consolidated %28Surewest%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cox</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Earthlink</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Equinix</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fairpoint%2FEllensburg</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fatbeam</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>First Digital</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Frontier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GCI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Global Capacity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legacy TW Cable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Legacy TWTC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lumos</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Megapath</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Midcontinent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multiple Vendors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NO BID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Noanet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Noel Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Optic Acces</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Port of Whitman</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SRP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Saddleback Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scott Rice Telephone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shaw Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TDS %28Bend Broadband%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VisionNet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wave Broadband</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Western Fibernet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Western Independent Networks %28WINS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wilcon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Windstream</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wisconsin Independent Network %28WIN%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approved with Conditions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approved-Pending Sale</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Recalled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Vendor_Term__c</picklist>
+        <values>
+            <fullName>12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>120</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>24</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>300</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>36</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>48</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>60</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>of_Days_to_Dispute__c</picklist>
+        <values>
+            <fullName>120</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>360</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>90</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

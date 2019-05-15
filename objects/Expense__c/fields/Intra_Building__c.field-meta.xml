@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Intra_Building__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>TTN-0000985334 - Check to see if the Expense is Intra-Building, so it may be sorted in reports.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Is this an intra-building Expense</inlineHelpText>
+    <label>Intra-Building</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

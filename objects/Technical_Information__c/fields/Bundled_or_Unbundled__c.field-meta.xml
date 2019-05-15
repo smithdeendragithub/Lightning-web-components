@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bundled_or_Unbundled__c</fullName>
+    <externalId>false</externalId>
+    <label>Bundled or Unbundled</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Bundled</fullName>
+                <default>false</default>
+                <label>Bundled</label>
+            </value>
+            <value>
+                <fullName>Unbundled</fullName>
+                <default>false</default>
+                <label>Unbundled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

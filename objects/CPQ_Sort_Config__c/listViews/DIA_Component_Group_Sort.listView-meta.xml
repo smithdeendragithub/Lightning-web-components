@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DIA_Component_Group_Sort</fullName>
+    <columns>NAME</columns>
+    <columns>Sorted_Item_Name__c</columns>
+    <columns>Parent_Type__c</columns>
+    <columns>Parent_Name__c</columns>
+    <columns>Sort_Order__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>comp</value>
+    </filters>
+    <filters>
+        <field>Parent_Name__c</field>
+        <operation>contains</operation>
+        <value>Dedicated High Speed Internet</value>
+    </filters>
+    <label>DIA Component Group Sort</label>
+</ListView>

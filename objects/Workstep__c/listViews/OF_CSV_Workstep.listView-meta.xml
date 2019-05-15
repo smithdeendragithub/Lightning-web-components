@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OF_CSV_Workstep</fullName>
+    <filterScope>Queue</filterScope>
+    <label>OF-CSV</label>
+    <queue>OF_CSV</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Actual_Hours_at_Ready_to_Review</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISBLANK( Hours_Actual__c ) &amp;&amp; 
+( 
+ISPICKVAL(Development_Task_Status__c, &quot;Ready for Review&quot;) || 
+ISPICKVAL( Development_Task_Status__c, &quot;Completed&quot;) 
+)</errorConditionFormula>
+    <errorDisplayField>Hours_Actual__c</errorDisplayField>
+    <errorMessage>Please complete &quot;Hours - Actual&quot; field</errorMessage>
+</ValidationRule>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CAPX_required_if_Wholesale</fullName>
+    <active>false</active>
+    <errorConditionFormula>(CONTAINS(Account__r.Owners_Sales_Channel__c , &quot;Wholesale&quot;) &amp;&amp;
+ISBLANK(TEXT(CAPX__c)))
+||
+(NOT(CONTAINS(Account__r.Owners_Sales_Channel__c , &quot;Wholesale&quot;))
+&amp;&amp;
+NOT(ISBLANK(TEXT(CAPX__c))))</errorConditionFormula>
+    <errorDisplayField>CAPX__c</errorDisplayField>
+    <errorMessage>CAPX field is required if Account Business Segment is Wholesale, and should be left blank if Account Business Segment is not Wholesale</errorMessage>
+</ValidationRule>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Stage of the sales process you are currently working</inlineHelpText>
+    <label>Order Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sales Working</fullName>
+                <default>false</default>
+                <label>Sales Working</label>
+            </value>
+            <value>
+                <fullName>Sales Complete</fullName>
+                <default>false</default>
+                <label>Sales Complete</label>
+            </value>
+            <value>
+                <fullName>Indirect - Sales Complete</fullName>
+                <default>false</default>
+                <label>Indirect - Sales Complete</label>
+            </value>
+            <value>
+                <fullName>Completed to Billing/Billing Only</fullName>
+                <default>false</default>
+                <label>Completed to Billing/Billing Only</label>
+            </value>
+            <value>
+                <fullName>Returned to Sales</fullName>
+                <default>false</default>
+                <label>Returned to Sales</label>
+            </value>
+            <value>
+                <fullName>Referred to SE</fullName>
+                <default>false</default>
+                <label>Referred to SE</label>
+            </value>
+            <value>
+                <fullName>SSS Held</fullName>
+                <default>false</default>
+                <label>SSS Held</label>
+            </value>
+            <value>
+                <fullName>SE Received</fullName>
+                <default>false</default>
+                <label>SE Received</label>
+            </value>
+            <value>
+                <fullName>SE Held</fullName>
+                <default>false</default>
+                <label>SE Held</label>
+            </value>
+            <value>
+                <fullName>SE Complete</fullName>
+                <default>false</default>
+                <label>SE Complete</label>
+            </value>
+            <value>
+                <fullName>SSS SE Received</fullName>
+                <default>false</default>
+                <label>SSS SE Received</label>
+            </value>
+            <value>
+                <fullName>Order to Pending</fullName>
+                <default>false</default>
+                <label>Order to Pending</label>
+            </value>
+            <value>
+                <fullName>Order Cancelled</fullName>
+                <default>false</default>
+                <label>Order Cancelled</label>
+            </value>
+            <value>
+                <fullName>Records Updated Only/No Order</fullName>
+                <default>false</default>
+                <label>Records Updated Only/No Order</label>
+            </value>
+            <value>
+                <fullName>Returned to Account Specialists - Wholesale</fullName>
+                <default>false</default>
+                <label>Returned to Account Specialists - Wholesale</label>
+            </value>
+            <value>
+                <fullName>Order Accepted</fullName>
+                <default>false</default>
+                <label>Order Accepted</label>
+            </value>
+            <value>
+                <fullName>SSS Reviewing</fullName>
+                <default>false</default>
+                <label>SSS Reviewing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

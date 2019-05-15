@@ -1,0 +1,3 @@
+<apex:page controller="UploadContentController" tabStyle="Order__c"> 
+	<c:UploadContent parentId="{!orderId}" isGeneratedContent="false"></c:UploadContent>
+</apex:page>

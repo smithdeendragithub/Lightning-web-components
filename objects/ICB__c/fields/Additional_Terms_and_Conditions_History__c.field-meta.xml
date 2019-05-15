@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_Terms_and_Conditions_History__c</fullName>
+    <description>Field to store the current and prior values of the Additional Terms and Conditions field which is a long text field so normal field history doesn&#39;t work well for us.  Maintained by workflow.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>System Maintained Field:  Keeps history of changes to the Additional Terms and Conditions field.</inlineHelpText>
+    <label>Additional Terms and Conditions History</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>10</visibleLines>
+</CustomField>

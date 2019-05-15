@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Direct_Team_Sell_Approval</fullName>
+        <description>Direct Team Sell Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>Requestor__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>ITS_Direct_Team_Sale_approval</fullName>
+        <description>ITS/Direct Team Sale approval</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>sebussey@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>ITS_Non_ITS_Team_Sell_Request</fullName>
+        <description>ITS/Non-ITS Team Sell - Request</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <recipient>sebussey@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <field>Requestor__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>ITS_Team_Sale_Rejected</fullName>
+        <description>ITS Team Sale Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>sebussey@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request_Denied</template>
+    </alerts>
+    <alerts>
+        <fullName>ITS_Team_Sale_Rejected_Final</fullName>
+        <description>ITS Team Sale Rejected Final</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <recipient>sebussey@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request_Denied</template>
+    </alerts>
+    <alerts>
+        <fullName>ITS_Team_Sell_Approval</fullName>
+        <description>ITS Team Sell Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>Requestor__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Team_Sell_Approval_Email</fullName>
+        <description>Team Sell Approval Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Team_Sell_Denied_Email_Notification</fullName>
+        <description>Team Sell Denied - Email Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request_Denied</template>
+    </alerts>
+    <alerts>
+        <fullName>Team_Sell_Request_Email_Alert_After_Final_Approval</fullName>
+        <ccEmails>agentdeskrequests@allstream.com</ccEmails>
+        <description>Team Sell Request Email Alert After Final Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Requestor__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Team_Sell_Request_Indirect_Account_Owner_Agent_Desk</fullName>
+        <description>Team Sell Request - Indirect Account Owner &amp; Agent Desk</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <recipient>Indirect_Order_Agent_Desk</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Team_Sell_Request</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>ITS_Non_ITS_Team_Sell_In_Process</fullName>
+        <field>Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>ITS/Non-ITS Team Sell - In Process</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Team_Sale_Approved</fullName>
+        <description>Updated status of ITS/Non-ITS team sale to approved</description>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Team Sale Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Team_Sale_Denied</fullName>
+        <description>ITS/Direct team sale has been denied</description>
+        <field>Status__c</field>
+        <literalValue>Denied</literalValue>
+        <name>Team Sale Denied</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Team_Sell_Approved</fullName>
+        <description>Status field update to Approved</description>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Team Sell Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Team_Sell_Denied</fullName>
+        <description>Status Field Update - Denied</description>
+        <field>Status__c</field>
+        <literalValue>Denied</literalValue>
+        <name>Team Sell Denied</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Team_Sell_In_Process</fullName>
+        <description>Update status to In Porgess</description>
+        <field>Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>Team Sell - In Process</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+</Workflow>

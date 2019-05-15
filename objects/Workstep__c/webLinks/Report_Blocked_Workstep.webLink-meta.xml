@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Report_Blocked_Workstep</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Report Blocked Workstep</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>if(&#39;{!Workstep__c.Status__c}&#39; == &#39;Complete&#39;){
+	alert(&#39;You cannot block a completed workstep&#39;);
+}
+else{
+window.open(&#39;../apex/NewWorkstepIssue?id={!Workstep__c.Id}&#39;, &#39;_self&#39;);
+}</url>
+</WebLink>

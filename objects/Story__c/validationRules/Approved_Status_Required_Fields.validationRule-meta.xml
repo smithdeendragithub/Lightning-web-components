@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_Status_Required_Fields</fullName>
+    <active>true</active>
+    <description>System and Process Enhancement Stories in Approved Status or above require Affected Groups, Acceptance Criteria, Business Value, and Priority</description>
+    <errorConditionFormula>OR(
+ ISPICKVAL(Story_Type__c, &quot;System Enhancement&quot;),
+ ISPICKVAL(Story_Type__c, &quot;Process Enhancement&quot;)
+) &amp;&amp;
+
+(
+ISPICKVAL(Status__c, &quot;Approved&quot;) ||
+ISPICKVAL(Status__c, &quot;Committed&quot;) ||
+ISPICKVAL(Status__c, &quot;Testable&quot;) ||
+ISPICKVAL(Status__c, &quot;Ready to Deploy&quot;) ||
+ISPICKVAL(Status__c, &quot;Deployed&quot;) ||
+ISPICKVAL(Status__c, &quot;Completed&quot;) 
+) &amp;&amp;
+
+(
+ISBLANK(TEXT(Business_Value__c)) ||
+ISNULL(Affected_Groups__c) ||
+LEN(Acceptance_Criteria__c) = 0 ||
+ISBLANK(TEXT(Priority__c))
+)</errorConditionFormula>
+    <errorMessage>Stories in the stage of Accepted or higher require the following fields: Priority, Business Value, Acceptance Criteria, and Affected Groups</errorMessage>
+</ValidationRule>

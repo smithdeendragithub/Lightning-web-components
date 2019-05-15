@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Previous_Proactive_Activity__c</fullName>
+    <description>Account Review Visit or Account Review Virtual the next Activity to display needs to = Contact. If previous Proactive Type &amp; Case Origin = Call In, Call Out or Email the next Activity to display needs to = Account Review).</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Account Review Visit or Account Review Virtual the next Activity to display needs to = Contact. If previous Proactive Type &amp; Case Origin = Call In, Call Out or Email the next Activity to display needs to = Account Review).</inlineHelpText>
+    <label>Previous Proactive Activity</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Review</fullName>
+                <default>false</default>
+                <label>Account Review</label>
+            </value>
+            <value>
+                <fullName>Contact</fullName>
+                <default>false</default>
+                <label>Contact</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,126 @@
+<apex:component controller="ProposalGenericController" >
+  <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+<apex:outputPanel layout="none" id="pepe" >
+<table width="700" border="0" cellspacing="0" cellpadding="0" id="911_Form" class="mainTable standardBackground">
+    <tr>
+        <td>
+            <table width="700" border="0" cellspacing="0" cellpadding="0" > 
+                <tr>
+                   <td width="500px"><div class="mainTitle">&nbsp;<br /></div></td>
+                    <td>
+                        <table align="left" width="200px" class="topRightSmall" border="0" cellspacing="0" cellpadding="0">
+                        <tr><td>&nbsp;</td></tr>
+                            <tr><td>&nbsp;</td></tr>
+                            <tr><td>{!integraDecisionMaker.Street}</td></tr>
+                            <tr><td>{!integraDecisionMaker.CityStateZip}</td></tr>
+                            <tr><td>(P) {!integraDecisionMaker.Phone}</td></tr>
+                            <tr><td>(F) {!integraDecisionMaker.Fax}</td></tr>
+                            <tr><td><a href="mailto:{!integraDecisionMaker.Email}" target="_parent">{!integraDecisionMaker.Email}</a></td></tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+                <tr>
+                      <td height="6px"></td>
+              </tr>
+                <tr><td colspan="2" class="subTitle" align="center">VoIP over Internet Disclaimer </td></tr>
+                <tr><td colspan="2" class="subTitle" align="center">VoIP Using Unmanaged Internet   <br/></td></tr>
+                <tr>
+                <td colspan="2" height="6px"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">The purpose of this document is to ensure that our customers clearly understand and acknowledge the technical and operational issues that may apply as a result of implementing Voice over Internet Protocol (VoIP) technology over the public Internet to support remote offices, work at home employees and mobile workers.</td>
+                </tr>
+                <tr>
+                <td colspan="2" height="6px"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><strong>VoIP works when designed correctly</strong></td>
+                </tr>
+                <tr>
+                <td colspan="2" height="6px"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="textBlock-8pt">Integra has implemented many VoIP communication systems and the voice quality provided with this technology can meet or exceed the highest expectations of today’s businesses when designed over a managed private VPN connection. However, there has been a great deal of confusion about how to deploy the technology properly. Integra wants to set the correct expectation with our customers and offer a strong word of caution when VoIP over an unmanaged Internet connection is considered in business mission critical situations.</td>
+                </tr>
+                <tr>
+                     <td height="8px"></td>
+                </tr>
+                <tr>
+                	<td colspan="2" align="center"><strong>VoIP Voice Quality over an unmanaged Public Internet connection</strong></td>
+                </tr>
+                <tr>
+                     <td height="8px"></td>
+                </tr>
+                <tr>
+                	<td colspan="2" class="textBlock-8pt">There are several potential technical and service factors that can negatively impact the voice quality in VoIP system implementations when using unmanaged bandwidth over Public Internet connections, Latency, Jitter, and Packet loss. An Unmanaged Public Internet connection does not provide;</td>
+                </tr>
+                <tr>
+                     <td height="8px"></td>
+                </tr>
+                <tr>
+                	<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1)           a Service Level Agreement (SLA) guaranteeing a specific minimum bandwidth amount  required to cover the Voice and Data needs as determined </td>
+                </tr>
+                <tr>
+                     <td height="8px"></td>
+                </tr>
+                <tr>
+                	<td colspan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)           a SLA for Voice Packet tagging and prioritizing of these packets to assure Quality of  Service(QOS) for Voice.</td>
+                </tr>
+                <tr>
+                     <td height="8px"></td>
+                </tr>
+                <tr>
+                	<td colspan="2">Many Internet carriers will provide some network specifications such as average delay and uptime, but they do not guarantee that a specific amount of bandwidth will always be available from end to end on their network. These network connections may include all types of Internet connections including but not limited to dedicated T-1 Internet Access, DSL Internet Access, Cable Modem Internet Access, Wireless Internet Access, and dial-up connections. Wireless LAN/WAN connections are also considered unmanaged.</td>
+                </tr>
+                <tr>
+                     <td height="8px"></td>
+                </tr>
+                <tr>
+                	<td colspan="2">While there are instances where VoIP applications have been successfully implemented over unmanaged bandwidth connections, it is strongly discouraged for use in any business-critical VoIP application due to the elements that are beyond everyone’s control.</td>
+                </tr>
+                <tr>
+                     <td height="8px"></td>
+                </tr>
+                <tr>
+                	<td colspan="2">As a result of the aforementioned issues, Integra cannot guarantee the quality of VoIP applications deployed over unmanaged networks. In the event that Customer elects to utilize the Public Internet for voice transport, Integra shall not be held liable for any loss of service resulting from poor network conditions. In addition, any technical support required to assist troubleshooting and resolving technical issues pertaining to Customer’s use of the Public Internet will be billed at Integra’s standard hourly labor rate. Furthermore, Customer understands that the signed Integra Purchase Agreement for all equipment and services will remain binding regardless of VoIP quality in an unmanaged network.</td>
+                </tr>
+                <tr>
+                	<td>* as identified in Master Service Agreement.</td>
+                </tr>
+                <tr>
+                     <td height="8px"></td>
+                </tr>
+            </table></td> 
+    </tr>
+    <tr>
+      <td><table width="700" border="0" cellspacing="0" cellpadding="0" class="avoidBreak">
+      <tr>
+            <td width="351" class="emptyRef highlightArea"><div class="docusignID">DS-SIG</div></td>
+            <td width="22">&nbsp;</td>
+            <td width="327" class="emptyRef highlightArea"><div class="docusignID">DS-DATE</div></td>
+          </tr>
+          <tr>
+            <td class="smallPrint">Authorized Customer Signature</td>
+            <td>&nbsp;</td>
+            <td class="smallPrint">Date</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+    
+  </apex:outputPanel>
+
+</apex:component>

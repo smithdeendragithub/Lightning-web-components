@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SplitOwnership</fullName>
+    <active>true</active>
+    <description>Split owners must be either a user or agency and require a split percentage to be set to a value between 0% and 100%.  Split percentages cannot be set when no owner is specified.</description>
+    <errorConditionFormula>((ISBLANK(Split_Owner__c) &amp;&amp; ISBLANK(Split_Owner_Agency__c)) != ISBLANK(Split_Owner_Percentage__c))
+|| (Split_Owner_Percentage__c &lt; 0.00)
+|| (Split_Owner_Percentage__c &gt; 1.00)
+|| (NOT(ISBLANK(Split_Owner__c)) &amp;&amp; NOT(ISBLANK(Split_Owner_Agency__c)))</errorConditionFormula>
+    <errorMessage>Split owners must be either a user or agency and require a split percentage to be set to a value between 0% and 100%.  Split percentages cannot be set when no owner is specified.</errorMessage>
+</ValidationRule>

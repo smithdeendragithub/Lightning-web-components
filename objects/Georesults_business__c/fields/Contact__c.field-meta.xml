@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact__c</fullName>
+    <description>Complete name of the primary contact at this business location.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Complete name of the primary contact at this business location.</inlineHelpText>
+    <label>Contact Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

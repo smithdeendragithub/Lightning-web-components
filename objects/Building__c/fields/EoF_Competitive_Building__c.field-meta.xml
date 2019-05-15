@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EoF_Competitive_Building__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Building_Type__c, 
+&quot;Data Center&quot;,1, 
+&quot;Integra Switch/Hub&quot;,1, 
+&quot;Carrier Hotel&quot;,1, 
+0) = 1
+||
+(ISPICKVAL(Building_Type__c,&#39;Commercial Building&#39;) &amp;&amp; ISPICKVAL(Net_Classification__c,&#39;On-net&#39;) &amp;&amp; CASE(Status__c,&#39;Active&#39;,1,&#39;Build Approved&#39;,1,&#39;Pending Build&#39;,1,0)=1) &amp;&amp; ( Competitive_10G_Active__c &gt; 0 || Competitive_10G_AutoAugment__c &gt; 0 || Competitive_10G_Pending__c &gt; 0 || Competitive_EoF_Active__c &gt; 0 || Competitive_EoF_AutoAugment__c &gt; 0 || Competitive_EoF_Pending__c &gt; 0 )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>EoF Competitive Building</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>nonPreferredAccess__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Temporary field to hold whether solution is using preferred building access type for all products in the solution. Visible to code only.</description>
+    <externalId>false</externalId>
+    <label>nonPreferredAccess</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

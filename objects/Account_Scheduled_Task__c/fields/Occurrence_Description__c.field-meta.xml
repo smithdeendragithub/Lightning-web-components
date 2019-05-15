@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Occurrence_Description__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(NOT(ISBLANK(TEXT(Occurrence_Category__c)))
+, &#39;Occurs &#39; + IF(Occurrence_SDotM__c &lt;= 0, &#39;&#39;, (&#39;on the &#39; + TEXT(Occurrence_SDotM__c) + CASE(Occurrence_SDotM__c, 1, &#39;st&#39;, 2, &#39;nd&#39;, 3, &#39;rd&#39;, &#39;th&#39;) + &#39; &#39;))
+	+ IF(NOT(ISBLANK(TEXT(Occurrence_Day_of_the_Week__c))), (&#39;on &#39; + IF(TEXT(Occurrence_Category__c) == &#39;Month&#39;, &#39;the &#39; + IF(ISBLANK(TEXT(Occurrence_Day_of_the_Week_Offset__c)), &#39;1st&#39;, LOWER(TEXT(Occurrence_Day_of_the_Week_Offset__c))) + &#39; &#39;, &#39;&#39;) + TEXT(Occurrence_Day_of_the_Week__c)) + &#39; &#39;, &#39;&#39;)
+	+ &#39;every &#39; + CASE(Occurrence_Frequency__c, 2, &#39;other &#39;, 1, &#39;&#39;, (TEXT(Occurrence_Frequency__c) + &#39; &#39;)) + LOWER(TEXT(Occurrence_Category__c)) + CASE(Occurrence_Frequency__c, 1, &#39;&#39;, 2, &#39;&#39;, &#39;s&#39;)
+, &#39;&#39;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Occurrence Description</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

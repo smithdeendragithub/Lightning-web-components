@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hardware_Type_2__c</fullName>
+    <externalId>false</externalId>
+    <label>Hardware Type (2)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Accedian - AMN-1000-TE NID (AC)       Part#: 716-000</fullName>
+                <default>false</default>
+                <label>Accedian - AMN-1000-TE NID (AC)       Part#: 716-000</label>
+            </value>
+            <value>
+                <fullName>Accedian - AMN-1000-TE NID (DC)       Part#: 716-009</fullName>
+                <default>false</default>
+                <label>Accedian - AMN-1000-TE NID (DC)       Part#: 716-009</label>
+            </value>
+            <value>
+                <fullName>Accedian - Metro-Node (DC)            Part#: 750-1011</fullName>
+                <default>false</default>
+                <label>Accedian - Metro-Node (DC)            Part#: 750-1011</label>
+            </value>
+            <value>
+                <fullName>Accedian - Metro-Node PS (AC)         Part#: 720-500</fullName>
+                <default>false</default>
+                <label>Accedian - Metro-Node PS (AC)         Part#: 720-500</label>
+            </value>
+            <value>
+                <fullName>Adtran - 3430 Part#: 1202820F1</fullName>
+                <default>false</default>
+                <label>Adtran - 3430 Part#: 1202820F1</label>
+            </value>
+            <value>
+                <fullName>Adtran - 4430          Part#: 1700630E1</fullName>
+                <default>false</default>
+                <label>Adtran - 4430          Part#: 1700630E1</label>
+            </value>
+            <value>
+                <fullName>Adtran - 5305          Part#: 4200990L1</fullName>
+                <default>false</default>
+                <label>Adtran - 5305          Part#: 4200990L1</label>
+            </value>
+            <value>
+                <fullName>Adtran - 814          Part#: 1200637G4</fullName>
+                <default>false</default>
+                <label>Adtran - 814          Part#: 1200637G4</label>
+            </value>
+            <value>
+                <fullName>Adtran - 818          Part#: 4200637G2 (W/ AC Power Supply)</fullName>
+                <default>false</default>
+                <label>Adtran - 818          Part#: 4200637G2 (W/ AC Power Supply)</label>
+            </value>
+            <value>
+                <fullName>Adtran - 834T         Part#: 1172834G1</fullName>
+                <default>false</default>
+                <label>Adtran - 834T         Part#: 1172834G1</label>
+            </value>
+            <value>
+                <fullName>Adtran - 838T         Part#: 1172838G1</fullName>
+                <default>false</default>
+                <label>Adtran - 838T         Part#: 1172838G1</label>
+            </value>
+            <value>
+                <fullName>Adtran - 873           Part#: 1200639G1</fullName>
+                <default>false</default>
+                <label>Adtran - 873           Part#: 1200639G1</label>
+            </value>
+            <value>
+                <fullName>Adtran - NetVanta 3140 Part# 4700341F2-100-INTG</fullName>
+                <default>false</default>
+                <label>Adtran - NetVanta 3140 Part# 4700341F2-100-INTG</label>
+            </value>
+            <value>
+                <fullName>Adtran - NetVanta 3140 Part# 4700341F2-25-INTGR</fullName>
+                <default>false</default>
+                <label>Adtran - NetVanta 3140 Part# 4700341F2-25-INTGR</label>
+            </value>
+            <value>
+                <fullName>Adtran - NetVanta 3140 Part# 4700341F2-300-INTG</fullName>
+                <default>false</default>
+                <label>Adtran - NetVanta 3140 Part# 4700341F2-300-INTG</label>
+            </value>
+            <value>
+                <fullName>Adtran - NetVanta 5660 Part# 17005660F1-INTGR</fullName>
+                <default>false</default>
+                <label>Adtran - NetVanta 5660 Part# 17005660F1-INTGR</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 1234  Part#: 1702595G1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 1234  Part#: 1702595G1</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 1238  Part#: 1700598G1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 1238  Part#: 1700598G1</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 1238   Part#: 1700599G1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 1238   Part#: 1700599G1</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 1531P  Part#: 1700571F1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 1531P  Part#: 1700571F1</label>
+            </value>
+            <value>
+                <fullName>Adtran -  PoE - 1534  Part#: 1700591G1</fullName>
+                <default>false</default>
+                <label>Adtran -  PoE - 1534  Part#: 1700591G1</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 1544 Part#: 1702544G1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 1544 Part#: 1702544G1</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 1550-24P      Part#: 17101524PF1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 1550-24P      Part#: 17101524PF1</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 1550-48P      Part#: 17101548PF1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 1550-48P      Part#: 17101548PF1</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 1638  Part#: 4700569F1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 1638  Part#: 4700569F1</label>
+            </value>
+            <value>
+                <fullName>Adtran - PoE - 6355   Part#: 1200740E1</fullName>
+                <default>false</default>
+                <label>Adtran - PoE - 6355   Part#: 1200740E1</label>
+            </value>
+            <value>
+                <fullName>Adtran - TA904         Part#: 4212904L1</fullName>
+                <default>false</default>
+                <label>Adtran - TA904         Part#: 4212904L1</label>
+            </value>
+            <value>
+                <fullName>Adtran - TA908E        Part#: 4242908L1</fullName>
+                <default>false</default>
+                <label>Adtran - TA908E        Part#: 4242908L1</label>
+            </value>
+            <value>
+                <fullName>Adtran - TA908         Part#: 4212908L1</fullName>
+                <default>false</default>
+                <label>Adtran - TA908         Part#: 4212908L1</label>
+            </value>
+            <value>
+                <fullName>Adtran - TA916E        Part#: 4242916L1</fullName>
+                <default>false</default>
+                <label>Adtran - TA916E        Part#: 4242916L1</label>
+            </value>
+            <value>
+                <fullName>Adtran - TA916         Part#: 4212916L1</fullName>
+                <default>false</default>
+                <label>Adtran - TA916         Part#: 4212916L1</label>
+            </value>
+            <value>
+                <fullName>Adtran - TA924E Part#: 4242924L1</fullName>
+                <default>false</default>
+                <label>Adtran - TA924E Part#: 4242924L1</label>
+            </value>
+            <value>
+                <fullName>Adtran - TA924 Part#: 4212924L1</fullName>
+                <default>false</default>
+                <label>Adtran - TA924 Part#: 4212924L1</label>
+            </value>
+            <value>
+                <fullName>Ciena - 3916 (AC) Part#: CSMN-IN1601</fullName>
+                <default>false</default>
+                <label>Ciena - 3916 (AC) Part#: CSMN-IN1601</label>
+            </value>
+            <value>
+                <fullName>Ciena - 3916 (DC) Part#: CSMN-ZA1604</fullName>
+                <default>false</default>
+                <label>Ciena - 3916 (DC) Part#: CSMN-ZA1604</label>
+            </value>
+            <value>
+                <fullName>Ciena SFP -XCVR-A00CRJ (RJ45)</fullName>
+                <default>false</default>
+                <label>Ciena SFP -XCVR-A00CRJ (RJ45)</label>
+            </value>
+            <value>
+                <fullName>Ciena SFP -XCVR-A00G85 (850nm, MMF)</fullName>
+                <default>false</default>
+                <label>Ciena SFP -XCVR-A00G85 (850nm, MMF)</label>
+            </value>
+            <value>
+                <fullName>Ciena SFP -XCVR-A10Y31 (1310nm, SMF)</fullName>
+                <default>false</default>
+                <label>Ciena SFP -XCVR-A10Y31 (1310nm, SMF)</label>
+            </value>
+            <value>
+                <fullName>Ciena SFP -XCVR-B00CRJ</fullName>
+                <default>false</default>
+                <label>Ciena SFP -XCVR-B00CRJ</label>
+            </value>
+            <value>
+                <fullName>Ciena SFP -XCVR-B00G85 (RJ45)</fullName>
+                <default>false</default>
+                <label>Ciena SFP -XCVR-B00G85 (RJ45)</label>
+            </value>
+            <value>
+                <fullName>Cisco - 1921           Part#: CISCO1921/K9</fullName>
+                <default>false</default>
+                <label>Cisco - 1921           Part#: CISCO1921/K9</label>
+            </value>
+            <value>
+                <fullName>Cisco - 1941           Part#: CISCO 1941/K9</fullName>
+                <default>false</default>
+                <label>Cisco - 1941           Part#: CISCO 1941/K9</label>
+            </value>
+            <value>
+                <fullName>Cisco - 2911           Part#: CISCO 2911/k9</fullName>
+                <default>false</default>
+                <label>Cisco - 2911           Part#: CISCO 2911/k9</label>
+            </value>
+            <value>
+                <fullName>Cisco - 2951           Part#: CISCO 2951/K9</fullName>
+                <default>false</default>
+                <label>Cisco - 2951           Part#: CISCO 2951/K9</label>
+            </value>
+            <value>
+                <fullName>Cisco - 3925E          Part#: CISCO 3925E/K9</fullName>
+                <default>false</default>
+                <label>Cisco - 3925E          Part#: CISCO 3925E/K9</label>
+            </value>
+            <value>
+                <fullName>Cisco - 3925           Part#: CISCO 3925/K9</fullName>
+                <default>false</default>
+                <label>Cisco - 3925           Part#: CISCO 3925/K9</label>
+            </value>
+            <value>
+                <fullName>Cisco - ME-3400G-2CS-A</fullName>
+                <default>false</default>
+                <label>Cisco - ME-3400G-2CS-A</label>
+            </value>
+            <value>
+                <fullName>Cisco - Security License f/o   Part: SL-29-SEC-K9</fullName>
+                <default>false</default>
+                <label>Cisco - Security License f/o   Part: SL-29-SEC-K9</label>
+            </value>
+            <value>
+                <fullName>Cisco - SPA112 Part#: SPA112</fullName>
+                <default>false</default>
+                <label>Cisco - SPA112 Part#: SPA112</label>
+            </value>
+            <value>
+                <fullName>Generic - 1000BASE-LX SFP, 1310 NM, SM, LC</fullName>
+                <default>false</default>
+                <label>Generic - 1000BASE-LX SFP, 1310 NM, SM, LC</label>
+            </value>
+            <value>
+                <fullName>Generic - 1000BASE-SX SFP, 850 NM, MM, LC</fullName>
+                <default>false</default>
+                <label>Generic - 1000BASE-SX SFP, 850 NM, MM, LC</label>
+            </value>
+            <value>
+                <fullName>Generic - 1000BASE-TX SFP, COPPER, RJ45</fullName>
+                <default>false</default>
+                <label>Generic - 1000BASE-TX SFP, COPPER, RJ45</label>
+            </value>
+            <value>
+                <fullName>Generic - 10GBASE-ER SFP+, 1550 NM, SM, LC</fullName>
+                <default>false</default>
+                <label>Generic - 10GBASE-ER SFP+, 1550 NM, SM, LC</label>
+            </value>
+            <value>
+                <fullName>Generic - 10GBASE-LR SFP+, 1310 NM, SM, LC</fullName>
+                <default>false</default>
+                <label>Generic - 10GBASE-LR SFP+, 1310 NM, SM, LC</label>
+            </value>
+            <value>
+                <fullName>Generic - 10GBASE-SR SFP+, 850 NM, MM, LC</fullName>
+                <default>false</default>
+                <label>Generic - 10GBASE-SR SFP+, 850 NM, MM, LC</label>
+            </value>
+            <value>
+                <fullName>Generic Electrical SFP</fullName>
+                <default>false</default>
+                <label>Generic Electrical SFP</label>
+            </value>
+            <value>
+                <fullName>Generic Multi Mode SFP</fullName>
+                <default>false</default>
+                <label>Generic Multi Mode SFP</label>
+            </value>
+            <value>
+                <fullName>Generic Single Mode SFP</fullName>
+                <default>false</default>
+                <label>Generic Single Mode SFP</label>
+            </value>
+            <value>
+                <fullName>Hatteras - 4000cp - EoC Demarcation Switch (Ports 17-40)  PART#:HN4000-CP</fullName>
+                <default>false</default>
+                <label>Hatteras - 4000cp - EoC Demarcation Switch (Ports 17-40)  PART#:HN4000-CP</label>
+            </value>
+            <value>
+                <fullName>Hatteras - HN404      Part#: HN404-CP-1E</fullName>
+                <default>false</default>
+                <label>Hatteras - HN404      Part#: HN404-CP-1E</label>
+            </value>
+            <value>
+                <fullName>Hatteras - HN408      Part#: HN408-CP-1E</fullName>
+                <default>false</default>
+                <label>Hatteras - HN408      Part#: HN408-CP-1E</label>
+            </value>
+            <value>
+                <fullName>Hatteras - HN444      Part#: HN444-CP-4E</fullName>
+                <default>false</default>
+                <label>Hatteras - HN444      Part#: HN444-CP-4E</label>
+            </value>
+            <value>
+                <fullName>Hatteras - HN448      Part#: HN448-CP-4E</fullName>
+                <default>false</default>
+                <label>Hatteras - HN448      Part#: HN448-CP-4E</label>
+            </value>
+            <value>
+                <fullName>Minute MAN UPS -UPS Part#:ETR500</fullName>
+                <default>false</default>
+                <label>Minute MAN UPS -UPS Part#:ETR500</label>
+            </value>
+            <value>
+                <fullName>OSI - 1000BASE-LX/LH SFP, 1310nm, SM Part#: SFP-GE-L-ST</fullName>
+                <default>false</default>
+                <label>OSI - 1000BASE-LX/LH SFP, 1310nm, SM Part#: SFP-GE-L-ST</label>
+            </value>
+            <value>
+                <fullName>OSI - 1000BASE-SX SFP, 850nm, MM      Part#: SFP-GE-S-ST</fullName>
+                <default>false</default>
+                <label>OSI - 1000BASE-SX SFP, 850nm, MM      Part#: SFP-GE-S-ST</label>
+            </value>
+            <value>
+                <fullName>OSI - 1000BASE-T SFP, RJ-45      Part#: SFP-GE-T-ST</fullName>
+                <default>false</default>
+                <label>OSI - 1000BASE-T SFP, RJ-45      Part#: SFP-GE-T-ST</label>
+            </value>
+            <value>
+                <fullName>Customer Provided POE</fullName>
+                <default>false</default>
+                <label>Customer Provided POE</label>
+            </value>
+            <value>
+                <fullName>Adtran - 3430          Part#: 1202820G1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Adtran - 3430          Part#: 1202820G1</label>
+            </value>
+            <value>
+                <fullName>Ciena - 3916 (AC)                     Part#: 170-3916-900</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ciena - 3916 (AC)                     Part#: 170-3916-900</label>
+            </value>
+            <value>
+                <fullName>Ciena - 3916 (DC)                     Part#: 170-3916-901</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ciena - 3916 (DC)                     Part#: 170-3916-901</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

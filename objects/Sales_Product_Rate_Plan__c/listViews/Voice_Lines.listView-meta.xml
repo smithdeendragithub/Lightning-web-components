@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Voice_Lines</fullName>
+    <columns>NAME</columns>
+    <columns>Sales_Product__c</columns>
+    <columns>Sales_Rate_Plan_Description__c</columns>
+    <columns>MinQty__c</columns>
+    <columns>MaxQty__c</columns>
+    <columns>Voice_Line__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Voice_Line__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Voice Lines</label>
+</ListView>

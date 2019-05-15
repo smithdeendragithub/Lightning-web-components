@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Wholesale_Opps_Require_Location</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(NOT(Opportunity__r.RecordType.Name = &quot;Wholesale&quot;),ISBLANK(Primary_Service_Location__c))
+&amp;&amp; NOT($Setup.Validation_Rule_Settings__c.Disable_Validation_Rules__c)</errorConditionFormula>
+    <errorMessage>A service location is required to save this opportunity product.</errorMessage>
+</ValidationRule>

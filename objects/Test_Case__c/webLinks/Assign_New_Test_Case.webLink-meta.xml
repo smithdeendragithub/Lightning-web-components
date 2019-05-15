@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assign_New_Test_Case</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Assign New Test Case</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>/a11/e?
+RecordType=0121A000000IA6s
+&amp;CF00N1A000006dcda_lkid={!Story__c.Id}
+&amp;CF00N1A000006dcda={!Story__c.Name}
+&amp;ent=01I1A000000ubd2
+&amp;retURL= 
+{!Story__c.Id}</url>
+</WebLink>

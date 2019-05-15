@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Frequency__c</fullName>
+    <defaultValue>&quot;D&quot;</defaultValue>
+    <description>Enter the default email frequency for new users</description>
+    <externalId>false</externalId>
+    <inlineHelpText>P - Email on every post
+D - Daily digests
+W - Weekly digests
+N - Limited</inlineHelpText>
+    <label>Email Frequency</label>
+    <length>1</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

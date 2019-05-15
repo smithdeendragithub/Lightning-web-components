@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Legacy_Test_Activation_Workstep</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Legacy-Test &amp; Activation</label>
+    <queue>Legacy_Test_Activation</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

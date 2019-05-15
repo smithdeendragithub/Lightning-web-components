@@ -1,0 +1,444 @@
+<apex:page standardController="Account" extensions="AccountExtensionController" lightningStylesheets="true">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" />
+    <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_10_3_custom, 'css/redmond/jquery-ui-1.10.3.custom.min.css')}"/>
+
+    <script>function setFocusOnLoad() {}</script>
+    <style>
+        div.hoverdiv{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+        
+        div.hoverdiv:hover{
+            opacity: 0;
+        }
+        
+        .helpText{
+            width:auto;
+        }
+    </style>
+    <apex:outputPanel id="out">
+        <!--<script>
+            var integrationOnlyOrderGenerated = {!integrationOnlyOrderGenerated};
+        </script>-->
+        <apex:pageMessages escape="false"/>
+        <input id="oppGenURL" value="{!oppCreatePageURL}" type="hidden" />
+        <div class="hoverdiv">
+            <apex:repeat value="{!customErrorMessages}" var="msg">
+                <apex:pageMessage summary="{!msg}" severity="error" strength="1"/>
+            </apex:repeat>
+            <apex:repeat value="{!customInfoMessages}" var="msg">
+                <apex:pageMessage summary="{!msg}" severity="info" strength="1"/>
+            </apex:repeat>
+        </div>
+    </apex:outputPanel>
+    <div class="detailContainer" style="display:none">
+    <apex:detail id="account_detail" subject="{!account.Id}" inlineEdit="true" showChatter="true">
+        <apex:form id="account_detail_frm">
+            <apex:commandButton value="Customer Details" id="details_customButton" onclick="window.open('../{!detail.Id}')" rendered="{!NOT(ISNULL(detail))}"/>
+            <apex:commandButton value="Reset to Prospect" id="reactivateAcct_customButton" action="{!reactivateAccount}" rendered="{!canReactivate != 0}" disabled="{!canReactivate == -1}" title="{!IF(canReactivate == -1, 'Active Service Locations exist on this Account.', '')}" rerender="out"/>
+            <apex:commandButton value="Create Non-Billable Parent" id="createNBP_customButton" onclick="createNonBillableParentClicked()" rendered="{!canCreateNonBillableParent && hasAddressForMatchingLoc}"/>
+            <apex:commandButton value="Auto Create Opportunity" id="autoCreateOpp_customButton" onclick="sendToOpportunityGenPage_Click(); return false;" rendered="{!isPriorLake && !isAgency && ISNULL(account.ICC_Account_Number__c)}"/>
+            <apex:commandButton value="Create Subscriber Shell" id="createHierarchy_customButton" onclick="window.open('../apex/CustomerIntegration?id={!account.Id}', '_self', false)" rendered="{!canCreateHierarchy}" />
+            <!--<apex:commandButton value="Integrate ICC Orders" id="integrateICCOrders_customButton" onclick="window.open('/apex/OrderManagement?accountid={!account.Id}')" rendered="{!NOT(ISNULL(account.ICC_Account_Number__c))}"/>-->
+        </apex:form>
+        
+        <apex:form id="frm_customerDetails" rendered="{!NOT(isAgency)}">
+            <apex:commandButton value="Generate Details" onclick="openModalWaitDialog('Generating details'); doGenerateDetails(); return false;" rendered="{!ISNULL(detail) && isGenerateDetailsVisible}" disabled="{!NOT(canEdit)}"/>
+            <apex:actionFunction name="doGenerateDetails" action="{!generateDetails}" rerender="frm_customerDetails, out" oncomplete="closeModalWaitDialog();"/>
+            <apex:outputpanel rendered="{!NOT(ISNULL(detail))}">
+                <table class="detailList" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="labelCol">Name</td>
+                            <td class="dataCol col02">
+                                <c:HoverLink sObjectId="{!detail.id}" text="{!detail.name}"/>
+                            </td>
+                            <td class="labelCol">Service Location</td>
+                            <td class="dataCol">
+                                <apex:outputText value="" rendered="{!detail.Service_Locations__r.size == 0}"/>
+                                <c:HoverLink sObjectId="{!detail.Service_Locations__r[0].Id}" text="{!detail.Service_Locations__r[0].Name}" rendered="{!NOT(ISNULL(detail.Service_Locations__r)) && detail.Service_Locations__r.size > 0}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labelCol">Bill Cycle</td>
+                            <td class="dataCol col02">{!detail.Bill_Cycle__r.Name}</td>
+                            <td class="labelCol">Collection Code</td>
+                            <td class="dataCol">{!detail.Collection_Code__r.Name}</td>
+                        </tr>
+                        <tr>
+                            <td class="labelCol">Exchange</td>
+                            <td class="dataCol col02">{!detail.Exchange__r.Name}</td>
+                            <td class="labelCol">Market Type</td>
+                            <td class="dataCol">{!detail.Market_Type__r.Name}</td>
+                        </tr>
+                        <!--<tr>
+                            <td class="labelCol">Government Contract Type</td>
+                            <td class="dataCol col02">
+                                <apex:selectList value="{!detail.Government_Contract_Type__c}" multiselect="false" size="1" disabled="{!NOT(canEdit)}">
+                                    <apex:selectOptions value="{!GovernmentContractTypes}"/>
+                                </apex:selectList>
+                            </td>
+                            <td class="labelCol">Government Segment</td>
+                            <td class="dataCol">
+                                <apex:selectList value="{!detail.Government_Segment__c}" multiselect="false" size="1" disabled="{!NOT(canEdit)}">
+                                    <apex:selectOptions value="{!GovernmentSegments}"/>
+                                </apex:selectList>
+                            </td>
+                        </tr>-->
+                        <tr>
+                            <td class="labelCol">Responsible Party</td>
+                            <td class="dataCol col02">
+                                <apex:outputText value="" rendered="{!detail.Customer_Contacts__r.size == 0}"/>
+                                <c:HoverLink sObjectId="{!detail.Customer_Contacts__r[0].Contact__c}" text="{!detail.Customer_Contacts__r[0].Contact__r.Name}" rendered="{!NOT(ISNULL(detail.Customer_Contacts__r)) && detail.Customer_Contacts__r.size > 0}"/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!--<br/>
+                <apex:commandButton value="Update Details" onclick="openModalWaitDialog('Updating details'); doUpdateDetails(); return false;" disabled="{!NOT(canEdit)}"/>
+                <apex:actionFunction name="doUpdateDetails" action="{!updateDetails}" rerender="out" oncomplete="closeModalWaitDialog();"/>-->
+            </apex:outputpanel>
+        </apex:form>
+        <apex:form id="frm_AccountTeam">
+            <apex:pageBlock id="pb_AccountTeam">
+                <apex:pageBlockSection title="Active" id="pbs_AccountTeamMembers" columns="1">
+                    <apex:outputpanel id="dtAccountTeamMembers_panel">
+                        <apex:outputText rendered="{!activeTeamMembers.size == 0}">There are no active account team members</apex:outputText>
+                        <apex:dataTable id="dtAccountTeamMembers" value="{!activeTeamMembers}" var="atm" rendered="{!activeTeamMembers.size > 0}"
+                                cellspacing="0" cellpadding="0" border="0" styleClass="list" headerClass="headerRow">
+                            <apex:column style="width: 1%;" rendered="{!accountTeamPrivLevel == 2}">
+                                <apex:facet name="header"><input id="cbAccountTeamMember" type="checkbox" value="false" onclick="selectAllToggled(this)"/></apex:facet>
+                                <apex:outputText escape="false" rendered="{!NOT(readOnlyTeamMembers[atm.Id])}">
+                                    <input elemID="{!atm.id}" selectAllCheckboxID="cbAccountTeamMember" type="checkbox" value="false" class="tableCheckbox" onclick="checkboxToggled(this)"/>
+                                </apex:outputText>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">User</apex:facet>
+                                <apex:outputLink value="../{!atm.UserId}">
+                                    <apex:outputField value="{!atm.UserId}"/>
+                                </apex:outputLink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">Role</apex:facet>
+                                <apex:outputText value="{!atm.TeamMemberRole}"/>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">Account Access</apex:facet>
+                                <apex:outputField value="{!activeAccountTeamShares[atm.UserId].AccountAccessLevel}" rendered="{!account.OwnerId == atm.UserId || accountTeamPrivLevel != 2 || readOnlyTeamMembers[atm.Id]}"/>
+                                <apex:inputField value="{!activeAccountTeamShares[atm.UserId].AccountAccessLevel}" required="false" rendered="{!account.OwnerId != atm.UserId && accountTeamPrivLevel == 2 && NOT(readOnlyTeamMembers[atm.Id])}"/>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">Opportunity Access</apex:facet>
+                                <apex:outputField value="{!activeAccountTeamShares[atm.UserId].OpportunityAccessLevel}" rendered="{!account.OwnerId == atm.UserId || accountTeamPrivLevel != 2 || readOnlyTeamMembers[atm.Id]}"/>
+                                <apex:inputField value="{!activeAccountTeamShares[atm.UserId].OpportunityAccessLevel}" required="false" rendered="{!account.OwnerId != atm.UserId && accountTeamPrivLevel == 2 && NOT(readOnlyTeamMembers[atm.Id])}"/>
+                            </apex:column>
+                            <!-- <apex:column >
+                                <apex:facet name="header">Case Access</apex:facet>
+                                <apex:outputField value="{!activeAccountTeamShares[atm.UserId].CaseAccessLevel}" rendered="{!account.OwnerId == atm.UserId || accountTeamPrivLevel != 2 || readOnlyTeamMembers[atm.Id]}"/>
+                                <apex:inputField value="{!activeAccountTeamShares[atm.UserId].CaseAccessLevel}" required="false" rendered="{!account.OwnerId != atm.UserId && accountTeamPrivLevel == 2 && NOT(readOnlyTeamMembers[atm.Id])}"/>
+                            </apex:column> -->
+                            <apex:column >
+                                <apex:facet name="header">Last Modified Date</apex:facet>
+                                <apex:outputField value="{!atm.LastModifiedDate}"/>
+                            </apex:column>
+                            <apex:facet name="footer">
+                                <apex:outputPanel >
+                                    <apex:commandButton value="Update Access" onclick="doUpdateAccountSharing(gatherSelection('dtAccountTeamMembers')); return false;" rendered="{!accountTeamPrivLevel == 2}"/>
+                                    <apex:commandButton value="Remove Selected" onclick="doRemoveAccountTeamMembers(gatherSelection('dtAccountTeamMembers')); return false;" rendered="{!accountTeamPrivLevel == 2}"/>
+                                </apex:outputPanel>
+                            </apex:facet>
+                        </apex:dataTable>
+                    </apex:outputpanel>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection title="New Team Member" collapsible="false" columns="2" rendered="{!NOT(ISNULL(newTeamMember)) && accountTeamPrivLevel > 0}">
+                    <apex:inputField label="User" required="false" value="{!newTeamMember.UserId}"/>
+                    <apex:selectList label="Role" value="{!newTeamMember.TeamMemberRole}" multiselect="false" size="1">
+                        <apex:selectOptions value="{!teamMemberRoles}"/>
+                    </apex:selectList>
+                    <apex:inputField label="Account Access" required="false" value="{!newTeamMemberShare.AccountAccessLevel}" rendered="{!accountTeamPrivLevel == 2}"/>
+                    <apex:inputField label="Opportunity Access" required="false" value="{!newTeamMemberShare.OpportunityAccessLevel}" rendered="{!accountTeamPrivLevel == 2}"/>
+                    <!-- <apex:inputField label="Case Access" value="{!newTeamMemberShare.OpportunityAccessLevel}" rendered="{!accountTeamPrivLevel == 2}"/> -->
+                    <apex:commandButton value="Add New Team Member" onclick="doAddAccountTeamMember(); return false;"/>
+                    <!--<apex:commandButton value="Add Default Team Members" onclick="doAddDefaultAccountTeamMembers(); return false;"/>-->
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+            <apex:actionFunction name="doAddAccountTeamMember" action="{!addAccountTeamMember}" rerender="out, dtAccountTeamMembers_panel"/>
+            <!--<apex:actionFunction name="doAddDefaultAccountTeamMembers" action="{!addDefaultAccountTeamMembers}" rerender="out, dtAccountTeamMembers_panel"/>-->
+            <apex:actionFunction name="doRemoveAccountTeamMembers" action="{!removeAccountTeamMembers}" rerender="out, dtAccountTeamMembers_panel">
+                <apex:param name="atmIDs" value=""/>
+            </apex:actionFunction>
+            <apex:actionFunction name="doUpdateAccountSharing" action="{!updateAccountSharing}" rerender="out, dtAccountTeamMembers_panel">
+                <apex:param name="atmIDs" value=""/>
+            </apex:actionFunction>
+        </apex:form>
+        <script type="text/javascript">
+            //Hide the ownership "Change" button so the user goes to Account Transfer instead
+            /*jQuery('div.bDetailBlock').children('div.pbBody').find('table').find('a').each(function(){
+                    if(jQuery(this).html() == '[Change]')
+                        jQuery(this).css('visibility', 'hidden');
+                });*/
+            jQuery('.detailContainer').attr('style', 'display:block');
+        </script>
+        <c:ApexDetailExtension formID="account_detail_frm" onLoad="bindAccountControls();"/>
+    </apex:detail>
+    </div>
+    <apex:form >
+        <apex:actionFunction name="reactivateAccount" action="{!reactivateAccount}"/>
+        <apex:actionFunction name="createNonBillableParent" action="{!createNonBillableParent}" rerender="out" oncomplete="closeModalWaitDialog();"/>
+        <apex:actionFunction name="createNonBillableParentAndLocation" action="{!createNonBillableParentAndLocation}" rerender="out, redirectURL" oncomplete="closeModalWaitDialog();">
+            <apex:param name="formattedAddress" value=""/>
+            <apex:param name="streetNumber" value="" />
+            <apex:param name="street" value="" />
+            <apex:param name="suite" value="" />
+            <apex:param name="city" value="" />
+            <apex:param name="state" value="" />
+            <apex:param name="postalCode" value="" />
+            <apex:param name="latitude" value=""/>
+            <apex:param name="longitude" value=""/>
+        </apex:actionFunction>
+        <!--<apex:actionFunction name="createHierarchy" action="{!CreateHierarchy}" rerender="out, redirectURL" oncomplete="redirectAfterHierarchyCreation();"/>
+        <apex:actionFunction name="validateAddressesAndRedirectToOppIntegrationPage" action="{!ValidateAddressesAndRedirectToOppIntegrationPage}" rerender="out, redirectURL" oncomplete="closeModalDialog();" />-->
+        <apex:actionFunction name="sendToOpportunityGenPage" action="{!VerifyContactsAndRedirectToOppGen}" rerender="out, redirectURL" oncomplete="redirectToOppGen();"/>
+        
+        <!-- TreeView -->
+        <c:CustomerHierarchy />
+        <apex:actionFunction name="doAsynchLoad" action="{!loadNodes}" oncomplete="nodesLoaded(); return false;" rerender="jsTreeViewPanel, out">
+            <apex:param name="divID" value="" assignTo="{!loadMore_divID}"/>
+            <apex:param name="path" value="" assignTo="{!loadMore_path}"/>
+            <apex:param name="parentNodeId" value="" assignTo="{!loadMore_parentNodeId}"/>
+            <apex:param name="currentlyLoaded" value="" assignTo="{!loadMore_currentlyLoaded}"/>
+        </apex:actionFunction>
+        <apex:outputPanel id="jsTreeViewPanel">
+            <script type="text/javascript">
+                function nodesLoaded(){
+                    asynchLoadComplete({!IF(NOT(ISNULL(loadedNodes) || loadedNodes == ''), loadedNodes, "[]")});
+                }
+            </script>
+        </apex:outputPanel>
+        <script type="text/javascript">
+            jQuery(document).ready(function(){
+                loadHierarchyWindow();
+            });
+            function loadHierarchyWindow(){
+                var b = {!canLoadTree};
+                if (b == true){
+                    var t = {!AllJSONTrees};
+                    var a = {!ActionMappings};
+                    var i = {!IconMappings};
+                    registerMaps(a, i);
+                    loadTree('hierarchy', true, t['hierarchy']);
+                }
+                else{
+
+                    createHierarchyReportWindow('hierarchy', true, '{!account.Id}');
+                }   
+            }
+        </script>
+        <div id="hierarchy_block" style="display: none">
+            <h2 id="hierarchy_header">Integration Hierarchy</h2>
+            <div id="hierarchy" style="position:relative;"/> 
+        </div>
+    </apex:form>
+    <c:AddressParser addressGeocodedFunction="addressGeocoded"/>
+    <c:ModalWaitDialog />
+    <div id="modalConfirmDialog">
+        <div style="text-align:center;">
+            <span class="ui-icon ui-icon-alert" style="float:left;"></span><span id="messageText"></span><div style="clear:both;"></div>
+        </div>
+    </div>
+    <style type="text/css">
+        
+        div.customSection div.pbCustomSubheader{
+            color: white;
+            margin: 5px;
+        }
+        
+        div.savedSettings > div.pbSubsection{
+            max-height:400px;
+            overflow-y:auto;
+        }
+        
+    </style>
+
+    <script type="text/javascript">
+        var addressParseMode = '';
+        function bindAccountControls(){
+            var pbBody = jQuery('div.bDetailBlock').children('div.pbBody');
+            if(pbBody.length > 0){
+                if({!NOT(isAgency)}){
+                    createPageSection('customerDetails', 'Customer Details', pbBody, null);
+                    appendElement(jQuery('form[id$=frm_customerDetails]'), jQuery('div[id=customerDetails]'));
+                    createListHoverLink('customerDetailsHeader', 'Customer Details', pbBody);
+                }
+                
+                createPageSection('accountTeamMembers', 'Account Team Members', pbBody, null);
+                appendElement(jQuery('form[id$=frm_AccountTeam]'), jQuery('div[id=accountTeamMembers]'));
+                createListHoverLink('accountTeamMembersHeader', 'Account Team Members', pbBody);
+        
+                jQuery('div[id$=pb_AccountTeam]').find('div.pbSubheader').removeClass('pbSubheader').addClass('pbCustomSubheader');
+            }
+            
+            //Adjust custom help text labels to be bold
+            var sList = jQuery('img.helpOrb').siblings('script');
+            for(var idx = 0; sList.length > idx; ++idx){
+                var s = jQuery(sList[idx]);
+                var h = s.html();
+                if(h.indexOf(':|') != -1){
+                    while(h.indexOf(':|') != -1){ h = h.replace(':|', '<b>'); }
+                    while(h.indexOf('|:') != -1){ h = h.replace('|:', ':</b>'); }
+                    
+                    jQuery(s.parent).append('<' + 'script>' + h + '<' + '/script>');
+                    jQuery(s).remove();
+                }
+            }
+        }
+
+        jQuery(document).ready(function(){
+            jQuery('#modalConfirmDialog').dialog({
+                modal: true,
+                autoOpen: false,
+                show: { effect: "blind", duration: 100},
+                dialogClass: "no-close",
+                title: "Account Controller"
+            });
+            if(!{!hasWorkstepCreate}){
+                jQuery('input[name$=integrate_orders]').hide();     
+            }
+        });
+        
+        function createNonBillableParentClicked(){
+            addressParseMode = 'create_nbp';
+            openConfirmDialog('Do you want to create a non-billable parent for subscriber {!account.ICC_Account_Number__c}?', function success(){
+                closeConfirmDialog();
+                if(!needToParseAddress(true)){
+                    openModalWaitDialog('Creating Non-billable parent. Please wait...');
+                    createNonBillableParent();
+                }
+            }, function fail(){closeConfirmDialog();});
+        }
+        
+        function needToParseAddress(openDialog){
+            var address = '{!JSENCODE(addressToGeocode)}';
+            if(address != ''){
+                if (confirm("No service location matches this account's subscriber ID. A new location will be generated from the account's shipping address '" + address + ".'")) {
+                    if(openDialog)
+                        openModalWaitDialog('');
+                    geocodeAddress(address, addressGeocoded);
+                }
+                return true;
+            }
+            return false;
+        }
+        
+        function addressGeocoded(result){
+            if(!hasMinimumLocationRequirements(result)){
+                result.success = false;
+                result.error = 'Parsed address is not complete.';
+            }
+            
+            if(result.success){
+                if(addressParseMode == 'create_nbp'){
+                    createNonBillableParentAndLocation(result.formattedAddress
+                                                        ,result.streetNum
+                                                        ,result.route
+                                                        ,result.subPremise
+                                                        ,result.city
+                                                        ,result.adminArea1
+                                                        ,result.postalCode
+                                                        ,result.latitude
+                                                        ,result.longitude);
+                }
+                else{
+                    alert("callback function failed");
+                }
+            }
+            else{
+                alert("Failed to create service location to represent current account address '{!JSENCODE(addressToGeocode)}'");
+            }
+        }
+        
+        function sendToOpportunityGenPage_Click(){
+            openModalWaitDialog('Verifying requirements');
+            sendToOpportunityGenPage();
+        }
+        
+        /*function doCreateHierarchy(result){
+            openModalWaitDialog('Verifying requirements');
+            createHierarchy();
+        }
+        
+        function redirectAfterHierarchyCreation(){
+            if(integrationOnlyOrderGenerated != null && integrationOnlyOrderGenerated != 0){
+                validateAddressesAndRedirectToOppIntegrationPage();
+            }
+            else{
+                closeModalWaitDialog();
+            }
+        }*/
+        
+        function openConfirmDialog(confirmText, onSuccess, onFail){
+            if(onFail == undefined)
+                onFail = closeConfirmDialog();
+            jQuery('#messageText').text(confirmText);
+            jQuery('#modalConfirmDialog').dialog('option', 'buttons', [{text: "Yes", click: onSuccess}, {text: "No", click: onFail}]).dialog('open');
+        }
+        
+        function closeConfirmDialog(){
+            jQuery('#modalConfirmDialog').dialog('close');
+        }
+        
+        function redirectToOppGen(){
+            debugger;
+            var oppGenURL = jQuery('#oppGenURL').val();
+            if(oppGenURL != undefined && oppGenURL != null && oppGenURL != ''){
+                window.top.location = oppGenURL;
+            }
+            else
+                closeModalWaitDialog();
+        }
+        
+        function selectAllToggled(x){
+            var checkboxes = $('.tableCheckbox',$(x).closest('table'));
+            for(var idx = 0; idx < checkboxes.length; ++idx){
+                var checkbox = $(checkboxes[idx]);
+                var rowVisible = $(checkbox).closest('tr').is(':visible');
+                var cbVal = $(x).attr('checked');
+                var checked = cbVal != null && cbVal != undefined && cbVal.toLowerCase() == 'checked';
+                if(rowVisible)
+                {
+                    if(checked)
+                        checkbox.attr('checked', 'checked');
+                    else
+                        checkbox.removeAttr('checked'); 
+                    checkboxToggled(checkbox);
+                }
+            }
+        }
+        
+        function checkboxToggled(x){
+            var checked = $(x).attr('checked');
+            if(checked == null || checked == undefined){
+                var selectAllCheckboxID = '#' + $(x).attr('selectAllCheckboxID');
+                $(selectAllCheckboxID).removeAttr('checked');
+            }
+        }
+        
+        function gatherSelection(tID){
+            var t = jQuery('table[id$='+ tID + ']');
+            var selectedIDs = "";
+            if(t.length > 0){
+                var comma = "";
+                t.find('.tableCheckbox').each(function(idx, ele){
+                    if($(ele).attr('checked')){
+                        selectedIDs += comma + $(ele).attr('elemID');
+                        comma = ",";
+                    }
+                });
+            }
+            return selectedIDs;
+        }
+    </script>
+</apex:page>

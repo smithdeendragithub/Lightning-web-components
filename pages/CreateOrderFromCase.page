@@ -1,0 +1,53 @@
+<apex:page controller="CaseforOrderController">
+    <style>
+        .controlPanel td{
+            width:200px;
+        }
+        .controlPanel{
+            margin-top:20px;
+        }
+    </style>  
+     <apex:outputPanel id="out">
+        <apex:pageMessages escape="false" />
+    </apex:outputPanel>
+    
+    <apex:form id="infoForm">
+        <apex:pageblock title="Case Detail">
+            <apex:pageblocksection columns="3">
+                <apex:pageblocksectionitem rendered="{!currentCase.AccountId!=null}">
+                    <apex:outputlabel value="Account" />
+                    <apex:outputtext >
+                        <a href="{!URLFOR($Action.Account.View, currentCase.AccountId)}">{!currentCase.Account.Name}</a>
+                    </apex:outputtext>
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem >
+                    <apex:outputlabel value="Case" />
+                    <apex:outputtext >
+                        <a href="{!URLFOR($Action.Case.View, currentCase.Id)}">{!currentCase.CaseNumber}</a>
+                    </apex:outputtext>
+                </apex:pageblocksectionitem>
+
+                <apex:pageblocksectionitem rendered="{!currentCase.Order__c!=null && currentCase.Order__r.Name != null}">
+                    <apex:outputlabel value="Order" />                
+                    <apex:outputtext >
+                        <a href="{!URLFOR($Action.Order__c.View, currentCase.Order__c)}">{!currentCase.Order__r.Name}</a>
+                    </apex:outputtext>
+                </apex:pageblocksectionitem>
+                <apex:pageblocksectionitem rendered="{!currentCase.Order__c!=null && currentCase.Order__r.Name == null}">
+                    <apex:outputlabel value="Order" />                
+                    <apex:outputtext >
+                        <a href="{!URLFOR($Action.Order__c.View, currentCase.Order__c)}">New Order</a>
+                    </apex:outputtext>                    
+                </apex:pageblocksectionitem>
+                
+                
+            </apex:pageblocksection>
+            <apex:pageblocksection columns="2" html-style="height:100%; width:100%">
+                <apex:outputPanel >
+                    <apex:commandbutton id="btn_Save" value="Create Order" action="{!createOrder}"  rendered="{!canCreateOrder}" style="float:right"/>
+                </apex:outputPanel>
+            </apex:pageblocksection>            
+        </apex:pageblock>
+    </apex:form>   
+
+</apex:page>

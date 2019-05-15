@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Require_Resolution_Comments_when_Resolve</fullName>
+    <active>true</active>
+    <description>Require comments when resolved</description>
+    <errorConditionFormula>(ISPICKVAL(  Status__c  , &quot;Resolved&quot;)||
+ISPICKVAL(  Status__c  , &quot;Partial Disconnect&quot;)||
+ISPICKVAL(  Status__c  , &quot;Full Account Disconnect&quot;))
+&amp;&amp; ISBLANK(  Resolution_Comment__c  )</errorConditionFormula>
+    <errorDisplayField>Resolution_Comment__c</errorDisplayField>
+    <errorMessage>Resolution Comments are required when At Risk is resolved</errorMessage>
+</ValidationRule>

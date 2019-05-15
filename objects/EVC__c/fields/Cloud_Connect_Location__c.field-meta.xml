@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cloud_Connect_Location__c</fullName>
+    <description>Locations of third-party data centers used as part of Cloud Connect product offering.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Locations of third-party data centers used as part of Cloud Connect product offering. Select one.</inlineHelpText>
+    <label>Cloud Connect Location</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Las Vegas, NV</fullName>
+                <default>false</default>
+                <label>Las Vegas, NV</label>
+            </value>
+            <value>
+                <fullName>Los Angeles, CA</fullName>
+                <default>false</default>
+                <label>Los Angeles, CA</label>
+            </value>
+            <value>
+                <fullName>San Jose, CA</fullName>
+                <default>false</default>
+                <label>San Jose, CA</label>
+            </value>
+            <value>
+                <fullName>Seattle, WA</fullName>
+                <default>false</default>
+                <label>Seattle, WA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

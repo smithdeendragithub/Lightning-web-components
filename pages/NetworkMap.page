@@ -1,0 +1,1080 @@
+<apex:page controller="NetworkMap">
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" />
+    <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'css/smoothness/jquery-ui-1.8.16.custom.css')}" />
+    <apex:includescript value="{!$Resource.jquery_tablesorter}" />
+
+    <c:AddressParser addressgeocodedfunction="addressGeocoded" />
+    <script type="text/javascript">
+
+        var $j = jQuery.noConflict();
+        var map;
+        var mapLayers = {};
+        var kLayers = [{"ID":"IPNetwork.kmz","Type":"IPNetwork","SuppressInfoWindow":true,"ZIndex":20,"IsVisible":true},{"ID":"Fiber_All.kmz","Type":"Fiber","SuppressInfoWindow":true,"ZIndex":30,"IsVisible":true}];
+        var loading = {};
+        var dis = .80;
+        var markerList = [];
+        var iWindow;
+        var infoWindow;
+        var isSearchAddress = false;
+        var searchedAddressMarker;
+        var isSetNationalView = false;
+        var isInfoWindowCenter = false;
+        var isWindowResizing = false;
+        var prevZoom;
+        var isMapDragging;
+        var latlon = '';
+        var maxBAA = 100;
+        var minBAA = 15;
+        var selectedMaxBAA = maxBAA;
+        var selectedMinBAA = minBAA;
+        var maxMRREoF = 3500;
+        var minMRREoF = 0;
+        var selectedmaxMRREoF = maxMRREoF;
+        var selectedminMRREoF = minMRREoF;
+        var optionsWidth = 0;
+        var mapWidth = 0;
+
+        function apiLoaded(){
+            $j('[id$="mapForm"]').height($j( window ).height());
+            BindGoogleTextBox();
+
+            BuildWireCenterSelectList();
+            $j('#selWireCenter').change(WireCenterChanged);
+
+
+            InitMap();
+            getLocation();
+            LoadLayers();
+            ShowLayers();
+            DisableCheckboxes();
+            $j("#modalHolder").dialog(
+                { modal: true,
+                autoOpen: false,
+                width: 200,
+                title: 'Mapping...',
+                resizable: false,
+                draggable: false,
+                closeOnEscape: false,
+                open: function(event, ui) { $j(".ui-dialog-titlebar-close").hide() } }
+            );
+            $j("#modalHolderCreate").dialog(
+                { modal: true,
+                autoOpen: false,
+                width: 200,
+                title: 'Creating Lead...',
+                resizable: false,
+                draggable: false,
+                closeOnEscape: false,
+                open: function(event, ui) { $j(".ui-dialog-titlebar-close").hide() } }
+            );
+             $j("#dialog-modal").dialog(
+                { modal: false,
+                autoOpen: false,
+                width: 200,
+                title: 'Error',
+                resizable: false,
+                draggable: false,
+                closeOnEscape: true,
+                 buttons: {
+                        Ok: function () {
+                            $j(this).dialog("close");
+                        }
+                    }
+                }
+            );
+
+            $j('#cbMyOnnet').click(GatherData);
+            $j('#cbMyNearnet').click(GatherData);
+            $j('#cbILEC').click(GatherData);
+            $j('#cbShowAllILEC').click(GatherData);
+            $j('#cbNNHigh').click(GatherData);
+            $j('#cbNNMedium').click(GatherData);
+            $j('#cbNNLow').click(GatherData);
+            $j('#cbNNUnprioritized').click(GatherData);
+
+            $j('[id$="FilterMenu"]').change(ResetFiltersAndGatherData);
+            //$j('[id$="leadFilterMenu"]').change(ResetFiltersAndGatherData);
+            //$j('[id$="accountFilterMenu"]').change(ResetFiltersAndGatherData);
+
+            $j( window ).resize(function() {
+                isWindowResizing = true;
+                $j('[id$="mapForm"]').height($j( window ).height());
+                resizePanes();
+
+            });
+
+            SetBAAText([minBAA, maxBAA]);
+            SetMRRTextEoF([minMRREoF, maxMRREoF]);
+            resizePanes();
+        };
+
+
+        $j(document).ready(function() {
+            loadGoogleMapAPI(apiLoaded);
+            $j('#BAASlider').slider({
+                max: maxBAA,
+                min: 3,
+                range: true,
+                step: 1,
+                values: [minBAA, maxBAA],
+                change: function(event, ui){
+                    if(ui.values.length > 1){
+                        selectedMinBAA = ui.values[0];
+                        selectedMaxBAA = ui.values[1];
+                    }
+                    SetBAAText($j('#BAASlider').slider("values"));
+
+                    GatherData();
+                },
+                slide: function(event, ui){
+                    SetBAAText(ui.values);
+                }
+            }).slider('slide');
+            $j('#MRRSliderEoF').slider({
+                max: maxMRREoF,
+                min: 0,
+                range: true,
+                step: 10,
+                values: [minMRREoF, maxMRREoF],
+                change: function(event, ui){
+                    if(ui.values.length > 1){
+                        selectedminMRREoF = ui.values[0];
+                        selectedmaxMRREoF = ui.values[1];
+                    }
+                    SetMRRTextEoF($j('#MRRSliderEoF').slider("values"));
+
+                    GatherData();
+                },
+                slide: function(event, ui){
+                    SetMRRTextEoF(ui.values);
+                }
+            }).slider('slide');
+            $j('#paneSlider').draggable({
+                axis: 'x',
+                scroll: false,
+                drag: function(evnt, ui){
+                    var pos = ui.position.left;
+                    var opos = ui.originalPosition.left;
+                    var dx = pos-opos;
+                    $j('#optionsPane').width(optionsWidth + dx);
+                    $j('#mapPane').width(mapWidth - dx);
+
+                },
+                start: function(event, ui){
+                    optionsWidth = $j('#optionsPane').width();
+                    mapWidth = $j('#mapPane').width();
+                    $j('#paneSlider').css('position','');
+                }
+            });
+            $j('#handleValue0').change(updateSliderValuesFromTb);
+            $j('#handleValue1').change(updateSliderValuesFromTb);
+            $j('#handleValue2').change(updateSliderValuesFromTbEoF);
+            $j('#handleValue3').change(updateSliderValuesFromTbEoF);
+
+        });
+
+        function updateSliderValuesFromTb(evnt){
+            var tbId = $j(this).attr('handleId');
+            $j('#BAASlider').slider('values',tbId,$j(this).val());
+        }
+
+        function updateSliderValuesFromTbEoF(evnt){
+            var tbId = $j(this).attr('handleId');
+            $j('#MRRSliderEoF').slider('values',tbId,$j(this).val());
+        }
+
+        function resizePanes(){
+            var mapDetailsWidth = $j('#mapDetails').width();
+            var optionsWidth = $j('#optionsPane').innerWidth();
+            var paneSliderWidth = $j('#paneSlider').width();
+            var totalWidth = optionsWidth + paneSliderWidth;
+            var newMapWidth = mapDetailsWidth - totalWidth;
+            $j('#mapPane').width(newMapWidth-20);
+        }
+
+        function getLocation(){
+            var selectedCLLI = getCookie('clli');
+            if(selectedCLLI){
+                $j('#selWireCenter').val(selectedCLLI);
+                WireCenterChanged();
+            }else{
+                if (navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }
+                else{
+                    map.setCenter(new google.maps.LatLng('39.73757', '-104.9847'));
+                }
+            }
+        }
+
+        function showPosition(position)
+        {
+            var latlng = new google.maps.LatLng(position.coords.latitude,position.coords.longitude)
+            map.setCenter(latlng);
+            map.setZoom(15);
+
+            if(searchedAddressMarker)
+                    searchedAddressMarker.setMap(null);
+
+            searchedAddressMarker = new google.maps.Marker({
+                    position: latlng,
+                    map: map,
+                    draggable: false,
+                    animation: google.maps.Animation.DROP,
+                    icon: "{!$Resource.GoogleMapsArrowIcon}",
+                    zIndex: 101
+                });
+        }
+
+        function getCookie(name){
+            var re = new RegExp(name + "=([^;]+)");
+            var value = re.exec(document.cookie);
+            return (value != null) ? unescape(value[1]) : null;
+        }
+
+        function WireCenterChanged(){
+            if(searchedAddressMarker)
+                searchedAddressMarker.setMap(null);
+            var selectedCLLI = $j('#selWireCenter').find(":selected");
+/*      This turns all options green
+            if($j(selectedCLLI).css("color") == 'rgb(255, 0, 0)'){
+                $j('#selWireCenter').css('color','green');
+            }else
+            {
+                $j('#selWireCenter').css('color','black');
+            }
+*/
+            document.cookie='clli='+selectedCLLI.val();
+            if(selectedCLLI.val()){
+                var arr = selectedCLLI.val().split(',');
+                var latlng = new google.maps.LatLng(arr[0],arr[1]);
+                map.setCenter(latlng);
+            }
+
+            if(selectedCLLI.text() == 'Select a CLLI'){
+                getLocation();
+            }
+            else{
+                prevZoom = 99;
+                map.setZoom(16);
+            }
+        }
+
+        function BuildWireCenterSelectList(){
+            var stringJS = '{!JSENCODE(wireCenterBuildings)}';
+            var jsonWireCenters = $j.parseJSON(stringJS);
+            var natGroup = $j('<option/>',{label: 'Select a CLLI',text:'Select a CLLI',value:''});
+            var selRef = $j('#selWireCenter');
+            natGroup.appendTo(selRef);
+            $j.each(jsonWireCenters, function(index,element) {
+                var group = $j('<optgroup>',{label:element.st});
+                $j.each(element.Bldgs, function(index,element2) {
+                    if(element2.No_Regrets_LSO__c){
+                        $j(group).append($j('<option style="color:green;"></option>').val(element2.Geo_Coordinates__Latitude__s + ',' + element2.Geo_Coordinates__Longitude__s).html(element2.Building_CLLI__c + ' - ' + element2.Building_Alias__c));
+                    }
+                    else
+                        $j('<option/>',{value:element2.Geo_Coordinates__Latitude__s + ',' + element2.Geo_Coordinates__Longitude__s,text:element2.Building_CLLI__c + ' - ' + element2.Building_Alias__c}).appendTo(group);
+                });
+                group.appendTo(selRef);
+            });
+        }
+
+         function GetRadiusOfView(){
+            var bounds = map.getBounds();
+
+            var center = bounds.getCenter();
+            var ne = bounds.getNorthEast();
+
+            // r = radius of the earth in statute miles
+            var r = 3963.0;
+
+            // Convert lat or lng from decimal degrees into radians (divide by 57.2958)
+            var lat1 = center.lat() / 57.2958;
+            var lon1 = center.lng() / 57.2958;
+            var lat2 = ne.lat() / 57.2958;
+            var lon2 = ne.lng() / 57.2958;
+
+            // distance = circle radius from center to Northeast corner of bounds
+            dis = r * Math.acos(Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1));
+            if(dis > 10)
+                dis = .8;
+        }
+
+        function GatherData(){
+            ShowTimer();
+            ClearMarkers();
+            GetRadiusOfView();
+            gather(map.getCenter().lat(),map.getCenter().lng(),dis,$j('#cbMyOnnet').is(':checked'), $j('#cbMyNearnet').is(':checked'), $j('#cbILEC').is(':checked'), $j('#cbShowAllILEC').is(':checked'), selectedMinBAA, selectedMaxBAA, $j('#cbNNHigh').is(':checked'),$j('#cbNNMedium').is(':checked'),$j('#cbNNLow').is(':checked'),$j('#cbNNUnprioritized').is(':checked'),selectedminMRREoF, selectedmaxMRREoF);
+        }
+
+
+
+        function InitMap(){
+
+            var myOptions = {
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                minZoom: 3,
+                zoom:  4,
+                streetViewControl: false,
+                panControl: false,
+                zoomControl: true,
+                zoomControlOptions: { style: google.maps.ZoomControlStyle.MEDIUM },
+                scaleControl: true
+            };
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+            //map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
+            //google.maps.event.addListener(map, "zoom_changed", function () { OnZoomChanged(); });
+            google.maps.event.addListener(map, "click", function(){if(iWindow)iWindow.close();});
+            google.maps.event.addListener(map, "dragend", function () { OnMapDragEnd(); });
+            google.maps.event.addListener(map, "idle", function() { OnMapIdle();});
+            infoWindow = new google.maps.InfoWindow();
+
+        }
+
+        function OnMapDragEnd(){
+            isMapDragging = true;
+        }
+
+        function OnMapIdle(){
+
+            var z = map.getZoom();
+            var reGather;
+
+
+            if(isMapDragging || isSearchAddress)
+                reGather = true;
+            else
+                reGather = prevZoom && (prevZoom > z);
+
+            //Map re-centers on infowindow click - so don't requery
+            if(isInfoWindowCenter || isWindowResizing || (!reGather && reGather != null)){
+                isWindowResizing = false;
+                isInfoWindowCenter = false;
+            }
+            else{
+
+                if(isSetNationalView){
+                    DisableCheckboxes();
+                    ClearMarkers();
+                    isSetNationalView = false;
+                }
+                else{
+                    if(z >= 14 && z <= 16 ){
+                        EnableCheckboxes();
+                        GatherData();
+                    }
+                    else
+                        DisableCheckboxes();
+                }
+            }
+
+            isMapDragging = false;
+        }
+
+        function LoadLayers() {
+            if (typeof kLayers != 'undefined')
+                $j.each(kLayers, function(index, item) {
+                    if(item.Type != 'IPNetwork'){
+                        loading[item.ID] = { layerType: 'kml' };
+                        AddLayer(item);
+                    }
+                });
+        }
+
+        function AddLayer(layerName) {
+            var dt = new Date();
+            var url = "https://Mapping.integratelecom.com/Mapping.ashx?f=Fiber_All/" + escape(layerName.ID) + "&d=" + dt.getTime();
+            var kmlOptions = { preserveViewport: true, suppressInfoWindows: true };
+            mapLayers[layerName.ID] = {
+                layer: new google.maps.KmlLayer(url, kmlOptions),
+                type: layerName.Type,
+                layerType: 'kml',
+                status: '',
+                suppressInfo: layerName.SuppressInfoWindow,
+                zIndex: layerName.ZIndex,
+                isVisible: layerName.IsVisible
+            };
+            google.maps.event.addListenerOnce(mapLayers[layerName.ID].layer, "status_changed", function () {
+                mapLayers[layerName.ID].status = this.getStatus();
+                if (this.getStatus() == "OK")
+                    delete loading[layerName.ID];
+            });
+            google.maps.event.addListener(mapLayers[layerName.ID].layer,'click',function(e) {
+                if (!mapLayers[layerName.ID].suppressInfo) {
+                    infoWindow.setOptions({ content: e.featureData.infoWindowHtml, position: e.latLng });
+                    infoWindow.open(map);
+                }
+            });
+        }
+
+
+        function DisableCheckboxes(){
+            $j('#cbMyOnnet').attr("disabled", true);
+            $j('#cbMyNearnet').attr("disabled", true);
+            $j('#cbILEC').attr("disabled", true);
+            $j('#cbShowAllILEC').attr("disabled", true);
+            DisableSlider();
+        }
+
+        function EnableCheckboxes(){
+            $j('#cbMyOnnet').removeAttr("disabled");
+            $j('#cbMyNearnet').removeAttr("disabled");
+            $j('#cbILEC').removeAttr("disabled");
+            $j('#cbShowAllILEC').removeAttr("disabled");
+            EnableSlider();
+        }
+
+        function DisableSlider(){
+            $j('#BAASlider').slider('disable');
+        }
+        function EnableSlider(){
+            $j('#BAASlider').slider('enable');
+        }
+
+        function ShowLayers() {
+            var lList = [];
+            $j.each(mapLayers, function (index, item) {
+                lItem = {};
+                lItem.zIndex = item.zIndex,
+                lItem.index = index,
+                lList.push(lItem);
+            });
+
+            var sList = $j(lList).sort(sortByZIndex);
+            $j.each(sList, function() {
+                var item = mapLayers[this.index];
+                if (item.status == "" || item.status == "OK") {
+                    item.layer.setMap(null);
+                    if (item.isVisible)
+                        item.layer.setMap(map);
+                }
+            });
+        }
+
+        function sortByZIndex(a, b) {
+            return (a.zIndex - b.zIndex);
+        }
+
+
+        function BindGoogleTextBox(){
+            var input = document.getElementById('txtGoogleAddress');
+            if (input) {
+                var options = { componentRestrictions: { country: 'us'} };
+                var autocomplete = new google.maps.places.Autocomplete(input, options);
+                autocomplete.setTypes(['geocode']);
+            }
+        }
+
+        function SearchAddress(){
+            if(searchedAddressMarker)
+                    searchedAddressMarker.setMap(null);
+
+            $j('#selWireCenter').val();
+
+            isSearchAddress = true;
+            ClearMarkers();
+            var geocoder = new google.maps.Geocoder();
+            var input = document.getElementById('txtGoogleAddress');
+            if(input){
+                var address = input.value;
+                geocodeAddress(address, addressGeocoded);
+            }
+
+        }
+
+        function addressGeocoded(result){
+            if(result.success){
+
+                var input = document.getElementById('txtGoogleAddress');
+
+                var markerBounds = new google.maps.LatLngBounds();
+                map.setCenter(result.location);
+
+                $j('#txtLatitude').val(result.latitude);
+                $j('#txtLongitude').val(result.longitude);
+
+
+                if(searchedAddressMarker)
+                    searchedAddressMarker.setMap(null);
+
+                searchedAddressMarker = new google.maps.Marker({
+                    position: result.location,
+                    map: map,
+                    draggable: false,
+                    animation: google.maps.Animation.DROP,
+                    icon: "{!$Resource.GoogleMapsArrowIcon}",
+                    zIndex: 101
+                });
+
+
+                //Set Bounds
+                markerBounds.extend(result.location);
+                map.fitBounds(markerBounds);
+                map.setZoom(16);
+
+                GatherData();
+            }
+        }
+
+        function OnLayersChecked(layer, control) {
+            ToggleLayer(layer, $j('[id$="' + control + '"]').is(':checked'));
+        }
+
+        function ToggleLayer(layer, visible) {
+            $j.each(mapLayers, function(index, item) {
+                if (item.type == layer) {
+                    item.isVisible = visible;
+                }
+            });
+        }
+
+        function SetBAAText(values){
+            if(values.length > 1){
+                $j('#handleValue0').val(values[0]);
+                $j('#handleValue1').val(values[1]);
+            }
+        }
+
+        function SetMRRTextEoF(values){
+            if(values.length > 1){
+                $j('#handleValue2').val(values[0]);
+                $j('#handleValue3').val(values[1]);
+            }
+        }
+
+
+    </script>
+    <style>
+        #map {
+            font-family: Arial;
+            font-size: 12px;
+            line-height: normal !important;
+            background: transparent;
+        }
+
+        .clickable {
+            cursor: pointer;
+            cursor: hand;
+        }
+
+        .oppIcon {
+            background-image: url(/img/sprites/master.png);
+            background-position: 0 -242px;
+            background-position-x: 0px;
+            background-position-y: -242px;
+            width: 16px;
+            height: 16px;
+            float: right;
+            padding-left: 5px;
+        }
+
+        .leadIcon {
+            float: right;
+            padding-left: 5px;
+        }
+
+        #map_canvas {
+            width: 300px;
+            height: 200px;
+        }
+    </style>
+
+    <apex:outputpanel id="out">
+        <script type="text/javascript">
+            var infoWindows = {};
+            var leadStatus,leadPhone,leadContactFirst,leadContactLast,leadBusName,leadSource,leadGrid,leadBuildingId;
+
+            function CloseDialog(){
+                $j("#modalHolder").dialog('close');
+            }
+
+            function ShowTimer(){
+                $j("#modalHolder").dialog('open');
+            }
+
+            function ShowTimerCreate(titleText){
+                $j("#modalHolderCreate").dialog('option', 'title', titleText).dialog('open');
+            }
+
+            function CloseDialogCreate(){
+                $j("#modalHolderCreate").dialog('close');
+            }
+
+            function OnCreateOppClick(acctId, acctName,buildingId){
+                ShowTimerCreate('Creating Opportunity');
+                createOpportunity(acctId, acctName, buildingId);
+            }
+
+            function OnCreateLeadClick(source,status,phone,grid,contactFirst,contactLast,busName,address,buildingId,isProtected){
+
+                if(isProtected == "true" && "{!UserSalesChannel}" != 'Government and Education' && "{!isDebugProfile}" != "true"){
+                    $j('#dialog-modal').dialog('open');
+                    return false;
+                }
+                else{
+                    ShowTimerCreate('Creating Lead');
+                    clearLeadVariables();
+                    setupLeadVariables(status,phone,contactFirst,contactLast,busName,source,grid,buildingId);
+                    geocodeAddress(address, addressGeocodedLeadCreate);
+                }
+            }
+
+            function setupLeadVariables(status,phone,contactFirst,contactLast,busName,source,grid,buildingId){
+                leadStatus = status;
+                leadPhone = phone;
+                leadContactFirst = contactFirst;
+                leadContactLast = contactLast;
+                leadBusName = busName;
+                leadSource = source;
+                leadGrid = grid;
+                leadBuildingId = buildingId;
+            }
+
+            function clearLeadVariables(){
+                leadStatus = undefined;
+                leadPhone = undefined;
+                leadContactFirst = undefined;
+                leadContactLast = undefined;
+                leadBusName = undefined;
+                leadSource = undefined;
+                leadGrid = undefined;
+                leadBuildingId = undefined;
+            }
+
+            function addressGeocodedLeadCreate(result){
+                var leadRoomSuite;
+                if(result.success){
+                    leadRoomSuite = result.subPremise;
+                }
+
+                createLead(leadStatus,leadPhone,leadContactFirst,leadContactLast,leadBusName,leadSource,leadGrid,leadRoomSuite,leadBuildingId);
+            }
+
+            function BuildHeaderString(s,headerText,appendBar,toolTipText){
+                if(s){
+                    headerText = headerText + '<span  title="' + toolTipText + '">' +  s + '</span>';
+                    if(appendBar)
+                        headerText = headerText + ' | ';
+                }
+                return headerText;
+            }
+
+            function BuildMarkers(){
+                isSearchAddress = false;
+                var stringJS = '{!JSENCODE(jsonBuildings)}';
+                var jsonB = $j.parseJSON(stringJS);
+                $j.each(jsonB, function(index,element) {
+
+                    //Build InfoWindow header
+                    var InfoTitle =  '<a href="/' + element.ID + '" target="_blank" title="Building Name">' + element.Name + '</a> |';
+
+                    InfoTitle = BuildHeaderString(element.CLLI,InfoTitle,true,'Building CLLI');
+                    InfoTitle = BuildHeaderString(element.NetClass,InfoTitle,true,'Building Net Classification');
+                    InfoTitle = BuildHeaderString(element.BuildingType,InfoTitle,true,'Building Type');
+                    InfoTitle = BuildHeaderString(element.Status,InfoTitle,false,' Building Status');
+
+                    //var SalesTitle = '';
+                    //SalesTitle = BuildHeaderString(element.AssignedAE,SalesTitle,true,'Building Assigned AE');
+                    //SalesTitle = BuildHeaderString(element.SalesChannel,SalesTitle,true,'Building Assigned AE Sales Channel');
+                    //SalesTitle = BuildHeaderString(element.SalesPriority,SalesTitle,false,'Sales Priority');
+
+                    var BAAHeader = '';
+                    if(element.BAAs != null){
+                        var baaCount = 0;
+                        $j.each(element.BAAs, function(index,element2) {
+                            if(baaCount > 0)
+                                BAAHeader = BAAHeader + '/';
+                            if(element2.Maximum_Bandwidth__c)
+                                BAAHeader = BAAHeader + element2.Maximum_Bandwidth__c + ' Mbps';
+                            if(element2.Access_Technology_Name__c)
+                                BAAHeader = BAAHeader + ' ' + element2.Access_Technology_Name__c;
+                            if(element2.Status__c)
+                                BAAHeader = BAAHeader + ' ' + element2.Status__c;
+                            if(element2.Minimum_Required_Revenue__c)
+                                BAAHeader = BAAHeader + ' $' + element2.Minimum_Required_Revenue__c;
+
+                            baaCount++;
+                        });
+                    }
+
+                    //BuildOrders
+                    var BuildOrderHeader = '';
+                    if(element.BuildOrders != null){
+                        var orderCount = 0;
+                        $j.each(element.BuildOrders, function(index,element2) {
+                            if(orderCount > 0)
+                                BuildOrderHeader = BuildOrderHeader + '/ ';
+                            if(element2.ESONumber)
+                                BuildOrderHeader = BuildOrderHeader + '<a href="/apex/BuildingOrders?BuildingID=' + element.ID + '"  style="padding-right:5px;position:relative;" target="_blank">' + element2.ESONumber + '</a>';
+                            orderCount++;
+                        });
+                    }
+                    //Capital Projects
+                    var CapProjectHeader = '';
+                    var hasCapitalProjects = false;
+                    if(element.CapitalProjects != null){
+                        var capCount = 0;
+                        $j.each(element.CapitalProjects, function(index,element2) {
+                            if(capCount > 0)
+                                CapProjectHeader = CapProjectHeader + '/ ';
+                            if(element2.Name)
+                                CapProjectHeader = CapProjectHeader + '<a href="/apex/CapitalProject?id=' + element2.ID + '"  style="padding-right:5px;position:relative;" target="_blank">' + element2.Name + '-' + element2.RTName + '</a>';
+                            capCount++;
+
+                            hasCapitalProjects = true;
+                        });
+
+                    }
+
+                    var tableHeader = '<table class="list" id="prospectTable"border="1"><thead>';
+                        tableHeader = tableHeader + InfoTitle;
+                        //if(SalesTitle != '')
+                        //  tableHeader = tableHeader + '<br />' + SalesTitle;
+                        if(BAAHeader != '')
+                            tableHeader = tableHeader + '<br />' + BAAHeader ;
+                        if(BuildOrderHeader != '')
+                            tableHeader = tableHeader + '<br />' + BuildOrderHeader;
+                        if(CapProjectHeader != '')
+                            tableHeader = tableHeader + '<br />' + CapProjectHeader;
+
+                    //tableHeader = tableHeader + '<tr ><th  style="width:130px" title="Create a lead from a GeoResults Business Entry or Opportunity on an Account, where applicable">Action</th><th  title="Account or GeoResults Business Name. Click to view the entire record">Name</th><th  style="width:100px" title="Distinguish if record is a GeoResults Business entry, a customer account, prospect account or former customer account">Type</th><th  style="width: 100px" title="Account Owner">Owner</th><th  style="width:50px" title="Total Tel Spend for Company">Tel Spend</th><th style="border:none;width:20px;">&nbsp;</th></thead>';
+                    tableHeader = tableHeader + '<tr ><th style="width:300px" title="Account or GeoResults Business Name. Click to view the entire record">Name</th><th  style="width:100px" title="Distinguish if record is a GeoResults Business entry, a customer account, prospect account or former customer account">Type</th><th  style="width: 100px" title="Account Owner">Owner</th><th  style="width:50px" title="Total Tel Spend for Company">Tel Spend</th><th style="border:none;width:20px;">&nbsp;</th></thead>';
+                    var tableBody = '<tbody><tr><td colspan="5"><div class="scrollit"><table>';
+                    //Build InfoWindow table GR Prospect Data
+                    if(element.GeoBusinesses != null){
+                        $j.each(element.GeoBusinesses, function(index,element2) {
+                            var leadStatus = 'Suspect';
+                            var leadSource = 'Simplified Prospect Management';
+                            var contact = element2.Contact;
+                            var leadPhone = element2.Phone;
+                            var leadGRID = element2.Id;
+                            var leadAddress = element2.CleanAddress + ' ' + element2.Unit + ' ' + element2.City + ' ' + element2.State + ' ' + element2.Zip;
+                            var leadContactFirst = '';
+                            var leadContactLast = '';
+
+                            if(contact){
+                                contactArr = contact.split(' ');
+                                if(contactArr.length > 0){
+                                    for (var i = 0; i < contactArr.length; i++) {
+                                        if(i == 0)
+                                            leadContactFirst = contactArr[i];
+                                        else if(i == 1)
+                                            leadContactLast = contactArr[i];
+                                        else
+                                            leadContactLast = leadContactLast + ' ' + contactArr[i];
+                                    }
+                                }
+                            }
+                            var leadBusName = element2.CleanBusiness;
+                            var showLockIcon = (element2.NAICS2 == 92 || element2.NAICS2 == 61);
+                            tableBody = tableBody + '<tr ';
+                            if(element2.filteredBusRecord == 'True' || element2.filteredBusRecord == true)
+                                    tableBody = tableBody + 'style="background-color:#FFE199"';
+                            tableBody = tableBody + '><div>';
+                            tableBody = tableBody + '</div><td style="padding-left:5px;width:300px;"><div>';
+                            if(showLockIcon)
+                                tableBody = tableBody + '<img src="/img/func_icons/util/lock12.gif"/>';
+                            tableBody = tableBody + AppendLeadIcon(element2.IconInt) + element2.CreatedDateIndicator + ' ' + '<a href="/' + element2.Id + '"  style="padding-right:5px;position:relative;" target="_blank">' + element2.CleanBusiness + '</a>';
+
+                            tableBody = tableBody + '</div></td><td  style="width:100px;" align="left" >GR Prospect</td><td  style="width:100px;" align="left"></td><td  style="width:50px" align="right">' + element2.TotalTelSpend + '</td><td style="width:20px;"></td></tr>';
+                        });
+                    }
+                    //Build InfoWindow table Acct Data
+                    if(element.Accts != null){
+                        $j.each(element.Accts, function(index,element2) {
+                            tableBody = tableBody + '<tr >';
+
+                            tableBody = tableBody + '<td align="left" style="padding-left:5px;width:300px;"><div>';
+                            if(element2.ProtectedAccount)
+                                tableBody = tableBody + '<img src="/img/func_icons/util/lock12.gif" style="float:left"/>';
+                            tableBody = tableBody + '<div id="oppImage"';
+                            if(element2.HasOpenOpps)
+                                tableBody = tableBody + 'class="oppIcon" title="Icon indicates that there is an existing open opportuinty on this account"';
+                            tableBody = tableBody + '></div><a style="padding-right:5px;" href="/' + element2.Id + '" target="_blank">' + element2.AcctName + '</a></div></td><td  style="width:100px;" align="left">' + element2.Type + '</td><td  style="width:100px;" align="left">' + element2.OwnerName + '</td><td  style="width:50px" align="right"></td><td style="width:20px;"></td></tr>';
+
+                        });
+                    }
+                    tableBody = tableBody + '</table></div></td></tbody></table>';
+
+                    var content = '<style>.scrollit { overflow-y:scroll; max-height:200px;} tr.dataRow {background-color:white;} tr.dataRow:hover {background-color: #e3f3ff;} div.infoDiv {color: black;};</style><div class="bPageBlock brandSecondaryBrd secondaryPalette">' + tableHeader + tableBody + '</div>';
+
+                    PlotMarker(element.Latitude,element.Longitude,element.ID,content,element.NetClass,element.BuildingType,element.Status,hasCapitalProjects);
+
+                    prevZoom = map.getZoom();
+                });
+            }
+
+            function AppendLeadIcon(IconInt){
+                if(IconInt == 1)
+                    return '<div title="A lead exists with a different owner." class="leadIcon"><img src="{!$Resource.RedLeadIcon}"/></div>';
+                else if(IconInt == 2)
+                    return '<div title="A lead exists and you are the owner." class="leadIcon"><img src="/img/icon/leads16.png"/></div>';
+                else if(IconInt == 3)
+                    return '<div title="Multiple leads exist, none of which you own." class="leadIcon"><img src="{!$Resource.RedLeadIcon}"/><img src="{!$Resource.RedLeadIcon}"/></div>';
+                else if(IconInt == 4)
+                    return '<div title="Multiple leads exist and you own at least one." class="leadIcon"><img src="{!$Resource.RedLeadIcon}"/><img src="/img/icon/leads16.png"/></div>';
+                else
+                    return '';
+            }
+
+
+            function PlotMarker(lat, lon, buildid,content, netClass, buildingType, status, hasCapitalProjects){
+                var iconurl = '{!$Resource.GoogleMapsILECIcon}';
+                if(netClass == 'On-net')
+                    iconurl = '{!$Resource.GoogleMapsOnNetIcon}';
+                if(netClass == 'Near-net')
+                    iconurl = '{!$Resource.GoogleMapsNearNetIcon}';
+                if(status == 'Pending Build')
+                    iconurl = '{!$Resource.GoogleMapsPendingBuildIcon}';
+                if(hasCapitalProjects == true && netClass != 'On-net')
+                    iconurl = '{!$Resource.GoogleMapsCapitalProjectIcon}';
+
+                var zIndexCurrent = 200;
+                if(buildingType != null && buildingType.indexOf('LSO') != -1){
+                    zIndexCurrent=150;
+                    iconurl = '{!$Resource.GoogleMapsLSOIcon}';
+                }
+
+
+                var marker = new google.maps.Marker({
+                    id: buildid,
+                    position: new google.maps.LatLng(lat, lon),
+                    map: map,
+                    zIndex: zIndexCurrent,
+                    draggable: false,
+                    icon: iconurl
+                });
+
+
+
+                var infowindow = new google.maps.InfoWindow({
+                        content: content
+                        ,disableAutoPan : false
+                });
+
+                marker.infoWindow = infowindow;
+                infoWindows[marker.id] = infowindow;
+                markerList.push(marker);
+
+                google.maps.event.addListener(marker, 'click', function(event){
+                    if(iWindow)
+                        iWindow.close();
+
+                    isInfoWindowCenter = true;
+
+                    iWindow  = this.infoWindow;
+                    this.infoWindow.open(map,this);
+                });
+            }
+
+            function ClearMarkers(){
+                for (var i = 0; i < markerList.length; i++ ) {
+                    markerList[i].setMap(null);
+                }
+                markerList.length = 0;
+            }
+
+            /*
+            Will need to implement this when we get lead icons in place
+            function AddLeadIcon(){
+
+            }
+            */
+            function OpenLead(){
+                if("{!newLeadId}"){
+                    var url = '/' + "{!newLeadId}";
+                    var win = window.open(url, '_blank');
+                    win.focus();
+                }
+            }
+
+            function AddHasOpenOpportunityIcon(acctId){
+                $j('a[href$="'+acctId+'"]').prev().addClass('oppIcon');
+            }
+
+            function OpenOpportunity(){
+                if("{!newOppID}"){
+                    AddHasOpenOpportunityIcon("{!oppAccountID}");
+                    var url = '/' + "{!newOppID}";
+                    var win = window.open(url, '_blank');
+                    win.focus();
+
+                }
+            }
+
+            function ResetFiltersAndGatherData(){
+                // $j('[id$="filterMenu"]').change(ResetFiltersAndGatherData);
+                if($(this).attr('id') == 'j_id0:mapForm:FilterMenu'){
+                    $("[id='j_id0:mapForm:leadFilterMenu']").val('All');
+                    $("[id='j_id0:mapForm:accountFilterMenu']").val('All');
+                }
+                else if ($(this).attr('id') == 'j_id0:mapForm:leadFilterMenu'){
+                    $("[id='j_id0:mapForm:FilterMenu']").val('00BC0000007xS1xMAE');
+                    $("[id='j_id0:mapForm:accountFilterMenu']").val('All');
+                }
+                else if($(this).attr('id') == 'j_id0:mapForm:accountFilterMenu'){
+                    $("[id='j_id0:mapForm:FilterMenu']").val('00BC0000007xS1xMAE');
+                    $("[id='j_id0:mapForm:leadFilterMenu']").val('All');
+                }
+
+                GatherData();
+            }
+        </script>
+        <apex:pagemessages />
+    </apex:outputpanel>
+
+    <div id="modalHolder" style="display: none">
+        <p id="modalHtml" style="text-align: center">Please wait...</p>
+        <p id="modalImage" style="text-align: center"><apex:image id="spinnerImage" value="{!$Resource.Spinner}" width="36" height="36" /></p>
+    </div>
+    <div id="modalHolderCreate" style="display: none">
+        <p id="modalHtml" style="text-align: center">Please wait...</p>
+        <p id="modalImage" style="text-align: center"><apex:image id="spinnerImageLead" value="{!$Resource.Spinner}" width="36" height="36" /></p>
+    </div>
+    <div id="dialog-modal" title="Basic modal dialog">
+        <p id="modalHtml" style="text-align: center">This is a protected lead, unable to create lead.</p>
+    </div>
+    <apex:form id="mapForm">
+        <a href="/" target="_blank">Home</a>
+        <input id="txtLatitude" type="hidden" value="{!latitude}" />
+        <input id="txtLongitude" type="hidden" value="{!longitude}" />
+        <div>
+            <div style="width:65%;padding-left:10px;padding-top:10px;padding-bottom:10px;">
+                <select id="selWireCenter" style="width:300px;"></select>
+                &nbsp;
+                <input type="text" id="txtGoogleAddress" onkeydown="if (event.keyCode == 13) {SearchAddress(); return false;}" style="width:50%;"></input>
+                <input type="button" id="btnMap" class="btn" value="Map" onclick="SearchAddress();" style="width:50px;"></input>
+                <div style="float:right;">
+                    <input type="button" id="btnRedrawLayers" class="btn" value="Refresh Fiber Lines" onclick="LoadLayers(); ShowLayers();" />
+                </div>
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+        <div id="mapDetails" style="height:90%; width:100%;">
+            <div id="optionsPane" style="float:left;white-space:nowrap;width:275px;min-width:150;padding-right:10px;padding-left:10px;vertical-align:top;">
+                <div id="divcontent">
+                    <div style="width:100%;">
+                        <fieldset>
+                            <legend>More Buildings</legend>
+                            <img src="{!$Resource.GoogleMapsILECIcon}" /><input id="cbILEC" type="checkbox" /><label for="cbILEC">Off-net</label><br />
+                        </fieldset>
+                        <!--<fieldset>
+                            <legend>My Assigned Buildings</legend>
+                            <img src="{!$Resource.GoogleMapsOnNetIcon}"/><input id="cbMyOnnet" type="checkbox" /><label for="cbMyOnnet">On-Net</label><br />
+                            <img src="{!$Resource.GoogleMapsNearNetIcon}"/><input id="cbMyNearnet" type="checkbox" /><label for="cbMyNearnet">Near-Net</label><br />
+                        </fieldset>-->
+
+                        <fieldset>
+                            <legend>Near-Net Priority</legend>
+                            <input type="checkbox" id="cbNNHigh" /><label for="cbNNHigh">Near-Net High Priority</label><br />
+                            <input type="checkbox" id="cbNNMedium" /><label for="cbNNMedium">Near-Net Medium Priority</label><br />
+                            <input type="checkbox" id="cbNNLow" /><label for="cbNNLow">Near-Net Low Priority</label><br />
+                            <input type="checkbox" id="cbNNUnprioritized" /><label for="cbNNUnprioritized">Near-Net Unprioritized</label><br />
+                        </fieldset>
+                        <fieldset>
+                            <legend>Available EoC</legend>
+                            <div>
+                                <span id="BAAVal">
+                                    <input type="text" id="handleValue0" handleid="0" style="width:35px;" />Mbps -
+                                    <input type="text" id="handleValue1" handleid="1" style="width:35px;" />Mbps
+                                </span><br />
+                                <div id="BAASlider">
+                                    <div handleid="0" class="ui-slider-handle"></div>
+                                    <div handleid="1" class="ui-slider-handle"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Near-net Hurdle</legend>
+                            <div>
+                                <span id="BAAVal">
+                                    $<input type="text" id="handleValue2" handleid="0" style="width:35px;" />
+                                    - $<input type="text" id="handleValue3" handleid="1" style="width:35px;" />
+                                </span><br />
+                                <div id="MRRSliderEoF">
+                                    <div handleid="0" class="ui-slider-handle"></div>
+                                    <div handleid="1" class="ui-slider-handle"></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Filters</legend>
+                            <div>
+                                <strong>GeoResults Filter</strong><br />
+                                <apex:selectlist value="{!gbFilterID}" size="1" id="FilterMenu">
+                                    <apex:selectoptions value="{!gbFilterListViews}"></apex:selectoptions>
+                                </apex:selectlist>
+                            </div>
+                            <div>
+                                <br /><strong>Lead Filter</strong><br />
+                                <apex:selectlist value="{!leadFilterID}" size="1" id="leadFilterMenu">
+                                    <apex:selectoptions value="{!leadFilterListViews}"></apex:selectoptions>
+                                </apex:selectlist>
+                            </div>
+                            <div>
+                                <br /><strong>Account Filter</strong><br />
+                                <apex:selectlist value="{!accountFilterID}" size="1" id="accountFilterMenu">
+                                    <apex:selectoptions value="{!accountFilterListViews}"></apex:selectoptions>
+                                </apex:selectlist>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <table>
+                                <tr><td style="width:50%;"><img src="{!$Resource.GoogleMapsOnNetIcon}" /></td><td>On-net</td></tr>
+                                <tr><td style="width:50%;"><img src="{!$Resource.GoogleMapsNearNetIcon}" /></td><td>Near-net</td></tr>
+                                <tr><td style="width:50%;"><img src="{!$Resource.GoogleMapsILECIcon}" /></td><td>Off-net</td></tr>
+                                <tr><td style="width:50%;"><img src="{!$Resource.GoogleMapsPendingBuildIcon}" /></td><td>Pending Build</td></tr>
+                                <tr><td style="width:50%;"><img src="{!$Resource.GoogleMapsCapitalProjectIcon}" /></td><td>Open Capital Project</td></tr>
+                                <tr><td style="width:50%;"><img src="{!$Resource.GoogleMapsLSOIcon}" /></td><td>LSO</td></tr>
+                                <tr><td style="width:50%;"><div style="min-height:5px;min-width:5px;background-color:#FF0014" /></td><td>ELI Build in Progress</td></tr>
+                                <tr><td style="width:50%;"><div style="min-height:5px;min-width:5px;background-color:#149600" /></td><td>ELI Active Route</td></tr>
+                                <tr><td style="width:50%;"><div style="min-height:5px;min-width:5px;background-color:#14FFF0" /></td><td>Leased</td></tr>
+                            </table>
+                        </fieldset>
+                        <!--<apex:outputpanel style="position:absolute; bottom:0;" rendered="{!isDebugProfile}"><input id="cbShowAllILEC" type="checkbox" /><label for="cbShowAllILEC">Debug: Show All ILEC</label></apex:outputpanel>-->
+                    </div>
+                </div>
+            </div>
+            <div id="paneSlider" style="height:100%; width:10px; background-color:#ccc; float:left; cursor:col-resize;"></div>
+            <div id="mapPane" style="float:left;height:100%;width:600px;">
+                <div id="map" style="height:100%;width:100%;padding-bottom:20px;"></div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+        <apex:actionfunction name="gather" action="{!GatherBuildingData}" rerender="out" oncomplete="BuildMarkers();CloseDialog();">
+            <apex:param name="lat" assignto="{!latitude}" value="" />
+            <apex:param name="long" assignto="{!longitude}" value="" />
+            <apex:param name="rad" assignto="{!distRange}" value="" />
+            <apex:param name="myOnNet" assignto="{!myOnNet}" value="" />
+            <apex:param name="myNearnet" assignto="{!myNearnet}" value="" />
+            <apex:param name="displayILEC" assignto="{!displayIlec}" value="" />
+            <apex:param name="displayAllIlec" assignto="{!displayAllIlec}" value="" />
+            <apex:param name="minBAA" assignto="{!selectedMinBAA}" value="" />
+            <apex:param name="maxBAA" assignto="{!selectedMaxBAA}" value="" />
+            <apex:param name="nearNetHigh" assignto="{!nearNetHigh}" value="" />
+            <apex:param name="nearNetMed" assignto="{!nearNetMed}" value="" />
+            <apex:param name="nearNetLow" assignto="{!nearNetLow}" value="" />
+            <apex:param name="nearNetUnPrior" assignto="{!nearNetUnPrior}" value="" />
+            <apex:param name="minMRREoF" assignto="{!selectedminMRREoF}" value="" />
+            <apex:param name="maxMRREoF" assignto="{!selectedmaxMRREoF}" value="" />
+        </apex:actionfunction>
+        <apex:actionfunction name="createLead" action="{!CreateLead}" rerender="out" oncomplete="CloseDialogCreate();OpenLead();">
+            <apex:param name="Status" assignto="{!leadStatus}" value="" />
+            <apex:param name="Phone" assignto="{!leadPhone}" value="" />
+            <apex:param name="FirstName" assignto="{!leadFirstName}" value="" />
+            <apex:param name="LastName" assignto="{!leadLastName}" value="" />
+            <apex:param name="Company" assignto="{!leadCompany}" value="" />
+            <apex:param name="Source" assignto="{!leadSource}" value="" />
+            <apex:param name="GRId" assignto="{!leadGRId}" value="" />
+            <apex:param name="LeadRoomSuite" assignto="{!leadRoomSuite}" value="" />
+            <apex:param name="LeadBuildingId" assignto="{!buildingID}" value="" />
+        </apex:actionfunction>
+        <apex:actionfunction name="createOpportunity" action="{!CreateOpportunity}" rerender="out" oncomplete="CloseDialogCreate();OpenOpportunity();">
+            <apex:param name="OppAcctID" assignto="{!oppAccountID}" value="" />
+            <apex:param name="OppAcctName" assignto="{!oppAcctName}" value="" />
+            <apex:param name="OppBuildingID" assignto="{!oppBuildingID}" value="" />
+        </apex:actionfunction>
+
+    </apex:form>
+</apex:page>

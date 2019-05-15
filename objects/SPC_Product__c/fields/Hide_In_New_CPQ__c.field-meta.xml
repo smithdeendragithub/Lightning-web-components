@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hide_In_New_CPQ__c</fullName>
+    <description>Used to hide products from new CPQ UI</description>
+    <externalId>false</externalId>
+    <formula>CASE(Name, 
+&quot;Collaboration &amp; Messaging - Hosted Exchange&quot;,1,
+&quot;Collaboration &amp; Messaging - Hosted Exchange Plus&quot;,1,
+&quot;Collaboration &amp; Messaging - Enterprise&quot;,1,
+&quot;Collaboration &amp; Messaging  - PC Backup Server License&quot;,1,
+&quot;Collaboration &amp; Messaging - Lync®&quot;,1,
+&quot;Collaboration &amp; Messaging - Office Apps (Microsoft® Office 365™)&quot;,1,
+&quot;Collaboration &amp; Messaging - SharePoint®&quot;,1,
+&quot;Collaboration &amp; Messaging - ShareSync®&quot;,1,
+&quot;VPN Solutions Package&quot;,1,
+&quot;Dedicated High Speed Internet Package&quot;,1,
+&quot;SIP Solutions Package&quot;,1,
+&quot;UC Cloud Voice Main Site Package&quot;,1,
+&quot;UC Cloud Voice Remote Site Package&quot;,1,
+&quot;Hosted Voice Package&quot;,1,
+&quot;Conference Now&quot;,1,
+&quot;Hosted Voice Service&quot;,1,
+&quot;Hosted Voice Services&quot;,1,
+&quot;Hosted PBX&quot;,1,
+&quot;Managed Premier PBX&quot;,1,
+&quot;Managed Office Bundle&quot;,1,
+&quot;Managed Office UC Bundle&quot;,1,
+&quot;Managed Enterprise Bundle&quot;,1,
+&quot;ISP Services&quot;,1,
+&quot;Wireless Internet&quot;,1,
+0) = 1</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Hide In New CPQ</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

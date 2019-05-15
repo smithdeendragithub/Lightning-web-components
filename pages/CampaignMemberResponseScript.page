@@ -1,0 +1,102 @@
+<apex:page controller="CampaignMemberResponseScriptController" sidebar="false" showHeader="false" action="{!onLoad}">
+
+<div style="margin: 20px 0 0 20px; width: 900px;">
+
+<apex:form >
+<h1 style="font-size: 18px;">Base Campaign Script</h1>
+
+<p><strong>Company Name:</strong> &nbsp;<apex:outputText value="{!CMCompany}"/><br />
+<strong>Phone:</strong> &nbsp;<apex:outputText value="{!CMPhone}"/><br />
+<strong>Email:</strong> &nbsp;<apex:outputText value="{!CMEmail}"/></p>
+
+<p><b>Hi, &nbsp;<apex:outputText value="{!CMName}"/></b></p>
+
+<p>"I am following up on your request to contact you based on our recent email invitation.
+Integra is tracking some growing trends in business technologies and technology adoption which we have been preparing for with investments in our network and product sets. We are reaching out to our customers to see where their businesses might fit into this rapidly evolving landscape. "</p>
+
+<p>"If you have a few minutes to explore this, I'd like to ask a few questions:"</p>
+<br />
+<table cellpadding="10px" cellspacing="0" border="1">
+<tr>
+    <th>Product Type</th>
+    <th>Questions</th>
+    <th>Opportunity</th>
+    <th>Check box if prospect qualifies for product type</th>
+</tr>
+<tr>
+    
+    <td>EoC/Bandwidth upgrade</td>
+    <td>
+    <p>Is your business experiencing growth in employees? Locations?</p>
+    
+    <p>How is your company leveraging the Internet to conduct business?</p>
+    
+    <p>Do you feel your current Internet connection is sufficient for today's needs? Near future?</p>   
+    
+    <p>Are other factors driving bandwidth increases (like increased video use, data backups)?</p>
+
+    <p>Are you beginning to use web-based (or cloud) software systems like SalesForce.com, Google Docs, Freshbooks, Quickbooks Online?</p>
+
+    <p>Are more of your employees working remotely, using VPN services to connect to the office?</p>    
+
+    </td>
+    <td>
+    <p>You may be a candidate for our symmetrical Ethernet services which can combine all your voice, data, and Internet access over a single, dynamic connection.</p>
+    
+    <p>These types of applications require more upload bandwidth than typical web browsing.</p>
+    </td>
+    <td><apex:outputText value="{!q4}"/>&nbsp;<apex:inputCheckbox value="{!answer4}" /></td>
+</tr>
+
+<tr>
+    <td>Cloud Security/Hosted Firewall</td>
+    <td><p>Do you have someone maintaining a firewall or other onsite network security devices?</p> </td>
+    <td><p>You may be a candidate for our upcoming cloud firewall service - a service that can provide URL filtering, application control, antivirus/antispyware, and threat detection, all managed by Integra  within the Integra network.</p></td>
+    <td><apex:outputText value="{!q5}"/>&nbsp;<apex:inputCheckbox value="{!answer5}" /></td>
+</tr>
+
+<tr>
+     <td>Hosted Voice</td>
+    <td><p>Do you own or lease your own phone system?</p>
+
+    <p>Is it scaled to your current or future needs?</p>
+
+    <p>Are there other features you want?</p></td>
+
+    <td>You may be a candidate for our upcoming hosted voice services which will bundle voice, data, and Internet access over a single, dynamic connection and will include a full range of voice features and handsets.<p></p></td>
+    
+    
+    <td><apex:outputText value="{!q6}"/>&nbsp;<apex:inputCheckbox value="{!answer6}" /></td>
+</tr>
+
+<tr>
+   <td>Hosted Exchange</td>
+    <td><p>Do you host your own email or have it hosted/managed by an ISP?</p>  
+    
+    <p>Do you use Microsoft Exchange?</p>   </td>
+    <td><p>You may be a candidate for our upcoming hosted Exchange services, which will allow you to outsource your email services, storage, management and collaboration services to Integra.</p></td>
+    <td><apex:outputText value="{!q7}"/>&nbsp;<apex:inputCheckbox value="{!answer7}" /></td>
+</tr>
+
+</table>
+
+<br /><br />
+<strong><apex:outputText value="{!q8}"/></strong><br />
+    <apex:inputTextarea value="{!answer8}"  style="width:400px; height: 200px;" /><br /><br />
+    <apex:commandButton value="Submit" action="{!UpdateMemberStatus}" />
+
+
+
+<br /><br />
+<h1>Other Talking Points</h1>
+<p><ul>
+    <li>Integra has recently invested $11M in expanding its service area and introducing new products to the small and mid-sized business segment</li>
+    <li>Integra has created product bundles that provide voice, data, and Internet access over a single, dynamic connection - new Business Connect bundles offering 3 Mbps through 30 Mbps service</li>
+    <li>In the upcoming months, Integra will begin launching hosted Exchange email services, a fully-integrated hosted voice solution, and cloud security products for the SMB.</li>
+</ul></p>
+
+
+</apex:form>
+
+</div>
+</apex:page>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invoice_PLL__c</fullName>
+    <description>Invoice preference for Phoenix</description>
+    <externalId>false</externalId>
+    <label>Invoice PLL Indicator</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Online PDF</fullName>
+                <default>true</default>
+                <label>Online PDF</label>
+            </value>
+            <value>
+                <fullName>Online PDF + Paper</fullName>
+                <default>false</default>
+                <label>Online PDF + Paper</label>
+            </value>
+            <value>
+                <fullName>Online PDF + Paper Pull</fullName>
+                <default>false</default>
+                <label>Online PDF + Paper Pull</label>
+            </value>
+            <value>
+                <fullName>C</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>C</label>
+            </value>
+            <value>
+                <fullName>G</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>G</label>
+            </value>
+            <value>
+                <fullName>N</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>N</label>
+            </value>
+            <value>
+                <fullName>Non-revenue</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Non-revenue</label>
+            </value>
+            <value>
+                <fullName>S</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>S</label>
+            </value>
+            <value>
+                <fullName>Y</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Y</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

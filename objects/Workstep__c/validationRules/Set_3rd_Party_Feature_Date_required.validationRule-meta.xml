@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Set_3rd_Party_Feature_Date_required</fullName>
+    <active>true</active>
+    <description>3rd Party Feature Date field must be filled out before you can close the Set 3rd Party Feature Date workstep IF the duration on Set 3rd Party Feature Date is greater than 0</description>
+    <errorConditionFormula>ISBLANK(Sub_Order__r.X3rd_Party_Feature_Date__c) &amp;&amp; Name=&#39;Set 3rd Party Feature Date&#39; &amp;&amp; ISPICKVAL(Status__c , &#39;Complete&#39;)&amp;&amp; Duration__c = 1</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>3rd Party Feature Date must be populated on the Sub-Order before this workstep can be completed.</errorMessage>
+</ValidationRule>

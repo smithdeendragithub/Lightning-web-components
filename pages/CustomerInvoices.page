@@ -1,0 +1,204 @@
+<apex:page controller="CustomerInvoiceController" title="Customer Invoices">
+    <!-- Jquery -->
+	<apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'jquery-1.11.3.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerInvoiceResources, 'jquery-ui.css')}"/>
+    <!-- DataTable -->
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'jquery.dataTables.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerInvoiceResources, 'jquery.dataTables.min.css')}"/>
+    <!-- Search Highlight -->
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'jquery.highlight.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'dataTables.searchHighlight.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerInvoiceResources, 'dataTables.searchHighlight.css')}"/>
+    <!-- DataTable buttons -->
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'dataTables.buttons.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'buttons.flash.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'jszip.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'pdfmake.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'vfs_fonts.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'buttons.html5.min.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.CustomerInvoiceResources, 'buttons.print.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.CustomerInvoiceResources, 'buttons.dataTables.min.css')}"/>
+    <!-- DatePicker -->
+    <apex:stylesheet value="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css"  />
+    <apex:includeScript value="https://code.jquery.com/jquery-1.9.1.js" />
+    <apex:includeScript value="https://code.jquery.com/ui/1.10.3/jquery-ui.js" />
+
+    <style>
+			.filterMatches{
+				background-color: #BFFF00;
+			}
+
+			.tertiaryPalette{
+				color: #000 !important;
+			}
+
+			.dt-buttons{
+				margin-left: 10px;
+			}
+	</style>
+    <!-- scrolloing to the top to prevent focus on inputText box after page load -->
+    <script>
+    	window.onload = function(){
+        	window.scrollTo(0,0);
+    	};
+	</script>
+    <script type="text/javascript">
+			$(document).ready(function(){
+				var contentTable = $('[cid$="contentTable"]').parent('table').eq(0).DataTable({
+                    //enables results highlight
+                    searchHighlight: true,
+                    order: [[2,'desc']],
+                    //sets record lengths to show in picklist
+                    aLengthMenu: [
+                        [10, 25, 50, 100, 200, -1],
+                        [10, 25, 50, 100, 200, "All"]
+                    ],
+                    "iDisplayLength": 200,
+                    //adds copy, print buttons…
+                    dom: 'lBfrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf',
+                        {
+                            extend: 'print',
+                            customize: function(win) {
+                                $(win.document.body)
+                                    .css( 'font-size', '10pt' );
+                                $(win.document.body).find( 'table' )
+                                    .addClass( 'compact' )
+                                    .css( 'font-size', 'inherit' );
+                            }
+                        }
+                    ],
+                });
+			});
+    
+            function showDetail(id){
+                window.open("/apex/CustomerInvoiceDetail?Id=" + id);
+            }
+
+    		function refreshTable(){
+                var contentTable = $('[cid$="contentTable"]').parent('table').eq(0).DataTable({
+                    //enables results highlight
+                    searchHighlight: true,
+                    order: [[1,'desc']],
+                    //sets record lengths to show in picklist
+                    aLengthMenu: [
+                        [10, 25, 50, 100, 200, -1],
+                        [10, 25, 50, 100, 200, "All"]
+                    ],
+                    "iDisplayLength": 200,
+                    //adds copy, print buttons…
+                    dom: 'lBfrtip', //l=length, B=buttons, f=filter(search), r=processing, t=the table, I=table summary, p=page controls
+                    buttons: [
+                        'copy', 'csv', 'excel', 'pdf',
+                        {
+                            extend: 'print',
+                            customize: function(win) {
+                                $(win.document.body)
+                                    .css( 'font-size', '10pt' );
+                                $(win.document.body).find( 'table' )
+                                    .addClass( 'compact' )
+                                    .css( 'font-size', 'inherit' );
+                            }
+                        }
+                    ],
+                });
+            }
+	</script>
+    <script type="text/javascript">
+        j$ = jQuery.noConflict();
+        j$(document).ready(function() {
+        	j$("#fromDate").datepicker({
+                 defaultDate: "+1w",
+                 changeMonth: true,
+                 changeYear: true,
+                 numberOfMonths: 1,
+                 dateFormat:"yy-mm-dd",
+                 altField: "#from_date_alternate",
+                 altFormat: "yy-mm-dd",
+                 showAnim: "slide"
+           	})
+            j$("#toDate").datepicker({
+                 defaultDate: "+1w",
+                 changeMonth: true,
+                 changeYear: true,
+                 numberOfMonths: 1,
+                 dateFormat:"yy-mm-dd",
+                 altField: "#to_date_alternate",
+                 altFormat: "yy-mm-dd",
+                 showAnim: "slide"
+           	})
+        });
+	</script>
+    
+    <apex:form > 
+        <apex:pageBlock title="{!serviceLocationName}" id="accountBlock"> 
+            <table>
+            	<tr>
+                	<td><b>Search By:</b></td>
+                    <td>
+                        <apex:selectList value="{!selectedSearchBy}" size="1">
+                            <apex:selectOption itemValue="invoiceDt" itemLabel="Invoice Date"></apex:selectOption>
+                            <apex:selectOption itemValue="paymentDueDt" itemLabel="Payment Due Date"></apex:selectOption>
+                            <apex:actionSupport event="onchange" action="{!refreshTable}" reRender="invoiceBlock" oncomplete="refreshTable();"/>
+                        </apex:selectList>
+                    </td>
+                    <td><b>Direction:</b></td>
+                    <td>
+                        <apex:selectList value="{!selectedSortDirection}" size="1">
+                            <apex:selectOption itemValue="DESC" itemLabel="Descending"></apex:selectOption>
+                            <apex:selectOption itemValue="ASC" itemLabel="Ascending"></apex:selectOption>
+                            <apex:actionSupport event="onchange" action="{!refreshTable}" reRender="invoiceBlock" oncomplete="refreshTable();"/>
+                        </apex:selectList>
+                    </td>
+                </tr>
+                <tr><td><b>From Date: </b></td><td><input type="text" name="fromDate" id="fromDate"/></td></tr>
+                <tr><td><b>To Date:</b></td><td><input type="text" name="toDate" id="toDate" /></td></tr>
+                <tr><td></td><td><apex:commandButton reRender="invoiceBlock" action="{!refreshTable}" value="Search" oncomplete="refreshTable();"/></td></tr>
+            </table>
+        </apex:pageBlock> 
+    
+        <apex:pageBlock title="Invoices" id="invoiceBlock">
+            <apex:pageMessages />
+            <table>
+                <tr><td><b>Total number of invoices: </b>{!totalElements}</td>
+                    <td>&nbsp;</td>
+                    <td><b>Number of pages: </b>{!numberOfPages}</td>
+                    <td>&nbsp;</td>
+                    <td><b>Page:</b></td>
+                	<td>
+                        <apex:selectList value="{!selectedPage}" size="1">
+                            <apex:selectOptions value="{!pageitems}"/>
+                            <apex:actionSupport event="onchange" action="{!refreshTable}" reRender="invoiceBlock" oncomplete="refreshTable();"/>
+                        </apex:selectList>
+                    </td>
+                </tr>
+            </table>
+            <br/>
+            <div class="invTable">
+               <apex:pageBlockTable value="{!contentList}" var="content" html-cid="contentTable" id="invoiceTable"> 
+                    <!--<apex:column value="{!content.id}" headerValue="ID" styleClass="contentId" onclick="showDetail('{!content.id}');"/> -->
+                    <!--<apex:column value="{!content.invoiceNum}" headerValue="Invoice #" onclick="showDetail('{!content.id}');"/> -->
+                    <apex:column value="{!content.invoiceDt}" headerValue="Invoice Dt" onclick="showDetail('{!content.id}');"/>
+                    <apex:column value="{!content.billingAccountNum}" headerValue="Billing Account #" onclick="showDetail('{!content.id}');"/>
+                    <apex:column value="{!content.balanceForwardAmt}" headerValue="Balance Forward Amt" onclick="showDetail('{!content.id}');"/>
+                    <apex:column value="{!content.paymentReceivedAmt}" headerValue="Payment Received Amt" onclick="showDetail('{!content.id}');"/>
+                    <apex:column value="{!content.paymentDueDt}" headerValue="Payment Due Dt" onclick="showDetail('{!content.id}');"/>
+                    <apex:column value="{!content.lastPaymentDt}" headerValue="Last Payment Dt" onclick="showDetail('{!content.id}');"/>
+                    <apex:column value="{!content.balanceDueAmt}" headerValue="Balance Due Amt" onclick="showDetail('{!content.id}');"/>
+                   	<apex:column value="{!content.netAmt}" headerValue="Net Amt" onclick="showDetail('{!content.id}');"/>
+                   	<apex:column value="{!content.gstAmt}" headerValue="GST Amt" onclick="showDetail('{!content.id}');"/>
+                   	<apex:column value="{!content.pstAmt}" headerValue="PST Amt" onclick="showDetail('{!content.id}');"/>
+                   	<apex:column value="{!content.hstAmt}" headerValue="HST Amt" onclick="showDetail('{!content.id}');"/>
+                   	<apex:column value="{!content.lpcAmt}" headerValue="LPC Amt" onclick="showDetail('{!content.id}');"/>
+                    <apex:column headerValue="Invoice">
+                        <apex:outputLink value="/{!content.URL}" target="_blank">PDF</apex:outputLink> 
+                    </apex:column>
+                    <apex:column headerValue="Summary">
+                        <apex:outputLink value="/{!content.summaryInvoiceURL}" target="_blank" rendered="{!content.hasSummaryInvoice == 'true'}">PDF</apex:outputLink> 
+                    </apex:column>
+                </apex:pageBlockTable>  
+            </div>
+        </apex:pageBlock>
+    </apex:form> 
+</apex:page>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Search_Products</fullName>
+    <availability>online</availability>
+    <description>Search Products page was deleted. Left button just in case.</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Search Products</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>alert(&#39;Search Product page was removed. Remove this button later&#39;);</url>
+</WebLink>

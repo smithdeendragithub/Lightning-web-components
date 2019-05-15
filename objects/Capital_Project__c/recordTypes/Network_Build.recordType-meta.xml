@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Network_Build</fullName>
+    <active>true</active>
+    <description>Capital project for engineering-initiated network builds.</description>
+    <label>Network Build</label>
+    <picklistValues>
+        <picklist>Business_Unit__c</picklist>
+        <values>
+            <fullName>Corporate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ILEC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Capital_Project_Type__c</picklist>
+        <values>
+            <fullName>ARC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ARC %E2%80%93 NNI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ARC - Fulfilled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EdgeConneX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MN CBD - ARC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Regrets %E2%80%93 Business Parks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Regrets %E2%80%93 Data Centers</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Department__c</picklist>
+        <values>
+            <fullName>Common Systems</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Engineering</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Infrastructure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OSP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transport Data</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Routing_Process__c</picklist>
+        <values>
+            <fullName>Accelerated-Near-Net Profiled BAA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Accelerated-On-Net Active BAA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dark Fiber Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard Routing</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

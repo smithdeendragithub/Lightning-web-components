@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Wavelength_Bandwidth__c</fullName>
+    <externalId>false</externalId>
+    <label>Wavelength Bandwidth</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1 Gbps</fullName>
+                <default>false</default>
+                <label>1 Gbps</label>
+            </value>
+            <value>
+                <fullName>2.5 Gbps</fullName>
+                <default>false</default>
+                <label>2.5 Gbps</label>
+            </value>
+            <value>
+                <fullName>10 Gbps</fullName>
+                <default>false</default>
+                <label>10 Gbps</label>
+            </value>
+            <value>
+                <fullName>40 Gbps</fullName>
+                <default>false</default>
+                <label>40 Gbps</label>
+            </value>
+            <value>
+                <fullName>100 Gbps</fullName>
+                <default>false</default>
+                <label>100 Gbps</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

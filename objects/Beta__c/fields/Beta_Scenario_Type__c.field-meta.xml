@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Beta_Scenario_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Beta Scenario Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Single Site - On-Net</fullName>
+                <default>false</default>
+                <label>Single Site - On-Net</label>
+            </value>
+            <value>
+                <fullName>Multi-Site</fullName>
+                <default>false</default>
+                <label>Multi-Site</label>
+            </value>
+            <value>
+                <fullName>Multi-Site, Off-net</fullName>
+                <default>false</default>
+                <label>Multi-Site, Off-net</label>
+            </value>
+            <value>
+                <fullName>MPLS</fullName>
+                <default>false</default>
+                <label>MPLS</label>
+            </value>
+            <value>
+                <fullName>Large Station Count</fullName>
+                <default>false</default>
+                <label>Large Station Count</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

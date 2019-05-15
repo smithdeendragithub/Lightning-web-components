@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Check_Notes__c</fullName>
+    <description>Special notes for the credit approval.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Special notes for the credit approval.</inlineHelpText>
+    <label>Credit Check Notes</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

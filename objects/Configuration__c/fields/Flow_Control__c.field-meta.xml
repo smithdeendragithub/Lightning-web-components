@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Flow_Control__c</fullName>
+    <externalId>false</externalId>
+    <label>Flow Control</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Asymmetrical</fullName>
+                <default>false</default>
+                <label>Asymmetrical</label>
+            </value>
+            <value>
+                <fullName>Symmetrical</fullName>
+                <default>false</default>
+                <label>Symmetrical</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

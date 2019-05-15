@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CDN_Engineering_Network_Design_Workstep_Issue</fullName>
+    <filterScope>Queue</filterScope>
+    <label>CDN Engineering Network Design</label>
+    <queue>CDN_Engineering_Network_Design</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

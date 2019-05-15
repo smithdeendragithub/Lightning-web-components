@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ICB_Request__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Lookup field from Note object to ICB Request object</description>
+    <externalId>false</externalId>
+    <label>ICB Request</label>
+    <referenceTo>ICB__c</referenceTo>
+    <relationshipLabel>Notes</relationshipLabel>
+    <relationshipName>Notes</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

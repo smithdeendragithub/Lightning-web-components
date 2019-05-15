@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Refunds_Pending_My_Approval</fullName>
+    <columns>NAME</columns>
+    <columns>Customer_Detail__c</columns>
+    <columns>Amount__c</columns>
+    <columns>Status__c</columns>
+    <columns>Next_Approver__c</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Refund_Credit__c.Refund_In_Approval</value>
+    </filters>
+    <filters>
+        <field>Logged_In_User_Is_Me__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Refunds Pending My Approval</label>
+</ListView>

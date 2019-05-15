@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RateCenterName__c</fullName>
+    <description>Name of the Rate Center where this business is located. A Rate Center is a tariff area defined by the telecommunications service provider and approved by the local public utility commissions to specify service, pricing, billing and calling arrangements. The Rate Center Name is determined by locating this business address, using the latitude and longitude, on the GeoResults Rate Center map.</description>
+    <externalId>false</externalId>
+    <label>Rate Center Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

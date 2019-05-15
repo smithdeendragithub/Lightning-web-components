@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Frames_Handoff__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Required for all EVPL Remote sites and all E-LAN sites.  Not used for EPL, or EVPL Aggregation sites</inlineHelpText>
+    <label>Frames Handoff</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>All-to-One Bundling (Tagged &amp; Untagged)</fullName>
+                <default>true</default>
+                <label>All-to-One Bundling (Tagged &amp; Untagged)</label>
+            </value>
+            <value>
+                <fullName>Customer-provided Tags (or Tag ranges) (Service Bundling)</fullName>
+                <default>false</default>
+                <label>Customer-provided Tags (or Tag ranges) (Service Bundling)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

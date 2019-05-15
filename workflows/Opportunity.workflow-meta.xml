@@ -1,0 +1,1872 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Completion_notification_for_Non_Standard_Pricing_request</fullName>
+        <description>Completion notification for Non-Standard Pricing request</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Non_Standard_pricing_request_has_been_approved</template>
+    </alerts>
+    <alerts>
+        <fullName>ELI_Opportunity_has_been_set_to_status_of_Research</fullName>
+        <description>ELI Opportunity has been set to status of Research</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Sales Engineer</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Sales_Engineer_Assigned</template>
+    </alerts>
+    <alerts>
+        <fullName>EMAIL_ALERT_FOR_REFERRAL_TO_SE</fullName>
+        <description>EMAIL ALERT FOR REFERRAL TO SE</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Sales Engineer</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Sales_Support_SE_Notice_of_Referred_to_SE</template>
+    </alerts>
+    <alerts>
+        <fullName>E_Rate_Opportinity_Created</fullName>
+        <description>E-Rate Opportinity Created</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Opportunity_Created_Notify_AC</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Alert_For_Order_has_been_set_to_Completed_to_Billing</fullName>
+        <description>Email Alert For Order has been set to &quot;Completed to Billing&quot;</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Application Specialist</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Customer Account Manager</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>ITS ASA II</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>UC Specialist</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Order_has_been_set_to_Completed_to_Billing</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Alert_For_Order_has_been_set_to_Order_to_Pending</fullName>
+        <description>Email Alert For Order has been set to &quot;Order to Pending&quot;</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>accountTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Application Specialist</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Customer Account Manager</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>ITS ASA II</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>UC Specialist</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Order_has_been_set_to_Order_to_Pending</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Notification_to_Account_Consultant_when_New_Opp_is_created</fullName>
+        <description>Email Notification to Account Consultant when New Opp is created</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>accountTeam</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Opportunity_Created_Notify_AC</template>
+    </alerts>
+    <alerts>
+        <fullName>Email_Notification_to_Account_Owner_when_New_Opp_is_created_that_is_not_owned_by</fullName>
+        <description>Email Notification to Account Owner when New Opp is created that is not owned by account owner or indirect</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Opportunity_Created_Notify_Account_Owner</template>
+    </alerts>
+    <alerts>
+        <fullName>Notification_sent_when_order_status_is_Sales_Working_for_more_than_24_hours</fullName>
+        <description>Notification sent when order status is &quot;Sales Working&quot; for more than 24 hours</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Opportunity_is_still_in_Sales_Working</template>
+    </alerts>
+    <alerts>
+        <fullName>OM_Rep_has_taken_ownership_of_Non_Standard_pricing_request</fullName>
+        <description>OM Rep has taken ownership of Non Standard pricing request</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Non_Standard_pricing_request_is_being_addressed</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Close_Date_is_Past_Due</fullName>
+        <description>Opportunity Close Date is Past Due</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Opportunity_Due_Date_Past_Due</template>
+    </alerts>
+    <alerts>
+        <fullName>Opportunity_Order_Status_Return_to_Sales_Send_email_to_Opportunity_Owner</fullName>
+        <description>Opportunity-Order Status-Return to Sales-Send email to Opportunity Owner</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>accountTeam</type>
+        </recipients>
+        <recipients>
+            <field>Opportunity_Owner_s_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Application Specialist</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Customer Account Manager</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>ITS ASA II</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>UC Specialist</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Opportunity_Order_Status_Back_to_AE_email_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Request_for_Information_from_Offer_Management</fullName>
+        <description>Response from AE to Request for Information</description>
+        <protected>false</protected>
+        <recipients>
+            <field>OM_Rep__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Request_for_more_information_from_OM_to_AE_is_complete</template>
+    </alerts>
+    <alerts>
+        <fullName>Request_for_Non_Standard_Pricing</fullName>
+        <description>Request for Non-Standard Pricing</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Offer Management Primary</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Offer Management Secondary</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Offer_Management_Approval_Request</template>
+    </alerts>
+    <alerts>
+        <fullName>SE_Notification_on_Closed_Won_Opportunity</fullName>
+        <description>SE Notification on Closed Won Opportunity</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>accountTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Customer Account Manager</recipient>
+            <type>accountTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Sales Engineer</recipient>
+            <type>accountTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Account Consultant</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Customer Account Manager</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <recipients>
+            <recipient>Sales Engineer</recipient>
+            <type>opportunityTeam</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/SE_Notification_on_Closed_Won_Opportunity</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_GES_Bid_notification</fullName>
+        <description>Send GES Bid notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>julie.schlitter2@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/GES_Bid_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Stand_Alone_Non_Stardard_Product_Notification</fullName>
+        <description>Stand Alone Non Stardard Product Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Opportunity_Owner_s_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Non_Standard_Product_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Wholesale_iCert_Status_Change</fullName>
+        <description>Wholesale - iCert Status Change</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Wholesale_iCert_Status_Change</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>CSP_Clear_AmountCounter_Values</fullName>
+        <field>Amount_Slide__c</field>
+        <name>CSP Clear AmountCounter Values</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_Clear_Flag</fullName>
+        <field>Cleared_Counters__c</field>
+        <literalValue>1</literalValue>
+        <name>CSP Clear Clear Flag</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_CloseCounter_Values</fullName>
+        <field>Close_Date_Slide__c</field>
+        <name>CSP Clear CloseCounter Values</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_CurrentStageStart_Value</fullName>
+        <field>Current_Stage_Start__c</field>
+        <formula>TODAY()</formula>
+        <name>CSP Clear CurrentStageStart Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_CurrentStage_Value</fullName>
+        <field>Current_Stage_Name__c</field>
+        <formula>TEXT(StageName)</formula>
+        <name>CSP Clear CurrentStage Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_PriorStageName_Values</fullName>
+        <field>Prior_Stage_Name__c</field>
+        <name>CSP Clear PriorStageName Values</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_PriorStageStart_Values</fullName>
+        <field>Prior_Stage_Start__c</field>
+        <name>CSP Clear PriorStageStart Values</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_PriorStageStop_Values</fullName>
+        <field>Prior_Stage_Stop__c</field>
+        <name>CSP Clear PriorStageStop Values</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_PriorStage_Value</fullName>
+        <field>Prior_Stage_Age__c</field>
+        <name>CSP Clear PriorStage Value</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_Stage_1_Stop</fullName>
+        <field>Stage1_Stop__c</field>
+        <name>CSP Clear Stage 1 Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_Stage_2_Start</fullName>
+        <field>Stage2_Start__c</field>
+        <name>CSP Clear Stage 2 Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_Stage_2_Stop</fullName>
+        <field>Stage2_Stop__c</field>
+        <name>CSP Clear Stage 2 Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_Stage_3_Start</fullName>
+        <field>Stage3_Start__c</field>
+        <name>CSP Clear Stage 3 Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_Stage_3_Stop</fullName>
+        <field>Stage3_Stop__c</field>
+        <name>CSP Clear Stage 3 Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_Stage_4_Start</fullName>
+        <field>Stage4_Start__c</field>
+        <name>CSP Clear Stage 4 Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Clear_Stage_4_Stop</fullName>
+        <field>Stage4_Stop__c</field>
+        <name>CSP Clear Stage 4 Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_ClosedDateCNT</fullName>
+        <description>Close_Date_Change_CNT__c + 1</description>
+        <field>Close_Date_Slide__c</field>
+        <formula>IF(TEXT(Close_Date_Slide__c) = &quot;&quot;, 1, Close_Date_Slide__c +1)</formula>
+        <name>CSP ClosedDateCNT</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Currect_Stage_Start</fullName>
+        <field>Current_Stage_Start__c</field>
+        <formula>TODAY()</formula>
+        <name>CSP Currect Stage Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_OppAmountSlide</fullName>
+        <field>Amount_Slide__c</field>
+        <formula>IF(TEXT( Amount_Slide__c ) = &quot;&quot;, 1, Amount_Slide__c +1)</formula>
+        <name>CSP OppAmountSlide</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Prior_Stage_Name</fullName>
+        <field>Prior_Stage_Name__c</field>
+        <formula>PRIORVALUE( Current_Stage_Name__c )</formula>
+        <name>CSP Prior Stage Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Prior_Stage_Start</fullName>
+        <field>Prior_Stage_Start__c</field>
+        <formula>Current_Stage_Start__c</formula>
+        <name>CSP Prior Stage Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Prior_Stage_Stop</fullName>
+        <field>Prior_Stage_Stop__c</field>
+        <formula>TODAY()</formula>
+        <name>CSP Prior Stage Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage1_Stop</fullName>
+        <field>Stage1_Stop__c</field>
+        <formula>IF(AND(
+     PRIORVALUE( Current_Stage_Name__c ) = &quot;Stage 1 - Working / Pipeline&quot;,
+     TEXT(Stage1_Stop__c) = &quot;&quot;), TODAY(), Stage1_Stop__c
+)</formula>
+        <name>CSP Stage1 Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage2_Stop</fullName>
+        <field>Stage2_Stop__c</field>
+        <formula>IF(AND( 
+PRIORVALUE( Current_Stage_Name__c ) = &quot;Stage 2 - Best Case / Upside&quot;, 
+TEXT(Stage2_Stop__c) = &quot;&quot;), TODAY(), Stage2_Stop__c 
+)</formula>
+        <name>CSP Stage2 Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage3_Stop</fullName>
+        <field>Stage3_Stop__c</field>
+        <formula>IF(AND( 
+PRIORVALUE( Current_Stage_Name__c ) = &quot;Stage 3 - Commit&quot;, 
+TEXT(Stage3_Stop__c) = &quot;&quot;), TODAY(), Stage3_Stop__c 
+)</formula>
+        <name>CSP Stage3 Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage4_Stop</fullName>
+        <field>Stage4_Stop__c</field>
+        <formula>IF(AND( 
+PRIORVALUE( Current_Stage_Name__c ) = &quot;Stage 4 - Contract Signed / Won&quot;, 
+TEXT(Stage4_Stop__c) = &quot;&quot;), TODAY(), Stage4_Stop__c 
+)</formula>
+        <name>CSP Stage4 Stop</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage_1_Name</fullName>
+        <description>Qualified</description>
+        <field>Stage1_Name__c</field>
+        <formula>IF( 
+TEXT(StageName ) = &quot;Stage 1 - Working / Pipeline&quot;, &quot;Stage 1 - Working / Pipeline&quot;, 
+Stage1_Name__c 
+)</formula>
+        <name>CSP Stage 1 Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage_1_Start</fullName>
+        <field>Stage1_Start__c</field>
+        <formula>Today()</formula>
+        <name>CSP Stage 1 Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage_2_Name</fullName>
+        <field>Stage2_Name__c</field>
+        <formula>IF( 
+TEXT(StageName ) = &quot;Stage 2 - Best Case / Upside&quot;, &quot;Stage 2 - Best Case / Upside&quot;, 
+Stage2_Name__c 
+)</formula>
+        <name>CSP Stage 2 Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage_2_Start</fullName>
+        <description>Solution Defined</description>
+        <field>Stage2_Start__c</field>
+        <formula>IF(AND( 
+TEXT(StageName ) = &quot;Stage 2 - Best Case / Upside&quot;, 
+TEXT(Stage2_Start__c) = &quot;&quot;), TODAY(), Stage2_Start__c 
+)</formula>
+        <name>CSP Stage 2 Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage_3_Name</fullName>
+        <field>Stage3_Name__c</field>
+        <formula>IF(
+TEXT(StageName ) = &quot;Stage 3 - Commit&quot;, &quot;Stage 3 - Commit&quot;,
+Stage3_Name__c 
+)</formula>
+        <name>CSP Stage 3 Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage_3_Start</fullName>
+        <description>Contract Negotiation</description>
+        <field>Stage3_Start__c</field>
+        <formula>IF(AND( 
+TEXT(StageName ) = &quot;Stage 3 - Commit&quot;, 
+TEXT(Stage3_Start__c) = &quot;&quot;), TODAY(), Stage3_Start__c 
+)</formula>
+        <name>CSP Stage 3 Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage_4_Name</fullName>
+        <description>Contract Signed</description>
+        <field>Stage4_Name__c</field>
+        <formula>IF(
+TEXT(StageName ) = &quot;Stage 4 - Contract Signed / Won&quot;, &quot;Stage 4 - Contract Signed / Won&quot;,
+Stage4_Name__c 
+)</formula>
+        <name>CSP Stage 4 Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>CSP_Stage_4_Start</fullName>
+        <description>Contract Signed</description>
+        <field>Stage4_Start__c</field>
+        <formula>IF(AND( 
+TEXT(StageName ) = &quot;Stage 4 - Contract Signed / Won&quot;, 
+TEXT(Stage4_Start__c) = &quot;&quot;), TODAY(), Stage4_Start__c 
+)</formula>
+        <name>CSP Stage 4 Start</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_Allow_Closed_Won</fullName>
+        <field>Bypass_Validation__c</field>
+        <literalValue>0</literalValue>
+        <name>Clear Allow Closed Won</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_Request_Info_Changes_checkbox</fullName>
+        <field>Request_Information_Changes__c</field>
+        <literalValue>0</literalValue>
+        <name>Clear Request Info/Changes checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_Requested_Info_Completed_Checkbox</fullName>
+        <field>Requested_Information_Changes_Completed__c</field>
+        <literalValue>0</literalValue>
+        <name>Clear Requested Info Completed Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Current_Stage_Name</fullName>
+        <field>Current_Stage_Name__c</field>
+        <formula>TEXT(StageName)</formula>
+        <name>Current Stage Name</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Increment_Push_Counter_Field</fullName>
+        <description>Increment the Push Counter by 1</description>
+        <field>Push_Counter__c</field>
+        <formula>IF( 
+ISNULL( Push_Counter__c ), 
+1, 
+Push_Counter__c + 1 
+)</formula>
+        <name>Increment Push Counter Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>NSP_Request_Working_Date</fullName>
+        <description>When OM Rep takes ownership of a NSP request, the NSP Request Working Date is timestamped.</description>
+        <field>NSP_Request_Working_Date__c</field>
+        <formula>NOW()</formula>
+        <name>NSP Request Working Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>NSP_Status_Complete</fullName>
+        <field>NSP_Status__c</field>
+        <literalValue>Non-Standard Offer Completed</literalValue>
+        <name>NSP Status = Complete</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Non_Standard_Offer_Completed_Date</fullName>
+        <description>Updates NSP Completed Date field when stage is changed to Non-Standard Offer Completed</description>
+        <field>NSP_Completed_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Non-Standard Offer Completed Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Opportunity_NSP_Submitted_Date</fullName>
+        <description>TIme Stamps the NSP Submitted Date field when stage is changed to Non Standard Offer Request</description>
+        <field>NSPRequestSubmittedDate__c</field>
+        <formula>NOW()</formula>
+        <name>Opportunity - NSP Submitted Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Opportunity_Owner_Manager_Set</fullName>
+        <field>Opportunity_Owner_s_Manager_Email__c</field>
+        <formula>Owner.Manager.Email</formula>
+        <name>Opportunity Owner Manager Set</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Order_Status_Set_to_Sales_Working</fullName>
+        <description>Set the Order Status field to Sales Working</description>
+        <field>Order_Status__c</field>
+        <literalValue>Sales Working</literalValue>
+        <name>Order Status Set to Sales Working</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Prior_Stage_Age</fullName>
+        <field>Prior_Stage_Age__c</field>
+        <formula>PriorValue( Current_Stage_Name__c ) &amp; &quot;: &quot; &amp; TEXT(Prior_Stage_Stop__c -Prior_Stage_Start__c )&amp;&quot; day(s)&quot;</formula>
+        <name>Prior Stage Age</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_CloseDate</fullName>
+        <field>CloseDate</field>
+        <formula>TODAY()</formula>
+        <name>Set CloseDate</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Close_Date_60_Days_From_Created_Date</fullName>
+        <field>CloseDate</field>
+        <formula>CreatedDate + 60</formula>
+        <name>Set Close Date 60 Days From Created Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Closed_Date</fullName>
+        <field>CloseDate</field>
+        <formula>Today()</formula>
+        <name>Set Closed Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Sets_Initial_Held_Date</fullName>
+        <field>Initial_Appointment_Held_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Sets Initial Held Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Sets_Proposal_Meeting_Held_Date</fullName>
+        <field>Proposal_Meeting_Held_Date__c</field>
+        <formula>NOW()</formula>
+        <name>Sets Proposal Meeting Held Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Stage_Non_Standard_Offer_Request</fullName>
+        <description>Changes Opp. stage to Non-Standard Offer Request</description>
+        <field>StageName</field>
+        <literalValue>Non-Standard Offer Request</literalValue>
+        <name>Stage = Non-Standard Offer Request</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_PDF_Flags_field</fullName>
+        <field>PDF_Flags__c</field>
+        <formula>TRIM(IF(Proposal_Letter__c != null, &#39;ProposalLetter &#39;, &#39;&#39;) + &#39;,&#39; + IF(Business_Objectives__c != null &amp;&amp; Proposed_Solutions__c != null, &#39;ExecutiveSummary &#39;, &#39;&#39;) + &#39; &#39;)</formula>
+        <name>Update PDF Flags field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Projected_CPE_Amount</fullName>
+        <field>Projected_CPE_Amount__c</field>
+        <formula>CPE_Amount__c</formula>
+        <name>Update Projected CPE Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Projected_MRR_Amount</fullName>
+        <field>Projected_MRR_Amount__c</field>
+        <formula>Amount</formula>
+        <name>Update Projected MRR Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Projected_NRR_Amount</fullName>
+        <field>Projected_NRR_Amount__c</field>
+        <formula>NRR_Amount__c</formula>
+        <name>Update Projected NRR Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Projected_Turndown_Amount</fullName>
+        <field>Projected_Turndown_Amount__c</field>
+        <formula>Current_MRR_del__c</formula>
+        <name>Update Projected Turndown Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Service_City</fullName>
+        <field>Service_City__c</field>
+        <formula>Account.ShippingCity</formula>
+        <name>Update Service City</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Service_Country</fullName>
+        <field>Service_Country__c</field>
+        <formula>Account.ShippingCountry</formula>
+        <name>Update Service Country</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Service_State</fullName>
+        <field>Service_State_Province__c</field>
+        <formula>Account.ShippingState</formula>
+        <name>Update Service State</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Service_Street</fullName>
+        <field>Service_Street__c</field>
+        <formula>Account.ShippingStreet</formula>
+        <name>Update Service Street</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Service_Zip</fullName>
+        <field>Service_Zip_Postal_Code__c</field>
+        <formula>Account.ShippingPostalCode</formula>
+        <name>Update Service Zip</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>CSP Clear-Set Counter Values</fullName>
+        <actions>
+            <name>CSP_Clear_AmountCounter_Values</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Clear_Clear_Flag</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Clear_Stage_1_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Clear_Stage_2_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Clear_Stage_2_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Clear_Stage_3_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Clear_Stage_3_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Clear_Stage_4_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Clear_Stage_4_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage_1_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Fires only on record create to clear  values.</description>
+        <formula>1+1=2</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>CSP ClosedDateSlide</fullName>
+        <actions>
+            <name>CSP_ClosedDateCNT</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Fires a when Closed Date changes but not on the same day as record creation date.]</description>
+        <formula>AND(PRIORVALUE(CloseDate)&lt;&gt; CloseDate, DATEVALUE(CreatedDate) &lt;&gt;  DATEVALUE(LastModifiedDate) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CSP OppAmountSlide</fullName>
+        <actions>
+            <name>CSP_OppAmountSlide</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Fires a when either Amount, CPE Amount or Current MRR values change but not on the same day as record creation date.</description>
+        <formula>AND(     OR( PRIORVALUE(CPE_Amount__c) &lt;&gt;CPE_Amount__c,         PRIORVALUE(Amount)&lt;&gt; Amount,         PRIORVALUE(Current_MRR_del__c) &lt;&gt; Current_MRR_del__c         ),     DATEVALUE(CreatedDate) &lt;&gt;  DATEVALUE(LastModifiedDate) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CSP Stage Age</fullName>
+        <actions>
+            <name>CSP_Prior_Stage_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Prior_Stage_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Prior_Stage_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(StageName)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CSP Stage Age p2</fullName>
+        <actions>
+            <name>CSP_Currect_Stage_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Prior_Stage_Age</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(Prior_Stage_Name__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CSP Stage Start</fullName>
+        <actions>
+            <name>CSP_Stage_1_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage_1_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage_2_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage_2_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage_3_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage_3_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage_4_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage_4_Start</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(StageName)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>CSP Stage Stop</fullName>
+        <actions>
+            <name>CSP_Stage1_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage2_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage3_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>CSP_Stage4_Stop</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(Current_Stage_Name__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Clear Bypass Validation</fullName>
+        <actions>
+            <name>Clear_Allow_Closed_Won</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Bypass_Validation__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy Service address to Opportunity</fullName>
+        <actions>
+            <name>Update_Service_City</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Service_Country</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Service_State</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Service_Street</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Service_Zip</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedById</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>When an Opp. is created, copy the Service Address from the Account to the Services Address fields under the Non-Standard Pricing section.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Current Stage Name Workflow</fullName>
+        <actions>
+            <name>Current_Stage_Name</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Store the StageName value in the custom field called Current Stage Name. This custom field is necessary for Custom Report Types.</description>
+        <formula>1=1</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>E-Rate Opportunity Created - Notify Opportunity Owner</fullName>
+        <actions>
+            <name>E_Rate_Opportinity_Created</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.E_Rate_Opportunity__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>notEqual</operation>
+            <value>Closed Lost</value>
+        </criteriaItems>
+        <description>Send Email to AccountOwner when a new opportunity is created on Account</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>EMAIL ALERT FOR SE</fullName>
+        <actions>
+            <name>EMAIL_ALERT_FOR_REFERRAL_TO_SE</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Order_Status__c</field>
+            <operation>equals</operation>
+            <value>Referred to SE</value>
+        </criteriaItems>
+        <description>Email is sent to the sale engineer when the status is referred to se</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Month to Month Renewal Follow Up</fullName>
+        <actions>
+            <name>Month_to_Month_Decision_Follow_Up</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Lost_Reason__c</field>
+            <operation>equals</operation>
+            <value>Customer Decision - Month to Month</value>
+        </criteriaItems>
+        <description>Create a task to Opportunity Owner to follow up on Closed Lost Opportunity with Lost Reason of Customer Decision - Month to Month</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Non Standard Product Notification</fullName>
+        <actions>
+            <name>Stand_Alone_Non_Stardard_Product_Notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>12 AND 11 AND (1 OR 2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10)</booleanFilter>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>Broadband Bundle;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>Basic Voice Services;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>DSL and/or Broadband;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>Integrated T1;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>ISDN/PRI;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>Network Services;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>Novus;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>Voice T1;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>Managed Prime/Pro;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Opportunity_Product__c</field>
+            <operation>contains</operation>
+            <value>Managed SMART Business Package</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Type</field>
+            <operation>equals</operation>
+            <value>New Logo</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>User.Department</field>
+            <operation>notContain</operation>
+            <value>ILEC</value>
+        </criteriaItems>
+        <description>Notification to rep and manager when a discontinued product is ordered for a  new logo</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>OM Request Information</fullName>
+        <actions>
+            <name>Offer_Management_Changes_Requested</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Request_Information_Changes__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Offer Management Rep has taken ownership of request</fullName>
+        <actions>
+            <name>OM_Rep_has_taken_ownership_of_Non_Standard_pricing_request</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>NSP_Request_Working_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.OM_Rep__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>When the OM Rep field is filled in, the Opp. owner is notified that the request is being worked on.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity %22Order to Pending%22</fullName>
+        <actions>
+            <name>Revenue_Audit</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Order_Status__c</field>
+            <operation>equals</operation>
+            <value>Order to Pending</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Amount</field>
+            <operation>greaterThan</operation>
+            <value>USD 0</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>ILEC Manual Entry,Sales - Split Opportunity</value>
+        </criteriaItems>
+        <description>Notify Sales Ops of Order to Pending for revenue audit</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity - Contract Term End Date - Follow Up Regarding Contract</fullName>
+        <actions>
+            <name>Please_follow_up_with_Contact_regarding_contract</name>
+            <type>Task</type>
+        </actions>
+        <active>true</active>
+        <description>When Contract Term End Date is entered and greater than 90 days in the future create a follow up task (60 days from today) for AE to call contact.</description>
+        <formula>Contract_Term_End_Date__c &gt; TODAY() + 90</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity - NSP Completed</fullName>
+        <actions>
+            <name>Completion_notification_for_Non_Standard_Pricing_request</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>NSP_Status_Complete</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Non_Standard_Offer_Completed_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Completed_by_OM__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Sets off a series of events when the Completed by OM checkbox is checked.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity - NSP Submitted</fullName>
+        <actions>
+            <name>Request_for_Non_Standard_Pricing</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Opportunity_NSP_Submitted_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Non_Standard_Pricing_Request</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.NSP_Status__c</field>
+            <operation>equals</operation>
+            <value>Non Standard Offer Pricing Requested</value>
+        </criteriaItems>
+        <description>Sets off a series of actions when the stage is changed to Non-Standard Offer Request</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Bid Notification Workflow</fullName>
+        <actions>
+            <name>Send_GES_Bid_notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Bid__c</field>
+            <operation>equals</operation>
+            <value>Yes</value>
+        </criteriaItems>
+        <description>Notify GES of Bid being checked on Opportunity</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity CloseDate Required</fullName>
+        <actions>
+            <name>Set_CloseDate</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>8/1/16 Cristie Rozell:  Deactivating per Betsy Nagy.  Betsy and Jodi decided this is NOT something they want to do automatically due to impacts on reports/dashboards and forecasting tab all driving off of close date.</description>
+        <formula>ISCHANGED(StageName) &amp;&amp; TEXT(StageName) = &#39;Closed Won&#39;</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Created - Notify AC</fullName>
+        <actions>
+            <name>Email_Notification_to_Account_Consultant_when_New_Opp_is_created</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.CreatedDate</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Send Email to Account Consultant when a new opportunity is created on Account</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Created - Notify AE</fullName>
+        <actions>
+            <name>Email_Notification_to_Account_Owner_when_New_Opp_is_created_that_is_not_owned_by</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Send Email to AE when a new Opportunity is created that does not belong to account owner or indirect</description>
+        <formula>AND(Owner.Id&lt;&gt;Account.Owner.Id,Sales_Channel__c&lt;&gt;&quot;Indirect Sales&quot;, Account.OwnerId  &lt;&gt;&quot;005C0000003X9PX&quot;    ,  Account.Sales_Channel__c  &lt;&gt; &quot;Indirect Sales&quot;)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Initial Appointment Held Date set</fullName>
+        <actions>
+            <name>Sets_Initial_Held_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Initial Held</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Order has been set to %22Completed to Billing%22</fullName>
+        <actions>
+            <name>Email_Alert_For_Order_has_been_set_to_Completed_to_Billing</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Order_Status__c</field>
+            <operation>equals</operation>
+            <value>Completed to Billing</value>
+        </criteriaItems>
+        <description>When Opportunity Order Status changed to &#39;Completed to Billing&#39;, send email notification to Opportunity Owner and related Care Org contacts.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Order has been set to %22Order to Pending%22</fullName>
+        <actions>
+            <name>Email_Alert_For_Order_has_been_set_to_Order_to_Pending</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Order_Status__c</field>
+            <operation>equals</operation>
+            <value>Order to Pending</value>
+        </criteriaItems>
+        <description>When Opportunity Order Status changed to &#39;Order to Pending&quot;, send email notification to Opportunity Owner and related Care Org contacts.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Owner Manager%27s Email</fullName>
+        <actions>
+            <name>Opportunity_Owner_Manager_Set</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.OwnerId</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>This will trigger a field update to set the Opportunity Owner Manmger&#39;s Email.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity Proposal Meeting Held Set</fullName>
+        <actions>
+            <name>Sets_Proposal_Meeting_Held_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Proposed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity is still in Sales Working</fullName>
+        <active>true</active>
+        <formula>AND(Owner.Alias &lt;&gt; &#39;gmalo&#39;,Owner.Alias &lt;&gt; &#39;ljohn&#39;, Owner.Alias &lt;&gt; &#39;csull&#39;, Owner.Alias &lt;&gt; &#39;lhill&#39;, Owner.Profile.Name &lt;&gt; &#39;Indirect Sales&#39;, Owner.Profile.Name &lt;&gt; &#39;Custom Partner Community&#39;, OR( TEXT (StageName) = &#39;Stage 4 - Contract Signed / Won&#39;, TEXT (StageName) = &#39;Stage 5 - Accepted / Order Pending&#39; ),TEXT ( Order__r.Status__c ) = &#39;Sales Working&#39;, RecordType.DeveloperName&lt;&gt;&#39;ILEC_Manual_Entry&#39;)</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Notification_sent_when_order_status_is_Sales_Working_for_more_than_24_hours</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>24</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+    <rules>
+        <fullName>Opportunity-Order Status-Notify AE of missing data</fullName>
+        <actions>
+            <name>Opportunity_Order_Status_Return_to_Sales_Send_email_to_Opportunity_Owner</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Order_Status__c</field>
+            <operation>equals</operation>
+            <value>Returned to Sales</value>
+        </criteriaItems>
+        <description>When the Order Status field is set to &quot;Returned to Sales&quot; then send the owner of the Opportunity an email.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Opportunity-Order Status-Set to %22Returned to Service%22</fullName>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Order_Status__c</field>
+            <operation>equals</operation>
+            <value>Returned to Account Specialists - Wholesale</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Order Status set to Sales Working when Closed Won</fullName>
+        <actions>
+            <name>Order_Status_Set_to_Sales_Working</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Order_Status__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Set the Order Status field to Sales Working when opportunity is Closed Won.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Populate Closed Won Projected Amounts</fullName>
+        <actions>
+            <name>Update_Projected_CPE_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Projected_MRR_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Projected_NRR_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_Projected_Turndown_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>1 AND (2 AND 3 AND 4 AND 5)</booleanFilter>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Projected_CPE_Amount__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Projected_MRR_Amount__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Projected_NRR_Amount__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Projected_NRR_Amount__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Proposal Task</fullName>
+        <actions>
+            <name>Proposal</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won,Proposed,Contract Delivered</value>
+        </criteriaItems>
+        <description>Create a proposal task when stage on Opp is Proposed or Greater</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Proposed Opportunity</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Proposed</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Push Counter</fullName>
+        <actions>
+            <name>Increment_Push_Counter_Field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Increment the Push Counter field by 1</description>
+        <formula>IF(  CloseDate &gt; PRIORVALUE( CloseDate ),  IF (MONTH(CloseDate) &lt;&gt; MONTH(PRIORVALUE( CloseDate )) ,  TRUE,  FALSE),  FALSE)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Request for more information from OM to AE is complete</fullName>
+        <actions>
+            <name>Request_for_Information_from_Offer_Management</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Clear_Request_Info_Changes_checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Clear_Requested_Info_Completed_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Requested_Information_Changes_Completed__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>When the Request for more information from OM to AE is complete, clear the fields</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>SE Email Alert on Closed Won Opportunities</fullName>
+        <actions>
+            <name>SE_Notification_on_Closed_Won_Opportunity</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Stage 4 - Contract Signed / Won</value>
+        </criteriaItems>
+        <description>Send email to the Sales Engineer and Account Consultant on the opportunity based on Closed Won Opportunity</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Close Date 60 Days From Created Date</fullName>
+        <actions>
+            <name>Set_Close_Date_60_Days_From_Created_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Opportunity.Created_From_Lead__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Retail</value>
+        </criteriaItems>
+        <description>When opportunity has been created from a lead, set opportunity close date 60 days from opportunity created date.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Closed Date - Won</fullName>
+        <actions>
+            <name>Set_Closed_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update PDF Flags field</fullName>
+        <actions>
+            <name>Update_PDF_Flags_field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(Proposal_Letter__c) || ISCHANGED(Business_Objectives__c) || ISCHANGED(Proposed_Solutions__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>VIP Customer Support</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.Amount</field>
+            <operation>greaterOrEqual</operation>
+            <value>&quot;USD 4,000&quot;</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.ForecastCategoryName</field>
+            <operation>equals</operation>
+            <value>Commit,Upside</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Sales</value>
+        </criteriaItems>
+        <description>Notify specific individuals once an order hits Commit or Upside and is over $4K.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Waiting Stage - Create Task</fullName>
+        <actions>
+            <name>Follow_Up_on_Waiting_Opportunity</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Waiting</value>
+        </criteriaItems>
+        <description>Reminder to follow up on waiting Opportunity as Close Date approaches.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Wholesale - Sales Engineer Assigned</fullName>
+        <actions>
+            <name>ELI_Opportunity_has_been_set_to_status_of_Research</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>ELI_Opportunity_has_been_set_to_status_of_Research</name>
+            <type>Task</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Opportunity.StageName</field>
+            <operation>equals</operation>
+            <value>Research</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Opportunity.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>When opportunity stage is set to research; 
+1. Send an email to the sales engineer
+2. Generate a task for the sales engineer.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Wholesale - iCert Status Change</fullName>
+        <actions>
+            <name>Wholesale_iCert_Status_Change</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>When the iCert status is changed send an email to the opportunity owner.</description>
+        <formula>ISCHANGED(iCert_Status__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <tasks>
+        <fullName>ELI_Opportunity_has_been_set_to_status_of_Research</fullName>
+        <assignedTo>Sales Engineer</assignedTo>
+        <assignedToType>opportunityTeam</assignedToType>
+        <description>You have been assigned as a Sales Engineer - please complete Research activities and then close this task.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>ELI Opportunity has been set to status of Research</subject>
+    </tasks>
+    <tasks>
+        <fullName>Follow_Up_on_Waiting_Opportunity</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>You have set a Renewal Opportunity to the stage of &quot;Waiting&quot; pending the term end date. Follow up on the Opportunity 30 days prior to the term end/Opportunity Close Date.</description>
+        <dueDateOffset>-30</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <offsetFromField>Opportunity.CloseDate</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Follow Up on Waiting Opportunity</subject>
+    </tasks>
+    <tasks>
+        <fullName>Month_to_Month_Decision_Follow_Up</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>This Renewal Opportunity was Closed Lost as a result of a customer decision to continue with Integra on a Month to Month basis. Please follow up with the customer 45 days after last contact to see if their situation has changed.</description>
+        <dueDateOffset>45</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Month to Month Decision Follow Up</subject>
+    </tasks>
+    <tasks>
+        <fullName>Non_Standard_Pricing_Request</fullName>
+        <assignedTo>Offer Management Primary</assignedTo>
+        <assignedToType>opportunityTeam</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Non-Standard Pricing Request</subject>
+    </tasks>
+    <tasks>
+        <fullName>Offer_Management_Changes_Requested</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Please respond to the Information/Change request. Details can be found in the Non-Standard Pricing Section of the Opportunity</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>High</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Offer Management Changes Requested</subject>
+    </tasks>
+    <tasks>
+        <fullName>Please_follow_up_with_Contact_regarding_contract</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Please follow up with Contact regarding contract term date.</description>
+        <dueDateOffset>70</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Please follow up with Contact regarding contract.</subject>
+    </tasks>
+    <tasks>
+        <fullName>Proposal</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Completed</status>
+        <subject>Proposal</subject>
+    </tasks>
+    <tasks>
+        <fullName>Revenue_Audit</fullName>
+        <assignedTo>allsoc@integratelecom.com</assignedTo>
+        <assignedToType>user</assignedToType>
+        <description>Please review Total MRR - verify against ICC orders to confirm correctly reporting revenue.</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <offsetFromField>Opportunity.Current_Stage_Start__c</offsetFromField>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Revenue Audit</subject>
+    </tasks>
+</Workflow>

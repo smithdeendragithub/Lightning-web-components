@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Set_Specific_Day_of_the_Month</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(ISNULL(Occurrence_SDotM__c)) &amp;&amp; (TEXT(Occurrence_Category__c) &lt;&gt; &#39;Month&#39;
+|| NOT(ISBLANK(TEXT(Occurrence_Day_of_the_Week__c))))</errorConditionFormula>
+    <errorDisplayField>Occurrence_SDotM__c</errorDisplayField>
+    <errorMessage>A specific day of the month can only be chosen for &quot;Month&quot; occurrences that do not have a day of the week specified</errorMessage>
+</ValidationRule>

@@ -1,0 +1,631 @@
+<apex:component controller="ProposalGenericController">
+    <apex:attribute name="currentOppty" description="Opportunity"
+                    type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+    <apex:attribute name="decisionMaker"
+                    description="clients decision maker" type="Contact" required="true" />
+    <apex:attribute name="integraDecisionMaker"
+                    description="companies decision maker" type="CompanyInfo"
+                    required="true" />
+    
+    <apex:outputPanel layout="none" id="op">
+        <p style="text-align: center;">
+            ETHERNET SERVICES SERVICE ADDENDUM <br /> to the<br /> Master Service Agreement
+        </p>
+        <p>
+            <strong>THIS ETHERNET SERVICE ADDENDUM</strong> (this “Addendum”) shall be attached to and become a part of the Master Service Agreement (the “Agreement”), by and between Integra Telecom Holdings, Inc. (“INTEGRA”) and <u>{!CurrentOpportunity.Account.Name}</u> (“Customer”).
+        </p>
+		<ol class="decimal">
+			<li>
+				SCOPE OF THE ADDENDUM<br />
+				<p>
+					This Addendum, including all attachments hereto, sets forth the terms and conditions under which INTEGRA agrees to provide to Customer and Customer agrees to procure from INTEGRA certain Ethernet Services to be defined herein (“Services”).
+				</p>
+			</li>
+			<li>
+				DESCRIPTION OF ON-NET SERVICES<br />
+				<p>
+					<ol class="upperAlpha">
+						<li>
+							E-Line: This category of service provides an Ethernet service between two end points and has two configuration types. <br />
+							<p>
+								<ol class="lowerRoman">
+									<li>
+										<u>Ethernet Private Line (“EPL”)</u>. EPL is a type of E-Line service. EPL provides a point-to-point Ethernet transport solution. The Service meets the Metro Ethernet Forum (MEF) specification for an EPL service and is MEF 9 and MEF 14 certified.
+										<p></p>
+									</li>
+									<li>
+										<u>Ethernet Virtual Private Line (“EVPL”)</u>. EVPL is a type of E-Line service. EVPL provides a point-to-multipoint (hub and spoke) Ethernet transport solution that allows for service multiplexing (more than one Ethernet Virtual Circuit (“EVC”) can be supported at the User Network Interface (“UNI”)). The Service meets the Metro Ethernet Forum (MEF) specification for an EVPL service and is MEF 9 and MEF 14 certified.
+										<p></p>
+									</li>
+								</ol>
+							</p>
+						</li>
+						<li>
+							E-LAN: this category of service provides and Ethernet service between more that two endpoints and has two configuration types.<br />
+							<p>
+								<ol class="lowerRoman">
+									<li>
+										Ethernet Private Local Area Network (“EP-LAN”). EP-LAN is a type of E-LAN service. EP-LAN provides a multipoint-to-multipoint Ethernet transport solution. The service meets the MEF specification for an EP-LAN service and is MEF 9 and 14 certified.
+										<p></p>
+									</li>
+									<li>
+										Ethernet Virtual Private Local Area Network (“EVP-LAN”). EVP-LAN is a type of E-LAN service. EVP-LAN provides a multipoint-to-multipoint Ethernet transport solution that allows for service multiplexing (more than one EVC can be supported at the UNI). The service meets the MEF specification for an EVP-LAN service and is MEF 9 &amp; 14 certified.									
+										<p></p>
+									</li>
+								</ol>
+							</p>
+						</li>
+						<li>
+							INTEGRA offers the following UNI access for EPL, EVPL, EP-LAN, and EVP-LAN:<br />
+							<p>
+								<ol class="lowerRoman">
+									<li>
+										Switched Ethernet over Fiber (“EoF”), Ethernet over Copper (“EoC”), Ethernet over TDM (“EoTDM”), and Ethernet over SONET (“EoS”), or over 3<sup>rd</sup> party Ethernet access (“OffNet”).
+										<p></p>
+									</li>
+									<li>
+										As an option, Customer can order Enhanced SLA &amp; Performance Reporting for all EVCs that are provisioned across a UNI.
+										<p></p>
+									</li>
+								</ol>
+							</p>
+						</li>
+						<li>
+							INTEGRA offers Ethernet Virtual Circuits (“EVC”) to associate two UNIs for E-Line services. An E-LAN EVC is an association of multiple UNIs. Each UNI associated with the E-LAN EVC provides access bandwidth to the E-LAN EVC (“E-LAN EVC Access”).<br />
+							<p>
+								<ol class="lowerRoman">
+									<li>
+										Class of Service for each E-Line EVC or E-LAN EVC Access can be ordered as Best Effort, Standard Class, Business Class, or Real Time
+										<p></p>
+									</li>
+									<li>
+										Class of service can be ordered as Static or Dynamic.<br />
+										<p>
+											<ol class="lowerAlpha">
+												<li>
+													Static – all traffic into Integra’s network is treated as one type of Class of Service<br />
+													<p></p>
+												</li>
+												<li>
+													Dynamic – all traffic into Integra’s network is classified based on customer’s marking of traffic<br />
+													<p></p>
+												</li>
+												<li>
+													Traffic within the Committed Information Rate (“CIR”) profile is sent appropriately across Integra’s network in adherence to the Class of Service profile chosen and the associated Service Level Objectives outlined in section 5.B. Input traffic exceeding these CIR profilesis subject to being discarded.<br />
+													<p></p>
+												</li>
+											</ol>
+										</p>
+									</li>
+								</ol>
+							</p>
+							<p>
+								Customer will be solely responsible for managing the bandwidth subscribed on a UNI provided by INTEGRA. Any Service Outage determined to be the result of Customer’s oversubscription of EVC or E-LAN EVC Access bandwidth greater than the capacity of the access method or UNI will not be subject to the Credit Allowances in Section 6 of this Addendum.
+							</p>
+						</li>
+					</ol>
+				</p>
+			</li>
+			<li>
+				RATES AND CHARGES<br />
+				<p>
+					The rates and charges applicable to Ethernet Services will be outlined in each Service Order for such Services. Notwithstanding anything to the contrary in the Agreement, for multi-location Services (as defined directly below), Integra shall commence billing upon Installation of Services plus connectivity between the first two locations. For Services under this Addendum, “Installation of Services” means the delivery of operating circuits to each demarcation terminal, each installation being a separate Installation of Services. “Multi-location” means Services to be provided to multiple points of demarcation, whether at the same address or multiple addresses.
+				</p>
+			</li>
+			<li>
+				ON-NET SERVICES<br />
+				<p>
+					<ol class="upperAlpha">
+						<li>
+							<u>On-Net Buildings</u>. INTEGRA On-Net buildings are considered on the INTEGRA's network (On-Net) for the purposes of delivering EoF and EoS services<br />
+							<p></p>
+						</li>
+						<li>
+							<u>On-Net Central Offices</u>. INTEGRA On-Net Central Offices are considered on the INTEGRA network (On-Net) for the purposes of delivering EoC and EoTDM Services and are considered available when sufficient capacity and copper loop qualifications (EoC only) have been conducted for the requested location.<br />
+							<p></p>
+						</li>
+						<li>
+							<u>Standard Installation Intervals</u><br />
+							<p>
+								<ol class="lowerRoman">
+									<li>
+										The target installation interval for all On-Net Services will be forty-five (45) business days from issuance of Service Order.<br />
+										<p></p>
+									</li>
+									<li>
+										<u>Services Requiring a Network Build</u>. The target installation interval for all Services requiring a build will be agreed upon by the parties on an individual case basis.<br />
+										<p></p>
+									</li>
+									<li>
+										<u>Expedite Fees</u>. INTEGRA will consider all requests for expedited Services on an individual case basis, and each Service expedited at the request of Customer will incur a one-time fee of no less than $250.00. The one-time fee for expedited Service may be more, depending on circumstances.<br />
+										<p></p>
+									</li>
+								</ol>
+							</p>
+						</li>
+					</ol>
+				</p>
+			</li>
+			<li>
+				SERVICE LEVEL OBJECTIVES.<br />
+				<p>
+					<ol class="upperAlpha">
+						<li>
+							<u>Network Availability</u>. Network Availability is the number of minutes in a calendar month during which an Ethernet Service is available to exchange data between the two (2) Customer end points and shall be determined as follows:<br />
+							<p></p>
+							<div style="text-align: center; width:100%;">
+								<u>(Total Minutes in Calendar Month) - (Total Minutes of Non-Availability)</u><br />
+								Total Minutes in Canendar Month
+							</div>
+							<p></p>
+							<div>
+								<p>
+									“Total Minutesin Calendar Month” is determined by multiplying 24 hours by the number of days in the
+									month multiplied by 60 minutes
+								</p>
+								<p>
+									“Total Minutes of Non-Availability” means the total of all minutes of Network Non-Availability for a
+									specific Ethernet Service in a calendar month, measured as the period from the opening and closing of a
+									Trouble Ticket that is determined to be a Service Outage.
+								</p>
+								<p>
+									Network Availability Service Level Objectives for a Service will be determined by the lesser of the
+									Service Level Objectivesfor its component parts:
+									<div style=" text-align:left;">
+										<div style="margin-left:4em; float:left; width:300px;">
+											EoS &amp; EoF UNI Access &amp; Port:
+										</div>
+										<div style="float:left;">
+											99.99%
+										</div>
+										<div style="clear:both;"></div>
+										<div style="margin-left:4em; float:left; width:300px;">
+											All On-Net EVCs or E-LAN EVC Access points:
+										</div>
+										<div style="float:left;">
+											99.99%
+										</div>
+										<div style="clear:both;"></div>
+										<div style="margin-left:4em; float:left; width:300px;">
+											EoC &amp; On-Net EoTDM UNI Access &amp; Port:
+										</div>
+										<div style="float:left;">
+											99.99%
+										</div>
+										<div style="clear:both;"></div>
+										<div style="margin-left:4em; float:left; width:300px;">
+											Off-Net UNI Access &amp; Port 
+										</div>
+										<div style="float:left;">
+											N/A
+											<p style="font-size:6pt">
+												(Subject to and dependent upon 3<sup>rd</sup> Party Provider chosen)
+											</p>
+										</div>
+										<div style="clear:both;"></div>
+									</div>
+								</p>
+							</div>
+						</li>
+						<li style="page-break-inside: avoid;">
+							<u>EVC Service Level Objectives</u>: The following performance objectives apply by mileage between any two UNI ports for E-Line EVCs or E-LAN EVC Access points.<br />
+							<p></p>
+							<p style="text-align: center;">
+								Class of Service
+							</p>
+							<div>
+								<table class="paddedBorderedTable" style="border-collapse:collapse;">
+									<tr>
+										<td style="padding:3px,3px,3px,5px; text-align:center;">EVC Mileage</td>
+										<td style="padding:3px,3px,3px,5px; text-align:center;">SLA Measure</td>
+										<td style="padding:3px,3px,3px,5px; text-align:center;">Real Time</td>
+										<td style="padding:3px,3px,3px,5px; text-align:center;">Business Class</td>
+										<td style="padding:3px,3px,3px,5px; text-align:center;">Standard Class</td>
+										<td style="padding:3px,3px,3px,5px; text-align:center;">Best Effort</td>
+									</tr>
+									<tr>
+										<td rowspan="3" style="border:solid 1px black; padding:3px;">
+											0 - 24 Miles
+										</td>
+										<td style="border:solid 1px black; padding:3px;">Average Packet Loss</td>
+										<td style="border:solid 1px black; padding:3px;">0.01%</td>
+										<td style="border:solid 1px black; padding:3px;">0.05%</td>
+										<td style="border:solid 1px black; padding:3px;">0.1%</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Average Latency (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">7ms</td>
+										<td style="border:solid 1px black; padding:3px;">9ms</td>
+										<td style="border:solid 1px black; padding:3px;">11ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Jitter (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">2ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="3" style="border:solid 1px black; padding:3px;">
+											25 - 99 Miles
+										</td>
+										<td style="border:solid 1px black; padding:3px;">Average Packet Loss</td>
+										<td style="border:solid 1px black; padding:3px;">0.01%</td>
+										<td style="border:solid 1px black; padding:3px;">0.05%</td>
+										<td style="border:solid 1px black; padding:3px;">0.1%</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Average Latency (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">12ms</td>
+										<td style="border:solid 1px black; padding:3px;">14ms</td>
+										<td style="border:solid 1px black; padding:3px;">16ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Jitter (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">2ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="3" style="border:solid 1px black; padding:3px;">
+											100 - 249 Miles
+										</td>
+										<td style="border:solid 1px black; padding:3px;">Average Packet Loss</td>
+										<td style="border:solid 1px black; padding:3px;">0.01%</td>
+										<td style="border:solid 1px black; padding:3px;">0.05%</td>
+										<td style="border:solid 1px black; padding:3px;">0.1%</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Average Latency (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">14ms</td>
+										<td style="border:solid 1px black; padding:3px;">16ms</td>
+										<td style="border:solid 1px black; padding:3px;">18ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Jitter (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">2ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="3" style="border:solid 1px black; padding:3px;">
+											250 - 500 Miles
+										</td>
+										<td style="border:solid 1px black; padding:3px;">Average Packet Loss</td>
+										<td style="border:solid 1px black; padding:3px;">0.01%</td>
+										<td style="border:solid 1px black; padding:3px;">0.05%</td>
+										<td style="border:solid 1px black; padding:3px;">0.1%</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Average Latency (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">22ms</td>
+										<td style="border:solid 1px black; padding:3px;">24ms</td>
+										<td style="border:solid 1px black; padding:3px;">26ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Jitter (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">2ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="3" style="border:solid 1px black; padding:3px;">
+											501 - 999 Miles
+										</td>
+										<td>Average Packet Loss</td>
+										<td style="border:solid 1px black; padding:3px;">0.01%</td>
+										<td style="border:solid 1px black; padding:3px;">0.05%</td>
+										<td style="border:solid 1px black; padding:3px;">0.1%</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Average Latency (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">30ms</td>
+										<td style="border:solid 1px black; padding:3px;">32ms</td>
+										<td style="border:solid 1px black; padding:3px;">34ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Jitter (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">2ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									
+									<tr>
+										<td rowspan="3" style="border:solid 1px black; padding:3px;">
+											1000 - 2499 Miles
+										</td>
+										<td style="border:solid 1px black; padding:3px;">Average Packet Loss</td>
+										<td style="border:solid 1px black; padding:3px;">0.01%</td>
+										<td style="border:solid 1px black; padding:3px;">0.05%</td>
+										<td style="border:solid 1px black; padding:3px;">0.1%</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Average Latency (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">50ms</td>
+										<td style="border:solid 1px black; padding:3px;">52ms</td>
+										<td style="border:solid 1px black; padding:3px;">54ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+									<tr>
+										<td style="border:solid 1px black; padding:3px;">Jitter (2-way)</td>
+										<td style="border:solid 1px black; padding:3px;">2ms</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+										<td style="border:solid 1px black; padding:3px;">N/A</td>
+									</tr>
+								</table>
+							</div>
+							<p></p>
+						</li>
+						<li>
+							<u>Performance Objectives</u>. The Mean Time To Repair (MTTR) is a performance objective only and outage credits will not apply if the objective is not met.
+							<p>
+							<ul class="disc">
+								<li>
+									<div style="float:left; width:300px;">
+										MTTR for EoF, EoC, On-Net EoTDM
+									</div>
+									<div style="float:left;">
+										4 hours
+									</div>
+									<div style="clear:both;"></div>
+								</li>
+								<li>
+									<div style="float:left; width:300px;">
+										MTTR for EoS
+									</div>
+									<div style="float:left;">
+										2 hours
+									</div>
+									<div style="clear:both;"></div>
+								</li>
+								<li>
+									<div style="float:left; width:300px;">
+										MTTR for Off-Net
+									</div>
+									<div style="float:left;">
+										N/A<br />
+										<span style="font-size:6pt;">(Subject to and dependent upon 3<sup>rd</sup> Party Provider chosen)</span>
+									</div>
+									<div style="clear:both;"></div>
+								</li>
+							</ul>
+							</p>
+						</li>
+						<li>
+							Customer will have the option to order Enhanced SLA &amp; Performance Reporting for Service Level Objective reporting for all EVCs terminating to a UNI.
+						</li>
+					</ol>
+				</p>
+				<p></p>
+			</li>
+			<li>
+				CREDIT ALLOWANCES
+				<p>
+					<ol class="upperAlpha">
+						<li>
+							<u>Service Outage</u><br />
+							<p>
+								<ol class="lowerRoman">
+									<li style="page-break-inside: avoid;">
+										If an On-Net Service does not meet the Network Availability Service Level Objective identified in Section 5.1, Customer will be entitled to a credit as outlined in the following table, subject to Sections 10, 11, and 17 of the Agreement.
+										<p>
+											<table class="paddedBorderedTable" style="border-collapse:collapse;">
+												<tr>
+													<td style="border:solid 1px black; background-color:#ECECEC; text-align:center;">Service</td>
+													<td style="border:solid 1px black; background-color:#ECECEC; text-align:center;">Length of Service Outage</td>
+													<td style="border:solid 1px black; background-color:#ECECEC; text-align:center;">Credit</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">EoS UNI Access &amp; Port</td>
+													<td style="border:solid 1px black; padding:3px;">One (1) minute or less</td>
+													<td rowspan="3" style="border:solid 1px black; padding:3px;">No Credit</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">EoF UNI Access &amp; Port</td>
+													<td style="border:solid 1px black; padding:3px;">Five (5) minutes or less</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">EoC &amp; On-Net EoTDM UNI Access &amp; Port</td>
+													<td style="border:solid 1px black; padding:3px;">Forty-five (45) minutes or less</td>
+												</tr>
+												<tr>
+													<td rowspan="6" style="border:solid 1px black; padding:3px;">All Services</td>
+													<td style="border:solid 1px black; padding:3px;">Above No Credit length and less that four (4) hours</td>
+													<td style="border:solid 1px black; padding:3px;">5%</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">Greater than four (4) hours and less than (8) hours</td>
+													<td style="border:solid 1px black; padding:3px;">10%</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">Greater than eight (8) hours and less that twelve (12) hours</td>
+													<td style="border:solid 1px black; padding:3px;">15%</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">Greater than twelve (12) hours and less than sixteen (16) hours</td>
+													<td style="border:solid 1px black; padding:3px;">20%</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">Greater than sixteen (16) hours and less than twenty-four (24) hours</td>
+													<td style="border:solid 1px black; padding:3px;">35%</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">Greater than twenty-four (24) hours</td>
+													<td style="border:solid 1px black; padding:3px;">50%</td>
+												</tr>
+											</table>
+										</p>
+									</li>
+									<li style="page-break-inside: avoid;">
+										If Ethernet Services suffer from degradation and fail to meet the On-Net EVC or E-LAN EVC Access Service Level Objectives for Latency, Packet Loss and/or Jitter, Customer will be entitled to credits per the table below, subject to Sections 9, 10, and 11 of the Agreement. Customer will not be entitled to credits related to On-Net EVC or E-LAN EVC Access Service Level Objectives, if the Network Availability Service Level Objective was not met for the same incident.
+										<p>
+											<table class="paddedBorderedTable" style="border-collapse:collapse;">
+												<tr>
+													<td style="border:solid 1px; black; background-color:#ECECEC; text-align:center;">Service</td>
+													<td style="border:solid 1px; black; background-color:#ECECEC; text-align:center;">Length of Service Degradation</td>
+													<td style="border:solid 1px; black; background-color:#ECECEC; text-align:center;">Credit</td>
+												</tr>
+												<tr>
+													<td rowspan="3" style="border:solid 1px black; padding:3px;">On-Net EVC or E-LAN EVC Access</td>
+													<td style="border:solid 1px black; padding:3px;">Fifteen (15) minutes or less</td>
+													<td style="border:solid 1px black; padding:3px;">No credit</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">Greater than fifteen (15) minutes and less than one (1) hour</td>
+													<td style="border:solid 1px black; padding:3px;">2% of the MRC for the degraded Service</td>
+												</tr>
+												<tr>
+													<td style="border:solid 1px black; padding:3px;">One (1) hour or more</td>
+													<td style="border:solid 1px black; padding:3px;">5% of the MRC of the degraded Service for each full hour of Service Degradation</td>
+												</tr>
+											</table>
+										</p>
+									</li>
+								</ol>
+							</p>
+						</li>
+						<li>
+							<p>
+								EXCEPT AS PROVIDED IN SECTION 6.C, CUSTOMER’S RIGHT TO CREDITS AS PROVIDED IN
+								THIS AGREEMENT SHALL BE CUSTOMER’S SOLE REMEDY WITH REGARD TO SERVICE
+								OUTAGES. The credits outlined above shall not be compounding, but shall be distinguished by the
+								degree of impairment based on a degradation or a complete disruption of Service such that for any
+								particular Service Outage Customer may be eligible for credits with respect to a Service Outage under
+								more than one subsection of this Section 6, but Customer may not claim more than one credit for any
+								Service Outage. Upon Customer’s request and if duly approved by Integra, Customer’s total service
+								credit(s) in any one month will not exceed one (1) month’s MRC for the affected Service for that month
+								and do not apply to MRCs of other Devices. If a Customer fails to notify Integra in the manner set forth
+								herein within thirty (30) days after the Service Outage with respect to the applicable service credits,
+								Customer will have waived its right to such service credits for that month. To be eligible for service
+								credits, the Customer must be in good standing with Integra and current in all of its obligations.
+							</p>
+						</li>
+						<li>
+							<p>
+								A Service is considered to have Chronic Trouble if it experiences; (i) a single Service Outage in excess of
+								twenty-four (24) hours, (ii) three (3) or more Service Outages in any thirty (30) consecutive day period, or
+								(iii) five (5) or more Service Outages in any six (6) month period, Customer shall have the right to
+								terminate the affected Service without penalty or further liability to INTEGRA provided that written
+								notice of termination is provided to INTEGRA within thirty (30) calendar days of the event giving rise to
+								the termination right under this Section. To qualify as a Service Outage under this paragraph, such
+								Service Outage must be a Service Outage that would entitle Customer to credits under this Agreement. If
+								Customer does not exercise its termination right within such thirty (30) day period, such right shall lapse
+								with respect to that instance of Chronic Trouble and the number of Services Outages shall reset to zero for
+								the purpose of this Section.
+							</p>
+						</li>
+					</ol>
+				</p>
+			</li>
+			<li>
+				ENTIRE AGREEMENT<br />
+				<p>
+					This Addendum, along with the Agreement, sets forth the entire understanding of the Parties and supersedes any
+					and all prior agreements, arrangements or understandings relating to the Services described above. The
+					Agreement will remain in full force and effect except as modified herein. To the extent of any conflict
+					between the terms of this Addendum and the Agreement, this Addendum shall control.
+				</p>
+			</li>
+		</ol>
+<div style="page-break-inside: avoid;">
+    <p>IN WITNESS WHEREOF, the parties have caused this Addendum to be
+        executed by their duly authorized representatives.</p>
+    <p>&nbsp;</p>
+	<div style="line-height:22px;">
+		<div style="float:left; width:50%;">
+			<div style="font-weight:bold;">
+				Integra Telecom Holdings, Inc.
+			</div>
+			<div style="float:left; width:20%;">
+				By:
+			</div>
+			<div style="float:left; width:70%; border-bottom:solid 1px black;">
+				&nbsp;<div class="docusignID">DS-CTRSIG</div>
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="float:left; width:20%;">
+				Name:
+			</div>
+			<div style="float:left; width:70%; border-bottom:solid 1px black;">
+				&nbsp;
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="float:left; width:20%;">
+				Title:
+			</div>
+			<div style="float:left; width:70%; border-bottom:solid 1px black;">
+				&nbsp;<div class="docusignID">&nbsp;</div>
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="float:left; width:20%;">
+				Date:
+			</div>
+			<div style="float:left; width:70%; border-bottom:solid 1px black;">
+				&nbsp;<div class="docusignID">DS-CTRDATE</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+		<div style="float:left; width:50%;">
+			<div style="font-weight:bold;">
+				&nbsp;
+			</div>
+			<div style="float:left; width:20%;">
+				By:
+			</div>
+			<div style="float:left; width:70%; border-bottom:solid 1px black;">
+				&nbsp;<div class="docusignID">DS-SIG</div>
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="float:left; width:20%;">
+				Name:
+			</div>
+			<div style="float:left; width:70%; border-bottom:solid 1px black;">
+				&nbsp;{!decisionMaker.Name}
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="float:left; width:20%;">
+				Title:
+			</div>
+			<div style="float:left; width:70%; border-bottom:solid 1px black;">
+				&nbsp;<apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}" />
+			</div>
+			<div style="clear:both;"></div>
+			
+			<div style="float:left; width:20%;">
+				Date:
+			</div>
+			<div style="float:left; width:70%; border-bottom:solid 1px black;">
+				&nbsp;<div class="docusignID">DS-DATE</div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+</div>
+</apex:outputPanel>
+</apex:component>

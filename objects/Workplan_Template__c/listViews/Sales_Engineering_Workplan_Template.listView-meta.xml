@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Engineering_Workplan_Template</fullName>
+    <filterScope>Queue</filterScope>
+    <label>Sales Engineering</label>
+    <queue>Sales_Engineering</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

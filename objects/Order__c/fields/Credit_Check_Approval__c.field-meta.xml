@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Check_Approval__c</fullName>
+    <description>A credit check must be performed on all new logo and any existing logo increasing credit limit over conditional amount.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>A credit check must be performed on all new logo and any existing logo increasing credit limit over conditional amount.</inlineHelpText>
+    <label>Credit Check Approval</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Credit Approved</fullName>
+                <default>false</default>
+                <label>Credit Approved</label>
+            </value>
+            <value>
+                <fullName>Credit Approved pending condition</fullName>
+                <default>false</default>
+                <label>Credit Approved pending condition</label>
+            </value>
+            <value>
+                <fullName>Credit Denied</fullName>
+                <default>false</default>
+                <label>Credit Denied</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

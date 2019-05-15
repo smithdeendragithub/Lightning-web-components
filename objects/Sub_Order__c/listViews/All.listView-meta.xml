@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>Account__c</columns>
+    <columns>NAME</columns>
+    <columns>External_Order__c</columns>
+    <columns>External_Products__c</columns>
+    <columns>Hardware_Install_and_Test_Date__c</columns>
+    <columns>Activate_with_Customer_Date__c</columns>
+    <columns>Customer_Commit_Date__c</columns>
+    <columns>Actual_Due_Date__c</columns>
+    <columns>FOC_date__c</columns>
+    <columns>Expedited__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Closed</value>
+    </filters>
+    <label>Cheryl Sayers Customer Commit Dates</label>
+</ListView>

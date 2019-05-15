@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Delivery_Detail__c</fullName>
+    <description>Capture specifics of contract redlines specific to Service Delivery</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Include the detail regarding categories selected in &quot;Contract Exception Categories&quot; field associated with Service Delivery. This includes: Non-Standard Reporting, Non-Standard Intervals, Non-Standard Test &amp; Acceptance</inlineHelpText>
+    <label>Service Delivery Detail</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

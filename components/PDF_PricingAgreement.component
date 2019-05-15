@@ -1,0 +1,124 @@
+<apex:component controller="ProposalPricingAgreementController">
+    <apex:attribute name="currentPA" description="PricingAgreement" type="Pricing_Agreement__c" assignto="{!currentPricingAgreement}" required="true" />
+    <table width="700" border="0" cellspacing="0" cellpadding="0" id="PricingAgreement">
+        <tr>
+            <td> 
+                <table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+                    <tr>
+                        <td height="4px"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center" class="mainTitle">Pricing Agreement<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">This pricing agreement ("<b>Pricing Agreement</b>") shall be governed by and subject to the applicable Master Service Agreement ("<b>MSA</b>") between <u>{!CustomerName}</u> ("Customer") and Allstream Business Inc. and/or Allstream Business US, LLC. through its subsidiaries ("<b>Allstream</b>").  If the Customer has not executed an MSA then this Pricing Agreement shall be governed by the terms and conditions of Allstream’s standard MSA as posted on www.allstream.com incorporated herein by this reference and available upon request. Capitalized terms not defined herein will have the meaning ascribed to them in the MSA.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Pricing Agreement Initial term ("<b>Initial Term</b>") - {!ContractTerm} months</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">
+                            <table id="pricingproduct">
+                                <tr><td class="nonColorRow"><b>Table 1</b></td><td class="nonColorRow" colspan="2"></td><td class="nonColorRow" colspan="2"></td><td class="nonColorRow" colspan="2"></td></tr>
+                                <tr><td class="nonColorRow"><b>Product</b></td><td colspan="2" class="nonColorRow"><b>1-Year</b></td><td colspan="2" class="nonColorRow"><b>2-Year</b></td><td colspan="2" class="nonColorRow"><b>3-Year</b></td></tr>
+                                <tr><td class="nonColorRow"></td><td class="MRCbgcolor"><b>MRC</b></td><td class="NRCbgcolor"><b>NRC</b></td><td class="MRCbgcolor"><b>MRC</b></td><td class="NRCbgcolor"><b>NRC</b></td><td class="MRCbgcolor"><b>MRC</b></td><td class="NRCbgcolor"><b>NRC</b></td></tr>
+                                <apex:repeat value="{!PricingAgreementProductWrappers}" var="pap">
+                                    <tr class="{!IF(pap.color,'colorRow','nonColorRow')}"><td>{!pap.Product}</td><td>${!pap.MRC1}</td><td>${!pap.NRC1}</td><td>${!pap.MRC2}</td><td>${!pap.NRC2}</td><td>${!pap.MRC3}</td><td>${!pap.NRC3}</td></tr>
+                                </apex:repeat>
+                                
+                            </table>
+                        </td>   
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">The Initial Term of this Pricing Agreement will commence on the Allstream Acceptance Date below and will continue for the period of the Initial Term specified above.   If upon expiry of the Initial Term the Pricing Agreement has not been terminated or renewed, the Pricing Agreement will automatically renew on a month to month basis, each month being a renewal term ("<b>Renewal Term</b>") until terminated by either Party upon 30 days notice. During any Renewal Term Allstream reserves the right to adjust the pricing in Table 1 at any time.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">During the Initial Term of this Pricing Agreement, Allstream and the Customer agree to the pricing set out in the above Table 1.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Reselling Services:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Customer reselling SIP Services agrees to comply with all regulatory requirements, including the terms and conditions contained in the following document posted on www.allstream.com: Resale of Allstream SIP Services in Canada and in the United States.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Customer hereby agrees to abide by all existing and future obligations with respect to 9-1-1 service, particularly the obligations applicable to non-carriers set out in the Appendix to Telecom Regulatory Policy 2016-12. Customer acknowledges that Allstream is required to report, in a timely manner, non-compliance by non-carriers with these obligations, whether actual or suspected, by letter addressed to the Secretary General, including the name and contact information of the non-carrier, as well as any details regarding the alleged non-compliant behavior, and to implement any remedial directions from the CRTC.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">The Customer shall not use the trademarks, service marks, trade names, tag lines, slogans and/or any other right in and to Allstream's identity.  The Customer shall not use, advertise or in any other way associate itself with any brand loyalty, affinity program, or use any unpermitted reference in conjunction with its services.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Upon reselling any of the Services, the Customer and not Allstream shall be solely liable for all matters associated with the resold Services for the end-user customer, including but not limited to, customer care and billing, unless otherwise set forth in a Service Schedule.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">The Customer shall make available the following information, within a reasonable period of time, in Braille, large print or computer diskette or such other format as is mutually agreed upon by the Customer and the Permitted User:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">(i) upon request of Permitted Users who are blind:<br />
+                            <ul>
+                                <li>billing statements;</li>
+                                <li>bill inserts sent to Permitted Users about new services or changes in rates for existing services;<br/>and</li>
+                                <li>any bill inserts that are mandated from time to time by the Canadian Radio-television and Telecommunications Commission; and</li>
+                            </ul>
+                            <br/>
+                            (ii) upon request of Permitted Users or potential Permitted Users who are blind, information setting out the rates, terms and conditions of the service.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">In the case of a request for an excessively large volume of information, the Customer may limit the alternative format to computer diskette or any other electronic format mutually agreed upon by the Customer and the Permitted User.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock"><b><u>Restrictions on Use of Service</u></b><br/><br/>
+                            <ol type="a">
+                                <li>The Service may be used by the Customer and any person having the Customer's permission to access same including the end users of the Service(s) ("<b>Permitted User</b>").</li>
+                                <li>The Customer is solely responsible for the content of any transmissions using the Service, and any other use of the Service, by the Customer or any Permitted User.</li>
+                                <li>The Customer shall not: (i) use the Service or allow Permitted Users to use the Service for illegal purposes (including illegal content); (ii) interfere with or disrupt other Allstream services, or other Allstream customers from using other Allstream’s services; or (iii) interfere with or disrupt the Service itself ("<b>Prohibited Uses</b>").</li>
+                                <li>The Customer shall not use the Services in a way that is not intended by Allstream.  Allstream may provide notice to the Customer to cease using the Services in such unauthorized way. Should the Customer fail to cease such use of the Services within thirty (30) days of such notice, Allstream may terminate the Services upon two (2) days notice to the Customer and Customer shall be liable for any damages suffered by Allstream as a result of Customer’s unauthorized use.</li>
+                            </ol>   
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <table class="Signature_table avoidBreak" border="0" cellspacing="5" cellpadding="0">
+                    <tr>
+                        <td width="199"><strong>Customer Acceptance</strong></td>
+                        <td width="363">&nbsp;</td>
+                        <td width="126">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="normalRef">{!contactName}</td>
+                        <td class="normalRef"><div class="docusignID">DS-SIG</div></td>
+                        <td class="normalRef"><div class="docusignID">DS-DATE</div></td>
+                    </tr>
+                    <tr>
+                        <td class="smallPrint">Print Name</td>
+                        <td class="smallPrint">Authorized Signature</td>
+                        <td class="smallPrint">Date</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Allstream Acceptance</strong></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="normalRef"><div class="docusignID">DS-CTRNAME</div></td>
+                        <td class="normalRef"><div class="docusignID">DS-CTRSIG</div></td>
+                        <td class="normalRef"><div class="docusignID">DS-CTRDATE</div></td>
+                    </tr>
+                    <tr>
+                        <td class="smallPrint">Print Name</td>
+                        <td class="smallPrint">Signature</td>
+                        <td class="smallPrint">Date</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</apex:component>

@@ -1,0 +1,287 @@
+<apex:component >
+    <apex:outputPanel layout="none"  >
+    
+<table border="0"  id="Table1" class="mainTable standardBackground">
+    <tr>
+        <td style="width: 700px;">
+            <table style="width: 700px;">
+                <tr>
+                    <td>
+                        <div style="text-align: center;"><h1 style="margin:5px;"><b>Cloud Firewall Service</b></h1></div>
+                        <div style="text-align: center;"><h2 style="margin:5px;"><b>Addendum &amp; Service Level Agreement</b></h2></div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 700px;">
+            <table>
+            <tr>
+                <td>&nbsp;</td>             
+                <td class="textBlock" colspan="2"><h2 style="margin-bottom: 0px"><b>Cloud Firewall Service Definition</b></h2></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="textBlock">
+                    <div>Integra’s Cloud Firewall Service (CFS) is a suite of network-based security services, 
+                    complementing Integra’s VPN Solutions, Internet Access, and SIP Solutions service offerings. CFS products are hosted 
+                    and managed 24/7 by Integra and are available to Customers in two different levels:</div>
+                <div style="margin-left:25px;">
+                    <table>
+                        <tr>
+                            <td style="vertical-align:top;">+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>Cloud Firewall Service Plus
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="margin-left:25px;">
+                    <table>
+                        <tr>
+                            <td style="vertical-align:top;">+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>Cloud Firewall Service Premium</td>
+                        </tr>
+                    </table>
+                </div>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td></td>
+                <td class="textBlock">Depending upon the specific CFS service level selected, Integra provides a package 
+                    of standard and optional capabilities:
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+                <td></td>
+                 <td class="textBlock" style="width: 25px;vertical-align: top;">&nbsp;</td>
+                <td>
+                    <table style="border: thin solid #000000; width: 450px;margin-left:75px;" >
+                        <thead style="background-color: #999999;">
+                            <tr>
+                               <th style="margin-left:5px; text-align:left;">&nbsp;Product Level</th>
+                               <th style="text-align:center;width: 70px;">Plus</th>
+                               <th style="text-align:center;width: 70px;">Premium</th>
+                            </tr>
+                        </thead>
+                        <tr style="background-color: #CCCCCC;">
+                            <td style="text-align:left;">&nbsp;Application Visibility and Control</td>
+                            <td style="width: 70px;text-align:center;">X</td>
+                            <td style="width: 70px;text-align:center;">X</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">&nbsp;Comprehensive Reporting</td>
+                            <td style="text-align:center;">X</td>
+                            <td style="text-align:center;">X</td>
+                        </tr>
+                        <tr style="background-color: #CCCCCC;">
+                            <td style="text-align:left;">&nbsp;URL Filtering</td>
+                            <td style="text-align:center;">X</td>
+                            <td style="text-align:center;">X</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">&nbsp;Security Policy Customization via Secure Portal</td>
+                            <td style="text-align:center;">X</td>
+                            <td style="text-align:center;">X</td>
+                        </tr>
+                        <tr style="background-color: #CCCCCC;">
+                            <td style="text-align:left;">&nbsp;Network Anti-Virus &amp; Anti-Spyware</td>
+                            <td style="text-align:center;">X</td>
+                            <td style="text-align:center;">X</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">&nbsp;IDS/IPS</td>
+                            <td style="text-align:center;">N/A</td>
+                            <td style="text-align:center;">X</td>
+                        </tr>
+                        <tr style="background-color: #CCCCCC;">
+                            <td style="text-align:left;">&nbsp;File Filtering</td>
+                            <td style="text-align:center;">N/A</td>
+                            <td style="text-align:center;">X</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">&nbsp;Remote Access Client</td>
+                            <td style="text-align:center;">*</td>
+                            <td style="text-align:center;">10 Free**</td>
+                        </tr>
+                        <tr style="background-color: #CCCCCC;">
+                            <td style="text-align:left;">&nbsp;Syslog Feed <small>(requires customer provided syslog server)</small></td>
+                            <td style="text-align:center;">*</td>
+                            <td style="text-align:center;">X</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">&nbsp;Site-to-Site VPN <small>(IPsec)</small></td>
+                            <td style="text-align:center;">*</td>
+                            <td style="text-align:center;">1 Free**</td>
+                        </tr>
+                        <tr style="background-color: #CCCCCC;">
+                            <td style="text-align:left;">&nbsp;User-ID <small>(Active Directory user/group synch with policies/reports)</small></td>
+                            <td style="text-align:center;">*</td>
+                            <td style="text-align:center;">X</td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left;">&nbsp;Security Zone <small>(DMZ, guest network, BYOD, Price is per zone)</small></td>
+                            <td style="text-align:center;">*</td>
+                            <td style="text-align:center;">*</td>
+                        </tr>
+                        <tr><td style="text-align:left;">&nbsp;</td></tr>
+                        <tr><td style="text-align:left;">*Can be added for additional charge</td></tr>
+                       <tr><td style="text-align:left;">**More can be purchased for additional charge</td></tr>
+                    </table>
+                    </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="textBlock" style="text-align: left;vertical-align: top;">&nbsp;</td>
+                <td class="textBlock"><h3 style="margin-bottom:0px;"><b>CFS Configuration Brief</b></h3></td>
+                            
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class ="textBlock">After the Service Order, and prior to the activation of the Integra CFS offering selected 
+                    by Customer, Integra will provide a CFS Configuration Brief detailing information we need to collect from the Customer. 
+                    This information is necessary for the proper configuration of the firewall service. An Integra representative will schedule 
+                    a phone interview to collect the information requested in the Configuration Brief.
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="textBlock" style="width: 25px;vertical-align: top;">&nbsp;</td>
+                            <td>
+                                <div><h4 style="margin-bottom:5px;"><b>Reporting</b></h4></div>
+                                <div>As a part of the CFS offering, Integra provides standard CFS reports that are sent via email to a Customer’s 
+                                designated recipients on a scheduled basis. </div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>Customer Portal</b></h4></div>
+                                <div>CFS Plus and Premium Customers are provided with the use of the CFS Customer Portal to create and view additional reports, 
+                                    view logs, and edit their CFS policies. Customers who use the Customer Portal to modify the settings for their Cloud Firewall 
+                                    Service are solely responsible for the changes made.</div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>Policy Changes</b></h4></div>
+                                <div>The CFS Configuration Brief is the primary means to establish the initial policies for the CFS Plus and CFS Premium offerings. 
+                                    During the first 30 calendar days after service activation, Customers may request changes to the service without charge. After the first 
+                                    30 days, a service order charge of $25 will apply for each change ticket. Customer must provide Integra with a detailed description of 
+                                    the change. Integra shall not be responsible for designing or validating Customer policies and changes. Integra will make the change 
+                                    within one business day. If changes involve a custom application used by the Customer or a threat that has not been defined by Palo 
+                                    Alto Networks, further time may be needed to make necessary changes. This type of change may also require the assistance of the Customer’s 
+                                    internal IT resources. </div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>Cloud Firewall Service Maintenance</b></h4></div>
+                                <div>In order to provide a high-quality security offering, Integra will perform maintenance on the CFS service platform to including, 
+                                    but not be limited to, applying patches, policy updates, and upgrades to the service platform. Integra will perform maintenance at its 
+                                    sole discretion, and Customer will be required to use the updated service by default. </div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>Service Availability Monitoring</b></h4></div>
+
+                                <div>For Customers subscribed to Integra’s Network Notification Service: <br />
+                                    <div style="margin-left:25px;">
+                                        <table>
+                                            <tr>
+                                                <td style="vertical-align:top;">+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td>In the event that the Customer’s CFS is not operational, traffic will not be passed to or from the public 
+                                                    internet until the service is restored, and credits under Integra’s Cloud Firewall Service SLA terms below may apply.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div style="margin-left:25px;">
+                                        <table>
+                                            <tr>
+                                                <td style="vertical-align:top;">+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td>Upon detection that the CFS is not operational, Integra&#39;s Network Operations Center will generate a 
+                                                    ticket after validating the event and determining it to be service affecting within 15 minutes of alarm notification.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div style="margin-left:25px;">
+                                        <table>
+                                            <tr>
+                                                <td style="vertical-align:top;">+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td>Once the ticket is created, status updates will be sent to affected Customers on an hourly 
+                                                    basis as well as when a change-of-state occurs and new information is available.
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <div style="margin-left:25px;">
+                                        <table>
+                                            <tr>
+                                                <td style="vertical-align:top;">+&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td>Ticket status is also available via the Integra Customer Care website (integraCare). 
+                                                At the conclusion of the event, a final all-clear message is sent. </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>Event Monitoring</b></h4></div>
+                                <div>CFS provides a continuous monitoring of security threats for Customer’s traffic that passes through Integra’s managed firewall devices. 
+                                    Integra will not perform event devices within Customer’s IT environment. The Cloud Firewall Service will automatically detect Standard 
+                                    Security Events and take appropriate action; e.g. blocking high-risk web traffic. A summary report of Standard Security Events will be 
+                                    emailed to Customers on a scheduled basis. Additionally, CFS Plus and CFS Premium Customers may use the Customer Portal to create custom 
+                                    reports and view logs. 
+                                </div>
+
+                                <div style="margin-top:10px;">Event monitoring can be an extremely challenging undertaking, even with a well-defined and very limited scope in place. The ability 
+                                    of any technology to detect and take action on a suspicious event is limited in its overall effectiveness. False positives and false 
+                                    negatives are a common issue, as are properly base lining traffic patterns to implement anomaly detection options, and preventing 0-day 
+                                    attacks through signature-based detection mechanisms. </div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>SERVICE LEVEL AGREEMENT</b></h4></div>
+                                <div>Integra is committed to providing a high quality service for our Customers. In the event the Integra CFS Network cannot meet the service thresholds 
+                                    for network availability, as described in the following paragraphs, Customer may be entitled to service credits as set forth below.</div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>Network Definition</b></h4></div>
+                                <div>This Service Level Agreement (“SLA”) includes the CFS offering, only, and not the underlying VPN Solutions, Internet Access, and SIP Solutions 
+                                    service upon which the CFS is delivered. The SLA does not include Customer’s devices; scheduled maintenance and emergency maintenance; any act 
+                                    or omission by Customer, its agents, or by any other entity under Customer’s control; and/or any circumstance beyond Integra’s reasonable control, 
+                                    or a Force Majeure event as defined in Section 16 of the Master Service Agreement. </div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>Network Availability Guarantee 99.999%</b></h4></div>
+                                <div>The Integra CFS Network is guaranteed to be available and capable of forwarding IP packets 99.999% of the time, as averaged over a 
+                                    calendar month. If the Integra IP Network availability guarantee is not met in a calendar month, the Customer may receive a service credit 
+                                    of 1/30th of the monthly recurring charge (“MRC”) for that calendar month for each full hour of outage. Limits on the service credit 
+                                    amount and reporting procedures are detailed below. Integra’s failure to meet the network availability guarantees set forth herein shall 
+                                    be defined as a “Failure.”</div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>SLA Reporting Procedures</b></h4></div>
+                                <div>For Network Availability failures, a trouble ticket must be opened with Integra’s Customer Care upon the occurrence of a failure 
+                                    in order to be eligible for consideration for a service credit. If Customer opens the trouble ticket, it must be initiated by voice 
+                                    contact. Upon notification from Customer, or Integra’s discovery of a failure, Integra will open a trouble ticket, test the affected 
+                                    service and attempt to isolate the problem. Integra’s records and data will be the sole basis for all service credit calculations and 
+                                    determinations. Customer will not be entitled to any service credits for any failure unless a trouble ticket has been opened and a 
+                                    service credit has been requested within one (1) week of the Failure. </div>
+
+                                <div><h4 style="margin-bottom:5px; margin-top:10px;"><b>Service Credit Limits</b></h4></div>
+                                <div>The provisions of this SLA state Customer’s sole and exclusive remedy for any Failure, interruption or deficiencies 
+                                    whatsoever regarding the CFS. Additionally, Integra’s liability is limited by Section 11 of the Master Service Agreement. 
+                                    Upon Customer’s request, and if duly approved by Integra, the service credit will be in an amount equal to the pro-rated amount 
+                                    of one (1) day of MRC for the Service affected only. Customer is entitled to the pro-rated amount of one (1) day MRC per hour of 
+                                    outage, with no limit to the incidents per day. Customer’s total service credit(s) in any one month will not exceed the equivalent 
+                                    of 50 percent of the relevant MRCs for the affected service for that month, and will not exceed 20 percent for the service year. 
+                                    Cumulative service credits in any one-month must exceed $25.00 to be processed. If a Customer fails to notify Integra in the manner 
+                                    set forth herein with respect to the applicable service credits, Customer will have waived its right to such service credits for that 
+                                    month. The service credits will apply to the MRCs of the affected service and do not apply to MRCs of other services. To be eligible for 
+                                    service credits, the Customer must be in good standing with Integra and current in all of its obligations.</div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            </table>
+            </td>
+            </tr>
+    </table>
+    </apex:outputPanel>
+</apex:component>
