@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_ICert</fullName>
+    <availability>online</availability>
+    <description>Creates an ICert</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Create ICert</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/connection.js&quot;)} 
+{!REQUIRESCRIPT(&quot;/soap/ajax/14.0/apex.js&quot;)} 
+var id = sforce.apex.execute(&quot;GlobalActions&quot;, &quot;CreateICertFromCapitalProject&quot;, {capitalProjId:&#39;{!Capital_Project__c.Id}&#39;});
+window.alert(&quot;Hey, i didn&#39;t really do anything, but here is an integer from the server that would represent an iCert id if i had it wired up! ID:&quot; + id);</url>
+</WebLink>

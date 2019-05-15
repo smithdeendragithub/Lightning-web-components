@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Completion_Date__c</fullName>
+    <description>Target completion date for this level of effort.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the target completion date for this level of effort.</inlineHelpText>
+    <label>Target Completion Date</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

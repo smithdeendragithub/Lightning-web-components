@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Project_Gate_1_Approved</fullName>
+        <description>Project: Gate 1 Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Project_Approved_Gate_1</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Clear_CCD</fullName>
+        <field>Customer_Commit_Date__c</field>
+        <name>Clear CCD</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_CCD_Change_Reason</fullName>
+        <field>Go_Live_Date_Change_Reason__c</field>
+        <name>Clear CCD Change Reason</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_New_CCD</fullName>
+        <field>New_Customer_Commit_Date__c</field>
+        <name>Clear New CCD</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Clear_New_CCD_Change_Reason</fullName>
+        <field>New_CCD_Change_Reason__c</field>
+        <name>Clear New CCD Change Reason</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Gate_1_Approved</fullName>
+        <field>Phase__c</field>
+        <literalValue>Requirements/Design</literalValue>
+        <name>Gate 1 Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Gate_1_Consideration</fullName>
+        <field>Phase__c</field>
+        <literalValue>Gate 1 - Commitment/Funding</literalValue>
+        <name>Gate 1 Consideration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Project_Set_Original_Requested_Date</fullName>
+        <description>Sets the Original Requested Date field.</description>
+        <field>Original_Requested_Date__c</field>
+        <formula>Requested_Date__c</formula>
+        <name>Project-Set Original Requested Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Reject_Project</fullName>
+        <field>Phase__c</field>
+        <literalValue>Scoping</literalValue>
+        <name>Reject Project</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_CCD_Change_Reason_From_New</fullName>
+        <field>Go_Live_Date_Change_Reason__c</field>
+        <formula>IF(ISBLANK(Go_Live_Date_Change_Reason__c), &#39;Initial CCD Set&#39;, TEXT(New_CCD_Change_Reason__c))</formula>
+        <name>Set CCD Change Reason From New</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_CCD_From_New</fullName>
+        <field>Customer_Commit_Date__c</field>
+        <formula>New_Customer_Commit_Date__c</formula>
+        <name>Set CCD From New</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>New CCD Changed</fullName>
+        <actions>
+            <name>Clear_New_CCD</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Clear_New_CCD_Change_Reason</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_CCD_Change_Reason_From_New</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_CCD_From_New</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>(ISNEW() || ISCHANGED(New_Customer_Commit_Date__c)) &amp;&amp; NOT(ISNULL(New_Customer_Commit_Date__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Project Phase Reverted</fullName>
+        <actions>
+            <name>Clear_CCD</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Clear_CCD_Change_Reason</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>ISCHANGED(Phase__c) &amp;&amp; CASE(TEXT(PRIORVALUE(Phase__c)), &#39;Build/Test/Sprint Release&#39;, 1, &#39;Gate 3 - Launch Readiness&#39;, 1, &#39;Launch&#39;, 1, &#39;Completed&#39;, 1, 0) == 1 &amp;&amp; CASE(TEXT(Phase__c), &#39;Build/Test/Sprint Release&#39;, 1, &#39;Gate 3 - Launch Readiness&#39;, 1, &#39;Launch&#39;, 1, &#39;Completed&#39;, 1, 0) == 0</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Project-Original Requested Date</fullName>
+        <actions>
+            <name>Project_Set_Original_Requested_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Project__c.Original_Requested_Date__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Project__c.Requested_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Save off the original Requested Date on a project to make it easy to report and filter on projects where the date has been pushed out.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <tasks>
+        <fullName>Validate_Costs_and_Resubmit</fullName>
+        <assignedToType>owner</assignedToType>
+        <description>Finance has rejected the submission.  Please validate project value and resubmit if appropriate or cancel/defer project</description>
+        <dueDateOffset>0</dueDateOffset>
+        <notifyAssignee>false</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Validate Costs and Resubmit</subject>
+    </tasks>
+    <tasks>
+        <fullName>Validate_LOE_and_Timing</fullName>
+        <assignedToType>owner</assignedToType>
+        <dueDateOffset>1</dueDateOffset>
+        <notifyAssignee>true</notifyAssignee>
+        <priority>Normal</priority>
+        <protected>false</protected>
+        <status>Not Started</status>
+        <subject>Validate LOE and Timing</subject>
+    </tasks>
+</Workflow>

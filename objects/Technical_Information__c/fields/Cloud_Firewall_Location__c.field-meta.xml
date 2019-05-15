@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cloud_Firewall_Location__c</fullName>
+    <description>Locations of Integra collocations that support cloud firewall</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the state of the Cloud Firewall Service for this location.  
+
+Please note: Cloud Firewall is only offered in conjuction with VPN in the following states:  Oregon, Minnesota and Utah.</inlineHelpText>
+    <label>Cloud Firewall Location</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DNVRCOET (DENVER HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>DNVRCOET (DENVER HUB/SWITCH)</label>
+            </value>
+            <value>
+                <fullName>MPLSMNCD (MINNEAPOLIS HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>MPLSMNCD (MINNEAPOLIS HUB/SWITCH)</label>
+            </value>
+            <value>
+                <fullName>PTLEORTE (PORTLAND HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>PTLEORTE (PORTLAND HUB/SWITCH)</label>
+            </value>
+            <value>
+                <fullName>SLKCUTXD (SALT LAKE HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>SLKCUTXD (SALT LAKE HUB/SWITCH)</label>
+            </value>
+            <value>
+                <fullName>TKWLWAZS (TUKWILA HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>TKWLWAZS (TUKWILA HUB/SWITCH)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

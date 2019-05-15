@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Colocation_Services</fullName>
+    <columns>Sales_Product_Name__c</columns>
+    <columns>Component_Group__c</columns>
+    <columns>Component_Name__c</columns>
+    <columns>Market__c</columns>
+    <columns>Term__c</columns>
+    <columns>MRR__c</columns>
+    <columns>MRR_Floor__c</columns>
+    <columns>NRR__c</columns>
+    <columns>NRR_Floor__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Sales_Product_Name__c</field>
+        <operation>equals</operation>
+        <value>Colocation Services</value>
+    </filters>
+    <filters>
+        <field>Is_Expired__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Colocation Services</label>
+</ListView>

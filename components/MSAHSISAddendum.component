@@ -1,0 +1,85 @@
+<apex:component controller="ProposalGenericController" >
+	<apex:attribute name="curOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+    <apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+    <apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+	
+	<apex:outputPanel layout="none" id="op">
+		<p style="text-align:center;"><strong>HIGH SPEED INTERNET ADDENDUM <br /> to the<br /> Master Service Agreement</strong></p>
+		<p>THIS HIGH SPEED INTERNET SERVICE ADDENDUM (“Addendum,” which incorporates the Policies and Procedures, including the terms identified as the “High Speed Internet Service – Service Level Agreement and Additional Terms and Conditions”) is part of the Service Agreement and Master Service Agreement (collectively the “Agreement”), by and between Integra Telecom Holdings, Inc. by and through its subsidiaries (“Integra”) and the entity named in the Agreement and below (“Customer”).</p>
+		<p>Unless otherwise noted or defined, capitalized terms in this Addendum shall have the same meaning given them in the Agreement.  In the event of any conflict between the Agreement and this Addendum, the terms of this Addendum shall control over the language in the Agreement.  Integra may modify the Policies and Procedures at its sole discretion.</p>
+		<p>This Addendum and the Agreement set forth the terms and conditions under which Integra agrees to provide to Customer, and Customer agrees to procure from Integra, certain High Speed Internet Service as defined in Section 1 of this Addendum and the Service Agreement.</p>
+		<ol class="decimal">
+			<li><strong>HIGH SPEED INTERNET SERVICE</strong>.
+				<p><ol class="lowerRoman">
+					<li><strong>High Speed Internet Service.</strong> High speed Internet Service provides dedicated connections to the Internet (“HSI”). HSI Services are configured, based on Customer specifications, with a fixed maximum bandwidth rate or usage based Internet (“UBI”). HSI, Integra’s baseline Internet Service, includes a /29 with three (3) usable Internet protocol (“IP”) addresses. Customer has the option to add the following features, for an additional charge: (i) increase speeds (ii) additional IP addresses (iii) border gateway protocol enablement, and (iv) utilization reporting which permits monitoring interface utilization via the IntegraCare portal.<br /><br /></li>
+					<li><strong>Usage Based HSI Service.</strong> Usage based Internet (“UBI”) Service is an optional billing service which allows for billing based on Customer’s selected data bandwidth usage rather than billing at a flat rate tied to the particular capacity of the circuit type. UBI Service is only available if Customer has HSI Service utilizing Ethernet over fiber Services which are not delivered via a network to network interface (NNI). UBI pricing is based on the following components and will be specifically delineated in the applicable Service Agreement:<br /><br />
+						<ul class="lowerAlpha">
+							<li><u>Access Circuit.</u> An Access Circuit is a two-way communication path used to transmit and receive data over the data network. The MRC for an Access Circuit is a fixed fee separate from the UBI Service fee. Customer must order an Access Circuit large enough to handle the Bandwidth Commitment Overage (defined below) amount Customer needs.<br /><br /></li>
+							<li><u>Bandwidth Commitment.</u> Bandwidth is defined as the amount of data (quantified as Mbps or Gbps) made available to Customer as specified in Customer’s Service Agreement. The Customer selects the Bandwidth it deems necessary to provide Internet access and commits to pay for such Bandwidth regardless of actual usage (“Bandwidth Commitment”). Customer shall pay the fixed MRC specified on the Service Agreement for the Bandwidth Commitment ordered. The smallest Bandwidth Commitment rate available is 100Mbps and the rates increase in increments of 100Mbps up to 1Gbps.  From 1Gbps to 10Gbps the rates increase in 1Gbps increments.  To receive service on a 10Gb port, a 1Gbps minimum bandwidth commitment is required.<br /><br /></li>
+							<li><u>Bandwidth Commitment Overage.</u> Overage is the amount of Bandwidth usage in excess of the Bandwidth Commitment (“Bandwidth Commitment Overage”). Integra will provide Service with Bandwidth Commitment Overage capabilities in increments of 1Mbps. Customer will be billed for Bandwidth Commitment Overage based on the 95th percentile formula calculation commonly referred to as the “Microsoft Excel method.” Samples of average Bandwidth utilization rates of both inbound and outbound traffic from Customer port(s) are collected in five (5) minute intervals over a calendar month. The highest five percent (5%) of samples are discarded and the next highest sample is chosen to represent the 95th percentile calculation for that month. The remaining amount in excess of the Bandwidth Commitment becomes the Bandwidth Commitment Overage for the month which will be billed at an overage rate provided in Customer’s Service Agreement.<br /><br /></li>
+							<li><u>Bandwidth Cap.</u> Customer must select the maximum amount of Overage Integra will provide over the Access Circuit (“Cap”). The Cap is the maximum Overage amount allowed over the Customer’s circuit. Typically this is equal to the physical capacity of the Access Circuit.</li>
+						</ul>
+					</li>
+				</ol></p><br />
+			</li>
+			<li><strong>PAYMENT CARD INDUSTRY (“PCI”) DATA SECURITY STANDARD COUNCIL.</strong> If Customer is a “merchant,” as defined by the PCI Data Security Standard council, it is the Customer’s responsibility to determine if the Services meet the requirements a merchant must adhere to under the PCI Data Security Standard council (such requirements can be accessed at:<br />https://www.pcisecuritystandards.org/merchants/index.php). <strong>INTEGRA MAKES NO REPRESENTATIONS THAT CUSTOMER’S INTENDED USE OF THE SERVICES WILL RESULT IN PCI DATA SECURITY STANDARD COUNCIL COMPLIANCE FOR THE CUSTOMER.</strong><br /><br /></li>
+			<li><strong>NO OTHER CHANGES.</strong> Except as specifically set forth in this Addendum, the terms and conditions of the Service Agreement and the Master Service Agreement shall remain unmodified and in full force and effect.<br /><br /></li>
+		</ol>
+		<p>IN WITNESS WHEREOF, the parties have caused this Addendum to be executed by their duly authorized representatives.</p>
+		<p>&nbsp;</p>
+		<table class="Signature_table avoidBreak" border="0" cellspacing="5" cellpadding="0">
+			<tr>
+				<td width="60">&nbsp;</td>
+				<td width="130">&nbsp;</td>
+				<td width="70">&nbsp;</td>
+				<td width="60">&nbsp;</td>
+				<td width="130">&nbsp;</td>
+			</tr>
+			<tr>
+				<td colspan="2">INTEGRA TELECOM HOLDINGS, INC.</td>
+				<td>&nbsp;</td>
+				<td colspan="2">{!CurrentOpportunity.Account.Name}</td>
+			</tr>
+			<tr>
+				<td>Signature:</td>
+				<td class="normalRef">
+					<div class="docusignID">DS-CTRSIG</div>
+				</td>
+				<td>&nbsp;</td>
+				<td>Signature:</td>
+				<td class="normalRef">
+					<div class="docusignID">DS-SIG</div>
+				</td>
+			</tr>
+			<tr>
+				<td>Name:</td>
+				<td class="normalRef">&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>Name:</td>
+				<td class="normalRef">{!decisionMaker.Name}</td>
+			</tr>
+			<tr>
+				<td>Title:</td>
+				<td class="normalRef">
+					<div class="docusignID">&nbsp;</div>
+				</td>
+				<td>&nbsp;</td>
+				<td>Title:</td>
+				<td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}"></apex:outputText>
+					<div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL"></apex:outputText></div> 
+				</td>
+			</tr>
+			<tr>
+				<td>Date:</td>
+				<td class="normalRef">
+					<div class="docusignID">DS-CTRDATE</div>
+				</td>
+				<td>&nbsp;</td>
+				<td>Date:</td>
+				<td class="normalRef">
+					<div class="docusignID">DS-DATE</div>
+				</td>
+			</tr>
+		</table>
+	</apex:outputPanel>
+</apex:component>

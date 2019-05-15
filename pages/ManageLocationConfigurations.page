@@ -1,0 +1,186 @@
+<apex:page controller="ManageLocationConfigurationsController"  tabstyle="OLI__c" standardStylesheets="false">
+
+	
+    <apex:includeScript value="{!$Resource.jquery}"/>
+    <apex:includeScript value="{!$Resource.jquery_ui}"/>
+    <apex:stylesheet value="{!$Resource.jquery_ui_css}"/>
+    <link href="{!URLFOR($Resource.productResources, 'formStyle.css')}" rel="stylesheet" type="text/css" />
+	
+	<style type="text/css">
+		.txtSelectedColo INPUT {
+		}
+		
+		ul.NoBullet {
+  			list-style-type: none}
+		
+		ul li.one {list-style-image: url({!URLFOR($Resource.productResources, 'images/renameIcon.png')});}
+ 
+		
+		.tooltip {
+			border-bottom: 1px dotted #000000; color: #000000; outline: none;
+			cursor: help; text-decoration: none;
+			position: relative;
+			background-color: #FFF;
+		}
+		.tooltip span {
+			margin-left: -999em;
+			position: absolute;
+			
+		}
+		.tooltip:hover span {
+			border-radius: 5px 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; 
+			box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1); -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.1); -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.1);
+			font-family: Calibri, Tahoma, Geneva, sans-serif;
+			position: absolute; left: -10em; top: 2em;
+			margin-left: 0; width: 250px;
+		}
+		.tooltip:hover img {
+			border: 0; 
+			margin: -10px 0 0 -55px;
+			float: left; 
+			position: absolute;
+		}
+
+		.tooltip tr {
+			background-color: #FFF;
+		}
+		.tooltip:hover em {
+			font-family: Candara, Tahoma, Geneva, sans-serif; 
+			font-size: 1.2em; 
+			font-weight: bold;
+			display: block; 
+			padding: 0.2em 0 0.6em 0;
+		}
+		.classic { 
+			padding: 0.8em 1em; 
+			background-color: #FFF;  
+			z-index: 500;
+		} 
+			
+		.classic table{ 
+		}
+		
+		.custom { padding: 0.5em 0.8em 0.8em 2em; }
+		* html a:hover { background: #FFF;  text-decoration: none; }
+		.classic {border: 1px solid #FFAD33; }
+
+		.apexp .bPageBlock .detailList .list table td, .apexp .bPageBlock .detailList .list table th .tooltip{
+		    border-bottom: none;
+		}
+
+		a:hover .classic {
+		 background-color: #FFF; 
+		 text-decoration: none;
+		}
+		
+		.listViewport .x-grid3-row-over .tooltip, .errorConsole .x-grid3-row-over .tooltip, body .pbBody table.list tr.dataRow.highlight td a.tooltip , body .pbBody table.list tr.dataRow.highlight th .tooltip {
+		    background-color: #FFF;
+		}
+
+		body .pbBody table.list tr.headerRow td, body .pbBody table.list tr.headerRow th {
+			background-color: #8e9dbe;
+		}	
+	</style>
+	
+    <apex:form id="opportunityLocationForm"  >
+    	<apex:outputPanel id="opnlErrMessages">
+			<apex:pageMessages id="pageMessages"/>
+		</apex:outputPanel>
+    	<apex:outputField value="{!opportunity.Can_Create_Order__c}" rendered="false"></apex:outputField>
+        <apex:pageBlock title="Manage Location Information For {!opportunity.name}">
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton value="Return To Opportunity" action="{!gotoOpportunity}"/>
+                <apex:commandButton value="Back to Configure Solution" action="{!gotoManageLocationProducts}"/>
+                <apex:commandbutton value="CPQ Help" onclick="window.open('/069C0000000VyRP');" />
+				<!--<apex:commandButton value="Generate PDF" action="{!gotoGeneratePDF}"/> -->
+            </apex:pageBlockButtons>
+            <apex:pageBlockTable value="{!opportunityLocations}" var="opportunityLocation" id="pbtOpportunityLocations">
+                <apex:column headerValue="Location" style="width: 20%;">
+					<!-- guts taken from c:HoverLink to reduce size -->
+				   	<b><a href="/{!opportunityLocation.rawLocation.Service_Location__c}" id="{!opportunityLocation.rawLocation.Service_Location__c}"
+						onblur="LookupHoverDetail.getHover('{!opportunityLocation.rawLocation.Service_Location__c}').hide();"
+						onfocus="LookupHoverDetail.getHover('{!opportunityLocation.rawLocation.Service_Location__c}', '/{!opportunityLocation.rawLocation.Service_Location__c}/m?retURL=%2F{!opportunityLocation.rawLocation.Service_Location__c}&isAjaxRequest=1').show();"
+						onmouseout="LookupHoverDetail.getHover('{!opportunityLocation.rawLocation.Service_Location__c}').hide();"
+						onmouseover="LookupHoverDetail.getHover('{!opportunityLocation.rawLocation.Service_Location__c}', '/{!opportunityLocation.rawLocation.Service_Location__c}/m?retURL=%2F{!opportunityLocation.rawLocation.Service_Location__c}&isAjaxRequest=1').show();">{!opportunityLocation.rawLocation.Service_Location__r.Name}</a></b>
+					<br/><br/> 
+                   <b><apex:outputText value="{!opportunityLocation.rawLocation.Service_Location__r.Location__r.Name} - {!opportunityLocation.rawLocation.Name}" /></b>
+                   <br/><br/>
+<!--  START HERE -->
+					<table >
+						<tr>
+							<th class="prodTitle">Product Family</th>
+							<th class="prodTitle">Product</th>
+							<th class="prodTitle">Total</th>
+						</tr>
+						
+						<apex:repeat value="{!opportunityLocation.activeSolution.productFamilies}" var="nextFamily"> 
+							<apex:repeat value="{!nextFamily.products}" var="nextProduct">
+								<tr>
+									<td>{!nextFamily.Name}
+									</td>
+									<td>{!nextProduct.Name}											
+									</td>
+									<td>													
+										<a class="tooltip" href="#">
+											<apex:outputText value="{0, number, currency}"><apex:param value="{!nextProduct.total}" /></apex:outputText>
+											<span class="classic">
+												<table>
+													<apex:repeat value="{!nextProduct.lines}" var="nextLine"> 
+														<tr>
+															<td>{!nextLine.rawOLI.PP_Product_Pricing_Name__c}</td>
+															<td><apex:outputText value="{0, number, 0}"><apex:param value="{!nextLine.rawOLI.Qty__c}" /></apex:outputText></td>
+															<td><apex:outputText value="{0, number, currency}"><apex:param value="{!nextLine.rawOLI.MRC_Total__c}" /></apex:outputText></td>
+														</tr>	
+													</apex:repeat>
+												</table>
+											</span>
+										</a>
+									</td>
+									
+								</tr>						
+							</apex:repeat>
+						</apex:repeat> 
+						
+						<tr>
+							<td colspan="2" class="prodTitle">Sub Total</td>
+							<td><apex:outputText value="{0, number, currency}"><apex:param value="{!opportunityLocation.activeSolution.rawSolution.MRC_Total__c}" /></apex:outputText></td>
+						</tr>
+						<tr>
+							<td colspan="2">Turndowns</td>
+							<td>(<apex:outputText value="{0, number, currency}"><apex:param value="{!opportunityLocation.rawLocation.Turndown_Total__c}" /></apex:outputText>)</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="prodTitle">Total</td>
+							<td><apex:outputText value="{0, number, currency}"><apex:param value="{!opportunityLocation.activeSolution.rawSolution.MRC_Total__c - opportunityLocation.rawLocation.Turndown_Total__c}" /></apex:outputText></td>
+						</tr>
+					</table>
+<!--  END HERE -->				
+                </apex:column>
+                <apex:column headerValue="Actions" style="width: 20%;" styleClass="compareButtons">
+                    <apex:outputPanel rendered="{!opportunityLocation.rawLocation.Id != null}">
+                        <a href="{!$Page.PrintOrder}?oppid={!opportunityLocation.rawLocation.Order__r.Opportunity__c}&solutionid={!opportunityLocation.activeSolution.rawSolution.Id}" target="_blank"><nobr>Order Summary</nobr></a><br />
+                       <a href="{!$Page.CostComparison}?id={!opportunityLocation.rawLocation.Id}" target="_blank"><nobr>Cost Comparison</nobr></a><br />                       
+                    </apex:outputPanel>
+                </apex:column>
+                <apex:column headerValue="Technical Information" style="width: 25%;">
+                    <ul class="NoBullet">
+                        <apex:repeat value="{!opportunityLocation.technicalInfos}" var="nextTechInfo">                        	
+                            <li class="{!IF(NOT(ISBLANK(nextTechInfo.rawTI.Id)), 'one', '')}" >      
+								<apex:commandLink value="{!nextTechInfo.displayName}" action="{!gotoTechInfo}" target="_blank" rendered="{!!nextTechInfo.overrideLink}">
+	                            	<apex:param name="LocationId_gotoTechInfo" value="{!opportunityLocation.rawLocation.Id}" assignTo="{!LocationId_gotoTechInfo}"/>                            
+	                            	<apex:param name="TechInfoRecordTypeId_gotoTechInfo" value="{!nextTechInfo.rawTI.RecordTypeId}" assignTo="{!TechInfoRecordTypeId_gotoTechInfo}"/>
+	                            	<apex:param name="TechInfoId_gotoTechInfo" value="{!nextTechInfo.rawTI.Id}" assignTo="{!TechInfoId_gotoTechInfo}"/>
+	                            </apex:commandLink>
+								
+								<apex:commandLink value="{!nextTechInfo.overrideDisplayName}" action="{!gotoTechInfoDocument}" target="_blank"  rendered="{!nextTechInfo.overrideLink}">
+	                            	<apex:param name="TechInfoLinkString" value="{!nextTechInfo.documentName}" assignTo="{!TechInfoLinkString}"/>                            
+	                            </apex:commandLink>
+
+							</li>
+                        </apex:repeat>
+                    </ul>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

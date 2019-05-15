@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>February_Committed</fullName>
+    <columns>Priority__c</columns>
+    <columns>Story_Summary__c</columns>
+    <columns>NAME</columns>
+    <columns>Deployment_Date__c</columns>
+    <columns>Business_Value__c</columns>
+    <columns>Complexity__c</columns>
+    <columns>Hours_Estimated_Total__c</columns>
+    <columns>Primary_Business_Contact__c</columns>
+    <columns>Story_Points__c</columns>
+    <columns>Status__c</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <columns>Approved_by__c</columns>
+    <columns>Business_Segment__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Sprint__c</field>
+        <operation>contains</operation>
+        <value>February</value>
+    </filters>
+    <filters>
+        <field>Sprint__c</field>
+        <operation>contains</operation>
+        <value>Business Enablement</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Committed</value>
+    </filters>
+    <label>Business Enablement February Committed</label>
+</ListView>

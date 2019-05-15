@@ -1,0 +1,382 @@
+<apex:page standardController="Order__c" extensions="SubOrder_WorkstepsController" showHeader="true" tabstyle="Workstep__c" >
+<apex:stylesheet value="{!$Resource.SubOrderWorkstepsStylesheet}" />
+
+    <apex:sectionHeader title="Order Worksteps" subtitle="{!Order__c.Name}" rendered="{!standAlonePage}"/>
+    
+       <div style="display:table; width:50%;">
+        <apex:form rendered="{!standAlonePage}">
+            <div style="display:table-cell; vertical-align: middle;">
+                <apex:outputLink value="/{!Order__c.Id}" 
+                    target="_parent"
+                    styleClass="link">
+                    Order: {!Order__c.Name}
+                </apex:outputlink>
+            </div>
+          </apex:form>  
+            <div class="buttons">
+            <apex:form style="margin-left:auto; margin-right: 30%; text-align: center;" rendered="{!standAlonePage}">
+               <apex:commandButton value="Create New Workstep" 
+                   onclick="window.open('../apex/NewWorkstep?oid={!Order__c.Id}')" 
+                   style="margin:5px 5px 5px 0;"
+                   rendered="{!$ObjectType.Workstep__c.Createable}"
+                   />
+                   
+               <apex:commandButton value="Filter Non-Applicable Worksteps" 
+                   onclick="toggleZeroDuration(); return false"
+                   />
+            </apex:form>
+            </div>
+        </div>
+    <apex:pageblock rendered="{! $ObjectType.Workstep__c.accessible }">
+    <div style="display: table; float:left;">
+        <img src="/img/icon/chest24.png" />    
+        <div style="display:table-cell; vertical-align:middle; font-weight:bold; font-size: 1.2em; padding-left:5px;">            
+            Worksteps
+        </div>
+    </div>
+     
+     <apex:form style="margin-left:auto; margin-right: 30%; text-align: center;" rendered="{!NOT(standAlonePage)}">
+        <apex:commandButton value="Create New Workstep" 
+            onclick="window.open('../apex/NewWorkstep?oid={!Order__c.Id}'); return false" 
+            style="margin:5px 5px 5px 0;"
+            rendered="{!$ObjectType.Workstep__c.Createable}"
+            />
+            
+        <apex:commandButton value="Filter Non-Applicable Worksteps" 
+            onclick="toggleZeroDuration(); return false"
+            style="margin:5px 5px 5px 0;"
+            />
+            
+        <apex:commandButton value="Open Worksteps in New Window" 
+            onclick="window.open('../apex/Order_Worksteps?id={!Order__c.Id}&so=true'); return false"
+            style="margin:5px 5px 5px 0;"
+            />
+    </apex:form>    
+     <apex:form >
+     <apex:outputPanel layout="block" style="{!IF(standAlonePage, 'width:100%;height:100%', 'overflow:auto;width:100%;height:150px')}">
+        <apex:pageBlock id="worksteps_list">                
+            <apex:pageBlockTable value="{! Worksteps}" var="ws">
+
+                <apex:column headerValue="Action"
+                    styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', '')}" 
+                    style="width: 8ex; text-align:center; padding-right: 1ex;"
+                    rendered="{! OR ($ObjectType.Workstep__c.Deletable, $ObjectType.Workstep__c.Updateable)}">
+                    
+                        <apex:outputLInk value="/{!ws.Id}/e?retURL={!ws.Id}" 
+                            target="_blank"
+                            style="text-decoration:none; color: #015BBA !important;">
+                            Edit
+                        </apex:outputLink>
+                        
+                        <apex:outputText rendered="{!$ObjectType.Workstep__c.Deletable}" 
+                            value=" | " />
+                        
+                        <apex:outputLink value="{!URLFOR($Action.Workstep__c.Delete, ws.Id, [retURL='/apex/Order_Worksteps?id='&Order__c.Id])}" 
+                            target="_blank"
+                            style="text-decoration:none; color: #015BBA !important;"
+                            rendered="{!$ObjectType.Workstep__c.Deletable}"> 
+                            Del
+                        </apex:outputLink>
+                        
+                </apex:column>
+                           
+                <apex:column styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                    IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen', 
+                    CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}"
+                    style="padding-left: 0px;">                     
+                    
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortResults}" reRender="worksteps_list">
+                            <apex:param assignTo="{!sortColumn}" value="Name" />
+                                Workstep Name
+                        </apex:commandLink>
+                    </apex:facet>
+                    
+                    <apex:outputLink value="/{!ws.Id}" 
+                        target="_blank"
+                        styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                        IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen', 
+                        CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">                           
+                        {!ws.Name}
+                    </apex:outputLink>                   
+                </apex:column>
+
+                <apex:column value="{! ws.Start_Date__c}"
+                    styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                    IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen', 
+                    CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">                      
+                    
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortResults}" reRender="worksteps_list">
+                            <apex:param assignTo="{!sortColumn}" value="Start_Date__c" />
+                                Actual Start Date
+                        </apex:commandLink>
+                    </apex:facet>                   
+                </apex:column>    
+                
+                 <apex:column value="{! ws.End_Date__c}"
+                     styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                     IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen', 
+                     CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">        
+                    
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortResults}" reRender="worksteps_list">
+                            <apex:param assignTo="{!sortColumn}" value="End_Date__c" />
+                                Expected End Date
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>   
+
+                  <apex:column styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                      IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen', 
+                      CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">                    
+                      
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortResults}" reRender="worksteps_list">
+                            <apex:param assignTo="{!sortColumn}" value="Owner.Name" />
+                                Owner
+                        </apex:commandLink>
+                    </apex:facet>
+                    
+                    <apex:outputLink value="/{!ws.Owner.id}" 
+                        target="_blank"
+                        rendered="{!ws.Owner.Type = 'User'}"
+                        styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                        IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen', 
+                        CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">
+                        {!ws.Owner.Name}
+                    </apex:outputLink>       
+                    
+                    <apex:outputLink value="/p/own/Queue/d?id={!ws.Owner.id}" 
+                        target="_blank"
+                        rendered="{! ws.Owner.Type = 'Queue'}" 
+                        styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                        IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen',                   
+                        CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">                 
+                        {!ws.Owner.Name}
+                    </apex:outputLink>                                                      
+                </apex:column>   
+
+                 <apex:column value="{! ws.Duration__c}"  
+                     styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                     IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen',                   
+                     CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">                      
+                     
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortResults}" reRender="worksteps_list">
+                            <apex:param assignTo="{!sortColumn}" value="Duration__c" />
+                                Duration
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column> 
+
+                 <apex:column value="{! ws.Status__c}"
+                     styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                     IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen',                   
+                     CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">                   
+                     
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortResults}" reRender="worksteps_list">
+                            <apex:param assignTo="{!sortColumn}" value="Status__c" />
+                                Status
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>   
+
+                 <apex:column value="{! ws.Attribute__c}"                        
+                     styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                     IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen',                   
+                     CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">  
+                                      
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortResults}" reRender="worksteps_list">
+                            <apex:param assignTo="{!sortColumn}" value="Attribute__c" />
+                                Attribute
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column>  
+
+                 <apex:column value="{! ws.Workstep_Tag__c}" 
+                     styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', 
+                     IF( AND( ws.End_Date__c < TODAY(), ws.Status__c = 'Open'), 'pastDueOpen',                   
+                     CASE( ws.Status__c, 'Open', 'open', 'Complete', 'complete', 'Blocked', 'blocked', '' )))}">  
+                                                            
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortResults }" reRender="worksteps_list">
+                            <apex:param assignTo="{! sortColumn }" value="workstep_tag__c" />
+                                Tag
+                        </apex:commandLink>
+                    </apex:facet>
+                </apex:column> 
+                                                                                                                                              
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:OutputPanel>
+    </apex:form>
+ 
+    <br />
+
+    <apex:outPutText value="You must have at least read-level access to Worksteps in order to view this section." 
+        rendered="{! NOT ($ObjectType.Workstep__c.accessible) }" /> 
+    
+    <apex:form style="margin-left:auto; margin-right: 30%; text-align: center;">
+            
+        <apex:commandButton value="Filter Resolved Issues" 
+            onclick="toggleResolved(); return false"
+            style="margin:5px 5px 5px 0;"
+            />
+        <div style="display: table; float:left;">
+            <apex:image value="/img/icon/diamond24.png" />
+            <div style="display:table-cell; vertical-align:middle; font-weight:bold; font-size: 1.2em; padding-left:5px;">            
+                Workstep Issues
+            </div>
+        </div>
+    </apex:form>
+        <apex:form >
+        <apex:outputPanel layout="block" style="overflow:auto;width:100%;height:100px" >
+        <apex:pageBlock id="workstepissue_list">                
+            <apex:pageBlockTable value="{!wsi}" var="wi">
+                <apex:column headerValue="Action"
+                    styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', '')}" 
+                    style="width: 8ex; text-align:center; padding-right: 1ex;"
+                    rendered="{! OR ($ObjectType.Workstep_Issue__c.Updateable)}">
+                    
+                        <apex:outputLInk value="/{!wi.Id}/e?retURL={!wi.Id}"
+                            target="_blank" 
+                            style="text-decoration:none; color: #015BBA !important;">
+                            Edit
+                        </apex:outputLink>
+                        
+                        <apex:outputText rendered="{!$ObjectType.Workstep_Issue__c.Deletable}" 
+                            value=" | " />
+                        
+                        <apex:outputLink value="{!URLFOR($Action.Workstep_Issue__c.Delete, wi.Id, [retURL='/apex/Order_Worksteps?id='&Order__c.Id])}"
+                            target="_blank" 
+                            style="text-decoration:none; color: #015BBA !important;"
+                            rendered="{!$ObjectType.Workstep_Issue__c.Deletable}"> 
+                            Del
+                        </apex:outputLink>
+                        
+                </apex:column>
+                
+                <apex:column styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                      IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}"
+                      style="padding-left: 0px;">                    
+
+                      <apex:facet name="header">
+                        <apex:commandLink action="{! sortWSIResults }" reRender="workstepissue_list">
+                            <apex:param assignTo="{! sortWSIColumn }" value="Name" />
+                            Workstep Issue
+                        </apex:commandLink>
+                    </apex:facet>
+                    
+                    <apex:outputLink value="/{!wi.Id}" 
+                        target="_blank"
+                         styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                         IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">
+                        {!wi.Name}
+                    </apex:outputLink>   
+                </apex:column>   
+ 
+                <apex:column styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                      IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">                    
+
+                      <apex:facet name="header">
+                        <apex:commandLink action="{! sortWSIResults }" reRender="workstepissue_list">
+                            <apex:param assignTo="{! sortWSIColumn }" value="Workstep__r.Name" />
+                            Workstep
+                        </apex:commandLink>
+                    </apex:facet>
+                    
+                    <apex:outputLink value="/{!wi.Workstep__r.Id}" 
+                        target="_blank"
+                         styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                         IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">
+                        {!wi.Workstep__r.Name}
+                    </apex:outputLink>   
+                </apex:column>    
+                               
+                <apex:column value="{! wi.Reason__c }"
+                    styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                    IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">                    
+
+                      <apex:facet name="header">
+                        <apex:commandLink action="{! sortWSIResults }" reRender="workstepissue_list">
+                            <apex:param assignTo="{! sortWSIColumn }" value="Reason__c" />
+                            Reason
+                        </apex:commandLink>
+                    </apex:facet> 
+                </apex:column>  
+                
+                <apex:column value="{! wi.Status__c}"
+                    styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                    IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">                    
+
+                      <apex:facet name="header">
+                        <apex:commandLink action="{! sortWSIResults }" reRender="workstepissue_list">
+                            <apex:param assignTo="{! sortWSIColumn }" value="Status__c" />
+                            Status
+                        </apex:commandLink>
+                    </apex:facet> 
+                </apex:column>  
+                                
+                <apex:column styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                      IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">                    
+                      
+                      <apex:facet name="header">
+                        <apex:commandLink action="{! sortWSIResults }" reRender="workstepissue_list">
+                            <apex:param assignTo="{! sortWSIColumn }" value="Owner.Name" />
+                            Owner
+                        </apex:commandLink>
+                    </apex:facet>
+                    
+                    <apex:outputLink value="/{!wi.Owner.id}" 
+                        target="_blank"
+                        rendered="{!wi.Owner.Type = 'User'}"
+                         styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                         IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">
+                        {!wi.Owner.Name}
+                    </apex:outputLink>       
+                    
+                    <apex:outputLink value="/p/own/Queue/d?id={!wi.Owner.id}" 
+                        target="_blank"
+                        rendered="{! wi.Owner.Type = 'Queue'}" 
+                        styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                        IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">                
+                        {!wi.Owner.Name}
+                    </apex:outputLink>                                                      
+                </apex:column>   
+                
+                <apex:column value="{! wi.Expected_Follow_Up_Date__c}"
+                    styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                    IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">                    
+
+                      <apex:facet name="header">
+                        <apex:commandLink action="{! sortWSIResults }" reRender="workstepissue_list">
+                            <apex:param assignTo="{! sortWSIColumn }" value="Expected_Follow_Up_Date__c" />
+                            Expected Followup Date
+                        </apex:commandLink>
+                    </apex:facet> 
+                </apex:column>  
+
+                <apex:column value="{! wi.Estimated_Resolution__c}"
+                    styleClass="{!IF( wi.Status__c = 'Resolved', 'resolved', 
+                    IF( AND( DATEVALUE(wi.Expected_Follow_Up_Date__c) < TODAY(), wi.Status__c = 'Open'), 'pastDueOpen', ''))}">                    
+
+                     <apex:facet name="header">
+                        <apex:commandLink action="{! sortWSIResults }" reRender="workstepissue_list">
+                            <apex:param assignTo="{! sortWSIColumn }" value="Estimated_Resolution__c" />
+                            Estimated Resolution
+                        </apex:commandLink>
+                    </apex:facet> 
+                </apex:column>        
+                                 
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+          
+<apex:includeScript value="{!$Resource.SubOrderWorkstepsScript}"/>
+
+    </apex:pageblock>
+</apex:page>

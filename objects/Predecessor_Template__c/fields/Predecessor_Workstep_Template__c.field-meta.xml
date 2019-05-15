@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Predecessor_Workstep_Template__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Predecessor Workstep Template</label>
+    <referenceTo>Workstep_Template__c</referenceTo>
+    <relationshipLabel>Successor Templates</relationshipLabel>
+    <relationshipName>Predecessor_Templates</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

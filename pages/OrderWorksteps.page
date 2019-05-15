@@ -1,0 +1,42 @@
+<apex:page standardController="Order__c" extensions="OrderWorkstepsController">
+    <apex:pageBlock mode="edit">
+        <apex:pageBlockSection id="resultsBlock" columns="1">
+            <apex:form >
+                <apex:commandButton value="New Workstep" onclick="window.open('../apex/NewWorkstep?oid={!ord.Id}')"/>
+            </apex:form>
+            <apex:pageBlockTable value="{!wsList}" var="ws" >
+                <apex:column headerValue="Worksteps Name">
+                    <apex:outputLink value="/{!ws.Id}"  target="_parent">{!ws.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Actual Start Date</apex:facet>
+                    {!ws.Start_Date__c}
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Expected End Date</apex:facet>
+                    {!ws.End_Date__c}
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Status</apex:facet>
+                    {!ws.Status__c}
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Duration</apex:facet>
+                    {!ws.Duration__c}
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">SLA</apex:facet>
+                    {!ws.SLA__c}
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Owner Alias</apex:facet>
+                    <apex:outputLink value="/{!ws.Owner}"  target="_parent">{!ws.Owner.Name}</apex:outputLink>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Actual Completion Date</apex:facet>
+                    {!ws.Actual_Completion_Date__c}
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>

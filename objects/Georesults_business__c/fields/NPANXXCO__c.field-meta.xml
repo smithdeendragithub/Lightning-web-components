@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NPANXXCO__c</fullName>
+    <description>8-character CLLI™ of the telephone switch equipment building which serves the NPANXX assigned to this business. The NPANXX is the first 6 digits of the telephone number and are compared to Telcordia® LERG™ data to determine the CLLI™. If the telephone number has been ported to another switch this field reflects the initial NPANXX Central Office assignment.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>8-character CLLI™ of the telephone switch equipment building which serves the NPANXX assigned to this business.</inlineHelpText>
+    <label>NPANXX Central Office</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

@@ -1,0 +1,182 @@
+<apex:component controller="ProposalDirectoryForm">
+<apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+<table width="700" border="0" cellspacing="0" cellpadding="0" id="SummaryOfWork" class="mainTable avoidBreak">
+<tr>
+	<td>
+		<table width="700" border="0" cellspacing="0" cellpadding="0">
+        	<tr>
+        	   <td width="500px"><div class="mainTitle">Summary of Work: </div><div class="subTitle">Definition of work to be performed and or provided by Electric Lightwave</div></td>
+          		<td>
+          			<table align="left" width="200px" class="topRightSmall" border="0" cellspacing="0" cellpadding="0">
+              			<tr>
+			                <td width="225">&nbsp;</td>
+			                <td width="175">&nbsp;</td>
+			            </tr>
+              			<tr><td>&nbsp;</td></tr>
+			            <tr><td>{!integraDecisionMaker.Street}</td></tr>
+			            <tr><td>{!integraDecisionMaker.CityStateZip}</td></tr>
+			            <tr><td>(P) {!integraDecisionMaker.Phone}</td></tr>
+                        <tr><td>(F) {!integraDecisionMaker.Fax}</td></tr>
+			            <tr><td><a href="mailto:{!integraDecisionMaker.Email}" target="_parent">{!integraDecisionMaker.Email}</a></td></tr>
+            		</table>
+            	</td>
+        	</tr>
+      	</table>
+	</td>
+</tr>
+<tr>
+	<td>
+		<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	        <tr><td style="color: #FF0000; font-size:24px; border-top-style: solid; border-top-width: thin; border-top-color: #000000" align="center">{!clientBillingAddress.Name}</td></tr>
+	        <tr><td>&nbsp;</td></tr>
+	        <tr><td style="font-size:12px;" align="center"><strong>Main Billing Location</strong></td></tr>
+	   </table>
+	   <table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+		   <tr>
+		   	<td width="258"></td>
+		   	<td></td>
+		   </tr>
+			<tr class="scopeTable">
+				<td style="border-right-style: solid; border-right-width: thin; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000" align="right">Address&nbsp;</td>
+				<td style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000">&nbsp;{!clientBillingAddress.Street}</td>
+			</tr>
+			<tr> 
+				<td style="border-right-style: solid; border-right-width: thin; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000" align="right">City, State, Zip&nbsp;</td> 
+				<td style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000">&nbsp;{!clientBillingAddress.CityStateZip}</td>
+			</tr>
+			<tr>
+				<td style="border-right-style: solid; border-right-width: thin; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000" align="right">Customer Contact On-Site&nbsp;</td>
+				<td style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000">&nbsp;{!decisionMaker.Name}</td>
+			</tr>
+			<tr>
+				<td style="border-right-style: solid; border-right-width: thin; border-right-color: #000000; border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000" align="right">Contact Telephone&nbsp;</td>
+				<td style="border-bottom-style: solid; border-bottom-width: thin; border-bottom-color: #000000">&nbsp;{!decisionMaker.Phone}</td>
+			</tr>
+			<tr><td>&nbsp;</td></tr>
+	        <tr><td style="font-style: italic; font-size:7px;" align="center" colspan="2">Note: Planning/Consulting, Pre-Install testing, Installation, Post-Install testing, and Training phases are concluded with checkpoints to update Customer on progress.</td></tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td>
+		<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	        <tr><td style="font-style:italic; font-size:12px;" align="center" bgcolor="#CCCCCC"><strong>Summary of Work</strong></td></tr>
+	        <tr><td style="font-style: italic; font-size:7px;" align="center" bgcolor="#CCCCCC">(Include specific required features, functions, call routing or work that was included in solution design.)</td></tr>
+		</table>
+	</td>
+</tr>
+<tr>
+	<td>
+		<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+		        	<tr>
+						<td>{!summarywork}</td>
+					</tr>
+		</table>
+	</td>
+</tr>
+</table>
+
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="font-style:italic; font-size:12px;" align="center"  bgcolor="#CCCCCC"><strong>Installation</strong></td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td align="center"><strong>Includes</strong></td>
+	</tr>
+	<tr>
+		<td>Installation of all hardware listed in Service Agreement. Termination of all breakout cables to support full capacity of hardware listed in Service Agreement. Cross connection of breakout cables to existing station wiring for all hardware listed in Service Agreement. Initial database configuration and programming of hardware and software listed in Service Agreement. Training of all users on the features and functions of the new systems. Connection of the new systems to the Public Telephone Network. Certification testing of major features and hardware specifications.</td>
+	</tr>
+	<tr>
+		<td align="center"><strong>Does Not Include</strong></td>
+	</tr>
+	<tr>
+		<td>Installation or troubleshooting of any hardware or software not included in Service Agreement of signed sales agreement, including, but not limited to, customer LAN or PC problems or troubleshooting of any customer provided equipment, troubleshooting of station or trunk problems beyond the MDF of the new systems.</td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="font-style:italic; font-size:12px;" align="center"  bgcolor="#CCCCCC"><strong>Customer Responsibilities</strong></td></tr>
+	<tr><td style="font-style:italic; font-size:7px;" align="center" bgcolor="#CCCCCC">The following actions and items are the responsibility of the Customer. Failure to meet these responsibilities will result in added costs to the contracted price and or additions in Time and Material charge.</td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>Provide one central point of contact for all issues related to the installation and implementation of the new system. Provide a training location sufficient for 15 persons to be trained simultaneously on live equipment. Provide full and unincumbered access to all areas of the building that will be affected by the new system installation. Provide after hours access to the building in the event that the system cutover is extended beyond the anticipated time.</td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="font-style:italic; font-size:12px;" align="center"  bgcolor="#CCCCCC"><strong>Service Exceptions</strong></td></tr>
+	<tr>
+		<td style="font-style:italic; font-size:7px;" align="center"  bgcolor="#CCCCCC">Electric Lightwave states the following exceptions to the defined product and services provided.</td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr><td>{!servicelimit}</td></tr>
+	<tr><td>&nbsp;</td></tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="font-style: italic; font-size:12px;" align="center"  bgcolor="#CCCCCC"><strong>Schedule of Work</strong></td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>All work performed by Electric Lightwave is during normal business operation hours, unless arranged otherwise with Customer. Customer agrees to make all necessary equipment, facilities, information systems, and people necessary to a successful delivery of these defined services available as scheduled for access as needed for Electric Lightwave personnel to perform approved work. Installation and testing may require the disruption of normal business operations for the Customer, including the need to re-boot or take off-line computing, telephone, and other systems to complete defined work. Electric Lightwave will make all reasonable efforts to avoid disruption to Customer operations. Customer agrees to make appropriate personnel available during normally scheduled hours of operation to insure access to equipment, facilities, and information systems and to meet customer obligations and perform customer responsibilities to minimize delays in the Electric Lightwave work. Additional Time and Material charges apply when afore mentioned provisions are not met by Customer and time delays result.</td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="font-style: italic; font-size:12px;" align="center"  bgcolor="#CCCCCC"><strong>Products and Services Pricing</strong></td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td align="center">See Attached <strong>Service Agreement</strong></td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td style="font-style: italic; font-size:12px;" align="center"  bgcolor="#CCCCCC"><strong>Change Orders</strong></td>
+	</tr>
+</table>
+<table width="700" style="border: thin solid #000000" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>All changes to this order(s) must be in writing and amend this original agreement as a Contract Change Order attachment defined and signed by both Electric Lightwave’s and Customer’s authorized agent. Changes to the Scope of Work contained herein may result in a modification to the agreed price and will be noted in the Contract Change Order. Changes impacting price include, but are not limited to, design specifications, parts and materials, time to complete work.</td>
+	</tr>
+	<tr>
+        <td>* as identified in Master Service Agreement.</td>
+    </tr>
+	<tr>
+		<td>&nbsp;</td>
+	</tr>
+</table>
+<table width="700" border="0" cellspacing="0" cellpadding="0" class="avoidBreak">
+      <tr>
+            <td width="251" class="emptyRef highlightArea"><div class="docusignID">DS-SIG</div></td>
+            <apex:outputPanel rendered="{!NOT(ISNULL(decisionMaker.Title))}" layout="none">
+						<td width="222" class="emptyRef highlightArea">{!decisionMaker.Title}</td>
+						</apex:outputPanel>
+						<apex:outputPanel rendered="{!ISNULL(decisionMaker.Title)}" layout="none">
+						<td width="222" style="vertical-align: top;"><div class="docusignID">DS-FILL</div></td>
+						</apex:outputPanel> 
+            <td width="227" class="emptyRef highlightArea"><div class="docusignID">DS-DATE</div></td>
+          </tr>
+          <tr>
+            <td class="smallPrint">Name</td>
+            <td class="smallPrint">Title</td>
+            <td class="smallPrint">Date</td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+          </tr>
+	
+
+</table>
+</apex:component>

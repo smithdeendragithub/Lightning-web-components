@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ILEC_LSO_Colo</fullName>
+    <columns>NAME</columns>
+    <columns>LSO_CLLI__c</columns>
+    <columns>Building_Type__c</columns>
+    <columns>Zone__c</columns>
+    <columns>State__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Building_Type__c</field>
+        <operation>equals</operation>
+        <value>ILEC LSO: Collocated</value>
+    </filters>
+    <label>ILEC LSO Colo</label>
+</ListView>

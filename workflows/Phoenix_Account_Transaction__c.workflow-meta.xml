@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Send_email_alert_for_Phoenix_Transaction_still_in_queue</fullName>
+        <description>Send email alert for Phoenix Transaction still in queue</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>eugene.leung@allstream.com.eli</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>jennifer.olson@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>marc.kirouac@allstream.com.eli</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>terrie.aspaas@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Phoenix_Transaction_has_not_been_processed</template>
+    </alerts>
+    <rules>
+        <fullName>Transaction still waiting to be processed</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Phoenix_Account_Transaction__c.In_Queue__c</field>
+            <operation>equals</operation>
+            <value>Y</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+        <workflowTimeTriggers>
+            <actions>
+                <name>Send_email_alert_for_Phoenix_Transaction_still_in_queue</name>
+                <type>Alert</type>
+            </actions>
+            <timeLength>1</timeLength>
+            <workflowTimeTriggerUnit>Hours</workflowTimeTriggerUnit>
+        </workflowTimeTriggers>
+    </rules>
+</Workflow>

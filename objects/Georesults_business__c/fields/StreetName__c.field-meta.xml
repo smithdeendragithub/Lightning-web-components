@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>StreetName__c</fullName>
+    <description>Street name portion of Clean Address. This field can be used to more precisely select businesses based on the parts of their address. For instance select businesses on Main could focus selection for a facility route.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Street name portion of Clean Address.</inlineHelpText>
+    <label>Street Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

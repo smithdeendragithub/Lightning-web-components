@@ -1,0 +1,226 @@
+<apex:component controller="ProposalGenericController" >
+  <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+<apex:outputPanel layout="none" id="pepe" >
+        <table width="700" border="0" cellspacing="0" cellpadding="0"
+            id="911_Form" class="mainTable standardBackground">
+            <tr>
+                <td>
+                <table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="500">
+                        <div class="mainTitle">MASTER SERVICE AGREEMENT</div>
+                        </td>
+                        <td>
+                        <table align="left" width="200px" class="topRightSmall" border="0"
+                            cellspacing="0" cellpadding="0">
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>{!integraDecisionMaker.Street}</td>
+                            </tr>
+                            <tr>
+                                <td>{!integraDecisionMaker.CityStateZip}</td>
+                            </tr>
+                            <tr>
+                                <td>(P) {!integraDecisionMaker.Phone}</td>
+                            </tr>
+                            <tr>
+                                <td>(F) {!integraDecisionMaker.Fax}</td>
+                            </tr>
+                            <tr>
+                                <td><a href="mailto:{!integraDecisionMaker.Email}"
+                                    target="_parent">{!integraDecisionMaker.Email}</a></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <table border="0" cellspacing="0" cellpadding="0"
+                    class="smallCluster-left avoidBreak">
+                    <tr>
+                        <td height="4px"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="subTitle">ELECTRIC LIGHTWAVE MASTER SERVICE AGREEMENT<br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Electric Lightwave Holdings, Inc., by and through its subsidiaries 
+                        {!CASE( CurrentOpportunity.Account.Account_Sales_Channel__c, "Integra Business", "and its Integra business", "Integra Legacy", "and its Integra business", "Indirect Sales", "and its Integra business", "")}
+                        (hereinafter “Company”), and customer, as named on the Service Agreement and the signature page hereto (“Customer”), hereby agree to the following terms and conditions contained in this Master Service Agreement (this “Agreement”) for the provision of the service(s) ordered by Customer (the “Service(s)”) to Customer by Company, as of the date of the Service Agreement (as defined below).  For the purposes of this Agreement, Company or Customer may be individually referred to as a “Party” and collectively as “Parties.”</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">1. SERVICES AND SERVICES TERM.  This Agreement incorporates any accepted orders for any Service (“Service Agreement(s)”), any attachments, policies and procedures found on Company’s website: www.electriclightwave.com or www.integratelecom.com under Public Info and Policies (“Policies and Procedures”), and any filed tariffs, price lists or schedules, and comprises the entire agreement between the Parties.  Details pertaining to the Service(s) are set forth in the Service Agreement entered into in connection with this Agreement. This Agreement supersedes any and all prior discussions, representations, memoranda, or agreements – oral or written – between the Parties hereto.  Company reserves the right, in its sole reasonable discretion, to reject any Service Agreement prior to Company's signature.  Company agrees to provide to Customer (subject to availability and adequacy of underlying Service), and Customer agrees to procure from Company, the Service(s) at the location(s), and for the number of months (“Services Term” or “Service Term”), set forth in the applicable Service Agreement.  “Installation of Service” occurs per Service, per location, when Company completes its installation of each Service.  Installation of Service occurs, for example, at the delivery of the Service to the demarcation point.  Unless otherwise indicated by the Company in writing, the “Demarcation Point” is the location where Company’s facilities interconnect with Customer’s or any third party’s facilities.  Company will use reasonable efforts to install Service on the date agreed upon by the Parties; however, Company does not guarantee that Service will be installed and provisioned on Customer’s desired due date.  If Customer delays the Installation of Service, certain fees and facility reservation charges may be charged to Customer as described in Company’s Policies and Procedures.  Upon the expiration of the Service Term, a Service Agreement will automatically renew for successive one (1) year terms, each a “Renewal Services Term,” unless terminated by Customer or Company with thirty (30) days’ written notice prior to the completion of the Service Term or the then-current Renewal Services Term.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">2. RATES, CHARGES, BILLING AND PAYMENT.  Rates and charges, service levels and credits are described in the Service Agreement.  Company will notify Customer when an Installation of Service has occurred. Upon notification of Installation of Service, Customer agrees to convert its services from its present provider, if any.  Customer is responsible for payment of all charges associated with the Service from the date of Installation of Service (except as provided in Section 15, when applicable).  Customer agrees that the Service Term and billing will commence upon the Installation of Service, regardless of Customer's actual conversion date, unless Customer tests the Service and notifies Company that the Service is not functioning properly within three (3) days after Company notifies Customer of the Installation of Service.  If Customer timely notifies Company of the non-functioning nature of the Service, Company will investigate the problem, and if it is due to Company equipment, correct the issue and notify Customer of such correction.  Upon such notification, Customer again will have three (3) days to test the Service, and if Customer does not notify Company that the Service is not functioning properly within such period, the Service Term and billing for the Service will begin on the date Company notified Customer that the Service was corrected.  If the problem was due to Customer equipment, Company will notify Customer, and Customer is responsible for payment of all charges associated with the Service from the date of Installation of Service.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Monthly recurring charges (“MRC”) will be billed in advance each month.  Non-recurring charges (“NRC”) will be billed on the first invoice after the date of Installation of Service, or if the NRC are incurred after the date of Installation of Service, or are usage based, such charges will be billed on the next invoice thereafter.  Company may bill Customer for billing corrections or adjustments for Services rendered not later than one hundred eighty (180) days after the last day of the billing cycle during which Company provided the Service(s) to the Customer, unless a different period is required by federal, state, or local laws, regulations, rulings, orders or other actions of governmental agencies (“Applicable Law”).  Customer is responsible for payment of all charges associated with the Service(s), including without limitation, charges for originating and terminating calls to Customer’s telephone number(s).  Payments are due on the Payment Due By date set forth on the Company invoice, provided, however, that no Payment Due By date shall be less than net thirty (30) days.  Customer must provide payment of all undisputed charges in full on Payment Due By date.  If Customer believes it has been billed in error or otherwise disputes a charge, Customer must notify Company not later than ninety (90) days after the date of the invoice containing the disputed charge unless a different period is required by Applicable Law.  Customer’s notice must specifically detail the dispute and provide supporting documentation for the amount in dispute.  Company will investigate all disputes and notify Customer of the results of its investigation and, if appropriate, credit Customer’s account or notify Customer of denial of the dispute.  <b>Acceptance of payments of less than the full amount due, including an instrument tendered as full satisfaction of a debt, shall not be deemed, in the absence of a written agreement executed by both Parties, an agreement on the part of Company to accept less than the full amount due.  Any tender of an instrument as full satisfaction of a debt must be sent to the Law &amp; Policy Department of Company.</b>  Company may assess a late fee of 1.5% per month (not to exceed the maximum rate allowed under state law) on any undisputed balances not paid when due.  Late fees may be assessed, as of the original Payment Due By date, against any disputed amount denied by Company.  Company has the option to suspend the Services and/or to pursue any and all other legal remedies until payment is made. Termination of Services after written notice may follow.  Customer will pay any and all costs incurred in collection of rates and charges due and payable, including reasonable attorneys’ fees and all collection agency costs, whether or not a suit is instituted. All payments hereunder will be in U.S. currency.  </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Each Service Agreement is subject to credit approval.  Customer hereby authorizes Company to conduct a credit search and agrees to provide Company with information regarding payment history for communications services, number of years in business, financial statement analysis and commercial credit bureau rating.  If a credit check is unsatisfactory at any time, or if Customer fails to make timely payment two (2) or more times during any twelve (12) consecutive month period, Company may require Customer to tender a deposit up to the maximum permitted by law to guarantee payment hereunder.  Such deposit may have, as an additional component, deposit for any Company-provided equipment in Customer’s premises (“Customer Premises Equipment”).  When Customer establishes acceptable credit history or upon termination of the applicable Service Agreement, Company will return the balance of the deposit, if any, to Customer along with interest as required by law. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Company shall not be liable for any charges arising from or related to the termination of any previous agreement for services or the failure of Customer to terminate any previous agreement for services.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">If any property owner, under which Customer is a tenant, assesses a fee against Company in order to, or as a result of, the provisioning of any Services to Customer, Company may pass through such charges to Customer. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">3. POLICIES, PROCEDURES AND RATES.  Company may change its Policies and Procedures upon thirty (30) days’ written notice to Customer.  Use of Company Services after the thirty (30) day notice period shall be deemed consent to the changed Policies and Procedures.  In addition, Company may change its rates for various Services upon thirty (30) days’ notice to Customer.  In the event an increase in rates for Services occurs, Customer shall have thirty (30) days from the date of notice to Customer to terminate the affected Services by written notice to Company, without further obligation or early termination charges, other than payment for the Services used until the date of termination.  Such termination shall be effective thirty (30) days after Company’s receipt of the termination notice.  Failure to timely give written notice of termination shall be deemed consent to the changed rates and charges.  </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">4. FRAUD, TELEPHONE NUMBERS AND DIRECTORY LISTINGS.  Customer is responsible for payment of any charges incurred due to fraud, abuse, or misuse of the Services, whether known or unknown, to Customer.  It is the Customer’s obligation to take all measures to ensure against such occurrences. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Telephone numbers are assigned to the business entity (Customer) named on the Service Agreement and not to any individual owner or operator of the business.  Customer shall designate those individuals authorized to make changes to the Customer's account with Company, including changes to the Services or to the telephone numbers in conformity with Applicable Law.   The Customer shall hold Company harmless for any changes authorized by the individuals designated by Customer.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Company shall take reasonable measures to provide Customer with continuation of existing telephone numbers.  However, if Customer is changing location at the time of conversion or taking Service(s) for the first time at a location, Company makes no warranties regarding assignment of particular telephone numbers to Customer.  Company shall not be liable to Customer for any change in, including loss of, telephone numbers if such telephone numbers are lost after termination of this Agreement or the Services due to default by Customer under this Agreement, or if such change or loss is due to actions of any vendor or supplier of services to Company.  Customer’s reliance upon and/or use of any telephone numbering information prior to Installation of Service and Customer’s conversion to the Services is at the Customer’s sole risk.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Customer understands that the Company or its agents may deliver the Customer’s name, address and phone number to the directory publishers and directory assistance data bases.  Customer assumes full responsibility concerning the right to use any name as a directory listing and agrees to hold Company free and harmless of and from any claims, loss, damage, or liability that may result from the use of such listing.  Company shall not be liable for any inaccurate or dropped listings, or any errors or omissions, whether arising through negligence or otherwise, in the information furnished, or failed to be furnished, to a publisher or to a directory database(s).  The Company may assess additional charges for publisher/directory database listing(s).  </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">5. TAXES, SURCHARGES, FEES AND ASSESSMENTS.  Customer is responsible for payment of any and all federal, state and local taxes, surcharges, or fees related to the Services, as may be imposed from time to time (excluding Company income taxes) (“Taxes”) to the extent that Customer is not exempt from such Taxes.   Company will collect all such Taxes unless Customer provides Company with proof of exemption.   Surcharges and assessments, which are not required by regulatory agencies, but which Company is permitted to charge to recover expenses, may be applied and adjusted from time to time.  All such charges will be set forth on a detailed invoice.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" height="2px"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">6. TARIFF APPLICATION.  In the event of any conflict between any provision of this Agreement and any provision of an applicable filed tariff or price list, the provision of such filed tariff or price list will control.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">7. COMPLIANCE WITH LAW.   This Agreement is subject to all Applicable Law, and the obtaining and continuance of any required approvals, authorizations, or tariffs or price lists filed with the FCC or any other governmental agency.  Company will use commercially reasonable efforts to obtain, retain, and maintain such approvals and authorizations.  If any action pursuant to Applicable Law adversely affects the Services or requires Company to provide Services other than in accordance with the terms of this Agreement, either Party may, without liability to the other Party, terminate the affected Services upon thirty (30) days prior written notice to the other Party.  In performing their obligations under this Agreement, the Parties will comply with all Applicable Law, specifically including, but not limited to, Applicable Laws governing 911/E-911 and any other emergency services. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Subject to Company’s 911/E-911 policy (found in Company’s Policies and Procedures), and unless otherwise specifically agreed, (a) Company will provide Customer with the network connection for each circuit, billing telephone number (BTN) or trunk group that comprise the Services, and (b) Company will provide the appropriate Public Safety Answering Point (PSAP) with the automatic location identification (ALI), including the same emergency response location, for all BTNs of the circuit or trunk group regardless of the number of lines, trunks, or unique telephone numbers on that circuit or trunk group.   Customer will be responsible for providing all other 911/E-911 functionality as required by Applicable Law, including but not limited to, agreements with, and network or other connection to, the local PSAPs.  Customer will maintain the necessary databases and update and transfer the ALI to the appropriate PSAPs.  Company is not responsible for and will not make any changes or submit updates to 911/E-911 databases for any Services other than the one emergency response location as set forth above.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">8. SERVICES, MAINTENANCE AND UPGRADE OF FACILITIES.  Services will meet industry standards.  Company will maintain its facilities and equipment used to provide the Services as set forth in its Policies and Procedures, at no additional charge to Customer, except where work or service calls result from failure or malfunction in, or improper operation of, any third party’s facilities and/or equipment after the Demarcation Point or Customer’s facilities and/or equipment.  In such event, Customer will reimburse Company for the cost of the required maintenance at Company’s standard time and material rate plus any taxes imposed upon Company related to such maintenance, and Customer shall be responsible for the cost of repair or replacement of Company equipment that is damaged by Customer’s actions or equipment.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Company reserves the right to suspend Service for scheduled maintenance or planned enhancements or upgrades upon twenty- four (24) hours’ notice to Customer or to suspend Service for emergency repairs to Company’s network without notice to Customer. Company equipment will remain the sole and exclusive property of Company or Company’s assignee.  Customer will not tamper with, remove or conceal any Company identifying plates, tags or labels.  Customer shall not permit any liens on Company equipment, and any such lien will be discharged by Customer within ten (10) days of notice of filing.  Failure to discharge any such lien is a material breach of this Agreement, and may result in immediate termination.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Customer will provide equipment compatible with the Services and Company’s network and facilities.  Customer will bear the costs of any additional apparatus reasonably required to be installed because of the use of Company’s network or facilities.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Upon termination of the Service(s), Customer, upon notice from Company, shall provide reasonable access to Company to recover the Company provided Customer Premises Equipment, in accordance with the instructions in the notice. Customer’s damage to the Company provided Customer Premises Equipment (reasonable wear and tear excepted) or failure to return the equipment, including but not limited to the battery pack, as directed, shall constitute Customer acceptance of ownership of and responsibility for the equipment, and Company may invoice Customer for the then fair market value of such equipment.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Company reserves the right to substitute, change or rearrange any equipment or facilities used in delivering Services that does not affect the quality, cost or type of Services.  Company will manage its network in Company’s sole discretion.  Customer will provide all reasonable information, authorizations, and access required by Company for the purpose of installing Services, performing routine network grooming, maintenance, and upgrades, and addressing emergencies.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">9. SERVICE INTERRUPTION CREDITS.  Credits are subject to the limitations of liability set forth in Section 11 and shall only be given for a Service Outage (as defined below) and claimed in accordance with this Section or any other applicable service level agreement that applies to the Service.  A “Service Outage” is defined as any Service disruption for which Company is the sole cause of such disruption and such disruption is not the result of (a) scheduled maintenance that occurs between the hours of eleven p.m. and six a.m. local time, (b) planned enhancements, (c) upgrades, (d) failure or malfunction in, or improper operation of, any third party’s facilities and/or equipment after the Demarcation Point or Customer’s facilities and/or equipment, or (e) a Force Majeure event (as defined below).  Upon request, but not later than thirty (30) days after the Service Outage, and after a determination by Company that such Service Outage is eligible for credits, Customer shall be entitled to a credit for a Service Outage that exceeds twenty-four (24) hours, unless otherwise defined in a service level agreement or tariff applicable to the specific Service.  Such credit shall be based upon the ratio of the duration of the Service Outage (measured from the time the interruption is reported to or detected by Company, whichever occurs first) to the total time in a thirty (30) day month.  That ratio, multiplied by the monthly rate for the Service(s) affected shall determine the amount of the credit allowance.  </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">If a Customer fails to notify Company in the manner set forth herein with respect to the applicable service credits within thirty (30) days of a Service Outage, Customer will have waived its right to such service credits for that month.  Customer’s total service credit(s) in any one month will not exceed one (1) month’s MRC for the affected Service for that month, and do not apply to the MRCs of any other Services.  The credits outlined above shall not be compounding, but to the extent multiple service standards apply to a Service Outage, the credits that apply shall be distinguished by the degree of impairment based on a degradation or a complete disruption of Service for that particular Service Outage.   Customer may be eligible for credits for a Service Outage under multiple provisions of this Agreement or any Service Order or Addendum; but Customer shall not be entitled to claim more than one credit for any Service Outage. To be eligible for service credits, Customer must be current in all of its obligations.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">10. DISCLAIMER/LIMITED WARRANTY.  EXCEPT AS SPECIFICALLY SET FORTH IN THIS AGREEMENT, COMPANY MAKES NO WARRANTIES, EXPRESS OR IMPLIED, UNDER THIS AGREEMENT AND SPECIFICALLY DISCLAIMS ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.   COMPANY DOES NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED OR ERROR-FREE. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">11. LIMITED LIABILITY.  CUSTOMER’S RIGHT TO CREDITS AS PROVIDED IN THIS AGREEMENT SHALL BE CUSTOMER’S SOLE REMEDY FOR DAMAGES WITH REGARD TO SERVICE OUTAGES.   COMPANY'S LIABILITY AND THE EXCLUSIVE REMEDY  OF  CUSTOMER  FOR  DAMAGES  ARISING  OUT  OF  OR  RELATED  TO  THE  SERVICES  AND/OR  THIS AGREEMENT,  WILL  BE  SOLELY  LIMITED  TO  AN  AMOUNT  NO  GREATER  THAN  THE  AMOUNTS  INVOICED  TO CUSTOMER BY COMPANY DURING THE MONTH PRIOR TO THE OCCURRENCE OF ANY CLAIM.   IN NO EVENT WILL COMPANY BE LIABLE TO THE CUSTOMER FOR LOSS OF USE, INCOME OR PROFITS, LOSS OF REVENUES, LOSS OF SAVINGS OR HARM TO BUSINESS OR ANY OTHER SPECIAL, INCIDENTAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL LOSSES OR DAMAGES, WHETHER BASED ON BREACH OF CONTRACT, TORT (INCLUDING NEGLIGENCE OR STRICT LIABILITY), WARRANTY OR ANY OTHER LEGAL THEORY, REGARDLESS OF THE FORESEEABILITY THEREOF EVEN IF THE PARTY HAS BEEN ADVISED OR SHOULD HAVE KNOWN OF THE POSSIBILITY OF SUCH DAMAGES.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">12. CUSTOMER WARRANTIES.  (a) The Customer represents and warrants that it is an entity, duly organized, validly existing and in good standing under the laws of its origin, with all requisite power to enter into and perform its obligations under this Agreement in accordance with its terms; (b) Customer represents and warrants that neither its equipment nor facilities will pose a hazard to Company's equipment or facilities or create a hazard to Company's personnel or customers or the public in general; (c) Customer represents and warrants that its use of the Services will comply and conform with all Applicable Law and any other authorities having jurisdiction over the subject matter of this Agreement and it will be responsible for applying for, obtaining and maintaining all registrations and certifications which may be required by such authorities; (d) Customer represents and warrants that it will not resell all or a portion of the Service(s) provided by Company under this Agreement.  Customer will indemnify and hold Company harmless from any and all loss, liability, claim, demand, and expense (including reasonable attorneys’ fees) related to Customer’s violation of this Section.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">13. CONFIDENTIAL INFORMATION.  Customer Proprietary Network Information (“CPNI”) shall only be disclosed in accordance with the Applicable Law and Company’s Policies and Procedures. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">In addition to the foregoing, the Parties may have access to certain information, the ownership and confidential status of which is highly important to the other Party and is reasonably designated by one of the Parties as confidential (herein referred to as “Confidential Information”).  Neither Party will disclose the other Party’s Confidential Information, directly or indirectly under any circumstances, to any third person without the express written consent of the other Party, and neither Party will copy, transmit, reproduce, summarize, quote, or make commercial or other use whatsoever of the other Party’s Confidential Information, except as may be necessary to perform its duties hereunder or as required by Applicable Law.  Each Party will exercise a reasonable degree of care, but not less than the degree of care that it applies with respect to its own Confidential Information, in safeguarding the other Party’s Confidential Information against loss, theft, or other inadvertent disclosure and take all steps necessary to maintain such confidentiality.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">14. INDEMNIFICATION.   Customer will indemnify, hold harmless, and defend Company and its affiliates, and their respective officers, directors, employees, agents and subcontractors from liabilities, claims or damages and expenses whatsoever (including reasonable attorneys’ fees) arising out of or in connection with (a) any and all costs, claims, taxes, charges, and surcharges levied against Company relative to Customer’s claim for tax exempt status with respect to Taxes to the extent that such exempt status is not found to be valid, (b) any liens placed on Company provided Customer Premises Equipment due to Customer’s action or inaction, (c) personal injury or death or damage to property related to Customer’s failure to meet any 911/E911 requirements or agreements or the failure to give end users appropriate warnings if VoIP services are provided by Company,   or the failure to maintain the necessary databases and update the ALI being transmitted to the PSAP, (d) claims by Company or third parties for damage to real or tangible personal property or for bodily injury or death which is caused by Customer and is directly due to Customer’s negligence or willful misconduct or which is caused by hazards created by Customer’s equipment  or facilities, and (e) Customer’s improper use of the Services and/or Customer’s end-users or third parties improper use of the Services, resale, or sharing of the Services in violation of any Applicable Law or in violation of any provision of this Agreement.  Customer’s indemnification obligations do not apply to claims for damages to real or tangible personal property or for bodily injury or death if solely caused by Company’s gross negligence or willful misconduct.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">15. DEFAULT/TERMINATION.  Customer’s use of the Services provided under this Agreement and any equipment associated therewith will not: (a) interfere with or impair service over Company’s network; (b) impair privacy of any communications over such network; (c) cause damage of any nature to Company’s assets or customers; (d) be used to frighten, abuse, torment or harass, or create hazards to Company or its network; (e) be used for a high volume of short duration calls, regardless of nature (high volume short duration calls are defined as 10% of total outbound calls that are six seconds or less in duration) or (f) violate the provisions of any of Company’s Policies and Procedures, including Company’s 911/E-911 policy.  Company may immediately suspend or terminate the Services without liability for any violation of these provisions, and in the case of a violation of (e) above, Company may, in its sole discretion, assess a higher rate for a high volume of short duration calls to reflect Company’s increased costs.  If Services are suspended pursuant to this Section 15, reconnection charges may apply.  </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">If either Party violates any provision of this Agreement, the non-defaulting Party shall send the defaulting Party written notice detailing the default.   The defaulting Party will have:  (a) ten (10) days from the date of the written notice to cure a payment default, or (b) thirty (30) days from the date of the written notice to cure a non-payment default.  If the defaulting Party fails to cure, the non-defaulting Party may terminate the affected Services and pursue any and all other legal remedies permitted by this Agreement.  Any Service Agreement and the related Services also may be terminated by either Party in accordance with the provisions of the then current tariff or price list that applies to such Service Agreement and the related Services. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Except as provided in the paragraph below, if Customer cancels all or a part of the Services prior to Installation of Service, Company will charge Customer a cancellation fee equal to one (1) month’s MRC for the cancelled Services, plus any installation costs, special construction costs and any other costs incurred by Company, whether previously waived or not, and any third party charges incurred by Company with respect to such cancelled Services.  Except as provided in the paragraph below, if Customer terminates all or any part of the Services at a location at any time during the Services Term or a Renewal Services Term that is in effect, or if Company terminates all or any part of the Services as a result of Customer’s breach before the end of the Services Term or a Renewal Services Term that is in effect, Company may charge Customer an early termination fee equal to and including any or all of the following: 100% of the total MRC, surcharges and taxes for the Services Term or the Renewal Services Term then remaining for the terminated Services, plus any activation, installation costs, special construction costs, and all other fees or costs incurred by Company that under the terms of the applicable Service Agreement are chargeable to Customer in addition to MRC, less amounts already paid by Customer with respect to such charges for the terminated Services.  Customer acknowledges that Company’s damages for a cancellation or early termination would be difficult to determine and the cancellation and termination charge(s) constitute liquidated damages and are not intended as a penalty, but are intended as a mutually-agreed upon amount representing, but not limited to, lost revenue, proportionate or actual third party costs and capital expenditures, and internal costs. All such amounts will become due and payable by Customer to Company when invoiced. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Customer will not be liable for the cancellation or early termination fees set forth above if (a) cancellation or termination is due to a material breach of this Agreement by Company or (b) if (i)Customer orders from Company, at the time of Service cancellation or termination, retail services of equal or greater aggregate MRC than the Services cancelled or terminated, and (ii) the new services are approved by Company, and (iii) Customer compensates Company for any unrecovered installation and capital costs and any costs charged by third parties with respect to the cancelled or terminated Services. </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">16. FORCE MAJEURE.  In the event that either Party’s performance is delayed, prevented, or inhibited because of any Act of God, fire, casualty, delay or disruption in transportation, flood, war, strike, lockout, epidemic, destruction or shut -down of facilities, shortage or curtailment, riot, insurrection, governmental acts or directives, any full or partial failure of any third party communications or computer network or any other cause beyond such Party’s reasonable control (“Force Majeure”), the Party’s performance will be excused and the time for the performance will be extended for the period of delay or inability to perform resulting from such occurrence.  The occurrence of such an event will not constitute grounds for a declaration of default by either Party hereunder; however in the event that such Force Majeure event continues for in excess of thirty (30) days, the Party that is not the subject of the Force Majeure event may terminate the Services that are the subject of the Force Majeure event without liability for termination.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">17. GENERAL.   Except as otherwise permitted herein, any amendment must be in writing and signed by the Parties hereto. Electronic or facsimile copies of this Agreement and any amendments or modification hereto, including electronic or facsimile signatures, will be accepted by the Parties as originals.  The failure of either Party to insist upon the performance of any provision or to exercise any right granted hereunder, will not be construed as a waiver of such provision(s), and the same will continue in full force.  If any provision hereof is held to be invalid, void, or unenforceable, the remainder of the provisions will nevertheless remain unimpaired and in effect.  All notices to Customer under this Agreement will be in writing and will be made by one or more of the following methods: bill message or insert incorporated in or with the Customer’s invoice by its normal means of transmission, first class mail, certified mail, or overnight delivery.  Notices will be sent to the Customer’s address of record.  In the event of multiple addresses, to the address of the parent account.  In the case of a notice to Company, all notices under this Agreement will be in writing and will be made by personal delivery, overnight delivery, or certified mail with a copy to the Law &amp; Policy Department, 18110 SE 34th Street, Building One, Suite 100, Vancouver, WA 98683.  Company shall notify Customer of any change in this contact address for purpose of notices under this Agreement using the method of notice called for in this Section 17.  Delivery will be deemed to occur upon receipt.  The various rights and remedies given to or reserved by either Party herein or allowed by Applicable Law, are cumulative, and no delay or omission to exercise any of its rights will be construed as a waiver of any default or acquiescence, nor will any waiver of any breach or any provision be considered to condone any continuing or subsequent breach of the same provision.  Customer has been provided with the opportunity to review and negotiate this Agreement and consult counsel; therefore, in the event of any ambiguities, no inferences shall be drawn against Company.  Customer may not assign this Agreement without the prior written consent of Company, which will not be unreasonably withheld.  This Agreement will be governed by and interpreted in accordance with the laws of the state where the Services are to be provided.  Nothing in this Agreement is intended to, or shall be construed, as creating a partnership or any third-party beneficiaries. The provisions of Sections 2, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16 and 17 shall survive termination.  </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="textBlock">Accepted and Agreed as of the <u>{!currentDayOrdinal}</u> day of <u>{!currentMonthName}</u>, <u>{!currentYear}</u>.</td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <table class="Signature_table avoidBreak" border="0" cellspacing="5"
+                    cellpadding="0">
+                    <tr>
+                        <td width="15">&nbsp;</td>
+                        <td width="200">&nbsp;</td>
+                        <td width="50">&nbsp;</td>
+                        <td width="50">&nbsp;</td>
+                        <td width="250">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">CUSTOMER:</td>
+                        <td>&nbsp;</td>
+                        <td colspan="2">COMPANY:</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="normalRef">{!CurrentOpportunity.Account.Name}</td>
+                        <td></td>
+                        <td colspan="2">ELECTRIC LIGHTWAVE HOLDINGS, INC.</td>
+                    </tr>
+                    <tr>
+                        <td>By:</td>
+                        <td class="normalRef">{!decisionMaker.Name}</td>
+                        <td></td>
+                        <td>By:</td>
+                        <td class="normalRef">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td class="normalRef"><div class="docusignID">DS-SIG</div></td>
+                        <td></td>
+                        <td>Name:</td>
+                        <td class="normalRef"><div class="docusignID">DS-CTRSIG</div></td>
+                    </tr>
+                    <tr>
+                        <td>Title:</td>
+                        <td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}">
+                        </apex:outputText>
+                        <div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL">
+                        </apex:outputText></div> </td>
+                        <td></td>
+                        <td>Title:</td>
+                        <td class="normalRef"><div class="docusignID">&nbsp;</div></td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+</apex:component>

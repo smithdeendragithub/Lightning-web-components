@@ -1,0 +1,12 @@
+<apex:component access="global" controller="SolutionApprovalEmailTemplate">
+    <apex:attribute name="OppId" description="Opportunity Id" type="string" assignto="{!OpportunityId}" />
+    <apex:repeat value="{!ApprovalViews}" var="view">
+        Solution: <a href='{!LEFT($Api.Partner_Server_URL_140, FIND(".com/",$Api.Partner_Server_URL_140)+3)}/apex/ConfigureNewSolution?opportunityLocationConfigurationId={!view.SolutionId}&term={!view.SolutionTerm}&market={!view.MarketName}'>{!view.SolutionName}</a><br />
+        Building: <a href='{!LEFT($Api.Partner_Server_URL_140, FIND(".com/",$Api.Partner_Server_URL_140)+3)}/{!view.BuildingId}'>{!view.BuildingName}</a><br />
+        <apex:repeat value="{!view.Olis}" var="oli">
+            <apex:outputtext rendered="{!oli.Approval_Status__c != '' && !oli.Approved__c}">
+                Component: {!oli.PP_Sales_Rate_Plan_Description__c} List Price: ${!oli.MRCList__c} Discounted To: ${!oli.MRC_Total__c/oli.Qty__c}<br />
+            </apex:outputtext>
+        </apex:repeat><br />
+    </apex:repeat>
+</apex:component>

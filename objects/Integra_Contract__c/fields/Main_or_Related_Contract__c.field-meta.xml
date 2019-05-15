@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Main_or_Related_Contract__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Select “Main” if this is an overriding contract which contains the general terms and conditions for the parties’ relationship. 
+Select “Related” if this is directly related to the main contract.</inlineHelpText>
+    <label>Main or Related Contract</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Main</fullName>
+                <default>false</default>
+                <label>Main</label>
+            </value>
+            <value>
+                <fullName>Related</fullName>
+                <default>false</default>
+                <label>Related</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

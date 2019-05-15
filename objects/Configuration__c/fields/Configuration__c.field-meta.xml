@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Configuration__c</fullName>
+    <externalId>false</externalId>
+    <label>Configuration</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dark Fiber – Metro:  Point-to-Point</fullName>
+                <default>false</default>
+                <label>Dark Fiber – Metro:  Point-to-Point</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber – Metro:  Metro Fiber Ring</fullName>
+                <default>false</default>
+                <label>Dark Fiber – Metro:  Metro Fiber Ring</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber - Longhaul:  Point-to-Point</fullName>
+                <default>false</default>
+                <label>Dark Fiber - Longhaul:  Point-to-Point</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

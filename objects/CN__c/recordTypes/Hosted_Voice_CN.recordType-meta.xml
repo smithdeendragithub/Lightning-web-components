@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hosted_Voice_CN</fullName>
+    <active>true</active>
+    <description>Hosted Voice CN Record Type</description>
+    <label>Hosted Voice CN</label>
+    <picklistValues>
+        <picklist>Call_Blocking__c</picklist>
+        <values>
+            <fullName>Accepts All Calls %28Third Party Biller Required%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blocks Collect %28Third Party Biller Required%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blocks Collect and Third Party %28Default%2FRequired%29</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Blocks Third Party %28Third Party Biller Required%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Line_Use__c</picklist>
+        <values>
+            <fullName>Alarm</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Elevator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Modem</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shared - Voice %26 Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Voice</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

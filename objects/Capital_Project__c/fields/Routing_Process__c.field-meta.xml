@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Routing_Process__c</fullName>
+    <description>Different types of projects have different routing steps.</description>
+    <externalId>false</externalId>
+    <label>Routing Process</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standard Routing</fullName>
+                <default>false</default>
+                <label>Standard Routing</label>
+            </value>
+            <value>
+                <fullName>Accelerated-On-Net Active BAA</fullName>
+                <default>false</default>
+                <label>Accelerated-On-Net Active BAA</label>
+            </value>
+            <value>
+                <fullName>Accelerated-Near-Net Profiled BAA</fullName>
+                <default>false</default>
+                <label>Accelerated-Near-Net Profiled BAA</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber Product</fullName>
+                <default>false</default>
+                <label>Dark Fiber Product</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

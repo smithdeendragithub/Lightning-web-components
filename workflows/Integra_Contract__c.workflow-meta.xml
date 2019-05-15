@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Effective_Date</fullName>
+        <field>Effective_Date__c</field>
+        <formula>Execution_Date__c</formula>
+        <name>Set Effective Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Expiration_Date</fullName>
+        <field>Expiration_Date__c</field>
+        <formula>DATE( 
+year( Effective_Date__c ) 
++ floor((month( Effective_Date__c ) + Original_Term__c )/12) + if(and(month(Effective_Date__c)=12,Original_Term__c&gt;=12),-1,0)
+ , 
+if( mod( month(Effective_Date__c) + Original_Term__c , 12 ) = 0, 12 , mod( month(Effective_Date__c) + Original_Term__c , 12 ))
+ , 
+min( 
+day(Effective_Date__c), 
+case( 
+max( mod( month(Effective_Date__c) + Original_Term__c , 12 ) , 1), 
+9,30, 
+4,30, 
+6,30, 
+11,30, 
+2,28, 
+31 
+) 
+) 
+)</formula>
+        <name>Set Expiration Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Expire_Date</fullName>
+        <description>Sets the expire date</description>
+        <field>Expiration_Date__c</field>
+        <formula>IF( 
+  MOD( MONTH( Effective_Date__c) + Original_Term__c, 12 ) = 2,
+  IF( 
+    DAY( Effective_Date__c) &gt; 28, 
+    DATE( YEAR( Effective_Date__c) + FLOOR( ( MONTH( Effective_Date__c) + Original_Term__c ) / 12 ), 3, 1 ),
+    DATE( YEAR( Effective_Date__c) + FLOOR( ( MONTH( Effective_Date__c) + Original_Term__c ) / 12 ), 2, DAY( Effective_Date__c) ) 
+  ),
+  IF(
+    OR( 
+      MOD( MONTH( Effective_Date__c) + Original_Term__c, 12 ) = 4,
+      MOD( MONTH( Effective_Date__c) + Original_Term__c, 12 ) = 6,
+      MOD( MONTH( Effective_Date__c) + Original_Term__c, 12 ) = 9,
+      MOD( MONTH( Effective_Date__c) + Original_Term__c, 12 ) = 11
+    ),
+    IF( 
+      DAY( Effective_Date__c) &gt; 30, 
+      DATE( YEAR( Effective_Date__c) + FLOOR( ( MONTH(  Effective_Date__c) + Original_Term__c ) / 12 ), 
+       MOD( MONTH( Effective_Date__c) + Original_Term__c, 12 ) + 1, 1 ),
+      DATE( YEAR( Effective_Date__c) + FLOOR( ( MONTH( Effective_Date__c) + Original_Term__c ) / 12 ),
+       MOD( MONTH( Effective_Date__c) + Original_Term__c, 12), DAY( Effective_Date__c) ) 
+    ),
+    IF( 
+      MOD( MONTH( Effective_Date__c) + Original_Term__c, 12 ) = 0,
+      DATE( YEAR( Effective_Date__c) + FLOOR( ( MONTH( Effective_Date__c) + Original_Term__c ) / 12 ) - 1, 12, DAY( Effective_Date__c) ),
+      DATE( YEAR( Effective_Date__c) + FLOOR( ( MONTH( Effective_Date__c) + Original_Term__c ) / 12 ), 
+       MOD( MONTH( Effective_Date__c) + Original_Term__c, 12), DAY( Effective_Date__c) )
+    )
+  )
+)</formula>
+        <name>Set Expire Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Integra_Contract_Expiration</fullName>
+        <field>Expiration_Date__c</field>
+        <formula>Effective_Date__c + Original_Term__c</formula>
+        <name>Set Integra Contract Expiration</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Contract_Title</fullName>
+        <description>Append Account Name as prefix of Title and Execution Date as suffix of Title</description>
+        <field>Title__c</field>
+        <formula>( Account__r.Name )+ &#39; - &#39; + PRIORVALUE( Title__c ) + &#39; - &#39; + TEXT(Execution_Date__c)</formula>
+        <name>Update Contract Title</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Calculate Expiration Date For Integra Contract</fullName>
+        <actions>
+            <name>Set_Expire_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Set the expiration date for a customer contract</description>
+        <formula>(  (    NOT(ISNULL(Effective_Date__c)) &amp;&amp;    ISCHANGED(Effective_Date__c) &amp;&amp;   NOT(ISNULL(TEXT(Original_Term__c)))  ) ||  (  NOT(ISNULL(TEXT(Original_Term__c))) &amp;&amp;  ISCHANGED(Original_Term__c) &amp;&amp;  NOT(ISNULL(Effective_Date__c))  ) ) &amp;&amp; NOT(ISCHANGED(Expiration_Date__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Integra Contract Expiration Change</fullName>
+        <actions>
+            <name>Set_Integra_Contract_Expiration</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>ISCHANGED(Effective_Date__c) || ISCHANGED(Original_Term__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Integra Contract date update</fullName>
+        <active>false</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>Integra_Contract__c.Current_Expiration_Date__c</field>
+            <operation>greaterThan</operation>
+            <value>9/24/2014</value>
+        </criteriaItems>
+        <description>Add contract expirations field to Integra Contracts</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Effective Date</fullName>
+        <actions>
+            <name>Set_Effective_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Integra_Contract__c.Effective_Date_Type__c</field>
+            <operation>equals</operation>
+            <value>Execution Date</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Integra_Contract__c.Execution_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>If Effective Date type is Execution date, populate effective date with the execution date.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Expiration Date</fullName>
+        <actions>
+            <name>Set_Expiration_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Integra_Contract__c.Effective_Date__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Integra_Contract__c.Original_Term__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Auto set expiration date based on effective date and term length</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Contract Title</fullName>
+        <actions>
+            <name>Update_Contract_Title</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Integra_Contract__c.Title__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,71 @@
+<apex:page controller="IntegrationErrorsController">
+    <apex:pageblock title="Integration Errors">
+        <apex:form >
+            <apex:outputpanel id="opnlMessages">
+                <apex:pagemessages id="pageMessages" />
+            </apex:outputpanel>
+            <table style="text-align:left;">
+                <tr>
+                    <td>
+                        <apex:selectlist value="{!objectTypeSelection}" multiselect="false" size="1">
+                            <apex:selectoption itemlabel="All" itemvalue="" />
+                            <apex:selectoption itemlabel="Accounts" itemvalue="Account" />
+                            <apex:selectoption itemlabel="Contacts" itemvalue="Contact" />
+                            <apex:selectoption itemlabel="Customer Contacts" itemvalue="Customer_Contact__c" />
+                            <apex:selectoption itemlabel="Customer Details" itemvalue="Customer_Detail__c" />
+                            <apex:selectoption itemlabel="Capital Projects" itemvalue="Capital_Project__c" />
+                            <apex:selectoption itemlabel="Service Locations" itemvalue="Service_Location__c" />
+                            <apex:selectoption itemlabel="Case" itemvalue="Case" />
+                            <apex:selectoption itemlabel="Case Comment" itemvalue="CaseComment" />
+                        </apex:selectlist>
+                    </td>
+                    <td>
+                        <apex:commandbutton value="Refresh" action="{!refresh}" />
+                    </td>
+                    <td>
+                        <apex:commandbutton value="Integrate batch" action="{!integrateBatch}" />
+                    </td>
+                    <td>
+                        <apex:inputtext value="{!batchLimit}" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <div style="height:500px;overflow:auto;">
+                <apex:datatable value="{!selectedErrors}" var="e" cellpadding="4" border="1">
+                    <apex:column headervalue="Reintegrate">
+                        <apex:commandlink value="Integrate" action="{!integrateSingle}">
+                            <apex:param name="objectID" assignto="{!objectID}" value="{!e.ObjectID__c}" />
+                        </apex:commandlink>
+                    </apex:column>
+                    <apex:column headervalue="Number">
+                        <apex:outputlink value="/{!e.Id}">{!e.Name}</apex:outputlink>
+                    </apex:column>
+                    <apex:column headervalue="Record">
+                        <apex:outputlink value="/{!e.ObjectID__c}">{!e.ObjectID__c}</apex:outputlink>
+                    </apex:column>
+                    <apex:column headervalue="Object">
+                        <apex:outputtext value="{!objectTypes[e.ObjectID__c]}" />
+                    </apex:column>
+                    <apex:column headervalue="Action">
+                        <apex:outputtext value="{!e.Action__c}" />
+                    </apex:column>
+                    <apex:column headervalue="Info">{!e.Info__c}</apex:column>
+                    <apex:column headervalue="Message">{!e.Message__c}</apex:column>
+                    <apex:column headervalue="Created Date">{!e.CreatedDate}</apex:column>
+                </apex:datatable>
+            </div>
+            <br />
+            <apex:outputlabel value="{!objectTypeSelection}: " rendered="{!objectTypeSelection != ''}">
+                <apex:outputtext value="{!selectedCount}" />
+            </apex:outputlabel>
+            <apex:outputlabel value="Total: ">
+                <apex:outputtext value="{!totalCount}" />
+            </apex:outputlabel>
+            <br />
+            <apex:outputlabel value="Integration endpoint: ">
+                <apex:outputtext value="{!integrationEndpoint}" />
+            </apex:outputlabel>
+        </apex:form>
+    </apex:pageblock>
+</apex:page>

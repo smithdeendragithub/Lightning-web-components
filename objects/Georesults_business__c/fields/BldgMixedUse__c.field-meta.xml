@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BldgMixedUse__c</fullName>
+    <description>Flag indicating that this business is located in a building with residential units. 1 indicates two or more businesses and two or more residences occupy this building. 0 indicates a business building with 1 or fewer residences in the building.</description>
+    <externalId>false</externalId>
+    <label>Mixed Use Building Flag</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

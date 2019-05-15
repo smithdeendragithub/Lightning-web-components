@@ -1,0 +1,138 @@
+<apex:page controller="AccountTransferController">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+    
+    <apex:form >
+        <apex:outputPanel id="out">
+            <apex:pageMessages />
+        </apex:outputPanel>
+        <apex:PageBlock title="Transfer accounts and service locations" tabStyle="Account">
+            <apex:pageblocksection title="Search Criteria" collapsible="false" columns="1">
+                <apex:pageblocksection columns="2">
+                    <apex:inputField label="From Owner" value="{!fromLoc.Owner__c}" required="false"/>
+                    <apex:inputField label="From Account Partner" value="{!fromPartner.Partner__c}" required="false"/>
+                    <apex:inputField label="From Customer Account Manager" value="{!fromCAM.UserId}" required="false"/>
+                </apex:pageblocksection>
+                <apex:pageblocksection title="Filtering" collapsible="true" columns="2">
+                    <apex:inputCheckbox label="Only transfer from '{!fromAccount.Name}' and its service locations" value="{!currentAcountOnly}" rendered="{!NOT(ISNULL(fromAccount.Id))}">
+                        <apex:actionSupport event="onchange" action="{!search}" rerender="PB_Records"/>
+                    </apex:inputCheckbox>
+                    <apex:inputField label="From Account" value="{!toAccount.ParentId}" required="false"/>
+                    <apex:inputText label="Name Contains" value="{!nameContains}"/>
+                </apex:pageblocksection>
+            </apex:pageblocksection>
+            <apex:pageblocksection title="Ownership" collapsible="false" columns="2">
+                <apex:inputField label="To Owner" value="{!toLoc.Owner__c}" required="false" rendered="{!canTransferOwner}">
+                    <apex:actionSupport event="onchange" action="{!ownerChanged}" rerender="PB_Records"/>
+                </apex:inputField>
+                <apex:inputField label="To Account Partner" value="{!toPartner.Partner__c}" required="false" rendered="{!canTransferOwner}">
+                    <apex:actionSupport event="onchange" action="{!ownerChanged}" rerender="PB_Records"/>
+                </apex:inputField>
+                <!--<apex:inputCheckbox label="Transfer open opportunities with same 'From Owner'" value="{!transferOtherOpenOpps}"/>-->
+                <apex:inputCheckbox label="Keep Opportunity Team on opportunities transferred to new owner" value="{!keepOppTeams}"/>
+                <apex:inputCheckbox label="Keep Account Team (Ignores CAM)" value="{!keepAccountTeams}"/>
+            </apex:pageblocksection>
+            <apex:pageblocksection title="Customer Account Manager" collapsible="false" columns="2">
+                <apex:inputField label="To User" value="{!toCAM.UserId}" required="false" rendered="{!canUpdateCAM}">
+                    <apex:actionSupport event="onchange" rerender="PB_Records"/>
+                </apex:inputField>
+                <apex:selectList label="To Role" value="{!toCAM.TeamMemberRole}" multiselect="false" size="1" rendered="{!canUpdateCAM}">
+                    <apex:selectOptions value="{!camRoles}"/>
+                </apex:selectList>
+            </apex:pageblocksection>
+            <apex:commandButton action="{!search}" value="Search"/>
+            <input class="btn" type="button" value="Cancel" onclick="history.back();"/>
+        </apex:PageBlock>
+        <apex:PageBlock title="{!totalRecords} record{!IF(totalRecords > 1, 's', '')} found" tabStyle="Account" rendered="{!totalRecords > 0}" id="PB_Records">
+            <apex:pageBlockButtons location="both">
+                <apex:commandButton value="Transfer Ownership" action="{!transferOwnership}" disabled="{!(ISNULL(toLoc.Owner__c) && ISNULL(toPartner.Partner__c)) || transferableRecordCount == 0}"/>
+                <apex:commandButton value="Transfer CAM" action="{!transferCAM}" disabled="{!ISNULL(toCAM.UserId)}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Accounts" collapsible="false" columns="1" rendered="{!accounts.size > 0}">
+                <apex:dataTable value="{!accounts}" var="a" cellspacing="0" cellpadding="0" border="0" styleClass="list" headerClass="headerRow">
+                    <apex:column headerValue="">
+                        <apex:facet name="header">
+                            <apex:inputCheckbox onclick="checkAll(this, true)"/>
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!a.selected}" id="chk_Account" disabled="{!NOT(a.canTransfer || canUpdateCAM)}"/>
+                    </apex:column>
+                    <apex:column headerValue="Name">
+                        <apex:outputlink value="../{!a.obj.Id}">{!a.obj.Name}</apex:outputlink>
+                    </apex:column>
+                    <apex:column headerValue="Subscriber ID">
+                        <apex:outputText value="{!a.obj.ICC_Account_Number__c}"></apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Owner">
+                        <apex:outputlink value="../{!a.obj.Owner.Id}">{!a.obj.Owner.Name}</apex:outputlink>
+                    </apex:column>
+                    <apex:column headerValue="Partner">
+						<apex:outputlink value="../{!a.partner.Partner__c}" rendered="{!NOT(ISNULL(a.partner))}">{!a.partner.Partner__r.Name} ({!a.partner.RecordType.DeveloperName})</apex:outputlink>
+                        <apex:outputText value="None" rendered="{!ISNULL(a.partner)}"/>
+                    </apex:column>
+                    <apex:column headerValue="Assigned CAM">
+                        <apex:outputPanel rendered="{!NOT(ISNULL(a.cam))}">
+                            <apex:outputlink value="../{!a.cam.Id}">{!a.cam.Name}</apex:outputlink>
+                            <apex:outputText value="{!IF(ISBLANK(a.cam.Title), '', ' (' + a.cam.Title + ')')}"/>
+                        </apex:outputPanel>
+                        <apex:outputText value="None" rendered="{!ISNULL(a.cam)}"/>
+                    </apex:column>
+                    <apex:column headerValue="Dual Ownership">
+                        <apex:outputField value="{!a.obj.Dual_Ownership__c}"></apex:outputField>
+                    </apex:column>
+                    <apex:column headerValue="Can Transfer Ownership">
+                        <apex:outputText value="{!IF(a.canTransfer, 'Yes', 'No')}"></apex:outputText>
+                    </apex:column>
+                </apex:dataTable>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Service Locations" collapsible="false" columns="1" rendered="{!sLocs.size > 0}">
+                <apex:dataTable value="{!sLocs}" var="sl" cellspacing="0" cellpadding="0" border="0" styleClass="list" headerClass="headerRow">
+                    <apex:column headerValue="">
+                        <apex:facet name="header">
+                            <apex:inputCheckbox onclick="checkAll(this, false)"/>
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!sl.selected}" id="chk_Location" disabled="{!NOT(sl.canTransfer || canUpdateCAM)}"/>
+                    </apex:column>
+                    <apex:column headerValue="Name">
+                        <apex:outputlink value="../{!sl.obj.Id}">{!sl.obj.Name}</apex:outputlink>
+                    </apex:column>
+                    <apex:column headerValue="Subscriber ID">
+                        <apex:outputText value="{!sl.obj.ICC_Subscriber_ID__c}"></apex:outputText>
+                    </apex:column>
+                    <apex:column headerValue="Owner">
+                        <apex:outputlink value="../{!sl.obj.Owner__c}">{!sl.obj.Owner__r.Name}</apex:outputlink>
+                    </apex:column>
+                    <apex:column headerValue="Account Partner">
+						<apex:outputlink value="../{!sl.partner.Partner__c}" rendered="{!NOT(ISNULL(sl.partner))}">{!sl.partner.Partner__r.Name} ({!sl.partner.RecordType.DeveloperName})</apex:outputlink>
+                        <apex:outputText value="None" rendered="{!ISNULL(sl.partner)}"/>
+                    </apex:column>
+                    <apex:column headerValue="Assigned CAM">
+                        <apex:outputPanel rendered="{!NOT(ISNULL(sl.cam))}">
+                            <apex:outputlink value="../{!sl.cam.Id}">{!sl.cam.Name}</apex:outputlink>
+                            <apex:outputText value="{!IF(ISBLANK(sl.cam.Title), '', ' (' + (sl.cam.Title) + ')')}"/>
+                        </apex:outputPanel>
+                        <apex:outputText value="None" rendered="{!ISNULL(sl.cam)}"/>
+                    </apex:column>
+                    <apex:column headerValue="Account">
+                        <apex:outputlink value="../{!sl.obj.Account__r.Id}">{!sl.obj.Account__r.Name}</apex:outputlink>
+                    </apex:column>
+                    <apex:column headerValue="Dual Ownership">
+                        <apex:outputField value="{!sl.obj.Account__r.Dual_Ownership__c}"></apex:outputField>
+                    </apex:column>
+                    <apex:column headerValue="Can Transfer Ownership">
+                        <apex:outputText value="{!IF(sl.canTransfer, 'Yes', 'No')}"></apex:outputText>
+                    </apex:column>
+                </apex:dataTable>
+            </apex:pageBlockSection>
+        </apex:PageBlock>
+    </apex:form>
+    <script type="text/javascript">
+        var $j = jQuery.noConflict();
+        function checkAll(cb, accounts){
+            $j(accounts ? 'input[id$=chk_Account]' : 'input[id$=chk_Location]').each(function(){
+                if(cb.checked)
+                    $j(this).attr('checked','checked');
+                else
+                    $j(this).removeAttr('checked');
+            });
+        };
+    </script>
+</apex:page>

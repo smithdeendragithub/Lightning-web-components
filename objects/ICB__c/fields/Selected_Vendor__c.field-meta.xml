@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Selected_Vendor__c</fullName>
+    <description>Vendor selected to calculate Off-Net Quoting solution</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Vendor selected to calculate Off-Net Quoting solution</inlineHelpText>
+    <label>Selected Vendor</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ACS</fullName>
+                <default>false</default>
+                <label>ACS</label>
+            </value>
+            <value>
+                <fullName>Aliant</fullName>
+                <default>false</default>
+                <label>Aliant</label>
+            </value>
+            <value>
+                <fullName>ATT</fullName>
+                <default>false</default>
+                <label>ATT</label>
+            </value>
+            <value>
+                <fullName>Beanfield</fullName>
+                <default>false</default>
+                <label>Beanfield</label>
+            </value>
+            <value>
+                <fullName>Bell Canada</fullName>
+                <default>false</default>
+                <label>Bell Canada</label>
+            </value>
+            <value>
+                <fullName>Big Pipe</fullName>
+                <default>false</default>
+                <label>Big Pipe</label>
+            </value>
+            <value>
+                <fullName>Charter</fullName>
+                <default>false</default>
+                <label>Charter</label>
+            </value>
+            <value>
+                <fullName>CLICK</fullName>
+                <default>false</default>
+                <label>CLICK</label>
+            </value>
+            <value>
+                <fullName>CLINK</fullName>
+                <default>false</default>
+                <label>CLINK</label>
+            </value>
+            <value>
+                <fullName>Comcast</fullName>
+                <default>false</default>
+                <label>Comcast</label>
+            </value>
+            <value>
+                <fullName>Consolidated (Enventis)</fullName>
+                <default>false</default>
+                <label>Consolidated (Enventis)</label>
+            </value>
+            <value>
+                <fullName>Consolidated (Surewest)</fullName>
+                <default>false</default>
+                <label>Consolidated (Surewest)</label>
+            </value>
+            <value>
+                <fullName>Cox</fullName>
+                <default>false</default>
+                <label>Cox</label>
+            </value>
+            <value>
+                <fullName>Earthlink</fullName>
+                <default>false</default>
+                <label>Earthlink</label>
+            </value>
+            <value>
+                <fullName>Eastlink</fullName>
+                <default>false</default>
+                <label>Eastlink</label>
+            </value>
+            <value>
+                <fullName>ENMAX</fullName>
+                <default>false</default>
+                <label>ENMAX</label>
+            </value>
+            <value>
+                <fullName>Equinix</fullName>
+                <default>false</default>
+                <label>Equinix</label>
+            </value>
+            <value>
+                <fullName>Fairpoint/Ellensburg</fullName>
+                <default>false</default>
+                <label>Fairpoint/Ellensburg</label>
+            </value>
+            <value>
+                <fullName>Fatbeam</fullName>
+                <default>false</default>
+                <label>Fatbeam</label>
+            </value>
+            <value>
+                <fullName>Fibrenoire</fullName>
+                <default>false</default>
+                <label>Fibrenoire</label>
+            </value>
+            <value>
+                <fullName>First Digital</fullName>
+                <default>false</default>
+                <label>First Digital</label>
+            </value>
+            <value>
+                <fullName>Frontier</fullName>
+                <default>false</default>
+                <label>Frontier</label>
+            </value>
+            <value>
+                <fullName>GCI</fullName>
+                <default>false</default>
+                <label>GCI</label>
+            </value>
+            <value>
+                <fullName>Global Capacity</fullName>
+                <default>false</default>
+                <label>Global Capacity</label>
+            </value>
+            <value>
+                <fullName>Interlinx/Toanquint Data Center</fullName>
+                <default>false</default>
+                <label>Interlinx/Toanquint Data Center</label>
+            </value>
+            <value>
+                <fullName>Legacy TW Cable</fullName>
+                <default>false</default>
+                <label>Legacy TW Cable</label>
+            </value>
+            <value>
+                <fullName>Legacy TWTC</fullName>
+                <default>false</default>
+                <label>Legacy TWTC</label>
+            </value>
+            <value>
+                <fullName>Level 3</fullName>
+                <default>false</default>
+                <label>Level 3</label>
+            </value>
+            <value>
+                <fullName>LS Network</fullName>
+                <default>false</default>
+                <label>LS Network</label>
+            </value>
+            <value>
+                <fullName>Lumos</fullName>
+                <default>false</default>
+                <label>Lumos</label>
+            </value>
+            <value>
+                <fullName>Manitoba Tel</fullName>
+                <default>false</default>
+                <label>Manitoba Tel</label>
+            </value>
+            <value>
+                <fullName>Megapath</fullName>
+                <default>false</default>
+                <label>Megapath</label>
+            </value>
+            <value>
+                <fullName>Midcontinent</fullName>
+                <default>false</default>
+                <label>Midcontinent</label>
+            </value>
+            <value>
+                <fullName>MTO Telecom</fullName>
+                <default>false</default>
+                <label>MTO Telecom</label>
+            </value>
+            <value>
+                <fullName>Multiple Vendors</fullName>
+                <default>false</default>
+                <label>Multiple Vendors</label>
+            </value>
+            <value>
+                <fullName>Noanet</fullName>
+                <default>false</default>
+                <label>Noanet</label>
+            </value>
+            <value>
+                <fullName>NO BID</fullName>
+                <default>false</default>
+                <label>NO BID</label>
+            </value>
+            <value>
+                <fullName>Noel Communications</fullName>
+                <default>false</default>
+                <label>Noel Communications</label>
+            </value>
+            <value>
+                <fullName>Ontera</fullName>
+                <default>false</default>
+                <label>Ontera</label>
+            </value>
+            <value>
+                <fullName>Optic Acces</fullName>
+                <default>false</default>
+                <label>Optic Acces</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Port of Whitman</fullName>
+                <default>false</default>
+                <label>Port of Whitman</label>
+            </value>
+            <value>
+                <fullName>Rogers</fullName>
+                <default>false</default>
+                <label>Rogers</label>
+            </value>
+            <value>
+                <fullName>Saddleback Communications</fullName>
+                <default>false</default>
+                <label>Saddleback Communications</label>
+            </value>
+            <value>
+                <fullName>Saskatchewan Tel</fullName>
+                <default>false</default>
+                <label>Saskatchewan Tel</label>
+            </value>
+            <value>
+                <fullName>Scott Rice Telephone</fullName>
+                <default>false</default>
+                <label>Scott Rice Telephone</label>
+            </value>
+            <value>
+                <fullName>Shaw</fullName>
+                <default>false</default>
+                <label>Shaw</label>
+            </value>
+            <value>
+                <fullName>Shaw Communications</fullName>
+                <default>false</default>
+                <label>Shaw Communications</label>
+            </value>
+            <value>
+                <fullName>SRP</fullName>
+                <default>false</default>
+                <label>SRP</label>
+            </value>
+            <value>
+                <fullName>Syringa</fullName>
+                <default>false</default>
+                <label>Syringa</label>
+            </value>
+            <value>
+                <fullName>TDS (Bend Broadband)</fullName>
+                <default>false</default>
+                <label>TDS (Bend Broadband)</label>
+            </value>
+            <value>
+                <fullName>Telus</fullName>
+                <default>false</default>
+                <label>Telus</label>
+            </value>
+            <value>
+                <fullName>Toronto Hydro</fullName>
+                <default>false</default>
+                <label>Toronto Hydro</label>
+            </value>
+            <value>
+                <fullName>TWTC</fullName>
+                <default>false</default>
+                <label>TWTC</label>
+            </value>
+            <value>
+                <fullName>Utopia</fullName>
+                <default>false</default>
+                <label>Utopia</label>
+            </value>
+            <value>
+                <fullName>Verizon</fullName>
+                <default>false</default>
+                <label>Verizon</label>
+            </value>
+            <value>
+                <fullName>Videotron</fullName>
+                <default>false</default>
+                <label>Videotron</label>
+            </value>
+            <value>
+                <fullName>VisionNet</fullName>
+                <default>false</default>
+                <label>VisionNet</label>
+            </value>
+            <value>
+                <fullName>Wave Broadband</fullName>
+                <default>false</default>
+                <label>Wave Broadband</label>
+            </value>
+            <value>
+                <fullName>Western Fibernet</fullName>
+                <default>false</default>
+                <label>Western Fibernet</label>
+            </value>
+            <value>
+                <fullName>Western Independent Networks (WINS)</fullName>
+                <default>false</default>
+                <label>Western Independent Networks (WINS)</label>
+            </value>
+            <value>
+                <fullName>Wilcon</fullName>
+                <default>false</default>
+                <label>Wilcon</label>
+            </value>
+            <value>
+                <fullName>Windstream</fullName>
+                <default>false</default>
+                <label>Windstream</label>
+            </value>
+            <value>
+                <fullName>Wisconsin Independent Network (WIN)</fullName>
+                <default>false</default>
+                <label>Wisconsin Independent Network (WIN)</label>
+            </value>
+            <value>
+                <fullName>XO Communications</fullName>
+                <default>false</default>
+                <label>XO Communications</label>
+            </value>
+            <value>
+                <fullName>Zayo</fullName>
+                <default>false</default>
+                <label>Zayo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

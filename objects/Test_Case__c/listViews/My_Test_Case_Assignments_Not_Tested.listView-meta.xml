@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Test_Case_Assignments_Not_Tested</fullName>
+    <columns>NAME</columns>
+    <columns>Test_Summary__c</columns>
+    <columns>Assigned_To__c</columns>
+    <columns>Test_Case_Prioirity__c</columns>
+    <columns>Test_Instructions__c</columns>
+    <columns>Expected_Result__c</columns>
+    <columns>Test_Status__c</columns>
+    <columns>Story_Summary__c</columns>
+    <columns>Story_Owner__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Test_Case__c.Test_Case_Assignment</value>
+    </filters>
+    <filters>
+        <field>Test_Status__c</field>
+        <operation>equals</operation>
+        <value>Not Tested</value>
+    </filters>
+    <label>My Test Case Assignments - Not Tested</label>
+</ListView>

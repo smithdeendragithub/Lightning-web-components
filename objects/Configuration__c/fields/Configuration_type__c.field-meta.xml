@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Configuration_type__c</fullName>
+    <externalId>false</externalId>
+    <label>Configuration Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DS3</fullName>
+                <default>false</default>
+                <label>DS3</label>
+            </value>
+            <value>
+                <fullName>OCn</fullName>
+                <default>false</default>
+                <label>OCn</label>
+            </value>
+            <value>
+                <fullName>Fast Ethernet (Electrical Interface)</fullName>
+                <default>false</default>
+                <label>Fast Ethernet (Electrical Interface)</label>
+            </value>
+            <value>
+                <fullName>Gigabit Ethernet (Optical Interface)</fullName>
+                <default>false</default>
+                <label>Gigabit Ethernet (Optical Interface)</label>
+            </value>
+            <value>
+                <fullName>DS1</fullName>
+                <default>false</default>
+                <label>DS1</label>
+            </value>
+            <value>
+                <fullName>Wavelength Services</fullName>
+                <default>false</default>
+                <label>Wavelength Services</label>
+            </value>
+            <value>
+                <fullName>DS3:</fullName>
+                <default>false</default>
+                <label>DS3:</label>
+            </value>
+            <value>
+                <fullName>OCn:</fullName>
+                <default>false</default>
+                <label>OCn:</label>
+            </value>
+            <value>
+                <fullName>Ultra Ethernet 10/100 (Electrical Interface)</fullName>
+                <default>false</default>
+                <label>Ultra Ethernet 10/100 (Electrical Interface)</label>
+            </value>
+            <value>
+                <fullName>Ultra Ethernet Gigabit Ethernet (Optical Interface)</fullName>
+                <default>false</default>
+                <label>Ultra Ethernet Gigabit Ethernet (Optical Interface)</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber</fullName>
+                <default>false</default>
+                <label>Dark Fiber</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

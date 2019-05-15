@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Expense__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <inlineHelpText>Parent Expense records must have the same Vendor Account, not be a child Expense record, and have a NetEx Type of Infrastructure or a NetEx Service of Fiber Pack, Fiber lease, DS3 Pack, or DS1 Pack.</inlineHelpText>
+    <label>Parent Expense</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+        <errorMessage>Parent Expense records must have the same Vendor Account, not be a child Expense record, and have a NetEx Type of Infrastructure or a NetEx Service of Fiber Pack, Fiber lease, DS3 Pack, or DS1 Pack.</errorMessage>
+        <filterItems>
+            <field>$Source.Vendor_Account__c</field>
+            <operation>equals</operation>
+            <valueField>Expense__c.Vendor_Account__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Expense__c.Parent_Expense__c</field>
+            <operation>equals</operation>
+            <value/>
+        </filterItems>
+        <filterItems>
+            <field>Expense__c.Netex_Service__c</field>
+            <operation>equals</operation>
+            <value>Fiber Pack, DS3 Pack, DS1 Pack, Fiber lease</value>
+        </filterItems>
+        <filterItems>
+            <field>Expense__c.Netex_Type__c</field>
+            <operation>equals</operation>
+            <value>Infrastructure</value>
+        </filterItems>
+        <infoMessage>Parent Expense records must have the same Vendor Account, not be a child Expense record, and have a NetEx Type of Infrastructure or a NetEx Service of Fiber Pack, Fiber lease, DS3 Pack, or DS1 Pack.</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Expense__c</referenceTo>
+    <relationshipName>Child_Netx</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

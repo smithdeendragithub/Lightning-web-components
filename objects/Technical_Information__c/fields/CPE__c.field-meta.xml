@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CPE__c</fullName>
+    <externalId>false</externalId>
+    <label>CPE</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>None</fullName>
+                <default>false</default>
+                <label>None</label>
+            </value>
+            <value>
+                <fullName>Adtran 600R router</fullName>
+                <default>false</default>
+                <label>Adtran 600R router</label>
+            </value>
+            <value>
+                <fullName>Adtran TA608</fullName>
+                <default>false</default>
+                <label>Adtran TA608</label>
+            </value>
+            <value>
+                <fullName>Adtran TA616</fullName>
+                <default>false</default>
+                <label>Adtran TA616</label>
+            </value>
+            <value>
+                <fullName>Adtran 3200 w/ dual T1 WICs</fullName>
+                <default>false</default>
+                <label>Adtran 3200 w/ dual T1 WICs</label>
+            </value>
+            <value>
+                <fullName>Adtran 3305 router</fullName>
+                <default>false</default>
+                <label>Adtran 3305 router</label>
+            </value>
+            <value>
+                <fullName>Adtran 4305 router</fullName>
+                <default>false</default>
+                <label>Adtran 4305 router</label>
+            </value>
+            <value>
+                <fullName>Adtran TA904</fullName>
+                <default>false</default>
+                <label>Adtran TA904</label>
+            </value>
+            <value>
+                <fullName>Adtran TA908</fullName>
+                <default>false</default>
+                <label>Adtran TA908</label>
+            </value>
+            <value>
+                <fullName>Adtran TA908e</fullName>
+                <default>false</default>
+                <label>Adtran TA908e</label>
+            </value>
+            <value>
+                <fullName>Adtran TA 916</fullName>
+                <default>false</default>
+                <label>Adtran TA 916</label>
+            </value>
+            <value>
+                <fullName>Adtran TA 916e</fullName>
+                <default>false</default>
+                <label>Adtran TA 916e</label>
+            </value>
+            <value>
+                <fullName>Adtran 818</fullName>
+                <default>false</default>
+                <label>Adtran 818</label>
+            </value>
+            <value>
+                <fullName>Adit 600</fullName>
+                <default>false</default>
+                <label>Adit 600</label>
+            </value>
+            <value>
+                <fullName>Cisco: spec in notes</fullName>
+                <default>false</default>
+                <label>Cisco: spec in notes</label>
+            </value>
+            <value>
+                <fullName>Other – see notes</fullName>
+                <default>false</default>
+                <label>Other – see notes</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

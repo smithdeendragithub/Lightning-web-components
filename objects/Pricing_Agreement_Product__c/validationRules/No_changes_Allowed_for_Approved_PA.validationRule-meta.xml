@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_changes_Allowed_for_Approved_PA</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( Pricing_Agreement__r.Approval_Status__c , &#39;Approved&#39;)</errorConditionFormula>
+    <errorMessage>No changes are allowed for the Approved Pricing Agreement.</errorMessage>
+</ValidationRule>

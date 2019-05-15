@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_of_Rings_for_No_Answer__c</fullName>
+    <externalId>false</externalId>
+    <label>No. of Rings for &quot;No Answer&quot;</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Short (3 rings)</fullName>
+                <default>false</default>
+                <label>Short (3 rings)</label>
+            </value>
+            <value>
+                <fullName>Medium (6 rings)</fullName>
+                <default>false</default>
+                <label>Medium (6 rings)</label>
+            </value>
+            <value>
+                <fullName>Long (10 rings)</fullName>
+                <default>false</default>
+                <label>Long (10 rings)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

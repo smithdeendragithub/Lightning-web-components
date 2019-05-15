@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SSD_Enterprise_MN_CO_ND</fullName>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>Duration__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Complete,Cancelled</value>
+    </filters>
+    <label>DNU SD-AZ/CO/MN/ND-Project Mgmt</label>
+    <queue>SD_AZ_CO_MN_ND_Project_Mgmt</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

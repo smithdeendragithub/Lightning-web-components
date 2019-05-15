@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ultra_Ethernet_Gigabit_Ethernet_Optical_Interface</fullName>
+    <active>true</active>
+    <label>Ultra Ethernet Gigabit Ethernet (Optical Interface)</label>
+    <picklistValues>
+        <picklist>Configuration__c</picklist>
+        <values>
+            <fullName>Dark Fiber %E2%80%93 Metro%3A  Metro Fiber Ring</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dark Fiber %E2%80%93 Metro%3A  Point-to-Point</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dark Fiber - Longhaul%3A  Point-to-Point</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Configuration_type__c</picklist>
+        <values>
+            <fullName>DS3%3A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fast Ethernet %28Electrical Interface%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gigabit Ethernet %28Optical Interface%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OCn%3A</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ultra Ethernet 10%2F100 %28Electrical Interface%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ultra Ethernet Gigabit Ethernet %28Optical Interface%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Connector_Type__c</picklist>
+        <values>
+            <fullName>LC-FC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LC-LC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LC-SC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ethernet_Mode__c</picklist>
+        <values>
+            <fullName>Auto-negotiation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Full Duplex</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Fiber_Handoff__c</picklist>
+        <values>
+            <fullName>2-Fiber</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4-Fiber</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Fiber_Type__c</picklist>
+        <values>
+            <fullName>Multimode 50%2F125</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multimode 62%2E5%2F125</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Single Mode</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Flow_Control__c</picklist>
+        <values>
+            <fullName>Asymmetrical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Symmetrical</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Interface__c</picklist>
+        <values>
+            <fullName>100Mb</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10Mb</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Line_Coding_Framing__c</picklist>
+        <values>
+            <fullName>B3ZS %2F CBIT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B3ZS %2F Clear Channel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>B3ZS %2F M13</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Location__c</picklist>
+        <values>
+            <fullName>Primary</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Secondary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Segment__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

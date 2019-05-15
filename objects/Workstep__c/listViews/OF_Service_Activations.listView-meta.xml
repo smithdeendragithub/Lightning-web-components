@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OF_Service_Activations</fullName>
+    <columns>NAME</columns>
+    <columns>workstep_tag__c</columns>
+    <columns>Account__c</columns>
+    <columns>Status__c</columns>
+    <columns>Order__c</columns>
+    <columns>Order_Location__c</columns>
+    <columns>SPC_Product__c</columns>
+    <columns>Sub_Order__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Duration__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Complete,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Duration__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </filters>
+    <label>OF-Service Activations</label>
+    <queue>OF_Service_Activations</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

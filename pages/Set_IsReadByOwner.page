@@ -1,0 +1,28 @@
+<apex:page standardController="Lead" showheader="true">
+<script src="../../soap/ajax/36.0/connection.js" type="text/javascript"></script> 
+<script src="../../soap/ajax/36.0/apex.js" type="text/javascript"></script> 
+    <apex:includescript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+    
+    <script type="text/javascript">
+        sforce.connection.sessionId='{!GETSESSIONID()}';
+        (function($){
+            $(document).ready(function(){
+                try{
+                    var qResult = sforce.connection.query("Select Id, IsUnreadByOwner, IsReadByOwner__c from Lead where Id='{!Lead.Id}'");
+                    var records = qResult.getArray("records");
+                    if(records.length > 0){
+                        var rec = records[0];
+                        if(rec.IsReadByOwner__c == rec.IsUnreadByOwner){
+                            rec.IsReadByOwner__c = (rec.IsUnreadByOwner.toLowerCase() == 'false').toString();
+                            sforce.connection.update([rec]);
+                        }
+                    }
+                }
+                catch(ex){
+                    debugger;
+ //                   window.alert(ex.message);
+                }
+            });
+        })(jQuery);
+    </script>
+</apex:page>

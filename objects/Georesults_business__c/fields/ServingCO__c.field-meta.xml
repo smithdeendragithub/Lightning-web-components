@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ServingCO__c</fullName>
+    <description>Enhanced version of the 8 character CLLI™ of the incumbent local telephone switch equipment building which serves this business. Generally the Serving Central Office is the same as the Boundary Central Office. However, if this business address is weak or incomplete, the Boundary Central Office and NPANXX Central Office are evaluated to determine the most likely Serving Central Office.</description>
+    <externalId>false</externalId>
+    <label>Serving Central Office</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

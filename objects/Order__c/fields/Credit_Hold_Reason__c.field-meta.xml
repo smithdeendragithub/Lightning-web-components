@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Hold_Reason__c</fullName>
+    <description>The date the condition hold value must be completed by for the opportunity/new logo to be allowed to integrate.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The date the condition hold value must be completed by for the opportunity/new logo to be allowed to integrate.</inlineHelpText>
+    <label>Condition Hold Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Credit_Check_Approval__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Credit Application Requested</fullName>
+                <default>false</default>
+                <label>Credit Application Requested</label>
+            </value>
+            <value>
+                <fullName>Deposit Requested</fullName>
+                <default>false</default>
+                <label>Deposit Requested</label>
+            </value>
+            <value>
+                <fullName>Payment for past due on existing account required</fullName>
+                <default>false</default>
+                <label>Payment for past due on existing account required</label>
+            </value>
+            <value>
+                <fullName>Payment on previous account required</fullName>
+                <default>false</default>
+                <label>Payment on previous account required</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Credit Approved pending condition</controllingFieldValue>
+            <valueName>Credit Application Requested</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Credit Approved pending condition</controllingFieldValue>
+            <valueName>Deposit Requested</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Credit Approved pending condition</controllingFieldValue>
+            <valueName>Payment for past due on existing account required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Credit Approved pending condition</controllingFieldValue>
+            <valueName>Payment on previous account required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Credit Approved pending condition</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

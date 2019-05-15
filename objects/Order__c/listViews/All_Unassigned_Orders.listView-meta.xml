@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Unassigned_Orders</fullName>
+    <columns>NAME</columns>
+    <columns>OWNER.ALIAS</columns>
+    <columns>Building__c</columns>
+    <columns>Expedited__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Account__c</columns>
+    <columns>Account_Link__c</columns>
+    <columns>Actual_Due_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Is_Queue_Owner__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>All Unassigned Orders</label>
+</ListView>

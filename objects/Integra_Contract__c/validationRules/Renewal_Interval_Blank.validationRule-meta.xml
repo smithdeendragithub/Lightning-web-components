@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Interval_Blank</fullName>
+    <active>true</active>
+    <description>Should be blank if Term Type is something other than &quot;Fixed with Renewal Option&quot; or &quot;Auto-Renewal&quot;</description>
+    <errorConditionFormula>AND ( 
+TEXT( Term_Type__c) &lt;&gt; &quot;Fixed with a Renewal Option&quot;, 
+TEXT (Term_Type__c) &lt;&gt; &quot;Auto-Renew&quot;, 
+NOT(ISBLANK (Renewal_Interval__c)) 
+)</errorConditionFormula>
+    <errorDisplayField>Renewal_Interval__c</errorDisplayField>
+    <errorMessage>Please clear the &quot;Renewal Interval&quot; field.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requesting_Product_Group__c</fullName>
+    <description>TTN-0000736453 - Product Group requesting the Expense, could differ from the actual Product Group</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Product Group requesting the Expense, could differ from the actual Product Group</inlineHelpText>
+    <label>Requesting Product Group</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product_Group__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+                <label>Cloud</label>
+            </value>
+            <value>
+                <fullName>Corporate</fullName>
+                <default>false</default>
+                <label>Corporate</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber - Long Haul</fullName>
+                <default>false</default>
+                <label>Dark Fiber - Long Haul</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber - Metro</fullName>
+                <default>false</default>
+                <label>Dark Fiber - Metro</label>
+            </value>
+            <value>
+                <fullName>Ethernet</fullName>
+                <default>false</default>
+                <label>Ethernet</label>
+            </value>
+            <value>
+                <fullName>Field</fullName>
+                <default>false</default>
+                <label>Field</label>
+            </value>
+            <value>
+                <fullName>FTT - Dark Fiber</fullName>
+                <default>false</default>
+                <label>FTT - Dark Fiber</label>
+            </value>
+            <value>
+                <fullName>FTT - Ethernet</fullName>
+                <default>false</default>
+                <label>FTT - Ethernet</label>
+            </value>
+            <value>
+                <fullName>FTT - Small Cell</fullName>
+                <default>false</default>
+                <label>FTT - Small Cell</label>
+            </value>
+            <value>
+                <fullName>FTT - SONET</fullName>
+                <default>false</default>
+                <label>FTT - SONET</label>
+            </value>
+            <value>
+                <fullName>FTT - Wavelengths</fullName>
+                <default>false</default>
+                <label>FTT - Wavelengths</label>
+            </value>
+            <value>
+                <fullName>IP Services</fullName>
+                <default>false</default>
+                <label>IP Services</label>
+            </value>
+            <value>
+                <fullName>IT</fullName>
+                <default>false</default>
+                <label>IT</label>
+            </value>
+            <value>
+                <fullName>Managed WAN-LAN</fullName>
+                <default>false</default>
+                <label>Managed WAN-LAN</label>
+            </value>
+            <value>
+                <fullName>Media &amp; Gaming</fullName>
+                <default>false</default>
+                <label>Media &amp; Gaming</label>
+            </value>
+            <value>
+                <fullName>SONET</fullName>
+                <default>false</default>
+                <label>SONET</label>
+            </value>
+            <value>
+                <fullName>Wavelengths</fullName>
+                <default>false</default>
+                <label>Wavelengths</label>
+            </value>
+            <value>
+                <fullName>Wavelengths - Long Haul</fullName>
+                <default>false</default>
+                <label>Wavelengths - Long Haul</label>
+            </value>
+            <value>
+                <fullName>Wavelengths - Metro</fullName>
+                <default>false</default>
+                <label>Wavelengths - Metro</label>
+            </value>
+            <value>
+                <fullName>zColo</fullName>
+                <default>false</default>
+                <label>zColo</label>
+            </value>
+            <value>
+                <fullName>zTech</fullName>
+                <default>false</default>
+                <label>zTech</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

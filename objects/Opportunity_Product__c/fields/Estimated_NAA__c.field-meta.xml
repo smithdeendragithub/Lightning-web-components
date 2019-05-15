@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimated_NAA__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( OR(Opportunity__r.Account.Default_NAA_Exempt__c  = True,  UPPER(Primary_Service_Location__r.Location__r.Building__r.Country__c) = &#39;CA&#39;, UPPER(Primary_Service_Location__r.Location__r.Building__r.Country__c) = &#39;CANADA&#39;, UPPER(Primary_Service_Location__r.Location__r.Building__r.Country__c) = &#39;CAN&#39;), 0, 
+ IF(ISNULL(NAA_Product__c),0, 
+    CASE( Primary_Service_Location__r.Location__r.Building__r.State__c, 
+         &quot;CA&quot;, NAA_Product__r.NAA_CA_Rate__c *  MRC__c , 
+         &quot;AZ&quot;, NAA_Product__r.NAA_AZMN_Rate__c * MRC__c,
+         &quot;MN&quot;, NAA_Product__r.NAA_AZMN_Rate__c * MRC__c,
+         NAA_Product__r.NAA_Default_Rate__c * MRC__c) 
+ )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Estimated NAA</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

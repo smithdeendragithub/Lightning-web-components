@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Signer__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Lookup to Contact IDed as contract signer on Generate PDF Page</description>
+    <externalId>false</externalId>
+    <label>Customer Signer</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Integra Contracts (Customer Signer)</relationshipLabel>
+    <relationshipName>Integra_Contracts1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

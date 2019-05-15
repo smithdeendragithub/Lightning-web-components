@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Service_Delivery_Detail_Required</fullName>
+    <active>true</active>
+    <description>Service Delivery Detail required when Service Delivery impacting exceptions are selected</description>
+    <errorConditionFormula>AND( 
+OR( 
+INCLUDES(Custom_Contract_Category__c, &quot;SD - Non-Standard Reporting&quot;), INCLUDES(Custom_Contract_Category__c, &quot;SD - Non-Standard Intervals&quot;),INCLUDES(Custom_Contract_Category__c, &quot;SD - Non-Standard Test &amp; Acceptance&quot;) 
+) 
+,ISBLANK( Service_Delivery_Detail__c ) 
+)</errorConditionFormula>
+    <errorDisplayField>Service_Delivery_Detail__c</errorDisplayField>
+    <errorMessage>Please enter detail from redlined contract</errorMessage>
+</ValidationRule>

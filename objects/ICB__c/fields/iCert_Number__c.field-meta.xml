@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>iCert_Number__c</fullName>
+    <description>Text field to hold the iCert number associated with this ICB</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the iCert Number if you know it.</inlineHelpText>
+    <label>iCert Number</label>
+    <length>100</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Pending_ICBs</fullName>
+    <columns>NAME</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Opportunity_Stage__c</columns>
+    <columns>Status__c</columns>
+    <columns>ICB_Request_Version__c</columns>
+    <columns>Submitted_On__c</columns>
+    <filterScope>Mine</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled,Approved,Approved-Pending Sale,Approved with Conditions</value>
+    </filters>
+    <filters>
+        <field>Opportunity_Stage__c</field>
+        <operation>notContain</operation>
+        <value>Stage 5,Lost</value>
+    </filters>
+    <label>My Pending ICBs</label>
+</ListView>

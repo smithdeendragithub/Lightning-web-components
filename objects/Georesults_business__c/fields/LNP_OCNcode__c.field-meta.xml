@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LNP_OCNcode__c</fullName>
+    <description>The Operating Company Number (OCN) is an alphanumeric code that is used to identify the Legal Name of the Local Service Provider (LSP) that owns or controls the NPA-NXX or End Office Switch that is associated with the 10 digit Local Routing Number (LRN). OCN codes are assigned and maintained by the National Exchange Carriers Association (NECA).</description>
+    <externalId>false</externalId>
+    <label>OCN Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

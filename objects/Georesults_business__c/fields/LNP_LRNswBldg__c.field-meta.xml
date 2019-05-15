@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LNP_LRNswBldg__c</fullName>
+    <description>The 8 character Central Office Building CLLI Code (Common Language Location Identifier) that identifies the building where the 10 digit Local Routing Number Switch is located. All 10 digit telephone numbers with a Portability Status Code of &quot;0&quot; (indicating that this is not a ported number) will show the same Local Routing Number Switch Building as the Telephone Number Switch Building to further indicate that the 10 digit Telephone Number is not a ported number.</description>
+    <externalId>false</externalId>
+    <label>Local Routing Number Switch Building</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Purpose_Required</fullName>
+    <active>true</active>
+    <description>Contract Purpose required if Subcategory is set to &quot;Other&quot;</description>
+    <errorConditionFormula>AND(TEXT( Contract_Subcategory__c )=&quot;Other&quot;, 
+ISBLANK( Contract_Purpose__c ))</errorConditionFormula>
+    <errorDisplayField>Contract_Purpose__c</errorDisplayField>
+    <errorMessage>If Contract Subcategory of &quot;Other&quot; is selected, you are required to enter information in the &quot;Contract Purpose&quot; field.</errorMessage>
+</ValidationRule>

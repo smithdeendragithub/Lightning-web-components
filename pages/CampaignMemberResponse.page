@@ -1,0 +1,151 @@
+<apex:page controller="CampaignMemberResponseController" sidebar="false" showHeader="false" action="{!onLoad}">
+
+
+
+<html>
+<head>
+<title>Integra</title>
+
+<style type="text/css">
+.bodycopy {
+    font-size: 13px;
+    font-family: Georgia,"Times New Roman";
+    padding: 0px 28px 4px 28px;
+    margin: 0 0 0 0;
+    line-height: 130%;
+}
+
+#main {
+    width: 969px;
+      margin-left: auto;
+  margin-right: auto
+
+}
+
+.submitButton {
+    border: 0px;
+}
+
+h2 {
+    color: #119bb8;
+    font-weight: bold;
+    font-size: 16px;
+    font-family:Arial;
+}
+
+ul {
+    margin: 0 0 0 0;
+    padding: 0 0 0 14px;
+}
+
+strong {
+    color: #000000;
+
+    }
+
+</style>
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
+<div id="main">
+<table id="Table_01" width="960" height="969" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td colspan="4">    
+        <img src="http://integratelecom.com/consultation/images/index_01.jpg" width="960" height="334" alt="" /></td>
+    </tr>
+    <tr>
+        <td rowspan="2" valign="top">
+            <img src="http://integratelecom.com/consultation/images/index_02.jpg" width="5" height="635" alt="" /></td>
+            
+            
+        <td class="bodycopy">
+        
+        <p><b>Welcome, &nbsp;<apex:outputText value="{!CMName}"/></b></p>
+
+        
+        <p>Thank you for your time, we know it's valuable.</p>
+        
+<p>We're constantly looking for ways to keep our customers engaged with current and future business technologies and understand how we can tailor communications services to match your future needs. </p>
+
+<p><h2>That's why we want to spend 10 minutes talking with you. </h2></p>
+
+<p><h2>On the phone.</h2></p>
+
+<p><h2>When it's convenient for you.</h2></p>
+
+
+<h2>We'd like to know:</h2>
+<ul>
+<li>How is your business is changing? Is it growing, evolving? How do those changes affect your communications requirements?</li>
+<li>Has your company's use of the Internet grown exponentially? Is your bandwidth keeping up?</li>
+<li>Are you adopting web-based, cloud services in your business?</li>
+<li>Is your workforce becoming more remote or increasingly mobile?</li>
+<li>Are you technologically inundated? (It's ok, a lot of companies are.)</li>
+<li>And so on...</li>
+</ul>
+<br />
+<h2>Plus we'd like to share:</h2>
+<ul>
+<li>An update on Integra recent product introductions and investments</li>
+<li>A sneak peek at Integra's upcoming products (Shhh! Don't tell!)</li>
+<li>We want to discuss your communications needs based on your business drivers and ensure you have the optimal solutions from
+ Integra.</li>
+ </ul>
+ <br />
+<p>Register below to be entered into our <strong>iPad2 Sweepstakes</strong>*, plus your company will receive a <strong>$10 credit</strong> on your December invoice to make it worth your time.</p>
+
+<br />
+<apex:form >
+        
+    <p><h2>Here is the contact information we have for you:</h2></p>
+    <p><strong>Company Name:</strong> &nbsp;<apex:outputText value="{!CMCompany}"/></p>
+    <p><strong>Your Name:</strong> &nbsp;<apex:outputText value="{!CMName}"/></p>
+
+    <p><strong>Email:</strong> &nbsp;<apex:outputText value="{!CMEmail}"/></p>
+
+    <p>1: &nbsp;<apex:outputText value="{!q1}"/>&nbsp;<apex:inputText value="{!answer1}" /></p>
+    <p>2: &nbsp;<apex:outputText value="{!q2}"/>&nbsp;<apex:inputText value="{!answer2}" /></p>
+   
+    <p>3: &nbsp;<apex:outputText value="{!q3}"/></p>
+    <p>&nbsp;&nbsp;&nbsp;<apex:inputTextarea cols="60" rows="6" value="{!answer3}"/></p>
+    
+    <apex:commandButton value="Submit" style="border: 0px;" image="http://integratelecom.com/consultation/images/submit_button.jpg" action="{!UpdateMemberStatus}" />
+
+</apex:form>
+
+
+
+
+</td>
+        
+        
+        <td>           <img src="http://integratelecom.com/consultation/images/index_04.jpg" width="270" height="635" alt="" /></td>
+        <td valign="top">
+            <img src="http://integratelecom.com/consultation/images/index_05.jpg" width="8" height="635" alt="" /></td>
+    </tr>
+    
+    <tr>
+        <td colspan="4" class="bodycopy">
+            <br /><br />
+          <p>Integra's $10 invoice credit is limited to one per customer.</p>
+            
+            <h2>* Integra iPad&reg; PRIZE RULES AND REGULATIONS </h2>
+            
+<p><strong>Eligibility:</strong> The Apple iPad&reg; Prize is open to current Integra customers only. Only qualified participants will be eligible to receive the prize. Eligible participants must complete a 10-minute consultation call with one of Integra's Account Managers to qualify. Integra employees and their immediate families (spouse, parents, children, siblings) are not eligible for this prize. The contest is open to persons 21 years of age or older. </p>
+
+<p>The randomly selected winner will receive a 16Gb wifi-enabled iPad2. Winners will be contacted by a representative of Integra to discuss prize delivery. Prizes will be delivered to the individual at his or her home address, or if to a business, to an owner, officer, or authorized contact at the company address only. Integra reserves the right to substitute a prize of equivalent cash value.</p>
+
+<p><strong>General Conditions</strong>: All national, state and local laws/regulations apply. All taxes (including income taxes) are the sole responsibility of prize recipients. Non-compliance may result in disqualification and an alternate recipient may be selected. Return of prize will result in disqualification and an alternate recipient may be selected. Eligibility to receive a prize is limited to one per Corporate Account and/or any Branch locations affiliated with that Corporate Account. Only qualified participants may be awarded a prize. Failure to meet eligibility requirements will result in the disqualification of that entry. Any person attempting to defraud or in any way tamper with this prize in any way will be ineligible for prizes and will be prosecuted to the full extent of the law. Void where prohibited by law. The iPad&reg; mobile digital device is a registered trademark of Apple Inc. Apple Computer Inc. is not affiliated with this promotion. All other trademarks are the property of their respective owners. All rights reserved.</p>
+
+<p><strong>Disclaimers:</strong> Participants agree that Integra Telecom, Inc., its Licensors and other Service Providers, Partners, Resellers, Affiliates, Distributors and their respective managers, members, officers, directors, agents, suppliers and employees shall not be liable for losses or injuries of any kind resulting from acceptance or use of prizes, participation in prize, or any technical malfunctions of the telephone network, computer on-line system, computer equipment, software, or any combination thereof, or any misdirected entries, or delayed data transmissions.</p>
+
+<p>Integra Telecom, Inc. reserves the right to modify the rules of the prize in any way, or at any time, and to cancel the prize for any reason. IT IS PARTICIPANT'S RESPONSIBILITY TO READ AND UNDERSTAND ALL INFORMATION WHICH ACCOMPANIES PRODUCT PRIZES CONCERNING USE, RISKS AND MAINTENANCE. Integra reserves the right to cancel, suspend and/or modify the contest and award the prizes from among eligible entries received prior to such action if any fraud, technical failures or any other factor beyond Integra's reasonable control impairs the integrity or proper functioning of the contest, as determined by Integra in its sole discretion. Except where prohibited, participation in the contest constitutes winner's consent to Integra to use winner's name, winner's company name, likeness, opinions, biographical information, hometown and state for promotional purposes in any media, worldwide, without further payment or consideration. Entrant agrees that any dispute arising out of this contest shall be resolved individually without class action and exclusively by the state and federal courts in Portland, OR under the laws of Oregon without regard to that state's conflict of law principles. Generally, Integra will not collect or store information about contest participants except for the information set forth on the entry form. Information transmitted to Integra electronically or otherwise will generally be treated as non-confidential and non-proprietary and may be used by the receiving party for publicity as set forth above.</p>
+
+            </td>
+    </tr>
+    
+    
+</table>
+</div>
+</body>
+</html>
+</apex:page>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Subscriber__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Subscriber ID of the ultimate parent (customer detail attached to the account)</description>
+    <externalId>false</externalId>
+    <label>Parent Subscriber</label>
+    <referenceTo>Customer_Detail__c</referenceTo>
+    <relationshipLabel>Globys Transactions</relationshipLabel>
+    <relationshipName>Globys_Transactions</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

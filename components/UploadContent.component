@@ -1,0 +1,106 @@
+<apex:component controller="UploadContentController" allowDML="true">
+<apex:attribute name="parentId" description="ID of the Account or Opportunity to associate with" type="String" assignTo="{!parentId}" required="true" />
+<apex:attribute name="blobData" description="document bytes" type="blob" assignTo="{!fileContentsUpload}" />
+<apex:attribute name="isGeneratedContent" description="Is this content generated (Instead of uploaded)? Must set blobdata if true" type="Boolean" assignTo="{!isGeneratedContent}" required="true" />
+
+<apex:form > 
+
+<apex:pageBlock title="Upload content"  >
+
+	<apex:pageMessages />
+	
+    <apex:PageBlockButtons >
+        <apex:commandButton value="Save" action="{!save}"/>
+        <apex:commandButton value="Save and New" action="{!saveAndNew}" rendered="{!(!isGeneratedContent)}" /> 
+        <apex:commandButton value="Cancel" immediate="true" action="{!cancel}"/>
+    </apex:PageBlockButtons>
+    
+    <apex:PageBlockSection title="Document" columns="1" rendered="{!(!isOrderContent)}">
+     
+        <apex:PageBlockSectionItem >
+            <apex:outputLabel value="Library" />
+            <apex:selectList value="{!selectedWorkspace}" size="1">
+                <apex:selectOptions value="{!workspaces}" />
+            </apex:selectList>
+        </apex:PageBlockSectionItem>        
+
+        <apex:PageBlockSectionItem >
+            <apex:outputLabel value="Title" />
+            <apex:outputText >{!titlePrefix}<apex:inputText value="{!cv.Title}" required="true"/></apex:outputText>
+        </apex:PageBlockSectionItem>        
+            
+            
+        <apex:PageBlockSectionItem >
+            <apex:outputLabel value="Description" />
+            <apex:inputTextArea style="width:280px;" rows="3" value="{!cv.Description}" />
+        </apex:PageBlockSectionItem>
+        
+		<apex:PageBlockSectionItem rendered="{!isIntegraContract}" id="contractUp">
+			<apex:outputLabel value="Asset Type" />
+			<apex:inputField value="{!cv.Asset_Type__c}" id="aType"/>
+		</apex:PageBlockSectionItem>
+		
+		<apex:PageBlockSectionItem rendered="{!isIntegraContract}">
+			<apex:outputLabel value="Asset SubType" />
+			<apex:inputField value="{!cv.Asset_SubType__c}" required="true"/>
+		</apex:PageBlockSectionItem>
+		
+        <apex:PageBlockSectionItem rendered="{!(!isGeneratedContent)}">
+            <apex:outputLabel value="File" />
+            <apex:inputFile value="{!fileContents}" filename="{!cv.PathOnClient}" />
+        </apex:PageBlockSectionItem>
+
+<script type="text/javascript">
+		var caT = document.getElementById('{!$Component.contractUp.aType}').disabled = true;
+</script>
+		
+    </apex:PageBlockSection>
+    
+     <apex:PageBlockSection title="Document" columns="1"  rendered="{!isOrderContent}">
+        <apex:PageBlockSectionItem >
+            <apex:outputLabel value="Library" />
+            <apex:selectList value="{!selectedWorkspace}" size="1">
+                <apex:selectOptions value="{!workspaces}" />
+            </apex:selectList>
+        </apex:PageBlockSectionItem>        
+        <apex:PageBlockSectionItem id="orderUp">
+
+            <apex:outputLabel value="Asset Type  " />
+              <!--<apex:outputText >{!titlePrefix}
+	            <apex:selectList id="doctype" value="{!defaultWorkspaceSelection}" size="1" disabled="true">
+					<apex:selectOptions value="{!cv.Asset_Type__c}"/>
+				</apex:selectList>	
+				<input type="text" id="assetType" value="{!defaultWorkspaceSelection}" size="35px" disabled="true"/>			
+			-->
+						
+			<apex:inputField value="{!cv.Asset_Type__c}" id="aType"/>
+			</apex:PageBlockSectionItem>
+
+<script type="text/javascript">
+		var aT = document.getElementById('{!$Component.orderUp.aType}').disabled = true;
+</script>
+
+         <apex:PageBlockSectionItem >
+			<apex:outputLabel value="Asset SubType  " />
+			<apex:inputField value="{!cv.Asset_SubType__c}" required="true"/>
+		</apex:PageBlockSectionItem>   
+		<apex:PageBlockSectionItem >
+			<apex:outputLabel value="Product Category  " />
+			<apex:inputField value="{!cv.Product_Category__c}" required="false"/>
+		</apex:PageBlockSectionItem>   
+        <apex:PageBlockSectionItem >
+            <apex:outputLabel value="Notes" />
+            <apex:inputTextArea style="width:280px;" rows="3" value="{!cv.Description}" />
+        </apex:PageBlockSectionItem>
+        <apex:PageBlockSectionItem rendered="{!(!isGeneratedContent)}">
+            <apex:outputLabel value="File" />
+            <apex:inputFile value="{!fileContents}" filename="{!cv.PathOnClient}" />
+        </apex:PageBlockSectionItem>
+    </apex:PageBlockSection>
+
+</apex:pageBlock>
+ 
+</apex:form>
+
+
+</apex:component>

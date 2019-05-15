@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ICB_Code__c</fullName>
+    <description>Formula field to display a auto-generated ICB Code when the ICB is approved that follows this format:  2 digit Service State-sequential number-MMDDYY-AE for pricing and SE for Technical.</description>
+    <externalId>false</externalId>
+    <formula>IF(( ISPICKVAL(Status__c, &quot;Approved&quot;) || ISPICKVAL(Status__c, &quot;Approved-Pending Sale&quot;) || ISPICKVAL(Status__c, &quot;Approved with Conditions&quot;))
+ , (Service_State__c &amp; RIGHT(Name , 4) 
+&amp; RIGHT(TEXT( ICB_Request_Version__c),1) 
+&amp; LPAD(TEXT(MONTH(Approved_Date__c) ), 2, &quot;0&quot;) 
+&amp; LPAD(TEXT(DAY(Approved_Date__c) ), 2, &quot;0&quot;) 
+&amp; RIGHT(TEXT(YEAR(Approved_Date__c) ) ,2) 
+&amp; CASE( TEXT( ICB_Type__c ) , &quot;Pricing&quot;, &quot;P&quot;, &quot;Technical&quot;, &quot;T&quot;,&quot;&quot;)), &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Auto generated code when ICB is approved.</inlineHelpText>
+    <label>ICB Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

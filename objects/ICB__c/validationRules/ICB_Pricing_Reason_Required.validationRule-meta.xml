@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ICB_Pricing_Reason_Required</fullName>
+    <active>true</active>
+    <description>If this is a &quot;Pricing&quot; or &quot;Product Policy Exception&quot; type ICB, the Pricing/Prod Policy Reason field is required.</description>
+    <errorConditionFormula>OR(
+ISPICKVAL( ICB_Type__c , &quot;Pricing&quot;),
+ISPICKVAL( ICB_Type__c , &quot;Product Policy Exception&quot;))  &amp;&amp;  ISBLANK( TEXT(ICB_Pricing_Reason__c ) )</errorConditionFormula>
+    <errorDisplayField>ICB_Pricing_Reason__c</errorDisplayField>
+    <errorMessage>You must select an ICB Pricing/Prod Policy Reason.</errorMessage>
+</ValidationRule>

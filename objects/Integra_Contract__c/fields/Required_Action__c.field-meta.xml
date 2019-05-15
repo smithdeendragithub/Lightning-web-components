@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Required_Action__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>If you selected yes to &quot;Integra Assignment Prohibited&quot; then what action, if any, needs to be taken when an assignment is triggered or with respect to those exceptions?</inlineHelpText>
+    <label>Required Action</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Consent – Prior Written – Cannot be reasonably withheld</fullName>
+                <default>false</default>
+                <label>Consent – Prior Written – Cannot be reasonably withheld</label>
+            </value>
+            <value>
+                <fullName>Consent – Prior Written – No reasonable language</fullName>
+                <default>false</default>
+                <label>Consent – Prior Written – No reasonable language</label>
+            </value>
+            <value>
+                <fullName>No Action Required</fullName>
+                <default>false</default>
+                <label>No Action Required</label>
+            </value>
+            <value>
+                <fullName>Notice Only</fullName>
+                <default>false</default>
+                <label>Notice Only</label>
+            </value>
+            <value>
+                <fullName>Notice – Prior</fullName>
+                <default>false</default>
+                <label>Notice – Prior</label>
+            </value>
+            <value>
+                <fullName>Other Action Required - See Notes</fullName>
+                <default>false</default>
+                <label>Other Action Required - See Notes</label>
+            </value>
+            <value>
+                <fullName>Notice Only Within 30 days</fullName>
+                <default>false</default>
+                <label>Notice Only Within 30 days</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

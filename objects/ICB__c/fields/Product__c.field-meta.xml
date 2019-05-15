@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <description>Same picklist field as the Opportunity.  Needed for another dependent picklist.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Same picklist field as the Opportunity. This field will default based on the product selected on the opportunity.  If you require an ICB for multiple products please create an ICB for each product and select something other than the default as needed.</inlineHelpText>
+    <label>Product</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>ICB_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SIP</fullName>
+                <default>false</default>
+                <label>SIP</label>
+            </value>
+            <value>
+                <fullName>Data</fullName>
+                <default>false</default>
+                <label>Data</label>
+            </value>
+            <value>
+                <fullName>UC</fullName>
+                <default>false</default>
+                <label>UC</label>
+            </value>
+            <value>
+                <fullName>Traditional Voice</fullName>
+                <default>false</default>
+                <label>Traditional Voice</label>
+            </value>
+            <value>
+                <fullName>Access Service</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Access Service</label>
+            </value>
+            <value>
+                <fullName>Basic Voice Services</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Basic Voice Services</label>
+            </value>
+            <value>
+                <fullName>Broadband Bundle</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Broadband Bundle</label>
+            </value>
+            <value>
+                <fullName>Business Connect Bundles</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Business Connect Bundles</label>
+            </value>
+            <value>
+                <fullName>Cloud Connect</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Cloud Connect</label>
+            </value>
+            <value>
+                <fullName>Cloud Firewall Service</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Cloud Firewall Service</label>
+            </value>
+            <value>
+                <fullName>Collaboration &amp; Messaging</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Collaboration &amp; Messaging</label>
+            </value>
+            <value>
+                <fullName>Colocation Services</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Colocation Services</label>
+            </value>
+            <value>
+                <fullName>Conference Now</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Conference Now</label>
+            </value>
+            <value>
+                <fullName>DDoS Mitigation Service</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DDoS Mitigation Service</label>
+            </value>
+            <value>
+                <fullName>DSL/Broadband</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DSL/Broadband</label>
+            </value>
+            <value>
+                <fullName>DSL/Broadband w/Voice</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DSL/Broadband w/Voice</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Dark Fiber</label>
+            </value>
+            <value>
+                <fullName>Dark Fiber (ICB Required)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Dark Fiber (ICB Required)</label>
+            </value>
+            <value>
+                <fullName>Dedicated DSL/Broadband</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Dedicated DSL/Broadband</label>
+            </value>
+            <value>
+                <fullName>Dedicated HS Internet - Usage-Based</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Dedicated HS Internet - Usage-Based</label>
+            </value>
+            <value>
+                <fullName>Dedicated High-Speed Internet</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Dedicated High-Speed Internet</label>
+            </value>
+            <value>
+                <fullName>Dedicated Internet</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Dedicated Internet</label>
+            </value>
+            <value>
+                <fullName>Dedicated Internet Access</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Dedicated Internet Access</label>
+            </value>
+            <value>
+                <fullName>Dedicated Internet-Usage Based</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Dedicated Internet-Usage Based</label>
+            </value>
+            <value>
+                <fullName>Ethernet Private Line (E-Line)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ethernet Private Line (E-Line)</label>
+            </value>
+            <value>
+                <fullName>Ethernet Services E-LAN</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ethernet Services E-LAN</label>
+            </value>
+            <value>
+                <fullName>Ethernet Services E-LINE</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ethernet Services E-LINE</label>
+            </value>
+            <value>
+                <fullName>Ethernet Virtual Private Line (E-Line)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ethernet Virtual Private Line (E-Line)</label>
+            </value>
+            <value>
+                <fullName>Hosted PBX</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Hosted PBX</label>
+            </value>
+            <value>
+                <fullName>Hosted Voice Services</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Hosted Voice Services</label>
+            </value>
+            <value>
+                <fullName>ISDN/PRI</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ISDN/PRI</label>
+            </value>
+            <value>
+                <fullName>ISP Services</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ISP Services</label>
+            </value>
+            <value>
+                <fullName>ISP Services: Online Data Storage</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ISP Services: Online Data Storage</label>
+            </value>
+            <value>
+                <fullName>ISP Services: Webmail &amp; Web Hosting</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ISP Services: Webmail &amp; Web Hosting</label>
+            </value>
+            <value>
+                <fullName>Integra Cloud Connect</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Integra Cloud Connect</label>
+            </value>
+            <value>
+                <fullName>Integrated T1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Integrated T1</label>
+            </value>
+            <value>
+                <fullName>Legacy Hosted/Managed PBX</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Legacy Hosted/Managed PBX</label>
+            </value>
+            <value>
+                <fullName>Long Distance</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Long Distance</label>
+            </value>
+            <value>
+                <fullName>Managed Premier PBX</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Managed Premier PBX</label>
+            </value>
+            <value>
+                <fullName>Managed Prime/Pro</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Managed Prime/Pro</label>
+            </value>
+            <value>
+                <fullName>Managed SMART Business Package</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Managed SMART Business Package</label>
+            </value>
+            <value>
+                <fullName>Managed Security</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Managed Security</label>
+            </value>
+            <value>
+                <fullName>Market Expansion Line</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Market Expansion Line</label>
+            </value>
+            <value>
+                <fullName>Phone Equipment</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Phone Equipment</label>
+            </value>
+            <value>
+                <fullName>Phone Systems</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Phone Systems</label>
+            </value>
+            <value>
+                <fullName>Private Line</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Private Line</label>
+            </value>
+            <value>
+                <fullName>Product Special</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Product Special</label>
+            </value>
+            <value>
+                <fullName>Product Special (ICB)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Product Special (ICB)</label>
+            </value>
+            <value>
+                <fullName>SIP Solutions</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SIP Solutions</label>
+            </value>
+            <value>
+                <fullName>SIP Solutions with VPN Access</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SIP Solutions with VPN Access</label>
+            </value>
+            <value>
+                <fullName>SOC Services</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SOC Services</label>
+            </value>
+            <value>
+                <fullName>Security Pro Services</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Security Pro Services</label>
+            </value>
+            <value>
+                <fullName>Toll Free</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Toll Free</label>
+            </value>
+            <value>
+                <fullName>UC Cloud Voice</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>UC Cloud Voice</label>
+            </value>
+            <value>
+                <fullName>VPLS Solutions</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>VPLS Solutions</label>
+            </value>
+            <value>
+                <fullName>VPN Solutions</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>VPN Solutions</label>
+            </value>
+            <value>
+                <fullName>Voice T1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Voice T1</label>
+            </value>
+            <value>
+                <fullName>Voicemail</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Voicemail</label>
+            </value>
+            <value>
+                <fullName>Wavelength Services</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Wavelength Services</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Pricing</controllingFieldValue>
+            <controllingFieldValue>Technical</controllingFieldValue>
+            <valueName>SIP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pricing</controllingFieldValue>
+            <controllingFieldValue>Technical</controllingFieldValue>
+            <valueName>Data</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pricing</controllingFieldValue>
+            <controllingFieldValue>Technical</controllingFieldValue>
+            <valueName>UC</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pricing</controllingFieldValue>
+            <controllingFieldValue>Technical</controllingFieldValue>
+            <valueName>Traditional Voice</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

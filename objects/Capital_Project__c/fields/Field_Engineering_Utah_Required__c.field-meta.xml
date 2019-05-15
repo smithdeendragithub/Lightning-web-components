@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Field_Engineering_Utah_Required__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Route to Field Engineering Utah if checkbox marked.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Route to Field Engineering Utah if checkbox marked.</inlineHelpText>
+    <label>Field Engineering-Utah Required</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

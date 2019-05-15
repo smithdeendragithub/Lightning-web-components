@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VPN_Access_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>VPN Access Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>T1 - On Net</fullName>
+                <default>false</default>
+                <label>T1 - On Net</label>
+            </value>
+            <value>
+                <fullName>T1 - EEL</fullName>
+                <default>false</default>
+                <label>T1 - EEL</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) - On Net</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) - On Net</label>
+            </value>
+            <value>
+                <fullName>Metro Ethernet (EoF) - On Net</fullName>
+                <default>false</default>
+                <label>Metro Ethernet (EoF) - On Net</label>
+            </value>
+            <value>
+                <fullName>DSL - On Net</fullName>
+                <default>false</default>
+                <label>DSL - On Net</label>
+            </value>
+            <value>
+                <fullName>Broadband - On Net</fullName>
+                <default>false</default>
+                <label>Broadband - On Net</label>
+            </value>
+            <value>
+                <fullName>DSL Dedicated - On Net</fullName>
+                <default>false</default>
+                <label>DSL Dedicated - On Net</label>
+            </value>
+            <value>
+                <fullName>Broadband Dedicated - On Net</fullName>
+                <default>false</default>
+                <label>Broadband Dedicated - On Net</label>
+            </value>
+            <value>
+                <fullName>High Bandwidth - On Net</fullName>
+                <default>false</default>
+                <label>High Bandwidth - On Net</label>
+            </value>
+            <value>
+                <fullName>Metro Ethernet (EoF): Ethernet over Sonet - On-Net</fullName>
+                <default>false</default>
+                <label>Metro Ethernet (EoF): Ethernet over Sonet - On-Net</label>
+            </value>
+            <value>
+                <fullName>Metro Ethernet (EoF) (On-Net) Ethernet over Sonet - Gig E</fullName>
+                <default>false</default>
+                <label>Metro Ethernet (EoF) (On-Net) Ethernet over Sonet - Gig E</label>
+            </value>
+            <value>
+                <fullName>Metro Ethernet (EoF)  (Off-Net) Ethernet via Solarus</fullName>
+                <default>false</default>
+                <label>Metro Ethernet (EoF)  (Off-Net) Ethernet via Solarus</label>
+            </value>
+            <value>
+                <fullName>Metro Ethernet (EoF) (Off-Net) Ethernet via WIN</fullName>
+                <default>false</default>
+                <label>Metro Ethernet (EoF) (Off-Net) Ethernet via WIN</label>
+            </value>
+            <value>
+                <fullName>Metro Ethernet (EoF) (Off-Net) Ethernet via Zayo</fullName>
+                <default>false</default>
+                <label>Metro Ethernet (EoF) (Off-Net) Ethernet via Zayo</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) Extended  -  XO</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) Extended  -  XO</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) Extended  - GX</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) Extended  - GX</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) Extended - Ethernet GX</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) Extended - Ethernet GX</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) - Extended - QMOE</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) - Extended - QMOE</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC)- Extended - Adv. - Utopia Gold</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC)- Extended - Adv. - Utopia Gold</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) Extended - Fast Ethernet LS Networks</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) Extended - Fast Ethernet LS Networks</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) Extended GigE LS Networks</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) Extended GigE LS Networks</label>
+            </value>
+            <value>
+                <fullName>Metro Ethernet (EoF) (Off-Net) Ethernet via Solarus</fullName>
+                <default>false</default>
+                <label>Metro Ethernet (EoF) (Off-Net) Ethernet via Solarus</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) Extended - QMOE</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) Extended - QMOE</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions (EoC) Extended - Adv. - Utopia Gold</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions (EoC) Extended - Adv. - Utopia Gold</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

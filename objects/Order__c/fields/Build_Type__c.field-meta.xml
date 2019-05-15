@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Build_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Build Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Collo</fullName>
+                <default>false</default>
+                <label>Collo</label>
+            </value>
+            <value>
+                <fullName>Data</fullName>
+                <default>false</default>
+                <label>Data</label>
+            </value>
+            <value>
+                <fullName>DCX/MUX</fullName>
+                <default>false</default>
+                <label>DCX/MUX</label>
+            </value>
+            <value>
+                <fullName>DLC/DSL</fullName>
+                <default>false</default>
+                <label>DLC/DSL</label>
+            </value>
+            <value>
+                <fullName>EoC</fullName>
+                <default>false</default>
+                <label>EoC</label>
+            </value>
+            <value>
+                <fullName>Ethernet Solutions</fullName>
+                <default>false</default>
+                <label>Ethernet Solutions</label>
+            </value>
+            <value>
+                <fullName>Infrastructure</fullName>
+                <default>false</default>
+                <label>Infrastructure</label>
+            </value>
+            <value>
+                <fullName>IT/Telemetry</fullName>
+                <default>false</default>
+                <label>IT/Telemetry</label>
+            </value>
+            <value>
+                <fullName>Metro / Longhaul</fullName>
+                <default>false</default>
+                <label>Metro / Longhaul</label>
+            </value>
+            <value>
+                <fullName>Network Solutions</fullName>
+                <default>false</default>
+                <label>Network Solutions</label>
+            </value>
+            <value>
+                <fullName>Optical</fullName>
+                <default>false</default>
+                <label>Optical</label>
+            </value>
+            <value>
+                <fullName>OSP</fullName>
+                <default>false</default>
+                <label>OSP</label>
+            </value>
+            <value>
+                <fullName>SIP Solutions</fullName>
+                <default>false</default>
+                <label>SIP Solutions</label>
+            </value>
+            <value>
+                <fullName>Voice</fullName>
+                <default>false</default>
+                <label>Voice</label>
+            </value>
+            <value>
+                <fullName>VPN Solutions</fullName>
+                <default>false</default>
+                <label>VPN Solutions</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approved_MRR__c</fullName>
+    <description>The MRR on the opportunity at the time the opportunity moves to a closed/won stage and the credit check notification email is sent</description>
+    <externalId>false</externalId>
+    <inlineHelpText>The MRR on the opportunity at the time the opportunity moves to a closed/won stage and the credit check notification email is sent</inlineHelpText>
+    <label>Credit Approved MRR</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

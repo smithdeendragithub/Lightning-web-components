@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tom_s_Projects</fullName>
+    <columns>NAME</columns>
+    <columns>Project_Lead__c</columns>
+    <columns>User__c</columns>
+    <columns>Business_Process_Analyst__c</columns>
+    <columns>Percent_Complete__c</columns>
+    <columns>Customer_Commit_Date__c</columns>
+    <columns>Combined_Status__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Business_Process_Analyst__c</field>
+        <operation>contains</operation>
+        <value>moorman,tulenchik,baumgartner,cahill,kress,mciver,johnson,dahl,shanley,walker</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,On Hold,Cancelled,Backlog</value>
+    </filters>
+    <label>Business Process Projects</label>
+    <sharedTo>
+        <group>All_Salesforce_Users</group>
+    </sharedTo>
+</ListView>

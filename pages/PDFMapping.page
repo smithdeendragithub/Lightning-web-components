@@ -1,0 +1,151 @@
+<apex:page controller="PDFMapping">
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/jquery-ui.min.js" />
+	<apex:stylesheet value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'css/smoothness/jquery-ui-1.8.16.custom.css')}" />
+	
+	<apex:form >
+		<div id="modalHolder" style="display: none">
+			<p id="modalHtml" style="text-align: center">Please wait...</p>
+			<p id="modalImage" style="text-align: center"><apex:image id="spinnerImage" value="{!$Resource.Spinner}" width="36" height="36" /></p>
+		</div>
+		<apex:pageMessages />
+		<apex:outputPanel id="TablePanel">
+			<apex:pageBlock title="PDF Mappings">
+				<apex:pageBlockButtons >
+		            	<input type="button" onclick="NewClick()" value="New" />
+				</apex:pageBlockButtons>		
+				<apex:pageBlockTable value="{!existingMappings}" var="thisMapping">
+					<apex:column ><a href="" onclick="EditMapping('{!thisMapping}')">Edit</a> | <a href="" onclick="DeleteMapping('{!thisMapping}')">Delete</a></apex:column>
+					<apex:column headerValue="Name" value="{!thisMapping.Name}"/>
+					<apex:column headerValue="SPC Product" value="{!thisMapping.SPC_Product__c}"/>
+					<apex:column headerValue="Sales Channel" value="{!thisMapping.Sales_Channel__c}"/>
+					<apex:column headerValue="Selected PDFs" value="{!thisMapping.Selected_PDFS__c}"/>
+				</apex:pageBlockTable>
+			</apex:pageBlock> 
+			
+						
+		
+		</apex:outputPanel>
+		
+		
+		<apex:outputPanel id="EditPanel" style="display:none;">
+			<apex:pageBlock >
+				<apex:pageBlockSection title="Details" columns="1">
+					<apex:inputField value="{!SelectedPDF.Name}" id="name" label="Name"></apex:inputField>
+					<apex:inputField value="{!SelectedPDF.SPC_Product__c}" id="spcProduct" label="Product"></apex:inputField>
+					<apex:inputField value="{!SelectedPDF.Sales_Channel__c}" id="salesChannel" label="Sales Channel"></apex:inputField>
+					<apex:selectCheckboxes layout="pageDirection" id="checkPDFs" legendText="Available PDFs" >
+						<apex:selectOptions value="{!AvailablePDFS}" />
+					</apex:selectCheckboxes>
+				</apex:pageBlockSection>
+				<apex:pageBlockButtons >
+	            	<apex:commandButton value="Save" onclick="SaveClick()"/>
+					<apex:commandButton value="Cancel" onclick="EndEdit();"/>
+	        	</apex:pageBlockButtons>
+			</apex:pageBlock>	
+			
+	    	<script type="text/javascript">
+			var j$ = jQuery.noConflict();
+			 j$("#modalHolder").dialog(
+                { modal: true, 
+                autoOpen: false,
+                width: 200,
+                title: 'Updating...', 
+                resizable: false,
+                draggable: false,
+                closeOnEscape: false,
+                open: function(event, ui) { j$(".ui-dialog-titlebar-close").hide() } }
+            );
+			
+			function CloseDialog(){
+	    		j$("#modalHolder").dialog('close');
+			}
+		
+			function ShowTimer(){
+		    	j$("#modalHolder").dialog('open');
+			}
+			
+			function EditMapping(item){
+				clearChecks();
+				gather(item);
+			}
+				
+			function DeleteMapping(item){
+				ShowTimer();
+				DeleteSelected(item);
+			}
+				
+			function EndEdit(){
+				j$("[id$='EditPanel']").hide();
+			}
+			
+			function NewClick(){
+				j$("[id$='spcProduct']").val('');
+				j$("[id$='salesChannel']").val('');
+				clearChecks();
+				NewMap();
+			}
+			
+			function clearChecks(){
+				j$('input:checked').each(function() {
+						j$(this).attr("checked", false);
+				});
+			}
+				
+			function SaveClick(){
+				ShowTimer();
+				var sPDFS = '';
+				j$('input:checked').each(function() {
+					sPDFS = sPDFS + j$("label[for='" + j$(this).attr('id') + "']").text() + ',';
+				});
+				SaveData(sPDFS);
+			}
+				
+			function GatherDataComplete(){
+				if(!j$("[id$='EditPanel']").is(':visible'))
+					j$("[id$='EditPanel']").show();
+				var stringJS = '{!JSENCODE(SelectedPDFMap)}';
+		    	var selectedPDF = j$.parseJSON(stringJS);
+				
+				j$.each(selectedPDF, function(index,element) {
+					if(index == 'Selected_PDFS__c'){
+						if(element != null){
+							var pdfs = element.split(',');
+							for(var s in pdfs){
+								if(pdfs[s] != null && pdfs[s] != ',' && pdfs[s] != ''){
+									j$("label:contains('" + pdfs[s] +"')").each(function(){
+										if(j$(this).text().trim() == pdfs[s]){
+											j$(this).click();
+										}
+									});
+								}
+							}
+							j$('label:contains("' + element +  '")').each(function(){
+								if(j$(this).text().trim() == element){
+									j$(this).prev().attr('checked', true);
+								}
+							});
+				
+						}
+					}
+				});
+			}
+			</script> 
+
+		</apex:outputPanel>
+		<apex:actionFunction name="gather" action="{!GatherData}" rerender="EditPanel" oncomplete="GatherDataComplete();">
+			<apex:param name="SelectedID" assignTo="{!SelectedID}" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction name="DeleteSelected" action="{!DeleteSelected}" rerender="TablePanel" oncomplete="CloseDialog();">
+			<apex:param name="SelectedID" assignTo="{!SelectedID}" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction name="SaveData" action="{!SaveData}" rerender="EditPanel,TablePanel" oncomplete="CloseDialog();">
+			<apex:param name="ChoosenPDFS" assignTo="{!ChoosenPDFS}" value="" />
+		</apex:actionFunction>
+		<apex:actionFunction name="NewMap" action="{!NewMapping}" rerender="EditPanel" oncomplete="GatherDataComplete();">
+		</apex:actionFunction>
+
+	</apex:form>
+	
+	
+</apex:page>

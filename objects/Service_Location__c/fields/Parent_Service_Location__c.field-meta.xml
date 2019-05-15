@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parent_Service_Location__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>Parent Service Location</label>
+    <lookupFilter>
+        <active>true</active>
+        <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+        <filterItems>
+            <field>$Source.Account__c</field>
+            <operation>equals</operation>
+            <valueField>Service_Location__c.Account__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>Service_Location__c.Parent_Service_Location__c</field>
+            <operation>equals</operation>
+            <value/>
+        </filterItems>
+        <filterItems>
+            <field>Service_Location__c.Parent_Service_Location__r.ICC_Subscriber_ID__c</field>
+            <operation>equals</operation>
+            <valueField>Service_Location__c.Account__r.ICC_Account_Number__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Service_Location__c</referenceTo>
+    <relationshipLabel>Service Locations</relationshipLabel>
+    <relationshipName>Service_Locations</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

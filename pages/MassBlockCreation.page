@@ -1,0 +1,116 @@
+<apex:page controller="MassBlockCreation" showheader="true" tabstyle="Workstep__c">
+    <apex:stylesheet value="{!$Resource.SubOrderWorkstepsStylesheet}" />
+
+    <input id="hiddenElementId" type="hidden" />
+    <script type="text/javascript">
+		//window.onload = setFocus();
+		function setFocus() {
+			document.getElementById("hiddenElementId").focus();
+		}
+    </script>
+    <apex:form >
+        <apex:outputpanel id="mainPage">
+            <apex:pagemessages />
+
+            <apex:pageblock >
+                <apex:pageblockbuttons >
+                    <apex:commandbutton action="{!QuickSave}" value="Create" rerender="mainPage" />
+                    <apex:commandbutton action="{!ExitSave}" value="Create & Exit" rerender="mainPage" />
+                    <apex:commandbutton action="{!Cancel}" value="Cancel" style="width:130px;" />
+                </apex:pageblockbuttons>
+
+                <apex:pageblocksection columns="2" id="filterSection">
+                    <apex:inputfield value="{!dummyWSI.Risk_Type__c}">
+                        <apex:actionsupport event="onchange" rerender="filterSection" />
+                    </apex:inputfield>
+                    <apex:inputfield value="{!dummyWSI.Reason__c}" />
+                    <apex:pageblocksectionitem rendered="{!dummyWSI.Risk_Type__c == 'Carrier'}">
+                        Carrier
+                        <apex:outputpanel >
+                            <table>
+                                <tr>
+                                    <td><div style="width:3px; height:22px; background-color:#CC0000; display:inline-block;"></div></td>
+                                    <td>
+                                        <apex:inputfield value="{!dummyWSI.Carrier__c}" id="CarrierField" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </apex:outputpanel>
+                    </apex:pageblocksectionitem>
+                    <apex:outputtext rendered="{!dummyWSI.Risk_Type__c == 'Carrier'}" />
+                    <apex:inputfield value="{!dummyWSI.Reason_Subcategory__c}" />
+                    <apex:inputfield value="{!dummyWSI.Expected_Follow_Up_Date__c}" />
+                    <apex:inputfield value="{!dummyWSI.Comments__c}" style="width:500px" />
+                    <apex:inputfield value="{!dummyWSI.OwnerId}" required="false" />
+                    &nbsp;
+                    <apex:outputpanel />
+                </apex:pageblocksection>
+                <div style="height:300px; overflow-y: scroll; overflow-x: scroll;">
+                    <apex:pageblock id="worksteps_list">
+                        <apex:pageblocktable value="{!wsWrapperList}" var="item">
+                            <apex:column style="width:2%;">
+                                <apex:facet name="header">
+                                    <input type="checkbox" checkstyle="toSelect" onclick="checkAll(this);" />
+                                </apex:facet>
+                                <apex:inputcheckbox styleclass="toSelect" value="{!item.isSelected}" />
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">SubOrder</apex:facet>
+                                <apex:outputlink value="/{!item.ws.Sub_Order__r.Id}" target="_blank">{!item.ws.Sub_Order__r.Name}</apex:outputlink>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">External Order</apex:facet>
+                                {!item.ws.Sub_Order__r.External_Order__r.Name}
+                            </apex:column>
+                            <apex:column value="{!item.ws.Name}">
+                                <apex:facet name="header">
+                                    <apex:commandlink action="{! sortResults}" rerender="worksteps_list">
+                                        <apex:param assignto="{!sortColumn}" value="Name" />
+                                        Workstep Name
+                                    </apex:commandlink>
+                                </apex:facet>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">Service Location</apex:facet>
+                                {!item.ws.Sub_Order__r.Service_Location__r.Name}
+                            </apex:column>
+                            <apex:column value="{!item.ws.Status__c}">
+                                <apex:facet name="header">
+                                    <apex:commandlink action="{! sortResults}" rerender="worksteps_list">
+                                        <apex:param assignto="{!sortColumn}" value="Status__c" />
+                                            Status
+                                    </apex:commandlink>
+                                </apex:facet>
+                            </apex:column>
+                            <apex:column >
+                                <apex:facet name="header">External Products</apex:facet>
+                                {!item.ws.Sub_Order__r.External_Products__c}
+                            </apex:column>
+                            <apex:column value="{!item.ws.OwnerId}">
+                                <apex:facet name="header">
+                                    <apex:commandlink action="{!sortResults}" rerender="worksteps_list">
+                                        <apex:param assignto="{!sortColumn}" value="OwnerId" />
+                                        Owner
+                                    </apex:commandlink>
+                                </apex:facet>
+                            </apex:column>
+                        </apex:pageblocktable>
+                    </apex:pageblock>
+                </div>
+            </apex:pageblock>
+        </apex:outputpanel>
+    </apex:form>
+    <style>
+        span.dateFormat {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+		function checkAll(cb) {
+			var cbs = document.getElementsByClassName(cb.getAttribute('checkStyle'));
+			for (var i = 0; i < cbs.length; i++) {
+				cbs[i].checked = cb.checked;
+			}
+		}
+    </script>
+</apex:page>

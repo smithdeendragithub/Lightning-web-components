@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NonBuildSubOrderRequiredFields</fullName>
+    <active>true</active>
+    <errorConditionFormula>Order__r.RecordType.DeveloperName != &#39;Build_Order&#39; &amp;&amp; ISNULL(Service_Location__c)</errorConditionFormula>
+    <errorDisplayField>Service_Location__c</errorDisplayField>
+    <errorMessage>Service location must be specified on sub-orders that do not belong to a build order.</errorMessage>
+</ValidationRule>

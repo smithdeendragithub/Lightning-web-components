@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Estimated_Term_Date__c</fullName>
+    <description>If Notice Given populated, enter estimated term date. For reporting anticipated timing of lost revenue.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If notice has been given. What&#39;s the estimated termination date.
+If no notice given, enter the soonest contract end date with relevant MRR.</inlineHelpText>
+    <label>Estimated Churn Completed Month</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

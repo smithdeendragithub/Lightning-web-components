@@ -1,0 +1,784 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ICB_Technical_Reason__c</fullName>
+    <description>Dependent picklist based on the Product picklist field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Required field for all Technical ICBs.  Select the reason you need an ICB in order to sell this product.</inlineHelpText>
+    <label>ICB Technical Reason</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>&gt; 4G EVC or UNI/NNI Access</fullName>
+                <default>false</default>
+                <label>&gt; 4G EVC or UNI/NNI Access</label>
+            </value>
+            <value>
+                <fullName>2 Fiber Protection</fullName>
+                <default>false</default>
+                <label>2 Fiber Protection</label>
+            </value>
+            <value>
+                <fullName>Any Bandwidth &gt;500 Mb</fullName>
+                <default>false</default>
+                <label>Any Bandwidth &gt;500 Mb</label>
+            </value>
+            <value>
+                <fullName>Any Request for Multi-Cast</fullName>
+                <default>false</default>
+                <label>Any Request for Multi-Cast</label>
+            </value>
+            <value>
+                <fullName>Auto Mitigation</fullName>
+                <default>false</default>
+                <label>Auto Mitigation</label>
+            </value>
+            <value>
+                <fullName>CALNET 3: Security Standards</fullName>
+                <default>false</default>
+                <label>CALNET 3: Security Standards</label>
+            </value>
+            <value>
+                <fullName>CFS over E-LAN</fullName>
+                <default>false</default>
+                <label>CFS over E-LAN</label>
+            </value>
+            <value>
+                <fullName>Customer access to Netflow</fullName>
+                <default>false</default>
+                <label>Customer access to Netflow</label>
+            </value>
+            <value>
+                <fullName>Customer-Provided Router</fullName>
+                <default>false</default>
+                <label>Customer-Provided Router</label>
+            </value>
+            <value>
+                <fullName>Customer requires more than 15 POTS per location or more than 50 POTS across multiple locations.</fullName>
+                <default>false</default>
+                <label>Customer requires more than 15 POTS per location or more than 50 POTS across multiple locations.</label>
+            </value>
+            <value>
+                <fullName>Data Center Resale</fullName>
+                <default>false</default>
+                <label>Data Center Resale</label>
+            </value>
+            <value>
+                <fullName>Development Required</fullName>
+                <default>false</default>
+                <label>Development Required</label>
+            </value>
+            <value>
+                <fullName>EoC &gt; 8-Pair Bonding</fullName>
+                <default>false</default>
+                <label>EoC &gt; 8-Pair Bonding</label>
+            </value>
+            <value>
+                <fullName>EoC Other:  List Reason in Description</fullName>
+                <default>false</default>
+                <label>EoC Other:  List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>EoF Dedicated / SONET-protected Access</fullName>
+                <default>false</default>
+                <label>EoF Dedicated / SONET-protected Access</label>
+            </value>
+            <value>
+                <fullName>EoF Dedicated Access</fullName>
+                <default>false</default>
+                <label>EoF Dedicated Access</label>
+            </value>
+            <value>
+                <fullName>EoF Non-standard circuit routing / Diverse AR Termination</fullName>
+                <default>false</default>
+                <label>EoF Non-standard circuit routing / Diverse AR Termination</label>
+            </value>
+            <value>
+                <fullName>EoF Other:  List Reason in Description</fullName>
+                <default>false</default>
+                <label>EoF Other:  List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>EoTDM: Ethernet over N x DS3 access</fullName>
+                <default>false</default>
+                <label>EoTDM: Ethernet over N x DS3 access</label>
+            </value>
+            <value>
+                <fullName>EoTDM Other:  List Reason in Description</fullName>
+                <default>false</default>
+                <label>EoTDM Other:  List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>Extended Other:  List Reason in Description</fullName>
+                <default>false</default>
+                <label>Extended Other:  List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>International VPN Node</fullName>
+                <default>false</default>
+                <label>International VPN Node</label>
+            </value>
+            <value>
+                <fullName>LAG Requirements on EVPL Hubs or E-LAN nodes</fullName>
+                <default>false</default>
+                <label>LAG Requirements on EVPL Hubs or E-LAN nodes</label>
+            </value>
+            <value>
+                <fullName>Manual Toll-Free Re-Direction Requested</fullName>
+                <default>false</default>
+                <label>Manual Toll-Free Re-Direction Requested</label>
+            </value>
+            <value>
+                <fullName>Market Expansion Line Services</fullName>
+                <default>false</default>
+                <label>Market Expansion Line Services</label>
+            </value>
+            <value>
+                <fullName>More than 20 Active Mitigations per Month</fullName>
+                <default>false</default>
+                <label>More than 20 Active Mitigations per Month</label>
+            </value>
+            <value>
+                <fullName>More than 20 Reactive Mitigations</fullName>
+                <default>false</default>
+                <label>More than 20 Reactive Mitigations</label>
+            </value>
+            <value>
+                <fullName>Non-Standard Bandwidth</fullName>
+                <default>false</default>
+                <label>Non-Standard Bandwidth</label>
+            </value>
+            <value>
+                <fullName>Non-Standard CFS Configuration</fullName>
+                <default>false</default>
+                <label>Non-Standard CFS Configuration</label>
+            </value>
+            <value>
+                <fullName>Non-Standard circuit routing/Diverse AR Termination</fullName>
+                <default>false</default>
+                <label>Non-Standard circuit routing/Diverse AR Termination</label>
+            </value>
+            <value>
+                <fullName>Non-Standard Cloud Service Provider</fullName>
+                <default>false</default>
+                <label>Non-Standard Cloud Service Provider</label>
+            </value>
+            <value>
+                <fullName>Non-Standard Configuration</fullName>
+                <default>false</default>
+                <label>Non-Standard Configuration</label>
+            </value>
+            <value>
+                <fullName>Non-Standard Protocol</fullName>
+                <default>false</default>
+                <label>Non-Standard Protocol</label>
+            </value>
+            <value>
+                <fullName>Non-Standard UCCV Configuration</fullName>
+                <default>false</default>
+                <label>Non-Standard UCCV Configuration</label>
+            </value>
+            <value>
+                <fullName>Other:  List Reason in Description</fullName>
+                <default>false</default>
+                <label>Other:  List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>Other Firewall Feature (Describe in Comments)</fullName>
+                <default>false</default>
+                <label>Other Firewall Feature (Describe in Comments)</label>
+            </value>
+            <value>
+                <fullName>Outside the scope of Current Product Offerings</fullName>
+                <default>false</default>
+                <label>Outside the scope of Current Product Offerings</label>
+            </value>
+            <value>
+                <fullName>Pre- GA: Ethernet over N x DS3 access</fullName>
+                <default>false</default>
+                <label>Pre- GA: Ethernet over N x DS3 access</label>
+            </value>
+            <value>
+                <fullName>Primary Customer Site is Off-Net</fullName>
+                <default>false</default>
+                <label>Primary Customer Site is Off-Net</label>
+            </value>
+            <value>
+                <fullName>Prospect&#39;s call patterns exceed Short Call Duration threshold:a) 10% or more calls at 6 seconds or less or b) average length of calls at 2 minutes or less</fullName>
+                <default>false</default>
+                <label>Prospect&#39;s call patterns exceed Short Call Duration threshold:a) 10% or more calls at 6 seconds or less or b) average length of calls at 2 minutes or less</label>
+            </value>
+            <value>
+                <fullName>Request for non-Standard billing increments, rounding, overages</fullName>
+                <default>false</default>
+                <label>Request for non-Standard billing increments, rounding, overages</label>
+            </value>
+            <value>
+                <fullName>Request for PRI or Digital Trunk  Channels &gt; 92</fullName>
+                <default>false</default>
+                <label>Request for PRI or Digital Trunk  Channels &gt; 92</label>
+            </value>
+            <value>
+                <fullName>Requests with &gt; 2 Million Minutes/Month</fullName>
+                <default>false</default>
+                <label>Requests with &gt; 2 Million Minutes/Month</label>
+            </value>
+            <value>
+                <fullName>Request with &gt;250 SIP Trunking Sessions</fullName>
+                <default>false</default>
+                <label>Request with &gt;250 SIP Trunking Sessions</label>
+            </value>
+            <value>
+                <fullName>Security Zone</fullName>
+                <default>false</default>
+                <label>Security Zone</label>
+            </value>
+            <value>
+                <fullName>Service via 3rd Party Wavelength Service</fullName>
+                <default>false</default>
+                <label>Service via 3rd Party Wavelength Service</label>
+            </value>
+            <value>
+                <fullName>SIP Trunking:  IP-PBX Certification</fullName>
+                <default>false</default>
+                <label>SIP Trunking:  IP-PBX Certification</label>
+            </value>
+            <value>
+                <fullName>SIP Trunking &amp; Internet: Single Handoff to Customer</fullName>
+                <default>false</default>
+                <label>SIP Trunking &amp; Internet: Single Handoff to Customer</label>
+            </value>
+            <value>
+                <fullName>Teleworker &gt; 4 Lines Per Site</fullName>
+                <default>false</default>
+                <label>Teleworker &gt; 4 Lines Per Site</label>
+            </value>
+            <value>
+                <fullName>Usage-Based Internet</fullName>
+                <default>false</default>
+                <label>Usage-Based Internet</label>
+            </value>
+            <value>
+                <fullName>VPN Wireless Backup needed for Service greater than 10 Mbps</fullName>
+                <default>false</default>
+                <label>VPN Wireless Backup needed for Service greater than 10 Mbps</label>
+            </value>
+            <value>
+                <fullName>POE AC Plug (Teleworker Phone Only)</fullName>
+                <default>false</default>
+                <label>POE AC Plug (Teleworker Phone Only)</label>
+            </value>
+            <value>
+                <fullName>Other:  List Reason in Description (Requires Data Center &amp; Circuit Design)</fullName>
+                <default>false</default>
+                <label>Other:  List Reason in Description (Requires Data Center &amp; Circuit Design)</label>
+            </value>
+            <value>
+                <fullName>10 G UNI</fullName>
+                <default>false</default>
+                <label>10 G UNI</label>
+            </value>
+            <value>
+                <fullName>10-Line Minimum per Site not met</fullName>
+                <default>false</default>
+                <label>10-Line Minimum per Site not met</label>
+            </value>
+            <value>
+                <fullName>2-Factor Authentification</fullName>
+                <default>false</default>
+                <label>2-Factor Authentification</label>
+            </value>
+            <value>
+                <fullName>2-Fiber Handoff with Path Protection</fullName>
+                <default>false</default>
+                <label>2-Fiber Handoff with Path Protection</label>
+            </value>
+            <value>
+                <fullName>4-Fiber Handoff with Path Protection</fullName>
+                <default>false</default>
+                <label>4-Fiber Handoff with Path Protection</label>
+            </value>
+            <value>
+                <fullName>&gt; 1 Gbps to Non-Standard Data Center</fullName>
+                <default>false</default>
+                <label>&gt; 1 Gbps to Non-Standard Data Center</label>
+            </value>
+            <value>
+                <fullName>&gt; 1Gbps EVC</fullName>
+                <default>false</default>
+                <label>&gt; 1Gbps EVC</label>
+            </value>
+            <value>
+                <fullName>&gt; 800 Mbps CIR</fullName>
+                <default>false</default>
+                <label>&gt; 800 Mbps CIR</label>
+            </value>
+            <value>
+                <fullName>Any (non-standard) Customer-Provided Phones</fullName>
+                <default>false</default>
+                <label>Any (non-standard) Customer-Provided Phones</label>
+            </value>
+            <value>
+                <fullName>Any (non-standard) Customer-Purchased Phones</fullName>
+                <default>false</default>
+                <label>Any (non-standard) Customer-Purchased Phones</label>
+            </value>
+            <value>
+                <fullName>Any (non-standard) Customer-Purchased and Provided Phones</fullName>
+                <default>false</default>
+                <label>Any (non-standard) Customer-Purchased and Provided Phones</label>
+            </value>
+            <value>
+                <fullName>Any Customer-Provided Phones</fullName>
+                <default>false</default>
+                <label>Any Customer-Provided Phones</label>
+            </value>
+            <value>
+                <fullName>Any Dark Fiber Request</fullName>
+                <default>false</default>
+                <label>Any Dark Fiber Request</label>
+            </value>
+            <value>
+                <fullName>Any IPv6 Request</fullName>
+                <default>false</default>
+                <label>Any IPv6 Request</label>
+            </value>
+            <value>
+                <fullName>Any New or Existing Customer Request for Digital Trunking / CAS</fullName>
+                <default>false</default>
+                <label>Any New or Existing Customer Request for Digital Trunking / CAS</label>
+            </value>
+            <value>
+                <fullName>Any Off-Net LD request that is not associated with resale lines</fullName>
+                <default>false</default>
+                <label>Any Off-Net LD request that is not associated with resale lines</label>
+            </value>
+            <value>
+                <fullName>Any customer requesting more than 15 voicemail boxes per location or more than 50 over multiple locations.</fullName>
+                <default>false</default>
+                <label>Any customer requesting more than 15 voicemail boxes per location or more than 50 over multiple locations.</label>
+            </value>
+            <value>
+                <fullName>Any request for &gt; 90 Mbps Data Bandwidth</fullName>
+                <default>false</default>
+                <label>Any request for &gt; 90 Mbps Data Bandwidth</label>
+            </value>
+            <value>
+                <fullName>Any requests for grandfathered products including ISDN BRI &amp; Analog Trunks</fullName>
+                <default>false</default>
+                <label>Any requests for grandfathered products including ISDN BRI &amp; Analog Trunks</label>
+            </value>
+            <value>
+                <fullName>Any telecom customer that requests Integra to be their LD carrier.</fullName>
+                <default>false</default>
+                <label>Any telecom customer that requests Integra to be their LD carrier.</label>
+            </value>
+            <value>
+                <fullName>BC/DR Failover</fullName>
+                <default>false</default>
+                <label>BC/DR Failover</label>
+            </value>
+            <value>
+                <fullName>BGP Routing on any Ethernet or Bonded T1</fullName>
+                <default>false</default>
+                <label>BGP Routing on any Ethernet or Bonded T1</label>
+            </value>
+            <value>
+                <fullName>CFS to Existing Customer on non-Carrier Ethernet Capable NNI</fullName>
+                <default>false</default>
+                <label>CFS to Existing Customer on non-Carrier Ethernet Capable NNI</label>
+            </value>
+            <value>
+                <fullName>Capacity Verification &gt;1G Bandwidth</fullName>
+                <default>false</default>
+                <label>Capacity Verification &gt;1G Bandwidth</label>
+            </value>
+            <value>
+                <fullName>Cloud Connection to AWS</fullName>
+                <default>false</default>
+                <label>Cloud Connection to AWS</label>
+            </value>
+            <value>
+                <fullName>Compliance (PCI, HIPAA, etc)</fullName>
+                <default>false</default>
+                <label>Compliance (PCI, HIPAA, etc)</label>
+            </value>
+            <value>
+                <fullName>Cross Connect to Alternative Service Provider</fullName>
+                <default>false</default>
+                <label>Cross Connect to Alternative Service Provider</label>
+            </value>
+            <value>
+                <fullName>Customer access to CPE data &amp; config that exceeds what is available via iCare.</fullName>
+                <default>false</default>
+                <label>Customer access to CPE data &amp; config that exceeds what is available via iCare.</label>
+            </value>
+            <value>
+                <fullName>Customer&#39;s IP-PBX:  PBX not on Approved List</fullName>
+                <default>false</default>
+                <label>Customer&#39;s IP-PBX:  PBX not on Approved List</label>
+            </value>
+            <value>
+                <fullName>Customer&#39;s IP-PBX:  Version not on Approved List</fullName>
+                <default>false</default>
+                <label>Customer&#39;s IP-PBX:  Version not on Approved List</label>
+            </value>
+            <value>
+                <fullName>Customer-Provided Firewall:  Single LAN Drop per user</fullName>
+                <default>false</default>
+                <label>Customer-Provided Firewall:  Single LAN Drop per user</label>
+            </value>
+            <value>
+                <fullName>Customer-Provided POE Switch</fullName>
+                <default>false</default>
+                <label>Customer-Provided POE Switch</label>
+            </value>
+            <value>
+                <fullName>Direct Connection between 2 Metro Sites (bypassing Integra Hub)</fullName>
+                <default>false</default>
+                <label>Direct Connection between 2 Metro Sites (bypassing Integra Hub)</label>
+            </value>
+            <value>
+                <fullName>EoC Other: List Reason in Description</fullName>
+                <default>false</default>
+                <label>EoC Other: List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>EoF &gt; 10 Gb</fullName>
+                <default>false</default>
+                <label>EoF &gt; 10 Gb</label>
+            </value>
+            <value>
+                <fullName>EoF &gt; 200 Mb</fullName>
+                <default>false</default>
+                <label>EoF &gt; 200 Mb</label>
+            </value>
+            <value>
+                <fullName>EoF Other: List Reason in Description</fullName>
+                <default>false</default>
+                <label>EoF Other: List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>EoTDM Access</fullName>
+                <default>false</default>
+                <label>EoTDM Access</label>
+            </value>
+            <value>
+                <fullName>EoTDM Other: List Reason in Description</fullName>
+                <default>false</default>
+                <label>EoTDM Other: List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>Equipment Protection:  Port, Chassis, or Card</fullName>
+                <default>false</default>
+                <label>Equipment Protection:  Port, Chassis, or Card</label>
+            </value>
+            <value>
+                <fullName>Exceeds standard Customer handoffs or Access Bandwidth</fullName>
+                <default>false</default>
+                <label>Exceeds standard Customer handoffs or Access Bandwidth</label>
+            </value>
+            <value>
+                <fullName>Extended Other: List Reason in Description</fullName>
+                <default>false</default>
+                <label>Extended Other: List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>Extended SIP Trunking/PRI/BBL w/out VPN (off net physical prem with no Central PBX)”</fullName>
+                <default>false</default>
+                <label>Extended SIP Trunking/PRI/BBL w/out VPN (off net physical prem with no Central PBX)”</label>
+            </value>
+            <value>
+                <fullName>Firewall provided on 3rd Party DIA (VPN)</fullName>
+                <default>false</default>
+                <label>Firewall provided on 3rd Party DIA (VPN)</label>
+            </value>
+            <value>
+                <fullName>Handoff Exceeds 3 PRI at 1 location or 5 PRI across multiple locations</fullName>
+                <default>false</default>
+                <label>Handoff Exceeds 3 PRI at 1 location or 5 PRI across multiple locations</label>
+            </value>
+            <value>
+                <fullName>Hosted Voice Service w/ VPN</fullName>
+                <default>false</default>
+                <label>Hosted Voice Service w/ VPN</label>
+            </value>
+            <value>
+                <fullName>Hosted Voice Service with Cloud Firewall Service provided by Integra</fullName>
+                <default>false</default>
+                <label>Hosted Voice Service with Cloud Firewall Service provided by Integra</label>
+            </value>
+            <value>
+                <fullName>IPv4 &gt; /24 (256 IP addresses)</fullName>
+                <default>false</default>
+                <label>IPv4 &gt; /24 (256 IP addresses)</label>
+            </value>
+            <value>
+                <fullName>Incremental TNs/DIDs</fullName>
+                <default>false</default>
+                <label>Incremental TNs/DIDs</label>
+            </value>
+            <value>
+                <fullName>Integra-Managed BGP Failover</fullName>
+                <default>false</default>
+                <label>Integra-Managed BGP Failover</label>
+            </value>
+            <value>
+                <fullName>Integra-provided Wireless Access Points</fullName>
+                <default>false</default>
+                <label>Integra-provided Wireless Access Points</label>
+            </value>
+            <value>
+                <fullName>Internet over E-LAN</fullName>
+                <default>false</default>
+                <label>Internet over E-LAN</label>
+            </value>
+            <value>
+                <fullName>LAG Requirements on any E-LAN nodes</fullName>
+                <default>false</default>
+                <label>LAG Requirements on any E-LAN nodes</label>
+            </value>
+            <value>
+                <fullName>Long-Reach Optics SFP Requirement (ZX or LR)</fullName>
+                <default>false</default>
+                <label>Long-Reach Optics SFP Requirement (ZX or LR)</label>
+            </value>
+            <value>
+                <fullName>Minimum Number of units not met</fullName>
+                <default>false</default>
+                <label>Minimum Number of units not met</label>
+            </value>
+            <value>
+                <fullName>Multi-Mode Fiber Handoff</fullName>
+                <default>false</default>
+                <label>Multi-Mode Fiber Handoff</label>
+            </value>
+            <value>
+                <fullName>Multiple Product Handoffs for Single Customer behind E-NNI (2-port 3400)</fullName>
+                <default>false</default>
+                <label>Multiple Product Handoffs for Single Customer behind E-NNI (2-port 3400)</label>
+            </value>
+            <value>
+                <fullName>Multiple Services over a Single UNI</fullName>
+                <default>false</default>
+                <label>Multiple Services over a Single UNI</label>
+            </value>
+            <value>
+                <fullName>Non-Certified ENNI Provider</fullName>
+                <default>false</default>
+                <label>Non-Certified ENNI Provider</label>
+            </value>
+            <value>
+                <fullName>Non-Fiber Handoff</fullName>
+                <default>false</default>
+                <label>Non-Fiber Handoff</label>
+            </value>
+            <value>
+                <fullName>Non-Standard Configuration requested</fullName>
+                <default>false</default>
+                <label>Non-Standard Configuration requested</label>
+            </value>
+            <value>
+                <fullName>Non-Standard Contract Term:  24 month</fullName>
+                <default>false</default>
+                <label>Non-Standard Contract Term:  24 month</label>
+            </value>
+            <value>
+                <fullName>Non-Standard IP-PBX</fullName>
+                <default>false</default>
+                <label>Non-Standard IP-PBX</label>
+            </value>
+            <value>
+                <fullName>Non-Standard Pricing - Network vs. Product</fullName>
+                <default>false</default>
+                <label>Non-Standard Pricing - Network vs. Product</label>
+            </value>
+            <value>
+                <fullName>Non-Standard SLA Term</fullName>
+                <default>false</default>
+                <label>Non-Standard SLA Term</label>
+            </value>
+            <value>
+                <fullName>Non-Standard SLA Term:  Latency Requirement</fullName>
+                <default>false</default>
+                <label>Non-Standard SLA Term:  Latency Requirement</label>
+            </value>
+            <value>
+                <fullName>Non-service multiplexing on EP-LAN configurations</fullName>
+                <default>false</default>
+                <label>Non-service multiplexing on EP-LAN configurations</label>
+            </value>
+            <value>
+                <fullName>Non-standard QoS Template</fullName>
+                <default>false</default>
+                <label>Non-standard QoS Template</label>
+            </value>
+            <value>
+                <fullName>Non-standard circuit routing / Diverse AR Termination</fullName>
+                <default>false</default>
+                <label>Non-standard circuit routing / Diverse AR Termination</label>
+            </value>
+            <value>
+                <fullName>Other Access Method (Describe in Comments)</fullName>
+                <default>false</default>
+                <label>Other Access Method (Describe in Comments)</label>
+            </value>
+            <value>
+                <fullName>Other: List Reason in Description</fullName>
+                <default>false</default>
+                <label>Other: List Reason in Description</label>
+            </value>
+            <value>
+                <fullName>PBX/IP PBX Not Network Certified</fullName>
+                <default>false</default>
+                <label>PBX/IP PBX Not Network Certified</label>
+            </value>
+            <value>
+                <fullName>PRE-GA:  E-LAN Request</fullName>
+                <default>false</default>
+                <label>PRE-GA:  E-LAN Request</label>
+            </value>
+            <value>
+                <fullName>Pre- GA: Dark Fiber</fullName>
+                <default>false</default>
+                <label>Pre- GA: Dark Fiber</label>
+            </value>
+            <value>
+                <fullName>Private Dedicated Network (Ciena, Fujitsu)</fullName>
+                <default>false</default>
+                <label>Private Dedicated Network (Ciena, Fujitsu)</label>
+            </value>
+            <value>
+                <fullName>Product Special (ICB)</fullName>
+                <default>false</default>
+                <label>Product Special (ICB)</label>
+            </value>
+            <value>
+                <fullName>Remote Location &amp; Mkt Expan. DID Svc &gt;&gt; Exceeds 4 Treatment Groups per T1 equivalent</fullName>
+                <default>false</default>
+                <label>Remote Location &amp; Mkt Expan. DID Svc &gt;&gt; Exceeds 4 Treatment Groups per T1 equivalent</label>
+            </value>
+            <value>
+                <fullName>Request SIP Bandwidth &gt; 32 Channels (5Mb)</fullName>
+                <default>false</default>
+                <label>Request SIP Bandwidth &gt; 32 Channels (5Mb)</label>
+            </value>
+            <value>
+                <fullName>Request for &gt; 100 TF TNs</fullName>
+                <default>false</default>
+                <label>Request for &gt; 100 TF TNs</label>
+            </value>
+            <value>
+                <fullName>Request for &gt; 200 HV Lines</fullName>
+                <default>false</default>
+                <label>Request for &gt; 200 HV Lines</label>
+            </value>
+            <value>
+                <fullName>Request for Digital Trunk  Channels &gt; 96</fullName>
+                <default>false</default>
+                <label>Request for Digital Trunk  Channels &gt; 96</label>
+            </value>
+            <value>
+                <fullName>Request for Multi-Site Hosted Voice Service</fullName>
+                <default>false</default>
+                <label>Request for Multi-Site Hosted Voice Service</label>
+            </value>
+            <value>
+                <fullName>Request for PRI Channels &gt; = 96</fullName>
+                <default>false</default>
+                <label>Request for PRI Channels &gt; = 96</label>
+            </value>
+            <value>
+                <fullName>Request for PRI or Digital Trunk Channels &gt; 92</fullName>
+                <default>false</default>
+                <label>Request for PRI or Digital Trunk Channels &gt; 92</label>
+            </value>
+            <value>
+                <fullName>Request for resale product not currently avail in market</fullName>
+                <default>false</default>
+                <label>Request for resale product not currently avail in market</label>
+            </value>
+            <value>
+                <fullName>Request is for Resale MEL</fullName>
+                <default>false</default>
+                <label>Request is for Resale MEL</label>
+            </value>
+            <value>
+                <fullName>Request to break the bundle (example: no Lync)</fullName>
+                <default>false</default>
+                <label>Request to break the bundle (example: no Lync)</label>
+            </value>
+            <value>
+                <fullName>SIP - Market Expansion Line (MEL)</fullName>
+                <default>false</default>
+                <label>SIP - Market Expansion Line (MEL)</label>
+            </value>
+            <value>
+                <fullName>SIP Trunking: IP-PBX Certification</fullName>
+                <default>false</default>
+                <label>SIP Trunking: IP-PBX Certification</label>
+            </value>
+            <value>
+                <fullName>Secondary Customer Site is Off-Net</fullName>
+                <default>false</default>
+                <label>Secondary Customer Site is Off-Net</label>
+            </value>
+            <value>
+                <fullName>Security Zones (DMZ)</fullName>
+                <default>false</default>
+                <label>Security Zones (DMZ)</label>
+            </value>
+            <value>
+                <fullName>Service via 3rd Party NNI:  DC-Powered NID at Customer Prem</fullName>
+                <default>false</default>
+                <label>Service via 3rd Party NNI:  DC-Powered NID at Customer Prem</label>
+            </value>
+            <value>
+                <fullName>Special Portal Log In for User outside of iCare</fullName>
+                <default>false</default>
+                <label>Special Portal Log In for User outside of iCare</label>
+            </value>
+            <value>
+                <fullName>Universal Access: Ethernet with Voice and/or Internet</fullName>
+                <default>false</default>
+                <label>Universal Access: Ethernet with Voice and/or Internet</label>
+            </value>
+            <value>
+                <fullName>User-ID</fullName>
+                <default>false</default>
+                <label>User-ID</label>
+            </value>
+            <value>
+                <fullName>Wants both Packages on Account</fullName>
+                <default>false</default>
+                <label>Wants both Packages on Account</label>
+            </value>
+            <value>
+                <fullName>Wireless Backup to existing Node of existing Customer</fullName>
+                <default>false</default>
+                <label>Wireless Backup to existing Node of existing Customer</label>
+            </value>
+            <value>
+                <fullName>Wireline Backup/Failover to alternate path</fullName>
+                <default>false</default>
+                <label>Wireline Backup/Failover to alternate path</label>
+            </value>
+            <value>
+                <fullName>Teleworker &gt; 4 Lines</fullName>
+                <default>false</default>
+                <label>Teleworker &gt; 4 Lines</label>
+            </value>
+            <value>
+                <fullName>UA 2.0 Migration Exceptions</fullName>
+                <default>false</default>
+                <label>UA 2.0 Migration Exceptions</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

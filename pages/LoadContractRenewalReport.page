@@ -1,0 +1,79 @@
+<apex:page controller="ImportDataFromCSVController" title="Contract Remewal Type Order Uploader" >
+    <style>
+        .controlPanel td{
+            width:200px;
+        }
+        .controlPanel{
+            margin-top:20px;
+        }
+    </style>    
+    <apex:form >                    
+        <apex:pageBlock id="controlPanel">                        
+            <table class="controlPanel fromFile">
+                <tr>
+                    <td colspan="2"><b>Upload a CSV file to save its contents as Contract Remewal Type Order records</b></td>
+                </tr>
+                <tr>
+                   <td colspan="2">
+                      <ul>
+                         <li>CTR_PRICE and  NEXT_PRICE column should NOT have comma(,)</li>
+                         <li>Remove Company column.</li>                                                                          
+                         <li>Date columns format should be yyyy-mm-dd.</li>
+                         <li>The file can have up to 998 rows.</li>                                                                          
+                      </ul>
+                   </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>Please select which file you want to upload</td>
+                    <td>
+                        <apex:selectList id="filetypeList" value="{!selectedFileType}" size="1">
+                            <apex:selectOption itemValue="Renewal" itemLabel="Renewal"/>
+                            <apex:selectOption itemValue="Actual Install" itemLabel="Actual Install"/>
+                            <apex:selectOption itemValue="Actual Churn" itemLabel="Actual Churn"/>
+                            <apex:selectOption itemValue="Anticipated Install" itemLabel="Anticipated Install"/>
+                            <apex:selectOption itemValue="Anticipated Churn" itemLabel="Anticipated Churn"/>                            
+                        </apex:selectList> 
+                    </td>                    
+                </tr>                
+                    <td> Please select Currency for the order</td>
+                    <td><apex:selectList id="rtList" value="{!selectedCurrency}" multiselect="false" size="1">
+                            <apex:selectOptions value="{!currencies}"/>
+                        </apex:selectList>                
+                    </td>
+                </tr>       
+                <tr>
+                    <td>Please select which quarter for this file to be applied</td>
+                    <td>
+                        <apex:selectList id="quarterList" value="{!selectedQuarter}" size="1">
+                            <apex:selectOption itemValue="current" itemLabel="Current Quarter"/>
+                            <apex:selectOption itemValue="previous" itemLabel="Previous Quarter"/>
+                        </apex:selectList> 
+                    </td>
+                </tr>                
+                         
+                <tr>
+                    <td>Upload CSV file</td><td><apex:inputFile value="{!csvFileBody}" accept="csv" contentType="text/csv" /></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td><td><apex:commandButton value="Upload CSV" action="{!readFromFile}"/></td>
+                </tr>
+
+                
+            </table>                                                             
+        </apex:pageBlock>
+        <apex:pageBlock id="dataPanel" >
+           <apex:pagemessages />            
+           <apex:pageBlockSection >                
+                <apex:outputText rendered="{!numOfRenewal>0&& readSuccess}"><b>There are {!numOfRenewal} Records in the file and {!lstOrders.size} Order(s) will be created/or updated </b></apex:outputText>                
+                <apex:outputText rendered="{!numOfRenewal>0&& !readSuccess}"><b>There are {!numOfRenewal} Records in the file and no orders will be created since there are already duplicate contract numbers within this Quarter</b></apex:outputText>
+           </apex:pageBlockSection>           
+ 
+           <apex:pageBlockSection >
+                <apex:commandButton value="Save to Orders" action="{!saveData}" rendered="{!readSuccess}"/>
+           </apex:pageBlockSection>
+           
+        </apex:pageBlock>
+        
+    </apex:form>        
+</apex:page>

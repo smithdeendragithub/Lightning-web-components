@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hosted_PBX_Locations__c</fullName>
+    <externalId>false</externalId>
+    <label>Hosted PBX Locations</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DNVRCOET (DENVER HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>DNVRCOET (DENVER HUB/SWITCH)</label>
+            </value>
+            <value>
+                <fullName>MPLSMNCD (MINNEAPOLIS HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>MPLSMNCD (MINNEAPOLIS HUB/SWITCH)</label>
+            </value>
+            <value>
+                <fullName>PTLEORTE (PORTLAND HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>PTLEORTE (PORTLAND HUB/SWITCH)</label>
+            </value>
+            <value>
+                <fullName>SLKCUTXD (SALT LAKE HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>SLKCUTXD (SALT LAKE HUB/SWITCH)</label>
+            </value>
+            <value>
+                <fullName>TKWLWAZS (TUKWILA HUB/SWITCH)</fullName>
+                <default>false</default>
+                <label>TKWLWAZS (TUKWILA HUB/SWITCH)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

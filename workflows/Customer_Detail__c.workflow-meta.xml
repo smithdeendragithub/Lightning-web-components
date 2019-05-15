@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Update_BAN</fullName>
+        <description>Add ICC Subscriber ID to BAN if no existing legacy ID populated in SFDC</description>
+        <field>Billing_ID__c</field>
+        <formula>ICC_Subscriber_ID__c</formula>
+        <name>Update BAN</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_BPID</fullName>
+        <description>Update BPID to the BPID on the Customer Detail of its Parent&#39;s Account</description>
+        <field>BPID__c</field>
+        <formula>Parent_Account__r.Customer_Detail__r.BPID__c</formula>
+        <name>Update BPID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_CLID</fullName>
+        <description>Add ICC Subscriber ID to CLID if no existing legacy ID populated in SFDC</description>
+        <field>Legacy_ID__c</field>
+        <formula>Parent_Account__r.ICC_Account_Number__c</formula>
+        <name>Update CLID</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Copy ICC Subsriber ID to BAN</fullName>
+        <actions>
+            <name>Update_BAN</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Add ICC Subscriber ID to BAN (BillingID) if no existing Billing ID populated in SFDC</description>
+        <formula>AND(  Billable__c,  Market_Area__r.Name = &#39;National&#39;,  NOT(ISBLANK(ICC_Subscriber_ID__c)),  ISBLANK(Billing_ID__c)  )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy ICC Subsriber ID to CLID</fullName>
+        <actions>
+            <name>Update_CLID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Add ICC Subscriber ID to CLID if no existing legacy ID populated in SFDC</description>
+        <formula>AND(  Billable__c,  Market_Area__r.Name = &#39;National&#39;,  NOT(ISBLANK(ICC_Subscriber_ID__c)),  ISBLANK( Legacy_ID__c)  )</formula>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Update Legacy ID and BPID when parent account changes</fullName>
+        <actions>
+            <name>Update_BPID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Update_CLID</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Update Legacy ID to the Parent Account&#39;s ICC Subscriber ID when its parent account changes</description>
+        <formula>AND(  Billable__c,  Market_Area__r.Name = &#39;National&#39;,  NOT(ISBLANK(ICC_Subscriber_ID__c)),  ISCHANGED(Parent_Account__c)  )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

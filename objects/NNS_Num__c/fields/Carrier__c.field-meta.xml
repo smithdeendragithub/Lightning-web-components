@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Carrier__c</fullName>
+    <externalId>false</externalId>
+    <label>Carrier</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Alltel</fullName>
+                <default>false</default>
+                <label>Alltel</label>
+            </value>
+            <value>
+                <fullName>AT&amp;T</fullName>
+                <default>false</default>
+                <label>AT&amp;T</label>
+            </value>
+            <value>
+                <fullName>Boost Mobile</fullName>
+                <default>false</default>
+                <label>Boost Mobile</label>
+            </value>
+            <value>
+                <fullName>Cingular</fullName>
+                <default>false</default>
+                <label>Cingular</label>
+            </value>
+            <value>
+                <fullName>Cricket</fullName>
+                <default>false</default>
+                <label>Cricket</label>
+            </value>
+            <value>
+                <fullName>Metro PCS</fullName>
+                <default>false</default>
+                <label>Metro PCS</label>
+            </value>
+            <value>
+                <fullName>Nextel</fullName>
+                <default>false</default>
+                <label>Nextel</label>
+            </value>
+            <value>
+                <fullName>Qualcomm</fullName>
+                <default>false</default>
+                <label>Qualcomm</label>
+            </value>
+            <value>
+                <fullName>Qwest</fullName>
+                <default>false</default>
+                <label>Qwest</label>
+            </value>
+            <value>
+                <fullName>Sprint</fullName>
+                <default>false</default>
+                <label>Sprint</label>
+            </value>
+            <value>
+                <fullName>SunCom</fullName>
+                <default>false</default>
+                <label>SunCom</label>
+            </value>
+            <value>
+                <fullName>T-mobile</fullName>
+                <default>false</default>
+                <label>T-mobile</label>
+            </value>
+            <value>
+                <fullName>US Cellular</fullName>
+                <default>false</default>
+                <label>US Cellular</label>
+            </value>
+            <value>
+                <fullName>Verizon</fullName>
+                <default>false</default>
+                <label>Verizon</label>
+            </value>
+            <value>
+                <fullName>VoiceStream</fullName>
+                <default>false</default>
+                <label>VoiceStream</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

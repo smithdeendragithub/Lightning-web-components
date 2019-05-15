@@ -1,0 +1,1974 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Email_for_Access_Solution_Desk</fullName>
+        <ccEmails>accesssolutiondesk@allstream.com</ccEmails>
+        <description>Email for Access Solution Desk</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Access_Mangement_IntervetionTemplate</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Approved_Status_Email_WF</fullName>
+        <description>ICB Approved Status Email WF</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>AEs_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Sales_Engineer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Approved_with_Conditions_Email_WF</fullName>
+        <description>ICB Approved with Conditions Email WF</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <recipients>
+            <field>AEs_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Sales_Engineer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Approved_with_Conditions_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_AE_Approved</fullName>
+        <description>ICB Email AE Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <field>AEs_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>AccountExecutive__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_AE_Rejected</fullName>
+        <description>ICB Email AE Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <field>AEs_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <recipient>Offer_Management</recipient>
+            <type>group</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>AccountExecutive__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_AE_SE_PM_Rejected</fullName>
+        <description>ICB Email AE SE PM Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <field>AccountExecutive__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Product_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Sales_Engineer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_AE_and_SE_Approved</fullName>
+        <description>ICB Email AE and SE Approved</description>
+        <protected>false</protected>
+        <recipients>
+            <field>AEs_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AccountExecutive__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Sales_Engineer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_AE_and_SE_Approved_1</fullName>
+        <description>ICB Email AE and SE Approved 1</description>
+        <protected>false</protected>
+        <recipients>
+            <field>AEs_Manager_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>AccountExecutive__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Sales_Engineer__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_Offer_Management</fullName>
+        <description>ICB Email Offer Management if Contract Updates</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Offer_Management_Approver__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Email_to_Offer_Mgmt_at_Pending_Sale</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_Offer_Mgmt_CA_NV</fullName>
+        <description>ICB Email Offer Mgmt CA &amp; NV</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Email_to_All_Approvers</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_Offer_mgmt_MN_ND</fullName>
+        <description>ICB Email Offer mgmt MN &amp; ND</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Email_to_All_Approvers</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_Product_Manager_Technical</fullName>
+        <description>ICB Email Product Manager Technical</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Product_Manager__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Email_to_Prod_Mgr_at_Pending_Sale</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Email_to_Owner_for_ASD_Rejected</fullName>
+        <description>ICB Email to Owner for ASD Rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Rejected</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Indirect_Sales_Approval_notification_to_agent_desk</fullName>
+        <description>ICB Indirect Sales Approval notification to agent desk</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>david.ochoa@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gregg.maloney@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Approval_Indirect</template>
+    </alerts>
+    <alerts>
+        <fullName>ICB_Indirect_Sales_Rejection_notification_to_agent_desk</fullName>
+        <description>ICB Indirect Sales Rejection notification to agent desk</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>david.ochoa@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>gregg.maloney@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/ICB_Rejected_Indirect</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Copy_Account_Name_to_Account_Search_Fiel</fullName>
+        <description>Copy Account Name to Account Search Fiel</description>
+        <field>Account_Search__c</field>
+        <formula>Account__r.Name</formula>
+        <name>Copy Account Name to Account Search Fiel</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_ICB_Code</fullName>
+        <field>ICB_Code_Search__c</field>
+        <formula>ICB_Code__c</formula>
+        <name>Copy ICB Code to ICB Code Search Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_AEs_Manager_Email_Set</fullName>
+        <description>Populate the AEs Manager Email field</description>
+        <field>AEs_Manager_Email__c</field>
+        <formula>AccountExecutive__r.Manager.Email</formula>
+        <name>ICB AEs Manager Email Set</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_ASD_Quote_Status_NULL</fullName>
+        <description>Set the ASD Quote Status to blank</description>
+        <field>ASD_Quote_Status__c</field>
+        <name>ICB Set ASD Quote Status to NULL</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Additional_Terms_History</fullName>
+        <description>Save changes to the Additional Terms and Conditions field by concatenating it to the Additional Terms and Conditions History field.</description>
+        <field>Additional_Terms_and_Conditions_History__c</field>
+        <formula>LEFT(&quot;(&quot; &amp; TEXT(  TODAY() ) &amp;  &quot; &quot; &amp;  $User.FirstName  &amp; &quot; &quot; &amp;  $User.LastName  &amp;  &quot;) &quot;&amp;  Addtl_Terms_Locations_Access_Notes__c   &amp; &quot; &quot; &amp;   Additional_Terms_and_Conditions_History__c &amp; &quot; &quot;, 32000)</formula>
+        <name>ICB Additional Terms History</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Secondary_Null</fullName>
+        <description>Null out the Approval Status Secondary field on the ICB</description>
+        <field>Approval_Status_Secondary__c</field>
+        <name>ICB Approval Status Secondary Null</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Secondary_Offer_Mg</fullName>
+        <description>Update the Approval Status Secondary field on the ICB to Offer Mgt Pending Again</description>
+        <field>Approval_Status_Secondary__c</field>
+        <formula>&quot;Offer Mgt Pending Again&quot;</formula>
+        <name>ICB Approval Status Secondary - Offer Mg</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Secondary_Prod_Mgmt</fullName>
+        <description>Update the Approval Status Secondary field on the ICB to Prod Mgmt Pending Again</description>
+        <field>Approval_Status_Secondary__c</field>
+        <formula>&quot;Prod Mgmt Pending&quot;</formula>
+        <name>ICB Approval Status Secondary Prod Mgmt</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Secondary_Set</fullName>
+        <description>Update the Approval Status Secondary field on the ICB to Offer Mgt Pending Again</description>
+        <field>Approval_Status_Secondary__c</field>
+        <formula>&quot;Offer Mgt Pending Again&quot;</formula>
+        <name>ICB Approval Status Secondary Set</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Application</fullName>
+        <description>Set the ICB Approval Status field on the ICB to Waiting for Application Operations Center</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Application Operations Center Pending&quot;</formula>
+        <name>ICB Approval Status Set to Application</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Engineering</fullName>
+        <description>Set Approval Status to Waiting for Engineering</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Engineering Pending&quot;</formula>
+        <name>ICB Approval Status Set to Engineering</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Engr_Data</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Engineering - Data Pending&quot;</formula>
+        <name>ICB Approval Status Set to Engr Data</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Engr_Infrastr</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Engineering - Infrastructure Pending&quot;</formula>
+        <name>ICB Approval Status Set to Engr Infrastr</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Engr_Switch</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Engineering - Switch Pending&quot;</formula>
+        <name>ICB Approval Status Set to Engr Switch</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Engr_Transpr</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Engineer - Transport Pending&quot;</formula>
+        <name>ICB Approval Status Set to Engr Transprt</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Offer_Mgmt</fullName>
+        <description>Set the ICB Approval Status field on the ICB to Waiting for Offer Management</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Offer Mgt Pending&quot;</formula>
+        <name>ICB Approval Status Set to Offer Mgmt</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_SE_Dir</fullName>
+        <description>Set the ICB Approval Status field on the ICB to Waiting for SE Director</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;SE Dir Pending&quot;</formula>
+        <name>ICB Approval Status Set to SE Dir</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Sales_Dir</fullName>
+        <description>Set the ICB Approval Status field on the ICB to Waiting for Sales Director</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Sales Dir Pending&quot;</formula>
+        <name>ICB Approval Status Set to Sales Dir</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Svc_Del_Activ</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Service Delivery - Activation Team Pending&quot;</formula>
+        <name>ICB Approval Status Set to Svc Del Activ</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_Set_to_Svc_Del_Circu</fullName>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Service Delivery - Circuit Design Pending&quot;</formula>
+        <name>ICB Approval Status Set to Svc Del Circu</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_ASD_or_Legal</fullName>
+        <description>Set the Approval Status field on the ICB to Waiting for Legal</description>
+        <field>Approval_Status__c</field>
+        <formula>IF( Off_Net_Quoting_Required__c , &quot;Off-Net Costing Pending&quot;, &quot;Legal Pending&quot;)</formula>
+        <name>ICB Set ICB Approval Status to ASD,Legal</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_AOC</fullName>
+        <description>Set Approval Status to Waiting for Application Operations Center</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Application Operations Center Pending&quot;</formula>
+        <name>ICB Approval Status set to AOC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_DNU</fullName>
+        <description>Set the ICB Approval Status field on the ICB to Waiting for DNU Service Delivery - Design</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;DNU Service Delivery - Design Pending&quot;</formula>
+        <name>ICB Approval Status set to DNU</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_Legal</fullName>
+        <description>Set the Approval Status field on the ICB to Waiting for Legal</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Legal Pending&quot;</formula>
+        <name>ICB Approval Status set to Legal</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_Matt_Case</fullName>
+        <description>Set Approval Status to Matt Case</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Matt Case Pending&quot;</formula>
+        <name>ICB Approval Status set to Matt Case</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_NULL</fullName>
+        <description>Set the Approval Status on the ICB to NULL</description>
+        <field>Approval_Status__c</field>
+        <name>ICB Approval Status set to NULL</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_NULL_1</fullName>
+        <field>Approval_Status__c</field>
+        <name>ICB Approval Status set to NULL 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_OM_ASD</fullName>
+        <description>Set the Approval Status field on the ICB to Offer Mgmt Pending or ASD Pending</description>
+        <field>Approval_Status__c</field>
+        <formula>IF( Off_Net_Quoting_Required__c , &quot;Off-Net Costing Pending&quot;, &quot;Offer Mgt Pending&quot;)</formula>
+        <name>ICB Set ICB Approval Status to ASD,OM</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_Offer</fullName>
+        <description>Set Approval Status field on the ICB to Waiting for SE Director</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Offer Mgt Pending&quot;</formula>
+        <name>ICB Approval Status set to Offer</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_Operations</fullName>
+        <description>Set the ICB Approval Status field on the ICB to Waiting for Operations</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Operations Pending&quot;</formula>
+        <name>ICB Approval Status set to Operations</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_OppsSDRepair</fullName>
+        <description>Set Approval Status to Waiting for Operations, Service Delivery and Repair</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Opps SD or Repair Pending&quot;</formula>
+        <name>ICB Approval Status set to OppsSDRepair</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_Prod_Mgmt</fullName>
+        <description>Set Approval Status field on the ICB to Waiting for Product Management</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Product Mgt Pending&quot;</formula>
+        <name>ICB Approval Status set to Prod Mgmt</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_SE_SME_DIA</fullName>
+        <description>Set Approval Status to Waiting for SE SME DIA and Security</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;SE SME DIA and Security Pending&quot;</formula>
+        <name>ICB Approval Status set to SE SME DIA</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_SE_SME_UCCV</fullName>
+        <description>Set Approval Status to Waiting for SE SME UCCV &amp; SIP</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;SE SME UCCV &amp; SIP Pending&quot;</formula>
+        <name>ICB Approval Status set to SE SME UCCV</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_SE_SME_VPLS</fullName>
+        <description>Set Approval Status field on the ICB to Waiting for SE SME VPLS and Managed Services</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;SE SME VPLS and Managed Services Pending&quot;</formula>
+        <name>ICB Approval Status set to SE SME VPLS</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_SE_SME_Voice</fullName>
+        <description>Set Approval Status to Waiting for SE SME Voice Applications</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;SE SME Voice Applications Pending&quot;</formula>
+        <name>ICB Approval Status set to SE SME Voice</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_SE_SME_Waves</fullName>
+        <description>Set Approval Status field on the ICB to &quot;SE SME Wavelength, Layer 2 and Cloud&quot;</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;SE SME Wavelength, Layer 2 and Cloud Pending&quot;</formula>
+        <name>ICB Approval Status set to SE SME Waves</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_SOC</fullName>
+        <description>Set Approval Status to Waiting for Security Operations Center</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Security Operations Center Pending&quot;</formula>
+        <name>ICB Approval Status set to SOC</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Status_set_to_Svc_Delivery</fullName>
+        <description>Set the ICB Approval Status field on the ICB to Waiting for Service Delivery - Activation Team</description>
+        <field>Approval_Status__c</field>
+        <formula>&quot;Service Delivery Pending&quot;</formula>
+        <name>ICB Approval Status set to Svc Delivery</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Waiting_Since</fullName>
+        <field>Approval_Waiting_Since__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Approval Waiting Since</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Waiting_Since_1</fullName>
+        <field>Approval_Waiting_Since__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Approval Waiting Since 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Waiting_Since_set_to_NULL</fullName>
+        <description>Set the Approval Waiting Since field to blank when it is no longer waiting for anyone to approve.</description>
+        <field>Approval_Waiting_Since__c</field>
+        <name>ICB Approval Waiting Since set to NULL</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Waiting_Since_set_to_NULL_1</fullName>
+        <field>Approval_Waiting_Since__c</field>
+        <name>ICB Approval Waiting Since set to NULL 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Waiting_Since_set_to_Now</fullName>
+        <description>Update the Approval Waiting Since field to now.</description>
+        <field>Approval_Waiting_Since__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Approval Waiting Since set to Now</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approval_Waiting_Since_set_to_Now_SE</fullName>
+        <description>Update the Approval Waiting Since field to now.</description>
+        <field>Approval_Waiting_Since__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Approval Waiting Since set to Now SE</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approved_Date</fullName>
+        <description>Sets the Approved Date to the current date</description>
+        <field>Approved_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>ICB Approved Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approved_Date_1</fullName>
+        <field>Approved_Date__c</field>
+        <formula>TODAY()</formula>
+        <name>ICB Approved Date 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approved_On</fullName>
+        <field>Approved_On__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Approved On</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approved_On_1</fullName>
+        <field>Approved_On__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Approved On 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Approved_with_Conditions_Field_Up_WF</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved with Conditions</literalValue>
+        <name>ICB Approved with Conditions Field Up WF</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Closed_Won_Approved</fullName>
+        <description>Update status field based upon criteria (opp closedwon and status pending sale)</description>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>ICB Closed Won Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Description_History</fullName>
+        <description>Save changes to the Description field by concatenating it to the Description History field.</description>
+        <field>Description_History__c</field>
+        <formula>LEFT(&quot;(&quot; &amp; TEXT( TODAY() ) &amp; &quot; &quot; &amp; $User.FirstName &amp; &quot; &quot; &amp; $User.LastName &amp; &quot;) &quot;&amp; Description__c &amp; &quot; &quot; &amp; Description_History__c, 32000)</formula>
+        <name>ICB Description History</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Offer_Management_Approver</fullName>
+        <description>Set the Offer Management Approver email field to the current approver.  Will be triggered in the approval process on an OM step.</description>
+        <field>Offer_Management_Approver__c</field>
+        <formula>$User.Email</formula>
+        <name>ICB Offer Management Approver</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Populate_Description_Truncated_field</fullName>
+        <description>Populates the Description-Truncated field when it is either blank or when the Description has been updated</description>
+        <field>Description_Truncated__c</field>
+        <formula>LEFT( Description__c , 255)</formula>
+        <name>ICB Populate Description-Truncated field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Record_Type_to_Approved</fullName>
+        <description>Change the Record Type of the ICB to Approved ICB</description>
+        <field>RecordTypeId</field>
+        <lookupValue>Approved_ICB</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>ICB Record Type to Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Request_Version</fullName>
+        <field>ICB_Request_Version__c</field>
+        <formula>ICB_Request_Version__c  + 1</formula>
+        <name>ICB Request Version</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Request_Version_Auto_Increment</fullName>
+        <description>Field update to add +1 to existing value</description>
+        <field>ICB_Request_Version__c</field>
+        <formula>ICB_Request_Version__c  + 1</formula>
+        <name>ICB Request Version-Auto Increment</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ASD_Complete_Date</fullName>
+        <description>Sets the ASD Complete Date</description>
+        <field>ASD_Complete__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Set ASD Complete Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ASD_Queued_Date</fullName>
+        <description>Set the ASD Queued Date to the DateTime it enters Access Mgmt Queue</description>
+        <field>ASD_Queued__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Set ASD Queued Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ASD_Queued_Date_to_NULL</fullName>
+        <description>IF Off-net Costing is not checked set the ASD Queued Date to NULL</description>
+        <field>ASD_Queued__c</field>
+        <name>ICB Set ASD Queued Date to NULL</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ASD_Quote_Status_Complete</fullName>
+        <description>Change the ASD Quote Status to Complete when Approved</description>
+        <field>ASD_Quote_Status__c</field>
+        <literalValue>Complete</literalValue>
+        <name>ICB Set ASD Quote Status to Complete</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ASD_Quote_Status_Rejected</fullName>
+        <description>Set ASD Quote Status to Rejected</description>
+        <field>ASD_Quote_Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>ICB Set ASD Quote  Status to Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ASD_Quote_Status_to_New</fullName>
+        <description>Set ASD Quote Status to New when added to Access Mgmt Queue</description>
+        <field>ASD_Quote_Status__c</field>
+        <literalValue>New</literalValue>
+        <name>ICB Set ASD Quote  Status to New</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ASD_Start_Date</fullName>
+        <description>Set the AS Start Date</description>
+        <field>ASD_Start__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Set ASD Start Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_Data_Engineering_Checkbox</fullName>
+        <description>Set the Data Engineering Review Required Checkbox</description>
+        <field>DataEngineeringReviewRqd__c</field>
+        <literalValue>1</literalValue>
+        <name>ICB Set Data Engineering Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ICB_Approval_Status_set_to_Legal</fullName>
+        <description>Set ICB Approval Status to Legal if Legal Review Required is checked</description>
+        <field>Approval_Status__c</field>
+        <formula>IF( Legal_Review_Required_for_Pricing__c , &quot;Legal Pending&quot;, &quot;&quot;)</formula>
+        <name>ICB Set ICB Approval Status set to Legal</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_ISP_Engineering_Checkbox</fullName>
+        <description>Set the ISP Engineering Review Required checkbox on the ICB object to True.</description>
+        <field>ISP_Engineering_Review_Required__c</field>
+        <literalValue>1</literalValue>
+        <name>ICB Set ISP Engineering Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_Infrastructure_Engineer_Checkbox</fullName>
+        <description>Set the Infrastructure Engineer Review Required checkbox to true.</description>
+        <field>Infrastructure_Engineer_Review_Required__c</field>
+        <literalValue>1</literalValue>
+        <name>ICB Set Infrastructure Engineer Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_Submitted_On_Date</fullName>
+        <description>Captures the DateTime of when an ICB is submitted for approval</description>
+        <field>Submitted_On__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Set Submitted On Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_Submitted_On_Date_1</fullName>
+        <field>Submitted_On__c</field>
+        <formula>NOW()</formula>
+        <name>ICB Set Submitted On Date 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_Switch_Engineering_Checkbox</fullName>
+        <description>Set the Switch Engineering Required Checkbox to True</description>
+        <field>SwitchEngineeringReviewRqd__c</field>
+        <literalValue>1</literalValue>
+        <name>ICB Set Switch Engineering Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Set_Transport_Engineering_Checkbox</fullName>
+        <description>Set the Transport Engineering Checkbox to True</description>
+        <field>Transport_Engineering_Review_Required__c</field>
+        <literalValue>1</literalValue>
+        <name>ICB Set Transport Engineering Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_Approved</fullName>
+        <description>Updates the Status field on the ICB to Approved</description>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>ICB Status Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_Approved_2</fullName>
+        <description>Set the Status field on the ICB to Approved.</description>
+        <field>Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>ICB Status Approved_2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_Approved_Pending_Sale</fullName>
+        <description>Set the Status field on the ICB to Approved-Pending Sale.</description>
+        <field>Status__c</field>
+        <literalValue>Approved-Pending Sale</literalValue>
+        <name>ICB Status Approved-Pending Sale</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_Approved_Pending_Sale_1</fullName>
+        <field>Status__c</field>
+        <literalValue>Approved-Pending Sale</literalValue>
+        <name>ICB Status Approved-Pending Sale 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_In_Progress</fullName>
+        <description>Updates the Status field on the ICB to In Progress</description>
+        <field>Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>ICB Status In Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_In_Progress_OM_and_PM_Approve</fullName>
+        <description>Field update to set status to OM and PM approved, yet indicate ICB is still in progress pending committee</description>
+        <field>Status__c</field>
+        <literalValue>In Progress-OM and PM Approved</literalValue>
+        <name>ICB Status In Progress-OM and PM Approve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_New</fullName>
+        <description>Set the Status on the ICB to New</description>
+        <field>Status__c</field>
+        <literalValue>New</literalValue>
+        <name>ICB Status New</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_Recalled</fullName>
+        <description>Update the Status field on the ICB to Recalled</description>
+        <field>Status__c</field>
+        <literalValue>Recalled</literalValue>
+        <name>ICB Status Recalled</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_Recalled_1</fullName>
+        <field>Status__c</field>
+        <literalValue>Recalled</literalValue>
+        <name>ICB Status Recalled_1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_Rejected</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>ICB Status Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Status_Update_In_Progress</fullName>
+        <field>Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>ICB Status Update In Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Uncheck_Data_Engineering_Checkbox</fullName>
+        <description>Uncheck the Data Engineering Review Required Checkbox</description>
+        <field>DataEngineeringReviewRqd__c</field>
+        <literalValue>0</literalValue>
+        <name>ICB Uncheck Data Engineering Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Uncheck_ISP_Engineering_Checkbox</fullName>
+        <description>Uncheck the ISP Engineering Review Required Checkbox.</description>
+        <field>ISP_Engineering_Review_Required__c</field>
+        <literalValue>0</literalValue>
+        <name>ICB Uncheck ISP Engineering Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Uncheck_Infrastructure_Checkbox</fullName>
+        <description>Uncheck the Infrastructure Engineering Review Required Checkbox.</description>
+        <field>Infrastructure_Engineer_Review_Required__c</field>
+        <literalValue>0</literalValue>
+        <name>ICB Uncheck Infrastructure Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Uncheck_Switch_Engineering_Checkbox</fullName>
+        <description>Uncheck the Switch Engineering Review Required checkbox.</description>
+        <field>SwitchEngineeringReviewRqd__c</field>
+        <literalValue>0</literalValue>
+        <name>ICB Uncheck Switch Engineering Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ICB_Uncheck_Transport_Engineer_Checkbox</fullName>
+        <description>Uncheck the Transport Engineering Review Required checkbox.</description>
+        <field>Transport_Engineering_Review_Required__c</field>
+        <literalValue>0</literalValue>
+        <name>ICB Uncheck Transport Engineer Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>SE_Directors_Status_Update</fullName>
+        <field>Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>SE Directors Status Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_to_In_Progress</fullName>
+        <field>Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>Set Status to In Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Status_to_Reject</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Set Status to Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_to_Reject</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Set to Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_to_Reject_1</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Set to Reject 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Status_to_Reject</fullName>
+        <field>Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Status to Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Copy Account Name to Account Search Field</fullName>
+        <actions>
+            <name>Copy_Account_Name_to_Account_Search_Fiel</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.ICB_Type__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>in order to search by Account name - copying the account name to Account Search</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy ICB Code for ICB Search</fullName>
+        <actions>
+            <name>Copy_ICB_Code</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.Name</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>Copy ICB Code from formula field to</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB - Indirect Channel Approved Notification</fullName>
+        <actions>
+            <name>ICB_Indirect_Sales_Approval_notification_to_agent_desk</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 2 OR 3) AND 4</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>contains</operation>
+            <value>Indirect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>contains</operation>
+            <value>Alliance-US</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.OwnerId</field>
+            <operation>equals</operation>
+            <value>Gregg Maloney</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved-Pending Sale,Approved with Conditions</value>
+        </criteriaItems>
+        <description>When the Account Executive Sales Channel is Indirect or the ICB is assigned to Gregg Maloney  &amp; the ICB is approved- send email to agent order desk</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB - Indirect Channel Rejection Notification</fullName>
+        <actions>
+            <name>ICB_Indirect_Sales_Rejection_notification_to_agent_desk</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <booleanFilter>(1 OR 2 OR 3) AND 4</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>contains</operation>
+            <value>Indirect</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>contains</operation>
+            <value>Alliance-US</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.OwnerId</field>
+            <operation>equals</operation>
+            <value>Gregg Maloney</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+        <description>When the Account Executive Sales Channel is Indirect or ICB owner is Gregg Maloney  &amp; the ICB is rejected- send email to agent order desk</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB AEs Manager Email</fullName>
+        <actions>
+            <name>ICB_AEs_Manager_Email_Set</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.AccountExecutive__c</field>
+            <operation>notEqual</operation>
+            <value>Blank</value>
+        </criteriaItems>
+        <description>Populate the AEs Manager Email field.  Update it if the current AE&#39;s manager&#39;s email is blank or has changed.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Additional Terms and Conditions History</fullName>
+        <actions>
+            <name>ICB_Additional_Terms_History</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Whenever the Additional Terms and Conditions field on an ICB is edited, concatenate it to the front of the History field.</description>
+        <formula>ISCHANGED(  Addtl_Terms_Locations_Access_Notes__c  )  ||  (ISBLANK( Additional_Terms_and_Conditions_History__c )   &amp;&amp;  NOT(  ISBLANK(Addtl_Terms_Locations_Access_Notes__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Approved WF</fullName>
+        <actions>
+            <name>ICB_Approved_Status_Email_WF</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Approved_with_Conditions_Explanation__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Approved with Conditions WF</fullName>
+        <actions>
+            <name>ICB_Approved_with_Conditions_Email_WF</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>ICB_Approved_with_Conditions_Field_Up_WF</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.ICB_Type__c</field>
+            <operation>equals</operation>
+            <value>Pricing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approved_with_Conditions_Explanation__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Closed Won Approved</fullName>
+        <actions>
+            <name>ICB_Closed_Won_Approved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.Opportunity_Stage__c</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved-Pending Sale</value>
+        </criteriaItems>
+        <description>When ICB is on already approved Close Won Opportunity</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Data Engineering Needed</fullName>
+        <actions>
+            <name>ICB_Set_Data_Engineering_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5 OR 6</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Cloud Firewall Service,Dedicated HS Internet - Usage-Based,Ethernet Services E-LAN,Ethernet Services E-LINE,Dedicated High-Speed Internet</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Hosted PBX,Broadband Bundle,DSL/Broadband w/Voice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Ethernet Virtual Private Line (E-Line)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>SIP Solutions,Hosted Voice Services,VPN Solutions,Managed SMART Business Package</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>ISP Services: Online Data Storage,SIP Solutions with VPN Access</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>DDoS Mitigation Service,UC Cloud Voice</value>
+        </criteriaItems>
+        <description>Based on the Product, set the Data Engineering Needed checkbox if they need to approve the technical ICB.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Data Engineering Not Needed</fullName>
+        <actions>
+            <name>ICB_Uncheck_Data_Engineering_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Dedicated DSL/Broadband,Cloud Firewall Service,Ethernet Virtual Private Line (E-Line),Ethernet Private Line (E-Line),E-LAN</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Dedicated Internet Access,Hosted PBX,Broadband Bundle,DSL/Broadband w/Voice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Ethernet Virtual Private Line (E-Line)</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>SIP Solutions,Hosted Voice Services,VPN Solutions,SIP Solutions with VPN Access,Managed SMART Business Package</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>DDoS Mitigation Service</value>
+        </criteriaItems>
+        <description>Based on the Product, uncheck the Data Engineering Needed checkbox.  This rule is needed when users change the Product, the check boxes need to be reset.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Description History</fullName>
+        <actions>
+            <name>ICB_Description_History</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Whenever the Description field on an ICB is edited, concatenate it to the front of the Description History field.</description>
+        <formula>ISCHANGED( Description__c ) || (ISBLANK(  Description_History__c  ) &amp;&amp; NOT( ISBLANK(Description__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email Offer Mgmt CA %26 NV</fullName>
+        <actions>
+            <name>ICB_Email_Offer_Mgmt_CA_NV</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4) AND 5</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Offer Management</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>CA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>NV</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>Email to combined group offer management for CA and NV.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email Offer Mgmt MN %26 ND</fullName>
+        <actions>
+            <name>ICB_Email_Offer_mgmt_MN_ND</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 AND 2 AND (3 OR 4) AND 5</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Offer Management</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>MN</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>ND</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>Email to combined group offer management for MN and ND</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email Offer Mgmt if Contract Change</fullName>
+        <actions>
+            <name>ICB_Email_Offer_Management</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.ICB_Type__c</field>
+            <operation>equals</operation>
+            <value>Pricing</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Legal_Review_Required_for_Pricing__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved-Pending Sale</value>
+        </criteriaItems>
+        <description>Send an email to Offer Management after a Pricing ICB has been approved and if there are Contract Changes Needed.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email to Offer Mgmt AZ</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Offer Mgt Pending</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>AZ</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>Send email to the Offer Management AZ public group when it is their turn to approve.  Since we are not using queues, I can&#39;t do this through the approval, it has to be done through workflow.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email to Offer Mgmt CA</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Offer Mgt Pending</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>CA</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>Send email to the Offer Management CA public group when it is their turn to approve.  Since we are not using queues, I can&#39;t do this through the approval, it has to be done through workflow.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email to Offer Mgmt CO</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Offer Mgt Pending</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>CO</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>Send email to the Offer Management CO public group when it is their turn to approve.  Since we are not using queues, I can&#39;t do this through the approval, it has to be done through workflow.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email to Offer Mgmt ID</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Offer Mgt Pending</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>ID</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>Send email to the Offer Management ID public group when it is their turn to approve.  Since we are not using queues, I can&#39;t do this through the approval, it has to be done through workflow.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email to Offer Mgmt MN</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Offer Mgt Pending</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_State__c</field>
+            <operation>equals</operation>
+            <value>MN</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>notEqual</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>Send email to the Offer Management MN public group when it is their turn to approve.  Since we are not using queues, I can&#39;t do this through the approval, it has to be done through workflow.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Email to Offer Mgmt Wholesale</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Offer Mgt Pending</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Account_Executive_Sales_Channel__c</field>
+            <operation>equals</operation>
+            <value>Wholesale</value>
+        </criteriaItems>
+        <description>Send email to the Offer Management Wholesale public group when it is their turn to approve.  Since we are not using queues, I can&#39;t do this through the approval, it has to be done through workflow.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB ISP Engineering Needed</fullName>
+        <actions>
+            <name>ICB_Set_ISP_Engineering_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>ISP Services: Online Data Storage,ISP Services: Webmail &amp; Web Hosting,Collaboration &amp; Messaging</value>
+        </criteriaItems>
+        <description>Set the ISP Engineer Review Required checkbox to true for certain products</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB ISP Engineering Not Needed</fullName>
+        <actions>
+            <name>ICB_Uncheck_ISP_Engineering_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>ISP Services: Online Data Storage,ISP Services: Webmail &amp; Web Hosting,Collaboration &amp; Messaging</value>
+        </criteriaItems>
+        <description>Set the ISP Engineer Review Required checkbox to true for certain products.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Infrastructure Engineering Needed</fullName>
+        <actions>
+            <name>ICB_Set_Infrastructure_Engineer_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Colocation Services</value>
+        </criteriaItems>
+        <description>Set the Infrastructure Engineer Review Required checkbox to true for certain products.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Infrastructure Engineering Not Needed</fullName>
+        <actions>
+            <name>ICB_Uncheck_Infrastructure_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Colocation Services</value>
+        </criteriaItems>
+        <description>Uncheck the Infrastructure Engineer Review Required checkbox.  This rule is needed when the user changes the product and this checkbox may need to be unchecked</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Record Type Approved</fullName>
+        <actions>
+            <name>ICB_Record_Type_to_Approved</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+        <description>Changes the Record Type to Approved ICB when the Status is Approved.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Set ASD Complete Date</fullName>
+        <actions>
+            <name>ICB_Set_ASD_Complete_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.ASD_Quote_Status__c</field>
+            <operation>equals</operation>
+            <value>Complete,Rejected</value>
+        </criteriaItems>
+        <description>Set the ASD Complete date when the ASD Review Status goes to Complete or Rejected</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Set ASD Review Quote to NULL</fullName>
+        <actions>
+            <name>ICB_ASD_Quote_Status_NULL</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>ICB_Set_ASD_Queued_Date_to_NULL</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.Off_Net_Quoting_Required__c</field>
+            <operation>equals</operation>
+            <value>False</value>
+        </criteriaItems>
+        <description>If the Off-net Costing field is not checked, set the ASD Quote Status to NULL</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Set ASD Start Date</fullName>
+        <actions>
+            <name>ICB_Set_ASD_Start_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.ASD_Quote_Status__c</field>
+            <operation>equals</operation>
+            <value>In Progress</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.ASD_Start__c</field>
+            <operation>equals</operation>
+        </criteriaItems>
+        <description>Set the ASD Start Date when the ASD Review Status goes to In Progress</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Switch Engineering Needed</fullName>
+        <actions>
+            <name>ICB_Set_Switch_Engineering_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 OR 2 OR 3 OR 4 OR 5</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Hosted PBX,Business Connect Bundles,Basic Voice Services,Broadband Bundle,Conference Now,DSL/Broadband w/Voice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Integrated T1,ISDN/PRI,Managed Prime/Pro,Hosted Voice Services,Managed Premier PBX</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Market Expansion Line,Phone Systems,Phone Equipment,Managed SMART Business Package</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Long Distance,Toll Free,SIP Solutions,Voicemail,Voice T1,SIP Solutions with VPN Access</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>UC Cloud Voice</value>
+        </criteriaItems>
+        <description>Based on the Product, set the Switch Engineering Needed checkbox if they need to approve the technical ICB.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Switch Engineering Not Needed</fullName>
+        <actions>
+            <name>ICB_Uncheck_Switch_Engineering_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Hosted PBX,Business Connect Bundles,Basic Voice Services,Broadband Bundle,Conference Now,DSL/Broadband w/Voice</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Integrated T1,ISDN/PRI,Managed Prime/Pro,Hosted Voice Services,Managed Premier PBX</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Market Expansion Line,Phone Systems,Phone Equipment,Managed SMART Business Package</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Long Distance,SIP Solutions,Toll Free,Voicemail,SIP Solutions w/VPN Access,Voice T1</value>
+        </criteriaItems>
+        <description>Based on the Product, set the Switch Engineering Needed checkbox if they need to approve the technical ICB.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Technical Email to Product Manager</fullName>
+        <actions>
+            <name>ICB_Email_Product_Manager_Technical</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1 AND (2 OR 3 OR 4 OR 6) AND 5</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.ICB_Type__c</field>
+            <operation>equals</operation>
+            <value>Technical</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Service_Agreement_Change__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Catalog_Change__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Technical_Update__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved-Pending Sale</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.New_Build__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>Sends an email to Product Manager when Technical ICB is approved and the conditions are right.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Transport Engineering Needed</fullName>
+        <actions>
+            <name>ICB_Set_Transport_Engineering_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <booleanFilter>1</booleanFilter>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>equals</operation>
+            <value>Private Line,Ethernet Virtual Private Line (E-Line),Dark Fiber (ICB Required),Ethernet Private Line (E-Line),Wavelength Services,E-LAN</value>
+        </criteriaItems>
+        <description>Based on the Product, set the Transport Engineering Review Required checkbox to true</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Transport Engineering Not Needed</fullName>
+        <actions>
+            <name>ICB_Uncheck_Transport_Engineer_Checkbox</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Product__c</field>
+            <operation>notEqual</operation>
+            <value>Private Line,Ethernet Virtual Private Line (E-Line),Dark Fiber (ICB Required),Ethernet Private Line (E-Line),Wavelength Services</value>
+        </criteriaItems>
+        <description>Based on the Product, set the Transport Engineering Review Required checkbox to true.</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB Update Truncated Description</fullName>
+        <actions>
+            <name>ICB_Populate_Description_Truncated_field</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Update the Description-Truncated field on the ICB</description>
+        <formula>ISCHANGED( Description__c )   ||  ISBLANK( Description_Truncated__c )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>ICB needs Acces Management Attention</fullName>
+        <actions>
+            <name>Email_for_Access_Solution_Desk</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>ICB__c.Off_Net_Quoting_Required__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Opportunity_Stage__c</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>iCert Notification</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>ICB__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Approved-Pending Sale,Approved</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.iCert_Number__c</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <criteriaItems>
+            <field>ICB__c.Opportunity_Stage__c</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <description>When iCB has a related iCert send notification to selected group</description>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

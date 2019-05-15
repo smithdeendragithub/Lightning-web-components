@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resolution_Code__c</fullName>
+    <description>Resolution Code</description>
+    <externalId>false</externalId>
+    <label>Resolution Code</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A la Carte task now ready to be worked</fullName>
+                <default>false</default>
+                <label>A la Carte task now ready to be worked</label>
+            </value>
+            <value>
+                <fullName>Carrier Delays</fullName>
+                <default>false</default>
+                <label>Carrier Delays</label>
+            </value>
+            <value>
+                <fullName>Clarification Received</fullName>
+                <default>false</default>
+                <label>Clarification Received</label>
+            </value>
+            <value>
+                <fullName>Human Error</fullName>
+                <default>false</default>
+                <label>Human Error</label>
+            </value>
+            <value>
+                <fullName>ICB</fullName>
+                <default>false</default>
+                <label>ICB</label>
+            </value>
+            <value>
+                <fullName>ICC Inventory Mismatch</fullName>
+                <default>false</default>
+                <label>ICC Inventory Mismatch</label>
+            </value>
+            <value>
+                <fullName>LEC Issue Resolved</fullName>
+                <default>false</default>
+                <label>LEC Issue Resolved</label>
+            </value>
+            <value>
+                <fullName>Licenses Received</fullName>
+                <default>false</default>
+                <label>Licenses Received</label>
+            </value>
+            <value>
+                <fullName>MSS Inventory Mismatch</fullName>
+                <default>false</default>
+                <label>MSS Inventory Mismatch</label>
+            </value>
+            <value>
+                <fullName>MSS Structure Load</fullName>
+                <default>false</default>
+                <label>MSS Structure Load</label>
+            </value>
+            <value>
+                <fullName>No problem found</fullName>
+                <default>false</default>
+                <label>No problem found</label>
+            </value>
+            <value>
+                <fullName>Order Canceled</fullName>
+                <default>false</default>
+                <label>Order Canceled</label>
+            </value>
+            <value>
+                <fullName>Order Issue</fullName>
+                <default>false</default>
+                <label>Order Issue</label>
+            </value>
+            <value>
+                <fullName>Parts Now Available</fullName>
+                <default>false</default>
+                <label>Parts Now Available</label>
+            </value>
+            <value>
+                <fullName>Pending Engineering</fullName>
+                <default>false</default>
+                <label>Pending Engineering</label>
+            </value>
+            <value>
+                <fullName>Pending Field Work</fullName>
+                <default>false</default>
+                <label>Pending Field Work</label>
+            </value>
+            <value>
+                <fullName>Predecessor Workstep Completed</fullName>
+                <default>false</default>
+                <label>Predecessor Workstep Completed</label>
+            </value>
+            <value>
+                <fullName>Revenue Replacement Found</fullName>
+                <default>false</default>
+                <label>Revenue Replacement Found</label>
+            </value>
+            <value>
+                <fullName>Technical resources available</fullName>
+                <default>false</default>
+                <label>Technical resources available</label>
+            </value>
+            <value>
+                <fullName>This is a Zayo order. Not supported by Allstream SF</fullName>
+                <default>false</default>
+                <label>This is a Zayo order. Not supported by Allstream SF</label>
+            </value>
+            <value>
+                <fullName>System Issue</fullName>
+                <default>false</default>
+                <label>System Issue</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

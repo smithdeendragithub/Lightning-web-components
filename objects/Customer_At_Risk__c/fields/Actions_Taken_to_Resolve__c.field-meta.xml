@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actions_Taken_to_Resolve__c</fullName>
+    <description>Detail steps to take to resolution</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Please enter all steps taken and to be taken to get resolution of issues.</inlineHelpText>
+    <label>Actions Taken to Resolve</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

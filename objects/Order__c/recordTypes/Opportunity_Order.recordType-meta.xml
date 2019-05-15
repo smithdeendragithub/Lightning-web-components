@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opportunity_Order</fullName>
+    <active>true</active>
+    <label>Opportunity Order</label>
+    <picklistValues>
+        <picklist>Action__c</picklist>
+        <values>
+            <fullName>Add</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Modify</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Move</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remove</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>After_Turn_up_Revision_Required__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Build_Category__c</picklist>
+        <values>
+            <fullName>Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Network</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Build_Type__c</picklist>
+        <values>
+            <fullName>Collo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contract_Cancel_Reason__c</picklist>
+        <values>
+            <fullName>Business Consolidation%2FDownsize</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitive Loss</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Renewals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feature Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Clean Up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moves</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Conversions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Downgrades</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Temporary Services</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contract_Status__c</picklist>
+        <values>
+            <fullName>Actual Churn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Actual Install</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Anticipated Churn</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Anticipated Install</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Credit_Check_Approval__c</picklist>
+        <values>
+            <fullName>Credit Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Approved pending condition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Denied</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Credit_Hold_Reason__c</picklist>
+        <values>
+            <fullName>Credit Application Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deposit Requested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment for past due on existing account required</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Payment on previous account required</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Data_Missing_Codes__c</picklist>
+        <values>
+            <fullName>CSR Not Available%2FBill Copy Required</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discrepancy - Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discrepancy - Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incomplete Customer Profile Sheet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LOA Missing%2FIncomplete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LOA%2FCSR mismatch</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing Service Location%28s%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing Turndown Paperwork</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing%2FIncomplete Addendums</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing%2FIncomplete Feature schedule</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Missing%2FIncomplete Forms - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Packet not Submitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other %E2%80%93 Notes Required</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>iCert not validated</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ESO_Classification__c</picklist>
+        <values>
+            <fullName>Class I</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class II</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class III</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class IV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class V</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Equipment__c</picklist>
+        <values>
+            <fullName>CN4200</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CN6500</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FW4100</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FW9500</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HN4000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Infinera</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ME3400</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ME3600</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Features__c</picklist>
+        <values>
+            <fullName>Wholesale%3A RFC Testing</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Multi_site_Installation_Required__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>OSP_Build_Category__c</picklist>
+        <values>
+            <fullName>Existing Building</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Existing Building with Construction</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Maintenance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Network Backbone</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Building</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Relocation</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Order_Completion_Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Order_Tracking_Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sent to OM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting for Customer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting for DM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting for Sales</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Order_Type2__c</picklist>
+        <values>
+            <fullName>Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Disconnect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Install</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Move</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product__c</picklist>
+        <values>
+            <fullName>Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internet</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SIP</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Traditional Voice</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Record_Status__c</picklist>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status_Reason__c</picklist>
+        <values>
+            <fullName>ASC Held</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Can Not Provide Product%28s%29 Sold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Changed Mind</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Customer Under Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DG Clarification</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lost to Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MSAG Validation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Build</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Support Accepted</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Completed to Billing%2FBilling Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Indirect - Sales Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Accepted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Order to Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Records Updated Only%2FNo Order</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Referred to SE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Returned to Account Specialists - Wholesale</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Returned to Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SE Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SE Held</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SE Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SSS Held</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SSS Reviewing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SSS SE Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Working</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>US_Contract_Cancel_Reason__c</picklist>
+        <values>
+            <fullName>Business Consolidation%2FDownsize</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitive Loss - Competitor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contract Renewals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feature Change</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal Clean Up</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moves</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non Payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Conversions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Downgrades</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Temporary Services</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OM_Project_Management</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Order__c</columns>
+    <columns>Sub_Order__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Duration__c</columns>
+    <columns>Milestone__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Complete,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Duration__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </filters>
+    <label>OM-Project Management</label>
+    <queue>OM_Project_Management</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reviewed_Commission_Policy__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Checkbox indicating whether the user has considered the impact of the commission on the overall financially viability of the deal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check to indicate that you have verified that the Commission would still allow for a financially viable deal.</inlineHelpText>
+    <label>Reviewed Commission Policy</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

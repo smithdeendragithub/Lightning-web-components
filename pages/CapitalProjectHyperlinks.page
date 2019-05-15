@@ -1,0 +1,16 @@
+<apex:page standardController="Capital_Project__c">
+    <apex:form >
+    <div class="bPageBlock brandSecondaryBrd bDetailBlock secondaryPalette">
+    <div class="pbSubsection">
+        <table cellspacing="0" cellpadding="0" border="0" class="detailList">
+            <tr>
+                <td class="inlineEditWrite labelCol">iCert</td>
+                <td class="inlineEditWrite dataCol col02">
+                    <apex:outputLink rendered="{!Capital_Project__c.iCERT_ID__c != null}" value="http://icert/Details.aspx?RequestID={!Capital_Project__c.iCERT_ID__c}" target="_blank">{!Capital_Project__c.iCERT_ID__c}</apex:outputLink>
+                </td>          
+            </tr>
+        </table>
+    </div>
+    </div>
+    </apex:form>
+</apex:page>

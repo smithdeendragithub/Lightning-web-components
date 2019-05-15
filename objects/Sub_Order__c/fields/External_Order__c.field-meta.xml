@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_Order__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <externalId>false</externalId>
+    <label>External Order</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage>External orders must belong to the same order</errorMessage>
+        <filterItems>
+            <field>Order_Property__c.RecordType.DeveloperName</field>
+            <operation>equals</operation>
+            <value>External_Order</value>
+        </filterItems>
+        <filterItems>
+            <field>Order_Property__c.Order__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.Order__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Order_Property__c</referenceTo>
+    <relationshipLabel>Sub Orders</relationshipLabel>
+    <relationshipName>Sub_Orders</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Lookup</type>
+</CustomField>

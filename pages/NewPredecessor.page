@@ -1,0 +1,68 @@
+<apex:page controller="NewPredecessor" tabstyle="Workstep__c">
+	<apex:form id="mainForm">
+		<apex:pageMessages />
+		<apex:pageBlock >
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!Save}" value="Save" style="width:130px;"/>
+				<apex:commandButton action="{!Cancel}" value="Cancel" style="width:130px;"/>
+			</apex:pageBlockButtons>
+			<h1>Current Workstep: {!currentWorkstep.Name}</h1><br/><br/>
+			<apex:pageBlockSection title="Manage Predecessors">
+				<apex:pageBlockSectionItem >
+					<apex:outputPanel >
+						<apex:outputLabel value="Select Predecessors" /><br /><br />
+						<i>(Hold down the<br /> CTRL key to select<br /> multiple records)</i>
+					</apex:outputPanel>
+					<apex:outputPanel id="allPredecessors">
+						<apex:selectList value="{!currentPredecessors}" size="6" multiselect="true" style="min-width:150px" id="currentPredecessors">
+							<apex:selectOptions value="{!currentPredecessorsList}" />
+						</apex:selectList>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<apex:commandButton action="{!addPredecessors}" value="Add >>" rerender="mainForm"/>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputPanel >
+						<apex:outputLabel value="Selected Predecessors" /><br /><br />
+						<i>(Hold down the<br /> CTRL key to select<br /> multiple records)</i><br/><br/>
+						<apex:commandButton action="{!removePredecessors}" value="<< Remove" rerender="mainForm"/>
+					</apex:outputPanel>
+					<apex:outputPanel id="selectedPredecessors">
+						<apex:selectList value="{!selectedPredecessors}" size="6" multiselect="true" style="min-width:150px" >
+							<apex:selectOptions value="{!selectedPredecessorsList}" />
+						</apex:selectList>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+			<apex:pageBlockSection title="Manage Successors">
+				<apex:pageBlockSectionItem >
+					<apex:outputPanel >
+						<apex:outputLabel value="Select Successors" /><br /><br />
+						<i>(Hold down the<br /> CTRL key to select<br /> multiple records)</i>
+					</apex:outputPanel>
+					<apex:outputPanel id="allSuccessors">
+						<apex:selectList value="{!currentSuccessors}" size="6" multiselect="true" style="min-width:150px" id="currentSuccessors">
+							<apex:selectOptions value="{!currentPredecessorsList}" />
+						</apex:selectList>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<apex:commandButton action="{!addSuccessors}" value="Add >>" rerender="mainForm"/>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				
+				<apex:pageBlockSectionItem >
+					<apex:outputPanel >
+						<apex:outputLabel value="Selected Successors" /><br /><br />
+						<i>(Hold down the<br /> CTRL key to select<br /> multiple records)</i><br/><br/>
+						<apex:commandButton action="{!removeSuccessors}" value="<< Remove" rerender="mainForm"/>
+					</apex:outputPanel>
+					<apex:outputPanel id="selectedSuccessors">
+						<apex:selectList value="{!selectedSuccessors}" size="6" multiselect="true" style="min-width:150px" >
+							<apex:selectOptions value="{!selectedSuccessorsList}" />
+						</apex:selectList>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

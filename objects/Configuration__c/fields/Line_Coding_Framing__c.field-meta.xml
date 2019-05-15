@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Line_Coding_Framing__c</fullName>
+    <externalId>false</externalId>
+    <label>Line Coding / Framing</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>B3ZS / CBIT</fullName>
+                <default>false</default>
+                <label>B3ZS / CBIT</label>
+            </value>
+            <value>
+                <fullName>B3ZS / Clear Channel</fullName>
+                <default>false</default>
+                <label>B3ZS / Clear Channel</label>
+            </value>
+            <value>
+                <fullName>B3ZS / M13</fullName>
+                <default>false</default>
+                <label>B3ZS / M13</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

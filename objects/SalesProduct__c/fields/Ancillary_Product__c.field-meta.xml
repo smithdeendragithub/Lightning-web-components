@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ancillary_Product__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Special Case for MasterStream. This is used to return any ancillary products in the pricing API  when a non ancillary product is requested.</description>
+    <externalId>false</externalId>
+    <label>Ancillary Product</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

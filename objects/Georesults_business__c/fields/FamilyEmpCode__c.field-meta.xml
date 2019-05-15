@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FamilyEmpCode__c</fullName>
+    <description>GeoResults defined alpha code that describes a range of Family Total Employees for the Family ID associated with this business.</description>
+    <externalId>false</externalId>
+    <label>Family Total Employee Size Code</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

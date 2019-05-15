@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Info__c</fullName>
+    <description>This is a general purpose field for storing what we were trying to do when integrating when we failed.  Both Action and the related object are taken into account when reading the values here:
+
+Object(Action): Value
+---------------------
+Account(Update): Comma delimited field names
+Contact(Update): N/A
+Contact(Delete): ICC Contact ID
+Service Location(Insert): Closed Won Opportunity ID (earliest closed date)
+Service Location(Update): Comma delimited field names</description>
+    <externalId>false</externalId>
+    <label>Info</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

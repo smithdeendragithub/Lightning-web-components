@@ -1,0 +1,49 @@
+<apex:page >
+	<apex:includeScript value="/soap/ajax/31.0/connection.js" />
+	<apex:includeScript value="/soap/ajax/31.0/apex.js" />
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	
+	<apex:pageBlock title="{!$CurrentPage.parameters.object} Field Access">
+		<table id="tData" cellspacing="0" cellpadding="0" border="0" class="list" width="100%">
+			<tr>
+				<th class="headerRow">Field</th>
+				<th class="headerRow">Permissionable</th>
+				<th class="headerRow">Createable</th>
+				<th class="headerRow">Updateable</th>
+				<th class="headerRow">AutoNumber</th>
+				<th class="headerRow">Calculated</th>
+				<th class="headerRow">DefaultedOnCreate</th>
+			</tr>
+		</table>
+	</apex:pageBlock>
+	
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			sforce.connection.sessionId = '{!$Api.Session_ID}';
+			
+			var tbl = jQuery('table[id$="tData"]');
+		
+			var d = sforce.connection.describeSObject('{!$CurrentPage.parameters.object}');
+			
+			var fields = [];
+			var m = [];
+			for(var i=0; d.fields.length>i; i++){
+				fields.push(d.fields[i].name);
+				m[d.fields[i].name] = d.fields[i];
+			}
+			fields.sort();
+						
+			for(var i=0; fields.length>i; i++){
+				tbl.append('<tr>'
+						+ '<td>' + fields[i] + '</td>'
+						+ '<td><img src="' + (m[fields[i]].permissionable == 'true' ? '/img/checkbox_checked.gif' : '/img/checkbox_unchecked.gif') + '"/></td>'
+						+ '<td><img src="' + (m[fields[i]].createable == 'true' ? '/img/checkbox_checked.gif' : '/img/checkbox_unchecked.gif') + '"/></td>'
+						+ '<td><img src="' + (m[fields[i]].updateable == 'true' ? '/img/checkbox_checked.gif' : '/img/checkbox_unchecked.gif') + '"/></td>'
+						+ '<td><img src="' + (m[fields[i]].autoNumber == 'true' ? '/img/checkbox_checked.gif' : '/img/checkbox_unchecked.gif') + '"/></td>'
+						+ '<td><img src="' + (m[fields[i]].calculated == 'true' ? '/img/checkbox_checked.gif' : '/img/checkbox_unchecked.gif') + '"/></td>'
+						+ '<td><img src="' + (m[fields[i]].defaultedOnCreate == 'true' ? '/img/checkbox_checked.gif' : '/img/checkbox_unchecked.gif') + '"/></td>'
+						+ '</tr>');
+			}
+		});
+	</script>
+</apex:page>

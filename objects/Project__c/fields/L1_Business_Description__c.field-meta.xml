@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>L1_Business_Description__c</fullName>
+    <description>Layer 1 Business Description - Used for the L1 summary slide.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Layer 1 Business Description - Used for the L1 summary slide.</inlineHelpText>
+    <label>L1 Business Description</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Build &amp; Network Enablement</fullName>
+                <default>false</default>
+                <label>Build &amp; Network Enablement</label>
+            </value>
+            <value>
+                <fullName>Enterprise</fullName>
+                <default>false</default>
+                <label>Enterprise</label>
+            </value>
+            <value>
+                <fullName>Order to Cash</fullName>
+                <default>false</default>
+                <label>Order to Cash</label>
+            </value>
+            <value>
+                <fullName>Product Development</fullName>
+                <default>false</default>
+                <label>Product Development</label>
+            </value>
+            <value>
+                <fullName>Prospect to Signature</fullName>
+                <default>false</default>
+                <label>Prospect to Signature</label>
+            </value>
+            <value>
+                <fullName>Trouble to Resolution</fullName>
+                <default>false</default>
+                <label>Trouble to Resolution</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

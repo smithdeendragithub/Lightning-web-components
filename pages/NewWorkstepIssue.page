@@ -1,0 +1,161 @@
+<apex:page controller="NewWorkstepIssue" tabstyle="Workstep_Issue__c">
+	<input id="hiddenElementId" type="hidden" />
+	<script type="text/javascript">
+		window.onload = setFocus
+		function setFocus() {
+			document.getElementById("hiddenElementId").focus();
+		}
+	</script>
+	<apex:form id="mainForm">
+		<apex:pageBlock >
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!Save}" value="Save" style="width:130px;" rerender="mainForm"/>
+				<apex:commandButton action="{!SaveAndNew}" value="Save & New" style="width:130px;" rerender="mainForm"/>
+				<apex:commandButton action="{!Cancel}" value="Cancel" style="width:130px;" rerender="mainForm"/>
+			</apex:pageBlockButtons>
+			<apex:pageMessages />
+			<apex:pageBlockSection title="Workstep Information" columns="6" id="InfoSection">
+				<apex:pageBlockSectionItem >
+					<apex:outputPanel >
+						<table style="width:700px;">
+							<tr>
+								<td><b>Account: </b><apex:outputText value=" {!currentWs.Sub_Order__r.Service_Location__r.Account__r.Name}"/></td>
+								<td><b>Order: </b><apex:outputText value=" {!currentWS.Order__r.Name}"/></td>
+								<td><b>Sub Order: </b><apex:outputText value=" {!currentWS.Sub_Order__r.Name}"/></td>
+								<td><b>Name: </b><apex:outputText value="{!currentWS.Name}"/></td>
+								<td><b>Service Location: </b><apex:outputText value="{!currentWS.Sub_Order__r.Service_Location__r.Name}"/></td>
+								<td><b>Product: </b><apex:outputText value="{!currentWS.SPC_Product__c}"/></td>
+							</tr>
+						</table>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+			<h2 style="font-size:150%">New Workstep Issue</h2>
+			<br/><br/>
+			<apex:pageBlockSection title="Information" columns="2" id="filterSection">
+				<apex:pageBlockSectionItem >
+					RespOrg
+					<apex:outputPanel >
+						<table>
+							<tr>
+								<td><div style="width:3px; height:22px; background-color:#CC0000; display:inline-block;"></div></td>
+								<td>
+									<apex:inputField value="{!dummyWI.Risk_Type__c}">
+										<apex:actionSupport event="onchange" rerender="filterSection" />
+									</apex:inputField>
+								</td>
+							</tr>
+						</table>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<!-- <apex:inputField value="{!dummyWI.Status__c}"/> -->
+				<apex:pageBlockSectionItem >
+					Reason
+					<apex:outputPanel >
+						<table>
+							<tr>
+								<td><div style="width:3px; height:22px; background-color:#CC0000; display:inline-block;"></div></td>
+								<td>
+									<apex:inputField value="{!dummyWI.Reason__c}">
+										<apex:actionSupport action="{!ChooseDefaultWorkstepForReason}" event="onchange" rerender="causedBySection,filterSection" />
+									</apex:inputField>
+								</td>
+							</tr>
+						</table>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem rendered="{!dummyWI.Risk_Type__c == 'Carrier'}" >
+					Carrier
+					<apex:outputPanel >
+						<table>
+							<tr>
+								<td><div style="width:3px; height:22px; background-color:#CC0000; display:inline-block;"></div></td>
+								<td>
+									<apex:inputField value="{!dummyWI.Carrier__c}" id="CarrierField"/>
+								</td>
+							</tr>
+						</table>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:outputText rendered="{!dummyWI.Risk_Type__c == 'Carrier'}"/>
+				<apex:pageBlockSectionItem >
+					Reason Subcategory
+					<apex:outputPanel >
+						<table>
+							<tr>
+								<td><div style="width:3px; height:22px; display:inline-block;"></div></td>
+								<td>
+									<apex:inputField value="{!dummyWI.Reason_Subcategory__c}" >
+										<apex:actionSupport action="{!ChooseDefaultWorkstep}" event="onchange" rerender="causedBySection,filterSection" />
+									</apex:inputField>
+								</td>
+							</tr>
+						</table>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					Select Owner 
+					<apex:outputPanel >
+						<table>
+							<tr>
+								<td><div style="width:3px; height:22px; background-color:#CC0000; display:inline-block;"></div></td>
+								<td>
+									<apex:inputField value="{!dummyWI.OwnerId}" required="false"/>
+								</td>
+							</tr>
+						</table>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<apex:pageBlockSectionItem >
+					Expected Follow Up 
+					<apex:outputPanel >
+						<table>
+							<tr>
+								<td><div style="width:3px; height:22px; background-color:#CC0000; display:inline-block;"></div></td>
+								<td>
+									<apex:inputField value="{!dummyWI.Expected_Follow_Up_Date__c}" required="false"/>
+								</td>
+							</tr>
+						</table>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+				<!-- <apex:inputField value="{!dummyWI.Work_Group__c}"/> -->
+			</apex:pageBlockSection>
+			<apex:outputPanel id="causedBySection">
+				<apex:pageBlockSection columns="2">
+					<apex:pageBlockSectionItem id="causedByList" rendered="{!showWsList}">
+						Caused By
+						<apex:outputPanel >
+							<table>
+								<tr>
+									<td><div style="width:3px; height:22px; display:inline-block;"></div></td>
+									<td>
+										<apex:SelectList value="{!selectedWs}" size="1">
+											<apex:SelectOptions value="{!wsList}"/>
+											<apex:actionSupport event="onchange" action="{!setOwner}" rerender="filterSection" />
+										</apex:SelectList>
+									</td>
+								</tr>
+							</table>
+						</apex:outputPanel>
+					</apex:pageBlockSectionItem>
+				</apex:pageBlockSection>
+			</apex:outputPanel>
+			<apex:pageBlockSection title="Resolution Comments" columns="1">
+				<apex:pageBlockSectionItem >
+					Submission Comments
+					<apex:outputPanel >
+						<table>
+							<tr>
+								<td><div style="width:3px; height:22px; background-color:#CC0000; display:inline-block;"></div></td>
+								<td>
+									<apex:inputTextArea value="{!dummyWI.Comments__c}" rows="6" cols="50"/>
+								</td>
+							</tr>
+						</table>
+					</apex:outputPanel>
+				</apex:pageBlockSectionItem>
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

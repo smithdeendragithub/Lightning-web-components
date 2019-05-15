@@ -1,0 +1,28 @@
+<apex:page standardController="Order__c" extensions="Order_WorkstepIssuesController" showHeader="true" tabstyle="Workstep__c" >
+<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/>
+     <script type="text/javascript">
+        var j$ = jQuery.noConflict();
+        j$(document).ready(function(){
+            addAnchors();
+        });
+
+  function addAnchors(){
+    //loop through all your headers
+//alert("j$(j$(this).parent(): " + j$(this).parent().val());    
+    j$.each(j$('h3'),function(index,value){    
+        //append the text of your header to a list item in a div, linking to an anchor we will create on the next line
+        j$('#box-anchors').append('<li><a href="#anchor-'+index+'">'+j$(this).html()+'</a></li>');
+
+        //add an '<a' tag to the header with a sequential name
+        j$(this).html('<a name="anchor-'+index+'">'+j$(this).html()+'</a>');
+    });
+//    alert("h3?");
+  }      
+</script>
+   
+
+<apex:form >
+<apex:image value="../img/samples/flag_red.gif" width="20" height="20" rendered="{!wsi.size > 0}"/>
+<a id="ninjaLink" href=""><apex:image value="../img/samples/flag_green.gif" width="20" height="20" rendered="{!wsi.size == 0}"/></a>
+</apex:form>
+</apex:page>

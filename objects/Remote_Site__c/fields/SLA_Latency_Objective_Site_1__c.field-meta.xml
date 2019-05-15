@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLA_Latency_Objective_Site_1__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( EVC_Mileage_Site_1__c , &quot;0 - 24 Miles&quot;, &quot;5 ms&quot;,  &quot;25 - 99 Miles&quot;, &quot;6 ms&quot;,  &quot;100 - 249 Miles&quot;, &quot;7 ms&quot;,  &quot;245 - 500 Miles&quot;, &quot;11 ms&quot;,  &quot;501 - 999 Miles&quot;, &quot;15 ms&quot;,  &quot;1000 - 2499 Miles&quot;, &quot;27 ms&quot;,&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>SLA Latency Objective - Site 1</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

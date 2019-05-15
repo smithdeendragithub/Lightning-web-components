@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OF_CS_Suspend_Restore</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Account_Search__c</columns>
+    <columns>AccountName__c</columns>
+    <columns>Account_Link__c</columns>
+    <columns>Actual_Due_Date__c</columns>
+    <filterScope>Queue</filterScope>
+    <label>OF-CS-Suspend/Restore</label>
+    <queue>OF_CS_Suspend_Restore</queue>
+</ListView>

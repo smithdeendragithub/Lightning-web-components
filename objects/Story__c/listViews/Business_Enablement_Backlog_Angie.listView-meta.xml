@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Business_Enablement_Backlog_Angie</fullName>
+    <columns>Story_Summary__c</columns>
+    <columns>NAME</columns>
+    <columns>Epic__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Status__c</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <columns>Business_Value__c</columns>
+    <columns>Primary_Business_Contact__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Sprint__c</field>
+        <operation>contains</operation>
+        <value>Backlog</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Testable,Ready to Deploy,Deployed,Completed,Cancelled</value>
+    </filters>
+    <filters>
+        <field>OWNER.LAST_NAME</field>
+        <operation>equals</operation>
+        <value>Johnson</value>
+    </filters>
+    <label>Business Enablement Backlog Angie</label>
+</ListView>

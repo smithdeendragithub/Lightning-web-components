@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>Percentage values allowed by persons of the level, to adjust the MRC / NRC towards the floor of respective values. Value -1 levels are exempt from floor pricing</description>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <label>Discount Authority Levels</label>
+    <visibility>Protected</visibility>
+</CustomObject>

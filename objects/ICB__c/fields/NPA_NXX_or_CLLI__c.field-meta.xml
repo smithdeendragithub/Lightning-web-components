@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NPA_NXX_or_CLLI__c</fullName>
+    <description>NPA-NXX or CLLI for Off-Net Quoting</description>
+    <externalId>false</externalId>
+    <inlineHelpText>NPA-NXX or CLLI for Off-Net Quoting</inlineHelpText>
+    <label>NPA-NXX or CLLI</label>
+    <length>16</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

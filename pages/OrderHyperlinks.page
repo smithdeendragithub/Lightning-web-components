@@ -1,0 +1,17 @@
+<apex:page standardController="Order__c">
+<apex:form >
+<div class="bPageBlock brandSecondaryBrd bDetailBlock secondaryPalette">
+    <div class="pbSubsection">
+        <table cellspacing="0" cellpadding="0" border="0" class="detailList">
+            <tr>
+                <td class="inlineEditWrite labelCol">Account Name</td>
+                <td class="inlineEditWrite dataCol col02">
+                    <apex:outputLink rendered="{!Order__c.Opportunity__r.Account.Id != null}" value="/{!Order__c.Opportunity__r.Account.Id}" target="_blank">{!Order__c.Opportunity__r.Account.Name}</apex:outputLink>
+                    <apex:outputLink rendered="{!Order__c.Opportunity__r.Account.Id == null}" value="/{!Order__c.Account__c}" target="_blank">{!Order__c.Account__r.Name}</apex:outputLink>            
+                </td>          
+           </tr>
+        </table>
+    </div>
+</div>
+</apex:form>
+</apex:page>

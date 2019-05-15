@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Building_Type__c</fullName>
+    <description>To hold data from Zayo SFDC</description>
+    <externalId>false</externalId>
+    <label>Building_Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Transport Hub</fullName>
+                <default>false</default>
+                <label>Transport Hub</label>
+            </value>
+            <value>
+                <fullName>POP</fullName>
+                <default>false</default>
+                <label>POP</label>
+            </value>
+            <value>
+                <fullName>Carrier POP</fullName>
+                <default>false</default>
+                <label>Carrier POP</label>
+            </value>
+            <value>
+                <fullName>Land</fullName>
+                <default>false</default>
+                <label>Land</label>
+            </value>
+            <value>
+                <fullName>Office</fullName>
+                <default>false</default>
+                <label>Office</label>
+            </value>
+            <value>
+                <fullName>Carrier Hotel</fullName>
+                <default>false</default>
+                <label>Carrier Hotel</label>
+            </value>
+            <value>
+                <fullName>Warehouse</fullName>
+                <default>false</default>
+                <label>Warehouse</label>
+            </value>
+            <value>
+                <fullName>Switch Room</fullName>
+                <default>false</default>
+                <label>Switch Room</label>
+            </value>
+            <value>
+                <fullName>Storage</fullName>
+                <default>false</default>
+                <label>Storage</label>
+            </value>
+            <value>
+                <fullName>Education/School</fullName>
+                <default>false</default>
+                <label>Education/School</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

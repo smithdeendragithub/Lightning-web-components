@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sub_Order_Summary_Status__c</fullName>
+    <externalId>false</externalId>
+    <label>Sub-Order Summary Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Add Card</fullName>
+                <default>false</default>
+                <label>Add Card</label>
+            </value>
+            <value>
+                <fullName>BLA</fullName>
+                <default>false</default>
+                <label>BLA</label>
+            </value>
+            <value>
+                <fullName>Customer</fullName>
+                <default>false</default>
+                <label>Customer</label>
+            </value>
+            <value>
+                <fullName>Equipment/Licenses</fullName>
+                <default>false</default>
+                <label>Equipment/Licenses</label>
+            </value>
+            <value>
+                <fullName>LEC</fullName>
+                <default>false</default>
+                <label>LEC</label>
+            </value>
+            <value>
+                <fullName>Permits</fullName>
+                <default>false</default>
+                <label>Permits</label>
+            </value>
+            <value>
+                <fullName>Sales</fullName>
+                <default>false</default>
+                <label>Sales</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

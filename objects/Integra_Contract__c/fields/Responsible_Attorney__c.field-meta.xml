@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Responsible_Attorney__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Field to ID Responsible Attorney. Includes lookup filter to active users with a title of Attorney.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the name of the Responsible Attorney and click on the magnifying glass to find the correct User.</inlineHelpText>
+    <label>Responsible Attorney</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Attorney_Contracts</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

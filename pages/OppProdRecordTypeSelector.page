@@ -1,0 +1,20 @@
+<apex:page standardController="Opportunity_Product__c" extensions="OppProdRecordTypeSelectController">
+    <apex:form >
+        <apex:pageBlock title="Select Opportunity Product Record Type" >
+            <apex:pageBlockSection >
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection collapsible="false" columns="1">
+                <apex:outputText > Record Type of new record </apex:outputText>
+                <apex:selectList id="rtList" value="{!selectedRecordType}" multiselect="false" size="1" >
+                    <apex:selectOptions value="{!recordTypes}"/>
+                </apex:selectList>                
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Continue" action="{!continueMethod}"/>
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Aid_to_Construction__c</fullName>
+    <externalId>false</externalId>
+    <label>Construction</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NRC (taxed)</fullName>
+                <default>false</default>
+                <label>NRC (taxed)</label>
+            </value>
+            <value>
+                <fullName>Aid to Construction Integra Asset (not taxed)</fullName>
+                <default>false</default>
+                <label>Aid to Construction Integra Asset (not taxed)</label>
+            </value>
+            <value>
+                <fullName>Aid to Construction Revenue (taxed)</fullName>
+                <default>false</default>
+                <label>Aid to Construction Revenue (taxed)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

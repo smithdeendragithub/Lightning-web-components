@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SD_ELB_All_States_PM_Workplan_Template</fullName>
+    <filterScope>Queue</filterScope>
+    <label>SD - ELB - All States - PM</label>
+    <queue>SD_ELB_All_States_PM</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

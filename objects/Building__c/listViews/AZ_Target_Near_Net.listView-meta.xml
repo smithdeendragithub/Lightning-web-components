@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AZ_Target_Near_Net</fullName>
+    <columns>NAME</columns>
+    <columns>City__c</columns>
+    <columns>Building_Disposition__c</columns>
+    <columns>GeoResults_Building_Business_Count__c</columns>
+    <columns>GeoResults_Building_Tel_Spend__c</columns>
+    <columns>Point_of_Profitability__c</columns>
+    <columns>Building_Assigned_AE__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Net_Classification__c</field>
+        <operation>equals</operation>
+        <value>Near-net</value>
+    </filters>
+    <filters>
+        <field>HurdleRate__c</field>
+        <operation>equals</operation>
+        <value>350</value>
+    </filters>
+    <filters>
+        <field>State__c</field>
+        <operation>equals</operation>
+        <value>AZ</value>
+    </filters>
+    <label>AZ Target Near Net</label>
+</ListView>

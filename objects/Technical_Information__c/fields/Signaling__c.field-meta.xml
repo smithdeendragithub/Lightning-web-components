@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Signaling__c</fullName>
+    <externalId>false</externalId>
+    <label>Signaling</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Delay Start</fullName>
+                <default>false</default>
+                <label>Delay Start</label>
+            </value>
+            <value>
+                <fullName>Loop Start</fullName>
+                <default>false</default>
+                <label>Loop Start</label>
+            </value>
+            <value>
+                <fullName>Immediate Start</fullName>
+                <default>false</default>
+                <label>Immediate Start</label>
+            </value>
+            <value>
+                <fullName>Wink Start</fullName>
+                <default>false</default>
+                <label>Wink Start</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRDChangeReasonRequired</fullName>
+    <active>true</active>
+    <description>Changes to Customer Requested Date require a change reason to be specified.</description>
+    <errorConditionFormula>ISCHANGED(Customer_Requested_Date__c) &amp;&amp;
+NOT(ISNULL(PRIORVALUE(Customer_Requested_Date__c))) &amp;&amp; ISBLANK(TEXT(Customer_Requested_Date_Change_Reason__c)) &amp;&amp; NOT(ISNULL(Customer_Requested_Date__c))</errorConditionFormula>
+    <errorDisplayField>Customer_Requested_Date_Change_Reason__c</errorDisplayField>
+    <errorMessage>Changes to Customer Requested Date require a change reason to be specified.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Data_Sovereignty_Requirements__c</fullName>
+    <description>Lets the user know if data on that account can be cross the border</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Should this customer’s data be restricted? Yes – Canada means data cannot leave Canada , Yes – US means the data cannot leave the US and No means there are no Data restrictions for this customer and data can cross borders</inlineHelpText>
+    <label>Data Sovereignty Requirements</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No</fullName>
+                <default>false</default>
+                <label>No</label>
+            </value>
+            <value>
+                <fullName>Yes - Canada</fullName>
+                <default>false</default>
+                <label>Yes - Canada</label>
+            </value>
+            <value>
+                <fullName>Yes - US</fullName>
+                <default>false</default>
+                <label>Yes - US</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

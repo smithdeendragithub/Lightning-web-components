@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Michel_Grenier_SIP_Orders</fullName>
+    <columns>Status__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Legacy_System_Order_Number_CDA__c</columns>
+    <columns>Sub_Order_Overview__c</columns>
+    <columns>Customer_Requested_Date__c</columns>
+    <columns>Customer_Commit_Date__c</columns>
+    <columns>Delivery_Manager__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Order_Manager__c</field>
+        <operation>contains</operation>
+        <value>Michel Grenier</value>
+    </filters>
+    <filters>
+        <field>Workplan_Start_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Cancelled</value>
+    </filters>
+    <label>Michel Grenier - SIP Orders</label>
+    <sharedTo>
+        <group>Canadian_SIP</group>
+    </sharedTo>
+</ListView>

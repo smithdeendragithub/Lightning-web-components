@@ -1,0 +1,39 @@
+<apex:page Controller="DecommOrderQuestions" showheader="true">
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	<apex:form html-novalidate="novalidate">
+		<apex:pageMessages />
+		<apex:outputPanel >
+		<table width="100%"><tr><td align="center" style="font-size: small text-align: center">
+		Please fill out the information below to create your new Decomm Build Order.<br/>
+		*Note: Whether an OSP is required or not will determine your Decomm Workplan.
+		</td></tr></table>
+		</apex:outputPanel>
+		<apex:outputPanel >
+		<apex:pageBlock >
+			<apex:pageBlockButtons >
+				<apex:commandButton action="{!Save}" value="Save" style="width:130px;"/>
+				<apex:commandButton action="{!QuickSave}" value="Quick Save" style="width:130px;"/>
+				<apex:commandButton action="{!Cancel}" value="Cancel" immediate="true" style="width:130px;"/>
+			</apex:pageBlockButtons>
+			<apex:outputPanel >
+			<apex:pageblocksection columns="2" id="filterSection">
+				<apex:inputfield value="{!dummyOrder.Project_Name__c}" required="true"/>
+                <apex:outputfield value="{!dummyOrder.OwnerId}"/>
+                <apex:inputfield value="{!dummyOrder.ESO_Classification__c}" required="true"/>
+                <apex:outputfield value="{!dummyOrder.Action__c}"/>
+                <apex:outputfield value="{!dummyOrder.ESO_Number__c}"/>
+                <apex:outputfield value="{!dummyOrder.Building__c}"/>
+                <apex:outputfield value="{!dummyOrder.Order_Completion_Status__c}"/>
+                <apex:inputfield value="{!dummyOrder.Field_Owner__c}"/>
+                <apex:outputfield value="{!dummyOrder.Build_Category__c}"/>
+                <apex:inputfield value="{!dummyOrder.iCert_Number__c}" />
+                <apex:inputcheckbox label="Third Party?" value="{!dummyOrder.Third_Party__c}" required="false"/>
+                <apex:inputcheckbox label="Is OSP Required?" value="{!dummyOrder.OSP_Required__c}" required="true"/>
+                <apex:inputfield value="{!dummyOrder.Scope__c}" style="width:500px" required="true"/>
+			</apex:pageblocksection>
+			</apex:outputPanel>
+			
+		</apex:pageBlock>
+		</apex:outputPanel>
+	</apex:form>
+</apex:page>

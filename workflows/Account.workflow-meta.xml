@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Account_Sales_Channel_Update</fullName>
+        <description>Update sales channel from Account Owner Look Up Field Object</description>
+        <field>Sales_Channel__c</field>
+        <formula>TEXT (Owner.Sales_Channel__c)</formula>
+        <name>Account Sales Channel Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_Billing_City_to_Service_City</fullName>
+        <field>ShippingCity</field>
+        <formula>BillingCity</formula>
+        <name>Copy Billing City to Service City</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_Billing_Country_to_Service_Country</fullName>
+        <field>ShippingCountry</field>
+        <formula>BillingCountry</formula>
+        <name>Copy Billing Country to Service Country</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_Billing_State_to_Service_State</fullName>
+        <field>ShippingState</field>
+        <formula>BillingState</formula>
+        <name>Copy Billing State to Service State</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_Billing_Street_to_Service_Street</fullName>
+        <field>ShippingStreet</field>
+        <formula>BillingStreet</formula>
+        <name>Copy Billing Street to Service Street</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Copy_Billing_Zip_to_Service_Zip</fullName>
+        <field>ShippingPostalCode</field>
+        <formula>BillingPostalCode</formula>
+        <name>Copy Billing Zip to Service Zip</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Prospect_or_subscriber_clear</fullName>
+        <field>Prospect_or_Subscriber__c</field>
+        <name>Prospect or subscriber - clear</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Null</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Prospect_or_subscriber_mark_true</fullName>
+        <field>Prospect_or_Subscriber__c</field>
+        <formula>&quot;TRUE&quot;</formula>
+        <name>Prospect or subscriber - mark true</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Default_NAA_Exempt</fullName>
+        <field>Default_NAA_Exempt__c</field>
+        <literalValue>1</literalValue>
+        <name>Set Default NAA Exempt</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>ABS NAA Update</fullName>
+        <actions>
+            <name>Set_Default_NAA_Exempt</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>(ISNEW() || ISCHANGED(Account_Sales_Channel__c)) &amp;&amp; CASE(TEXT(Account_Sales_Channel__c), &#39;ILEC&#39;, 1, &#39;Wholesale&#39;, 1, &#39;OpticAccess&#39;, 1, 0) = 1</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Account Update Sales Channel</fullName>
+        <actions>
+            <name>Account_Sales_Channel_Update</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <description>Text Field</description>
+        <formula>Sales_Channel__c &lt;&gt; TEXT (Owner.Sales_Channel__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy Billing Address to Service Address</fullName>
+        <actions>
+            <name>Copy_Billing_City_to_Service_City</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Copy_Billing_Country_to_Service_Country</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Copy_Billing_State_to_Service_State</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Copy_Billing_Street_to_Service_Street</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Copy_Billing_Zip_to_Service_Zip</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.Converted_from_Lead__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </criteriaItems>
+        <description>When a lead is converted, copy the billing address to the service address on account</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Prospect or Subscriber false - uncheck the checkbox</fullName>
+        <actions>
+            <name>Prospect_or_subscriber_clear</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.RecordTypeId</field>
+            <operation>notEqual</operation>
+            <value>Prospect,Subscriber</value>
+        </criteriaItems>
+        <description>Updates the Account field &quot;Prospect or Subscriber&quot; to blank if the Account is not a prospect or a subscriber. This field is used for Lead duplicate matching purposes.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Prospect or Subscriber true - check the checkbox</fullName>
+        <actions>
+            <name>Prospect_or_subscriber_mark_true</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Account.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Prospect,Subscriber</value>
+        </criteriaItems>
+        <description>Updates the Account field &quot;Prospect or Subscriber&quot; to TRUE if the Account is a prospect or a subscriber. This field is used for Lead duplicate matching purposes.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

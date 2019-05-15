@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Project Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Management</fullName>
+                <default>false</default>
+                <label>Account Management</label>
+            </value>
+            <value>
+                <fullName>B2B</fullName>
+                <default>false</default>
+                <label>B2B</label>
+            </value>
+            <value>
+                <fullName>Business Development</fullName>
+                <default>false</default>
+                <label>Business Development</label>
+            </value>
+            <value>
+                <fullName>Business Intelligence</fullName>
+                <default>false</default>
+                <label>Business Intelligence</label>
+            </value>
+            <value>
+                <fullName>Customer Experience</fullName>
+                <default>false</default>
+                <label>Customer Experience</label>
+            </value>
+            <value>
+                <fullName>Decommission</fullName>
+                <default>false</default>
+                <label>Decommission</label>
+            </value>
+            <value>
+                <fullName>Ent Capabilites</fullName>
+                <default>false</default>
+                <label>Ent Capabilites</label>
+            </value>
+            <value>
+                <fullName>Field Management</fullName>
+                <default>false</default>
+                <label>Field Management</label>
+            </value>
+            <value>
+                <fullName>Finance</fullName>
+                <default>false</default>
+                <label>Finance</label>
+            </value>
+            <value>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+                <label>Human Resources</label>
+            </value>
+            <value>
+                <fullName>IT Capabilities</fullName>
+                <default>false</default>
+                <label>IT Capabilities</label>
+            </value>
+            <value>
+                <fullName>Legal and Regulatory</fullName>
+                <default>false</default>
+                <label>Legal and Regulatory</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Network Certification</fullName>
+                <default>false</default>
+                <label>Network Certification</label>
+            </value>
+            <value>
+                <fullName>Network Deployment</fullName>
+                <default>false</default>
+                <label>Network Deployment</label>
+            </value>
+            <value>
+                <fullName>Network Evolution</fullName>
+                <default>false</default>
+                <label>Network Evolution</label>
+            </value>
+            <value>
+                <fullName>Network Growth</fullName>
+                <default>false</default>
+                <label>Network Growth</label>
+            </value>
+            <value>
+                <fullName>Network Management</fullName>
+                <default>false</default>
+                <label>Network Management</label>
+            </value>
+            <value>
+                <fullName>Network Resource Automation</fullName>
+                <default>false</default>
+                <label>Network Resource Automation</label>
+            </value>
+            <value>
+                <fullName>Order System of Record</fullName>
+                <default>false</default>
+                <label>Order System of Record</label>
+            </value>
+            <value>
+                <fullName>Policy</fullName>
+                <default>false</default>
+                <label>Policy</label>
+            </value>
+            <value>
+                <fullName>Portal</fullName>
+                <default>false</default>
+                <label>Portal</label>
+            </value>
+            <value>
+                <fullName>Product Development</fullName>
+                <default>false</default>
+                <label>Product Development</label>
+            </value>
+            <value>
+                <fullName>Product Management</fullName>
+                <default>false</default>
+                <label>Product Management</label>
+            </value>
+            <value>
+                <fullName>Sales Enablement</fullName>
+                <default>false</default>
+                <label>Sales Enablement</label>
+            </value>
+            <value>
+                <fullName>Sales Operations</fullName>
+                <default>false</default>
+                <label>Sales Operations</label>
+            </value>
+            <value>
+                <fullName>Security</fullName>
+                <default>false</default>
+                <label>Security</label>
+            </value>
+            <value>
+                <fullName>Service Management</fullName>
+                <default>false</default>
+                <label>Service Management</label>
+            </value>
+            <value>
+                <fullName>Strategic Network Expansion</fullName>
+                <default>false</default>
+                <label>Strategic Network Expansion</label>
+            </value>
+            <value>
+                <fullName>Technology Refresh</fullName>
+                <default>false</default>
+                <label>Technology Refresh</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

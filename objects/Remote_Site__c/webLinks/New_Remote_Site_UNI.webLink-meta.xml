@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Remote_Site_UNI</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>New Remote Site</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>/a0r/e?CF00NC0000005Htvg={!Technical_Information__c.Name}&amp;CF00NC0000005Htvg_lkid={!Technical_Information__c.Id}&amp;retURL=%2F{!Technical_Information__c.Id}&amp;RecordType=012C0000000HkvC&amp;ent=01IC0000000tm5k&amp;cancelURL=%2F{!Technical_Information__c.Id}</url>
+</WebLink>

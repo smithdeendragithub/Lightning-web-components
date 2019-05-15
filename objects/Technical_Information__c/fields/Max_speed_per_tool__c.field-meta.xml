@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_speed_per_tool__c</fullName>
+    <externalId>false</externalId>
+    <label>Max speed (per tool)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>5M</fullName>
+                <default>false</default>
+                <label>5M</label>
+            </value>
+            <value>
+                <fullName>10M</fullName>
+                <default>false</default>
+                <label>10M</label>
+            </value>
+            <value>
+                <fullName>15M</fullName>
+                <default>false</default>
+                <label>15M</label>
+            </value>
+            <value>
+                <fullName>20M</fullName>
+                <default>false</default>
+                <label>20M</label>
+            </value>
+            <value>
+                <fullName>30M</fullName>
+                <default>false</default>
+                <label>30M</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

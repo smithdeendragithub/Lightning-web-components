@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cloud_Connect_Location_Details__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE( Cloud_Connect_Location__c , 
+&quot;Los Angeles, CA&quot;, &quot;624 S Grand Ave, Los Angeles, CA 90017&quot;, 
+&quot;San Jose, CA&quot;, &quot;11 Great Oaks Blvd, San Jose, CA 95119&quot;, 
+&quot;Seattle, WA&quot;, &quot;2001 6th Ave, Seattle, WA 98121&quot;, 
+&quot;Las Vegas, NV&quot;, &quot;7135 S Decatur Blvd, Las Vegas, NV 89118&quot;, 
+&quot;Choose Cloud Connect Data Center Location&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Cloud Connect Location Details</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

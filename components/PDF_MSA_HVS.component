@@ -1,0 +1,699 @@
+<apex:component >
+  <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+<apex:outputPanel layout="none" id="pepe" >
+		<table width="700" border="0" cellspacing="0" cellpadding="0"
+			id="MSA_HVS_Form" class="mainTable standardBackground">
+			<tr>
+				<td>
+				<table width="700" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td width="500">
+						<div class="mainTitle">HOSTED VOICE SERVICE ADDENDUM <br /></div>
+						<div class="subTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to the Master Service Agreement</div>
+						</td>
+						<td>
+						<table align="left" width="200px" class="topRightSmall" border="0"
+							cellspacing="0" cellpadding="0">
+							<tr><td>&nbsp;</td></tr>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+								<td>{!integraDecisionMaker.Street}</td>
+							</tr>
+							<tr>
+								<td>{!integraDecisionMaker.CityStateZip}</td>
+							</tr>
+							<tr>
+								<td>(P) {!integraDecisionMaker.Phone}</td>
+							</tr>
+							<tr>
+								<td>(F) {!integraDecisionMaker.Fax}</td>
+							</tr>
+							<tr>
+								<td><a href="mailto:{!integraDecisionMaker.Email}"
+									target="_parent">{!integraDecisionMaker.Email}</a></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+						</td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				<table border="0" cellspacing="0" cellpadding="0"
+					class="smallCluster-left avoidBreak">
+					<tr>
+						<td height="4px"></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="textBlock"><b>THIS HOSTED VOICE SERVICE ADDENDUM</b> (this “Addendum”) shall be attached to and become a part of the Master Service Agreement (the “Agreement”) by and between Integra Telecom Holdings, Inc. (“INTEGRA”) and {!CurrentOpportunity.Account.Name} (“Customer”). <br />
+						</td>
+					</tr>
+				</table>
+				<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr>
+						<td class="textBlock">1. </td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock"><b>SCOPE OF THE ADDENDUM</b></td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">This Addendum, including all attachments hereto, sets forth the terms and conditions under which INTEGRA agrees to provide to Customer, and Customer agrees to procure Hosted Voice Service defined herein (the “Service”).  Any capitalized terms that are not defined herein, shall have the meaning set forth in the Agreement.</td>
+					</tr>
+					<tr>
+						<td class="textBlock">2. </td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock"><b>DESCRIPTION OF SERVICE</b></td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">(1)	INTEGRA’s Hosted Voice Service is provided as a Private Branch Exchange “PBX” replacement service, with features and functionality instead provided and managed from within the INTEGRA network. <br /><br />
+						 (2)	The service provides business calling features as part of a bundled service plan assigned to each Internet Protocol “IP” subscriber line (the “Telephone line”), which is offered in (i) Basic, (ii) Standard, and (iii) Premium tiered pricing options.<br /><br />
+						 
+						(3)	The Service includes the provision of voice calling, including local and long distance services, with the receipt and delivery of such traffic to each furnished Telephone line, provided by or through Integra, or moved from a 3rd party service provider where number portability is required, where applicable.
+						 </td>
+					</tr>
+					<tr>
+						<td class="textBlock">3. </td>
+						<td class="textBlock">&nbsp;&nbsp;&nbsp;</td>
+						<td class="textBlock"><b>INDUSTRY STANDARD</b></td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">This Addendum, including all attachments hereto, sets forth the terms and conditions under which INTEGRA agrees to provide to Customer, and Customer agrees to procure Hosted Voice Service defined herein (the “Service”).  Any capitalized terms that are not defined herein, shall have the meaning set forth in the Agreement.INTEGRA provides the Service in accordance with (i) IETF Session Initiation Protocol (SIP) protocol as defined by RFC 3261 for Session “Calling” establishment, and (ii) ITU-T standard audio codecs G.711 u/a, G.722, and G.729, which define the payload method used for delivery of voice audio. Except where otherwise noted, G.722 (“wideband” or High Definition “HD”) audio quality shall be supported between compatible IP endpoints, including but not limited to desk phones, PC softphones, and conference phones.</td>
+					</tr>
+					<tr>
+						<td class="textBlock">4. </td>
+						<td class="textBlock">&nbsp;&nbsp;&nbsp;</td>
+						<td class="textBlock"><b>RATES AND CHARGES</b></td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">The rates and charges applicable to the Service will be outlined in each Service Agreement for such Service.</td>
+					</tr>
+					<tr>
+						<td class="textBlock">5. </td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock"><b>SERVICE COMPONENTS</b></td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">5.1 </td>
+						<td class="textBlock">	&nbsp;<u>Bundled Feature Packages.</u> The Service provides three tiered service plans available with bundled pricing from which the Customer can select. A detailed list of available features for each package is provided in Schedule A to this Addendum.</td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Basic Feature Package.</u> Provides basic IP PBX business calling features such as caller name, call forwarding, call park, etc.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(ii)&nbsp;&nbsp;&nbsp;&nbsp;<u>Standard Feature Package.</u> Includes all basic IP PBX business calling features, and additionally includes voicemail, easy call manager, find me follow me, simultaneous phone ringing, as well as access to a Web-based portal to configure and manage calling features. Also provided is the ability to integrate PC desktop telephony features including Click to Call and Microsoft ® Outlook add-on.</td>
+						</tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(iii)&nbsp;&nbsp;&nbsp;&nbsp;<u>Premium Feature Package.</u> Includes all basic and standard features, and additionally provides unified messaging for voice and fax services, visual voicemail, premium call management features, hot desking, web-based phone configurator, web-based calling button, and call jump.</td>
+						</tr>
+					</table>
+					
+					
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">5.2 </td>
+						<td class="textBlock">	&nbsp; <u>A La Carte Features.</u> The Service makes available the following additional features for Customer to order. Each feature is ordered separately per Telephone Line.</td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Easy Attendant.</u> An automated receptionist that provides recorded response for incoming calls, after hour and holiday greetings, and dial by name or extension prompting.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(ii)&nbsp;&nbsp;&nbsp;&nbsp;<u>Premium Attendant.</u>  Enhanced automated receptionist that includes the functionality of Easy Attendant, but additionally includes menu routing e.g. Press 1 for sales, etc., time of day recordings, direct to voicemail routing, custom voice recording.</td>
+						</tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(iii)&nbsp;&nbsp;&nbsp;&nbsp;<u>Voicemail.</u> Provides standalone mailbox that may be used for group mailbox functionality, such as a general mailbox configuration.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(iv)&nbsp;&nbsp;&nbsp;&nbsp;<u>Unified Messaging Mailbox.</u> Integrates diverse communications media such as fax and voicemail into a single interface that is accessible from a variety of devices in many different formats.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(v)&nbsp;&nbsp;&nbsp;&nbsp;<u>Communicator for PC.</u> Subscribers can download a soft-phone client for their Windows-based PCs. The system automatically provisions the application. Subscribers use their DN and PIN to unlock the service.</td>
+						</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">5.3 </td>
+						<td class="textBlock">	&nbsp; <u>Voice Calling.</u> The Service provides the following call type methods.</td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Local Calling.</u> Includes the ability to make and receive telephone calls to INTEGRA and Non-Integra telephone numbers within the subscribed Local Calling Area (LCA).</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(ii)&nbsp;&nbsp;&nbsp;&nbsp;<u>Long Distance.</u>  Provides the ability to make or receive Intrastate and Interstate calls to INTEGRA and Non-INTEGRA telephone numbers.</td>
+						</tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(iii)&nbsp;&nbsp;&nbsp;&nbsp;<u>International Long Distance.</u> Provides the ability to make or receive calls outside the U.S.</td>
+						</tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(iv)&nbsp;&nbsp;&nbsp;&nbsp;<u>Facsimile (“Fax”). </u> (iv)	Facsimile (“Fax”). Includes the ability to send or receive Fax transmissions. Support for this service is highly dependent on Customer and 3rd party Fax devices.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+					</table>
+					
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr>
+						<td class="textBlock">6. </td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock"><b>CUSTOMER PREMISE EQUIPMENT</b></td>
+					</tr>
+					</table>
+					
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">6.1 </td>
+						<td class="textBlock">Customer Premise Equipment (“CPE”) is defined as equipment provided by INTEGRA and intended for use in conjunction with the Service. This includes without limitation, IP telephones, conference phones, headsets, and cables. CPE is provided to the Customer as part of a Service Agreement, which is defined as follows:</td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Rental.</u> Rental CPE is made available to Customer for an additional MRC. CPE Rental is defined as CPE provided by Integra to Customer intended for use with the Service for a fixed MRC.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(ii)&nbsp;&nbsp;&nbsp;&nbsp;<u>Purchase.</u>  CPE for Purchase is available to the Customer for a list price. Purchase is defined as CPE provided by Integra to Customer intended for use with the Service at the list price provided under the Service Agreement.</td>
+						</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">6.2 </td>
+						<td class="textBlock">CPE <u>Terms and Conditions.</u> The terms and conditions that apply to rental of CPE are as follows:</td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Faults.</u> All faults in CPE identified by Customer should be provided to INTEGRA as soon as possible after the time the fault in CPE operation is detected or known.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(ii)&nbsp;&nbsp;&nbsp;&nbsp;<u>Safety.</u> It is the responsibility of the Customer to ensure a safe work area from which to locate and operate CPE. Safety includes the adherence of any license or permits necessary to operate the CPE in the space, sufficient power, acceptable air conditioning “HVAC”, and adequate airflow requirements deemed necessary by the equipment manufacturer.</td>
+						</tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(iii)&nbsp;&nbsp;&nbsp;&nbsp;<u>Access.</u> Customer should ensure any necessary security approvals required by INTEGRA or INTEGRA contractors and agents, are made available for the proper access, use, and maintenance of CPE.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(iv)&nbsp;&nbsp;&nbsp;&nbsp;<u>Relocation.</u> Any relocation of CPE must be notified in writing to Integra by Customer. This is required for the proper review and update of documentation necessary for operation and, if applicable, maintenance of the CPE.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(v)&nbsp;&nbsp;&nbsp;&nbsp;<u>Insurance.</u> It is the responsibility of Customer to maintain adequate Commercial General Liability, Properly, and Casualty insurance coverage during the time at which Customer is in possession of rental CPE. Any and all applicable policies should provide adequate coverage for the full purchase price of the rental CPE, and must name Integra Telecom Holdings, Inc. as additional Insured party. </td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(vi)&nbsp;&nbsp;&nbsp;&nbsp;<u>Discontinuance of Service.</u> At any time the Service is discontinued by the Customer, it is the Customer responsibility to return any and all rental CPE owned and maintained by Integra. To the extent the Customer fails to maintain equipment in good condition, or otherwise fails to return rental CPE, the Customer acknowledges full liability and costs for the replacement of the rental CPE. Upon the Discontinuance of Service, the Customer agrees to return any rental CPE provided under this Addendum within 30 days of the Service termination date.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr style="vertical-align:top">
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td>(vii)&nbsp;&nbsp;&nbsp;&nbsp;<u>DISCLAIMER/LIMITATION OF LIABILITY.</u> EXCEPT AS SPECIFICALLY SET FORTH IN THIS ADDENDUM, INTEGRA MAKES NO WARRANTIES, EXPRESS OR IMPLIED, UNDER THIS AGREEMENT AND SPECIFICALLY DISCLAIMS ANY WARRANTY OF MERCHANTABILITY OR FITNESS OF THE CPE FOR A PARTICULAR PURPOSE.  IN NO EVENT WILL INTEGRA BE LIABLE TO THE CUSTOMER FOR LOSS OF USE, INCOME OR PROFITS, LOSS OF REVENUES, LOSS OF SAVINGS OR HARM TO BUSINESS OR ANY OTHER SPECIAL, INCIDENTAL, INDIRECT, PUNITIVE OR CONSEQUENTIAL LOSSES OR DAMAGES, REGARDLESS OF THE FORSEEABILITY THEREOF.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+					</table>
+					
+					
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr>
+						<td class="textBlock">7. </td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock"><b>ORDERING PROCEDURES</b></td>
+					</tr>
+					</table>
+					
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">7.1 </td>
+						<td class="textBlock"><u>Service Agreement</u></td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(i)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If an electronic format is available to transmit Service Agreements from Customer to INTEGRA, thas format will be used.  If an electronic format is utilized, INTEGRA will follow any OBF standards for use thereof.  If an electronic format cannot be utilized, Customer will transmit Service Agreements to INTEGRA via facsimile.  Facsimile information will be provided to Customer and updated as needed.  In the event Customer submits a Service Agreement that is inconsistent with any of the terms of INTEGRA's standard Service Agreement for the Service or with any of the terms of this Agreement, then the submitted Service Agreement will be treated as a counteroffer and will be binding only if accepted by INTEGRA in writing.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(ii)&nbsp;&nbsp;&nbsp;&nbsp;Notwithstanding anything to the contrary contained in the Agreement, the Customer shall supply accurate and complete information required for INTEGRA to fulfill the Service Agreement. In any event where the Customer has provided errant or incomplete information, the Customer acknowledges delays or possible service disconnects may occur as a result.</td>
+						</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">7.2 </td>
+						<td class="textBlock"><u>Contacts and Escalation.</u> INTEGRA will provide a complete list of contacts for the Service provided to Customer.  In addition, INTEGRA will provide an escalation list to Customer for purposes of escalation to INTEGRA’s Customer Repair Center (“CRC”) and/or escalation up to the appropriate vice-president.</td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<td class="textBlock">8. </td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock"><b>INTERFACE REQUIREMENTS</b></td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">In order to utilize the Service, the Customer must utilize an INTEGRA provided dedicated access method, delivered across the Local Loop Interface residing at the point of demarcation in the INTEGRA or Customer’s premises (the “Interface”).</td>
+					</tr>
+					<tr><td>&nbsp;</td></tr>
+					<tr>
+						<td class="textBlock">9. </td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock"><b>SERVICE LEVEL AGREEMENT</b></td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">This Service Level Agreement (“SLA”) for the Service covers INTEGRA provided and supported Local Area Network “LAN” switches, IP routers, and any other network device utilized in the delivery of IP transport for the Service.  The SLA is further defined in certain metrics as either On-net or Off-net for the purposes of service commitments. The On-net SLA is limited to Customer sites served via the INTEGRA owner-fiber optic telecommunications facilities or within 60 miles of an INTEGRA LEC Collocated wire center. For all other locations, the Off-net SLA shall take effect.</td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">The service standards herein apply to On-net and Off-net Service and exclude nonperformance due to any Force Majeure event, planned interruptions for maintenance purposes, or other reasons set forth below. To the extent Customer utilizes the available PC soft client capability, it shall not be included as part of this SLA. </td>
+					</tr>
+					</table>
+					
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">9.1 </td>
+						<td class="textBlock"><u>SERVICE OUTAGE/MEAN TIME TO REPAIR.</u></td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">A “Service Outage” is defined as (i) a total loss of connectivity to one or more customer locations affecting the Service; and/or (ii) the inability of more than fifty percent (50%) of user stations (IP phones) at the location to register with the call server to place and receive calls. If Customer reports a circuit/service to be inoperative but declines to release it for testing and repair, it is considered to be impaired, but it is not a Service Outage.  INTEGRA provides a four (4) hour mean-time-to-repair (“MTTR”) for On-net Service Outages. For Off-net Service Outages, INTEGRA provides an eight (8) hour mean-time-to-repair.</td>
+						</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">9.2 </td>
+						<td class="textBlock"><u>AVAILABILITY.</u></td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">Hosted Voice Service will be available to Customer 99.9% of the available time of each Calendar month.</td>
+						</tr>
+					</table>
+					
+	<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+        <tr>
+            <td>
+            </td>
+        </tr>
+        <tr style="vertical-align: top">
+            <td width="20" class="textBlock">
+                &nbsp;
+            </td>
+            <td width="30" class="textBlock">
+                9.3
+            </td>
+            <td class="textBlock">
+                <u>METHOD OF CALCULATION.</u>
+            </td>
+        </tr>
+    </table>
+    <table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+        <tr>
+            <td width="50" class="textBlock">
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td width="50" class="textBlock">
+                &nbsp;
+            </td>
+            <td>
+                <table border="0" cellspacing="0" cellpadding="0" 
+                    class="smallCluster-left avoidBreak" width="500px" 
+                    style="border-right-style: solid; border-left-style: solid; border-right-width: thin; border-left-width: thin;">
+                    <tr>
+                        <td align="center" style="border-top-style: solid; border-top-width: thin" >
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center" >
+                            (Total Minutes in Calendar Month) – (Total Minutes of Service Outage)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            Total Minutes in Calendar Month
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  align="center">
+                            &quot;Total Minutes in Calendar Month&quot; is determined by
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  align="center">
+                            Example: 30 days X 24 Hours X 60 Minutes = 43200 minutes = 100% Availability
+                        </td>
+                    </tr>
+                    <tr>
+                        <td  align="center" style="border-bottom-style: solid; border-bottom-width: thin">
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td width="50" class="textBlock">
+                &nbsp;
+            </td>
+            <td  align="center">
+                <b>Exhibit A</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </table>
+    <table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+        <tr>
+            <td width="50" class="textBlock">
+                &nbsp;
+            </td>
+            <td class="textBlock">
+                “Total Minutes of Service Outage” means the total of all minutes of Service Outage
+                for a specific Service in a calendar month calculated under paragraph (ii) below.
+            </td>
+        </tr>
+      </table>
+	<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">9.4 </td>
+						<td class="textBlock"><u>SERVICE OUTAGE.</u></td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">A Service Outage begins when Customer reports a Service Outage, opens a valid trouble ticket and releases it for testing and repair. The controlling record, for the purpose of determining the duration of the Service Outage and calculating credits, shall be the date and time stamp on the trouble reporting ticket as generated by INTEGRA’s trouble reporting system (“Trouble Ticket”). A Service Outage period ends when the Service is operative and the Trouble Ticket is closed. </td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(a)	If Customer reports a circuit/service to be inoperative but declines to release it for testing and repair, it is considered to be impaired, but it is not a Service Outage. </td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(b)	If an INTEGRA technician is dispatched for a reported Service Outage and it is determined that such failure is not within INTEGRA’s control, Customer will be subject to a truck roll fee for any subsequent dispatch/truck roll(s) requested.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(c)	Customer may request a credit, in writing, and reference the date of the ticket. Requests for credit must be submitted to appropriate the Customer Care Representative within thirty (30) calendar days of the Service Outage. </td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(d)	For calculating credit allowances, every month is considered to have thirty (30) days. </td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(e)	A credit allowance is applied against the MRC only for the affected Service and is dependent upon the length of the Service Outage as calculated below. </td>
+						</tr>
+					</table>				
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">9.5 </td>
+						<td class="textBlock"><u>FINANCIAL REMEDY.</u></td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">If Service suffers a Service Outage, Customer will be entitled to a credit as outlined in the following table, subject to the requirements and limitations of this Section 9. INTEGRA shall credit Customer’s MRC only for the On-net or Off-net Service experiencing the Service Outage as follows: </td>
+						</tr>
+					</table>
+					
+<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+        <tr>
+            <td width="50" class="textBlock">
+                &nbsp;
+            </td>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td width="50" class="textBlock">
+                &nbsp;
+            </td>
+            <td>
+
+                <table border="1" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak" width="500px">
+                    <tr>
+                        <td colspan="3" align="center">
+                            Total Availability in Calendar Month
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">From</td>
+                        <td align="center">To</td>
+                        <td align="center">Credit Amount</td>
+                    </tr>
+                    <tr>
+                        <td align="center">100%</td>
+                        <td align="center">99.9%</td>
+                        <td align="center">0%</td>
+                    </tr>
+                    <tr>
+                        <td align="center">&gt;99.9%</td>
+                        <td align="center">99.2%</td>
+                        <td align="center">10%</td>
+                    </tr>
+                    <tr>
+                        <td align="center">&gt;99.2%</td>
+                        <td align="center">97.5%</td>
+                        <td align="center">20%</td>
+                    </tr>
+                    <tr>
+                        <td align="center">&gt;97.5%</td>
+                        <td align="center">93.0%</td>
+                        <td align="center">35%</td>
+                    </tr>
+                    <tr>
+                        <td align="center">&gt;93.0%</td>
+                        <td align="center"> 0%</td>
+                        <td align="center">50%</td>
+                    </tr>
+                </table>
+
+
+            </td>
+        </tr>
+    </table>
+	<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+	<tr><td>&nbsp;</td></tr>
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">9.6 </td>
+						<td class="textBlock"><u>LIMITATIONS.</u></td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">EXCEPT AS PROVIDED IN SECTION 9.7, CUSTOMER’S RIGHT TO CREDITS AS PROVIDED IN THIS AGREEMENT SHALL BE CUSTOMER’S SOLE REMEDY WITH REGARD TO SERVICE OUTAGES.  The credits outlined above shall not be compounding, such that for any particular Service Outage Customer may not be eligible for more than one credit with respect to a Service Outage under more than one provision of this Addendum or the Agreement.  Upon Customer’s request and if duly approved by INTEGRA, Customer’s total service credit(s) in any one month will not exceed one (1) month’s MRC for the affected Service for that month and do not apply to MRCs of other Services. If a Customer fails to notify INTEGRA in the manner set forth herein within thirty (30) days after the Service Outage with respect to the applicable service credits, Customer will have waived its right to such service credits for that month. To be eligible for service credits, the Customer must be in good standing with INTEGRA and current in all of its obligations.</td>
+						</tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">Condition(s) which do not qualify as a Service Outage include:</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(a)	Service Impairment caused by the negligence of Customer or others in the use of Service.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(b)	Interruptions due to the failure of power, equipment, systems or connections not provided by Integra under this Addendum.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(c)	Interruptions during any period when Customer has released the circuit for maintenance or rearrangement purposes or for the implementation of a Customer order.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(d)	Interruptions which continue because of Customer’s failure to authorize replacement of any element of the Service.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(e)	Interruptions due to planned maintenance.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(f)	Interruptions due to Force Majeure events.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(g)	No trouble found or where the fault of the trouble is undetermined.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(h)	Customer reports a circuit/service to be impaired but declines to release it for testing and/or repair.</td>
+						</tr>
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">(i)	Customer’s failure to claim credits within thirty (30) days of the Service Outage.  </td>
+						</tr>
+					</table>	
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr style="vertical-align:top">
+						<td width="20" class="textBlock">&nbsp;</td>
+						<td width="30" class="textBlock">9.7 </td>
+						<td class="textBlock"><u>CHRONIC TROUBLE.</u></td>
+					</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+						<tr>
+						<td width="50" class="textBlock">&nbsp;</td>
+						<td class="textBlock">A Service is considered to have Chronic Trouble if it experiences;  (i) a single Service Outage in excess of Seventy-two (72) hours, (ii) three (3) or more Service Outages in any thirty (30) consecutive day period, or (iii) five (5) or more Service Outages in any six (6) month period, Customer shall have the right to terminate the affected Service without penalty or further liability to INTEGRA provided that written notice of termination is provided to INTEGRA within thirty (30) calendar days of the event giving rise to the termination right under this Section. To qualify as a Service Outage under this paragraph, such Service Outage must be a Service Outage that would entitle Customer to credits under this Agreement. If Customer does not exercise its termination right within such thirty (30) day period, such right shall lapse with respect to that instance of Chronic Trouble.  </td>
+						</tr>
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr>
+						<td class="textBlock">10. </td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock"><b>ENTIRE AGREEMENT</b></td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">This Addendum, along with the Agreement, sets forth the entire understanding of the Parties and supersedes any and all prior agreements, arrangements or understandings relating to the Services described above.   The Agreement will remain in full force and effect except as modified herein.  To the extent of any conflict between the terms of this Addendum and the Agreement, this Addendum shall control.  </td>
+					</tr>	
+					</table>
+					<table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">IN WITNESS WHEREOF, the parties have caused this Addendum to be executed by their duly authorized representatives.</td>
+					</tr>
+					<tr>
+						<td class="textBlock">&nbsp;</td>
+						<td class="textBlock">&nbsp;</td>
+        				<td class="textBlock">* as identified in Master Service Agreement.</td>
+    				</tr>
+					</table>		
+				</td>
+			</tr>
+			<!--<tr>
+				<td>
+				<table class="Signature_table avoidBreak" border="0" cellspacing="5" cellpadding="0">
+					<tr>
+						<td width="15">&nbsp;</td>
+						<td width="200">&nbsp;</td>
+						<td width="100">&nbsp;</td>
+						<td width="15">&nbsp;</td>
+						<td width="200">&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan="2">Integra Telecom Holdings, Inc.</td>
+						<td>&nbsp;</td>
+						<td colspan="2">{!CurrentOpportunity.Account.Name}</td>
+					</tr>
+					<tr>
+						<td>By:</td>
+						<td class="normalRef">&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>By:</td>
+						<td class="normalRef">{!decisionMaker.Name}</td>
+					</tr>
+					<tr>
+						<td>Name:</td>
+						<td class="normalRef"><div class="docusignID">DS-CTRSIG</div></td>
+						<td>&nbsp;</td>
+						<td>Name:</td>
+						<td class="normalRef"><div class="docusignID">DS-SIG</div></td>
+					</tr>
+					<tr>
+						<td>Title:</td>
+						<td class="normalRef"><div class="docusignID">&nbsp;</div></td>
+						<td>&nbsp;</td>
+						<td>Title:</td>
+						<td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}">
+						</apex:outputText>
+						<div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL">
+						</apex:outputText></div> </td>
+					</tr>
+					<tr>
+						<td>Date:</td>
+						<td class="normalRef"><div class="docusignID">DS-CTRDATE</div></td>
+						<td>&nbsp;</td>
+						<td>Date:</td>
+						<td class="normalRef"><div class="docusignID">DS-DATE</div></td>
+					</tr>
+				</table>
+				</td>
+			</tr>-->
+		</table>
+	</apex:outputPanel>
+</apex:component>

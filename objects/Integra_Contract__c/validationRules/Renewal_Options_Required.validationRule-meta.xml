@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Options_Required</fullName>
+    <active>true</active>
+    <description>If Term Type is either Fixed with a Renewal Option or Auto-Renewal then the Renewal Options is required.</description>
+    <errorConditionFormula>AND ( 
+OR ( 
+TEXT( Term_Type__c) == &quot;Fixed with a Renewal Option&quot;, 
+TEXT (Term_Type__c) == &quot;Auto-Renew&quot;), 
+ISBLANK (Renewal_Options__c) 
+)</errorConditionFormula>
+    <errorDisplayField>Renewal_Options__c</errorDisplayField>
+    <errorMessage>Enter Renewal Options. It is required if Term Type is either &quot;Fixed with a Renewal Option&quot; or &quot;Auto-Renew.&quot;</errorMessage>
+</ValidationRule>

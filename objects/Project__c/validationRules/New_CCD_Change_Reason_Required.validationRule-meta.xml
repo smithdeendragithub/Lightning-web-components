@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_CCD_Change_Reason_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISCHANGED(New_Customer_Commit_Date__c) &amp;&amp; 
+NOT(ISNULL(New_Customer_Commit_Date__c)) &amp;&amp;
+NOT(ISNULL(Customer_Commit_Date__c)) &amp;&amp; ISBLANK(TEXT(New_CCD_Change_Reason__c))</errorConditionFormula>
+    <errorDisplayField>New_CCD_Change_Reason__c</errorDisplayField>
+    <errorMessage>A new Customer Commit Date Change Reason must be specified to change the Customer Commit Date even if it is the same reason that is saved.</errorMessage>
+</ValidationRule>

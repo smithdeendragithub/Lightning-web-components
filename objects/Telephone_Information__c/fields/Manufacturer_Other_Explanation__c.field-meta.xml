@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Manufacturer_Other_Explanation__c</fullName>
+    <description>If the user selects Other for the manufacturer this field allows them to populate the other info.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If you selected Other for the manufactuter n you must enter an explanation here.</inlineHelpText>
+    <label>Manufacturer Other Explanation</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

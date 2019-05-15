@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Agreement Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Main_or_Related_Contract__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Master Service Agreement</fullName>
+                <default>false</default>
+                <label>Master Service Agreement</label>
+            </value>
+            <value>
+                <fullName>Stand-Alone</fullName>
+                <default>false</default>
+                <label>Stand-Alone</label>
+            </value>
+            <value>
+                <fullName>Addendum</fullName>
+                <default>false</default>
+                <label>Addendum</label>
+            </value>
+            <value>
+                <fullName>Amendment</fullName>
+                <default>false</default>
+                <label>Amendment</label>
+            </value>
+            <value>
+                <fullName>Correspondence</fullName>
+                <default>false</default>
+                <label>Correspondence</label>
+            </value>
+            <value>
+                <fullName>Assignment</fullName>
+                <default>false</default>
+                <label>Assignment</label>
+            </value>
+            <value>
+                <fullName>Exhibit</fullName>
+                <default>false</default>
+                <label>Exhibit</label>
+            </value>
+            <value>
+                <fullName>Schedule</fullName>
+                <default>false</default>
+                <label>Schedule</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Main</controllingFieldValue>
+            <valueName>Master Service Agreement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Main</controllingFieldValue>
+            <valueName>Stand-Alone</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Related</controllingFieldValue>
+            <valueName>Addendum</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Related</controllingFieldValue>
+            <valueName>Amendment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Related</controllingFieldValue>
+            <valueName>Correspondence</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Engineer__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Sales Engineer associated to this ICB</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Sales Engineer associated to this ICB</inlineHelpText>
+    <label>Sales Engineer</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>User.Title</field>
+            <operation>contains</operation>
+            <value>Sales Engineer</value>
+        </filterItems>
+        <infoMessage>Type part or all of a name to find a Sales Engineer.  If you don&#39;t see who you are looking for, click on Show all Results and try again.</infoMessage>
+        <isOptional>true</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>ICB_Requests</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Build_Order_Cancellation_Notification</fullName>
+        <description>Build Order Cancellation Notification</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>aleads@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>cjshanley@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>neil.zurakowski@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Build_Order_Cancellation_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Date_Management_Update_Estimated_Construction_Completion_Date</fullName>
+        <description>Build Order Date Management Update: Estimated Construction Completion Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Build_Order_Date_Management_Update_Estimated_Construction_Completion_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Date_Management_Update_Estimated_Permit_Completion_Date</fullName>
+        <description>Build Order Date Management Update: Estimated Permit Completion Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Build_Order_Date_Management_Update_Estimated_Permit_Completion_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Date_Management_Update_Fiber_SMP_Scheduled_Date</fullName>
+        <description>Build Order Date Management Update: Fiber SMP Scheduled Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Build_Order_Date_Management_Update_Fiber_SMP_Scheduled_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Date_Management_Update_Fiber_SMP_Time</fullName>
+        <description>Build Order Date Management Update: Fiber SMP Time</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Build_Order_Date_Management_Update_Fiber_SMP_Time</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Date_Management_Update_NIE_SMP_Scheduled_Date</fullName>
+        <description>Build Order Date Management Update: NIE SMP Scheduled Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Build_Order_Date_Management_Update_NIE_SMP_Scheduled_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Date_Management_Update_NIE_SMP_Time</fullName>
+        <description>Build Order Date Management Update: NIE SMP Time</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Build_Order_Date_Management_Update_NIE_SMP_Time</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Date_Management_Update_Site_Survey_Date</fullName>
+        <description>Build Order Date Management Update: Site Survey Date</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Build_Order_Date_Management_Update_Site_Survey_Date</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Scope_Change_Alert</fullName>
+        <description>Build Order Scope Change Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_CPM__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Scope_Update_to_Build_Order</template>
+    </alerts>
+    <alerts>
+        <fullName>Build_Order_Status_Update</fullName>
+        <description>Build Order Status Update</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <recipients>
+            <field>Assigned_CPM__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Internal_Templates_Service_Delivery/Build_Status_Update</template>
+    </alerts>
+    <alerts>
+        <fullName>New_Customer_Build_Order_Created</fullName>
+        <description>New Customer Build Order Created</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>darrin.snow@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>john.hulley@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>marylynn.jamison@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/New_Customer_Build_Order</template>
+    </alerts>
+    <alerts>
+        <fullName>Notification_on_NIE_SMP</fullName>
+        <description>Notification on NIE SMP</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_CPM__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>Workflow_and_Approval_Templates/Build_Status_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_to_CA_OE</fullName>
+        <ccEmails>Allstream.SMB.Orders@allstream.com</ccEmails>
+        <description>Send Email to CA OE</description>
+        <protected>false</protected>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/CA_Sale_Complete</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Copy_Acct_name_to_Acct_Search_for_Order</fullName>
+        <description>This is to allow users to search on account name and find all associated orders.</description>
+        <field>Account_Search__c</field>
+        <formula>Opportunity__r.Account.Name</formula>
+        <name>Copy Acct name to Acct Search for Order</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>New_Build_Order_Update_to_In_Progress</fullName>
+        <description>When a new Build Order is created, the Order Completion Status will update to In Progress.</description>
+        <field>Order_Completion_Status__c</field>
+        <literalValue>In Progress</literalValue>
+        <name>New Build Order Update to In Progress</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Order_Completion_Status_In_Service</fullName>
+        <field>Order_Completion_Status__c</field>
+        <literalValue>In Service</literalValue>
+        <name>Set Order Completion Status &#39;In Service&#39;</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Order_Pending_Date</fullName>
+        <description>Auto Populate Order Pending Date</description>
+        <field>Order_Pending_Date__c</field>
+        <formula>Today()</formula>
+        <name>Set Order Pending Date</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Auto Update to In Progress</fullName>
+        <actions>
+            <name>New_Build_Order_Update_to_In_Progress</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <criteriaItems>
+            <field>Order__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Build Order</value>
+        </criteriaItems>
+        <description>Upon creation of an Order with a Record Type of Build Order, the Order Completion Status field will be automatically populated with &quot;In Progress&quot;</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Cancellation Notification</fullName>
+        <actions>
+            <name>Build_Order_Cancellation_Notification</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Order__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Build Order</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Order__c.Order_Completion_Status__c</field>
+            <operation>equals</operation>
+            <value>Cancelled</value>
+        </criteriaItems>
+        <description>This rule will send an email notification if the order completion status of a build order changes to cancelled.</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Date Management Update%3A Estimated Construction Completion Date</fullName>
+        <actions>
+            <name>Build_Order_Date_Management_Update_Estimated_Construction_Completion_Date</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Notifies build order owner of Estimated Construction Completion Date update.</description>
+        <formula>and (
+ischanged(  Estimated_Construction_Completion_Date__c  ),
+
+ispickval( Build_Category__c,&quot;Customer&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Date Management Update%3A Estimated Permit Completion Date</fullName>
+        <actions>
+            <name>Build_Order_Date_Management_Update_Estimated_Permit_Completion_Date</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Notifies build order owner of Estimated Permit Completion Date update.</description>
+        <formula>and (
+ischanged(  Estimated_Permit_Completion_Date__c  ),
+
+ispickval( Build_Category__c,&quot;Customer&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Date Management Update%3A Fiber SMP Scheduled Date</fullName>
+        <actions>
+            <name>Build_Order_Date_Management_Update_Fiber_SMP_Scheduled_Date</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Notifies build order owner of Fiber SMP Scheduled Date update.</description>
+        <formula>and ( 
+ischanged(SMP_Scheduled_Date__c), 
+
+ispickval( Build_Category__c,&quot;Customer&quot;) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Date Management Update%3A Fiber SMP Time</fullName>
+        <actions>
+            <name>Build_Order_Date_Management_Update_Fiber_SMP_Time</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Notifies build order owner of Fiber SMP Time update.</description>
+        <formula>and ( 
+ischanged(  Fiber_SMP_Time__c  ), 
+
+ispickval( Build_Category__c,&quot;Customer&quot;) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Date Management Update%3A NIE SMP Scheduled Date</fullName>
+        <actions>
+            <name>Build_Order_Date_Management_Update_NIE_SMP_Scheduled_Date</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Notifies build order owner of NIE SMP Scheduled Date update.</description>
+        <formula>and ( 
+ischanged( NIE_SMP_Scheduled_Date__c ), 
+
+ispickval( Build_Category__c,&quot;Customer&quot;) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Date Management Update%3A NIE SMP Time</fullName>
+        <actions>
+            <name>Build_Order_Date_Management_Update_NIE_SMP_Time</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Notifies build order owner of NIE SMP Time update.</description>
+        <formula>and ( 
+ischanged(  NIE_SMP_Time__c ), 
+
+ispickval( Build_Category__c,&quot;Customer&quot;) 
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Date Management Update%3A Site Survey Date</fullName>
+        <actions>
+            <name>Build_Order_Date_Management_Update_Site_Survey_Date</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <description>Notifies build order owner of Site Survey Date update.</description>
+        <formula>and (
+ischanged( Site_Survey_Date__c ),
+
+ispickval( Build_Category__c,&quot;Customer&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order In Service Date Set</fullName>
+        <actions>
+            <name>Set_Order_Completion_Status_In_Service</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>RecordType.DeveloperName = &#39;Build_Order&#39; &amp;&amp; (ISNEW() || ISCHANGED(In_Service_Date__c)) &amp;&amp; NOT(ISNULL(In_Service_Date__c))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Scope Change</fullName>
+        <actions>
+            <name>Build_Order_Scope_Change_Alert</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Notifies CPM of a Build Order scope change.</description>
+        <formula>ischanged (Scope__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Build Order Status Update</fullName>
+        <actions>
+            <name>Build_Order_Status_Update</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <formula>and (
+ischanged( Build_Status__c ),
+
+ispickval( Build_Category__c,&quot;Customer&quot;)
+)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Copy Account name to Order Search</fullName>
+        <actions>
+            <name>Copy_Acct_name_to_Acct_Search_for_Order</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Order__c.CreatedById</field>
+            <operation>notEqual</operation>
+        </criteriaItems>
+        <description>This is to allow users to search account name and find all associated orders.</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>New Customer Build Order</fullName>
+        <actions>
+            <name>New_Customer_Build_Order_Created</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Order__c.Build_Category__c</field>
+            <operation>equals</operation>
+            <value>Customer</value>
+        </criteriaItems>
+        <description>Sends an email to certain recipients when a new customer build order is created; or a build order is modified to be a customer build</description>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Notification on NIE SMP Date</fullName>
+        <actions>
+            <name>Notification_on_NIE_SMP</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <description>Notifies the Assigned CPM if the NIE SMP Date has been updated or changed.</description>
+        <formula>ischanged(NIE_SMP_Scheduled_Date__c)</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>Order Pending Date</fullName>
+        <actions>
+            <name>Set_Order_Pending_Date</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Order__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Order to Pending</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+    <rules>
+        <fullName>Send Email to CA OE</fullName>
+        <actions>
+            <name>Send_Email_to_CA_OE</name>
+            <type>Alert</type>
+        </actions>
+        <active>false</active>
+        <formula>AND(  ISCHANGED(Status__c),  ISPICKVAL(Status__c,&quot;Sales Complete&quot;),  NOT (ISPICKVAL(PRIORVALUE(Status__c), &quot;Sales Complete&quot;)),  Market_Area__c == &#39;National&#39; )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Clone_Assign_Test_Case</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Clone &amp; Assign Test Case</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/a11/e?
+RecordType=0121A000000IA6r
+&amp;CF00N1A000006dcdc_lkid={!Test_Case__c.Id}
+&amp;CF00N1A000006dcdc={!Test_Case__c.Name}
+&amp;retURL=
+{!Test_Case__c.Id}
+&amp;ent=01I1A000000ubd2</url>
+</WebLink>

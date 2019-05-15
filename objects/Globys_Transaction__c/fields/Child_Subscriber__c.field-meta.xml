@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Child_Subscriber__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Customer Detail acting as the child to the parent. The Legacy ID or ICC Subscriber ID of this CD would be used to create new linkages in Globys</description>
+    <externalId>false</externalId>
+    <label>Child Subscriber</label>
+    <referenceTo>Customer_Detail__c</referenceTo>
+    <relationshipLabel>Globys Transactions (Child Subscriber)</relationshipLabel>
+    <relationshipName>Globys_Transactions1</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

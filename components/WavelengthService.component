@@ -1,0 +1,606 @@
+<apex:component controller="ProposalGenericController" >
+  <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+
+<apex:outputPanel layout="none" id="pepe" >
+        <table width="700" border="0" cellspacing="0" cellpadding="0"
+            id="MSACollaboration_Form" class="mainTable standardBackground">
+            <tr>
+                <td>
+                <table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="500">
+                        <div class="mainTitle">MSA Wavelength Service Addendum</div>
+                        <div class="subTitle">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to the Master Service Agreement</div>
+                        </td>
+                        <td>
+                        <table align="left" width="200px" class="topRightSmall" border="0"
+                            cellspacing="0" cellpadding="0">
+                            <tr><td>&nbsp;</td></tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>{!integraDecisionMaker.Street}</td>
+                            </tr>
+                            <tr>
+                                <td>{!integraDecisionMaker.CityStateZip}</td>
+                            </tr>
+                            <tr>
+                                <td>(P) {!integraDecisionMaker.Phone}</td>
+                            </tr>
+                            <tr>
+                                <td>(F) {!integraDecisionMaker.Fax}</td>
+                            </tr>
+                            <tr>
+                                <td><a href="mailto:{!integraDecisionMaker.Email}"
+                                    target="_parent">{!integraDecisionMaker.Email}</a></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <table border="0" cellspacing="0" cellpadding="0"
+                    class="smallCluster-left avoidBreak">
+                    <tr>
+                        <td width="15" height="4px"></td>
+                        <td width="15" height="4px"></td>
+                        <td width="15" height="4px"></td>
+                        <td width="15" height="4px"></td>
+                        <td width="635" height="4px"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="textBlock">
+                            <b>THIS WAVELENGTH SERVICE ADDENDUM TO THE SERVICE AGREEMENT AND MASTER SERVICE AGREEMENT</b> (this “Addendum”) 
+                            is executed as of the <u>{!currentDayOrdinal}</u> day of <u>{!currentMonthName}</u>, <u>{!currentYear}</u> (the “Effective Date”), 
+                            by and between <b>Electric Lightwave Holdings, Inc.</b>, an Oregon company with headquarters at 18110 SE 34th St., Building One, 
+                            Vancouver, WA 98683, by and through one of its wholly-owned subsidiaries 
+                            {!CASE( CurrentOpportunity.Account.Account_Sales_Channel__c, "Integra Business", "and its Integra business", "Integra Legacy", "and its Integra business", "Indirect Sales", "and its Integra business", "")}
+                            as may be certificated in the applicable state to provide services (“Company”), and <u>{!CurrentOpportunity.Account.Name}</u> ("Customer"), 
+                            to supplement the Service Agreement dated <u>{!currentMonthName}</u> &nbsp; <u>{!currentDay}</u>, 
+                            <u>{!currentYear}</u> (the “Service Agreement”), and the Master Service Agreement into which it is incorporated and 
+                            made a part thereof (the “MSA”). Capitalized terms not defined herein shall have the meaning as defined 
+                            in the Service Agreement and the MSA.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">1. </td>
+                        <td class="textBlock" colspan="3"><b>SCOPE OF THE ADDENDUM</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" colspan="3">This Addendum, including all attachments hereto, sets forth the terms and conditions under which INTEGRA agrees to provide to Customer, 
+                        and Customer agrees to procure from INTEGRA certain Wavelength Services to be defined herein (the “Service”). Any capitalized terms that are not defined herein, 
+                        shall have the meaning set forth in the Agreement. </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">2. </td>
+                        <td class="textBlock" colspan="3"><b>DESCRIPTION OF WAVELENGTH SERVICES </b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">2.1   INTEGRA’s Service provides domestic optical wavelength circuits which are specifically dedicated to Customer’s use between two (2) 
+                        end locations requested by the Customer and accepted by INTEGRA. The Service includes circuits where the entire circuit is located solely on INTEGRA owned and 
+                        operated network and both end points (“Demarc”) of such circuit originate or terminate at INTEGRA’s Points of Presence (“POP”) or Customer premises. </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">2.2   The Service is based on Dense Wavelength Division Multiplexing (“DWDM”) technology and supports multi-protocol connectivity. 
+                        The Service is a dedicated, linear routed, unprotected, point-to-point transport service with a two fiber Network Interface at both ends. </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">2.3   The Service offers 1Gbps, 2.5Gbps and 10Gbps in bandwidth with multi-protocols. The standard protocols available for transport 
+                        over the Service are Ethernet, Synchronous Optical Network (SONET) and Optical Transport Network (OTN).</td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">2.4   If the Service is being used as a diverse route for another circuit, the Customer is solely responsible for configuring and 
+                        managing the protection schemes for its circuits for failover. </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">2.5   The Service provides transparency for customer's network management purposes, and the Path Protection option with diversity is 
+                        available at additional pricing at the Customer's request, and is subject to availability. The Service is available to INTEGRA On-net buildings only, 
+                        although INTEGRA may discuss Off-Net locations on an individual case basis. </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">3. </td>
+                        <td class="textBlock" colspan="3"><b>PATH PROTECTION</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" colspan="3">The Path Protection provides an alternative transmission path between designated customer premises that is diverse from the primary 
+                        transmission path. Integra’s Protection is an optional feature to the customer at additional charge and must be ordered when the wavelength service is 
+                        ordered.  </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">3.1   <u>2 Fiber Path Protected</u> - Service is provided on Integra owned network facilities using two unprotected paths, diversely routed and providing two- fiber handoff to the customer at Integra designated handoff locations. It provides circuit path protection, and customer facing card and port are not protected. Integra is responsible for the failover switching within company network equipment.</td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">3.2   <u>4 Fiber Path Protected</u> - Service is provided on Integra owned network facilities using two unprotected paths, 
+                        diversely routed and providing four-fiber handoff to the customer at Integra designated handoff locations. It provides circuit path, customer facing card 
+                        and port are protected. Customer is responsible for the failover switching within customer network equipment.</td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" >4. </td>
+                        <td class="textBlock" colspan="3"><b>INDUSTRIAL STANDARD </b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" colspan="3">INTEGRA provides the Service in accordance with Telcordia GR-2918 and GR-253, where GR-2918 defines the transport mechanism of the DWDM 
+                        system delivering the Service, and GR-253 defines the payload to be carried by the DWDM system and/or ITU-T Standard G.709. </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">5. </td>
+                        <td class="textBlock" colspan="3"><b>RATES AND CHARGES</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" colspan="3">The rates and charges applicable to the Service will be outlined in each Service Order for such Service.</td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">6. </td>
+                        <td class="textBlock" colspan="3"><b>ORDERING PROCEDURES</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">6.1 <u>Service Orders</u>. If an electronic format is available to transmit Service Orders from Customer to INTEGRA, this format will be used. If 
+                        an electronic format is utilized, INTEGRA will follow any OBF standards for use thereof. If an electronic format cannot be utilized, Customer will transmit 
+                        Service Orders to INTEGRA via facsimile. Facsimile information will be provided to Customer and updated as needed. In the event Customer submits a Service 
+                        Order that is inconsistent with any of the terms of INTEGRA’s standard Service Order for the Service or with any of the terms of this Agreement, then the 
+                        submitted Service Order will be treated as a counteroffer and will be binding only if accepted by INTEGRA in writing.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">6.2 <u>Contacts and Escalation</u>. INTEGRA will provide a complete list of contacts for the Service provided to Customer. 
+                        In addition, INTEGRA will provide an escalation list to Customer for purposes of escalation to INTEGRA’s Customer Repair Center (“CRC”) and/or escalation 
+                        up to the vice-president of carrier sales.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">6.3 <u>Service Order Intervals</u>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">6.3.1 Service Order Issuance – INTEGRA will acknowledge receipt and request any corrections or clarifications in forty eight (48) 
+                        hours following receipt of a Service Order for all On-Net to On-Net circuits. All intervals are measured from INTEGRA’s receipt of a complete and accurate 
+                        Service Order. 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">6.3.2    FOC - INTEGRA will provide an FOC to Customer within eight (8) business days of receipt of a complete and accurate Service 
+                        Order for the Service. The FOC to Customer will provide any applicable Service intervals as well as an FOC Date. 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">6.3.3     Design Layout Report (“DLR”) - INTEGRA will provide DLR information within eight (8) business days of receipt of a Service 
+                        Order for Service on INTEGRA’s network. 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">6.4 <u>Standard Installation Interval </u>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">6.4.1     The target FOC Date for all the Services will be forty five (45) business days from issuance of FOC for all 
+                        on-net to on-net circuits without a build requirement.  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">6.4.2     Off-Net Service terms and conditions, including intervals, FOC and DLR, will be negotiated on an individual case 
+                        basis dependent upon the standard intervals from the Off-Net service provider(s).  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">6.4.3     Expedite Fees. INTEGRA will consider all requests for expedited Service on an individual case basis, and each Service 
+                        expedited at the request of Customer will incur an expedite fee of $200 per day for each day that the installation date is less than the standard FOC Date. 
+                        Expedited Services will begin billing on the installation date. 
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">7. </td>
+                        <td class="textBlock" colspan="3"><b>INTERFACE REQUIREMENTS</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" colspan="3">The interface at Network Interface and Local Loop Interface will be at the Demarc in the INTEGRA POP or Customer Premises 
+                        (the “Interface”). The Wavelength Services will be provisioned using DWDM network equipment and interconnecting fiber facilities to provide standard 
+                        optical interfaces and transport for the protocols in Section 2.. The protocol channels are available as unprotected with a 2 fiber Network Interface 
+                        at both ends, or as two unprotected (dual path) channels with Integra provided diversity path and a resulting either 2 fiber or 4 fiber Network Interface 
+                        (at customer’s option) at both ends of the service at additional charge. 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">8. </td>
+                        <td class="textBlock" colspan="3"><b>PERFORMANCE OBJECTIVES.</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" colspan="3">The Service standards herein apply on On-net to On-net Service and exclude nonperformance due to any Force Majeure event, 
+                        planned interruptions for maintenance purposes, or other reasons set forth below. The Service will be provided according to the following performance 
+                        objectives: 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">8.1 <u>Network Availability Objective</u>.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">Network Availability is the number of minutes in a calendar month during which the Service is available to exchange data between 
+                        the two (2) Customer end points and shall be determined as follows:   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2" style="text-align:center"><u>(Total Minutes in Calendar Month) – (Total Minutes of Non-Availability)</u><br />
+                                                                                        <u>Total Minutes in Calendar Month</u>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">All On-Net Service will be available to Customer 99.9% of the available time each month.   
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">“Total Minutes in Calendar Month” is determined by    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2" style="text-align:center"><i>30 days X 24 Hours X 60 Minutes = 43200 minutes = 100% Availability</i>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">“Total Minutes of Non-Availability” means the total of all minutes of Network Non-Availability for a specific Service in a 
+                        calendar month, measured as the period from the opening and closing of a Trouble Ticket that is determined to be a Service Outage.   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">8.2 <u>Service Outage Measurement </u>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">A Service Outage is measured from the time that Customer reports the Service Outage to INTEGRA CRC and a trouble ticket is opened 
+                        until the time that INTEGRA notifies Customer that the Service has been restored and the trouble ticket has been closed.   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">8.3 <u>Mean Time to Repair (“MTTR”) Objective</u>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">Mean Time to Repair Objective is four (4) hours or less for any reported Service Outages due to equipment failure and (8) hours or 
+                        less due to the fiber failure. 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">9. </td>
+                        <td class="textBlock" colspan="3"><b>SYSTEM ACCEPTANCE CRITERIA</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" colspan="3">The following acceptance tests will be conducted between Integra’s end-to-end systems, unless waived by Customer:   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">9.1   Service testing will be clear channel, head-to-head cooperative testing. Testing will run a 72 hour period mutually agreed 
+                        upon by the parties. Customer will review test results and will promptly notify INTEGRA of its acceptance.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">9.2   Equipment Alarm and Status Indication Functionality: All equipment alarm functions and status indicators provided by the 
+                        equipment vendor will function properly under all simulated (non-destructive) alarm conditions.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">10. </td>
+                        <td class="textBlock" colspan="3"><b>CREDIT ALLOWANCES.</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">10.1  <u>Installation Delay</u>. If INTEGRA fails to provide an On-Net Service on the FOC Date, Customer will be entitled to a credit in an 
+                        amount equal to 5% of the MRC for each business day of delay, up to 100% of the MRC for the delayed Service.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">10.2  <u>Service Outage</u>. If Services suffer a complete disruption of Service, Customer will be entitled to a credit as outlined in the 
+                        following table, subject to the requirements and limitations of Sections 10, 11, and 17 of the Agreement. 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">10.2.1    Unprotected Single Path Wavelength Service   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">Service is delivered on INTEGRA’s network using a single path with two fiber hand off to Customer at the 
+                        designated interface locations.   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" style="text-align:center">
+                        <table style="border-style: solid; border-width: thin; border-collapse: separate;">
+                            <tr><td style="border-style: solid; border-width: thin; width: 100px">From</td><td style="border-style: solid; border-width: thin; width: 100px">To</td><td style="border-style: solid; border-width: thin; width: 100px">Credit Amount</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">100%</td><td style="border-style: solid; border-width: thin;">99.9%</td><td style="border-style: solid; border-width: thin;">0%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.9%</td><td style="border-style: solid; border-width: thin;">99.7%</td><td style="border-style: solid; border-width: thin;">5%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.7%</td><td style="border-style: solid; border-width: thin;">99.2%</td><td style="border-style: solid; border-width: thin;">10%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.2%</td><td style="border-style: solid; border-width: thin;">98.5%</td><td style="border-style: solid; border-width: thin;">20%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;98.5%</td><td style="border-style: solid; border-width: thin;">0%</td><td style="border-style: solid; border-width: thin;">40%</td></tr>
+                        </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="2">10.2.2     Protected Dual Path Wavelength Service  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock"><u>10.2.2.1    2 Fiber Path Protected Service </u>   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">Service is delivered on INTEGRA’s network using dual paths and diversely routed with two fiber hand off 
+                        to Customer at the designated Interface.  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" style="text-align:center">
+                        <table style="border-style: solid; border-width: thin; border-collapse: separate;">
+                            <tr><td style="border-style: solid; border-width: thin; width: 100px">From</td><td style="border-style: solid; border-width: thin; width: 100px">To</td><td style="border-style: solid; border-width: thin; width: 100px">Credit Amount</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">100%</td><td style="border-style: solid; border-width: thin;">99.99%</td><td style="border-style: solid; border-width: thin;">0%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.99%</td><td style="border-style: solid; border-width: thin;">99.90%</td><td style="border-style: solid; border-width: thin;">5%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.90%</td><td style="border-style: solid; border-width: thin;">99.70%</td><td style="border-style: solid; border-width: thin;">10%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.70%</td><td style="border-style: solid; border-width: thin;">99.50%</td><td style="border-style: solid; border-width: thin;">20%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.50%</td><td style="border-style: solid; border-width: thin;">0%</td><td style="border-style: solid; border-width: thin;">40%</td></tr>
+                        </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock"><u>10.2.2.2    4 Fiber Path Protected Service </u>   
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">Service is delivered on INTEGRA’s network using dual paths and diversely routed with four fiber hand 
+                        off to Customer at the designated Interface.  
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" style="text-align:center">
+                        <table style="border-style: solid; border-width: thin; border-collapse: separate;">
+                            <tr><td style="border-style: solid; border-width: thin; width: 100px">From</td><td style="border-style: solid; border-width: thin; width: 100px">To</td><td style="border-style: solid; border-width: thin; width: 100px">Credit Amount</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">100%</td><td style="border-style: solid; border-width: thin;">99.999%</td><td style="border-style: solid; border-width: thin;">0%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.999%</td><td style="border-style: solid; border-width: thin;">99.99%</td><td style="border-style: solid; border-width: thin;">5%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.99%</td><td style="border-style: solid; border-width: thin;">99.90%</td><td style="border-style: solid; border-width: thin;">10%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.90%</td><td style="border-style: solid; border-width: thin;">99.70%</td><td style="border-style: solid; border-width: thin;">20%</td></tr>
+                            <tr><td style="border-style: solid; border-width: thin;">&gt;99.70%</td><td style="border-style: solid; border-width: thin;">0%</td><td style="border-style: solid; border-width: thin;">40%</td></tr>
+                        </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">10.3  EXCEPT AS PROVIDED IN SECTION 9.4, CUSTOMER’S RIGHT TO CREDITS AS PROVIDED IN THIS AGREEMENT SHALL BE 
+                        CUSTOMER’S SOLE REMEDY WITH REGARD TO SERVICE OUTAGES. <br />
+                        The credits outlined above shall not be compounding, but shall be distinguished by the degree of impairment based on a degradation or a complete disruption 
+                        of Service such that for any particular Service Outage Customer may be eligible for credits with respect to a Service Outage under more than one subsection 
+                        of this Section 6, but Customer may not claim more than one credit for any Service Outage. Upon Customer’s request and if duly approved by INTEGRA, 
+                        Customer’s total service credit(s) in any one month will not exceed one (1) month’s MRC for the affected Service for that month and do not apply to 
+                        MRCs of other Services. If a Customer fails to notify INTEGRA in the manner set forth herein within thirty (30) days after the Service Outage with 
+                        respect to the applicable service credits, Customer will have waived its right to such service credits for that month. To be eligible for service credits, 
+                        the Customer must be in good standing with INTEGRA and current in all of its obligations.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                        <td class="textBlock" colspan="3">10.4  A Service is considered to have Chronic Trouble if it experiences; (i) a single Service Outage in excess of twenty-four 
+                        (24) hours, (ii) three (3) or more Service Outages in any thirty (30) consecutive day period, or (iii) five (5) or more Service Outages in any six (6) 
+                        month period, Customer shall have the right to terminate the affected Service without penalty or further liability to INTEGRA provided that written 
+                        notice of termination is provided to INTEGRA within thirty (30) calendar days of the event giving rise to the termination right under this Section. 
+                        To qualify as a Service Outage under this paragraph, such Service Outage must be a Service Outage that would entitle Customer to credits under this 
+                        Agreement. If Customer does not exercise its termination right within such thirty (30) day period, such right shall lapse with respect to that instance 
+                        of Chronic Trouble and the number of Services Outages shall reset to zero for the purpose of this paragraph.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">11. </td>
+                        <td class="textBlock" colspan="3"><b>ENTIRE AGREEMENT</b></td>
+                    </tr>
+                    <tr>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock">&nbsp;</td>
+                        <td class="textBlock" colspan="3">This Addendum, along with the Agreement, sets forth the entire understanding of the Parties and supersedes any and all prior agreements, 
+                        arrangements or understandings relating to the Services described above. The Agreement will remain in full force and effect except as modified herein. To 
+                        the extent of any conflict between the terms of this Addendum and the Agreement, the Agreement shall control.    
+                        </td>
+                    </tr>
+                    <tr><td colspan="5" class="textBlock"><b>IN WITNESS WHEREOF</b>, the parties have caused this Addendum to be executed by their duly authorized representatives. </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                <table class="Signature_table avoidBreak" border="0" cellspacing="5" cellpadding="0">
+                    <tr>
+                        <td width="15">&nbsp;</td>
+                        <td width="200">&nbsp;</td>
+                        <td width="150">&nbsp;</td>
+                        <td width="15">&nbsp;</td>
+                        <td width="200">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Integra Telecom Holdings, Inc.</td>
+                        <td>&nbsp;</td>
+                        <td colspan="2">{!CurrentOpportunity.Account.Name}</td>
+                    </tr>
+                    <tr>
+                        <td>By:</td>
+                        <td class="normalRef">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>By:</td>
+                        <td class="normalRef">{!decisionMaker.Name}</td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td class="normalRef"><div class="docusignID">DS-CTRSIG</div></td>
+                        <td>&nbsp;</td>
+                        <td>Name:</td>
+                        <td class="normalRef"><div class="docusignID">DS-SIG</div></td>
+                    </tr>
+                    <tr>
+                        <td>Title:</td>
+                        <td class="normalRef"><div class="docusignID">&nbsp;</div></td>
+                        <td>&nbsp;</td>
+                        <td>Title:</td>
+                        <td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}">
+                        </apex:outputText>
+                        <div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL">
+                        </apex:outputText></div> </td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td class="normalRef"><div class="docusignID">DS-CTRDATE</div></td>
+                        <td>&nbsp;</td>
+                        <td>Date:</td>
+                        <td class="normalRef"><div class="docusignID">DS-DATE</div></td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+</apex:component>

@@ -1,0 +1,21 @@
+<apex:component >
+<apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+
+  <apex:outputPanel >
+    <div align="center">
+    <div align="center"><!-- <apex:image url="{!$Resource.IntegraLetterLogo}" width="225" height="106" /> --></div>
+    </div>
+    <div class="LetterComponent_title">
+      <p>
+      <div class="ExecutiveSummaryComponent_title">Business Objectives</div>
+      <apex:outputText value="{!currentOpportunity.Business_Objectives__c}" escape="false"  />
+      </p>
+      <p>&nbsp;</p>
+      <p>
+      <div class="ExecutiveSummaryComponent_title">Proposed Solution</div>
+      <apex:outputText value="{!currentOpportunity.Proposed_Solutions__c}" escape="false"  />
+      </p>
+    </div>
+  </apex:outputPanel>
+</apex:component>

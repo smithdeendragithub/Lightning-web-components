@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Notice_Period_Required</fullName>
+    <active>true</active>
+    <description>If Term Type is either Fixed with a Renewal Option or Auto-Renew then the Notice Period is required.</description>
+    <errorConditionFormula>AND (
+  OR (
+     TEXT( Term_Type__c) == &quot;Fixed with a Renewal Option&quot;,
+     TEXT (Term_Type__c) == &quot;Auto-Renew&quot;),
+ISBLANK (Notice_Period_days__c)
+)</errorConditionFormula>
+    <errorDisplayField>Notice_Period_days__c</errorDisplayField>
+    <errorMessage>Enter Notice Period. It is required if Term Type is either &quot;Fixed with a Renewal Option&quot; or &quot;Auto-Renew.&quot;</errorMessage>
+</ValidationRule>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ContactTypeRequired</fullName>
+    <active>true</active>
+    <description>Contact type is required.</description>
+    <errorConditionFormula>ISPICKVAL(Contact_Type__c, &#39;&#39;)</errorConditionFormula>
+    <errorMessage>Contact type is required.</errorMessage>
+</ValidationRule>

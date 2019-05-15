@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DNU_SD_IB_ELB_Legacy_All_States_PM_Workplan_Template</fullName>
+    <filterScope>Queue</filterScope>
+    <label>DNU SD - IB/ELB/Legacy - All States - PM</label>
+    <queue>DNU_SD_IB_ELB_Legacy_All_States_PM</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

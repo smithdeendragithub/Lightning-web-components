@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Space_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Space Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1/2 Rack/Cabinet</fullName>
+                <default>false</default>
+                <label>1/2 Rack/Cabinet</label>
+            </value>
+            <value>
+                <fullName>1/3 Rack/Cabinet</fullName>
+                <default>false</default>
+                <label>1/3 Rack/Cabinet</label>
+            </value>
+            <value>
+                <fullName>1/4 Rack/Cabinet</fullName>
+                <default>false</default>
+                <label>1/4 Rack/Cabinet</label>
+            </value>
+            <value>
+                <fullName>Cabinet</fullName>
+                <default>false</default>
+                <label>Cabinet</label>
+            </value>
+            <value>
+                <fullName>Cage</fullName>
+                <default>false</default>
+                <label>Cage</label>
+            </value>
+            <value>
+                <fullName>Rack</fullName>
+                <default>false</default>
+                <label>Rack</label>
+            </value>
+            <value>
+                <fullName>Roof Rights</fullName>
+                <default>false</default>
+                <label>Roof Rights</label>
+            </value>
+            <value>
+                <fullName>RU</fullName>
+                <default>false</default>
+                <label>RU</label>
+            </value>
+            <value>
+                <fullName>Suite</fullName>
+                <default>false</default>
+                <label>Suite</label>
+            </value>
+            <value>
+                <fullName>Wire Rack</fullName>
+                <default>false</default>
+                <label>Wire Rack</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

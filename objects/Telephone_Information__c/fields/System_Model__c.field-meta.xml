@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>System_Model__c</fullName>
+    <externalId>false</externalId>
+    <label>System Model</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>2000</fullName>
+                <default>false</default>
+                <label>2000</label>
+            </value>
+            <value>
+                <fullName>2400</fullName>
+                <default>false</default>
+                <label>2400</label>
+            </value>
+            <value>
+                <fullName>3000</fullName>
+                <default>false</default>
+                <label>3000</label>
+            </value>
+            <value>
+                <fullName>3300</fullName>
+                <default>false</default>
+                <label>3300</label>
+            </value>
+            <value>
+                <fullName>48x</fullName>
+                <default>false</default>
+                <label>48x</label>
+            </value>
+            <value>
+                <fullName>5000</fullName>
+                <default>false</default>
+                <label>5000</label>
+            </value>
+            <value>
+                <fullName>6x12</fullName>
+                <default>false</default>
+                <label>6x12</label>
+            </value>
+            <value>
+                <fullName>8100</fullName>
+                <default>false</default>
+                <label>8100</label>
+            </value>
+            <value>
+                <fullName>8300</fullName>
+                <default>false</default>
+                <label>8300</label>
+            </value>
+            <value>
+                <fullName>8500</fullName>
+                <default>false</default>
+                <label>8500</label>
+            </value>
+            <value>
+                <fullName>8x8</fullName>
+                <default>false</default>
+                <label>8x8</label>
+            </value>
+            <value>
+                <fullName>9751 - 10</fullName>
+                <default>false</default>
+                <label>9751 - 10</label>
+            </value>
+            <value>
+                <fullName>9751 - 50</fullName>
+                <default>false</default>
+                <label>9751 - 50</label>
+            </value>
+            <value>
+                <fullName>9751 - 70</fullName>
+                <default>false</default>
+                <label>9751 - 70</label>
+            </value>
+            <value>
+                <fullName>Andtek</fullName>
+                <default>false</default>
+                <label>Andtek</label>
+            </value>
+            <value>
+                <fullName>Aura</fullName>
+                <default>false</default>
+                <label>Aura</label>
+            </value>
+            <value>
+                <fullName>Axxent</fullName>
+                <default>false</default>
+                <label>Axxent</label>
+            </value>
+            <value>
+                <fullName>Axxess</fullName>
+                <default>false</default>
+                <label>Axxess</label>
+            </value>
+            <value>
+                <fullName>BCM50</fullName>
+                <default>false</default>
+                <label>BCM50</label>
+            </value>
+            <value>
+                <fullName>BCS</fullName>
+                <default>false</default>
+                <label>BCS</label>
+            </value>
+            <value>
+                <fullName>Call Manager</fullName>
+                <default>false</default>
+                <label>Call Manager</label>
+            </value>
+            <value>
+                <fullName>Contact Center</fullName>
+                <default>false</default>
+                <label>Contact Center</label>
+            </value>
+            <value>
+                <fullName>CX</fullName>
+                <default>false</default>
+                <label>CX</label>
+            </value>
+            <value>
+                <fullName>Definity</fullName>
+                <default>false</default>
+                <label>Definity</label>
+            </value>
+            <value>
+                <fullName>DX</fullName>
+                <default>false</default>
+                <label>DX</label>
+            </value>
+            <value>
+                <fullName>Enventis</fullName>
+                <default>false</default>
+                <label>Enventis</label>
+            </value>
+            <value>
+                <fullName>Executech</fullName>
+                <default>false</default>
+                <label>Executech</label>
+            </value>
+            <value>
+                <fullName>Fonality</fullName>
+                <default>false</default>
+                <label>Fonality</label>
+            </value>
+            <value>
+                <fullName>HDX</fullName>
+                <default>false</default>
+                <label>HDX</label>
+            </value>
+            <value>
+                <fullName>HighPath</fullName>
+                <default>false</default>
+                <label>HighPath</label>
+            </value>
+            <value>
+                <fullName>HP Proliant</fullName>
+                <default>false</default>
+                <label>HP Proliant</label>
+            </value>
+            <value>
+                <fullName>Impact</fullName>
+                <default>false</default>
+                <label>Impact</label>
+            </value>
+            <value>
+                <fullName>IP-edge</fullName>
+                <default>false</default>
+                <label>IP-edge</label>
+            </value>
+            <value>
+                <fullName>IPK</fullName>
+                <default>false</default>
+                <label>IPK</label>
+            </value>
+            <value>
+                <fullName>IP Office</fullName>
+                <default>false</default>
+                <label>IP Office</label>
+            </value>
+            <value>
+                <fullName>KX</fullName>
+                <default>false</default>
+                <label>KX</label>
+            </value>
+            <value>
+                <fullName>Lync 2013</fullName>
+                <default>false</default>
+                <label>Lync 2013</label>
+            </value>
+            <value>
+                <fullName>MBX IP</fullName>
+                <default>false</default>
+                <label>MBX IP</label>
+            </value>
+            <value>
+                <fullName>MCD</fullName>
+                <default>false</default>
+                <label>MCD</label>
+            </value>
+            <value>
+                <fullName>Meridian</fullName>
+                <default>false</default>
+                <label>Meridian</label>
+            </value>
+            <value>
+                <fullName>MiCloud</fullName>
+                <default>false</default>
+                <label>MiCloud</label>
+            </value>
+            <value>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+                <label>Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Mitel Anywhere</fullName>
+                <default>false</default>
+                <label>Mitel Anywhere</label>
+            </value>
+            <value>
+                <fullName>MX</fullName>
+                <default>false</default>
+                <label>MX</label>
+            </value>
+            <value>
+                <fullName>MX250</fullName>
+                <default>false</default>
+                <label>MX250</label>
+            </value>
+            <value>
+                <fullName>MX30</fullName>
+                <default>false</default>
+                <label>MX30</label>
+            </value>
+            <value>
+                <fullName>Mxvirtual</fullName>
+                <default>false</default>
+                <label>Mxvirtual</label>
+            </value>
+            <value>
+                <fullName>NCP</fullName>
+                <default>false</default>
+                <label>NCP</label>
+            </value>
+            <value>
+                <fullName>Norstar</fullName>
+                <default>false</default>
+                <label>Norstar</label>
+            </value>
+            <value>
+                <fullName>Nortel BCM</fullName>
+                <default>false</default>
+                <label>Nortel BCM</label>
+            </value>
+            <value>
+                <fullName>Nortel CICS</fullName>
+                <default>false</default>
+                <label>Nortel CICS</label>
+            </value>
+            <value>
+                <fullName>NS</fullName>
+                <default>false</default>
+                <label>NS</label>
+            </value>
+            <value>
+                <fullName>OCS</fullName>
+                <default>false</default>
+                <label>OCS</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Px</fullName>
+                <default>false</default>
+                <label>Px</label>
+            </value>
+            <value>
+                <fullName>QSX</fullName>
+                <default>false</default>
+                <label>QSX</label>
+            </value>
+            <value>
+                <fullName>Redwood</fullName>
+                <default>false</default>
+                <label>Redwood</label>
+            </value>
+            <value>
+                <fullName>SBX IP</fullName>
+                <default>false</default>
+                <label>SBX IP</label>
+            </value>
+            <value>
+                <fullName>ShoreGear 220</fullName>
+                <default>false</default>
+                <label>ShoreGear 220</label>
+            </value>
+            <value>
+                <fullName>ShoreGear 30</fullName>
+                <default>false</default>
+                <label>ShoreGear 30</label>
+            </value>
+            <value>
+                <fullName>ShoreGear 50</fullName>
+                <default>false</default>
+                <label>ShoreGear 50</label>
+            </value>
+            <value>
+                <fullName>ShoreGear 90</fullName>
+                <default>false</default>
+                <label>ShoreGear 90</label>
+            </value>
+            <value>
+                <fullName>Shoretel Sky</fullName>
+                <default>false</default>
+                <label>Shoretel Sky</label>
+            </value>
+            <value>
+                <fullName>Smartnet</fullName>
+                <default>false</default>
+                <label>Smartnet</label>
+            </value>
+            <value>
+                <fullName>Softswitch</fullName>
+                <default>false</default>
+                <label>Softswitch</label>
+            </value>
+            <value>
+                <fullName>Strata</fullName>
+                <default>false</default>
+                <label>Strata</label>
+            </value>
+            <value>
+                <fullName>Strata CIX</fullName>
+                <default>false</default>
+                <label>Strata CIX</label>
+            </value>
+            <value>
+                <fullName>SX</fullName>
+                <default>false</default>
+                <label>SX</label>
+            </value>
+            <value>
+                <fullName>TDA</fullName>
+                <default>false</default>
+                <label>TDA</label>
+            </value>
+            <value>
+                <fullName>TDE</fullName>
+                <default>false</default>
+                <label>TDE</label>
+            </value>
+            <value>
+                <fullName>TDS</fullName>
+                <default>false</default>
+                <label>TDS</label>
+            </value>
+            <value>
+                <fullName>TEB</fullName>
+                <default>false</default>
+                <label>TEB</label>
+            </value>
+            <value>
+                <fullName>UC</fullName>
+                <default>false</default>
+                <label>UC</label>
+            </value>
+            <value>
+                <fullName>Unify</fullName>
+                <default>false</default>
+                <label>Unify</label>
+            </value>
+            <value>
+                <fullName>Univerge 3C</fullName>
+                <default>false</default>
+                <label>Univerge 3C</label>
+            </value>
+            <value>
+                <fullName>Wave 2500</fullName>
+                <default>false</default>
+                <label>Wave 2500</label>
+            </value>
+            <value>
+                <fullName>Wave 500</fullName>
+                <default>false</default>
+                <label>Wave 500</label>
+            </value>
+            <value>
+                <fullName>Zayo</fullName>
+                <default>false</default>
+                <label>Zayo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

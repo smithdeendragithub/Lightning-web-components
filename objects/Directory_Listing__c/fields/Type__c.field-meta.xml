@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Additional Listing</fullName>
+                <default>false</default>
+                <label>Additional Listing</label>
+            </value>
+            <value>
+                <fullName>Alternate Call</fullName>
+                <default>false</default>
+                <label>Alternate Call</label>
+            </value>
+            <value>
+                <fullName>Cross Reference</fullName>
+                <default>false</default>
+                <label>Cross Reference</label>
+            </value>
+            <value>
+                <fullName>Foreign Listing</fullName>
+                <default>false</default>
+                <label>Foreign Listing</label>
+            </value>
+            <value>
+                <fullName>Information Listing/Extra Line</fullName>
+                <default>false</default>
+                <label>Information Listing/Extra Line</label>
+            </value>
+            <value>
+                <fullName>National Toll Free Directory</fullName>
+                <default>false</default>
+                <label>National Toll Free Directory</label>
+            </value>
+            <value>
+                <fullName>Nonlisted</fullName>
+                <default>false</default>
+                <label>Nonlisted</label>
+            </value>
+            <value>
+                <fullName>Nonpublished</fullName>
+                <default>false</default>
+                <label>Nonpublished</label>
+            </value>
+            <value>
+                <fullName>Published</fullName>
+                <default>false</default>
+                <label>Published</label>
+            </value>
+            <value>
+                <fullName>Complimentary Listing</fullName>
+                <default>false</default>
+                <label>Complimentary Listing</label>
+            </value>
+            <value>
+                <fullName>Registration</fullName>
+                <default>false</default>
+                <label>Registration</label>
+            </value>
+            <value>
+                <fullName>Transfer</fullName>
+                <default>false</default>
+                <label>Transfer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

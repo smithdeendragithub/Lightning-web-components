@@ -1,0 +1,14 @@
+<apex:page standardController="Account">
+ 	<apex:outputPanel id="out">
+		<apex:pageMessages escape="false" />
+	</apex:outputPanel>
+	
+	<apex:form >
+		<apex:pageBlock >
+			<div style="padding-bottom: 1em;font-size:16px;">
+				<strong>New Service Location {!IF(ISBLANK(Account.ID),'','on ' + Account.Name)} :</strong>
+			</div>
+			<c:AddressSelector accID="{!Account.Id}" autoBindSearchBox="true"/>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

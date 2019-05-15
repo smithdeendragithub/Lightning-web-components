@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Set_Estimated_NAA_for_Roll_Up</fullName>
+        <description>Copy Estimated_NAA__c to Estimated_NAA_for_Roll_Up__c</description>
+        <field>Estimated_NAA_for_Roll_Up__c</field>
+        <formula>Estimated_NAA__c</formula>
+        <name>Set Estimated NAA for Roll Up</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+    </fieldUpdates>
+    <rules>
+        <fullName>Copy Estimated NAA</fullName>
+        <actions>
+            <name>Set_Estimated_NAA_for_Roll_Up</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <description>Copy value from formula field Estimated_NAA__c to Estimated_NAA_for_Roll_Up__c</description>
+        <formula>true</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

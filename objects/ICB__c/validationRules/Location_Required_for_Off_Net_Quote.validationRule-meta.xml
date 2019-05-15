@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Location_Required_for_Off_Net_Quote</fullName>
+    <active>true</active>
+    <description>If Off-Net Quoting Required is checked, then Service Location is required</description>
+    <errorConditionFormula>(Off_Net_Quoting_Required__c)&amp;&amp;
+ISPICKVAL(Multi_Site_Costing__c, &quot;Single Site&quot;) &amp;&amp;(ISBLANK( Service_Location__c ))</errorConditionFormula>
+    <errorDisplayField>Service_Location__c</errorDisplayField>
+    <errorMessage>Service Location is required for Single Site ICBs where Access Management Intervention is required.</errorMessage>
+</ValidationRule>

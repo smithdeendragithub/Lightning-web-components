@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SD_EL_WA_UT_CO_MN_PM_Workstep_Issue</fullName>
+    <filterScope>Queue</filterScope>
+    <label>DNU</label>
+    <queue>SD_EL_WA_UT_ID_PM</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

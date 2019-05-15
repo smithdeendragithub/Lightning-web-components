@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Question_posted_on_SFDC_Helpdesk_tab</fullName>
+        <description>Question posted on SFDC Helpdesk tab</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>candi.west@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>julie.schlitter2@electriclightwave.com</recipient>
+            <type>user</type>
+        </recipients>
+        <recipients>
+            <recipient>kelly.tetlock@allstream.com.eli</recipient>
+            <type>user</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/SFDC_Helpdesk_question_notification</template>
+    </alerts>
+    <rules>
+        <fullName>SFDC Helpdesk question</fullName>
+        <actions>
+            <name>Question_posted_on_SFDC_Helpdesk_tab</name>
+            <type>Alert</type>
+        </actions>
+        <active>true</active>
+        <criteriaItems>
+            <field>Question.CreatedDate</field>
+            <operation>equals</operation>
+            <value>TODAY</value>
+        </criteriaItems>
+        <description>Notifies SFDC Helpdesk of a question posted on the SFDC Help desk page</description>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

@@ -1,0 +1,221 @@
+<apex:component controller="ProposalGenericController">
+    <apex:attribute name="currentOppty" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+    <apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+    <apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+	<apex:outputPanel layout="none" id="pepe" >
+		<table style="padding-top:0em; border-top:0px;" id="Table1" class="mainTable_standardBackground">
+    <tr>
+        <td style="width: 700px;">
+            <table style="width: 700px;">
+                <tr>
+                    <td colspan="4" style="text-align: center;height:0px;">
+                        <div><h2 style="margin:5px;"><b>WIRELESS BACKUP SERVICE ADDENDUM</b></h2></div>
+                        <div><h2 style="margin:5px;"><b>to the</b></h2></div>
+                        <div><h2 style="margin:5px;"><b>Master Service Agreement</b></h2></div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td style="width: 700px;">
+            <table border="0" class="smallCluster-left">
+                <tr>
+                    <td class="textBlock" colspan="3">
+                        <b>THIS WIRELESS BACKUP ADDENDUM </b>(this “Addendum”) shall be attached to and become a part
+						of the Master Service Agreement (the “Agreement”), by and between Integra (“Integra”) and
+						<u>{!CurrentOpportunity.Account.Name}</u> (“Customer”). Unless otherwise defined herein, capitalized term in this
+						Addendum shall have the same meaning as defined in the Agreement. </td>
+                </tr>
+            <tr>
+
+                <td><b>1.</b></td>               
+                <td class="textBlock" colspan="2"><b>SCOPE OF THE ADDENDUM</b></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="textBlock" colspan="2">This Addendum, including all attachments hereto, sets forth the terms and conditions under which Integra
+					agrees to provide to Customer and Customer agrees to procure from Integra certain Wireless Backup
+					Services to be defined herein (the “Services”). 
+                </td>
+            </tr>
+            <tr>
+                <td><b>2.</b></td>
+                <td class="textBlock" colspan="2"><b>DESCRIPTION OF SERVICES</b></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="textBlock" style="text-align: left; vertical-align: top;">2.1</td>
+                <td>Wireless Backup service will provide a secure, wireless alternative access method for
+					Integra provided data services. It will provide an automatic connection between the
+					customer location and the Integra network over a third party carrier’s wireless network if the
+					primary wireline connection becomes unavailable. In the event of a wireline failure, the
+					Customer Premises Equipment (CPE) will automatically switch traffic from the wireline
+					connection to the wireless connection. When the wireline connection is restored, the
+					CPE will automatically restore connectivity across the wireline connection.</td>     
+            </tr>
+            <tr>
+                <td></td>
+                <td class="textBlock" style="text-align: left;vertical-align: top;">2.2</td>
+                <td>The wireless backup option will not be used as a stand-alone method for wireless
+					VPN Solutions connectivity without a primary wireline connection. It will not be used
+					to provide a temporary connection prior to turn-up of the wireline local loop for VPN
+					Solutions.
+                </td>
+            </tr>
+			<tr>
+                <td></td>
+                <td class="textBlock" style="text-align: left;vertical-align: top;">2.3</td>
+                <td>Due to increased latency on the wireless network, real-time data applications will not be
+					supported across the wireless connection. Specifically, voice and video services will not be
+					supported. All data over the wireless connection will be given Quality of Service (QoS)
+					treatment of Best Effort and any service guarantees, not including network availability,
+					described in the VPN Solutions Service Level Agreement will not apply while the Wireless
+					Backup service is the primary network connection. 
+                </td>
+            </tr>
+			<tr>
+                <td></td>
+                <td class="textBlock" style="text-align: left;vertical-align: top;">2.4</td>
+                <td>Traffic permissions across the wireless access method will be provided by applying a customer
+					defined Access Control List (ACL) filter. 
+                </td>
+            </tr>
+			<tr>
+                <td><b>3.</b></td>
+                <td class="textBlock" colspan="2"><b>SERVICE AVAILABILITY</b></td>
+            </tr>
+			<tr>
+                <td></td>
+                <td class="textBlock" style="text-align: left; vertical-align: top;">3.1</td>
+                <td>The Wireless Backup service will be available anywhere in the United States, as long as
+					wireless service is available from the wireless service provider. Wireless service availability
+					will be confirmed at time of equipment installation. Wireless service is not guaranteed if the
+					CPE is re-located by the customer from the original location where the wireless service was
+					originally installed and turned-up. 
+				</td>
+			</tr>
+			<tr>
+                <td></td>
+                <td class="textBlock" style="text-align: left; vertical-align: top;">3.2</td>
+                <td>Wireless Backup Service uses radio technologies and is subject to transmission and service
+					area limitations, interruptions and dropped packets caused by atmospheric, topographical or
+					environmental conditions, cell site availability, Equipment or its installation, governmental
+					regulations, system limitations, maintenance or other conditions or activities affecting
+					Wireless Backup Service operation. 
+				</td>
+			</tr><tr>
+                <td></td>
+                <td class="textBlock" style="text-align: left; vertical-align: top;">3.3</td>
+                <td>Integra will not install, operate or maintain any external antenna, amplifier or device that will
+					enhance the wireless carrier’s signal. The Customer may not connect any equipment to the
+					Integra provided equipment that will amplify, enhance, retransmit or regenerate the wireless
+					carrier’s signal. 
+				</td>
+			</tr>
+			<tr>
+                <td><b>4.</b></td>
+                <td class="textBlock" colspan="2"><b>RATES AND CHARGES </b></td>
+            </tr>
+			<tr>
+                <td></td>
+                <td class="textBlock" colspan="2">The rates and charges applicable to the Services will be outlined in each Service Order for such
+					Services. Integra may bill the customer an overage charge if the customer usage over the wireless
+					connection exceeds the predetermined usage limit.  
+                </td>
+            </tr>			
+			<tr>
+                <td><b>5.</b></td>
+                <td class="textBlock" colspan="2"><b>ORDERING PROCEDURES FOR ON-NET SERVICES</b></td>
+            </tr>
+			<tr>
+                <td></td>
+                <td class="textBlock" colspan="2">Customer shall place an order for Services by submitting a Service Order. In addition to the form and
+					information defined in the Agreement and this Addendum, the Service Order shall contain information
+					such as applicable ACL lists. In the event Customer submits a Service Order that is inconsistent with any
+					of the terms of Integra's standard Service Order, the Agreement or this Addendum, then the Service Order
+					will be treated as a counteroffer and will be binding only if accepted by Integra.   
+                </td>
+            </tr>
+			<tr>
+                <td><b>6.</b></td>
+                <td class="textBlock" colspan="2"><b>SERVICE LEVEL OBJECTIVES</b></td>
+            </tr>
+			<tr>
+                <td></td>
+                <td class="textBlock" colspan="2">The Wireless Backup service does not change the existing service level objectives outlined in the VPN
+					Solutions addendum to the MSA, and such service level objective do not apply to Wireless Backup
+					Service. There are no guarantees of service while the Wireless Backup Service is active.    
+                </td>
+            </tr>
+			<tr>
+                <td><b>7.</b></td>
+                <td class="textBlock" colspan="2"><b>ENTIRE AGREEMENT</b></td>
+            </tr>
+			<tr>
+                <td></td>
+                <td class="textBlock" colspan="2">This Addendum, along with the Agreement, sets forth the entire understanding of the Parties and
+					supersedes any and all prior agreements, arrangements or understandings relating to the Services
+					described above. The Agreement will remain in full force and effect except as modified herein. To
+					the extent of any conflict between the terms of this Addendum and the Agreement or any Service
+					Order, this Addendum shall control. 
+                </td>
+            </tr>
+			<tr>
+				<td  class="textBlock" colspan="5"><b>IN WITNESS WHEREOF</b>, the parties have caused this Addendum to be executed by their duly authorized representatives. </td>
+            </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table class="Signature_table avoidBreak" border="0" cellspacing="5" cellpadding="0">
+                        <tr>
+                            <td width="15">&nbsp;</td>
+                            <td width="200">&nbsp;</td>
+                            <td width="150">&nbsp;</td>
+                            <td width="15">&nbsp;</td>
+                            <td width="200">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Integra Telecom Holdings, Inc.</td>
+                            <td>&nbsp;</td>
+                            <td colspan="2">{!CurrentOpportunity.Account.Name}</td>
+                        </tr>
+                        <tr>
+                            <td>By:</td>
+                            <td class="normalRef">&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>By:</td>
+                            <td class="normalRef">{!decisionMaker.Name}</td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td class="normalRef"><div class="docusignID">DS-CTRSIG</div></td>
+                            <td>&nbsp;</td>
+                            <td>Name:</td>
+                            <td class="normalRef"><div class="docusignID">DS-SIG</div></td>
+                        </tr>
+                        <tr>
+                            <td>Title:</td>
+                            <td class="normalRef"><div class="docusignID">&nbsp;</div></td>
+                            <td>&nbsp;</td>
+                            <td>Title:</td>
+                            <td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}">
+                        </apex:outputText>
+                        <div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL">
+                        </apex:outputText></div> </td>
+                        </tr>
+                        <tr>
+                            <td>Date:</td>
+                            <td class="normalRef"><div class="docusignID">DS-CTRDATE</div></td>
+                            <td>&nbsp;</td>
+                            <td>Date:</td>
+                            <td class="normalRef"><div class="docusignID">DS-DATE</div></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+	</apex:outputPanel>
+</apex:component>

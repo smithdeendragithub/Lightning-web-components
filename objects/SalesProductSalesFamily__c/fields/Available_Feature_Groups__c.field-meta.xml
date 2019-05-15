@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Available_Feature_Groups__c</fullName>
+    <externalId>false</externalId>
+    <label>Available Feature Groups</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Additional Phones</fullName>
+                <default>false</default>
+                <label>Additional Phones</label>
+            </value>
+            <value>
+                <fullName>Additional Services</fullName>
+                <default>false</default>
+                <label>Additional Services</label>
+            </value>
+            <value>
+                <fullName>Analog Interfaces</fullName>
+                <default>false</default>
+                <label>Analog Interfaces</label>
+            </value>
+            <value>
+                <fullName>Applications</fullName>
+                <default>false</default>
+                <label>Applications</label>
+            </value>
+            <value>
+                <fullName>Bandwidth</fullName>
+                <default>false</default>
+                <label>Bandwidth</label>
+            </value>
+            <value>
+                <fullName>Bandwidth/Configuration</fullName>
+                <default>false</default>
+                <label>Bandwidth/Configuration</label>
+            </value>
+            <value>
+                <fullName>Bandwidth/Configuration Tier 1</fullName>
+                <default>false</default>
+                <label>Bandwidth/Configuration Tier 1</label>
+            </value>
+            <value>
+                <fullName>Bandwidth/Configuration Tier 2</fullName>
+                <default>false</default>
+                <label>Bandwidth/Configuration Tier 2</label>
+            </value>
+            <value>
+                <fullName>Bandwidth/Configuration Tier 3</fullName>
+                <default>false</default>
+                <label>Bandwidth/Configuration Tier 3</label>
+            </value>
+            <value>
+                <fullName>Bandwidth/Configuration Tier 4</fullName>
+                <default>false</default>
+                <label>Bandwidth/Configuration Tier 4</label>
+            </value>
+            <value>
+                <fullName>Bandwidth Fractional/Capped</fullName>
+                <default>false</default>
+                <label>Bandwidth Fractional/Capped</label>
+            </value>
+            <value>
+                <fullName>Base Mailbox Type</fullName>
+                <default>false</default>
+                <label>Base Mailbox Type</label>
+            </value>
+            <value>
+                <fullName>Base Package</fullName>
+                <default>false</default>
+                <label>Base Package</label>
+            </value>
+            <value>
+                <fullName>Bundle Additions</fullName>
+                <default>false</default>
+                <label>Bundle Additions</label>
+            </value>
+            <value>
+                <fullName>CIR</fullName>
+                <default>false</default>
+                <label>CIR</label>
+            </value>
+            <value>
+                <fullName>Cloud Firewall</fullName>
+                <default>false</default>
+                <label>Cloud Firewall</label>
+            </value>
+            <value>
+                <fullName>Colocation</fullName>
+                <default>false</default>
+                <label>Colocation</label>
+            </value>
+            <value>
+                <fullName>Current Promotions</fullName>
+                <default>false</default>
+                <label>Current Promotions</label>
+            </value>
+            <value>
+                <fullName>Data Devices</fullName>
+                <default>false</default>
+                <label>Data Devices</label>
+            </value>
+            <value>
+                <fullName>Data Storage</fullName>
+                <default>false</default>
+                <label>Data Storage</label>
+            </value>
+            <value>
+                <fullName>Directory Listings</fullName>
+                <default>false</default>
+                <label>Directory Listings</label>
+            </value>
+            <value>
+                <fullName>Domain Services</fullName>
+                <default>false</default>
+                <label>Domain Services</label>
+            </value>
+            <value>
+                <fullName>Email Services</fullName>
+                <default>false</default>
+                <label>Email Services</label>
+            </value>
+            <value>
+                <fullName>Enhancements</fullName>
+                <default>false</default>
+                <label>Enhancements</label>
+            </value>
+            <value>
+                <fullName>Equipment</fullName>
+                <default>false</default>
+                <label>Equipment</label>
+            </value>
+            <value>
+                <fullName>eRate</fullName>
+                <default>false</default>
+                <label>eRate</label>
+            </value>
+            <value>
+                <fullName>EVC</fullName>
+                <default>false</default>
+                <label>EVC</label>
+            </value>
+            <value>
+                <fullName>Features</fullName>
+                <default>false</default>
+                <label>Features</label>
+            </value>
+            <value>
+                <fullName>Group Features</fullName>
+                <default>false</default>
+                <label>Group Features</label>
+            </value>
+            <value>
+                <fullName>Hosted Voice Services</fullName>
+                <default>false</default>
+                <label>Hosted Voice Services</label>
+            </value>
+            <value>
+                <fullName>Included</fullName>
+                <default>false</default>
+                <label>Included</label>
+            </value>
+            <value>
+                <fullName>International Calling</fullName>
+                <default>false</default>
+                <label>International Calling</label>
+            </value>
+            <value>
+                <fullName>IP Services</fullName>
+                <default>false</default>
+                <label>IP Services</label>
+            </value>
+            <value>
+                <fullName>ISP Bundle</fullName>
+                <default>false</default>
+                <label>ISP Bundle</label>
+            </value>
+            <value>
+                <fullName>Location Options</fullName>
+                <default>false</default>
+                <label>Location Options</label>
+            </value>
+            <value>
+                <fullName>Long Distance</fullName>
+                <default>false</default>
+                <label>Long Distance</label>
+            </value>
+            <value>
+                <fullName>Longhaul Options</fullName>
+                <default>false</default>
+                <label>Longhaul Options</label>
+            </value>
+            <value>
+                <fullName>Measured Burst Rate</fullName>
+                <default>false</default>
+                <label>Measured Burst Rate</label>
+            </value>
+            <value>
+                <fullName>Measured Floor</fullName>
+                <default>false</default>
+                <label>Measured Floor</label>
+            </value>
+            <value>
+                <fullName>Metro Loc A Config Options</fullName>
+                <default>false</default>
+                <label>Metro Loc A Config Options</label>
+            </value>
+            <value>
+                <fullName>Metro Loc Z Config Options</fullName>
+                <default>false</default>
+                <label>Metro Loc Z Config Options</label>
+            </value>
+            <value>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+                <label>Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Monitoring Services</fullName>
+                <default>false</default>
+                <label>Monitoring Services</label>
+            </value>
+            <value>
+                <fullName>Options</fullName>
+                <default>false</default>
+                <label>Options</label>
+            </value>
+            <value>
+                <fullName>Other Options</fullName>
+                <default>false</default>
+                <label>Other Options</label>
+            </value>
+            <value>
+                <fullName>Per Line Features</fullName>
+                <default>false</default>
+                <label>Per Line Features</label>
+            </value>
+            <value>
+                <fullName>Phones</fullName>
+                <default>false</default>
+                <label>Phones</label>
+            </value>
+            <value>
+                <fullName>Physical Interface</fullName>
+                <default>false</default>
+                <label>Physical Interface</label>
+            </value>
+            <value>
+                <fullName>Power/Accessories</fullName>
+                <default>false</default>
+                <label>Power/Accessories</label>
+            </value>
+            <value>
+                <fullName>Power Options</fullName>
+                <default>false</default>
+                <label>Power Options</label>
+            </value>
+            <value>
+                <fullName>Remote Voice Services</fullName>
+                <default>false</default>
+                <label>Remote Voice Services</label>
+            </value>
+            <value>
+                <fullName>SharePoint</fullName>
+                <default>false</default>
+                <label>SharePoint</label>
+            </value>
+            <value>
+                <fullName>Station Detail/Feature Schedule</fullName>
+                <default>false</default>
+                <label>Station Detail/Feature Schedule</label>
+            </value>
+            <value>
+                <fullName>Toll Free</fullName>
+                <default>false</default>
+                <label>Toll Free</label>
+            </value>
+            <value>
+                <fullName>User Seats</fullName>
+                <default>false</default>
+                <label>User Seats</label>
+            </value>
+            <value>
+                <fullName>Voice</fullName>
+                <default>false</default>
+                <label>Voice</label>
+            </value>
+            <value>
+                <fullName>Voicemail</fullName>
+                <default>false</default>
+                <label>Voicemail</label>
+            </value>
+            <value>
+                <fullName>Web Hosting</fullName>
+                <default>false</default>
+                <label>Web Hosting</label>
+            </value>
+            <value>
+                <fullName>Wiring / Labor</fullName>
+                <default>false</default>
+                <label>Wiring / Labor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

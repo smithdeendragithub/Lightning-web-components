@@ -1,0 +1,563 @@
+<apex:page controller="ServiceAvailabilityController">
+    <apex:includescript value="/soap/ajax/33.0/connection.js" />
+    <apex:includescript value="/soap/ajax/33.0/apex.js" />
+    <style>
+        .invalid {
+            border:solid 1px red;
+        }
+        table.list {
+            width:100%;
+        }
+    </style>
+    <script id="price-view-template" type="text/x-handlebars-template">
+        {{#if this}}
+            <table style="background-color:#EEE;" class="list">
+                <tr style="border-bottom:solid 1px #CCC;">
+                    <th>Rate Plan</th>
+                    <th>MRR</th>
+                    <th>MRR Total</th>
+                    <th>NRR</th>
+                    <td>NRR Total</td>
+                    <th>Components</th>
+                </tr>
+                {{#each this}}
+                <tr style="border-bottom:solid 1px #CCC;">
+                    <td>
+                        {{ratePlanName}}
+                    </td>
+                    <td>${{getMoney MRR}}</td>
+                    <td>${{getMoney totalMRR}}</td>
+                    <td>${{getMoney NRR}}</td>
+                    <td>${{getMoney totalNRR}}</td>
+                    <td>
+                        {{>price-view-template this.ratePlanNames}}
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+        {{/if}}
+    </script>
+    <script id="result-table-template" type="text/x-handlebars-template">
+        {{#if results}}
+        <table style="background-color:{{getColor color}};" class="list">
+            <tr style="border-bottom:solid 1px #CCC;">
+                <th>Product Name</th>
+                <th>Term</th>
+                <th>Bandwidth</th>
+                <th>Access Tech</th>
+                <td>MRR</td>
+                <th>Total MRR</th>
+                <th>NRR</th>
+                <th>Total NRR</th>
+                <th>Required Products</th>
+                <th>Components</th>
+            </tr>
+            {{#each results}}
+            <tr style="border-bottom:solid 1px #CCC;">
+                <td>
+                    {{productName}} ({{productID}})
+                </td>
+                <td>
+                    {{term}}
+                </td>
+                <td>
+                    {{bandwidth}} 
+                </td>
+                <td>
+                    {{accessTech}}
+                </td>
+                <td>${{getMoney MRR}}</td>
+                <td>${{getMoney totalMRR}}</td>
+                <td>${{getMoney NRR}}</td>
+                <td>${{getMoney totalNRR}}</td>
+                <td>{{>result-table-template results=this.requiredPricing color=../color}}</td>
+                <td>
+                    {{>price-view-template this.ratePlanNames}}
+                </td>
+            </tr>
+            {{/each}}            
+        </table>
+        {{/if}} 
+    </script>
+
+    <div id="foucHelper" style="display:none;">
+    <c:ModalWaitDialog />
+    
+    <apex:form >        
+    <apex:pageBlock id="mainBlock" title="Get Product Pricing For Building">
+        <apex:pageBlockButtons >
+            <apex:commandbutton value="Get Pricing" onClick="doGetPricing(); return false;" />
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection id="mainSection" columns="2" title="Inputs">
+            <apex:selectList id="bandwidth" label="Bandwidth" multiselect="false" size="1" >
+                    <apex:selectOptions value="{!bandwidths}" />
+            </apex:selectList>
+            <apex:selectList id="terms" label="Terms" multiselect="true">
+                <apex:selectOption itemValue="12" itemLabel="12" />
+                <apex:selectOption itemValue="24" itemLabel="24" />
+                <apex:selectOption itemValue="36" itemLabel="36" />
+                <apex:selectOption itemValue="48" itemLabel="48" />
+                <apex:selectOption itemValue="60" itemLabel="60" />
+            </apex:selectList> 
+            <apex:inputtext style="float:left;" disabled="true" id="address" label="Address"><button id="addressSearchButton">Search</button></apex:inputtext>
+            <apex:inputtext style="float:left;" disabled="true" id="productId" styleclass="number" label="Product"><button id="productSearchButton">Search</button></apex:inputtext>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="Pricing Results" columns="1">
+            <div id="pricingGrid"></div>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection title="Detailed Results" columns="1">
+                <div id="resultContainer"></div>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    </apex:form>
+
+    <div id="addressModal" title="Address Search">
+        <apex:form >
+            <apex:pageblock >
+            <c:AddressSelector autobindsearchbox="true" allowNew="false" savecallbackfunction="save_Callback" />
+            </apex:pageblock>
+        </apex:form>
+    </div>
+    <div id="productModal" title="Product Search">
+        <c:RecordSelector sobjecttype="SPC_Product__c" id="spcProductSelector" fields="Name" />
+    </div>
+    </div>
+    <script type="text/javascript">
+        var __sfdcSessionId = '{!GETSESSIONID()}';
+        var state = {
+            output: null,
+            startTime : new Date().getTime()
+        };
+        function save_Callback(locationId){
+            closeModalWaitDialog();
+            SA_Page.cpts.addressSelector.close();
+            getBuildingFromLocation(locationId);
+        }
+
+        var locationCallback = {
+            onSuccess: function(result, source){
+                var loc = result.getArray('records')[0];
+                var addr = loc.Building__r.Address__c + ' ' + loc.Building__r.City__c + ' ' + loc.Building__r.State__c + ' ' + loc.Building__r.Postal_Code__c;
+                SA_Page.cpts.address.setValue(addr);
+            },
+            onFailure: queryFailure,
+            source: state
+        };
+
+        var spcProductCallback = {
+            onSuccess: function(result, source){
+                var spcProd = result.getArray('records')[0];
+                SA_Page.cpts.productId.setValue({ name : spcProd.Name, id : Number(spcProd.SalesProductExternalID__c).toFixed(0)});
+            },
+            onFailure: queryFailure,
+            source: state
+        }
+
+        function queryFailure(error, source){
+            alert(error);
+        }
+
+        function getBuildingFromLocation(locId){
+            sforce.connection.query(
+                "Select Id, Building__c, Building__r.Address__c, Building__r.City__c, Building__r.State__c, Building__r.Postal_Code__c from Location__c where Id = '" + locId + "'",
+                locationCallback
+            );
+        }
+
+        function getSPCProductFromSelection(spcProdId){
+            sforce.connection.query(
+                "Select Id, Name, SalesProductExternalID__c from SPC_Product__c where Id = '" + spcProdId + "'",
+                spcProductCallback
+            );
+        }
+        var SA_Page = {
+            cpts : {
+                'bandwidth': {
+                    $ele : $('select[id$="bandwidth"]'),
+                    setValue : function(val){
+                        this.$ele.children('[value='+val+']').attr('selected',true);
+                    },
+                    getValue : function(){
+                        return this.$ele.children(':selected').val();
+                    },
+                    validate : function(){
+                        var valid = this.$ele.children(':selected').length == 1;
+                        this.$ele.toggleClass('invalid', !valid);
+                        return valid;
+                    }
+                },
+                'terms': {
+                    $ele : $('select[id$="terms"]'),
+                    setValue : function(vals){
+                        this.$ele.children().each(function(idx,ele){
+                            if(vals.hasOwnProperty($(ele).val())) $(ele).attr('selected',true);
+                        });
+                    },
+                    getValue : function(){
+                        return this.$ele.children(':selected').map(function() { return this.value; }).get();
+                    },
+                    validate : function(){
+                        var valid = this.$ele.children(':selected').length > 0;
+                        this.$ele.toggleClass('invalid', !valid);
+                        return valid;
+                    }
+                },
+                'address': {
+                    $ele : $('input[id$="address"]'),
+                    setValue : function(val){
+                        this.$ele.val(val);
+                    },
+                    getValue : function(){
+                        return this.$ele.val();
+                    },
+                    validate : function(){
+                        var valid = this.getValue() != '';
+                        this.$ele.toggleClass('invalid', !valid);
+                        return valid;
+                    }
+                },
+                'productId': {
+                    $ele : $('input[id$="productId"]'),
+                    setValue : function(val){
+                        this.$ele.val(val.name);
+                        this.$ele.attr('data-id',val.id);
+                    },
+                    getValue : function(){
+                        return { name : this.$ele.val(), id : this.$ele.attr('data-id')};
+                    },
+                    validate : function(){
+                        var value = this.getValue();
+                        var valid = value.name != '' && Number(value.id) > 0;
+                        this.$ele.toggleClass('invalid', !valid);
+                        return valid;
+                    }
+                },
+                'addressSelector': {
+                    $ele : $('#addressModal'),
+                    open : function(){
+                        this.$ele.dialog('open');
+                    },
+                    close : function(){
+                        this.$ele.dialog('close');
+                    },
+                },
+                'productSelector': {
+                    $ele : $('#productModal'),
+                    open : function(){
+                        this.$ele.dialog('open');
+                    },
+                    close : function(){
+                        this.$ele.dialog('close');
+                    }
+                }
+            },
+
+            init : function(){
+                this.cpts.addressSelector.$ele.dialog({
+                    autoOpen: false,
+                    modal: true,
+                    minHeight: 400,
+                    minWidth: 900
+                });
+                this.cpts.productSelector.$ele.dialog({
+                    autoOpen: false,
+                    modal: true,
+                    minHeight: 400,
+                    minWidth: 900,
+                    open: function(){
+                        $('table[id$="dtSelector"]').css('width','100%');
+                    }
+                });
+                this.template = Handlebars.compile($('#result-table-template').html());
+                Handlebars.registerHelper('getMoney',function(val){
+                    return Number(isNaN(val)? 0:val).toFixed(2);
+                });
+                Handlebars.registerHelper('getTotals',function(pView){
+                    var totals = getPricingTotal(pView);
+                    return new Handlebars.SafeString('<td>$'+Number(totals.MRR).toFixed(2)+'</td><td>$'+Number(totals.NRR).toFixed(2)+'</td>');
+                });
+                Handlebars.registerPartial('price-view-template', Handlebars.compile($('#price-view-template').html()));
+                Handlebars.registerPartial('result-table-template', Handlebars.compile($('#result-table-template').html()));
+                Handlebars.registerHelper('getRelatedPricingByTerm',function(productTerms,term){
+                    var pricingByTerm = [];
+                    if(productTerms != undefined){
+                        for(var i = 0; i < productTerms.length; ++i){
+                            var rp = relatedPricing[i];
+                            var pbt = {'ProductName':rp.ProductName,'ProductID':rp.ProductID};
+                            pbt.ProductTermAccessPrices = [];
+                            for(var j = 0; j < rp.ProductTermAccessPrices.length; ++j){
+                                if(rp.ProductTermAccessPrices[j].Term == term){
+                                    pbt.ProductTermAccessPrices.push(rp.ProductTermAccessPrices[j]);
+                                    break;
+                                }
+                            }
+                            pricingByTerm.push(pbt);
+                        }
+                    }
+                    return pricingByTerm;
+                });
+                Handlebars.registerHelper('getColor',function(color){
+                    var ret = '';
+                    if(color == '#FFF'){
+                        this.color = '#CCC';
+                        ret = new Handlebars.SafeString('#CCC');
+                    }
+                    else{
+                        this.color = '#FFF';
+                        ret = new Handlebars.SafeString('#FFF');
+                    }
+                    return ret;
+                });
+                this.cpts.address.setValue('1201 NE LLOYD BLVD Portland OR 97232');
+                this.cpts.terms.setValue({12:true,24:true,36:true});
+                this.cpts.productId.setValue({'name':'Dedicated Internet','id':247});
+            },
+            validate : function(){
+                var valid = true;
+                for(var key in this.cpts){
+                    if(this.cpts[key].validate != undefined)
+                        valid &= this.cpts[key].validate.call(this.cpts[key]);
+                }
+                return valid;
+            }
+        };
+
+        function getPricingTotal(pView){
+            var MRR = Number(pView.MRR != undefined? pView.MRR : pView.MRRFloor);
+            var NRR = Number(pView.NRR);
+            if(pView.hasOwnProperty('RequiredPricing')){
+                for(var i = 0; i < pView.RequiredPricing.length; ++i){
+                    var total = getPricingTotal(pView.RequiredPricing[i]);
+                    MRR += Number(total.MRR);
+                    NRR += Number(total.NRR);
+                }
+            }
+            return {MRR:MRR,NRR:NRR};
+        }
+
+        (function($){
+            $(document).ready(function(){
+                SA_Page.init.call(SA_Page);
+
+                $('.number').change(function(e){
+                    $target = $(e.target);
+                    if($target.val() != '' && Number($target.val()) == NaN){
+                        alert('Error: '+$target.val()+' is not a number');
+                        $(target).val('');
+                    }
+                });
+
+                $('#addressSearchButton').click(function(){SA_Page.cpts.addressSelector.open.call(SA_Page.cpts.addressSelector); return false;});
+
+                $('#productSearchButton').click(function(){SA_Page.cpts.productSelector.open.call(SA_Page.cpts.productSelector); return false;});
+                $("[id$='spcProductSelector']").bind('recordSelected', function(e){
+                    getSPCProductFromSelection(e.id);
+                    SA_Page.cpts.productSelector.close.call(SA_Page.cpts.productSelector);
+                });
+
+                $('#foucHelper').show();
+            });
+        })(jQuery);
+
+        function doGetPricing(){
+            if(!SA_Page.validate.call(SA_Page)){
+                alert('invalid inputs');
+                return false;
+            }
+            var productId = SA_Page.cpts.productId.getValue.call(SA_Page.cpts.productId).id;
+            var bandwidth = SA_Page.cpts.bandwidth.getValue.call(SA_Page.cpts.bandwidth);
+            var terms = JSON.stringify(SA_Page.cpts.terms.getValue.call(SA_Page.cpts.terms));
+            var address = SA_Page.cpts.address.getValue.call(SA_Page.cpts.address);
+            openModalWaitDialog('Looking for pricing.');
+            ServiceAvailabilityController.GetPricing(productId, bandwidth, terms, address, function(result,status){
+                    //create tree
+
+                    closeModalWaitDialog();
+                    $('#pricingGrid').empty();
+                    $('#resultContainer').empty();
+                    var objResult = JSON.parse(result);
+                    if(status.result == null){
+                        $('#resultContainer').append('<span style="color:red;">Error: '+status.message+'</span><br /><span style=color:red;">Please try again.  If this error continues, please report it.');
+                        return;
+                    }
+                    if(objResult == null) {
+                        $('#resultContainer').append('<span style="color:red;">No results found</span>');
+                        return;
+                    }
+                    var results = [];
+                    if(objResult.hasOwnProperty('ProductPrices') && objResult.ProductPrices.length > 0){
+                        for(var i = 0; i < objResult.ProductPrices.length; ++i){
+                            var productPrice = objResult.ProductPrices[i];
+                            if(productPrice.hasOwnProperty('RelatedProductPricingViews') && productPrice.RelatedProductPricingViews.length > 0){
+                                for(var q = 0; q < productPrice.RelatedProductPricingViews.length; ++q){
+                                    var relatedProductPrice = productPrice.RelatedProductPricingViews[q];
+                                    if(relatedProductPrice.hasOwnProperty('ProductTermAccessPrices') && relatedProductPrice.ProductTermAccessPrices.length > 0){
+                                        for(var j = 0; j < relatedProductPrice.ProductTermAccessPrices.length; ++j){
+                                            var productTermAccessPrice = productPrice.ProductTermAccessPrices[j];
+                                            if(productTermAccessPrice.hasOwnProperty('BandwidthAccessTechPrices') && productTermAccessPrice.BandwidthAccessTechPrices.length > 0){
+                                                for(var k = 0; k < productTermAccessPrice.BandwidthAccessTechPrices.length; ++k){
+                                                    var bandwidthAccessTechPrice = productTermAccessPrice.BandwidthAccessTechPrices[k];
+                                                    if(bandwidthAccessTechPrice.hasOwnProperty('AccessTechPrices') && bandwidthAccessTechPrice.AccessTechPrices.length > 0){
+                                                        for(var l = 0; l < bandwidthAccessTechPrice.AccessTechPrices.length; ++l){
+                                                            var accessTechPrice = bandwidthAccessTechPrice.AccessTechPrices[l];
+                                                            if(accessTechPrice.hasOwnProperty('Prices') && accessTechPrice.Prices.length > 0){
+                                                                for(var m = 0; m < accessTechPrice.Prices.length; ++m){
+                                                                    var price = accessTechPrice.Prices[m];
+                                                                    var p = {productName : relatedProductPrice.ProductName, productID:relatedProductPrice.ProductID, term : productTermAccessPrice.Term, bandwidth : bandwidthAccessTechPrice.Bandwidth, accessTech: accessTechPrice.AccessTechName, totalMRR : Number(price.MRR), totalNRR: Number(price.NRR), MRR : Number(price.MRR), NRR : Number(price.NRR), ratePlanNames : []};
+                                                                    var childRatePlans = getChildRatePlans(price);
+                                                                    for(var rpIdx = 0; rpIdx < childRatePlans.length; ++rpIdx){
+                                                                        var childRatePlan = childRatePlans[rpIdx];
+                                                                        p.totalMRR += Number(childRatePlan.totalMRR);
+                                                                        p.totalNRR += Number(childRatePlan.totalNRR);
+                                                                    }
+                                                                    p.ratePlanNames = p.ratePlanNames.concat(childRatePlans);
+                                                                    p.requiredPricing = getPricingForTerm(productPrice, productTermAccessPrice.Term, bandwidthAccessTechPrice.Bandwidth, accessTechPrice.AccessTechName);
+                                                                    for(var rpIdx = 0; rpIdx < p.requiredPricing.length; ++rpIdx){
+                                                                        var rp = p.requiredPricing[rpIdx];
+                                                                        p.totalMRR += Number(rp.MRR);
+                                                                        p.totalNRR += Number(rp.NRR);
+                                                                    }
+                                                                    results.push(p);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+                                if(productPrice.hasOwnProperty('ProductTermAccessPrices') && productPrice.ProductTermAccessPrices.length > 0){
+                                    for(var j = 0; j < productPrice.ProductTermAccessPrices.length; ++j){
+                                        var productTermAccessPrice = productPrice.ProductTermAccessPrices[j];
+                                        if(productTermAccessPrice.hasOwnProperty('BandwidthAccessTechPrices') && productTermAccessPrice.BandwidthAccessTechPrices.length > 0){
+                                            for(var k = 0; k < productTermAccessPrice.BandwidthAccessTechPrices.length; ++k){
+                                                var bandwidthAccessTechPrice = productTermAccessPrice.BandwidthAccessTechPrices[k];
+                                                if(bandwidthAccessTechPrice.hasOwnProperty('AccessTechPrices') && bandwidthAccessTechPrice.AccessTechPrices.length > 0){
+                                                    for(var l = 0; l < bandwidthAccessTechPrice.AccessTechPrices.length; ++l){
+                                                        var accessTechPrice = bandwidthAccessTechPrice.AccessTechPrices[l];
+                                                        if(accessTechPrice.hasOwnProperty('Prices') && accessTechPrice.Prices.length > 0){
+                                                            for(var m = 0; m < accessTechPrice.Prices.length; ++m){
+                                                                var price = accessTechPrice.Prices[m];
+                                                                var p = {productName : productPrice.ProductName, productID: productPrice.ProductID, term : productTermAccessPrice.Term, bandwidth : bandwidthAccessTechPrice.Bandwidth, accessTech: accessTechPrice.AccessTechName, totalMRR : Number(price.MRR), totalNRR: Number(price.NRR), MRR : Number(price.MRR), NRR : Number(price.NRR), ratePlanNames : []};
+                                                                var childRatePlans = getChildRatePlans(price);
+                                                                for(var rpIdx = 0; rpIdx < childRatePlans.length; ++rpIdx){
+                                                                    var childRatePlan = childRatePlans[rpIdx];
+                                                                    p.totalMRR += Number(childRatePlan.totalMRR);
+                                                                    p.totalNRR += Number(childRatePlan.totalNRR);
+                                                                }
+                                                                p.ratePlanNames = p.ratePlanNames.concat(childRatePlans);
+                                                                results.push(p);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    $('#pricingGrid').html(SA_Page.template({results:results,color:'#CCC'}));
+                    displayObject(objResult, $('#resultContainer'), 0);
+                    $('.title').click(function(e) {
+                        var title = $(e.target).closest('.title');
+                        var img = title.children('img');
+                        img.toggleClass('hideListButton').toggleClass('showListButton');
+                        title.siblings('.child').toggle();
+                        return false;
+                    });
+                },
+                {'escape':false}
+            );
+            return false;
+        }
+
+        function getPricingForTerm(productPrice, term, bandwidth, accessTech){
+            var pricings = [];
+            if(productPrice.hasOwnProperty('ProductTermAccessPrices') && productPrice.ProductTermAccessPrices.length > 0){
+                for(var j = 0; j < productPrice.ProductTermAccessPrices.length; ++j){
+                    var productTermAccessPrice = productPrice.ProductTermAccessPrices[j];
+                    if(productTermAccessPrice.Term != term) continue;
+                    if(productTermAccessPrice.hasOwnProperty('BandwidthAccessTechPrices') && productTermAccessPrice.BandwidthAccessTechPrices.length > 0){
+                        for(var k = 0; k < productTermAccessPrice.BandwidthAccessTechPrices.length; ++k){
+                            var bandwidthAccessTechPrice = productTermAccessPrice.BandwidthAccessTechPrices[k];
+                            if(bandwidth != bandwidthAccessTechPrice.Bandwidth) continue;
+                            if(bandwidthAccessTechPrice.hasOwnProperty('AccessTechPrices') && bandwidthAccessTechPrice.AccessTechPrices.length > 0){
+                                for(var l = 0; l < bandwidthAccessTechPrice.AccessTechPrices.length; ++l){
+                                    var accessTechPrice = bandwidthAccessTechPrice.AccessTechPrices[l];
+                                    if(accessTech != accessTechPrice.AccessTechName) continue;
+                                    if(accessTechPrice.hasOwnProperty('Prices') && accessTechPrice.Prices.length > 0){
+                                        for(var m = 0; m < accessTechPrice.Prices.length; ++m){
+                                            var price = accessTechPrice.Prices[m];
+                                            var p = {productName : productPrice.ProductName, productID: productPrice.ProductID, term : term, bandwidth : bandwidth, accessTech: accessTech ,totalMRR : Number(price.MRR), totalNRR: Number(price.NRR), MRR : Number(price.MRR), NRR : Number(price.NRR), ratePlanNames : []};
+                                            var childRatePlans = getChildRatePlans(price);
+                                            for(var rpIdx = 0; rpIdx < childRatePlans.length; ++rpIdx){
+                                                var childRatePlan = childRatePlans[rpIdx];
+                                                p.totalMRR += Number(childRatePlan.totalMRR);
+                                                p.totalNRR += Number(childRatePlan.totalNRR);
+                                            }
+                                            p.ratePlanNames = p.ratePlanNames.concat(childRatePlans);
+                                            pricings.push(p);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return pricings;
+        }
+
+        function getChildRatePlans(price){
+            var ratePlanNames = [];
+            if(price.hasOwnProperty('RequiredPricing')){
+                if(price.RequiredPricing.length > 0){
+                    for(var n = 0; n < price.RequiredPricing.length; ++n){
+                        var requiredPrice = price.RequiredPricing[n];
+                        var childPricing = getChildRatePlans(requiredPrice);
+                        var totalMRR = Number(requiredPrice.MRR) + Number(childPricing.totalMRR);
+                        var totalNRR = Number(requiredPrice.NRR) + Number(childPricing.totalNRR);
+                        ratePlanNames.push({ratePlanName:requiredPrice.RatePlanName,MRR:requiredPrice.MRR,NRR:requiredPrice.NRR,totalMRR:totalMRR, totalNRR:totalNRR, ratePlansNames: childPricing});
+                    }
+                }
+            }
+            return ratePlanNames;
+        }
+
+        function displayObject(obj, container, level, name){
+            var childObjs = {};
+            for(var key in obj){
+                if(typeof(obj[key]) == 'object'){
+                    var k = Number(key) > -1? (name + ':'+key) : key;
+                    if((obj[key].hasOwnProperty('length') && obj[key].length > 0) || !obj[key].hasOwnProperty('length'))
+                        childObjs[k]=obj[key];
+                    continue;
+                }
+                if(typeof(obj[key]) != 'function')
+                    var app = jQuery('<div class="value"></div>').append(jQuery('<div style="float:left; min-width:200px;"><span>'+key+':&nbsp;</span></div><div style="float:left;"><span>'+obj[key]+'</span></div><div style="clear:both;"></div>')).css('padding-left','21px');
+                    container.append(app)
+            }
+            for(var key in childObjs){
+                var parent = jQuery('<div class="parent"></div>')
+                    .append(jQuery('<div class="title" style="cursor:pointer;"></div>')
+                        .append('<img src="/s.gif" class="showListButton" />')
+                        .append(jQuery('<span style="font-weight:bold;">'+key+'</span>')))
+                    .css('padding-left','21px');
+                var children = jQuery('<div class="child" style="display:none;"></div>');
+                displayObject(childObjs[key], children, (level + 1), key);
+                parent.append(children);
+                container.append(parent);
+            }
+            return container;
+        }
+
+        function ajaxComplete(){
+        }
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
+</apex:page>

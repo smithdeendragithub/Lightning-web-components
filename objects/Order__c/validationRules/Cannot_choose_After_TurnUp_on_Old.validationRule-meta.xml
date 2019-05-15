@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_choose_After_TurnUp_on_Old</fullName>
+    <active>true</active>
+    <description>Cannot use the After Turn Up Revision feature on orders before 12/08 because the associated worksteps did not yet exist.</description>
+    <errorConditionFormula>Datevalue(CreatedDate) &lt; DATE(2016,12,09) &amp;&amp; 
+includes(Features__c, &quot;After Turn-up Revision&quot;)</errorConditionFormula>
+    <errorDisplayField>Features__c</errorDisplayField>
+    <errorMessage>Cannot apply After Turn-up Revision feature to orders created before 12/9/2016</errorMessage>
+</ValidationRule>

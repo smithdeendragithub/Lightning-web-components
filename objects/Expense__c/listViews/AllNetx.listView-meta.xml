@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllNetx</fullName>
+    <columns>NAME</columns>
+    <columns>Vendor_Account__c</columns>
+    <columns>Service_Text__c</columns>
+    <columns>Netex_Service__c</columns>
+    <columns>Netx_MRC__c</columns>
+    <columns>City_A__c</columns>
+    <columns>City_Z__c</columns>
+    <columns>Netex_Type__c</columns>
+    <columns>Status__c</columns>
+    <columns>Zayo_Infrastructure_ID__c</columns>
+    <columns>Netx_MRC_less_disputes__c</columns>
+    <columns>RECORDTYPE</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+    <language>en_US</language>
+</ListView>

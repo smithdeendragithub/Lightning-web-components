@@ -1,0 +1,226 @@
+<apex:component controller="ProposalGenericController">
+<apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+<br /><br /><br /><br /><br />
+<table width="700" border="0" cellspacing="0" cellpadding="0" id="eRateWelcomeLetter">
+    <tr>
+        <td>
+<table>
+<tr>
+        <td style="font-size: 22px; font-weight: bold; color: #00457C;">
+        	Welcome
+        </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+    	<td style="font-size: 15px; color: #007BC3; font-weight: bold; letter-spacing: .05em;">
+    		Electric Lightwave is your partner in trust.
+    	</td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+        <td>
+            Electric Lightwave is delighted to welcome you as an E-rate customer, and Electric Lightwave looks forward to serving your communication needs. Your satisfaction is the key to our success. 
+            Electric Lightwave has provided E-rate services to customers <u>since 1998</u>!  Responsive service from a reliable expert is what you can expect. Over the years, 
+            Electric Lightwave has perfected integration with USAC procedures and policies. To assist you with the E-rate process, please use the following information 
+            as you complete your Form 471:
+        </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+        <td>
+            Provided in the chart below are Electric Lightwave’s SPINs for Block 5, Item 13 of Form 471, and the correct Company Names for Item 14 of Form 471.
+        </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr align="center">
+        <td style="font-size: 13px; font-weight: bold; color: #007BC3;">
+            <b>Electric Lightwave SERVICE PROVIDER IDENTIFICATION NUMBERS (SPIN)</b>
+        </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+        <td>
+            <table style="padding: 5px; border: 1px solid #000000; border-collapse: collapse;">
+                <tr style="font-family: Arial; font-size: 13px; font-weight: bold; color: White; text-align: center; background-color: #007BC3; vertical-align: bottom;">
+                    <td style="border: 1px solid #000000; padding: 10px 0px 0px 0px;" valign= "bottom">
+                        OPERATING AREA
+                    </td>
+                    <td style="border: 1px solid #000000;">
+                        COMPANY NAME
+                    </td>
+                    <td style="border: 1px solid #000000;">
+                        SPIN
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Arizona
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Eschelon Telecom of Arizona, Inc.
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143022425
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        California
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Electric Lightwave LLC
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143000131
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Colorado
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Eschelon Telecom of Colorado, Inc.
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143014681
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Idaho
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Electric Lightwave LLC
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143000131
+                    </td>
+                </tr>
+
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Minnesota
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Integra Telecom of Minnesota, Inc.F
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143005305
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Montana 
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        OneEighty Communications, Inc.
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143009818
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Nevada
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Eschelon Telecom of Nevada, Inc.
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143015860
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Oregon
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Electric Lightwave of Oregon, Inc.
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143015857
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Utah
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Electric Lightwave of Utah, Inc.
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143023902
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Washington, Eastern Washington
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                       Electric Lightwave of Washington, Inc.
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143023886
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Prior Lake, New Market/Webster &amp; Savage Minnesota ONLY 
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Scott-Rice Telephone Co
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143002136
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        All other states
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        Electric Lightwave LLC
+                    </td>
+                    <td style="padding: 5px 45px 5px 3px; border: 1px solid #000000;">
+                        143000131
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+        <td>
+        Electric Lightwave has a dedicated E-rate coordinator who can provide you with copies of your invoices, account reconciliations and cost allocation/billing 
+        of your services as they relate to the commitment amount approved by USAC. In addition, Electric Lightwave’s E-rate coordinator can provide assistance to you 
+        with Program Integrity Assurance (PIA) reviews and much more. Please feel free to contact our E-rate coordinator with any questions.
+        </td>
+    </tr>
+    <tr><td></td></tr>
+    <tr>
+        <td>
+        <b style="color:#007BC3;">E-rate coordinator contact information:</b><br />
+        Monica A. Canaday<br />
+        18110 SE 34th Street<br />
+        Building One, Suite 100<br />
+        Vancouver, WA  98683<br />
+        360-558-4250 direct<br />
+        503-548-9731 fax<br />
+        <a href="mailto:ERate@electriclightwave.com" target="_top">ERate@electriclightwave.com</a> 
+
+        </td>
+    </tr>
+    <tr><td>&nbsp;</td></tr>
+    <tr>
+        <td style="color:#007BC3;">
+            More information about the E-rate program is available at: <br />
+            <a href="http://www.integratelecom.com/resources/Assets/e-rate-program-gov-brochure-integra.pdf" target="_blank"><b>http://www.integratelecom.com/resources/Assets/e-rate-program-gov-brochure-integra.pdf</b></a>
+        </td>
+    </tr>
+</table>
+</td>
+</tr>
+</table>
+</apex:component>

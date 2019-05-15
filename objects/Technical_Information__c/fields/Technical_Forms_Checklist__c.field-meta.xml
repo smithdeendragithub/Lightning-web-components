@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Technical_Forms_Checklist__c</fullName>
+    <externalId>false</externalId>
+    <label>Technical Forms Checklist</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Colo Notification</fullName>
+                <default>false</default>
+                <label>Colo Notification</label>
+            </value>
+            <value>
+                <fullName>Conference Now &amp; Account Codes</fullName>
+                <default>false</default>
+                <label>Conference Now &amp; Account Codes</label>
+            </value>
+            <value>
+                <fullName>DID</fullName>
+                <default>false</default>
+                <label>DID</label>
+            </value>
+            <value>
+                <fullName>Directory Listing</fullName>
+                <default>false</default>
+                <label>Directory Listing</label>
+            </value>
+            <value>
+                <fullName>Ethernet Services - EPL Tech Form</fullName>
+                <default>false</default>
+                <label>Ethernet Services - EPL Tech Form</label>
+            </value>
+            <value>
+                <fullName>Ethernet Services - EVPL EVC Tech Form</fullName>
+                <default>false</default>
+                <label>Ethernet Services - EVPL EVC Tech Form</label>
+            </value>
+            <value>
+                <fullName>Ethernet Services - EVPL UNI Tech Form</fullName>
+                <default>false</default>
+                <label>Ethernet Services - EVPL UNI Tech Form</label>
+            </value>
+            <value>
+                <fullName>Features Schedule</fullName>
+                <default>false</default>
+                <label>Features Schedule</label>
+            </value>
+            <value>
+                <fullName>Internet Services</fullName>
+                <default>false</default>
+                <label>Internet Services</label>
+            </value>
+            <value>
+                <fullName>MPLS Technical Validation</fullName>
+                <default>false</default>
+                <label>MPLS Technical Validation</label>
+            </value>
+            <value>
+                <fullName>MTS Site Information Document</fullName>
+                <default>false</default>
+                <label>MTS Site Information Document</label>
+            </value>
+            <value>
+                <fullName>NNS Num</fullName>
+                <default>false</default>
+                <label>NNS Num</label>
+            </value>
+            <value>
+                <fullName>Other Technical Notes and Order Info</fullName>
+                <default>false</default>
+                <label>Other Technical Notes and Order Info</label>
+            </value>
+            <value>
+                <fullName>SIP Vendor Checklist</fullName>
+                <default>false</default>
+                <label>SIP Vendor Checklist</label>
+            </value>
+            <value>
+                <fullName>T1 Checklist &amp; Configuration</fullName>
+                <default>false</default>
+                <label>T1 Checklist &amp; Configuration</label>
+            </value>
+            <value>
+                <fullName>Toll-Free Services</fullName>
+                <default>false</default>
+                <label>Toll-Free Services</label>
+            </value>
+            <value>
+                <fullName>VPN SIP Vendor Checklist</fullName>
+                <default>false</default>
+                <label>VPN SIP Vendor Checklist</label>
+            </value>
+            <value>
+                <fullName>Voicemail Menu Configuration</fullName>
+                <default>false</default>
+                <label>Voicemail Menu Configuration</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

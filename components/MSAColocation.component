@@ -1,0 +1,681 @@
+<apex:component controller="ProposalGenericController">
+<apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" assignTo="{!currentOpportunity}" required="true" />
+<apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+<apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+    <apex:outputPanel layout="none" id="pepe">
+        <table width="700" border="0" cellspacing="0" cellpadding="0" id="MSACollaboration_Form" class="mainTable standardBackground">
+            <tr>
+                <td>
+                <table width="700" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="500">
+                        <div class="mainTitle" style="text-align: center">COLOCATION SERVICE ADDENDUM</div>
+                        <div class="subTitle" style="text-align: center">to
+                        the Master Service Agreement</div>
+                        </td>
+                        <td>
+                        <table align="left" width="200px" class="topRightSmall" border="0"
+                            cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>{!integraDecisionMaker.Street}</td>
+                            </tr>
+                            <tr>
+                                <td>{!integraDecisionMaker.CityStateZip}</td>
+                            </tr>
+                            <tr>
+                                <td>(P) {!integraDecisionMaker.Phone}</td>
+                            </tr>
+                            <tr>
+                                <td>(F) {!integraDecisionMaker.Fax}</td>
+                            </tr>
+                            <tr>
+                                <td><a href="mailto:{!integraDecisionMaker.Email}"
+                                    target="_parent">{!integraDecisionMaker.Email}</a></td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                        </td>
+                    </tr>
+                </table>
+
+        <table>
+            <tr>
+                <td style="vertical-align: top" colspan="2">
+                <b>THIS COLOCATION SERVICE
+                        ADDENDUM</b> (&quot;Addendum&quot;) shall be attached to and become a
+                        part of the Master Service Agreement (the
+                        &quot;Agreement&quot;) by and between <b>Electric Lightwave Holdings, Inc.</b>,
+                        {!CASE( CurrentOpportunity.Account.Account_Sales_Channel__c, "Integra Business", "and its Integra business", "Integra Legacy", "and its Integra business", "Indirect Sales", "and its Integra business", "")}  
+                        (&quot;Company&quot;) and <b> <u>{!CurrentOpportunity.Account.Name}</u>
+                        </b> (&quot;Customer&quot;):
+                        <br /><br />
+                </td>
+                </tr>
+                <tr>
+                    <td><b>1.</b></td>
+                    <td><b>SCOPE OF THE ADDENDUM</b></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                    This Addendum and the Agreement
+                        set forth the terms and conditions under which Company agrees to
+                        provide to Customer, and Customer agrees to procure from Company, certain 
+                        Colocation Services (&quot;Services&quot;) as described herein on Schedule A hereto.<br />
+                        <br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>2.</b></td>
+                    <td><b>DESCRIPTION OF SERVICES</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>2.1 Company will grant to Customer a nonexclusive limited license
+                        (&quot;License&quot;) to install computer and communications equipment owned
+                        by Customer (&quot;Equipment&quot;) within a specified cabinet, rack, cage,
+                        or other designations (&quot;Space&quot;) within the Company controlled
+                        premises (&quot;Premises&quot;) located at the building(s) (&quot;Building&quot; or
+                        &quot;Buildings&quot;) identified in individual Service Orders executed
+                        pursuant to this Agreement, and incorporated herein by reference.
+                        Each Service Order is governed by and subject to the terms and
+                        conditions contained in this Agreement, the Colocation Center
+                        Policies and Procedures as posted in the Public Information and
+                        Policies page on Company’s website, and any property lease
+                        (&quot;Primary Lease&quot;) between Company and the building owner
+                        (&quot;Landlord&quot;) that governs Company’s use of the Premises. Customer
+                        hereby acknowledges and agrees that under no circumstances will it
+                        be granted any real property interest in the Space or any of the
+                        Premises under the terms of this Agreement, and that Customer has
+                        no rights as a tenant under any real property or landlord/tenant
+                        laws, regulations or ordinances. Company reserves the right to
+                        grant, renew or extend similar licenses to others for locating
+                        equipment in the Premises or the Building.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>2.2 Company will include any maintenance Services described
+                        specifically in the Service Orders. In addition, the Services will include services that support the overall operation of the
+                        Building (e.g. utility services, janitorial services,
+                        environmental systems maintenance and power plant maintenance), at
+                        no additional charge.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>2.3 Company will also provide &quot;Remote Hands&quot; support for basic
+                        operational functions, such as rebooting Customer equipment, on a
+                        time-and-materials basis upon individual requests by Customer.
+                        Types of activities within the scope of &quot;Remote Hands&quot; support are
+                        described in the <u>Colocation Center Policies and Procedures</u>.
+                        The current published hourly rates will apply for this support.
+                        Availability and lead times may vary from site to site.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>3.</b></td>
+                    <td><b>TERM</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>The term of each License will commence on the date
+                        Company makes the Space available to Customer and will continue
+                        for the length of the term identified in the applicable Service
+                        Order, unless earlier terminated as provided herein (&quot;License
+                        Term&quot;). At the conclusion of the License Term, each License will
+                        continue month-to-month unless terminated by either party
+                        providing 30 days prior written notice to the other party.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>4.</b></td>
+                    <td><b>RATES AND CHARGES</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Rates for Colocation Services are
+                        identified in the applicable Service Order. Additional Services
+                        ordered beyond the Service Order are charged at the published
+                        pricing in effect at the time the Services are provided.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>5.</b></td>
+                    <td><b>ACCESS AND USE</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>5.1 Subject to Company’s reasonable
+                        security measures and stated policies, Company will provide
+                        Customer reasonable access to the Space 24 hours a day, 7 days a
+                        week, every day throughout the License Term so that Customer may
+                        perform installation, operation, maintenance, replacement and
+                        repair functions related to its Equipment.<br /><br />
+                    </td>
+                </tr>   
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>5.2 All access to the Space will be on an escorted basis with at 
+                    least twenty four (24) hours prior notice. Customer is responsible for 
+                    the actions of all who access the Premises or the Building on Customer’s 
+                    behalf, or who access the Premises or the Building.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>5.3 Customer will use the Space and the Equipment solely for
+                        information and communications functions including, but not
+                        limited to, Internet and data services. Customer will not prohibit
+                        or interfere with the use of the Building or any portion thereof
+                        by Company or other tenants, Customers or occupants of the
+                        Building. Customer will not sublicense, lease, rent, share, resell
+                        or allow the use of the Space or Equipment, in whole or in part,
+                        by any third party, without Company’s prior written consent.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>5.4 Company reserves the right at all times during the License
+                        Term to suspend this License and access to the Premises and any
+                        and all Services including electrical power, or to remove, change
+                        or otherwise terminate the operation of the Equipment installed in
+                        the Space without notice if Company deems, in its sole reasonable
+                        discretion, that suspension is necessary, either (i) to protect
+                        the public or Company's personnel, agents, Premises or services
+                        from damage or injury of any kind, or (ii) because Customer’s use
+                        of the Space violates any law, rule or regulation. Company will
+                        use reasonable best efforts to notify Customer promptly of any
+                        such suspension, and will cooperate with Customer to remedy the
+                        situation and resume Services.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>5.5 Customer has reviewed and acknowledges the <u>Colocation
+                        Center Policies and Procedures</u> posted in the Public Information
+                        and Policies page on Company’s website, and the <u>Use of
+                        Facilities and Acceptable Conduct</u> policies contained therein.
+                        Customer agrees to conform and comply with all policies and
+                        procedures in the <u>Colocation Center Policies and Procedures</u>.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>6.</b></td>
+                    <td><b>UTILITIES AND INTERRUPTIONS</b>
+                    </td>
+                </tr>   
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>6.1 Company will make reasonable efforts to furnish power to meet
+                        the reasonable requirements of Customer as identified in the
+                        Service Order. Customer will be responsible for providing, at
+                        Customer’s sole expense, any filtering or regulation devices
+                        within the Space to correct any interference or potential
+                        electrical surges. <br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><table><tr><td>&nbsp;</td><td>6.1.1 Unless otherwise agreed upon by Company and Customer with a
+                        written agreement, the maximum sustained power utilization allowed
+                        in the Space is as follows:<br /><br />
+                        <ul>&nbsp;&nbsp;&nbsp;&nbsp;
+                            • Full cabinet or rack: 2000 watts
+                        </ul>
+                        <ul>&nbsp;&nbsp;&nbsp;&nbsp;
+                            • Half cabinet or rack: 1000 watts
+                        </ul>
+                        <ul>&nbsp;&nbsp;&nbsp;&nbsp;
+                            • 1/3 cabinet or rack: 650 watts
+                        </ul>
+                        <ul>&nbsp;&nbsp;&nbsp;&nbsp;
+                            • 1/4 cabinet or rack: 500 watts
+                        </ul>
+                        <ul>&nbsp;&nbsp;&nbsp;&nbsp;
+                            • Cage space: 100 watts per square foot
+                        </ul><br /><br />
+                    </td>
+                </tr>  
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>6.1.2 Customer will comply with National Electric Code (NEC)
+                        rules, including operating equipment at 80% or less of the circuit
+                        breaker rating, and will immediately take measures to conform to
+                        safety rules. <br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>6.1.3 In the event that Customer orders Redundant Power, Customer
+                        must configure Customer’s equipment for power redundancy and the
+                        power utilization of each power circuit will not exceed 40% of the
+                        rated current. For example, a circuit rated at 20A will not exceed
+                        8A of utilization.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>6.1.4 In the event the power utility increases the price paid by 
+                    Company for power provided to the Space, Company may pass-through to 
+                    Customer such price increase upon written notice to Customer.<br /><br />
+                    </td></tr></table></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>6.2 The parties will use their best efforts to avoid any
+                        unnecessary interruptions and, where required, will work with each
+                        other to plan and coordinate necessary Service and utility
+                        interruptions so as to minimize disruptions to the Equipment and
+                        the Facilities. In no event will Company be liable to Customer or
+                        any of Customer’s customers for any damages, liabilities or
+                        expenses, resulting from or caused by such interruptions or
+                        outages.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>7.</b></td>
+                    <td><b>INSTALLATION</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>The terms in the Colocation Center Policies and Procedures apply
+                        to installation of Customer Equipment, some of which are listed
+                        below.<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.1 Prior to the commencement of any work within the Space or the
+                        Building, Customer will, at Customer’s cost and expense, prepare
+                        and deliver to Company working drawings, plans and specifications
+                        (the &quot;Plans&quot;) detailing the technical characteristics, location
+                        and size of the Equipment, specifically describing the proposed
+                        installation and related work, and detailing the schedule for all
+                        installation activities related thereto. No work will commence
+                        until Company, in its sole reasonable discretion, has approved the
+                        Plans in writing. The Equipment will be designed and constructed
+                        so as to prevent electromagnetic and radio frequency signal
+
+                        leakage. If the Equipment fails to prevent such leakage Company may terminate the affected Services and License, subject to the
+                        conditions herein.<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.2 Customer shall:<br /><br />
+                    </td>
+                </tr>  
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><table><tr><td>&nbsp;</td><td>7.2.1 perform installation and related
+                        work in a professional and safe manner consistent with the
+                        Equipment manufacturers’ specifications and other reasonable
+                        requirements established by Company;<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.2.2 perform construction and work so as
+                        to minimize interference with the operation of the Space, 
+                        the Premises or Building, or the occupants’ activities and businesses;<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.2.3 perform heavy construction or
+                        installation activities which would reasonably be considered as
+                        disruptive or noisy before 8:00 a.m. and after 5:00 p.m.;<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.2.4 obtain necessary federal, state and
+                        municipal permits, licenses and approvals, prior to the
+                        commencement of any installation and related work;<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.2.5 conduct its installation activities
+                        using trained technicians;<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.2.6 be responsible for safety conditions
+                        in the areas of work performance at all times;<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.2.7 keep the installation areas safe and
+                        orderly at all times; and<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.2.8 upon completion of installation,
+                        leave the Premises and the Building clean and free from all
+                        materials, tools, and equipment not required after installation
+                        and from all rubbish and debris which results from installation.<br /><br />
+                    </td></tr></table></td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>7.3 Company will have the right to order Customer to prevent or
+                        stop installation activities, without liability to Company, if
+                        such activities, within Company’s sole judgment, will interfere or
+                        are interfering with the operation of the Space, the Premises or Building, or 
+                        the occupants’ activities and quiet enjoyment thereof.<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td><b>8.</b></td>
+                    <td><b>CUSTOMER’S COVENANTS AND WARRANTIES</b> Customer hereby
+                        covenants and warrants:
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>8.1 To keep the Space and the Equipment in good order, repair and
+                        condition throughout the License Term and to promptly and
+                        completely repair all damage to the Building caused by Customer,
+                        reasonable wear and tear excepted;<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>8.2 To comply with federal, state and municipal laws,
+                        orders, rules and regulations applicable to its activities and the
+                        Equipment; and<br /><br />
+                    </td>
+                </tr>    
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>8.3 Customer will not disrupt, adversely affect or interfere with
+                        other providers of services in the Building or with any occupants’
+                        use and enjoyment of the Space or the common areas of the
+                        Building.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>9.</b></td>
+                    <td><b>EQUIPMENT OWNERSHIP AND MAINTENANCE</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>The terms in the <u>Colocation Center Policies and Procedures</u> apply
+                        to Equipment ownership and maintenance. Furthermore,<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>9.1 The Equipment must belong to or be leased by Customer, and is
+                        located in the Building at the sole risk of Customer. Company will
+                        not be liable for damage, theft, misappropriation or loss, except
+                        to the extent caused by Company’s gross negligence or willful
+                        misconduct. Customer will label or bar-code all Equipment.<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>9.2 Customer will, at its sole expense, maintain and repair the
+                        Equipment to avoid hazard or damage to the Space and Building or
+                        injury to Company employees, agents, suppliers, other tenants or
+                        the public. Except as specifically agreed, Company has no
+                        responsibility for maintenance or repair of the Equipment.
+                        Customer may request maintenance Services from Company as
+                        described below.<br /><br />
+                    </td>
+                </tr> 
+                <tr>
+                    <td><b>10.</b></td>
+                    <td><b>TERMINATION OF COLOCATION SERVICES AND LICENSE</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>10.1 At the expiration or the effective date of earlier termination 
+                    of the Services and the License for other than non-payment, Customer will 
+                    remove the Equipment and Customer’s personal property from the Space and 
+                    the Building in a neat and orderly manner, and repair all damage caused by 
+                    such removal, excluding normal wear and tear, at Customer’s sole expense.  
+                    Customer shall notify Company when such Equipment and property has been 
+                    removed, and Customer shall be charged for the occupancy of the Space and 
+                    the Building at a rate per day equal to rate per day that applied to the 
+                    Services, until Company has been notified of such removal and such removal 
+                    has been verified by Company.  Any Equipment or property not removed by 
+                    Customer within thirty (30) days after the expiration or termination of the 
+                    Services and the License will be deemed abandoned and the property of Company                  to be used or disposed of in Company’s sole discretion, and in such event, 
+
+
+                    Company shall have no liability for any loss of Customer data or information 
+                    contained on such Equipment or property.  Furthermore, Customer will be liable 
+                    for all costs incurred by Company from removing the Equipment or property and 
+                    repairing the Space or the Building as a result thereof. <br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>10.2 In the event that the Services and the License is terminated by 
+                    Company for non-payment, Company shall have the right to remove the Equipment 
+                    and property from the Space and the Building or leave it in place.  Customer 
+                    will be liable for all costs incurred by Company from removing the Equipment 
+                    or property and repairing the Space or the Building as a result thereof.  To 
+                    the extent permitted by law, Companyshall be permitted to retain Customer’s 
+                    property and Equipment and charge Customer a storage fee at a rate per day equal 
+                    to the rate per day that applied to the Colocation Services, until such time as 
+                    Customer reclaims its Equipment and property by paying all amounts due for the 
+                    Services, plus the storage fee and any amounts charged for removal and repair. 
+                    Any Equipment or property not reclaimed by Customer within thirty (30) days 
+                    after the termination of the Services and the License will be deemed abandoned 
+                    and the property of Company to be used or disposed of in Company’s sole discretion, 
+                    and in such event, Company shall have no liability for any loss of Customer data 
+                    or information contained on such Equipment or property.  Such abandonment of 
+                    Equipment or property shall not be deemed payment of any amounts owed to Company 
+                    despite any claimed value of the Equipment or property or its disposition or use 
+                    by Company.  <br /><br />
+
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>11.</b></td>
+                    <td><b>NO WARRANTY; LIABILITY</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>ELECTRIC LIGHTWAVE MAKES NO WARRANTY OR REPRESENTATION, EXPRESS OR IMPLIED, INCLUDING, 
+                    BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A 
+                    PARTICULAR PURPOSE.  CUSTOMER HAS INSPECTED THE SPACE, ACCEPTS THE SAME “AS IS” 
+                    AND AGREES THAT ELECTRIC LIGHTWAVE IS UNDER NO OBLIGATION TO PERFORM ANY WORK OR PROVIDE ANY 
+                    MATERIALS TO PREPARE THE SPACE OR THE BUILDING FOR CUSTOMER.<br /><br />
+
+                    IN NO EVENT WILL ELECTRIC LIGHTWAVE BE LIABLE TO CUSTOMER FOR ANY DAMAGES, DIRECT OR INDIRECT, 
+                    TO CUSTOMER EQUIPMENT ARISING OUT OF CUSTOMER’S USE OF THE BUILDING OR THE SERVICES 
+                    PROVIDED HEREUNDER, EXCEPT TO THE EXTENT SUCH DAMAGES ARE THE DIRECT RESULT OF 
+                    ELECTRIC LIGHTWAVE’S GROSS NEGLIGENCE OR WILLFUL MISCONDUCT.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>12.</b></td>
+                    <td><b>RELOCATION</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>The <u>Colocation Center Policies and Procedures</u> describe relocation
+                        policies at the Premises and apply to Customer’s use of the
+                        Premises and Space and Customer’s Equipment.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>13.</b></td>
+                    <td><b>INDEMNIFICATION</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>13.1 Customer will defend, indemnify, and hold Electric Lightwave, its
+                        principals, parent organizations, officers, directors, agents and
+                        employees harmless from and against any loss, cost, damage,
+                        liability, claim or expense of any kind arising directly or
+                        indirectly from the installation, operation, maintenance and
+                        repair of the Equipment or from Customer’s or any of Customer’s
+                        employee’s, subcontractor’s or agent’s acts or omissions
+                        including, but not limited to, reasonable attorneys’ fees, court
+                        costs and related costs of appeals, except to the extent such
+                        loss, damage, cost or expense is due to the gross negligence or
+                        willful misconduct of Electric Lightwave or its employees or agents. The
+                        provisions of this Section will survive termination of this
+                        Agreement.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>13.2 Customer shall not generate, store, dispose of, or otherwise
+                        handle any Hazardous Substances on, in or about the Building.
+                        Customer will promptly inform Electric Lightwave of any environmental
+                        releases of Hazardous Substances that are reportable under
+                        Applicable Law of which Customer becomes aware with respect to any
+                        Building. Customer shall indemnify, defend and hold harmless
+                        Electric Lightwave, its officers, directors, employees, agents, contractors,
+                        guests and invitees from and against all liabilities, penalties,
+                        fines and expenses, including without limitation reasonable
+                        attorney's fees, consultants' fees, litigation costs, and clean-up
+                        costs, asserted against or incurred by Electric Lightwave, its officers,
+                        directors, employees, agents, contractors and invitees at any time
+                        and from time to time resulting from the presence of any Hazardous
+                        Substances on, in or about the Building to the extent such
+                        presence results from (a) the action or inaction of Customer, its
+                        officers, directors, employees, agents, contractors, guests and
+                        invitees, and or (b) Customer's generation, storage, treatment,
+                        handling, transportation, disposal or release of any Hazardous
+                        Substance at, on, in or about the Building, and or (c) the
+                        violation of any Applicable Law governing Hazardous Substances by
+                        Customer, its officers, directors, employees, agents, contractors,
+                        guests and invitees. &quot;Hazardous Substances&quot; means any substance,
+                        waste or material which is deemed hazardous, toxic, a pollutant or
+                        a contaminant, under Applicable Law. &quot;Applicable Law&quot; means any
+                        federal, state or local statute, law, ordinance, rule, regulation,
+                        or judicial or administrative order, ruling or decision, now or in
+                        the future applicable to the Building or any portion thereof or to
+                        any activity which shall take place thereon.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>14.</b></td>
+                    <td><b>INSURANCE</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>Customer will maintain insurance policies as outlined in the
+                        <u>Colocation Center Policies and Procedures</u>.<br /><br />
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>15.</b></td>
+                    <td><b>ENTIRE AGREEMENT</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>This Addendum and the Agreement set forth the entire understanding
+                        of the Parties and supersede any and all prior agreements,
+                        arrangements or understandings relating to the subject matter
+                        hereof. The Agreement will remain in full force and effect except
+                        as modified herein. In the event of any conflict, the provisions
+                        of the Colocation Policies and Procedures shall supersede this
+                        Addendum and the Agreement, and this Addendum shall supersede the
+                        Agreement.<br /><br />
+                    </td>
+                </tr>
+            </table>
+
+                <table>
+                    <tr>
+                        <td colspan="3" class="textBlock"><b>IN WITNESS WHEREOF</b>,
+                        the parties have caused this Addendum to be executed by their duly
+                        authorized representatives.<br /><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="textBlock">* as identified in Master Service Agreement.</td>
+                    </tr>
+                </table>
+                <table class="Signature_table avoidBreak" border="0" cellspacing="5"
+                    cellpadding="0">
+                    <tr>
+                        <td width="60">&nbsp;</td>
+                        <td width="130">&nbsp;</td>
+                        <td width="70">&nbsp;</td>
+                        <td width="60">&nbsp;</td>
+                        <td width="130">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">Electric Lightwave Holdings, Inc.</td>
+                        <td>&nbsp;</td>
+                        <td colspan="2">{!CurrentOpportunity.Account.Name}</td>
+                    </tr>
+                    <tr>
+                        <td>By:</td>
+                        <td class="normalRef">&nbsp;</td>
+                        <td>&nbsp;</td>
+                        <td>By:</td>
+                        <td class="normalRef">{!decisionMaker.Name}</td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td class="normalRef">
+                        <div class="docusignID">DS-CTRSIG</div>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>Name:</td>
+                        <td class="normalRef">
+                        <div class="docusignID">DS-SIG</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Title:</td>
+                        <td class="normalRef">
+                        <div class="docusignID">&nbsp;</div>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>Title:</td>
+                        <td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}">
+                        </apex:outputText>
+                        <div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL">
+                        </apex:outputText></div> </td>
+                    </tr>
+                    <tr>
+                        <td>Date:</td>
+                        <td class="normalRef">
+                        <div class="docusignID">DS-CTRDATE</div>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>Date:</td>
+                        <td class="normalRef">
+                        <div class="docusignID">DS-DATE</div>
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+</apex:component>

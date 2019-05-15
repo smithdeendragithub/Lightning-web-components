@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CANNOT_CHANGE_WORKSTEP_NAME</fullName>
+    <active>true</active>
+    <description>User cannot change a workstep name.</description>
+    <errorConditionFormula>ISCHANGED( Name )</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Workstep name should not be modified.</errorMessage>
+</ValidationRule>

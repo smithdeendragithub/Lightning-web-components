@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vendor_Registration_Required</fullName>
+    <active>true</active>
+    <description>Vendor Registration is required for UC Opportunity</description>
+    <errorConditionFormula>AND( ISBLANK( Opportunity__r.Vendor_Registration__c), 
+IF(RecordType.DeveloperName=&quot;Manual_Entry&quot;, CONTAINS(TEXT(Sales_Product__c), &#39;UC&#39;), IF(RecordType.DeveloperName=&quot;ITS_CPE&quot;, OR(CONTAINS(TEXT(Sales_Product__c), &#39;UC&#39;),CONTAINS(TEXT(Sales_Product__c), &#39;PBX&#39;),CONTAINS(TEXT(Sales_Product__c), &#39;NRO&#39;)),FALSE))
+) 
+&amp;&amp; NOT($Setup.Validation_Rule_Settings__c.Disable_Validation_Rules__c)</errorConditionFormula>
+    <errorMessage>Vendor Registration is required for UC Opportunity</errorMessage>
+</ValidationRule>

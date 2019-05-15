@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OM_Order_Entry</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Order__c</columns>
+    <columns>Sub_Order__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Duration__c</columns>
+    <filterScope>Queue</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Complete,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Duration__c</field>
+        <operation>notEqual</operation>
+        <value>0</value>
+    </filters>
+    <label>OM-Order Entry</label>
+    <queue>OM_Order_Entry</queue>
+    <sharedTo>
+        <allInternalUsers/>
+    </sharedTo>
+</ListView>

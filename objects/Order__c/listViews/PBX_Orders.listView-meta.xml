@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PBX_Orders</fullName>
+    <columns>AccountName__c</columns>
+    <columns>NAME</columns>
+    <columns>Contract_ID__c</columns>
+    <columns>Order_ID_for_Install_Contract__c</columns>
+    <columns>Contract_Status__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Order__c.Contract_Renewal</value>
+    </filters>
+    <filters>
+        <field>LAST_UPDATE</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>PBX Orders - Renewal/Churn Tracking</label>
+    <sharedTo>
+        <group>Enterprise_Workflow</group>
+    </sharedTo>
+</ListView>

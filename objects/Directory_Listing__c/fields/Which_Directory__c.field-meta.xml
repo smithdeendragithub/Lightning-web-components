@@ -1,0 +1,1294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Which_Directory__c</fullName>
+    <externalId>false</externalId>
+    <label>Which Directory</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ABERDEEN</fullName>
+                <default>false</default>
+                <label>ABERDEEN</label>
+            </value>
+            <value>
+                <fullName>ALAMOSA</fullName>
+                <default>false</default>
+                <label>ALAMOSA</label>
+            </value>
+            <value>
+                <fullName>ALBANY</fullName>
+                <default>false</default>
+                <label>ALBANY</label>
+            </value>
+            <value>
+                <fullName>ALBERT LEA</fullName>
+                <default>false</default>
+                <label>ALBERT LEA</label>
+            </value>
+            <value>
+                <fullName>ALLIANCE/CHADRON</fullName>
+                <default>false</default>
+                <label>ALLIANCE/CHADRON</label>
+            </value>
+            <value>
+                <fullName>APACHE JUNCTION &amp; E MESA</fullName>
+                <default>false</default>
+                <label>APACHE JUNCTION &amp; E MESA</label>
+            </value>
+            <value>
+                <fullName>ARVADA/BROOMFIELD/WESTMINSTER</fullName>
+                <default>false</default>
+                <label>ARVADA/BROOMFIELD/WESTMINSTER</label>
+            </value>
+            <value>
+                <fullName>ASPEN/GLENWOOD SPRINGS</fullName>
+                <default>false</default>
+                <label>ASPEN/GLENWOOD SPRINGS</label>
+            </value>
+            <value>
+                <fullName>AURORA/MONTBELLO/DIA</fullName>
+                <default>false</default>
+                <label>AURORA/MONTBELLO/DIA</label>
+            </value>
+            <value>
+                <fullName>BAINBRIDGE ISLAND</fullName>
+                <default>false</default>
+                <label>BAINBRIDGE ISLAND</label>
+            </value>
+            <value>
+                <fullName>BAKER CITY</fullName>
+                <default>false</default>
+                <label>BAKER CITY</label>
+            </value>
+            <value>
+                <fullName>BARNUM</fullName>
+                <default>false</default>
+                <label>BARNUM</label>
+            </value>
+            <value>
+                <fullName>BELLINGHAM</fullName>
+                <default>false</default>
+                <label>BELLINGHAM</label>
+            </value>
+            <value>
+                <fullName>BEMIDJI</fullName>
+                <default>false</default>
+                <label>BEMIDJI</label>
+            </value>
+            <value>
+                <fullName>BIG HORN BASIN</fullName>
+                <default>false</default>
+                <label>BIG HORN BASIN</label>
+            </value>
+            <value>
+                <fullName>BISMARCK</fullName>
+                <default>false</default>
+                <label>BISMARCK</label>
+            </value>
+            <value>
+                <fullName>BLACKFOOT</fullName>
+                <default>false</default>
+                <label>BLACKFOOT</label>
+            </value>
+            <value>
+                <fullName>BOISE</fullName>
+                <default>false</default>
+                <label>BOISE</label>
+            </value>
+            <value>
+                <fullName>BOULDER</fullName>
+                <default>false</default>
+                <label>BOULDER</label>
+            </value>
+            <value>
+                <fullName>BRAINERD</fullName>
+                <default>false</default>
+                <label>BRAINERD</label>
+            </value>
+            <value>
+                <fullName>BRIGHAM CITY</fullName>
+                <default>false</default>
+                <label>BRIGHAM CITY</label>
+            </value>
+            <value>
+                <fullName>BRIGHTON</fullName>
+                <default>false</default>
+                <label>BRIGHTON</label>
+            </value>
+            <value>
+                <fullName>BUFFALO</fullName>
+                <default>false</default>
+                <label>BUFFALO</label>
+            </value>
+            <value>
+                <fullName>CACHE VALLEY</fullName>
+                <default>false</default>
+                <label>CACHE VALLEY</label>
+            </value>
+            <value>
+                <fullName>CAMAS-WASHOUGAL</fullName>
+                <default>false</default>
+                <label>CAMAS-WASHOUGAL</label>
+            </value>
+            <value>
+                <fullName>CANON CITY</fullName>
+                <default>false</default>
+                <label>CANON CITY</label>
+            </value>
+            <value>
+                <fullName>CASA GRANDE</fullName>
+                <default>false</default>
+                <label>CASA GRANDE</label>
+            </value>
+            <value>
+                <fullName>CASTLE ROCK/PARKER</fullName>
+                <default>false</default>
+                <label>CASTLE ROCK/PARKER</label>
+            </value>
+            <value>
+                <fullName>CENTRAL &amp; DOWNTOWN DENVER</fullName>
+                <default>false</default>
+                <label>CENTRAL &amp; DOWNTOWN DENVER</label>
+            </value>
+            <value>
+                <fullName>CENTRAL OREGON</fullName>
+                <default>false</default>
+                <label>CENTRAL OREGON</label>
+            </value>
+            <value>
+                <fullName>CENTRALIA</fullName>
+                <default>false</default>
+                <label>CENTRALIA</label>
+            </value>
+            <value>
+                <fullName>CHANDLER/GILBERT</fullName>
+                <default>false</default>
+                <label>CHANDLER/GILBERT</label>
+            </value>
+            <value>
+                <fullName>CHELAN</fullName>
+                <default>false</default>
+                <label>CHELAN</label>
+            </value>
+            <value>
+                <fullName>CHEYENNE</fullName>
+                <default>false</default>
+                <label>CHEYENNE</label>
+            </value>
+            <value>
+                <fullName>CHISHOLM</fullName>
+                <default>false</default>
+                <label>CHISHOLM</label>
+            </value>
+            <value>
+                <fullName>CLACKAMAS COUNTY</fullName>
+                <default>false</default>
+                <label>CLACKAMAS COUNTY</label>
+            </value>
+            <value>
+                <fullName>CLARK COUNTY</fullName>
+                <default>false</default>
+                <label>CLARK COUNTY</label>
+            </value>
+            <value>
+                <fullName>CLATSKANIE</fullName>
+                <default>false</default>
+                <label>CLATSKANIE</label>
+            </value>
+            <value>
+                <fullName>CLE ELUM</fullName>
+                <default>false</default>
+                <label>CLE ELUM</label>
+            </value>
+            <value>
+                <fullName>CLIFTON/SAFFORD</fullName>
+                <default>false</default>
+                <label>CLIFTON/SAFFORD</label>
+            </value>
+            <value>
+                <fullName>COCHISE COUNTY</fullName>
+                <default>false</default>
+                <label>COCHISE COUNTY</label>
+            </value>
+            <value>
+                <fullName>COLORADO SPRINGS</fullName>
+                <default>false</default>
+                <label>COLORADO SPRINGS</label>
+            </value>
+            <value>
+                <fullName>COLVILLE</fullName>
+                <default>false</default>
+                <label>COLVILLE</label>
+            </value>
+            <value>
+                <fullName>CONTRA COSTA CENTRAL</fullName>
+                <default>false</default>
+                <label>CONTRA COSTA CENTRAL</label>
+            </value>
+            <value>
+                <fullName>CONTRA COSTA CO-WEST</fullName>
+                <default>false</default>
+                <label>CONTRA COSTA CO-WEST</label>
+            </value>
+            <value>
+                <fullName>CORVALLIS</fullName>
+                <default>false</default>
+                <label>CORVALLIS</label>
+            </value>
+            <value>
+                <fullName>CRAIG/MEEKER/STEAMBOAT SPRINGS</fullName>
+                <default>false</default>
+                <label>CRAIG/MEEKER/STEAMBOAT SPRINGS</label>
+            </value>
+            <value>
+                <fullName>DEL NORTE</fullName>
+                <default>false</default>
+                <label>DEL NORTE</label>
+            </value>
+            <value>
+                <fullName>DENVER METRO</fullName>
+                <default>false</default>
+                <label>DENVER METRO</label>
+            </value>
+            <value>
+                <fullName>DETROIT LAKES</fullName>
+                <default>false</default>
+                <label>DETROIT LAKES</label>
+            </value>
+            <value>
+                <fullName>DICKINSON</fullName>
+                <default>false</default>
+                <label>DICKINSON</label>
+            </value>
+            <value>
+                <fullName>DURANGO</fullName>
+                <default>false</default>
+                <label>DURANGO</label>
+            </value>
+            <value>
+                <fullName>EAST CENTRAL MINNESOTA</fullName>
+                <default>false</default>
+                <label>EAST CENTRAL MINNESOTA</label>
+            </value>
+            <value>
+                <fullName>EAST COUNTY</fullName>
+                <default>false</default>
+                <label>EAST COUNTY</label>
+            </value>
+            <value>
+                <fullName>EAST VALLEY</fullName>
+                <default>false</default>
+                <label>EAST VALLEY</label>
+            </value>
+            <value>
+                <fullName>EASTSIDE</fullName>
+                <default>false</default>
+                <label>EASTSIDE</label>
+            </value>
+            <value>
+                <fullName>EDINA</fullName>
+                <default>false</default>
+                <label>EDINA</label>
+            </value>
+            <value>
+                <fullName>ENGLEWOOD/LITTLETON/CENTENNIAL</fullName>
+                <default>false</default>
+                <label>ENGLEWOOD/LITTLETON/CENTENNIAL</label>
+            </value>
+            <value>
+                <fullName>ESTES PARK/ALLENSPARK/GLEN HAVEN</fullName>
+                <default>false</default>
+                <label>ESTES PARK/ALLENSPARK/GLEN HAVEN</label>
+            </value>
+            <value>
+                <fullName>EUGENE</fullName>
+                <default>false</default>
+                <label>EUGENE</label>
+            </value>
+            <value>
+                <fullName>EVERGREEN</fullName>
+                <default>false</default>
+                <label>EVERGREEN</label>
+            </value>
+            <value>
+                <fullName>FAIR OAKS - SUREWEST</fullName>
+                <default>false</default>
+                <label>FAIR OAKS - SUREWEST</label>
+            </value>
+            <value>
+                <fullName>FAIRFIELD ETC</fullName>
+                <default>false</default>
+                <label>FAIRFIELD ETC</label>
+            </value>
+            <value>
+                <fullName>FARGO/MOORHEAD</fullName>
+                <default>false</default>
+                <label>FARGO/MOORHEAD</label>
+            </value>
+            <value>
+                <fullName>FARIBAULT/OWATONNA/NORTHFIELD</fullName>
+                <default>false</default>
+                <label>FARIBAULT/OWATONNA/NORTHFIELD</label>
+            </value>
+            <value>
+                <fullName>FERGUS FALLS</fullName>
+                <default>false</default>
+                <label>FERGUS FALLS</label>
+            </value>
+            <value>
+                <fullName>FLAGSTAFF</fullName>
+                <default>false</default>
+                <label>FLAGSTAFF</label>
+            </value>
+            <value>
+                <fullName>FLORENCE</fullName>
+                <default>false</default>
+                <label>FLORENCE</label>
+            </value>
+            <value>
+                <fullName>FOREST LAKE</fullName>
+                <default>false</default>
+                <label>FOREST LAKE</label>
+            </value>
+            <value>
+                <fullName>FORT COLLINS</fullName>
+                <default>false</default>
+                <label>FORT COLLINS</label>
+            </value>
+            <value>
+                <fullName>FREMONT-HAYWARD ETC</fullName>
+                <default>false</default>
+                <label>FREMONT-HAYWARD ETC</label>
+            </value>
+            <value>
+                <fullName>GALLUP</fullName>
+                <default>false</default>
+                <label>GALLUP</label>
+            </value>
+            <value>
+                <fullName>GILLETTE</fullName>
+                <default>false</default>
+                <label>GILLETTE</label>
+            </value>
+            <value>
+                <fullName>GLACIAL LAKES AREA</fullName>
+                <default>false</default>
+                <label>GLACIAL LAKES AREA</label>
+            </value>
+            <value>
+                <fullName>GLENN &amp; TEHAMA COS</fullName>
+                <default>false</default>
+                <label>GLENN &amp; TEHAMA COS</label>
+            </value>
+            <value>
+                <fullName>GLENWOOD</fullName>
+                <default>false</default>
+                <label>GLENWOOD</label>
+            </value>
+            <value>
+                <fullName>GLOBE</fullName>
+                <default>false</default>
+                <label>GLOBE</label>
+            </value>
+            <value>
+                <fullName>GRAFTON</fullName>
+                <default>false</default>
+                <label>GRAFTON</label>
+            </value>
+            <value>
+                <fullName>GRAND FORKS/E GRAND FORKS</fullName>
+                <default>false</default>
+                <label>GRAND FORKS/E GRAND FORKS</label>
+            </value>
+            <value>
+                <fullName>GRAND JUNCTION</fullName>
+                <default>false</default>
+                <label>GRAND JUNCTION</label>
+            </value>
+            <value>
+                <fullName>GRAND RAPIDS</fullName>
+                <default>false</default>
+                <label>GRAND RAPIDS</label>
+            </value>
+            <value>
+                <fullName>GRANTS PASS</fullName>
+                <default>false</default>
+                <label>GRANTS PASS</label>
+            </value>
+            <value>
+                <fullName>GREAT FALLS</fullName>
+                <default>false</default>
+                <label>GREAT FALLS</label>
+            </value>
+            <value>
+                <fullName>GREATER EASTSIDE</fullName>
+                <default>false</default>
+                <label>GREATER EASTSIDE</label>
+            </value>
+            <value>
+                <fullName>GREATER NORTHWEST VALLEY</fullName>
+                <default>false</default>
+                <label>GREATER NORTHWEST VALLEY</label>
+            </value>
+            <value>
+                <fullName>GREATER SNOHOMISH COUNTY</fullName>
+                <default>false</default>
+                <label>GREATER SNOHOMISH COUNTY</label>
+            </value>
+            <value>
+                <fullName>GREATER SOUTHWEST VALLEY</fullName>
+                <default>false</default>
+                <label>GREATER SOUTHWEST VALLEY</label>
+            </value>
+            <value>
+                <fullName>GREELEY</fullName>
+                <default>false</default>
+                <label>GREELEY</label>
+            </value>
+            <value>
+                <fullName>GRESHAM</fullName>
+                <default>false</default>
+                <label>GRESHAM</label>
+            </value>
+            <value>
+                <fullName>GUNNISON</fullName>
+                <default>false</default>
+                <label>GUNNISON</label>
+            </value>
+            <value>
+                <fullName>HEBER CITY</fullName>
+                <default>false</default>
+                <label>HEBER CITY</label>
+            </value>
+            <value>
+                <fullName>HERMISTON</fullName>
+                <default>false</default>
+                <label>HERMISTON</label>
+            </value>
+            <value>
+                <fullName>HIGHLAND PARK/SUMMIT HILL</fullName>
+                <default>false</default>
+                <label>HIGHLAND PARK/SUMMIT HILL</label>
+            </value>
+            <value>
+                <fullName>HUMBOLDT CO</fullName>
+                <default>false</default>
+                <label>HUMBOLDT CO</label>
+            </value>
+            <value>
+                <fullName>IDAHO FALLS</fullName>
+                <default>false</default>
+                <label>IDAHO FALLS</label>
+            </value>
+            <value>
+                <fullName>IDAHO SPRINGS</fullName>
+                <default>false</default>
+                <label>IDAHO SPRINGS</label>
+            </value>
+            <value>
+                <fullName>JACKSON HOLE</fullName>
+                <default>false</default>
+                <label>JACKSON HOLE</label>
+            </value>
+            <value>
+                <fullName>JACKSON/WINDOM</fullName>
+                <default>false</default>
+                <label>JACKSON/WINDOM</label>
+            </value>
+            <value>
+                <fullName>JAMESTOWN</fullName>
+                <default>false</default>
+                <label>JAMESTOWN</label>
+            </value>
+            <value>
+                <fullName>JUNCTION CITY</fullName>
+                <default>false</default>
+                <label>JUNCTION CITY</label>
+            </value>
+            <value>
+                <fullName>KITSAP COUNTY</fullName>
+                <default>false</default>
+                <label>KITSAP COUNTY</label>
+            </value>
+            <value>
+                <fullName>KLAMATH FALLS</fullName>
+                <default>false</default>
+                <label>KLAMATH FALLS</label>
+            </value>
+            <value>
+                <fullName>LA JUNTA</fullName>
+                <default>false</default>
+                <label>LA JUNTA</label>
+            </value>
+            <value>
+                <fullName>LAKE &amp; MENDOCINO COS</fullName>
+                <default>false</default>
+                <label>LAKE &amp; MENDOCINO COS</label>
+            </value>
+            <value>
+                <fullName>LAKE TAHOE ETC</fullName>
+                <default>false</default>
+                <label>LAKE TAHOE ETC</label>
+            </value>
+            <value>
+                <fullName>LAKEWOOD/GOLDEN/WHEAT RIDGE</fullName>
+                <default>false</default>
+                <label>LAKEWOOD/GOLDEN/WHEAT RIDGE</label>
+            </value>
+            <value>
+                <fullName>LAMAR</fullName>
+                <default>false</default>
+                <label>LAMAR</label>
+            </value>
+            <value>
+                <fullName>LARAMIE/ROCK RIVER</fullName>
+                <default>false</default>
+                <label>LARAMIE/ROCK RIVER</label>
+            </value>
+            <value>
+                <fullName>LAS VEGAS</fullName>
+                <default>false</default>
+                <label>LAS VEGAS</label>
+            </value>
+            <value>
+                <fullName>LE SUEUER/ST PETER</fullName>
+                <default>false</default>
+                <label>LE SUEUER/ST PETER</label>
+            </value>
+            <value>
+                <fullName>LEWISTON/CLARKSTON</fullName>
+                <default>false</default>
+                <label>LEWISTON/CLARKSTON</label>
+            </value>
+            <value>
+                <fullName>LIMON/BURLINGTON</fullName>
+                <default>false</default>
+                <label>LIMON/BURLINGTON</label>
+            </value>
+            <value>
+                <fullName>LITCHFIELD/MONTEVIDEO/WILLMAR</fullName>
+                <default>false</default>
+                <label>LITCHFIELD/MONTEVIDEO/WILLMAR</label>
+            </value>
+            <value>
+                <fullName>LITTLE FALLS</fullName>
+                <default>false</default>
+                <label>LITTLE FALLS</label>
+            </value>
+            <value>
+                <fullName>LODI</fullName>
+                <default>false</default>
+                <label>LODI</label>
+            </value>
+            <value>
+                <fullName>LONGMONT</fullName>
+                <default>false</default>
+                <label>LONGMONT</label>
+            </value>
+            <value>
+                <fullName>LONGVIEW</fullName>
+                <default>false</default>
+                <label>LONGVIEW</label>
+            </value>
+            <value>
+                <fullName>LOVELAND/BERTHOUD</fullName>
+                <default>false</default>
+                <label>LOVELAND/BERTHOUD</label>
+            </value>
+            <value>
+                <fullName>MALAD CITY/HOLBROOK</fullName>
+                <default>false</default>
+                <label>MALAD CITY/HOLBROOK</label>
+            </value>
+            <value>
+                <fullName>MARIN CO</fullName>
+                <default>false</default>
+                <label>MARIN CO</label>
+            </value>
+            <value>
+                <fullName>MARION COUNTY</fullName>
+                <default>false</default>
+                <label>MARION COUNTY</label>
+            </value>
+            <value>
+                <fullName>MEDFORD</fullName>
+                <default>false</default>
+                <label>MEDFORD</label>
+            </value>
+            <value>
+                <fullName>MINNEAPOLIS</fullName>
+                <default>false</default>
+                <label>MINNEAPOLIS</label>
+            </value>
+            <value>
+                <fullName>MINNEAPOLIS ONLY</fullName>
+                <default>false</default>
+                <label>MINNEAPOLIS ONLY</label>
+            </value>
+            <value>
+                <fullName>MINNESOTA NORTHWEST</fullName>
+                <default>false</default>
+                <label>MINNESOTA NORTHWEST</label>
+            </value>
+            <value>
+                <fullName>MINNESOTA SOUTHWEST</fullName>
+                <default>false</default>
+                <label>MINNESOTA SOUTHWEST</label>
+            </value>
+            <value>
+                <fullName>MISSOULA</fullName>
+                <default>false</default>
+                <label>MISSOULA</label>
+            </value>
+            <value>
+                <fullName>MOHAVE COUNTY</fullName>
+                <default>false</default>
+                <label>MOHAVE COUNTY</label>
+            </value>
+            <value>
+                <fullName>MONTROSE/DELTA/TELLURIDE</fullName>
+                <default>false</default>
+                <label>MONTROSE/DELTA/TELLURIDE</label>
+            </value>
+            <value>
+                <fullName>MORRIS</fullName>
+                <default>false</default>
+                <label>MORRIS</label>
+            </value>
+            <value>
+                <fullName>MOSES LAKE</fullName>
+                <default>false</default>
+                <label>MOSES LAKE</label>
+            </value>
+            <value>
+                <fullName>MOUNTAIN HOME</fullName>
+                <default>false</default>
+                <label>MOUNTAIN HOME</label>
+            </value>
+            <value>
+                <fullName>MURPHY-PROVOLT</fullName>
+                <default>false</default>
+                <label>MURPHY-PROVOLT</label>
+            </value>
+            <value>
+                <fullName>NAMPA</fullName>
+                <default>false</default>
+                <label>NAMPA</label>
+            </value>
+            <value>
+                <fullName>NAPA VALLEY</fullName>
+                <default>false</default>
+                <label>NAPA VALLEY</label>
+            </value>
+            <value>
+                <fullName>NEVADA - RENO CARSON CITY SPARKS</fullName>
+                <default>false</default>
+                <label>NEVADA - RENO CARSON CITY SPARKS</label>
+            </value>
+            <value>
+                <fullName>NEVADA NORTHERN RURAL</fullName>
+                <default>false</default>
+                <label>NEVADA NORTHERN RURAL</label>
+            </value>
+            <value>
+                <fullName>NEWPORT</fullName>
+                <default>false</default>
+                <label>NEWPORT</label>
+            </value>
+            <value>
+                <fullName>NOGALES/GREEN VALLEY</fullName>
+                <default>false</default>
+                <label>NOGALES/GREEN VALLEY</label>
+            </value>
+            <value>
+                <fullName>NORTHEAST COLORADO</fullName>
+                <default>false</default>
+                <label>NORTHEAST COLORADO</label>
+            </value>
+            <value>
+                <fullName>NORTHEASTERN WYOMING</fullName>
+                <default>false</default>
+                <label>NORTHEASTERN WYOMING</label>
+            </value>
+            <value>
+                <fullName>NORTHERN OREGON COAST</fullName>
+                <default>false</default>
+                <label>NORTHERN OREGON COAST</label>
+            </value>
+            <value>
+                <fullName>NORTHGLENN/THORNTON/COMMERCE CITY</fullName>
+                <default>false</default>
+                <label>NORTHGLENN/THORNTON/COMMERCE CITY</label>
+            </value>
+            <value>
+                <fullName>NORTHWEST SUBURBAN AREA</fullName>
+                <default>false</default>
+                <label>NORTHWEST SUBURBAN AREA</label>
+            </value>
+            <value>
+                <fullName>OAKLAND</fullName>
+                <default>false</default>
+                <label>OAKLAND</label>
+            </value>
+            <value>
+                <fullName>OCEAN SHORES</fullName>
+                <default>false</default>
+                <label>OCEAN SHORES</label>
+            </value>
+            <value>
+                <fullName>OGDEN</fullName>
+                <default>false</default>
+                <label>OGDEN</label>
+            </value>
+            <value>
+                <fullName>OKANOGAN</fullName>
+                <default>false</default>
+                <label>OKANOGAN</label>
+            </value>
+            <value>
+                <fullName>OLYMPIA</fullName>
+                <default>false</default>
+                <label>OLYMPIA</label>
+            </value>
+            <value>
+                <fullName>ORANGE COUNTY SOUTH</fullName>
+                <default>false</default>
+                <label>ORANGE COUNTY SOUTH</label>
+            </value>
+            <value>
+                <fullName>PAHRUMP SOUTHERN NEVADA</fullName>
+                <default>false</default>
+                <label>PAHRUMP SOUTHERN NEVADA</label>
+            </value>
+            <value>
+                <fullName>PALO ALTO ETC</fullName>
+                <default>false</default>
+                <label>PALO ALTO ETC</label>
+            </value>
+            <value>
+                <fullName>PALOUSE REGION</fullName>
+                <default>false</default>
+                <label>PALOUSE REGION</label>
+            </value>
+            <value>
+                <fullName>PARK CITY</fullName>
+                <default>false</default>
+                <label>PARK CITY</label>
+            </value>
+            <value>
+                <fullName>PARK RAPIDS/STAPLES/WADENA</fullName>
+                <default>false</default>
+                <label>PARK RAPIDS/STAPLES/WADENA</label>
+            </value>
+            <value>
+                <fullName>PAYETTE/ONTARIO</fullName>
+                <default>false</default>
+                <label>PAYETTE/ONTARIO</label>
+            </value>
+            <value>
+                <fullName>PAYSON</fullName>
+                <default>false</default>
+                <label>PAYSON</label>
+            </value>
+            <value>
+                <fullName>PENDLETON</fullName>
+                <default>false</default>
+                <label>PENDLETON</label>
+            </value>
+            <value>
+                <fullName>PHOENIX</fullName>
+                <default>false</default>
+                <label>PHOENIX</label>
+            </value>
+            <value>
+                <fullName>PLACERVILLE CAMERON PARK  ETC</fullName>
+                <default>false</default>
+                <label>PLACERVILLE CAMERON PARK  ETC</label>
+            </value>
+            <value>
+                <fullName>PLUMAS COUNTY</fullName>
+                <default>false</default>
+                <label>PLUMAS COUNTY</label>
+            </value>
+            <value>
+                <fullName>POCATELLO</fullName>
+                <default>false</default>
+                <label>POCATELLO</label>
+            </value>
+            <value>
+                <fullName>PORT ANGELES</fullName>
+                <default>false</default>
+                <label>PORT ANGELES</label>
+            </value>
+            <value>
+                <fullName>PORT TOWNSEND</fullName>
+                <default>false</default>
+                <label>PORT TOWNSEND</label>
+            </value>
+            <value>
+                <fullName>PORTLAND</fullName>
+                <default>false</default>
+                <label>PORTLAND</label>
+            </value>
+            <value>
+                <fullName>PRESCOTT</fullName>
+                <default>false</default>
+                <label>PRESCOTT</label>
+            </value>
+            <value>
+                <fullName>PRICE</fullName>
+                <default>false</default>
+                <label>PRICE</label>
+            </value>
+            <value>
+                <fullName>PRIOR LAKE</fullName>
+                <default>false</default>
+                <label>PRIOR LAKE</label>
+            </value>
+            <value>
+                <fullName>PROVO</fullName>
+                <default>false</default>
+                <label>PROVO</label>
+            </value>
+            <value>
+                <fullName>PUEBLO</fullName>
+                <default>false</default>
+                <label>PUEBLO</label>
+            </value>
+            <value>
+                <fullName>QUINCY/SOAP LAKE</fullName>
+                <default>false</default>
+                <label>QUINCY/SOAP LAKE</label>
+            </value>
+            <value>
+                <fullName>RED WING</fullName>
+                <default>false</default>
+                <label>RED WING</label>
+            </value>
+            <value>
+                <fullName>REEDSPORT</fullName>
+                <default>false</default>
+                <label>REEDSPORT</label>
+            </value>
+            <value>
+                <fullName>ROCHESTER</fullName>
+                <default>false</default>
+                <label>ROCHESTER</label>
+            </value>
+            <value>
+                <fullName>ROCK SPRINGS</fullName>
+                <default>false</default>
+                <label>ROCK SPRINGS</label>
+            </value>
+            <value>
+                <fullName>ROSEBURG</fullName>
+                <default>false</default>
+                <label>ROSEBURG</label>
+            </value>
+            <value>
+                <fullName>ROSEVILLE - SUREWEST</fullName>
+                <default>false</default>
+                <label>ROSEVILLE - SUREWEST</label>
+            </value>
+            <value>
+                <fullName>SACRAMENTO</fullName>
+                <default>false</default>
+                <label>SACRAMENTO</label>
+            </value>
+            <value>
+                <fullName>SACRAMENTO-SBC</fullName>
+                <default>false</default>
+                <label>SACRAMENTO-SBC</label>
+            </value>
+            <value>
+                <fullName>SACRAMENTO-SUREWEST</fullName>
+                <default>false</default>
+                <label>SACRAMENTO-SUREWEST</label>
+            </value>
+            <value>
+                <fullName>SALEM</fullName>
+                <default>false</default>
+                <label>SALEM</label>
+            </value>
+            <value>
+                <fullName>SALIDA</fullName>
+                <default>false</default>
+                <label>SALIDA</label>
+            </value>
+            <value>
+                <fullName>SALT LAKE CITY</fullName>
+                <default>false</default>
+                <label>SALT LAKE CITY</label>
+            </value>
+            <value>
+                <fullName>SAN DIEGO WP</fullName>
+                <default>false</default>
+                <label>SAN DIEGO WP</label>
+            </value>
+            <value>
+                <fullName>SAN FRANCISCO ETC</fullName>
+                <default>false</default>
+                <label>SAN FRANCISCO ETC</label>
+            </value>
+            <value>
+                <fullName>SAN JOSE-SANTA CLARA</fullName>
+                <default>false</default>
+                <label>SAN JOSE-SANTA CLARA</label>
+            </value>
+            <value>
+                <fullName>SAN MATEO COUNTY-CENTRAL</fullName>
+                <default>false</default>
+                <label>SAN MATEO COUNTY-CENTRAL</label>
+            </value>
+            <value>
+                <fullName>SAUK CENTRE</fullName>
+                <default>false</default>
+                <label>SAUK CENTRE</label>
+            </value>
+            <value>
+                <fullName>SCOTTSDALE/PARADISE VALLEY</fullName>
+                <default>false</default>
+                <label>SCOTTSDALE/PARADISE VALLEY</label>
+            </value>
+            <value>
+                <fullName>SE ST PAUL SUBURBS</fullName>
+                <default>false</default>
+                <label>SE ST PAUL SUBURBS</label>
+            </value>
+            <value>
+                <fullName>SEATTLE</fullName>
+                <default>false</default>
+                <label>SEATTLE</label>
+            </value>
+            <value>
+                <fullName>SEDONA</fullName>
+                <default>false</default>
+                <label>SEDONA</label>
+            </value>
+            <value>
+                <fullName>SHASTA ETC COS</fullName>
+                <default>false</default>
+                <label>SHASTA ETC COS</label>
+            </value>
+            <value>
+                <fullName>SHELTON</fullName>
+                <default>false</default>
+                <label>SHELTON</label>
+            </value>
+            <value>
+                <fullName>SIOUX FALLS</fullName>
+                <default>false</default>
+                <label>SIOUX FALLS</label>
+            </value>
+            <value>
+                <fullName>SKAGIT &amp; SAN JUAN COUNTIES</fullName>
+                <default>false</default>
+                <label>SKAGIT &amp; SAN JUAN COUNTIES</label>
+            </value>
+            <value>
+                <fullName>SNOHOMISH COUNTY</fullName>
+                <default>false</default>
+                <label>SNOHOMISH COUNTY</label>
+            </value>
+            <value>
+                <fullName>SNOKING-SEATTLE</fullName>
+                <default>false</default>
+                <label>SNOKING-SEATTLE</label>
+            </value>
+            <value>
+                <fullName>SODA SPRINGS</fullName>
+                <default>false</default>
+                <label>SODA SPRINGS</label>
+            </value>
+            <value>
+                <fullName>SONOMA COUNTY</fullName>
+                <default>false</default>
+                <label>SONOMA COUNTY</label>
+            </value>
+            <value>
+                <fullName>SOUTH CENTRAL UTAH</fullName>
+                <default>false</default>
+                <label>SOUTH CENTRAL UTAH</label>
+            </value>
+            <value>
+                <fullName>SOUTH COOS COUNTY</fullName>
+                <default>false</default>
+                <label>SOUTH COOS COUNTY</label>
+            </value>
+            <value>
+                <fullName>SOUTH JEFFCO/COLUMBINE VALLEY</fullName>
+                <default>false</default>
+                <label>SOUTH JEFFCO/COLUMBINE VALLEY</label>
+            </value>
+            <value>
+                <fullName>SOUTH KING COUNTY</fullName>
+                <default>false</default>
+                <label>SOUTH KING COUNTY</label>
+            </value>
+            <value>
+                <fullName>SOUTH METRO</fullName>
+                <default>false</default>
+                <label>SOUTH METRO</label>
+            </value>
+            <value>
+                <fullName>SOUTH VALLEY</fullName>
+                <default>false</default>
+                <label>SOUTH VALLEY</label>
+            </value>
+            <value>
+                <fullName>SOUTHERN OREGON COAST</fullName>
+                <default>false</default>
+                <label>SOUTHERN OREGON COAST</label>
+            </value>
+            <value>
+                <fullName>SOUTHERN UTAH</fullName>
+                <default>false</default>
+                <label>SOUTHERN UTAH</label>
+            </value>
+            <value>
+                <fullName>SOUTHERN WASHINGTON COUNTY</fullName>
+                <default>false</default>
+                <label>SOUTHERN WASHINGTON COUNTY</label>
+            </value>
+            <value>
+                <fullName>SOUTHWEST SUBURBAN AREA</fullName>
+                <default>false</default>
+                <label>SOUTHWEST SUBURBAN AREA</label>
+            </value>
+            <value>
+                <fullName>SPOKANE</fullName>
+                <default>false</default>
+                <label>SPOKANE</label>
+            </value>
+            <value>
+                <fullName>ST CLOUD</fullName>
+                <default>false</default>
+                <label>ST CLOUD</label>
+            </value>
+            <value>
+                <fullName>ST CROIX VALLEY</fullName>
+                <default>false</default>
+                <label>ST CROIX VALLEY</label>
+            </value>
+            <value>
+                <fullName>ST HELENS</fullName>
+                <default>false</default>
+                <label>ST HELENS</label>
+            </value>
+            <value>
+                <fullName>ST PAUL</fullName>
+                <default>false</default>
+                <label>ST PAUL</label>
+            </value>
+            <value>
+                <fullName>SUN CITY</fullName>
+                <default>false</default>
+                <label>SUN CITY</label>
+            </value>
+            <value>
+                <fullName>TACOMA</fullName>
+                <default>false</default>
+                <label>TACOMA</label>
+            </value>
+            <value>
+                <fullName>TEKOA</fullName>
+                <default>false</default>
+                <label>TEKOA</label>
+            </value>
+            <value>
+                <fullName>TONASKET</fullName>
+                <default>false</default>
+                <label>TONASKET</label>
+            </value>
+            <value>
+                <fullName>TOOELE</fullName>
+                <default>false</default>
+                <label>TOOELE</label>
+            </value>
+            <value>
+                <fullName>TRI CITIES</fullName>
+                <default>false</default>
+                <label>TRI CITIES</label>
+            </value>
+            <value>
+                <fullName>TRI-VALLEY</fullName>
+                <default>false</default>
+                <label>TRI-VALLEY</label>
+            </value>
+            <value>
+                <fullName>TRINIDAD</fullName>
+                <default>false</default>
+                <label>TRINIDAD</label>
+            </value>
+            <value>
+                <fullName>TUCSON</fullName>
+                <default>false</default>
+                <label>TUCSON</label>
+            </value>
+            <value>
+                <fullName>TUCSON-CENTRAL</fullName>
+                <default>false</default>
+                <label>TUCSON-CENTRAL</label>
+            </value>
+            <value>
+                <fullName>TWIN FALLS</fullName>
+                <default>false</default>
+                <label>TWIN FALLS</label>
+            </value>
+            <value>
+                <fullName>TWIN PORTS</fullName>
+                <default>false</default>
+                <label>TWIN PORTS</label>
+            </value>
+            <value>
+                <fullName>UINTAH BASIN</fullName>
+                <default>false</default>
+                <label>UINTAH BASIN</label>
+            </value>
+            <value>
+                <fullName>UNION-WALLOWA</fullName>
+                <default>false</default>
+                <label>UNION-WALLOWA</label>
+            </value>
+            <value>
+                <fullName>VAIL/SUMMIT COUNTY/LEADVILLE</fullName>
+                <default>false</default>
+                <label>VAIL/SUMMIT COUNTY/LEADVILLE</label>
+            </value>
+            <value>
+                <fullName>VALLEJO-BENICIA</fullName>
+                <default>false</default>
+                <label>VALLEJO-BENICIA</label>
+            </value>
+            <value>
+                <fullName>VALLEY CITY</fullName>
+                <default>false</default>
+                <label>VALLEY CITY</label>
+            </value>
+            <value>
+                <fullName>VIRGINIA</fullName>
+                <default>false</default>
+                <label>VIRGINIA</label>
+            </value>
+            <value>
+                <fullName>WAHPETON</fullName>
+                <default>false</default>
+                <label>WAHPETON</label>
+            </value>
+            <value>
+                <fullName>WALLA WALLA</fullName>
+                <default>false</default>
+                <label>WALLA WALLA</label>
+            </value>
+            <value>
+                <fullName>WALSENBURG/GARDNER/ LA VETA-CUCHARA</fullName>
+                <default>false</default>
+                <label>WALSENBURG/GARDNER/ LA VETA-CUCHARA</label>
+            </value>
+            <value>
+                <fullName>WASHINGTON COUNTY</fullName>
+                <default>false</default>
+                <label>WASHINGTON COUNTY</label>
+            </value>
+            <value>
+                <fullName>WEBSTER</fullName>
+                <default>false</default>
+                <label>WEBSTER</label>
+            </value>
+            <value>
+                <fullName>WENATCHEE</fullName>
+                <default>false</default>
+                <label>WENATCHEE</label>
+            </value>
+            <value>
+                <fullName>WEST AREA</fullName>
+                <default>false</default>
+                <label>WEST AREA</label>
+            </value>
+            <value>
+                <fullName>WESTERN SUBURBAN AREA</fullName>
+                <default>false</default>
+                <label>WESTERN SUBURBAN AREA</label>
+            </value>
+            <value>
+                <fullName>WESTERN WASHINGTON COUNTY</fullName>
+                <default>false</default>
+                <label>WESTERN WASHINGTON COUNTY</label>
+            </value>
+            <value>
+                <fullName>WESTPORT</fullName>
+                <default>false</default>
+                <label>WESTPORT</label>
+            </value>
+            <value>
+                <fullName>WHIDBEY ISLAND</fullName>
+                <default>false</default>
+                <label>WHIDBEY ISLAND</label>
+            </value>
+            <value>
+                <fullName>WHITE BEAR LAKE</fullName>
+                <default>false</default>
+                <label>WHITE BEAR LAKE</label>
+            </value>
+            <value>
+                <fullName>WICKENBURG</fullName>
+                <default>false</default>
+                <label>WICKENBURG</label>
+            </value>
+            <value>
+                <fullName>WILLISTON</fullName>
+                <default>false</default>
+                <label>WILLISTON</label>
+            </value>
+            <value>
+                <fullName>WINONA</fullName>
+                <default>false</default>
+                <label>WINONA</label>
+            </value>
+            <value>
+                <fullName>WINSLOW</fullName>
+                <default>false</default>
+                <label>WINSLOW</label>
+            </value>
+            <value>
+                <fullName>WINTER PARK/GRAND COUNTY</fullName>
+                <default>false</default>
+                <label>WINTER PARK/GRAND COUNTY</label>
+            </value>
+            <value>
+                <fullName>WOODLAND</fullName>
+                <default>false</default>
+                <label>WOODLAND</label>
+            </value>
+            <value>
+                <fullName>YAKIMA</fullName>
+                <default>false</default>
+                <label>YAKIMA</label>
+            </value>
+            <value>
+                <fullName>YAMHILL COUNTY</fullName>
+                <default>false</default>
+                <label>YAMHILL COUNTY</label>
+            </value>
+            <value>
+                <fullName>YOLO CO</fullName>
+                <default>false</default>
+                <label>YOLO CO</label>
+            </value>
+            <value>
+                <fullName>YUBA &amp; SUTTER COUNTIES</fullName>
+                <default>false</default>
+                <label>YUBA &amp; SUTTER COUNTIES</label>
+            </value>
+            <value>
+                <fullName>YUMA</fullName>
+                <default>false</default>
+                <label>YUMA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

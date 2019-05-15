@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Months__c</fullName>
+    <description>Number of months of MRC to be credited</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If Free Month(s) Incentive Credit is selected, enter the number of months to credit.</inlineHelpText>
+    <label>Number of Months</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>one (1)</fullName>
+                <default>false</default>
+                <label>one (1)</label>
+            </value>
+            <value>
+                <fullName>two (2)</fullName>
+                <default>false</default>
+                <label>two (2)</label>
+            </value>
+            <value>
+                <fullName>three (3)</fullName>
+                <default>false</default>
+                <label>three (3)</label>
+            </value>
+            <value>
+                <fullName>four (4)</fullName>
+                <default>false</default>
+                <label>four (4)</label>
+            </value>
+            <value>
+                <fullName>five (5)</fullName>
+                <default>false</default>
+                <label>five (5)</label>
+            </value>
+            <value>
+                <fullName>six (6)</fullName>
+                <default>false</default>
+                <label>six (6)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

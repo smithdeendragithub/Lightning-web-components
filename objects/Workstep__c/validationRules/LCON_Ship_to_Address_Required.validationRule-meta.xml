@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LCON_Ship_to_Address_Required</fullName>
+    <active>true</active>
+    <description>Must populate the LCON &amp; Ship to Address address before closing the MAC - Set Commit Date set on ITS MAC plans</description>
+    <errorConditionFormula>ISBLANK(Sub_Order__r.LCON_Ship_to_Address__c) &amp;&amp; Name=&#39;MAC - Set Commit Date&#39; &amp;&amp; ISPICKVAL(Status__c , &#39;Complete&#39;)</errorConditionFormula>
+    <errorDisplayField>Status__c</errorDisplayField>
+    <errorMessage>LCON &amp; Ship to Address must be populated on the SubOrder before the MAC - Set Commit Date workstep can be completed.</errorMessage>
+</ValidationRule>

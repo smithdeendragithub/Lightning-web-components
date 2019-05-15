@@ -1,0 +1,810 @@
+<apex:component >
+    <apex:outputPanel layout="none"  >
+    
+    <!-- Stylesheet can be found under pages proposalgeneratepdf -->
+    
+<div class="bd-margins">
+    <div>
+        <h1 style="text-align: center">
+            Cloud Firewall Service Configuration Brief
+        </h1>
+    </div>
+    <div>
+        <h2>1. Introduction</h2>
+        <p class="CFSCloud-p">This document helps Electric Lightwave’s Cloud Firewall Service (CFS) customers get started. It describes
+             the available configuration choices so that you can gather the information your Sales Engineer
+             will need to help you set up your Cloud Firewall Service. Electric Lightwave uses this information to complete
+             the CFS Configuration Questionnaire, initially provisioning CFS according to your requirements. 
+             As you gain experience with CFS, you can use the CFS Portal to change your reports and policies after
+             initial provisioning. Additionally, Electric Lightwave’s staff can make changes at your request.
+        </p>
+    </div>
+    <div>
+        <h2>2. Email Reports</h2>
+        <p class="CFSCloud-p">You have the option of selecting daily and/or weekly reports. The layout 
+            and format of these reports is subject to change at Electric Lightwave’s discretion. Daily reports are run 
+            at approximately 2:00AM on the data collected over the previous calendar day. It is not possible 
+            to change the time of day that the reports run or to run an ad-hoc report. Weekly reports run on 
+            Sunday morning on the previous calendar week of data recorded.
+        </p>
+    </div>
+        <p class="CFSCloud-p">The CFS service level and reporting frequency determines which reports you will 
+            receive. The table below illustrates the differences.
+        </p>
+            <table class="CFSCloud-p" style="border: thin solid #000000; width: 450px;margin-left:auto;margin-right:auto;">
+                <thead style="background-color: #666666; color: #FFFFFF;height: 30px;">
+                    <tr style="height: 30px;">
+                        <th style="margin-left:5px; text-align:center;">&nbsp;Frequency</th>
+                        <th style="text-align:center;width: 70px;">Plus</th>
+                        <th style="text-align:center;width: 70px;">Premium</th>
+                        <th style="text-align:left;width: 70px;">Report</th>
+                    </tr>
+                </thead>
+                <tr style="background-color: #CCCCCC;height: 30px;">
+                    <td style="text-align:left;">&nbsp;<b>Daily</b></td>
+                    <td style="width: 70px;text-align:center;">X</td>
+                    <td style="width: 70px;text-align:center;">X</td>
+                    <td style="width: 300px;text-align:left;">24 Hour Application Report</td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td style="text-align:left;">&nbsp;<b>Daily</b></td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:left;">24 Hour Threat Report</td>
+                </tr>
+                <tr style="background-color: #CCCCCC;height: 30px;">
+                    <td style="text-align:left;">&nbsp;<b>Weekly</b></td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:left;">7 Day Application Report</td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td style="text-align:left;">&nbsp;<b>Weekly</b></td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:left;">7 Day Threat Report</td>
+                </tr>
+                <tr style="background-color: #CCCCCC;height: 30px;">
+                    <td style="text-align:left;">&nbsp;<b>Weekly</b></td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:left;">7 Day URL Report</td>
+                </tr>
+                <tr style="height: 30px;">
+                    <td style="text-align:left;">&nbsp;<b>Weekly</b></td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:left;">7 Day Application Statistics Report</td>
+                </tr>
+                <tr style="background-color: #CCCCCC;height: 30px;">
+                    <td style="text-align:left;">&nbsp;<b>Weekly</b></td>
+                    <td style="text-align:center;">&nbsp;</td>
+                    <td style="text-align:center;">X</td>
+                    <td style="text-align:left;">7 Day File Filtering Report</td>
+                </tr>
+            </table>
+    <div>
+        <p class="CFSCloud-p">You may want to select both daily and weekly reports.
+        </p>
+    </div>
+    <div>
+        <p class="CFSCloud-p">The Daily and Weekly Application Reports are the same, with the only 
+            exception being the time span of data contained within the report. The same holds true 
+            for the Daily/Weekly Threat Reports.
+        </p>
+    </div>
+    <div>
+        <p class="CFSCloud-p">The URL Report, Application Statistics Report and the File Filtering
+             Reports are only run once per week due to the overhead placed on the firewall to run these reports.
+        </p>
+    </div>
+
+    <div>
+        <h2>3. Policies</h2>
+        <p class="CFSCloud-p">Electric Lightwave has developed three levels of policy profiles: Moderate,
+             Recommended, and High. These policy profiles are used to configure Application Visibility,
+             Application Control, URL Filtering, and Antivirus/Anti-Spyware. Using the CFS Configuration 
+            Questionnaire, your Sales Engineer will select the profile of your choice for initial CFS 
+            provisioning. Keep in mind that High is not always better because it may block traffic required
+             by your users. Electric Lightwave suggests that your CFS initially be configured with Moderate or
+             Recommended policies and then modified later, if needed.
+        </p>
+    </div>
+    <div class="divh2">
+        <h3>3.1 Application Visibility</h3>
+        <p class="CFSCloud-p CFSCloud-c">Application Visibility shows the traffic allowed on your network in terms 
+            of specific applications. The CFS Portal’s Application Visibility reports show which 
+            applications are being used in your organization and their associated risk rating. Application 
+            Visibility will inform your policy customization decisions. For example, you may find that a 
+            high risk application such as <i>baofeng</i> is consuming an inordinate amount of bandwidth. If so, you 
+            can use the CFS Portal to edit an Application Control policy to block it, or you can enlist the 
+            help of the Electric Lightwave Network Operations Center.
+        </p>
+    </div>
+
+    <div class="divh2">
+        <p class="CFSCloud-p CFSCloud-c">Electric Lightwave’s Cloud Firewall Service is built on a network of firewalls from Palo Alto Networks. 
+            Palo Alto Networks maintains an online database of applications in their Applipedia 
+            application: <a href="http://apps.paloaltonetworks.com/applipedia/">http://apps.paloaltonetworks.com/applipedia/.</a> 
+            You can reference Applipedia to understand an 
+            application’s security risk. Applipedia includes categories, risks assessments, and descriptions for 
+            over 1,400 applications, and the list is continually updated.
+        </p>
+    </div>
+
+   <div class="divh2">
+        <p class="CFSCloud-p CFSCloud-c"><b>Note:</b> Electric Lightwave’s CFS products will be updated at least once a week with new
+             application information from Palo Alto Networks. Some of the descriptions below assume knowledge
+             of Applipedia categories and risk levels. The screen shot below displays the Applipedia
+             information about the <i>baofeng</i> application.
+        </p>
+    </div>
+
+    <div class="divh2">
+    <div class="CFSCFimages">
+    </div>
+    </div>
+
+        <table class="CFSCloud-p" style="border: thin solid #336699; width: 600px;margin-left:auto;margin-right:auto;">
+        <thead style="background-color: #666666; color: #FFFFFF;">
+            <tr style="height: 25px;">
+                <th colspan="5" style="margin-left:5px; text-align:left; background-color: #336699;">&nbsp;baofeng</th>
+            </tr>
+        </thead>
+        <tr><td colspan="5" style="text-align:left;">&nbsp;</td></tr>
+        <tr><td colspan="5" style="text-align:left;">&nbsp;</td></tr>
+        <tr>
+            <td style="text-align:center;width:15px;"></td>
+            <td colspan="4" style="text-align:left;color: #336699;"><b>Description</b></td>
+        </tr>
+        <tr>
+            <td style="text-align:center;width:15px;"></td>
+            <td colspan="4" style="text-align:left;">Baofeng is a Chinese video services provider to media companies such as Sohu.com 
+                and PPS etc. It has a multi-media player called Baofeng Storm.</td>
+        </tr>
+        <tr><td colspan="5" style="text-align:left;">&nbsp;</td></tr>
+        <tr>
+            <td style="text-align:center;width:15px;"></td>
+            <td colspan="4" style="text-align:left;color: #336699;"><b>Reference</b></td>
+        </tr>
+         <tr>
+            <td style="text-align:center;width:15px;"></td>
+            <td  colspan="4" style="text-align:left;">BaoFeng Google Yahoo!</td>
+        </tr>
+         <tr>
+            <td colspan="5" style="text-align:left;">&nbsp;</td>
+        </tr>
+        <tr>
+            <td style="text-align:center;width:15px;"></td>
+            <td colspan="4" style="text-align:left;color: #336699;"><b>Characteristics</b></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:right;color: #336699;"><b>Category</b></td>
+            <td style="text-align:left;">&nbsp;media</td>
+            <td style="text-align:right;color: #336699;">Evasive</td>
+            <td style="text-align:left;">&nbsp;Yes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:right;color: #336699;"><b>SubCategory</b></td>
+            <td style="text-align:left;">&nbsp;photo-video</td>
+            <td style="text-align:right;color: #336699;">Excessive Bandwidth</td>
+            <td style="text-align:left;">&nbsp;Yes</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:right;color: #336699;"><b>Risk</b></td>
+            <td style="text-align:left;"><div style="width:25px;text-align:center;background-color: #ffd800">4</div></td>
+            <td style="text-align:right;color: #336699;">Prone to Misuse</td>
+            <td style="text-align:left;">&nbsp;Yes</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:right;color: #336699;"><b>Standard Ports</b></td>
+            <td style="text-align:left;">&nbsp;tcp/80,8090,8011,8089</td>
+            <td style="text-align:right;color: #336699;">Capable of File Transfer</td>
+            <td style="text-align:left;">&nbsp;Yes</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:right;color: #336699;"></td>
+            <td style="text-align:left;">&nbsp;upd/dynamic</td>
+            <td style="text-align:right;color: #336699;">Tunnels Other Applications</td>
+            <td style="text-align:left;">&nbsp;No</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:right;color: #336699;"></td>
+            <td style="text-align:left;">&nbsp;</td>
+            <td style="text-align:right;color: #336699;">Used by Malware</td>
+            <td style="text-align:left;">&nbsp;No</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:right;color: #336699;"></td>
+            <td style="text-align:left;">&nbsp;</td>
+            <td style="text-align:right;color: #336699;">Has Known Vulnerabilities</td>
+            <td style="text-align:left;">&nbsp;Yes</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td style="text-align:right;color: #336699;"></td>
+            <td style="text-align:left;">&nbsp;</td>
+            <td style="text-align:right;color: #336699;">Widely Used</td>
+            <td style="text-align:left;">&nbsp;Yes</td>
+        </tr>
+         <tr>
+            <td colspan="5" style="text-align:left;">&nbsp;</td>
+        </tr>
+         <tr>
+            <td colspan="5" style="text-align:left;">&nbsp;</td>
+        </tr>
+         <tr>
+            <td colspan="5" style="text-align:left;">&nbsp;</td>
+        </tr>
+    </table>
+
+
+    <div class="divh2">
+        <h3>3.2 Application Control</h3>
+        <p class="CFSCloud-p CFSCloud-c">Application Control uses policies that allow you to control what application traffic is allowed 
+            on your network. This is achieved by processing Internet traffic through a series of rules. The rules filter and 
+            block unwanted and harmful traffic. Electric Lightwave has defined three different levels of Application Control Policies that
+             you can choose when your Sales Engineer initially configures your service, as detailed below. The controls that are
+             described below are only a part of the overall rule structure in the policies, but are designed to give you control 
+            over the most commonly tailored configuration issues. If you need to change more specific things or see the rest of the
+             rules in your policy, you can do so via the CFS Portal or Electric Lightwave's Cusomer Portal.
+        </p>
+    </div>
+
+    <div class="divh2">
+    <p class="CFSCloud-p CFSCloud-c">Table 1 is an overview of the Moderate, Recommended, and High Application Policies.
+    </p>
+    </div>
+    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table1. Application Control Profiles</b><br />
+        <table class="CFSCloud-p" style="border: thin solid #000000; width: 700px;">
+        <thead style="background-color: #666666; color: #FFFFFF;">
+            <tr style="height: 30px;">
+                <th style="margin-left:5px; text-align:left;color: #FFFFFF;">&nbsp;Application Attribute</th>
+                <th style="text-align:center;width: 80px;color: #FFFFFF;">Moderate</th>
+                <th style="text-align:center;width: 80px;color: #FFFFFF;">Recommended</th>
+                <th style="text-align:center;width: 80px;color: #FFFFFF;">High</th>
+            </tr>
+        </thead>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp;Risk Rating 5 and used by malare (with exceptions)</td>
+            <td style="text-align:center; background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:left;">&nbsp;Risk Rating 4 and used by malware (with exceptions)</td>
+            <td style="text-align:center;">Allow</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp;Risk Rating 4 or 5 and has "vulnerabilities" characteristic (with exceptions)</td>
+            <td style="text-align:center;">Allow</td>
+            <td style="text-align:center;">Allow</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+    </table>
+
+
+    <div class="divh3">
+        <h3>3.2.1 Moderate Application Control Policy Profile</h3>
+        <p class="CFSCloud-p CFSCloud-b">The Moderate policy profile blocks applications that have an overall risk rating of 5 
+            and have the characteristic “Used by Malware”, with the exceptions listed in Appendix A. If you need to 
+            block or unblock additional applications after initial provisioning, you can do so via the CFS Portal or 
+            Electric Lightwave's Customer POrtal.
+        </p>
+    </div>
+
+    <div class="divh3">
+        <h3>3.2.2 Recommended Application Control Policy Profile</h3>
+        <p class="CFSCloud-p CFSCloud-b">The Recommended policy profile is more restrictive and blocks applications that have an
+             overall risk rating of 4 or 5 and that have the characteristic “Used by Malware”, with the exceptions listed
+             in Appendix A. If you need to block or unblock additional applications after initial provisioning, you can
+             do so via the CFS Portal or Electric Lightwave's Customer Portal.
+        </p>
+    </div>
+
+    <div class="divh3">
+        <h3>3.2.3 High Application Control Policy Profile</h3>
+        <p class="CFSCloud-p CFSCloud-b">The High policy profile is the most restrictive and blocks applications that have an overall
+             risk rating of 4 or 5 and that have the characteristic “Used by Malware” or the characteristic “Vulnerabilities”,
+             with the exceptions listed in Appendix A. If you need to block or unblock additional applications after initial provisioning,
+             you can do so via the CFS Portal or Electric Lightwave's Customer Portal.
+        </p>
+    </div>
+
+    <div class="divh2">
+        <h3>3.3 URL Filtering</h3>
+        <p class="CFSCloud-p CFSCloud-c">CFS groups URLs into categories to efficiently control access to similar URLs, for example 
+            social-networking, pornography or online gambling. URL filtering restricts a user’s access to a web site based
+             on its category. Restrictions include the following actions:
+        </p>
+        <ul>
+            <li class="ulli"><b>Allow: </b>No action is taken to restrict or log access.</li>
+            <li class="ulli"><b>Alert: </b>Allows the user to access the web site, but adds an alert to the URL Filtering log.</li>
+            <li class="ulli"><b>Continue: </b>Allows the user to access the blocked page by clicking the “Continue” button on the blocked page.
+                    An alert is added to the URL Filtering log.</li>
+            <li class="ulli"><b>Block: </b>Blocks access to the page and adds an alert to the URL Filtering log.</li>
+        </ul>
+            
+        <p class="CFSCloud-p CFSCloud-c">The following table shows how the three different profile levels apply URL filtering.</p>
+    </div>
+    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table 2. URL Filtering Profiles</b><br />
+        <table class="CFSCloud-p" style="border: thin solid #000000; width: 700px;">
+        <thead style="background-color: #666666; color: #FFFFFF;">
+            <tr style="height: 30px;">
+                <th style="margin-left:5px; text-align:left;color: #FFFFFF;">&nbsp;URL Category</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">Moderate</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">Recommended</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">High</th>
+            </tr>
+        </thead>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp;Abused Drugs</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Continue</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+         <tr style="height: 30px;">
+            <td style="text-align:left;">&nbsp;Adult and Pornography&nbsp;</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Continue</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp; Bot-nets</td>
+            <td style="text-align:center; background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:left;">&nbsp;Confirmed spam sources&nbsp;</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Continue</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp;Hacking&nbsp;</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Continue</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:left;">&nbsp;Keyloggers and Monitoring</td>
+            <td style="text-align:center; background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp;Malware sites</td>
+            <td style="text-align:center; background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:left;">&nbsp;Nudity</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Continue</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp;Online gambling</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Continue</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:left;">&nbsp;Phishing and other frauds</td>
+            <td style="text-align:center; background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp;Proxy and Anonymizers</td>
+            <td style="text-align:center; background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:left;">&nbsp;Spam URL</td>
+            <td style="text-align:center; background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;">&nbsp;Spyware and adware</td>
+            <td style="text-align:center; background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+    </table>
+
+    <div class="divh2">
+        <h3>3.4 Antivirus</h3>
+        <p class="CFSCloud-p CFSCloud-c">Antivirus profiles inspect protocol decoders like FTP or HTTP and alert or deny traffic as described below.
+        </p>
+        <ul>
+            <li class="ulli"><b>Alert: </b>Allows the traffic, but adds an alert to the Threat log.</li>
+            <li class="ulli"><b>Block: </b>Blocks the traffic and adds an alert to the Threat log.</li>
+            <li class="ulli"><b>Default: </b>Takes the default action specified by Palo Alto for the type of threat. These actions are customized for each threat, 
+                so the action taken may vary, but is designed to prevent that particular virus from infecting your systems.</li>
+        </ul>
+    </div>
+
+    <div class="divh2">
+    <p class="CFSCloud-p CFSCloud-c">Many organizations will deploy Electric Lightwave’s Cloud Firewall Service as part of a defense-in-depth strategy that includes 
+            end-point antivirus/anti-spyware, email antivirus/anti-spyware, or both. In this case, the CFS antivirus profiles should 
+            complement those controls, and you should understand how the CFS’ antivirus capability blocks traffic containing viruses. 
+            The CFS can block traffic containing viruses before the traffic enters your network. If the CFS blocks mail containing a virus, 
+            it may look to your email program like a failure to complete the transfer of mail. This could cause your email program to 
+            request the transfer again, resulting in multiple retries until a timeout occurs. If your organization has other AV controls, 
+            you may want to select the Moderate or Recommended policy to prevent conflict.
+        </p>
+    </div>
+
+    <div class="divh2">
+        <p class="CFSCloud-p CFSCloud-c">The following table shows how the three different profiles react when a virus is detected, depending on the protocol.
+        </p>
+    </div>
+    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table 3. Antivirus Policy Profiles</b><br />
+        <table class="CFSCloud-p" style="border: thin solid #000000;">
+        <thead style="background-color: #666666; color: #FFFFFF;">
+            <tr style="height: 30px;">
+                <th style="margin-left:5px; text-align:center;width: 150px;color: #FFFFFF;">&nbsp;Protocol</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">Moderate</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">Recommended</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">High</th>
+            </tr>
+        </thead>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>FTP</b></td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+        </tr>
+         <tr style="height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>HTTP</b>&nbsp;</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>IMAP</b></td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>POP3</b>&nbsp;</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>SMB</b>&nbsp;</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>SMTP</b></td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+    </table>
+
+    <div class="divh2">
+        <h3>3.5 Anti-Spyware</h3>
+        <p class="CFSCloud-p CFSCloud-c">Suspected spyware traffic is categorized according to severity as Critical, High, Medium, Low, or Informational. 
+            The CFS Anti-Spyware profiles allow, alert, or block spyware threats according to severity, as shown in the table below. The Default 
+            action is Palo Alto’s assigned action based on their specific knowledge of individual spyware threats. This means that CFS may take a 
+            different action for two different spyware threats, even though they have the same severity level.
+        </p>
+    </div>
+    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table 4. Anti-Spyware Policy Profiles</b><br />   
+         <table class="CFSCloud-p" style="border: thin solid #000000;">
+        <thead style="background-color: #666666; color: #FFFFFF;">
+            <tr style="height: 30px;">
+                <th style="margin-left:5px; text-align:center;width: 150px;color: #FFFFFF;">&nbsp;Protocol</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">Moderate</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">Recommended</th>
+                <th style="text-align:center;width: 150px;color: #FFFFFF;">High</th>
+            </tr>
+        </thead>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>Critical</b></td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+         <tr style="height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>High</b>&nbsp;</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>Medium</b></td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center;background-color: #003366; color: #FFFFFF;">Block</td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>Low</b>&nbsp;</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Allow</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+        </tr>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:center;">&nbsp;<b>Informational</b>&nbsp;</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Allow</td>
+            <td style="text-align:center;background-color: #CCFFFF;">Default</td>
+            <td style="text-align:center; background-color: #336699; color: #FFFFFF;">Alert</td>
+        </tr>
+    </table>
+
+    <div class="divh2">
+        <h3>3.6 File Filtering</h3>
+        <p class="CFSCloud-p CFSCloud-c">File Filtering controls the flow of a wide range of file types by looking deep within the payload to 
+            identify the file types (as opposed to looking only at the file extension) to determine if the transfer of the file is allowed 
+            by policy. File blocking by type can be implemented on a per application basis which can, for example, allow an organization 
+            to enable the use of specific webmail applications like Gmail and allow attachments, but block the transfer of specific file types.
+        </p>
+        <p class="CFSCloud-p CFSCloud-c">Electric Lightwave has implemented a tiered approach to our file-blocking feature set. The following table indicates which files are 
+            blocked/alerted by service level.
+        </p>
+    </div>
+    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table 5. File Blocks and Alerts by Service Level</b><br />
+        <table class="CFSCloud-p" style="border: thin solid #000000; width: 700px;">
+        <thead style="background-color: #666666; color: #FFFFFF;">
+            <tr style="height: 30px;">
+                <th style="margin-left:5px; text-align:left;color: #FFFFFF;">&nbsp;Application Attribute</th>
+                <th style="text-align:center;width: 160px;color: #FFFFFF;">Moderate</th>
+                <th style="text-align:center;width: 160px;color: #FFFFFF;">Recommended</th>
+                <th style="text-align:center;color: #FFFFFF;">High</th>
+            </tr>
+        </thead>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;vertical-align:top;"><b>&nbsp;Alert</b></td>
+            <td style="vertical-align:top;"><div style="width: 7.4em;margin-left:45px;">All File Types</div></td>
+            <td style="vertical-align:top;"><div style="width: 7.4em;margin-left:40px;">All File Types</div></td>
+            <td style="vertical-align:top;"><div style="width: 7.4em;margin-left:60px;">All File Types</div></td>
+        </tr>
+        <tr style="height: 30px;">
+            <td style="text-align:left;vertical-align:top;">&nbsp;<b>Block Executable:</b></td>
+            <td style="vertical-align:top;"><div style="width: 7.4em;margin-left:45px;">None</div></td>
+            <td style="vertical-align:top;"><div style="width: 7.4em;margin-left:40px;">Bat, cmd, exe</div></td>
+            <td style="vertical-align:top;"><div style="width: 7.4em;margin-left:60px;">Bat, cmd, exe</div></td>
+        </tr>
+        <tr style="background-color: #CCCCCC;">
+            <td style="text-align:left;vertical-align:top;">&nbsp;<b>Block Common Files:</b></td>
+            <td style="text-align:center;vertical-align:top;">&nbsp;</td>
+            <td style="text-align:center;vertical-align:top;">&nbsp;</td>
+            <td><div style="width: 9.8em; margin-left:60px;height:222px;">Doc, docx, dwg<br/>Encrypted-doc<br/>Encrypted-docx<br/>Encrypted-office2007<br/>
+                Encrypted-ppt<br/>Encrypted-rar<br/>Encrypted-xls<br/>Encrypted-xlsx<br/>Encrypted-zip<br/>Msoffice<br/>Ppt, pptx<br/>Xls, xlsx<br/>Zip
+            </div></td>
+        </tr>
+    </table>
+    <div class="divh2">
+        <h3>3.7 Vulnerability</h3>
+        <p class="CFSCloud-p CFSCloud-c">A rich set of intrusion prevention features blocks known and unknown network and application-layer 
+            vulnerability exploits from compromising and damaging enterprise information resources. Vulnerability exploits, buffer 
+            overflows, and port scans are detected using proven threat detection (IDS) and prevention (IPS) mechanisms.
+        </p>
+        <ul>
+            <li class="ulli">Protocol decoder-based analysis statefully decodes the protocol and then intelligently applies signatures 
+                to detect vulnerability exploits.</li>
+            <li class="ulli">Protocol anomaly-based protection detects non-RFC compliant protocol usage such as the use of overlong URI 
+                or overlong FTP login.</li>
+            <li class="ulli">Stateful pattern matching detects attacks across more than one packet, taking into account elements such 
+                as the arrival order and sequence.</li>
+            <li class="ulli">Statistical anomaly detection prevents rate-based DoS flooding attacks.</li>
+            <li class="ulli">Heuristic-based analysis detects anomalous packet and traffic patterns such as port scans and host sweeps.</li>
+            <li class="ulli">Other attack protection capabilities such as blocking invalid or malformed packets, IP defragmentation and 
+                TCP reassembly are utilized for protection against evasion and obfuscation methods employed by attackers.</li>
+            <li class="ulli">Custom vulnerability or spyware phone home signatures that can be used in either the anti-spyware or
+                 vulnerability profiles.</li>
+        </ul>
+            
+        <p class="CFSCloud-p CFSCloud-c">Electric Lightwave has implemented a tiered approach to our IDS/IPS feature set. The following table indicates which 
+            threat levels are blocked/alerted by service level.</p>
+    </div>
+    <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Table 6. Threat Level Blocks and Alerts by Service Level</b><br />
+        <table class="CFSCloud-p" style="border: thin solid #000000; width: 700px;">
+        <thead style="background-color: #666666; color: #FFFFFF;">
+            <tr style="height: 30px;">
+                <th style="margin-left:5px; text-align:left;color: #FFFFFF;">&nbsp;</th>
+                <th style="text-align:center;width: 160px;color: #FFFFFF;">IDS Only</th>
+                <th style="text-align:center;width: 160px;color: #FFFFFF;">IDS-IPS Moderate</th>
+                <th style="text-align:center;width: 160px;color: #FFFFFF;">IDS-IPS High</th>
+            </tr>
+        </thead>
+        <tr style="background-color: #CCCCCC;height: 30px;">
+            <td style="text-align:left;vertical-align:top;"><b>&nbsp;Alert (IDS):</b></td>
+            <td style="vertical-align:top;"><div style="width: 8.4em; margin-left:35px;">All Threat Levels</div></td>
+            <td style="vertical-align:top;"><div style="width: 7.4em;margin-left:35px;">All File Types</div></td>
+            <td style="vertical-align:top;"><div style="width: 8em; margin-left:35px;">All Threat Levels</div></td>
+        </tr>
+        <tr style="background-color: #CCCCCC;">
+            <td style="text-align:left;vertical-align:top;">&nbsp;<b>Action (IPS):</b></td>
+            <td style="vertical-align:top;"><div style="width: 8.4em; margin-left:35px;">N/A</div></td>
+            <td style="vertical-align:top;"><div style="width: 8.4em; margin-left:35px;">Default All Threat Levels</div></td>
+            <td><div style="width: 10.4em; margin-left:35px;height:103px;">Block on Medium, High and Critical Threat Levels.<br/>
+                Default on Informational and Low Threat Levels.<br/>
+            </div></td>
+        </tr>
+    </table>
+    <div>
+        <h2>4. Network Addresses Translation</h2>
+        <p class="CFSCloud-p">Electric Lightwave will automatically assign the appropriate-sized block of IP addresses to you, up to a /28, 
+            and you can use outbound Network Address Translation (NAT) with it, if needed. If you need an IP address for inbound NAT, 
+            please complete the section “Inbound Network Address Translation Requirements” on the questionnaire. Electric Lightwave will allocate 
+            and assign one or more public IP addresses for you to NAT inbound traffic to your organization’s Internet-facing services. Each 
+            IP address can be NATed at the port level, which allows a single IP address to be assigned to multiple services, if 
+            needed. If you require more than a /28 of IP addresses, you must request them using Electric Lightwave’s IP Justification Form. Additional fees apply.
+        </p>
+    </div>
+    <div>
+        <p class="CFSCloud-p">Electric Lightwave registers with the American Registry for Internet Numbers (ARIN) to obtain IP addresses. ARIN assigns 
+            and allocates IP addresses to end users and Internet Service Providers (ISPs) located in North America. ARIN requires all end users 
+            and ISPs to document their use of IP addresses.
+        </p>
+    </div>
+    <div>
+        <p class="CFSCloud-p">To adequately provide this information to ARIN, Electric Lightwave requires all customers to complete the IP Justification 
+            Form for the use of additional IP addresses. Electric Lightwave abides by ARIN&#39;s policies to promote conservation and efficient use of IP 
+            address space.
+        </p>
+    </div>
+    <div>
+        <p class="CFSCloud-p">Please note: You must contact Electric Lightwave Customer Care to obtain an order number prior to completing the 
+            IP Address Justification Form. You will be prompted to enter your order number when completing the form. The IP Address 
+            Justification Form is located at <a href="http://www.integratelecom.com/care/ispsupport/ip_just.php">http://www.integratelecom.com/care/ispsupport/ip_just.php.</a>
+        </p>
+    </div>
+
+    <div>
+        <h2>5. Syslog Configuration</h2>
+        <p class="CFSCloud-p">CFS can forward syslog messages to your syslog server. If you want to enable this capability, 
+            please provide your Sales Engineer with the syslog configuration information for your syslog server.
+        </p>
+    </div>
+
+    <div>
+        <h2>6. Remote Access VPN Client Configuration</h2>
+        <p class="CFSCloud-p">Remote Access VPN is an optional add-on service available to both CFS Plus and CFS Premium 
+            customers and is sold on a per simultaneous user connection basis. Remote Access VPN is supported via the GlobalProtect 
+            client software on the following Operating Systems: Microsoft Windows XP, Microsoft Windows Vista, Microsoft Windows 7, 
+            Apple Mac OS X (Snow Leopard, Lion) and Apple iOS (users built-in IPSec client).
+        </p>
+    </div>
+
+    <div>
+        <p class="CFSCloud-p">If you have purchased the optional VPN Client, you will need to tell us whether you are 
+            using the LDAP/Active Directory or RADIUS. When Remote Access VPN Client users initiate a connection, they 
+            will be authenticated using your company’s LDAP/Active Directory or RADIUS directory service. Additionally, 
+            you will need to provide any network routes that Remote Access VPN Client users will need to use to access your 
+            network resources; e.g. 192.168.125.0/24. Note, it is recommended that your network not include network routes, 
+            such as 192.168.1.1, that are likely to be used by the remote user’s local network.
+        </p>
+    </div>
+
+    <div class="divh2">
+        <h3>6.1. Customer’s Configuration Responsibilities for VPN Client</h3>
+        <p class="CFSCloud-p CFSCloud-c">After logging into the CFS Portal you will need to configure CFS to work with your specific directory service. The following bulleted list shows you the information you will need to enter 
+            to configure CFS to authenticate remote users against your LDAP/AD directory service. It is recommended 
+            that you have this information on-hand when configuring the capability. These requirements are also mentioned in the CFS Portal User Guide available on Electric Lightwave's Customer Portal under Help &gt; User Guides &gt; Product Guides &gt; Cloud Firewall.</p>
+    </div>
+    <div class="divh2">
+        <ul class="CFSCloud-p CFSCloud-c" style="margin-top:0;margin-bottom:0;">
+            <li style="margin-top:0;margin-bottom:0;">Server Configuration</li>
+            <ul style="margin-top:0;margin-bottom:0;">
+                <li style="margin-top:0;margin-bottom:0;">Primary DNS*</li>
+                <li>Secondary DNS</li>
+                <li>Primary WINS</li>
+                <li>Secondary WINS</li>
+                <li>DNS Suffixes</li>
+                <li>Access Route*</li>
+                <li>Enable IPSEC</li>
+                <li>Inactivity TimeOut</li>
+                <li>Failed Attempts</li>
+                <li style="margin-top:0;margin-bottom:0;">Locked TimeOut</li>
+            </ul>
+        </ul>
+        <ul class="CFSCloud-p CFSCloud-c" style="margin-top:0;margin-bottom:0;">
+            <li style="margin-top:0;margin-bottom:0;">3rd Party VPN Support (iOS, Apple Only)</li>
+            <ul style="margin-top:0;margin-bottom:0;">
+                <li>Enable X-Auth Support</li>
+                <li>Group Name</li>
+                <li>Group Password</li>
+            </ul>
+        </ul>
+        <ul class="CFSCloud-p CFSCloud-c" style="margin-top:0;margin-bottom:0;">
+            <li style="margin-top:0;margin-bottom:0;">LDAP Services</li>
+            <ul style="margin-top:0;margin-bottom:0;">
+                <li style="margin-top:0;margin-bottom:0;">Server/Address/Port</li>
+                <li>Domain*</li>
+                <li>Type*</li>
+                <li>Base*</li>
+                <li>Bind DN*</li>
+                <li>Bind Password*</li>
+                <li>Time Limit</li>
+                <li>Bind Time Limit</li>
+                <li>Retry Interval</li>
+                <li>Login Attribute*</li>
+                <li>Password Expiration Warning</li>
+                <li style="margin-top:0;margin-bottom:0;">SSL</li>
+            </ul>
+        </ul>
+    <p class="CFSCloud-p">*Required</p>
+    </div>  
+    <div>
+        <h2>7. Site-to-Site VPN IPSEC Tunnel Configuration</h2>
+        <p class="CFSCloud-p">Virtual Private Networks (VPNs) allow systems to connect securely over a public network as if 
+            they were connecting over a local area network (LAN). The IP Security (IPSec) set of protocols is used to set up a 
+            secure tunnel for the VPN traffic, and the private information in the TCP/IP packets is encrypted when sent 
+            through the IPSec tunnel.
+        </p>
+    </div>
+
+    <div>
+        <h2>8. PTR/MX Record Creation</h2>
+        <p class="CFSCloud-p">If you host your own mail server and your public IP address changes, you will need to create a 
+            new PTR/MX Record to facilitate reliable email delivery. Creating the PTR/MX Record needs to coincide with the IP 
+            address change during the cutover. If you use a DNS hosting service, such as GoDaddy.com, you may want them to make 
+            the change on your behalf.
+        </p>
+    </div>
+    
+    <div>
+        <p class="CFSCloud-p">For immediate PTR/MX Record creation, please contact ISP support 2 hours prior to turn-up at: 866-871-1114.
+        </p>
+    </div>
+    
+    <div>
+        <p class="CFSCloud-p">Alternatively, you may submit a request form at: 
+            <a href="http://www.integratelecom.com/care/ispsupport/reverse_dns.php">http://www.integratelecom.com/care/ispsupport/reverse_dns.php.</a>
+            If you elect to submit a request via web link, you should allow 24-48 hours turn-around for DNS (MX/PTR) to propagate and resolve. 
+            You will need to provide the host name and IP address for your mail server.
+        </p>
+    </div>
+
+    <div>
+        <h2>Appendix A. Application Exceptions</h2>
+        <p class="CFSCloud-p">Note: Application exceptions may change at Electric Lightwave’s discretion, at any time.
+        </p>
+    </div>
+
+    <div class="divh2">
+        <h3>Moderate Application Control Policy Exceptions</h3>
+        <p class="CFSCloud-p CFSCloud-c">ftp, google-docs, http-audio, http-video, nntp, rss, skype, smtp, yahoo-im, and youtube
+        </p>
+    </div>
+
+    <div class="divh2">
+        <h3>Recommended Application Control Policy Exceptions</h3>
+        <p class="CFSCloud-p CFSCloud-c">Blackberry, DNS, Facebook, Flash, FTP, Gmail, Google-docs, Google-talk, h.323, Hotmail, 
+            http-audio, http-video, icmp, imap, ms-exchange, msn, myspace, nntp, outlook-web, pop3, pptp, rss, sip, skype, 
+            smtp, ssh, ssl, tftp, twitter, web-browsing, yahoo-im, and youtube
+        </p>
+    </div>
+
+    <div class="divh2">
+        <h3>High Application Control Policy Exceptions</h3>
+        <p class="CFSCloud-p CFSCloud-c">Adobe-connect, Blackberry, DNS, Facebook, Flash, FTP, Gmail, Google-docs, Google-talk, h.323, Hotmail, 
+            http-audio, http-video, icmp, imap, ms-exchange, msn, myspace, nntp, outlook-web, pop3, pptp, rss, sip, skype, smtp, ssh, 
+            ssl, tftp, twitter, web-browsing, yahoo-im, and youtube
+        </p>
+    </div>
+
+</div>
+    </apex:outputPanel>
+</apex:component>

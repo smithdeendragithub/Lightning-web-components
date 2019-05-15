@@ -1,0 +1,151 @@
+<apex:component >
+	<apex:attribute name="currentOpportunity" description="Opportunity"
+                    type="Opportunity" required="true" />
+    <apex:attribute name="decisionMaker"
+                    description="clients decision maker" type="Contact" required="true" />
+    <apex:attribute name="integraDecisionMaker"
+                    description="companies decision maker" type="CompanyInfo"
+                    required="true" />
+	<div style="text-align:center;">
+		<div style="font-weight:bold;">
+			<span>SERVICE ADDENDUM</span><br />
+			<span>TO THE</span><br />
+			<span>MASTER SERVICE AGREEMENT</span>
+		</div><br /><br />
+		<span style="text-decoration:underline;">Unified Communications ("UC") CLOUD VOICE SERVICE</span>
+	</div>
+	<p>
+		THIS UC CLOUD VOICE SERVICE ADDENDUM (together with Integra’s Policies and Procedures, and the UC Cloud Voice Service Addendum Service Level Agreement and Additional Terms and Conditions, this “Addendum”), upon execution by the Parties, becomes a part of the Service Agreement and the Master Service Agreement (collectively the “Agreement”), between Integra Telecom Holdings, Inc. by and through its subsidiaries (“Integra”), and {!CurrentOpportunity.Account.Name} (“Customer”). Any capitalized terms that are not defined in this Addendum, shall have the meaning set forth in the Agreement. In the event of any conflict between the Agreement and this Addendum, the terms of this Addendum shall control over the language in the Agreement.
+	</p>
+	<p>
+		The Agreement, as modified by this Addendum, sets forth the terms and conditions under which Integra agrees to provide to Customer, and Customer agrees to procure from Integra, certain UC Cloud Voice services, which are described in Section 1 of this Addendum.    
+	</p>
+	<p>
+		<ol class="decimal">
+			<li><b>DESCRIPTION OF SERVICE</b><br />
+				<p>
+					<ol class="lowerAlpha">
+						<li><u>General Description.</u> Integra’s UC Cloud Voice service provides a dedicated instance of a private branch exchange (“PBX”) that resides in an Integra virtualized data center (the “Service”). Service includes local and long distance features with the receipt and delivery of traffic to each furnished user seat. Service is provided in material accordance with: (i) IETF Session Initiation Protocol (SIP)<sup>1</sup>,  (ii) ITU-T standard audio codecs G.711 u/a, G.722, or G.729<sup>2</sup>, and (iii) a R-Factor of 75, or above 98% of the time, for voice quality.<sup>3</sup>   The Service may be paired and provisioned with other Integra products, and may be provided by or through Integra.<br /><br /></li>
+						<li>UC Cloud Voice Service Plans. Integra offers two (2) Service packages. A list of available components for each Service package is provided in the Schedule A in the UC Cloud Voice Additional Terms and Conditions to this addendum. In addition, Customer has the option, at an additional cost, to add features to a Service package, including user seat feature packages, and advanced application solutions.<br /><br /></li>
+						<li>
+							<u>User Seat Feature Packages.</u> Service includes four (4) tiered user feature seat packages, as set forth below (each, “User Seat Feature Package”). Each User Seat Feature Package includes certain business calling features assigned to each Internet Protocol (“IP”) subscriber seat.  <br />
+							<p>
+								<ol class="lowerRoman">
+									<li><u>Basic Voice Feature Seat.</u> Basic IP PBX business calling features including caller name, call forwarding, call park, extension to extension dialing<br /><br /></li>
+									<li><u>Standard Voice Feature Seat.</u> Basic IP PBX business calling features, with additional features including voicemail, Find Me/Follow Me, simultaneous phone ringing, as well as access to a portal to configure phone buttons.<br /><br /></li>
+									<li><u>UC Desktop Feature Seat.</u> Basic voice and standard voice features, with additional features including a user desktop assistant with chat, click to dial, telephone directory, and telephone presence capabilities.<br /><br /></li>
+									<li><u>UC Desktop PRO Feature Seat.</u> Basic voice, standard voice &amp; UC desktop features, with additional features including PC softphone, mobile smart phone application integration and audio and document conferencing and collaboration capabilities.<br /><br /></li>
+								</ol>
+							</p>
+						</li>
+						<li>
+							<u>Advanced Application Solutions.</u> The following features may supplement the Service: <br />
+							<p>
+								<ol class="lowerRoman">
+									<li><u>General Voicemail &amp; Call Director Box.</u> An automated receptionist that provides recorded response for incoming calls, after hours and holiday greetings, dial by name, or extension prompting, and standalone mailbox which may be used for group mailbox functionality.<p></p></li>
+									<li><u>PC Attendant Console.</u>  Enhanced receptionist position which resides on PC and provides a graphical user interface (GUI).<p></p></li>
+									<li><u>Advanced Application Solutions.</u> A suite which includes contact center, call recording, and third party application connectors. <p></p></li>
+								</ol>
+							</p>
+						</li>
+					</ol>
+				</p>
+			</li>
+		</ol>
+		<div style="border-bottom:solid 1px black; min-height:2px; width:20%;">
+			&nbsp;
+		</div>
+		<div style="positon:fixed; bottom:0;font-size:8px;">
+			<sup>1</sup>As defined by RFC 3261 for Session “Calling” establishment.<br />
+			<sup>2</sup>G.711 u/a, G.722, and G.729 define the payload method used for delivery of voice audio. Unless otherwise noted, G.711 u/a will be used.<br />
+			<sup>3</sup>“R-Factor” is an industry standard measurement of Voice Quality over IP and is derived from metrics such as latency, jitter, and packet loss.<br />
+		</div>
+		<div style="padding-left:25px; page-break-before: always;">
+			2.&nbsp;&nbsp;<b><u>ENTIRE AGREEMENT</u></b><br />
+				<p style="padding-left:45px;">
+					The Agreement, as modified by this Addendum, sets forth the entire understanding of the Parties and supersedes any and all prior agreements, arrangements or understandings relating to the Services described above.   The Agreement will remain in full force and effect except as modified herein.  To the extent of any conflict between the terms of this Addendum and the Agreement, this Addendum shall control.  
+				</p>
+		</div>
+	</p>
+	<div style="Page-Break-Inside: avoid;">
+		<p>IN WITNESS WHEREOF, the parties have caused this Addendum to be
+        executed by their duly authorized representatives.</p>
+    	<p>&nbsp;</p>
+		<div style="line-height:22px;">
+			<div style="float:left; width:50%;">
+				<div style="font-weight:bold;">
+					INTEGRA TELECOM HOLDINGS, INC.
+				</div>
+				<div style="float:left; width:20%;">
+					By:
+				</div>
+				<div style="float:left; width:70%; border-bottom:solid 1px black;">
+					&nbsp;<div class="docusignID">DS-CTRSIG</div>
+				</div>
+				<div style="clear:both;"></div>
+				
+				<div style="float:left; width:20%;">
+					Name:
+				</div>
+				<div style="float:left; width:70%; border-bottom:solid 1px black;">
+					&nbsp;
+				</div>
+				<div style="clear:both;"></div>
+				
+				<div style="float:left; width:20%;">
+					Title:
+				</div>
+				<div style="float:left; width:70%; border-bottom:solid 1px black;">
+					&nbsp;<div class="docusignID">&nbsp;</div>
+				</div>
+				<div style="clear:both;"></div>
+				
+				<div style="float:left; width:20%;">
+					Date:
+				</div>
+				<div style="float:left; width:70%; border-bottom:solid 1px black;">
+					&nbsp;<div class="docusignID">DS-CTRDATE</div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div style="float:left; width:50%;">
+				<div style="font-weight:bold;">
+					{!CurrentOpportunity.Account.Name}
+				</div>
+				<div style="float:left; width:20%;">
+					By:
+				</div>
+				<div style="float:left; width:70%; border-bottom:solid 1px black;">
+					&nbsp;<div class="docusignID">DS-SIG</div>
+				</div>
+				<div style="clear:both;"></div>
+				
+				<div style="float:left; width:20%;">
+					Name:
+				</div>
+				<div style="float:left; width:70%; border-bottom:solid 1px black;">
+					&nbsp;{!decisionMaker.Name}
+				</div>
+				<div style="clear:both;"></div>
+				
+				<div style="float:left; width:20%;">
+					Title:
+				</div>
+				<div style="float:left; width:70%; border-bottom:solid 1px black;">
+					&nbsp;<apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}" />
+				</div>
+				<div style="clear:both;"></div>
+				
+				<div style="float:left; width:20%;">
+					Date:
+				</div>
+				<div style="float:left; width:70%; border-bottom:solid 1px black;">
+					&nbsp;<div class="docusignID">DS-DATE</div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+			<div style="clear:both;"></div>
+		</div>		
+	</div>
+	
+</apex:component>

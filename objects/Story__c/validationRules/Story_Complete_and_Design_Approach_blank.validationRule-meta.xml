@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Story_Complete_and_Design_Approach_blank</fullName>
+    <active>true</active>
+    <errorConditionFormula>Design_Approach__c = &quot;&quot; &amp;&amp;  
+ISPICKVAL(Status__c, &quot;Completed&quot;) &amp;&amp;
+NOT(ISPICKVAL(Story_Type__c, &quot;Deployment&quot;))</errorConditionFormula>
+    <errorDisplayField>Design_Approach__c</errorDisplayField>
+    <errorMessage>Please fill out the Design Approach field before marking this Story as Complete</errorMessage>
+</ValidationRule>

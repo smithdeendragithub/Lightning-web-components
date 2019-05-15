@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>PremWlineHSIScore__c</fullName>
+    <description>GeoResults modeled ranking score (0-100) indicating a business&#39;s likelihood of being able to use Premium Speed (Greater than 10 Mbs) DSL, Cable Modem or equivalent technology considering cost, availability and features. A high score indicates that this business is a very likely Premium Speed DSL, Cable Modem or equivalent technology user and a low score indicates a very small likelihood that Premium Speed DSL, Cable Modem or equivalent technology will be useful for this business.</description>
+    <externalId>false</externalId>
+    <label>Premium Wireline HiSpeedInt Score</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

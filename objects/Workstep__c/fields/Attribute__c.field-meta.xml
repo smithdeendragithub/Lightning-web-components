@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attribute__c</fullName>
+    <externalId>false</externalId>
+    <label>Attribute</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Activate with Customer</fullName>
+                <default>false</default>
+                <label>Activate with Customer</label>
+            </value>
+            <value>
+                <fullName>CCD Driven</fullName>
+                <default>false</default>
+                <label>CCD Driven</label>
+            </value>
+            <value>
+                <fullName>CLICK Activation Date Driven</fullName>
+                <default>false</default>
+                <label>CLICK Activation Date Driven</label>
+            </value>
+            <value>
+                <fullName>Exclude From PDD Calculation</fullName>
+                <default>false</default>
+                <label>Exclude From PDD Calculation</label>
+            </value>
+            <value>
+                <fullName>FOC</fullName>
+                <default>false</default>
+                <label>FOC</label>
+            </value>
+            <value>
+                <fullName>FOC Driven</fullName>
+                <default>false</default>
+                <label>FOC Driven</label>
+            </value>
+            <value>
+                <fullName>Hardware Install and Test</fullName>
+                <default>false</default>
+                <label>Hardware Install and Test</label>
+            </value>
+            <value>
+                <fullName>Schedule Resources</fullName>
+                <default>false</default>
+                <label>Schedule Resources</label>
+            </value>
+            <value>
+                <fullName>Schedule Install Resources</fullName>
+                <default>false</default>
+                <label>Schedule Install Resources</label>
+            </value>
+            <value>
+                <fullName>Schedule Activation Resources</fullName>
+                <default>false</default>
+                <label>Schedule Activation Resources</label>
+            </value>
+            <value>
+                <fullName>Estimated Permit</fullName>
+                <default>false</default>
+                <label>Estimated Permit</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

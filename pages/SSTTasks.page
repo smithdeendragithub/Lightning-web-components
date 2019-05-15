@@ -1,0 +1,49 @@
+<apex:page standardController="Sub_Order__c">
+    <apex:includeScript value="/soap/ajax/31.0/connection.js" />
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+    
+    <script type="text/javascript">
+    jQuery(document).ready(function(){          
+        sforce.connection.sessionId = '{!$Api.Session_ID}';     
+        var iss = sforce.connection.query('select Environment_URL_Prefix__c FROM IntegraServiceSettings__c Limit 1').getArray("records");
+        var sourceUrl = '';
+        var env = '';
+
+        if(iss.length > 0){
+                
+                for(var i=0; iss.length>i; i++){
+                    sourceUrl = iss[i].Environment_URL_Prefix__c;
+                }           
+        var env = sourceUrl;
+        }
+            
+        var iccSubId = '';      
+        var ord = '';           
+        var so = sforce.connection.query('select Id, Order__r.Opportunity_External_ID__c, Order__r.ICC_Subscriber_ID__c FROM Sub_Order__c WHERE Id =\'{!$CurrentPage.Parameters.id}\' Limit 1').getArray("records"); 
+        
+        if(so.length > 0){              
+                for(var i=0; so.length>i; i++){             
+                    iccSubId = so[i].Order__r.ICC_Subscriber_ID__c;     
+                    ord = so[i].Order__r.Opportunity_External_ID__c;                                        
+                }
+            if(iccSubId == null){
+                iccSubId = '';
+            }           
+            if(ord == null){
+                ord = '';
+            }
+        } 
+
+        if(env != null){
+            var url = 'http://' + env + 'subscriberservicetemplates/Default.aspx?OrderId=' + ord + '&SubscriberID=' + iccSubId; 
+        }
+        else{
+            var url = 'http://iops/subscriberservicetemplates/Default.aspx?OrderId=' + ord + '&SubscriberID=' + iccSubId;
+        }    
+        window.open(url, '_self');
+    });
+    </script>
+    <apex:pageBlock >
+        <h1>SST Tasks</h1>
+    </apex:pageBlock>
+</apex:page>

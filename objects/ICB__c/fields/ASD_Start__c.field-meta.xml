@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ASD_Start__c</fullName>
+    <description>DateTime when ASD begins working on Off-Net Costing for ICB</description>
+    <externalId>false</externalId>
+    <inlineHelpText>DateTime when ASD begins working on Off-Net Costing for ICB</inlineHelpText>
+    <label>ASD Start</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

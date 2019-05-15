@@ -1,0 +1,7 @@
+<apex:page standardController="Account">
+    <apex:iframe src="https://bi.integratelecom.com/views/iSellOrderSummaryReportDetail/AEView?:embed=y&:display_count=no" height="340px" width="910px" scrolling="false"/>
+
+    <script type='text/javascript' src='https://bi.integratelecom.com/javascripts/api/viz_v1.js'>
+    </script>
+
+</apex:page>

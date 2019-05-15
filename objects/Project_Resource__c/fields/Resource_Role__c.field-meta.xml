@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resource_Role__c</fullName>
+    <externalId>false</externalId>
+    <label>Resource Role</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Business</fullName>
+                <default>false</default>
+                <label>Business</label>
+            </value>
+            <value>
+                <fullName>Business Process Analyst</fullName>
+                <default>false</default>
+                <label>Business Process Analyst</label>
+            </value>
+            <value>
+                <fullName>Core Team Member</fullName>
+                <default>false</default>
+                <label>Core Team Member</label>
+            </value>
+            <value>
+                <fullName>Documentation</fullName>
+                <default>false</default>
+                <label>Documentation</label>
+            </value>
+            <value>
+                <fullName>Infra Oracle DBA</fullName>
+                <default>false</default>
+                <label>Infra Oracle DBA</label>
+            </value>
+            <value>
+                <fullName>Infra SQL DBA</fullName>
+                <default>false</default>
+                <label>Infra SQL DBA</label>
+            </value>
+            <value>
+                <fullName>Infra Unix</fullName>
+                <default>false</default>
+                <label>Infra Unix</label>
+            </value>
+            <value>
+                <fullName>Infra Windows</fullName>
+                <default>false</default>
+                <label>Infra Windows</label>
+            </value>
+            <value>
+                <fullName>IT Analyst</fullName>
+                <default>false</default>
+                <label>IT Analyst</label>
+            </value>
+            <value>
+                <fullName>IT Architect</fullName>
+                <default>false</default>
+                <label>IT Architect</label>
+            </value>
+            <value>
+                <fullName>IT BI</fullName>
+                <default>false</default>
+                <label>IT BI</label>
+            </value>
+            <value>
+                <fullName>IT Developer</fullName>
+                <default>false</default>
+                <label>IT Developer</label>
+            </value>
+            <value>
+                <fullName>IT Manager</fullName>
+                <default>false</default>
+                <label>IT Manager</label>
+            </value>
+            <value>
+                <fullName>Project Leader</fullName>
+                <default>false</default>
+                <label>Project Leader</label>
+            </value>
+            <value>
+                <fullName>QA Analyst</fullName>
+                <default>false</default>
+                <label>QA Analyst</label>
+            </value>
+            <value>
+                <fullName>Salesforce Admin</fullName>
+                <default>false</default>
+                <label>Salesforce Admin</label>
+            </value>
+            <value>
+                <fullName>Solution Manager</fullName>
+                <default>false</default>
+                <label>Solution Manager</label>
+            </value>
+            <value>
+                <fullName>Tester</fullName>
+                <default>false</default>
+                <label>Tester</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

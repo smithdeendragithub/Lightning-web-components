@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>DS1__c</fullName>
+    <description>Estimate of the number of DS1s or equivalents used in this business to carry all traffic based on the GeoResults proprietary predictive models. A DS1 or equivalent is defined as a 1.544 kilobits per second circuit carrying traffic through the public switched telephone network.</description>
+    <externalId>false</externalId>
+    <label>DS1</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>3</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

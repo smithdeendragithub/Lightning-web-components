@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ethernet_Services_EVPL_UNI_Tech_Form</fullName>
+    <active>true</active>
+    <label>Ethernet Services - EVPL UNI Tech Form</label>
+    <picklistValues>
+        <picklist>Customer_Frames_Treatment__c</picklist>
+        <values>
+            <fullName>Pass All Customer Frames%2C Tagged %26 Untagged %28Default%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pass Only Frames with Specific VLAN Tags</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Customer_Provided_Power__c</picklist>
+        <values>
+            <fullName>24VDC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>48VDC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>EVC_Mileage_Site_1__c</picklist>
+        <values>
+            <fullName>0 - 24 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>100 - 249 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1000 - 2499 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>245 - 500 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>25 - 99 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>501 - 999 Miles</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>EVC_Mileage_Site_2__c</picklist>
+        <values>
+            <fullName>0 - 24 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>100 - 249 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1000 - 2499 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>245 - 500 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>25 - 99 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>501 - 999 Miles</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Frames_Handoff__c</picklist>
+        <values>
+            <fullName>Double-Tagged ICB ONLY %28Customer C-Tag %26 INTEGRA S-Tag%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Single Tagged %28C-Tag Only%29 DEFAULT</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Interface_Specification__c</picklist>
+        <values>
+            <fullName>1000Base-LX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1000Base-SX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1000Base-T</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>100Base-FX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>100Base-T</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10Base-T</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10GBase-LR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10GBase-SR</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>NID_Mounting__c</picklist>
+        <values>
+            <fullName>Rack Mount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wall Mount</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Site__c</picklist>
+        <values>
+            <fullName>Remote Site 10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Site 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Site 3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Site 4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Site 5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Site 6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Site 7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Site 8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Remote Site 9</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

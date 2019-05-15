@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dedicated_Internet_Speed__c</fullName>
+    <externalId>false</externalId>
+    <label>Dedicated Internet Speed</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>256K</fullName>
+                <default>false</default>
+                <label>256K</label>
+            </value>
+            <value>
+                <fullName>512K</fullName>
+                <default>false</default>
+                <label>512K</label>
+            </value>
+            <value>
+                <fullName>768K</fullName>
+                <default>false</default>
+                <label>768K</label>
+            </value>
+            <value>
+                <fullName>1024K</fullName>
+                <default>false</default>
+                <label>1024K</label>
+            </value>
+            <value>
+                <fullName>1.5M</fullName>
+                <default>false</default>
+                <label>1.5M</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

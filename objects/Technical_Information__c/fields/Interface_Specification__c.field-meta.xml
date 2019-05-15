@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interface_Specification__c</fullName>
+    <externalId>false</externalId>
+    <label>Interface Specification</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>10/100/1000BASE-T, Copper/RJ45, up to 100m</fullName>
+                <default>false</default>
+                <label>10/100/1000BASE-T, Copper/RJ45, up to 100m</label>
+            </value>
+            <value>
+                <fullName>1000BASE-LX, 1310nm SMF, up to 550m</fullName>
+                <default>false</default>
+                <label>1000BASE-LX, 1310nm SMF, up to 550m</label>
+            </value>
+            <value>
+                <fullName>1000BASE-LX10, 1310nm SMF, up to 10Km</fullName>
+                <default>false</default>
+                <label>1000BASE-LX10, 1310nm SMF, up to 10Km</label>
+            </value>
+            <value>
+                <fullName>1000BASE-SX,850nm MMF, up to 550m</fullName>
+                <default>false</default>
+                <label>1000BASE-SX,850nm MMF, up to 550m</label>
+            </value>
+            <value>
+                <fullName>100BASE-FX, 1310nm SMF, up to 2Km</fullName>
+                <default>false</default>
+                <label>100BASE-FX, 1310nm SMF, up to 2Km</label>
+            </value>
+            <value>
+                <fullName>100BASE-LX10, 1310nm SMF, up to 10Km</fullName>
+                <default>false</default>
+                <label>100BASE-LX10, 1310nm SMF, up to 10Km</label>
+            </value>
+            <value>
+                <fullName>10GBASE-ER, 1550nm SMF, up to 40Km</fullName>
+                <default>false</default>
+                <label>10GBASE-ER, 1550nm SMF, up to 40Km</label>
+            </value>
+            <value>
+                <fullName>10GBASE-LR, 1310nm SMF, up to 10Km</fullName>
+                <default>false</default>
+                <label>10GBASE-LR, 1310nm SMF, up to 10Km</label>
+            </value>
+            <value>
+                <fullName>10GBASE-SR, 850nm MMF, up to 300m</fullName>
+                <default>false</default>
+                <label>10GBASE-SR, 850nm MMF, up to 300m</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

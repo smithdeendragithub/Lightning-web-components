@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Batch_1_NotMasterAccount</fullName>
+    <columns>NAME</columns>
+    <columns>Action__c</columns>
+    <columns>Child_Identifer__c</columns>
+    <columns>Child_Legacy_Biller__c</columns>
+    <columns>Parent_Identifier__c</columns>
+    <columns>Parent_Identifier_Source__c</columns>
+    <columns>Child_Subscriber__c</columns>
+    <columns>Parent_Subscriber__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Globys_Response__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>10/5/2018 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Failed</value>
+    </filters>
+    <filters>
+        <field>Globys_Response__c</field>
+        <operation>contains</operation>
+        <value>NotMasterAccount</value>
+    </filters>
+    <label>Batch_1_NotMasterAccount</label>
+</ListView>

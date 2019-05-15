@@ -1,0 +1,47 @@
+<apex:page showheader="false" sidebar="false">
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" />
+	
+	<div class="rsDiv" style="display:none; padding:20px;">
+		<c:RecordSelector id="recordSelector"
+							sObjectType="{!$CurrentPage.parameters.sObjectType}"
+							multiSelectMode="{!IF(ISBLANK($CurrentPage.parameters.multiSelect), 'false', $CurrentPage.parameters.multiSelect)}"
+							fields="{!IF(ISBLANK($CurrentPage.parameters.fields), 'Id', $CurrentPage.parameters.fields)}"
+							whereClause="{!IF(ISBLANK($CurrentPage.parameters.where), 'Id != null', $CurrentPage.parameters.where)}"
+							useSoslSearch="true"/>
+	</div>
+	<apex:outputPanel rendered="{!$CurrentPage.parameters.multiSelect == 'true'}">
+		<input type="button" onclick="recordSelector_gatherSelection(); return false;" value="Select Records" style="float:right; margin-right:20px"/>
+	</apex:outputPanel>
+	<style type="text/css">
+		div.rsDiv{
+			max-height:600px;
+			overflow-y:auto;
+		}
+		
+		div.rsDiv table{
+			width:100%
+		}
+	</style>
+	<script type="text/javascript">
+		jQuery(document).ready(function(){
+			jQuery('.rsDiv').show();
+			jQuery("[id$='recordSelector']").bind('recordSelected', recordSelected);
+			recordSelector_reset();
+		});
+		
+		function recordSelected(e){
+			var inWindow = window.opener != null && window.opener != undefined;
+			var parent = inWindow ? window.opener : window.parent;
+			if({!IF(ISBLANK($CurrentPage.parameters.multiSelect), 'false', $CurrentPage.parameters.multiSelect)}){
+				parent.postMessage({ selectedRecords: true, records: e.records }, "*");
+			}
+			else{
+				parent.postMessage({ selectedRecords: true, id: e.id, label: e.label }, "*");
+			}
+			
+			if(inWindow){
+				window.close();
+			}
+		}
+	</script>
+</apex:page>

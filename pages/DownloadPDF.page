@@ -1,0 +1,75 @@
+<apex:page controller="InvoiceDownloadController" showHeader="false" sidebar="false">
+    <apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" />
+    <style>
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+        }
+
+        .pos{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -50px;
+            margin-left: -50px;
+        }
+        
+        .center{
+            font-size: 16px;
+            margin: 0;
+            background: yellow;
+            position: absolute;
+            top: 5%;
+            left: 20%;
+            margin-right: -50%;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <script type="text/javascript">
+        jQuery(document).ready(function(){
+            document.addEventListener('contextmenu', event => event.preventDefault());
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && (this.status < 200 || this.status >= 300)){
+                    $('.pos').remove();
+                    var d = $('.displayText');
+                    d.text('No invoice is found. Please contact the billing team. (Response Status Code: ' + this.status + ', Status Text: ' + this.statusText + ')');
+                    
+                }
+                else if (this.readyState == 4 && this.status == 200) {
+                    var newBlob = new Blob([xhttp.response], {type: "application/pdf"})
+                    var url = URL.createObjectURL(newBlob);
+                    var link=document.createElement('a');
+                    link.href=window.URL.createObjectURL(newBlob);
+                    link.download="{!invoiceName}invoice-{!invoiceID}";
+                    link.click();
+                    window.open(url);
+                    window.close();
+                }
+            }; 
+            xhttp.ontimeout = function(e){
+                alert('request timeout');
+            };
+            xhttp.open("GET", "{!requesturl}", true);
+            xhttp.setRequestHeader("Content-type", "application/pdf");
+            xhttp.setRequestHeader("Authorization", "{!header}"); 
+            xhttp.responseType = "blob";
+            xhttp.send();
+        });
+    </script>
+    <div class="pos" id="loadingscreen">
+        <div class="loader"></div>
+        <div>Getting Invoice PDF...</div>
+    </div> 
+    <div class="center"><b>
+        <div class="displayText"></div></b>  
+    </div>
+</apex:page>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VLAN_Appearance_of_Remote_at_Agg_Site__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Required for EVPL remote sites.  If not provided by customer, Integra selects next available and will proved to customer</inlineHelpText>
+    <label>VLAN Appearance of Remote at Agg Site</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

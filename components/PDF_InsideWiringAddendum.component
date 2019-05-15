@@ -1,0 +1,245 @@
+<apex:component >
+    <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" required="true" />
+    <apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
+    <apex:attribute name="integraDecisionMaker" description="companies decision maker" type="CompanyInfo" required="true" />
+    <apex:attribute name="locations" description="Active solutions for the current opportunity" type="OpportunityLocationConfiguration__c[]" required="true"/>
+    
+    <apex:variable var="currentDay" value="{!IF(DAY(TODAY()) < 10, '0', '') + TEXT(DAY(TODAY()))}"/>    <!-- dd format -->
+    <apex:variable var="currentDayOrdinal" value="{!TEXT(DAY(TODAY())) + IF(CASE(TEXT(DAY(TODAY())), '11', 1, '12', 1, '13', 1, 0) = 1, 'th', CASE(RIGHT(TEXT(DAY(TODAY())), 1), '1', 'st', '2', 'nd', '3', 'rd', 'th'))}"/>
+    <apex:variable var="currentMonthName" value="{!CASE(MONTH(TODAY()), 1, 'January', 2, 'February', 3, 'March', 4, 'April', 5, 'May', 6, 'June', 7, 'July', 8, 'August', 9, 'September', 10, 'October', 11, 'November', 'December')}"/>    <!-- MMMM format -->
+    <apex:variable var="currentYear" value="{!YEAR(TODAY())}"/>
+    <apex:outputPanel layout="none" id="pepe" >
+       <table style="width:700px;" class="mainTable_standardBackground">
+            <tr>
+                <td>
+                    <table style="width:700px;" > 
+                        <tr>
+                            <td width="500"><div class="mainTitle" style="text-align: center">ADDENDUM<br />to<br />Service Agreement<br />and<br />Master Service Agreement<br />Inside Wiring<br /></div></td>
+                            <td>
+                                <table style="text-align:left;width:0px;border:0px;" class="topRightSmall">
+                                    <tr><td>&nbsp;</td></tr>
+                                    <tr><td>{!integraDecisionMaker.Street}</td></tr>
+                                    <tr><td>{!integraDecisionMaker.CityStateZip}</td></tr>
+                                    <tr><td>(P) {!integraDecisionMaker.Phone}</td></tr>
+                                    <tr><td>(F) {!integraDecisionMaker.Fax}</td></tr>
+                                    <tr><td><a href="mailto:{!integraDecisionMaker.Email}" target="_parent">{!integraDecisionMaker.Email}</a></td></tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr><td>&nbsp;</td></tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak">
+                        <tr>
+                            <td height="6px"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="textBlock">
+                                This Addendum to the Service Agreement and the Master Service Agreement 
+                                (this “Addendum”) is executed as of the <u>{!currentDayOrdinal}</u> day of <u>{!currentMonthName}</u>, 
+                                <u>{!currentYear}</u> (the “Effective Date”), by and between Electric Lightwave Holdings, Inc., 
+                                an Oregon company with headquarters at 18110 SE 34th Street, Vancouver, WA 
+                                98683, by and through one of its wholly-owned subsidiaries 
+                                {!CASE( CurrentOpportunity.Account.Account_Sales_Channel__c, "Integra Business", "and its Integra business", "Integra Legacy", "and its Integra business", "Indirect Sales", "and its Integra business", "")}
+                                as may be certificated in the applicable state to provide services (“Company”), 
+                                and <u>{!CurrentOpportunity.Account.Name}</u>(“Customer”), to supplement the Service Agreement 
+                                dated <u>{!currentMonthName}</u> &nbsp; <u>{!currentDay}</u>, <u>{!currentYear}</u> 
+                                (the “Service Agreement”), and the Master Service Agreement into which it is incorporated 
+                                and made a part thereof (the “MSA”) (both the MSA and Service Agreement are collectively referred 
+                                herein as the “Agreement”). For the purposes of this Addendum, Company or Customer may be individually 
+                                referred to as a “Party” and collectively as “Parties.” Capitalized terms not defined herein shall have the 
+                                meaning as defined in the Service Agreement and the MSA.      
+                            </td>                                                          
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="6px"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="textBlock">
+                                Pursuant to the MSA, Services are delivered to a point of demarcation (where Integra's connection ends and the Customer's begins) (�Demarc�) or the minimum point of entry (where Integra's connection enters the building) (�MPOE�) at Customer's location. Wiring on the Customer's side of the Demarc or the MPOE or otherwise inside the Customer's building or premises is considered inside wiring (�Inside Wiring�) for which the Customer is responsible.  Customer may be required to install, maintain, or repair Inside Wiring in order to use Services.
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <apex:form>             
+                            <td class="textBlock">  
+                                <div class="docusignID">DS-RADIO</div>
+                                <input type="radio" name="CustomerInstall" value="CustomerInstall">CustomerInstall</input>
+                            </td>
+                            <td class="textBlock">
+                                <div class="docusignID">DS-RADIO</div>
+                                <input type="radio" name="IntegraInstall" value="IntegraInstall">IntegraInstall</input>
+                            </td>
+                            </apex:form>
+                        </tr>
+                        -->
+                        <tr>
+                            <td colspan="2" height="6px"></td>
+                        </tr>
+                        <!--<tr>
+                            <td colspan="2" class="textBlock">
+                                PLEASE INITIAL ONE OF THE FOLLOWING:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="6px"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="textBlock"><div class="docusignID">DS-INIO</div><b>___ Initial here if Integra performs extension only Inside Wiring</b></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="6px"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="textBlock"></td>
+                        </tr>-->
+                        <tr>
+                            <td colspan="2" class="textBlock">Pursuant to the terms of this Addendum, the MSA and Service Agreement, Integra shall extend, at no additional charge, wiring (of Integra's choosing) up to 75 feet beyond the Demarc or MPOE if such extension of Inside Wiring: 
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" height="6px"></td>
+                        </tr>
+                        <tr>
+                            <td width="50px">&nbsp;</td>
+                            <td class="textBlock">
+                                <ul>
+                                    <li> Does not take more than 20 minutes to install.</li>
+                                    <li> Is no higher than 8 feet above the floor.</li>
+                                    <li>Is not over any Customer employee working areas or stations.</li>
+                                    <li>Does not require holes or penetrations be made through walls or ceiling.</li>
+                                    <li>Does not require vertical wiring chases (no wiring between floors).</li>
+                                    <li>Does not require work between buildings.</li>
+                                    <li>Does not require cross connects be made directly to Customer�s PBX or similar equipment.</li>
+                                </ul>
+                            </td>
+                        </tr>
+
+                        <!--<tr>
+                            <td colspan="2" class="textBlock"><div class="docusignID">DS-INIO</div><b>___ Initial here if Customer is doing Inside Wiring</b></td>
+                        </tr>-->
+                        <tr>
+                            <td colspan="2" class="textBlock">
+                                In the event that Customer's Inside Wiring has additional requirements beyond what is listed above, Customer shall be responsible 
+                                for, at Customer's sole cost and expense, those additional requirements and ensuring the Inside Wiring is ready and compatible 
+                                with the Service. Customer completes the vendor information below if available.
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <td  class="textBlock" width="45px">&nbsp;</td> 
+                            <td colspan="2" class="textBlock">  <div class="docusignID">DS-XMark</div>___ Customer completes the vendor information below if available. </td>
+                        </tr>-->
+                    </table>
+                    <br/> 
+                    <table  border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak" >
+                        <tr><td>&nbsp;</td></tr>
+                        <tr>
+                            <td class="textBlock" width="50px">&nbsp;</td>
+                            
+                            
+                            <td class="textBlock">
+                              <apex:repeat id="groups" var="nextlocation" value="{!locations}">
+                                <table border="1" style="border-style: solid; border-width: thin; border-collapse: separate;position:relative;top:-12px;" >
+                                    <tr>
+                                        <td colspan="4" style="border-style: solid; border-width: thin; width: 100px">
+                                            <b>{!nextlocation.Opportunity_Location__r.Service_Location__r.Location__r.Name} </b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" style="border-style: solid; border-width: thin; width: 100px">
+                                            Inside Wiring Vendor Information 
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-style: solid; border-width: thin; width: 100px">Vendor Name</td>
+                                        <td style="border-style: solid; border-width: thin; width: 150px"><div class="docusignID">DS-FILL</div> </td>
+                                        <td style="border-style: solid; border-width: thin; width: 100px">Phone Number</td>
+                                        <td style="border-style: solid; border-width: thin; width: 150px"><div class="docusignID">DS-FILL</div> </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-style: solid; border-width: thin; width: 100px">Contact Name</td>
+                                        <td style="border-style: solid; border-width: thin; width: 100px"><div class="docusignID">DS-FILL</div> </td>
+                                        <td style="border-style: solid; border-width: thin; width: 100px">Email Address</td>
+                                        <td style="border-style: solid; border-width: thin; width: 100px"><div class="docusignID">DS-FILL</div> </td>
+                                    </tr>
+                                </table><br />
+                              </apex:repeat> 
+                            </td>
+                        </tr>
+                        <!--<tr>
+                            <td  class="textBlock" width="45px">&nbsp;</td> 
+                            
+                            <td class="textBlock"><div class="docusignID">DS-XMark</div>___ Customer doesn't have a preferred vendor yet but will provide the information when a vendor is selected.</td>
+                        </tr>-->
+                        
+                        <!-- -----------Remove code from here  --> 
+                        
+                    </table>
+                    <table  border="0" cellspacing="0" cellpadding="0" class="smallCluster-left avoidBreak" >
+                        <!--<tr><td colspan="2" height="6px"></td></tr>
+                            <tr><td colspan="2" height="6px"></td></tr>-->
+                           <tr>
+                            <td colspan="2" class="textBlock">
+                                IN WITNESS WHEREOF, the Parties have executed this Addendum as of the Effective Date.
+                            </td>
+                        </tr> 
+                            
+                        </table>
+                    
+                </td>  
+            </tr> 
+            
+            <tr>
+                <td>
+                    <table class="Signature_table avoidBreak" border="0" cellspacing="5" cellpadding="0">
+                        <tr>
+                            <td width="15">&nbsp;</td>
+                            <td width="200">&nbsp;</td>
+                            <td width="50">&nbsp;</td>
+                            <td width="50">&nbsp;</td>
+                            <td width="250">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">CUSTOMER:</td>
+                            <td>&nbsp;</td>
+                            <td colspan="2">INTEGRA:</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="normalRef">{!CurrentOpportunity.Account.Name}</td>
+                            <td></td>
+                            <td colspan="2">INTEGRA TELECOM HOLDINGS, INC.</td>
+                        </tr>
+                        <tr>
+                            <td>By:</td>
+                            <td class="normalRef">{!decisionMaker.Name}</td>
+                            <td></td>
+                            <td>By:</td>
+                            <td class="normalRef">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td>Name:</td>
+                            <td class="normalRef"><div class="docusignID">DS-SIG</div></td>
+                            <td></td>
+                            <td>Name:</td>
+                            <td class="normalRef"><div class="docusignID">DS-CTRSIG</div></td>
+                        </tr>
+                        <tr>
+                            <td>Title:</td>
+                            <td style="vertical-align: top;"><apex:outputText rendered="{!NOT(ISNULL(decisionMaker.Title))}" value="{!decisionMaker.Title}">
+                        </apex:outputText>
+                        <div class="docusignID"><apex:outputText rendered="{!ISNULL(decisionMaker.Title)}" value="DS-FILL">
+                        </apex:outputText></div> </td>
+                            <td></td>
+                            <td>Title:</td>
+                            <td class="normalRef"><div class="docusignID">&nbsp;</div></td>
+                            
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </apex:outputPanel>
+</apex:component>

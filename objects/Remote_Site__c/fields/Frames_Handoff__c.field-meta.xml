@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Frames_Handoff__c</fullName>
+    <externalId>false</externalId>
+    <inlineHelpText>Ingress (Customer to Integra) &amp; Egress (Integra to Customer)</inlineHelpText>
+    <label>Frames Handoff</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Single Tagged (C-Tag Only) DEFAULT</fullName>
+                <default>true</default>
+                <label>Single Tagged (C-Tag Only) DEFAULT</label>
+            </value>
+            <value>
+                <fullName>Double-Tagged ICB ONLY (Customer C-Tag &amp; INTEGRA S-Tag)</fullName>
+                <default>false</default>
+                <label>Double-Tagged ICB ONLY (Customer C-Tag &amp; INTEGRA S-Tag)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

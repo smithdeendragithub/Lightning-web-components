@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Roadmap_Track__c</fullName>
+    <externalId>false</externalId>
+    <label>Roadmap Track</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Voice Services</fullName>
+                <default>false</default>
+                <label>Voice Services</label>
+            </value>
+            <value>
+                <fullName>Cloud/Managed Services</fullName>
+                <default>false</default>
+                <label>Cloud/Managed Services</label>
+            </value>
+            <value>
+                <fullName>Transport/Data Services</fullName>
+                <default>false</default>
+                <label>Transport/Data Services</label>
+            </value>
+            <value>
+                <fullName>Enabling Capabilities</fullName>
+                <default>false</default>
+                <label>Enabling Capabilities</label>
+            </value>
+            <value>
+                <fullName>Portal</fullName>
+                <default>false</default>
+                <label>Portal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

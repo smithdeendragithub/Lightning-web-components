@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>ACR_Exempt_DOA_Validation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ACR_Exempt_DOA_Validation</shortDescription>
+        <value>santoshi.mishra@allstream.perficient.com.perficient,testing11@gmail.com.arc</value>
+    </labels>
+    <labels>
+        <fullName>ACR_Exempt_DOA_Validation_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ACR Exempt DOA Validation Message</shortDescription>
+        <value>Please add the attachment!</value>
+    </labels>
+    <labels>
+        <fullName>ACR_Null_Approval_History_Records</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ACR_Null_Approval_History_Records</shortDescription>
+        <value>No records in Approval History</value>
+    </labels>
+</CustomLabels>

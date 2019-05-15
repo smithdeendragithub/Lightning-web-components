@@ -1,0 +1,73 @@
+<apex:page standardController="Opportunity_Location__c" extensions="DisconnectOrderController">
+<script>
+function checkAll(cb)
+{
+   var inputElem = document.getElementsByTagName("input");
+   for(var i=0;i<inputElem.length;i++)
+     {
+             if(inputElem[i].id.indexOf("selectLine1")!=-1)
+                   inputElem[i].checked = cb.checked;
+      }
+}
+</script>
+	<apex:sectionHeader title="Turn Downs"/>
+	<apex:pageMessages />
+	<apex:form >
+		<apex:pageBlock title="Customer Details">
+			<apex:pageBlockSection columns="2">
+				<apex:outputField value="{!Opportunity_Location__c.Service_Location__r.Name}"/> 
+				<apex:outputField value="{!Opportunity_Location__c.Service_Location__r.Location__r.Building__r.Address__c}"/>
+				<apex:outputField value="{!Opportunity_Location__c.Service_Location__r.Location__r.Building__r.City__c}"/>
+				<apex:outputField value="{!Opportunity_Location__c.Service_Location__r.Location__r.Building__r.State__c}"/>
+				<apex:outputField value="{!Opportunity_Location__c.Service_Location__r.Location__r.Building__r.Postal_Code__c}"/>
+				<apex:outputField value="{!Opportunity_Location__c.Service_Location__r.Location__r.Building__r.County__c}"/>
+				<apex:outputField value="{!Opportunity_Location__c.Service_Location__r.ICC_Subscriber_ID__c}"/>				
+			</apex:pageBlockSection>
+		</apex:pageBlock>
+		<apex:pageBlock title="Turn Downs">
+			<apex:pageBlockButtons location="top">
+				<apex:commandButton value="Save" action="{!DisconnectSelected}"/>
+				<apex:commandButton value="Cancel" action="{!cancel}" immediate="true"/>
+			</apex:pageBlockButtons>
+            <apex:pageBlockTable id="DisconnectOrders" value="{!displayOrders}" var="order">
+            	<apex:column >
+            		<apex:facet name="header">
+                    	<apex:inputCheckbox onclick="checkAll(this)"/>
+                	</apex:facet>
+                    <apex:inputCheckbox value="{!order.selected}" id="selectLine1"/>
+                </apex:column>
+                <apex:column value="{!order.EPCProductID}" rendered="false">
+                	<apex:facet name="header">EPC Product ID</apex:facet>
+                </apex:column>
+                <apex:column value="{!order.EPCProductDescription}">
+                	<apex:facet name="header">EPC Product Description</apex:facet>
+                </apex:column>
+                <apex:column value="{!order.FirstCN}">
+                	<apex:facet name="header">First CN</apex:facet>
+                </apex:column>
+                <apex:column >
+                	<apex:facet name="header">MRR</apex:facet>
+                	<apex:outputText value="{0, number, $ ###,##0.00}">
+                    	<apex:param value="{!order.MRR}"/>
+                    </apex:outputText>
+                </apex:column>
+                <apex:column value="{!order.ServiceProductID}" rendered="false">
+                	<apex:facet name="header">Service Product ID</apex:facet>
+                </apex:column>
+                <apex:column >
+					<apex:pageBlockTable id="transViews" value="{!order.transViews}" var="tranView">
+                		<apex:column value="{!tranView.billTransName}">
+                			<apex:facet name="header">Trans Name</apex:facet>
+                		</apex:column>
+                		<apex:column >
+                			<apex:facet name="header">MRR</apex:facet>
+		                	<apex:outputText value="{0, number, $ ###,##0.00}">
+		                    	<apex:param value="{!tranView.MRR}"/>
+		                    </apex:outputText>
+                		</apex:column>
+                	</apex:pageBlockTable>
+                </apex:column>
+              </apex:pageBlockTable>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

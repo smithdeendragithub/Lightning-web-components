@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Multi_Site_Costing_Validation_Rule</fullName>
+    <active>false</active>
+    <errorConditionFormula>NOT(ISBLANK(TEXT(Multi_Site_Costing__c)) 
+&amp;&amp; ISBLANK(TEXT(of_Type_2_Sites_QMOE_or_T1__c)))
+&amp;&amp; ISBLANK(TEXT(of_Type_3_Sites_Outside_of_Footprint__c))</errorConditionFormula>
+    <errorDisplayField>Multi_Site_Costing__c</errorDisplayField>
+    <errorMessage>If Multi Site Cosing is selected, then # of Type 2 Sites (QMOE or T1) and # of Type 3 Sites (Outside of Footprint) must be populated.</errorMessage>
+</ValidationRule>

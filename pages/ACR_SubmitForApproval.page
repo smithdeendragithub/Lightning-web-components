@@ -1,0 +1,13 @@
+<!--********************************************************************************************************
+* Name       : ACR_SubmitForApproval
+* Purpose    : Submit the record for approval
+************************************************************************************************************
+* Author                 | Version    | Created Date    | Description
+************************************************************************************************************
+* Sathya                 | 1.0        | April 12, 2019  | Initial version
+*********************************************************************************************************-->
+<apex:page Standardcontroller="Refund_Credit__c" extensions="ACR_SubmitProcess" action="{!submitRecord}" tabStyle="Refund_Credit__c" lightningStylesheets="true"  showHeader="false">
+	<apex:pageMessages /> 
+ 	<!-- Displays User Hierarchy Page -->
+	<apex:include pageName="ACR_UserManagerHierarchy"/>
+</apex:page>

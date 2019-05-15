@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Zip_PC_Must_be_valid_format</fullName>
+    <active>true</active>
+    <description>Ensure zip code or postal code is in correct format for selected country.</description>
+    <errorConditionFormula>OR ( 
+AND( 
+ISPICKVAL(Billing_Country__c ,&quot;Canada&quot;), 
+NOT(REGEX( Billing_Postal_Code__c, &quot;((?i)[ABCEGHJKLMNPRSTVXY]\\d[A-Z]?\\s\\d[A-Z]\\d)?&quot;)) 
+), 
+AND( 
+ISPICKVAL(Billing_Country__c ,&quot;United States&quot;), 
+NOT(REGEX(Billing_Postal_Code__c, &quot;\\d{5}(-\\d{4})?&quot;)) 
+) 
+)</errorConditionFormula>
+    <errorDisplayField>Billing_Postal_Code__c</errorDisplayField>
+    <errorMessage>Invalid text. ZIP Codes should be in format 99999 or 99999-9999. Postal Codes should be in format A9A 9A9.</errorMessage>
+</ValidationRule>

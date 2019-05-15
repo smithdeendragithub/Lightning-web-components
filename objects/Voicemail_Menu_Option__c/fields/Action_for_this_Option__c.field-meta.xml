@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Action_for_this_Option__c</fullName>
+    <externalId>false</externalId>
+    <label>Action for this Option</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Dial Mailbox or Menu</fullName>
+                <default>false</default>
+                <label>Dial Mailbox or Menu</label>
+            </value>
+            <value>
+                <fullName>Dial Line Number</fullName>
+                <default>false</default>
+                <label>Dial Line Number</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
