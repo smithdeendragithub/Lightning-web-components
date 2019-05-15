@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>TargetDate_MustBeLessThanGoLiveDate</fullName>
-    <active>true</active>
-    <description>The target date of the LOE must be less than or equal to the Go Live date of the project.</description>
-    <errorConditionFormula>Target_Completion_Date__c  &gt;    Project__r.Customer_Commit_Date__c</errorConditionFormula>
-    <errorDisplayField>Target_Completion_Date__c</errorDisplayField>
-    <errorMessage>The target date must be less than or equal to the Go Live date of the project (field name Market_Ready__c)</errorMessage>
-</ValidationRule>

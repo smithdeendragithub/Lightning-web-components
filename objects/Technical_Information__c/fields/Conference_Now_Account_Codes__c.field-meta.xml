@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Conference_Now_Account_Codes__c</fullName>
-    <defaultValue>false</defaultValue>
-    <externalId>false</externalId>
-    <label>Conference Now &amp; Account Codes</label>
-    <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
-</CustomField>

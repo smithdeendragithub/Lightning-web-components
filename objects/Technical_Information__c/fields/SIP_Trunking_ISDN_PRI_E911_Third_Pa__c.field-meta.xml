@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SIP_Trunking_ISDN_PRI_E911_Third_Pa__c</fullName>
-    <defaultValue>false</defaultValue>
-    <externalId>false</externalId>
-    <label>ISDN-PRI E911 -- Third Party PS/ALI</label>
-    <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
-</CustomField>

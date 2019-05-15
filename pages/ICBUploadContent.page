@@ -1,3 +1,0 @@
-<apex:page standardcontroller="ICB__c" tabStyle="ICB__c">
-	<c:UploadContent parentId="{!ICB__c.Id}" isGeneratedContent="false"></c:UploadContent>
-</apex:page>

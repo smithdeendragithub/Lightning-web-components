@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Risk_Reason_required</fullName>
-    <active>false</active>
-    <description>When a workstep is blocked or at risk, when those statuses are selected, there is a multi-select picklist option required to be selected called &quot;Risk Reason&quot; that will be populated with a list of reasons why the workstep is at risk.</description>
-    <errorConditionFormula>(ISPICKVAL(Status__c,&#39;At risk&#39;) ||  ISPICKVAL(Status__c,&#39;Blocked&#39;)) &amp;&amp; ISNULL(Risk_Reason__c)</errorConditionFormula>
-    <errorDisplayField>Risk_Reason__c</errorDisplayField>
-    <errorMessage>Please choose at least one Risk Reason!</errorMessage>
-</ValidationRule>

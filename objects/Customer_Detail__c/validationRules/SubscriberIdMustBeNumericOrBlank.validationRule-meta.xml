@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>SubscriberIdMustBeNumericOrBlank</fullName>
-    <active>true</active>
-    <description>Subscriber Id&#39;s Must Be Numeric</description>
-    <errorConditionFormula>NOT(ISNUMBER(ICC_Subscriber_ID__c) || LEN(ICC_Subscriber_ID__c) = 0)</errorConditionFormula>
-    <errorMessage>ICC Subscriber ID&#39;s Must Be A Numeric Value</errorMessage>
-</ValidationRule>

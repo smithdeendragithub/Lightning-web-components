@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Object_ID_Must_Be_15_Characters</fullName>
-    <active>true</active>
-    <description>Object ID must be at least 15 characters.</description>
-    <errorConditionFormula>LEN( ObjectID__c )  &lt; 15</errorConditionFormula>
-    <errorMessage>Object ID must be at least 15 characters.</errorMessage>
-</ValidationRule>

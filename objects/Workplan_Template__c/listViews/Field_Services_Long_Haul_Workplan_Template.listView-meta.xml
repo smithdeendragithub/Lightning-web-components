@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Field_Services_Long_Haul_Workplan_Template</fullName>
-    <filterScope>Everything</filterScope>
-    <label>Field Services-Long Haul</label>
-    <sharedTo>
-        <allInternalUsers/>
-    </sharedTo>
-</ListView>

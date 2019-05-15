@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Cannot_Undo_Provisioning_Plan</fullName>
-    <active>true</active>
-    <errorConditionFormula>ISCHANGED(Provisioning_Plan_Enabled__c) &amp;&amp; NOT(Provisioning_Plan_Enabled__c)</errorConditionFormula>
-    <errorDisplayField>Provisioning_Plan_Enabled__c</errorDisplayField>
-    <errorMessage>You cannot disable an Order Provisioning Plan once it has been enabled.</errorMessage>
-</ValidationRule>

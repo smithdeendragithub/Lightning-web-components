@@ -1,3 +1,0 @@
-<apex:page standardcontroller="Account" tabStyle="Account"> 
-	<c:UploadContent parentId="{!Account.Id}" isGeneratedContent="false"></c:UploadContent>
-</apex:page>

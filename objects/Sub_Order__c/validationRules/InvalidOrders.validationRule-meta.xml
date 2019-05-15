@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>InvalidOrders</fullName>
-    <active>true</active>
-    <description>Sub-Orders are not allowed on Build or Decomm Orders.</description>
-    <errorConditionFormula>Order__r.RecordType.DeveloperName = &#39;Build_Order&#39; || Order__r.RecordType.DeveloperName = &#39;Decomm_Order&#39;</errorConditionFormula>
-    <errorMessage>Sub-Orders are not allowed on Build or Decomm Orders.</errorMessage>
-</ValidationRule>

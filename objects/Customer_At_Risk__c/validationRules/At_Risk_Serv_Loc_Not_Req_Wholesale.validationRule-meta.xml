@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>At_Risk_Serv_Loc_Not_Req_Wholesale</fullName>
-    <active>false</active>
-    <description>Service location not required on Customer At Risk for Wholesale</description>
-    <errorConditionFormula>AND(NOT(  Account__r.Owner.Profile.Name  = &quot;Electric Lightwave&quot;),ISBLANK( Service_Location__c ))</errorConditionFormula>
-    <errorDisplayField>Service_Location__c</errorDisplayField>
-    <errorMessage>Service Location Required</errorMessage>
-</ValidationRule>

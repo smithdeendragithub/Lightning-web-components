@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>WsMgPage_Owned_Orders_Visible__c</fullName>
-    <defaultValue>false</defaultValue>
-    <externalId>false</externalId>
-    <label>WsMgPage Owned Orders Visible</label>
-    <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
-</CustomField>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Status_Requires_Closed_Won_Opp</fullName>
-    <active>true</active>
-    <description>The related Opportunity must be in the Closed Won stage before the selected Status can be chosen.</description>
-    <errorConditionFormula>NOT(ISBLANK(Opportunity__c)) &amp;&amp; (TEXT(Status__c) = &#39;Completed to Billing/Billing Only&#39; || TEXT(Status__c) = &#39;Order to Pending&#39;) &amp;&amp; AND(TEXT(Opportunity__r.StageName) &lt;&gt; &#39;Closed Won&#39;,TEXT(Opportunity__r.StageName) &lt;&gt; &#39;Stage 5 - Accepted / Order Pending&#39;)</errorConditionFormula>
-    <errorDisplayField>Status__c</errorDisplayField>
-    <errorMessage>The related Opportunity must be in the Closed Won stage/Stage 5 - Accepted / Order Pending before the selected Status can be chosen.</errorMessage>
-</ValidationRule>

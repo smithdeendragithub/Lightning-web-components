@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>FOC_Date_Required</fullName>
-    <active>true</active>
-    <description>FOC Date must be populated on the suborder before the FOC Attribute task can be set to complete.</description>
-    <errorConditionFormula>ISNULL(Sub_Order__r.FOC_date__c) &amp;&amp; ISPICKVAL(Attribute__c, &#39;FOC&#39;) &amp;&amp; ISPICKVAL(Status__c, &#39;Complete&#39;) &amp;&amp; (Duration__c &gt; 0)</errorConditionFormula>
-    <errorDisplayField>Status__c</errorDisplayField>
-    <errorMessage>FOC Date must be populated on the suborder before you can set FOC Attribute task to complete.</errorMessage>
-</ValidationRule>

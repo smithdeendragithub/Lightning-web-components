@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Populate_Hardware_PO</fullName>
-    <active>true</active>
-    <description>Must populate the Hardware PO# field before completing the Order Hardware step on the UC/ITS plans</description>
-    <errorConditionFormula>ISBLANK(Sub_Order__r.Hardware_PO__c) &amp;&amp; Name=&#39;Order Hardware&#39; &amp;&amp; ISPICKVAL(Status__c , &#39;Complete&#39;)</errorConditionFormula>
-    <errorDisplayField>Status__c</errorDisplayField>
-    <errorMessage>Hardware PO# must be populated on the SubOrder before the Order Hardware workstep can be completed.</errorMessage>
-</ValidationRule>

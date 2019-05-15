@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>UC_MAC_Selection_Required</fullName>
-    <active>true</active>
-    <description>Must select item from UC MAC dropdown before closing the MAC - Set Commit Date set on ITS MAC plans</description>
-    <errorConditionFormula>ISPICKVAL(Sub_Order__r.UC_MAC__c,&quot;&quot;) &amp;&amp; Name=&#39;MAC - Set Commit Date&#39; &amp;&amp; ISPICKVAL(Status__c , &#39;Complete&#39;)</errorConditionFormula>
-    <errorDisplayField>Status__c</errorDisplayField>
-    <errorMessage>UC MAC dropdown must be selected on the SubOrder before the MAC - Set Commit Date workstep can be completed.</errorMessage>
-</ValidationRule>

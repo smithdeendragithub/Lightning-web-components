@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Changes_are_not_allowed</fullName>
-    <active>false</active>
-    <description>once contract signed date is populated then Pricing Agreement object is locked for editing</description>
-    <errorConditionFormula>AND($Profile.Name &lt;&gt; &#39;System Administrator&#39;, Record_Locked__c = true)</errorConditionFormula>
-    <errorMessage>This Wholesale Pricing Agreement record is locked. No change is allowed.</errorMessage>
-</ValidationRule>

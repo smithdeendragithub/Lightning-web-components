@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>IT_field</fullName>
-    <active>false</active>
-    <errorConditionFormula>Department__c  &lt;&gt; &#39;Allstream - IT&#39;</errorConditionFormula>
-    <errorMessage>Must select an individual from the IT department</errorMessage>
-</ValidationRule>

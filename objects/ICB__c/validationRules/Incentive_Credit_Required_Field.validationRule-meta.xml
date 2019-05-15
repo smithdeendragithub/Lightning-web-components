@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Incentive_Credit_Required_Field</fullName>
-    <active>true</active>
-    <description>&quot;Type&quot; field must have a value if &quot;Incentive Credit&quot; is selected in &quot;Credit Type Approval&quot; field.</description>
-    <errorConditionFormula>AND(TEXT(Credit_Type_Approval__c)=&quot;Incentive Credit&quot;,
-ISBLANK(TEXT(Incentive_Credit_Type__c)))</errorConditionFormula>
-    <errorMessage>&quot;Incentive Credit Type&quot; field must have a value if &quot;Incentive Credit&quot; is selected in &quot;Credit Type Approval&quot; field.</errorMessage>
-</ValidationRule>

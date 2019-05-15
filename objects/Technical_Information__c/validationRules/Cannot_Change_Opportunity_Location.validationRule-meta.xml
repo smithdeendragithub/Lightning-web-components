@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Cannot_Change_Opportunity_Location</fullName>
-    <active>true</active>
-    <errorConditionFormula>ISCHANGED( Opportunity_Site__c )</errorConditionFormula>
-    <errorDisplayField>Opportunity_Site__c</errorDisplayField>
-    <errorMessage>You may not  change the Opportunity Location</errorMessage>
-</ValidationRule>

@@ -1,9 +1,0 @@
-<apex:page standardController="SPC_Product__c">
-    <apex:variable var="src" value="{!IF(ISBLANK($Setup.IntegraServiceSettings__c.Environment_URL_Prefix__c)
-                                    ,'https://bi.integratelecom.com/views/SalesProductCatalogLookup/SPCQuickLook-up'
-                                    ,'https://bi.integratelecom.com/views/UATSalesProductCatalogLookup/UAT-SPCQuickLook-up')}"/>
-    <apex:iframe src="{!src}?:embed=y&:display_count=no&:showShareOptions=true&:showVizHome=no" height="900px" width="1600px" scrolling="true"/>
-    
-    <script type='text/javascript' src='https://bi.integratelecom.com/javascripts/api/viz_v1.js'>
-    </script>
-</apex:page>

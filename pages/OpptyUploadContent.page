@@ -1,3 +1,0 @@
-<apex:page standardcontroller="Opportunity" tabStyle="Opportunity"> 
-	<c:UploadContent parentId="{!Opportunity.Id}" isGeneratedContent="false"></c:UploadContent>
-</apex:page>

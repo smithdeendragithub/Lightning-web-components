@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Date_Requested_Is_Future_Date</fullName>
-    <active>true</active>
-    <errorConditionFormula>Date_Requested__c &gt; TODAY()</errorConditionFormula>
-    <errorDisplayField>Date_Requested__c</errorDisplayField>
-    <errorMessage>The Date Requested field cannot be a future date. Date Requested is a record of when the original request was made. You may be looking for the Requested Deadline field.</errorMessage>
-</ValidationRule>

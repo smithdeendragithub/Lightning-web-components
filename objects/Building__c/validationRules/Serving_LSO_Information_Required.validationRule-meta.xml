@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Serving_LSO_Information_Required</fullName>
-    <active>false</active>
-    <description>A Market Area and LSO CLLI are required on serving LSO buildings and a related serving LSO building is required on others.</description>
-    <errorConditionFormula>CASE(Is_Serving_LSO__c, &#39;true&#39;, IF(OR(Market_Area__c = &#39;&#39;, LSO_CLLI__c == &#39;&#39;), 1, 0), IF(Serving_LSO__c = &#39;&#39;, 1, 0)) = 1</errorConditionFormula>
-    <errorMessage>Serving LSO buildings require that a Market Area and LSO CLLI be set.  Other buildings must specify a related serving LSO building.</errorMessage>
-</ValidationRule>

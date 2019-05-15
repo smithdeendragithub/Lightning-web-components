@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
-    <customSettingsType>List</customSettingsType>
-    <description>Perform an action on opportunity going to closed won based off of the opportunity&#39;s related BAAs</description>
-    <enableFeeds>false</enableFeeds>
-    <label>Opportunity BAA Based Action</label>
-    <visibility>Public</visibility>
-</CustomObject>

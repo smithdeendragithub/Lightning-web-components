@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Go_Live_Date_And_Reason_Change</fullName>
-    <active>false</active>
-    <description>If GoLive Date changes the Go Live Date Change Reason must change.</description>
-    <errorConditionFormula>ISCHANGED ( Customer_Commit_Date__c ) &amp;&amp;  
-(TEXT(PRIORVALUE(Go_Live_Date_Change_Reason__c))= TEXT(Go_Live_Date_Change_Reason__c))</errorConditionFormula>
-    <errorMessage>Go Live Date Change Reason can&#39;t be blank or same as last saved value when Go Live Date Changes.</errorMessage>
-</ValidationRule>

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>MaximumIntegrationHierarchyDepth</fullName>
-    <active>true</active>
-    <description>This enforces the maximum integration hierarchy depth limit of 3.  The root subscriber check can be removed once hierarchies are cleaned up properly.</description>
-    <errorConditionFormula>Level__c = &#39;ERROR&#39;</errorConditionFormula>
-    <errorDisplayField>Account__c</errorDisplayField>
-    <errorMessage>The maximum integration hierarchy depth is 3.</errorMessage>
-</ValidationRule>

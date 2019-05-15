@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>Call_Blocking_900_976__c</fullName>
-    <defaultValue>false</defaultValue>
-    <externalId>false</externalId>
-    <label>Call Blocking 900/976</label>
-    <trackTrending>false</trackTrending>
-    <type>Checkbox</type>
-</CustomField>
