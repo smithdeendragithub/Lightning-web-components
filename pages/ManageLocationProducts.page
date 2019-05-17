@@ -1,4 +1,4 @@
-<apex:page controller="ManageLocationProductsController" standardstylesheets="false" tabstyle="OLI__c" cache="false" action="{!saveScoreToOpp}" lightningStylesheets="true">
+<apex:page controller="ManageLocationProductsController"  tabstyle="OLI__c" cache="false" action="{!saveScoreToOpp}" lightningStylesheets="{! IF($Label.EnableLightningStyleSheets == 'Yes',true,false)}">
 
     <apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-1.6.2.min.js')}" />
     <apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-ui-1.8.16.custom.min.js')}" />
