@@ -21,4 +21,11 @@
         <shortDescription>ACR_Null_Approval_History_Records</shortDescription>
         <value>No records in Approval History</value>
     </labels>
+     <labels>
+        <fullName>EnableLightningStyleSheets</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>enter Yes or No to enable lightning styles in vf pages</shortDescription>
+        <value>Yes</value>
+    </labels>
 </CustomLabels>

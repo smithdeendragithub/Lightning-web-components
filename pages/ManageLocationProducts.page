@@ -4,7 +4,7 @@
     <apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-ui-1.8.16.custom.min.js')}" />
    
     <link href="{!URLFOR($Resource.productResources, 'formStyle.css')}" rel="stylesheet" type="text/css" />
-
+    
     <apex:stylesheet value="{!URLFOR($Resource.jquery_ui_css)}"/>
 
     <!-- <link href="http://dl.dropbox.com/u/3825602/Centerstance/Integra/Configure-Products/formStyle.css" rel="stylesheet" type="text/css" />-->
@@ -328,16 +328,19 @@
             </apex:outputpanel>
         </apex:pageblock>
 -->
-        <apex:pageblock id="thePageBlock" title="Configure Products For {!opportunity.name}">
-            <apex:pageblockbuttons location="both">
-                <apex:commandbutton value="New Solution" action="{!$Page.CreateSolution}?opportunityid={!opportunity.Id}" />
-                <apex:commandbutton value="Return To Opportunity" action="{!gotoOpportunity}" />
-                <apex:commandbutton value="Clone From Another Opportunity" action="{!$Page.CloneSolution}?opportunityId={!opportunity.Id}" />
-                <apex:commandbutton value="Technical Forms" action="{!gotoManageLocationConfigurations}" />
-                <apex:commandbutton value="Create Proposal" action="{!$Page.OpportunityPDFGeneration}?oppId={!opportunity.Id}" rendered="{!canCreateContracts}" />
-                <apex:commandbutton value="Grant Approval" id="btnApproval" action="{!approveActiveSolutions}" rendered="{!IsAuthorityLevel}" />
-                <apex:commandbutton value="Request Sales Manager Approval" id="btnRequestApproval" action="{!SendApprovalRequest}" rendered="{!salesManagerApprovable}" />
-                <apex:commandbutton value="CPQ Help" onclick="window.open('/069C0000000VyRP');" />
+        <apex:pageblock id="thePageBlock" title="Configure Products For {!opportunity.name}" >
+            
+            <apex:pageblockbuttons location="both" styleClass="slds-button-group"  style="{!IF($User.UIThemeDisplayed == 'Theme4d','text-align:center','')}">
+            <apex:outputPanel>
+                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="New Solution" action="{!$Page.CreateSolution}?opportunityid={!opportunity.Id}" />
+                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Return To Opportunity" action="{!gotoOpportunity}" />
+                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Clone From Another Opportunity" action="{!$Page.CloneSolution}?opportunityId={!opportunity.Id}" />
+                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Technical Forms" action="{!gotoManageLocationConfigurations}" />
+                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Create Proposal" action="{!$Page.OpportunityPDFGeneration}?oppId={!opportunity.Id}" rendered="{!canCreateContracts}" />
+                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Grant Approval" id="btnApproval" action="{!approveActiveSolutions}" rendered="{!IsAuthorityLevel}" />
+                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Request Sales Manager Approval" id="btnRequestApproval" action="{!SendApprovalRequest}" rendered="{!salesManagerApprovable}" />
+                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="CPQ Help" onclick="window.open('/069C0000000VyRP');" />
+            </apex:outputPanel>
             </apex:pageblockbuttons>
             <apex:pageblock title="Manage Solutions Summary" id="discountPanel">
                 <apex:facet name="header">
@@ -429,7 +432,7 @@
                             </apex:commandbutton>
                         </apex:pageblockbuttons>
 
-                        <table id="theTable" class="list {!IF(opportunityLocation.rawLocation.On_Hold__c, 'zombieList', '')}">
+                        <table id="theTable" class="list {!IF($User.UIThemeDisplayed == 'Theme4d','table slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered', IF(opportunityLocation.rawLocation.On_Hold__c, 'zombieList', ''))}">
 
                             <tr class="headerRow">
                                 <th>Solution</th>
@@ -708,4 +711,14 @@
             Toll Free Provider: <textarea id="txtTollFreeProvider" cols="40" rows="5"></textarea>
         </div>
     </apex:form>
+    <p>------------------------- pattern match --------------Lightning test only
+</p>
+
+    <apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme3' }">
+    <apex:outputText value="This is Salesforce Classic."/>
+    <apex:outputText value="These are multiple components wrapped by an outputPanel."/>
+</apex:outputPanel>
+<apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme4d' }">
+    <apex:outputText value="Everything is simpler in Lightning Experience."/>
+</apex:outputPanel>
 </apex:page>
