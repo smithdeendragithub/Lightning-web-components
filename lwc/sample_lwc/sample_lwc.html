@@ -1,3 +1,8 @@
 <template>
-   <input value={opportunityrecid} disabled/> 
+<template if:true={contacts.data}>
+        <template for:each={contacts.data} for:item="contact">
+            <p key={contact.Id}>{contact.Name}</p>
+            <c-orderList/>
+        </template>
+    </template>
 </template>

@@ -1,7 +1,6 @@
-import { LightningElement,track } from 'lwc';
+import { LightningElement, wire } from 'lwc';
+import getContactList from '@salesforce/apex/TestLwc.getContactList';
 
-export default class Sample_lwc extends LightningElement {
-@track opportunityrecid;
-
-opportunityrecid="sample";
+export default class ApexWireMethodToProperty extends LightningElement {
+    @wire(getContactList) contacts;
 }
