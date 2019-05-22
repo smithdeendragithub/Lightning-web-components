@@ -4,6 +4,9 @@
         "paths": {
             "c/orderList": [
                 "orderList/orderList.js"
+            ],
+            "c/parentComponent": [
+                "parentComponent/parentComponent.js"
             ]
         }
     }

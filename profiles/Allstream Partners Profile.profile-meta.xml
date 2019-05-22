@@ -1,5 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Profile xmlns="http://soap.sforce.com/2006/04/metadata">
+    <applicationVisibilities>
+        <application>Groupmaster</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Integra</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Integra_Lightning</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Project_Management_Delivery</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Sales_Product_Catalog</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Service_Delivery</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Support</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Wholesale</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__AllTabSet</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__AppLauncher</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Chatter</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Community</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Content</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Insights</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__LightningSales</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__LightningSalesConsole</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__LightningService</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Marketing</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Platform</application>
+        <default>true</default>
+        <visible>true</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Sales</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__SalesforceCMS</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__Service</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
+    <applicationVisibilities>
+        <application>standard__ServiceConsole</application>
+        <default>false</default>
+        <visible>false</visible>
+    </applicationVisibilities>
     <classAccesses>
         <apexClass>ACR_ApprovalMatrixTriggerHelper</apexClass>
         <enabled>false</enabled>
@@ -878,6 +993,10 @@
     </classAccesses>
     <classAccesses>
         <apexClass>TestClassFactory</apexClass>
+        <enabled>false</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TestLwC</apexClass>
         <enabled>false</enabled>
     </classAccesses>
     <classAccesses>
@@ -15652,6 +15771,1141 @@
         <field>Workstep__c.workstep_tag__c</field>
         <readable>false</readable>
     </fieldPermissions>
+    <layoutAssignments>
+        <layout>ACR_DOA_Approval_Mapping__mdt-ACR_DOA_Approval_Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AMP_Detail__c-AMP Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Access_Duration__c-Access Duration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Access_Technology__c-Access Technology Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Access_Types__c-Access Types Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Prospect Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Prospect Layout</layout>
+        <recordType>Account.Agency</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Prospect Layout</layout>
+        <recordType>Account.Agent_Partner</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Prospect Layout</layout>
+        <recordType>Account.ILEC_Prior_Lake</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Prospect Layout</layout>
+        <recordType>Account.Non_Customer</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Prospect Layout</layout>
+        <recordType>Account.Prospect</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Prospect Layout</layout>
+        <recordType>Account.Subscriber</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account-Prospect Layout</layout>
+        <recordType>Account.System</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AccountBrand-Account BrandLayout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AccountContactRole-Account Contact Role Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AccountReference__c-Account Reference Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AccountTeamMember-Account Team Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Code__c-Account Code Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Partner__c-Account Partner Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Partner__c-Account Partner Layout</layout>
+        <recordType>Account_Partner__c.Guest</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Partner__c-Account Partner Layout</layout>
+        <recordType>Account_Partner__c.ICC_iSell_Assignment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Partner__c-Account Partner Layout</layout>
+        <recordType>Account_Partner__c.Master_Agent</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Partner__c-Account Partner Layout</layout>
+        <recordType>Account_Partner__c.Sub_Agent</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Account_Scheduled_Task__c-Account Scheduled Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Additional_Treatments_Vendor_Checklist__c-Additional Treatments Vendor Checklist Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Allstream_Allstar_IT_Nomination__c-Allstream Allstar IT Nomination Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Allstream_Service_Order_Item__c-Allstream Service Order Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Allstream_Service_Order__c-Allstream Service Order Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Approval_Matrix__c-Approval Matrix Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Asset-Asset Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>AssetRelationship-Asset Relationship Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>BSB_Discount_Product__c-BSB Discount Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>BSB_Discount__c-BSB Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Beta__c-Beta Customer Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Billing_Run__c-Billing_Run Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Building_Access_Availability__c-Access Availability Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Building_Address_Format__c-Building Address Format Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Building_Contact__c-Building Contact Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Building_Sales_Product__c-Building Sales Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Building__c-Building Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Building__c-Building Layout</layout>
+        <recordType>Building__c.Commercial_Building</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Building__c-Building Layout</layout>
+        <recordType>Building__c.Core_Building</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CN_Feature__c-CN Feature Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CN__c-CN Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CN__c-CN Layout</layout>
+        <recordType>CN__c.Hosted_Voice_CN</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Campaign-Campaign Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CampaignMember-Campaign Member Page Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Capital_Project_Building__c-Capital Project Building Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Capital_Project__c-Capital Project Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Capital_Project__c-Capital Project Layout</layout>
+        <recordType>Capital_Project__c.Customer_Build</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Capital_Project__c-Capital Project Layout</layout>
+        <recordType>Capital_Project__c.Network_Build</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Carrier_POP__c-Carrier POP Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.CAM_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.Case_To_Order_Support</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.EPC_Request</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.NetEx_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.Proactive_Call</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.Proactive_Call_Email</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.Proactive_Contact_Template</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.Proactive_Review_Template</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Case-Case Layout</layout>
+        <recordType>Case.Proactive_Review_Visit_Virtual</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CaseClose-Close Case Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Chairperson_Name__c-Chairperson Name Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ChannelProgram-Channel Program Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ChannelProgramLevel-Channel Program Level Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ChannelProgramMember-Channel Program Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CollaborationGroup-Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>CommunityMemberLayout-Community Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Competitor__c-Competitor Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.DS1</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.DS3</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.Dark_Fiber</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.Fast_Ethernet_Electrical_Interface</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.Gigabit_Ethernet_Optical_Interface</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.OCn</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.Ultra_Ethernet_10_100_Electrical_Interface</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.Ultra_Ethernet_Gigabit_Ethernet_Optical_Interface</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Configuration__c-DS3</layout>
+        <recordType>Configuration__c.Wavelength</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+        <recordType>Contact.Default</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contact-Contact Layout</layout>
+        <recordType>Contact.Order_Fulfillment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentVersion-Contract</layout>
+        <recordType>ContentVersion.Contract</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentVersion-General</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentVersion-General</layout>
+        <recordType>ContentVersion.Associated_Order_Documents</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentVersion-General</layout>
+        <recordType>ContentVersion.Company_Resources</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentVersion-Marketing</layout>
+        <recordType>ContentVersion.Marketing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentVersion-ProjectCloud</layout>
+        <recordType>ContentVersion.ProjectCloud</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ContentVersion-Sales Resources</layout>
+        <recordType>ContentVersion.Sales_Resources</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Contract-Contract Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Custom_List_View_Field__c-Custom List View Field Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Custom_List_View_Filter__c-Custom List View Filter Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Custom_List_View__c-Custom List View Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_At_Risk__c-Customer At Risk Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Contact__c-Customer Contact Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Detail__c-Customer Detail Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Bill_Cycle_Schedule</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Care_Organization</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Collection_Code</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Exchange</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Market_Subtype</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Market_Type</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Reporting_Company</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Subscriber_Setting</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Customer_Setting__c-Customer Setting Layout</layout>
+        <recordType>Customer_Setting__c.Tax_Information</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DID__c-DID Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DOA_Mapping__c-DOA Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Development_Task__c-Development Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Directory_Listing__c-Directory Listing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Disconnect_Line_Item__c-Disconnect Line Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DuplicateRecordItem-Duplicate Record Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>DuplicateRecordSet-Duplicate Record Set Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>EVC__c-EVC Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>EmailMessage-Email Message Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Email_Account__c-Email Account Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Epic__c-Epic Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Equipment__c-Equipment Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Event-Event Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Expense__c-Expense Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Expense__c-Expense Layout</layout>
+        <recordType>Expense__c.NetEx</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>External_User__c-External User Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Feature_Duration__c-Feature Duration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Feature_Grouping__c-Product Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Feature__c-Feature Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>FeedItem-Feed Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Georesults_business__c-GeoResults Business Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Georesults_family__c-GeoResults Family Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Global-Global Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Globys_Transaction__c-Globys Transaction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ICBProduct__c-ICBProduct Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ICB__c-ICB Approved Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ICB__c-ICB Approved Layout</layout>
+        <recordType>ICB__c.Approved_ICB</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Idea-Idea Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>IdeaTheme-Idea Theme Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Individual-Individual Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integra_Contract__c-Integra Contract Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integra_Contract__c-Integra Contract Layout</layout>
+        <recordType>Integra_Contract__c.Agency</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integra_Contract__c-Integra Contract Layout</layout>
+        <recordType>Integra_Contract__c.Customer</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integra_Contract__c-Integra Contract Layout</layout>
+        <recordType>Integra_Contract__c.Non_Customer</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Integration_Error__c-Integration Error Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Junction__c-Junction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>LanguageTranslation__c-LanguageTranslation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Lead-Lead Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Lead-Lead Layout</layout>
+        <recordType>Lead.Prospect_Lead</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Legacy_Contract__c-Legacy Contract Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ListEmail-List Email Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Location__c-Location Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Macro-Macro Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Market_Area__c-Market Area Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>MarketingTracking__c-MarketingTracking Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>NAA_Product__c-NAA Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>NNS_Num__c-NNS Num Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Note__c-Note Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OLI__c-Oppty Line Item Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ObjectTerritory2AssignmentRule-Object Territory Assignment Rule Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+        <recordType>Opportunity.Care</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+        <recordType>Opportunity.External</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+        <recordType>Opportunity.ILEC_Manual_Entry</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+        <recordType>Opportunity.Order_Fast_Track</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+        <recordType>Opportunity.Order_Reindexing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+        <recordType>Opportunity.Retail</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+        <recordType>Opportunity.Sales_Split_Opportunity</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity-Business Services Layout</layout>
+        <recordType>Opportunity.Wholesale</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OpportunityLineItem-Opportunity Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OpportunityLocationConfiguration__c-OpportunityLocationConfiguration Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>OpportunityTeamMember-Opportunity Team Member Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Location__c-Opportunity Location Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Product_Sales_Product__c-Opportunity Product Sales Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Product__c-CPQ Opportunity Product</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Product__c-CPQ Opportunity Product</layout>
+        <recordType>Opportunity_Product__c.CPQ_Entry</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Product__c-CPQ Opportunity Product</layout>
+        <recordType>Opportunity_Product__c.ITS_CPE</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Product__c-CPQ Opportunity Product</layout>
+        <recordType>Opportunity_Product__c.Manual_Entry</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Product__c-CPQ Opportunity Product</layout>
+        <recordType>Opportunity_Product__c.Manual_Entry_Wholesale</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Product__c-CPQ Opportunity Product</layout>
+        <recordType>Opportunity_Product__c.Manual_Turndown</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Opportunity_Product__c-CPQ Opportunity Product</layout>
+        <recordType>Opportunity_Product__c.Turndown</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Oppty_Cost_Comparison__c-Oppty Cost Comparison Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Property__c-Order Property Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Property__c-Order Property Layout</layout>
+        <recordType>Order_Property__c.External_Order</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Property__c-Order Property Layout</layout>
+        <recordType>Order_Property__c.ICert</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order_Property__c-Order Property Layout</layout>
+        <recordType>Order_Property__c.Order_Property_Group</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order__c-Order Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order__c-Order Layout</layout>
+        <recordType>Order__c.Build_Order</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order__c-Order Layout</layout>
+        <recordType>Order__c.Contract_Renewal</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order__c-Order Layout</layout>
+        <recordType>Order__c.Decomm_Order</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order__c-Order Layout</layout>
+        <recordType>Order__c.Integration_Only_Order</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Order__c-Order Layout</layout>
+        <recordType>Order__c.Opportunity_Order</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PDF_Clause__c-PDF Clause Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PDF_Element__c-PDF Element Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PDF_Mapping__c-PDF Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PDF__c-PDF Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PartnerFundAllocation-Partner Fund Allocation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PartnerFundClaim-Partner Fund Claim Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PartnerFundRequest-Partner Fund Request Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PartnerMarketingBudget-Partner Marketing Budget Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Phoenix_Account_Transaction__c-Phoenix Account Transaction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Phoenix_Product_Code__c-Phoenix Product Code Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Phone_Location_Matrix__c-Phone Location Matrix Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Postal_Code_Mapping__c-Postal Code Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Predecessor_Template__c-Predecessor Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Predecessor__c-Predecessor Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pricebook2-Price Book Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>PricebookEntry-Price Book Entry Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pricing_Agreement_Contract__c-Pricing Agreement Contract Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pricing_Agreement_Product__c-Pricing Agreement Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Pricing_Agreement__c-Pricing Agreement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product2-Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Family__c-Product Family Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Pricing__c-Product Element Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Product_Pricing__c-Product Element Layout</layout>
+        <recordType>Product_Pricing__c.Element</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Program__c-Program Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_Issue__c-Project Issue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_LOE__c-Project LOE Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_Milestone__c-Project Milestone Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_Resource_Hours__c-Project Resource Hours Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_Resource__c-Project Resource Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project_Team__c-Project Team Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Project__c-Project Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ProposalElement__c-ProposalElement Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Provisioning_Product__c-Provisioning Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Question-Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>QuickText-Quick Text Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Ref_PDF_Clause__c-Ref PDF Clause Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Ref_PDF_Element__c-Ref PDF Element Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Refund_Credit__c-Credit</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Refund_Credit__c-Credit</layout>
+        <recordType>Refund_Credit__c.Credit</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Refund_Credit__c-Credit</layout>
+        <recordType>Refund_Credit__c.Credit_Approved</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Refund_Credit__c-Credit</layout>
+        <recordType>Refund_Credit__c.Credit_in_Approval</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Refund_Credit__c-Credit</layout>
+        <recordType>Refund_Credit__c.Refund</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Refund_Credit__c-Credit</layout>
+        <recordType>Refund_Credit__c.Refund_Approved</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Refund_Credit__c-Credit</layout>
+        <recordType>Refund_Credit__c.Refund_In_Approval</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Remote_Site__c-EPL Tech Form</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Remote_Site__c-EPL Tech Form</layout>
+        <recordType>Remote_Site__c.EPL_Tech_Form</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Remote_Site__c-EPL Tech Form</layout>
+        <recordType>Remote_Site__c.Ethernet_Services_EVPL_UNI_Tech_Form</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Reply-Reply Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SPC_Component_Relation__c-SPC Component Relation Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SPC_Component__c-SPC Component Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SPC_Pricing__c-SPC Pricing Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SPC_Product__c-SPC Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SPC_Relationship_Type__c-SPC Relationship Type Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SPC_Relationship__c-SPC Relationship Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SalesProductSalesFamily__c-SalesProductSalesFamily Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>SalesProduct__c-Product Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Product_Mapping__c-Sales Product Mapping Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Product_Rate_Plan__c-Sales Product Rate Plan Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Rate_Plan_Description__c-Sales Rate Plan Description Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Selection_Rules__c-Sales Selection Rule Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sales_Service_Agreement_Text__c-Sales Service Agreement Text Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Scorecard-Scorecard Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ScorecardAssociation-Scorecard Association Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ScorecardMetric-Scorecard Metric Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>ServiceAgreement_Junction__c-ServiceAgreement_Junction Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Service_Location__c-Service Location Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Service__c-Service Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Single_Number_Service__c-Single Number Service Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Solution-Solution Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sprint__c-Sprint Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Status_Notes__c-Status Notes Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Story__c-Story Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sub_Order_Feature__c-Sub-Order Feature Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sub_Order_Group__c-Sub-Order Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Sub_Order__c-Sub-Order Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Survey_Question__c-Survey Question Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Survey__c-Survey Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>T1_Channel__c-T1 Channel Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+        <recordType>Task.Non_Sales_Task</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+        <recordType>Task.Sales_Rep_Task</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Task-Task Layout</layout>
+        <recordType>Task.Task</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Tax_Exemption__c-Tax Exemption Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Tax_Exemption__c-Tax Exemption Layout</layout>
+        <recordType>Tax_Exemption__c.BAN</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Tax_Exemption__c-Tax Exemption Layout</layout>
+        <recordType>Tax_Exemption__c.Customer</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Tax_Exemption__c-Tax Exemption Layout</layout>
+        <recordType>Tax_Exemption__c.Product</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Team_Sell_Request__c-Team Sell Request Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Additional_Voice_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Cloud_Firewall_Tech_Form</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Colo_Notification</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.DID</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Directory_Listing</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.EOC_Notification</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Ethernet_Checklist</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Ethernet_Services_EPL_Tech_Form</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Ethernet_Services_EVPL_EVC_Tech_Form</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Ethernet_Services_EVPL_UNI_Tech_Form</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Features_Schedule</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.High_Bandwidth_IP_Configuration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Initial_Treatment_SIP_Vendor_Checklist</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Internet_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.MPLS_Technical_Validation</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.MTS_Site_Information_Document</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.NNS_Num</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Other_Technical_Notes</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Private_Line_Configuration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.T1_Checklist_Configuration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.T1_Notification</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Toll_Free_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.UC_Cloud_Voice_Tech_Sheet</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.VPN_SIP_Vendor_Checklist</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Vendor_Checklist</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Voice_Internet_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.Voicemail_Menu_Configuration</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Technical_Information__c-Additional Voice Services</layout>
+        <recordType>Technical_Information__c.X19_Hosted_Voice_Services</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Telephone_Information__c-Telephone Information Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Telephone_Number__c-Telephone Number Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Territory2-Territory Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Territory2Model-Territory Model Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Test_Case__c-Test Case Assigning</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Test_Case__c-Test Case Assigning</layout>
+        <recordType>Test_Case__c.Assign_Existing_Test_Case</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Test_Case__c-Test Case Assigning</layout>
+        <recordType>Test_Case__c.Test_Case_Assignment</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Test_Case__c-Test Case Assigning</layout>
+        <recordType>Test_Case__c.Test_Case_Template</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Toll_Free_Number__c-Toll Free Number Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Toll_Free_Number__c-Toll Free Number Layout</layout>
+        <recordType>Toll_Free_Number__c.International</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Toll_Free_Number__c-Toll Free Number Layout</layout>
+        <recordType>Toll_Free_Number__c.Toll_Free</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Transaction_Log__c-Transaction Log Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Trunk_Group__c-Trunk Group Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User-User Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UserAlt-User Profile Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>UserProvisioningRequest-User Provisioning Request Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>User_Note__c-User Note Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Voicemail_Menu_Option__c-Voicemail Menu Option Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkAccess-Access Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkBadge-Badge Received Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkBadgeDefinition-Badge Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>WorkThanks-Thanks Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Workplan_Template__c-Workplan Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Workplan_Template__c-Workplan Template Layout</layout>
+        <recordType>Workplan_Template__c.Order</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Workplan_Template__c-Workplan Template Layout</layout>
+        <recordType>Workplan_Template__c.Other</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Workplan_Template__c-Workplan Template Layout</layout>
+        <recordType>Workplan_Template__c.Provisioning_Product</recordType>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Workstep_Issue__c-Workstep Issue Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Workstep_Library__c-Workstep Library Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Workstep_Template__c-Workstep Template Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
+        <layout>Workstep__c-Workstep Layout</layout>
+    </layoutAssignments>
     <pageAccesses>
         <apexPage>ACR_Items_To_Approve_Refundcredit</apexPage>
         <enabled>false</enabled>

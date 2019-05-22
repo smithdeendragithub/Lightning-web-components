@@ -1,4 +1,3 @@
-
 public with sharing class TestLwC {
     @AuraEnabled(cacheable=true)
     public static List<Contact> getContactList() {

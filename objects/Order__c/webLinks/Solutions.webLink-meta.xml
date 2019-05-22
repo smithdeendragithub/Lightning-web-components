@@ -17,5 +17,5 @@
     <protected>false</protected>
     <showsLocation>false</showsLocation>
     <showsStatus>false</showsStatus>
-    <url>\apex\ManageLocationProducts?opportunityId={!Order__c.OpportunityId__c}</url>
+    <url>/apex/ManageLocationProducts?opportunityId={!Order__c.OpportunityId__c}</url>
 </WebLink>

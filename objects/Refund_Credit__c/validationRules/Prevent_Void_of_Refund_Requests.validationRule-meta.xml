@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Void_of_Refund_Requests</fullName>
+    <active>true</active>
+    <description>Prevents the selection of the void status unless the user is the record owner or has the custom permission &quot;Allow Void of Refund Requests&quot;.</description>
+    <errorConditionFormula>(
+$User.Username &lt;&gt; Owner:User.Username &amp;&amp;
+NOT( $Permission.Allow_Void_of_Refund_Requests )
+)
+&amp;&amp;
+(
+PRIORVALUE( Status__c ) &lt;&gt; &quot;Void&quot; &amp;&amp;
+ISPICKVAL( Status__c, &quot;Void&quot; )
+)</errorConditionFormula>
+    <errorMessage>Only the record owner, or specific users can void a refund request.  Please contact the record owner, your system admin or a member of the billing team to void the refund request.</errorMessage>
+</ValidationRule>

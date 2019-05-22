@@ -328,11 +328,10 @@
             </apex:outputpanel>
         </apex:pageblock>
 -->
-        <apex:pageblock id="thePageBlock" title="Configure Products For {!opportunity.name}" >
+        <apex:pageblock id="thePageBlock"  title="Configure Products For {!opportunity.name}">
             
             <apex:pageblockbuttons location="both" styleClass="slds-button-group"  style="{!IF($User.UIThemeDisplayed == 'Theme4d','text-align:center','')}">
-            <apex:outputPanel>
-                <apex:commandbutton styleClass="slds-button slds-button_neutral" value="New Solution" action="{!$Page.CreateSolution}?opportunityid={!opportunity.Id}" />
+            	<apex:commandbutton styleClass="slds-button slds-button_neutral" value="New Solution" action="{!$Page.CreateSolution}?opportunityid={!opportunity.Id}" />
                 <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Return To Opportunity" action="{!gotoOpportunity}" />
                 <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Clone From Another Opportunity" action="{!$Page.CloneSolution}?opportunityId={!opportunity.Id}" />
                 <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Technical Forms" action="{!gotoManageLocationConfigurations}" />
@@ -340,8 +339,7 @@
                 <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Grant Approval" id="btnApproval" action="{!approveActiveSolutions}" rendered="{!IsAuthorityLevel}" />
                 <apex:commandbutton styleClass="slds-button slds-button_neutral" value="Request Sales Manager Approval" id="btnRequestApproval" action="{!SendApprovalRequest}" rendered="{!salesManagerApprovable}" />
                 <apex:commandbutton styleClass="slds-button slds-button_neutral" value="CPQ Help" onclick="window.open('/069C0000000VyRP');" />
-            </apex:outputPanel>
-            </apex:pageblockbuttons>
+           </apex:pageblockbuttons>
             <apex:pageblock title="Manage Solutions Summary" id="discountPanel">
                 <apex:facet name="header">
                     <table border="0" cellpadding="0" cellspacing="0">
@@ -711,14 +709,9 @@
             Toll Free Provider: <textarea id="txtTollFreeProvider" cols="40" rows="5"></textarea>
         </div>
     </apex:form>
-    <p>------------------------- pattern match --------------Lightning test only
-</p>
-
-    <apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme3' }">
-    <apex:outputText value="This is Salesforce Classic."/>
-    <apex:outputText value="These are multiple components wrapped by an outputPanel."/>
-</apex:outputPanel>
 <apex:outputPanel rendered="{! $User.UIThemeDisplayed == 'Theme4d' }">
-    <apex:outputText value="Everything is simpler in Lightning Experience."/>
+    <h2>
+        <apex:outputText value="Disclaimer: The page is still in progress... ignore alignment issues"/>
+    </h2>
 </apex:outputPanel>
 </apex:page>

@@ -4,6 +4,10 @@
         <application>Integra</application>
         <visible>true</visible>
     </applicationVisibilities>
+    <applicationVisibilities>
+        <application>Integra_Lightning</application>
+        <visible>true</visible>
+    </applicationVisibilities>
     <description>*Auto-Assign</description>
     <fieldPermissions>
         <editable>false</editable>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <defaultLandingTab>standard-home</defaultLandingTab>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <tabs>standard-Chatter</tabs>
+    <tabs>standard-UserProfile</tabs>
+    <tabs>standard-OtherUserProfile</tabs>
+    <tabs>standard-CollaborationGroup</tabs>
+    <tabs>standard-File</tabs>
+    <tabs>Building__c</tabs>
+    <tabs>Location__c</tabs>
+    <tabs>Georesults_business__c</tabs>
+    <tabs>Georesults_family__c</tabs>
+    <tabs>Tips</tabs>
+    <tabs>Wholesale_TIPS</tabs>
+    <tabs>Building_Contact__c</tabs>
+    <tabs>Integration_Error__c</tabs>
+    <tabs>Note__c</tabs>
+    <tabs>Prospecting_Tool</tabs>
+    <tabs>ICBProduct__c</tabs>
+    <tabs>Access_Duration__c</tabs>
+    <tabs>Marketing_Content</tabs>
+    <tabs>Project__c</tabs>
+    <tabs>Expense__c</tabs>
+    <tabs>Allstream_Service_Order__c</tabs>
+    <tabs>Allstream_Service_Order_Item__c</tabs>
+    <tabs>Allstream_Allstar_IT_Nomination__c</tabs>
+    <tabs>AMP_Detail__c</tabs>
+    <tabs>Service__c</tabs>
+</CustomApplication>
