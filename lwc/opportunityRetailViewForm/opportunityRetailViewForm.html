@@ -1,16 +1,416 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-May-23
+* @Modified Date: 2019-May-23
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2837      Smithdeendra           Created/Initial Comments
+*
+-->
+
 <template>
-    <lightning-record-view-form
-                record-id={recordId}
-                object-api-name="Opportunity">
+    <lightning-record-form record-id={recordId}  object-api-name="Opportunity" mode="Edit">
+        <lightning-accordion allow-multiple-sections-open>
+            <lightning-accordion-section name="Opp_Metrics" label="Opportunity Metrics">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="KeyAges__c"></lightning-output-field>
+                        <lightning-output-field field-name="Zayo_Reference_Opportunity__c"></lightning-output-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="Slides__c"></lightning-output-field>
+                    </div>
+                </div>
+            </lightning-accordion-section> 
+
+            <lightning-accordion-section name="Opp_Info" label="Opportunity Information">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <input value="placeholder for green/yellow flag" disabled> </input>
+                        <lightning-output-field field-name="ownerId"></lightning-output-field>
+                        <lightning-output-field field-name="Sales_Channel__c"></lightning-output-field>
+                        <lightning-output-field field-name="AccountId"></lightning-output-field>
+                        <lightning-output-field field-name="Care_Organization__c"></lightning-output-field>
+                        <lightning-output-field field-name="Name"></lightning-output-field>
+                        <lightning-output-field field-name="Type"></lightning-output-field>
+                        <lightning-output-field field-name="Oppty_Sub_Type__c"></lightning-output-field>
+                        <lightning-output-field field-name="Sell_To_Through__c"></lightning-output-field>
+                        <lightning-output-field field-name="Case__c"></lightning-output-field>
+                        <lightning-output-field field-name="New_MRR_del__c"></lightning-output-field>
+                        <lightning-output-field field-name="CPQ_Total__c"></lightning-output-field>
+                        <lightning-output-field field-name="Current_MRR_del__c"></lightning-output-field>
+                        <lightning-output-field field-name="Turndown_Product__c"></lightning-output-field>
+                        <lightning-output-field field-name="Net_Difference__c"></lightning-output-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="StageName"></lightning-output-field>
+                        <lightning-output-field field-name="CloseDate"></lightning-output-field>
+                        <lightning-output-field field-name="ForecastCategoryName"></lightning-output-field>
+                        <lightning-output-field field-name="Probability"></lightning-output-field>
+                        <lightning-output-field field-name="Contract_Signed_Date__c"></lightning-output-field>
+                        <lightning-output-field field-name="LOA_Signed_By__c"></lightning-output-field>
+                        <lightning-output-field field-name="Customer_Requested_Due_Date__c"></lightning-output-field>
+                        <lightning-output-field field-name="Amount"></lightning-output-field>
+                        <lightning-output-field field-name="NRR_Amount__c"></lightning-output-field>
+                        <lightning-output-field field-name="Term__c"></lightning-output-field>
+                        <lightning-output-field field-name="Contract_Term_End_Date__c"></lightning-output-field>
+                        <lightning-output-field field-name="Coterminous_Contract_Months__c"></lightning-output-field>
+                        <lightning-output-field field-name="Total_Contract_Amount__c"></lightning-output-field>
+                        <lightning-output-field field-name="CPE_Amount__c"></lightning-output-field>
+                        <lightning-output-field field-name="Opportunity_Product__c"></lightning-output-field>
+                        <lightning-output-field field-name="UC_Specialist__c"></lightning-output-field>
+                        <lightning-output-field field-name="Related_Opportunites__c"></lightning-output-field>
+                    </div>
+                </div>
+            </lightning-accordion-section>
+
+
+        <lightning-accordion-section name="Opp_Action_Items" label="Opportunity Action Items">
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Initial_Appointment_Set_Date__c"></lightning-output-field>
+                    <lightning-output-field field-name="Initial_Appointment_Held_Date__c"></lightning-output-field>
+                    <lightning-output-field field-name="Proposal_Meeting_Set_Date__c"></lightning-output-field>
+                    <lightning-output-field field-name="Proposal_Meeting_Held_Date__c"></lightning-output-field>
+                    <lightning-output-field field-name="Proposal_Letter__c"></lightning-output-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="NextStep"></lightning-output-field>
+                    <lightning-output-field field-name="Vendor_Registration__c"></lightning-output-field>
+                    <lightning-output-field field-name="Business_Objectives__c"></lightning-output-field>
+                    <lightning-output-field field-name="Proposed_Solutions__c"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-accordion-section>
+
+        <lightning-accordion-section name="Opp_Addnl_info" label="Additional Information">
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="LeadSource"></lightning-output-field>
+                    <lightning-output-field field-name="Referred_By__c"></lightning-output-field>
+                    <lightning-output-field field-name="Product_Interest__c"></lightning-output-field>
+                    <lightning-output-field field-name="Lead_Notes__c"></lightning-output-field>
+                    <lightning-output-field field-name="CampaignId"></lightning-output-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Winning_ICB__c"></lightning-output-field>
+                    <lightning-output-field field-name="Current_Provider__c"></lightning-output-field>
+                    <lightning-output-field field-name="Current_Provider_LD__c"></lightning-output-field>
+                    <lightning-output-field field-name="Description_Custom__c"></lightning-output-field>
+                </div>
+            </div>
+        </lightning-accordion-section>
+
+         <lightning-accordion-section name="Opp_Erate_info" label="E-Rate Information">
         <div class="slds-grid">
             <div class="slds-col slds-size_1-of-2">
-                <lightning-output-field field-name="Slides__c"></lightning-output-field>
-                <lightning-output-field field-name="Id"></lightning-output-field>
+                <lightning-output-field field-name="E_Rate_Opportunity__c"></lightning-output-field>
+                <lightning-output-field field-name="E_Rate_Must_Win__c"></lightning-output-field>
+                <lightning-output-field field-name="E_Rate_Funding_Year__c"></lightning-output-field>
+                <lightning-output-field field-name="Date_470_Filed__c"></lightning-output-field>
+                <lightning-output-field field-name="Allowable_Contract_Date__c"></lightning-output-field>
+                <lightning-output-field field-name="X470__c"></lightning-output-field>
             </div>
             <div class="slds-col slds-size_1-of-2">
-                <lightning-output-field field-name="Account.name"></lightning-output-field>
-                <lightning-output-field field-name="KeyAges__c"></lightning-output-field>
+                <lightning-output-field field-name="Service_Type__c"></lightning-output-field>
+                <lightning-output-field field-name="Bid__c"></lightning-output-field>
+                <lightning-output-field field-name="Bid_Results__c"></lightning-output-field>
+                <lightning-output-field field-name="E_Rate_Process_Status__c"></lightning-output-field>
+                <lightning-output-field field-name="Reason_for_No_Bid__c"></lightning-output-field>
+                <lightning-output-field field-name="X470_Number_Link__c"></lightning-output-field>
             </div>
         </div>
-    </lightning-record-view-form>
+        </lightning-accordion-section>
+
+        <lightning-accordion-section name="Opp_SplitOpp_setup" label="Split Opportunity Setup">
+            <div class="slds-grid">
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Split_Owner_1__c"></lightning-output-field>
+                    <lightning-output-field field-name="Split_Percent_1__c"></lightning-output-field>
+                    <lightning-output-field field-name="Split_Amount_1__c"></lightning-output-field>
+                    <lightning-output-field field-name="Opportunity_Parent__c"></lightning-output-field>
+                </div>
+                <div class="slds-col slds-size_1-of-2">
+                    <lightning-output-field field-name="Split_Owner_2__c"></lightning-output-field>
+                    <lightning-output-field field-name="Split_Percent_2__c"></lightning-output-field>
+                    <lightning-output-field field-name="Split_Amount_2__c"></lightning-output-field>
+                </div>
+            </div>
+            </lightning-accordion-section>
+
+            <lightning-accordion-section name="Opp_Order_Status" label="Order Status">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-1">
+                        <input value= "placeholder for Order status" disabled> </input>
+                    </div>
+                </div>
+            </lightning-accordion-section>
+
+            <lightning-accordion-section name="Opp_sowi" label="Sales Owned Workstep Issues">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-1">
+                            <input  value="placeholder for Sales Owned Workstep Issues" disabled></input>
+                        </div>
+                    </div>
+            </lightning-accordion-section>
+<!--
+    <lightning-accordion-section name="Opp_SplitOpp_setup" label="Split Opportunity Setup">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+        </div>
+    </lightning-accordion-section>
+
+
+
+    <lightning-accordion-section name="Opp_Metrics" label="Opportunity Metrics">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+        </div>
+    </lightning-accordion-section>
+
+
+    <lightning-accordion-section name="Opp_Metrics" label="Opportunity Metrics">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+        </div>
+    </lightning-accordion-section>
+
+
+    <lightning-accordion-section name="Opp_Metrics" label="Opportunity Metrics">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+        </div>
+    </lightning-accordion-section>
+    <lightning-accordion-section name="Opp_Metrics" label="Opportunity Metrics">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+                <lightning-output-field field-name="ownerId"></lightning-output-field>
+            </div>
+        </div>
+    </lightning-accordion-section>
+-->
+</lightning-accordion>
+    </lightning-record-form>
 </template>
