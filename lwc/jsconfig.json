@@ -5,7 +5,28 @@
         "paths": {
             "c/opportunityRetailViewForm": [
                 "opportunityRetailViewForm/opportunityRetailViewForm.js"
+            ],
+            "c/orderList": [
+                "orderList/orderList.js"
+            ],
+            "c/parentComponent": [
+                "parentComponent/parentComponent.js"
+            ],
+            "c/salesownedwsionrelatedorderflag": [
+                "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
+            ],
+            "c/sample_lwc": [
+                "sample_lwc/sample_lwc.js"
             ]
         }
+    },
+    "include": [
+        "**/*",
+        "../../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
     }
 }

@@ -44,7 +44,8 @@ public without sharing class Order_WorkstepIssuesController {
     	wsi = getWorkstepIssuesByOrderID(ord.Id);        
     }
  	
-    public static List<WorkStepIssue> getWorkstepIssuesByOrderID(Id orderID) {
+    @AuraEnabled
+	public static List<WorkStepIssue> getWorkstepIssuesByOrderID(Id orderID) {
 		String whereClause = CustomSettingUtils.getSingleProcessConfigurationValue('Order_WorkstepIssuesWhereClause', 'User', false);
 		
 		Set<Id> userIDs = new Map<Id, User>((List<User>)Database.query('select Id from User' + (string.isEmpty(whereClause) ? '' : (' where ' + whereClause)))).keyset();
