@@ -17,6 +17,9 @@
             ],
             "c/sample_lwc": [
                 "sample_lwc/sample_lwc.js"
+            ],
+            "c/opportunityWorkStepIssues": [
+                "opportunityWorkStepIssues/opportunityWorkStepIssues.js"
             ]
         }
     },

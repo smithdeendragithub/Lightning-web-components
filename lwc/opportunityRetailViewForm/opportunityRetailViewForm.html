@@ -25,7 +25,14 @@
             <lightning-accordion-section name="Opp_Info" label="Opportunity Information">
                 <div class="slds-grid">
                     <div class="slds-col slds-size_1-of-2">
-                        <input value="placeholder for green/yellow flag" disabled> </input>
+                        <!-- <input value="placeholder for green/yellow flag" disabled> </input> -->
+                        <div>
+                            <span class="slds-form-element__label">Sales Owned WSI On Related Order : </span>
+                        </div>
+
+                         <div>
+                            <c-salesownedwsionrelatedorderflag orderid="order__c"></c-salesownedwsionrelatedorderflag>
+                        </div>
                         <lightning-output-field field-name="ownerId"></lightning-output-field>
                         <lightning-output-field field-name="Sales_Channel__c"></lightning-output-field>
                         <lightning-output-field field-name="AccountId"></lightning-output-field>
