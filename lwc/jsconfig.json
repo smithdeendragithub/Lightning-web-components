@@ -3,23 +3,17 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/opportunityRetailViewForm": [
-                "opportunityRetailViewForm/opportunityRetailViewForm.js"
-            ],
             "c/orderList": [
                 "orderList/orderList.js"
             ],
             "c/parentComponent": [
                 "parentComponent/parentComponent.js"
             ],
+            "c/opportunityRetailViewForm": [
+                "opportunityRetailViewForm/opportunityRetailViewForm.js"
+            ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
-            ],
-            "c/sample_lwc": [
-                "sample_lwc/sample_lwc.js"
-            ],
-            "c/opportunityWorkStepIssues": [
-                "opportunityWorkStepIssues/opportunityWorkStepIssues.js"
             ]
         }
     },

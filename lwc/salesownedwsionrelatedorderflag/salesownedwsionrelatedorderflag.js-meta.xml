@@ -6,9 +6,8 @@
         <target>lightning__RecordPage</target>
     </targets>
     <targetConfigs>
-  
         <targetConfig targets="lightning__RecordPage">
-          <property name="orderid" type="String" />
+            <property name="orderid" type="String"/>
             <objects>
                 <object>Opportunity</object>
             </objects>

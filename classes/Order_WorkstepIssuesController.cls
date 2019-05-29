@@ -1,40 +1,41 @@
 public without sharing class Order_WorkstepIssuesController {
-	
+	@AuraEnabled
     public List<WorkStepIssue> wsi  {get; set;}
     public Order__c ord {get; set;}
 	
 	public class WorkStepIssue{
-		public Id Id {get;Set;}
-		public String Name {get;Set;}
-		public String Status {get;Set;}
-		public Datetime ExpectedFollowUpDate {get;Set;}
-		public String Reason {get;Set;}
-		public Datetime EstimatedResolution {get;Set;}
-		public String WorkstepName {get;Set;}
-		public Id WorkStepId {get;Set;}
-		public String SubOrderName {Get;Set;}
-		public String OrderName {get;Set;}
-		public Id SubOrderId {get;Set;}
-		public Id OrderId {Get;Set;}
-		public String OwnerName {get;Set;}
-		public String OwnerType {get;Set;}
-		public Id OwnerId {Get;Set;}
+
+		@AuraEnabled public Id Id {get;Set;}
+		@AuraEnabled public String Name {get;Set;}
+		@AuraEnabled public String Status {get;Set;}
+		@AuraEnabled public Datetime ExpectedFollowUpDate {get;Set;}
+		@AuraEnabled public String Reason {get;Set;}
+		@AuraEnabled public Datetime EstimatedResolution {get;Set;}
+		@AuraEnabled public String WorkstepName {get;Set;}
+		@AuraEnabled public Id WorkStepId {get;Set;}
+		@AuraEnabled public String SubOrderName {Get;Set;}
+		@AuraEnabled public String OrderName {get;Set;}
+		@AuraEnabled public Id SubOrderId {get;Set;}
+		@AuraEnabled public Id OrderId {Get;Set;}
+		@AuraEnabled public String OwnerName {get;Set;}
+		@AuraEnabled public String OwnerType {get;Set;}
+		@AuraEnabled public Id OwnerId {Get;Set;}
 		public WorkStepIssue(Workstep_Issue__c w){
-			Id = w.id;
-			Name = w.Name;
-			Status = w.Status__c;
-			ExpectedFollowUpDate = w.Expected_Follow_Up_Date__c;
-			Reason = w.Reason__c;
-			EstimatedResolution = w.Estimated_Resolution__c;
-			WorkstepName = w.Workstep__r.Name;
-			WorkStepId = w.Workstep__r.Id;
-			SubOrderName = w.Workstep__r.Sub_Order__r.Name;
-			OrderName = w.Workstep__r.Sub_Order__r.Order__r.Name;
-			SubOrderId = w.Workstep__r.Sub_Order__c;
-			OrderId = w.Workstep__r.Sub_Order__r.Order__c;
-			OwnerName = w.Owner.Name;
-			OwnerType = w.Owner.Type;
-			OwnerId = w.Owner.Id;
+			this.Id = w.id;
+			this.Name = w.Name;
+			this.Status = w.Status__c;
+			this.ExpectedFollowUpDate = w.Expected_Follow_Up_Date__c;
+			this.Reason = w.Reason__c;
+			this.EstimatedResolution = w.Estimated_Resolution__c;
+			this.WorkstepName = w.Workstep__r.Name;
+			this.WorkStepId = w.Workstep__r.Id;
+			this.SubOrderName = w.Workstep__r.Sub_Order__r.Name;
+			this.OrderName = w.Workstep__r.Sub_Order__r.Order__r.Name;
+			this.SubOrderId = w.Workstep__r.Sub_Order__c;
+			this.OrderId = w.Workstep__r.Sub_Order__r.Order__c;
+			this.OwnerName = w.Owner.Name;
+			this.OwnerType = w.Owner.Type;
+			this.OwnerId = w.Owner.Id;
 		}
 	}
 	
@@ -66,4 +67,17 @@ public without sharing class Order_WorkstepIssuesController {
 		
 		return wsis;
     }
+	@AuraEnabled(cacheable=true)
+	public static List<Workstep__c> deleteMethod(String orderID){
+		String whereClause = CustomSettingUtils.getSingleProcessConfigurationValue('Order_WorkstepIssuesWhereClause', 'User', false);
+		Set<Id> userIDs = new Map<Id, User>((List<User>)Database.query('select Id from User' + (string.isEmpty(whereClause) ? '' : (' where ' + whereClause)))).keyset();
+		
+		Set<Id> wsIDs = new Set<Id>();
+
+		for(Workstep__c ws : [select Id from Workstep__c where Order__c =: orderId]) wsIDs.add(ws.Id);
+			List<WorkStepIssue> wsis = new List<WorkStepIssue>();
+		List<Workstep__c> retVal = [select Id,Name from Workstep__c where Order__c =: orderID];
+		system.debug('retVal=> '+retVal);
+		return retVal;
+	}
 }
