@@ -1,3 +1,11 @@
 <template>
-    
+    <template if:true={hasrecords}>
+
+        <!-- <template for:each={sowsiList} for:item="contact">
+            <p key={contact.Id}>{contact.Name} => {contact.OwnerName} => {contact.ExpectedFollowUpDate}</p>
+        </template> -->
+        <lightning-datatable key-field="id" data={sowsiList} columns={columns} >
+        </lightning-datatable>
+    </template>
+
 </template>

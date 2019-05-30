@@ -45,7 +45,7 @@ public without sharing class Order_WorkstepIssuesController {
     	wsi = getWorkstepIssuesByOrderID(ord.Id);        
     }
  	
-    @AuraEnabled
+    @AuraEnabled(cacheable=true)
 	public static List<WorkStepIssue> getWorkstepIssuesByOrderID(Id orderID) {
 		String whereClause = CustomSettingUtils.getSingleProcessConfigurationValue('Order_WorkstepIssuesWhereClause', 'User', false);
 		
@@ -67,17 +67,28 @@ public without sharing class Order_WorkstepIssuesController {
 		
 		return wsis;
     }
-	@AuraEnabled(cacheable=true)
-	public static List<Workstep__c> deleteMethod(String orderID){
-		String whereClause = CustomSettingUtils.getSingleProcessConfigurationValue('Order_WorkstepIssuesWhereClause', 'User', false);
-		Set<Id> userIDs = new Map<Id, User>((List<User>)Database.query('select Id from User' + (string.isEmpty(whereClause) ? '' : (' where ' + whereClause)))).keyset();
+	// @AuraEnabled(cacheable=true)
+	// public static List<Workstep__c> deleteMethod(String orderID){
+	// 	String whereClause = CustomSettingUtils.getSingleProcessConfigurationValue('Order_WorkstepIssuesWhereClause', 'User', false);
+	// 	Set<Id> userIDs = new Map<Id, User>((List<User>)Database.query('select Id from User' + (string.isEmpty(whereClause) ? '' : (' where ' + whereClause)))).keyset();
 		
-		Set<Id> wsIDs = new Set<Id>();
+	// 	Set<Id> wsIDs = new Set<Id>();
 
-		for(Workstep__c ws : [select Id from Workstep__c where Order__c =: orderId]) wsIDs.add(ws.Id);
-			List<WorkStepIssue> wsis = new List<WorkStepIssue>();
-		List<Workstep__c> retVal = [select Id,Name from Workstep__c where Order__c =: orderID];
-		system.debug('retVal=> '+retVal);
-		return retVal;
-	}
+	// 	for(Workstep__c ws : [select Id from Workstep__c where Order__c =: orderId]) wsIDs.add(ws.Id);
+	// 	List<WorkStepIssue> wsis = new List<WorkStepIssue>();
+	// 	for(Workstep_Issue__c w : [SELECT Id, Name, Status__c, Expected_Follow_Up_Date__c, Reason__c, Estimated_Resolution__c, 
+	// 									        Workstep__r.Name, Workstep__r.Id, Workstep__r.Sub_Order__r.Name, Workstep__r.Sub_Order__r.Order__r.Name, 
+	// 									        Workstep__r.Sub_Order__c, Workstep__r.Sub_Order__r.Order__c, Owner.Name, Owner.Type, Owner.Id        
+	// 									            FROM Workstep_Issue__c 
+	// 									            WHERE Workstep__c in: wsIDs and OwnerId in: userIDs
+	// 												//and Workstep__r.Sub_Order__r.Order__r.Opportunity_Status__c = 'Sales Working'
+	// 												and Status__c = 'Open'])
+	// 	{
+	// 		wsis.add(new WorkStepIssue(w));
+	// 	}
+	// system.debug(JSON.serialize(wsis));
+	// 	List<Workstep__c> retVal = [select Id,Name from Workstep__c where Order__c =: orderID];
+	// 	system.debug('retVal=> '+retVal);
+	// 	return retVal;
+	// }
 }

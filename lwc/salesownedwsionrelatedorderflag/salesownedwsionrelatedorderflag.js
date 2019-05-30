@@ -1,5 +1,5 @@
 import { LightningElement, track, wire, api } from 'lwc';
-import relatedOrderList from '@salesforce/apex/Order_WorkstepIssuesController.deleteMethod';
+import relatedOrderList from '@salesforce/apex/Order_WorkstepIssuesController.getWorkstepIssuesByOrderID';
 
 export default class Salesownedwsionrelatedorderflag extends LightningElement {
     @api orderid;
