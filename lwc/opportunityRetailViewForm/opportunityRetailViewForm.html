@@ -10,365 +10,267 @@
 <template>
 
 
-        <lightning-record-view-form record-id={recordId} object-api-name="Opportunity">
-    
-            <!-- <lightning-accordion allow-multiple-sections-open> -->
-            <!-- <lightning-accordion-section name="Opp_Metrics" label="Opportunity Metrics" class="slds-is-open">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field field-name="KeyAges__c"></lightning-output-field>
-                            <lightning-output-field field-name="Zayo_Reference_Opportunity__c"></lightning-output-field>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field field-name="Slides__c"></lightning-output-field>
-                        </div>
+    <lightning-record-view-form record-id={recordId} object-api-name="Opportunity">
+
+        <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+            <!-- Opportunity Metrics -->
+            <lightning-accordion-section name="Opp_Metrics" label="Opportunity Metrics">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="KeyAges__c"
+                            class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" style="width: 95%;"
+                            field-name="Zayo_Reference_Opportunity__c"></lightning-output-field>
                     </div>
-                </lightning-accordion-section> -->
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="oppmetrics" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
-    
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">Opportunity Metrics</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="oppmetrics">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field field-name="KeyAges__c" class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" style="width: 95%;" field-name="Zayo_Reference_Opportunity__c" ></lightning-output-field>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Slides__c" style="width: 95%;"></lightning-output-field>
-                        </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Slides__c"
+                            style="width: 95%;"></lightning-output-field>
                     </div>
                 </div>
-            </div>
-    
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="oppinfo" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">Opportunity Information</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="oppinfo">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <!-- <input value="placeholder for green/yellow flag" disabled> </input> -->
-                            <div>
-                                <span class="slds-form-element__label">Sales Owned WSI On Related Order : <h1></h1></span>
-                            </div>
-                            <div class="slds-form-element_readonly lg-wdth">
-                                <c-salesownedwsionrelatedorderflag orderid={orderNumberId}>
-                                </c-salesownedwsionrelatedorderflag>
-                            </div>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="ownerId" ></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Sales_Channel__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="AccountId"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Care_Organization__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Name"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Type"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Oppty_Sub_Type__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Sell_To_Through__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Case__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="New_MRR_del__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CPQ_Total__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Current_MRR_del__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Turndown_Product__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Net_Difference__c"></lightning-output-field>
+            </lightning-accordion-section>
+
+            <!-- opportunity Information -->
+            <lightning-accordion-section name="oppinfo" label="Opportunity Information" class="slds-is-open">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <!-- <input value="placeholder for green/yellow flag" disabled> </input> -->
+                        <div>
+                            <span class="slds-form-element__label">Sales Owned WSI On Related Order : <h1></h1></span>
                         </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="StageName"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CloseDate"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="ForecastCategoryName"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Probability"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Contract_Signed_Date__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="LOA_Signed_By__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Customer_Requested_Due_Date__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Amount"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="NRR_Amount__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Term__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Contract_Term_End_Date__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Coterminous_Contract_Months__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Total_Contract_Amount__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CPE_Amount__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Opportunity_Product__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="UC_Specialist__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Related_Opportunites__c"></lightning-output-field>
+                        <div class="slds-form-element_readonly lg-wdth">
+                            <c-salesownedwsionrelatedorderflag orderid={orderNumberId}>
+                            </c-salesownedwsionrelatedorderflag>
                         </div>
-                        <!--                         <div class="slds-col slds-size_1-of-2">
-                                <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="KeyAges__c"></lightning-output-field>
-                                <lightning-output-field field-name="Zayo_Reference_Opportunity__c"></lightning-output-field>
-                            </div>
-                            <div class="slds-col slds-size_1-of-2">
-                                <lightning-output-field field-name="Slides__c"></lightning-output-field>
-                            </div> -->
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="ownerId">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Sales_Channel__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="AccountId">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Care_Organization__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Name">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Type">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Oppty_Sub_Type__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Sell_To_Through__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Case__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="New_MRR_del__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CPQ_Total__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Current_MRR_del__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Turndown_Product__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Net_Difference__c"></lightning-output-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="StageName">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CloseDate">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="ForecastCategoryName"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Probability">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Contract_Signed_Date__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="LOA_Signed_By__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Customer_Requested_Due_Date__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Amount">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="NRR_Amount__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Term__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Contract_Term_End_Date__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Coterminous_Contract_Months__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Total_Contract_Amount__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CPE_Amount__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Opportunity_Product__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="UC_Specialist__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Related_Opportunites__c"></lightning-output-field>
                     </div>
                 </div>
-            </div>
-    
-    
-    
-            <!-- <lightning-accordion-section name="Opp_Info" label="Opportunity Information">
-                    <div class="slds-grid">
-     
+            </lightning-accordion-section>
+            <!-- Opportunity Action Items -->
+            <lightning-accordion-section name="oppactit" label="Opportunity Action Items" class="slds-is-open">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Initial_Appointment_Set_Date__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Initial_Appointment_Held_Date__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Proposal_Meeting_Set_Date__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Proposal_Meeting_Held_Date__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Proposal_Letter__c"></lightning-output-field>
                     </div>
-                </lightning-accordion-section> -->
-    
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="oppacit" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">Opportunity Action Items</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="oppacit">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Initial_Appointment_Set_Date__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Initial_Appointment_Held_Date__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Proposal_Meeting_Set_Date__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Proposal_Meeting_Held_Date__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Proposal_Letter__c"></lightning-output-field>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="NextStep"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Vendor_Registration__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Business_Objectives__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Proposed_Solutions__c"></lightning-output-field>
-                        </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="NextStep">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Vendor_Registration__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Business_Objectives__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Proposed_Solutions__c"></lightning-output-field>
                     </div>
                 </div>
-            </div>
-    
-            <!-- <lightning-accordion-section name="Opp_Action_Items" label="Opportunity Action Items">
-                    <div class="slds-grid">
-    
+            </lightning-accordion-section>
+            <!-- Additional Information -->
+            <lightning-accordion-section name="addinfo" label="Additional Information" class="slds-is-open">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="LeadSource">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Referred_By__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Product_Interest__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Lead_Notes__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CampaignId">
+                        </lightning-output-field>
                     </div>
-                </lightning-accordion-section> -->
-    
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="addinfo" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">Additional Information</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="addinfo">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="LeadSource"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Referred_By__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Product_Interest__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Lead_Notes__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CampaignId"></lightning-output-field>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Winning_ICB__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Current_Provider__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Current_Provider_LD__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Description_Custom__c"></lightning-output-field>
-                        </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Winning_ICB__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Current_Provider__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Current_Provider_LD__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Description_Custom__c"></lightning-output-field>
                     </div>
                 </div>
-            </div>
-    
-            <!-- <lightning-accordion-section name="Opp_Addnl_info" label="Additional Information">
-                    <div class="slds-grid">
-    
+            </lightning-accordion-section>
+            <!-- E-Rate Information -->
+            <lightning-accordion-section name="erinfo" label="E-Rate Information" class="slds-is-open">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="E_Rate_Opportunity__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="E_Rate_Must_Win__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="E_Rate_Funding_Year__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Date_470_Filed__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Allowable_Contract_Date__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="X470__c">
+                        </lightning-output-field>
                     </div>
-                </lightning-accordion-section> -->
-    
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="erinfo" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">E-Rate Information</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="erinfo">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="E_Rate_Opportunity__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="E_Rate_Must_Win__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="E_Rate_Funding_Year__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Date_470_Filed__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Allowable_Contract_Date__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="X470__c"></lightning-output-field>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Service_Type__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Bid__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Bid_Results__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="E_Rate_Process_Status__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Reason_for_No_Bid__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="X470_Number_Link__c"></lightning-output-field>
-                        </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Service_Type__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Bid__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Bid_Results__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="E_Rate_Process_Status__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Reason_for_No_Bid__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="X470_Number_Link__c"></lightning-output-field>
                     </div>
                 </div>
-            </div>
-    
-            <!-- <lightning-accordion-section name="Opp_Erate_info" label="E-Rate Information">
-                    <div class="slds-grid">
-    
+            </lightning-accordion-section>
+            <!-- Split Opportunity Setup -->
+            <lightning-accordion-section name="spopse" label="Split Opportunity Setup" class="slds-is-open">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Split_Owner_1__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Split_Percent_1__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Split_Amount_1__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Opportunity_Parent__c"></lightning-output-field>
                     </div>
-                </lightning-accordion-section> -->
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="spopse" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">Split Opportunity Setup</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="spopse">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Split_Owner_1__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Split_Percent_1__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Split_Amount_1__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Opportunity_Parent__c"></lightning-output-field>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Split_Owner_2__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Split_Percent_2__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Split_Amount_2__c"></lightning-output-field>
-                        </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Split_Owner_2__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Split_Percent_2__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Split_Amount_2__c"></lightning-output-field>
                     </div>
                 </div>
-            </div>
-    
-            <!-- <lightning-accordion-section name="Opp_SplitOpp_setup" label="Split Opportunity Setup">
-                    <div class="slds-grid">
-    
+            </lightning-accordion-section>
+
+            <!-- Lost Opportunity Information -->
+            <lightning-accordion-section name="loopinfo" label="Lost Opportunity Information" class="slds-is-open">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Lost_Reason__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Current_Competitors__c"></lightning-output-field>
                     </div>
-                </lightning-accordion-section> -->
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="loopinfo" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">Lost Opportunity Information</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="loopinfo">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Lost_Reason__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Current_Competitors__c"></lightning-output-field>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Lost_Reason_Other_Explanation__c"></lightning-output-field>
-                        </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Lost_Reason_Other_Explanation__c"></lightning-output-field>
                     </div>
                 </div>
-            </div>
-    
-            <!-- <lightning-accordion-section name="Opp_lost" label="Lost Opportunity Information">
-                    <div class="slds-grid">
-    
+            </lightning-accordion-section>
+            <!-- Order Status -->
+            <lightning-accordion-section name="ordst" label="Order Status" class="slds-is-open">
+                <c-opp-order-list orderid={orderNumberId}>
+                </c-opp-order-list>
+            </lightning-accordion-section>
+            <!-- Sales Owned Workstep Issues -->
+            <lightning-accordion-section name="saowwois" label="Sales Owned Workstep Issues" class="slds-is-open">
+                <div class="lg-tablewidth">
+                    <c-opportunity-work-step-issues orderid={orderNumberId}></c-opportunity-work-step-issues>
+                </div>
+            </lightning-accordion-section>
+            <!-- System Information -->
+            <lightning-accordion-section name="sysinfo" label="System Information" class="slds-is-open">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CreatedById">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="LastModifiedById"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Account2__c">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Service_Country__c"></lightning-output-field>
                     </div>
-                </lightning-accordion-section> -->
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="ordst" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">Order Status</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="ordst">
-                    <div class="slds-grid">
-                        <div class="slds-grid">
-                            <div class="slds-col slds-size_1-of-1">
-                                placeholder for Order status: <input value="placeholder for Order status" disabled />
-                            </div>
-                        </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="SF_Opportunity_ID__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Legacy_Opportunity_ID__c"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="RecordTypeId">
+                        </lightning-output-field>
+
                     </div>
                 </div>
-            </div>
-    
-            <!-- <lightning-accordion-section name="Opp_Order_Status" label="Order Status">
-    
-                </lightning-accordion-section> -->
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="saowwois" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">Sales Owned Workstep Issues</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="saowwois">
-                    <div class="slds-grid">
-                        <div class="lg-tablewidth">
-                            <c-opportunity-work-step-issues orderid={orderNumberId}></c-opportunity-work-step-issues>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- <lightning-accordion-section name="Opp_sowi" label="Sales Owned Workstep Issues">
-                    <div class="slds-grid">
-    
-                    </div>
-                </lightning-accordion-section> -->
-    
-            <div class="slds-section slds-is-open">
-                <h3 class="slds-section__title slds-theme_shade">
-                    <button aria-controls="sysinfo" aria-expanded="true" class="slds-button slds-section__title-action">
-                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
-                            aria-hidden="true">
-                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
-                        </svg>
-                        <span class="slds-truncate" title="Section Title">System Information</span>
-                    </button>
-                </h3>
-                <div aria-hidden="false" class="slds-section__content" id="sysinfo">
-                    <div class="slds-grid">
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="CreatedById"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="LastModifiedById"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Account2__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Service_Country__c"></lightning-output-field>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2">
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="SF_Opportunity_ID__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Legacy_Opportunity_ID__c"></lightning-output-field>
-                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="RecordTypeId"></lightning-output-field>
-    
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- <lightning-accordion-section name="Opp_sysInfo" label="System Information">
-                    <div class="slds-grid">
-    
-                    </div> 
-                </lightning-accordion-section> -->
-            <!-- </lightning-accordion> -->
-        </lightning-record-view-form>
-    </template>
+            </lightning-accordion-section>
+
+
+        </lightning-accordion>
+    </lightning-record-view-form>
+</template>

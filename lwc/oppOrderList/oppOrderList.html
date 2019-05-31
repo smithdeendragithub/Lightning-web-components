@@ -1,3 +1,29 @@
 <template>
-    
+    <template if:true={hasrecords} iterator:or={orderlist}>
+        <div key={or.value.Id}>
+            <lightning-record-view-form record-id={or.value.Id} object-api-name="Order__c">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="Name" class="slds-form-element_readonly lg-wdth lg-wdth">
+                        </lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Status__c">
+                        </lightning-output-field>
+                        <lightning-output-field field-name="Data_Missing_Codes__c"
+                            class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Order_Pending_Date__c"></lightning-output-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-output-field field-name="Opportunity_Coordinator__c"
+                            class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
+                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                            field-name="Status_Reason__c">
+                        </lightning-output-field>
+                        <lightning-output-field field-name="Data_Missing_Comments__c"
+                            class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
+                    </div>
+                </div>
+            </lightning-record-view-form>
+        </div>
+    </template>
 </template>
