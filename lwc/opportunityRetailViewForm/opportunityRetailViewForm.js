@@ -11,12 +11,4 @@ export default class OpportunityRetailViewForm extends LightningElement {
     get orderNumberId(){
         return getFieldValue(this.orderrecord.data,OPPORTUNITY_ORDERID);
     }
-    
-    // renderedCallback(){
-    //     console.log('this.recordId' +this.recordId);
-    //     console.log(this.record);
-    //    // debugger;
-    // }
-    
-    // // debugger;
 }

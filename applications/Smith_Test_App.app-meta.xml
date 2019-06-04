@@ -6,11 +6,11 @@
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
-    <description>Test app for Smith</description>
+    <description>Lightning with added features</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>Smith Test App</label>
+    <label>Demo Lightning I</label>
     <navType>Standard</navType>
     <profileActionOverrides>
         <actionName>View</actionName>

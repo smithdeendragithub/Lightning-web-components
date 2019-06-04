@@ -5,7 +5,6 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Service Delivery</label>
-    <logo>RK_LinkedIn__Branding/Allstream_Banner_Logo.png</logo>
     <tabs>Workstep__c</tabs>
     <tabs>Workstep_Management_Page</tabs>
     <tabs>Provisioning_Product__c</tabs>

@@ -1,29 +1,130 @@
 <template>
-    <template if:true={hasrecords} iterator:or={orderlist}>
-        <div key={or.value.Id}>
-            <lightning-record-view-form record-id={or.value.Id} object-api-name="Order__c">
-                <div class="slds-grid">
-                    <div class="slds-col slds-size_1-of-2">
-                        <lightning-output-field field-name="Name" class="slds-form-element_readonly lg-wdth lg-wdth">
-                        </lightning-output-field>
-                        <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Status__c">
-                        </lightning-output-field>
-                        <lightning-output-field field-name="Data_Missing_Codes__c"
-                            class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
-                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
-                            field-name="Order_Pending_Date__c"></lightning-output-field>
+    <div if:false={showcard}>
+        <template if:true={hasrecords} iterator:or={orderlist}>
+            <div key={or.value.Id}>
+                <lightning-record-view-form record-id={or.value.Id} object-api-name="Order__c">
+                    <div class="slds-grid">
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name="Name"
+                                class="slds-form-element_readonly lg-wdth lg-wdth">
+                            </lightning-output-field>
+                            <lightning-output-field class="slds-form-element_readonly lg-wdth" field-name="Status__c">
+                            </lightning-output-field>
+                            <lightning-output-field field-name="Data_Missing_Codes__c"
+                                class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
+                            <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                                field-name="Order_Pending_Date__c"></lightning-output-field>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <lightning-output-field field-name="Opportunity_Coordinator__c"
+                                class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
+                            <lightning-output-field class="slds-form-element_readonly lg-wdth"
+                                field-name="Status_Reason__c">
+                            </lightning-output-field>
+                            <lightning-output-field field-name="Data_Missing_Comments__c"
+                                class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
+                        </div>
                     </div>
-                    <div class="slds-col slds-size_1-of-2">
-                        <lightning-output-field field-name="Opportunity_Coordinator__c"
-                            class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
-                        <lightning-output-field class="slds-form-element_readonly lg-wdth"
-                            field-name="Status_Reason__c">
-                        </lightning-output-field>
-                        <lightning-output-field field-name="Data_Missing_Comments__c"
-                            class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-output-field>
+                </lightning-record-view-form>
+            </div>
+        </template>
+    </div>
+
+    <!-- template to display sidebar with card -->
+    <div if:true={showcard}>
+        <template if:true={hasuirecs}>
+            <article class="slds-card slds-card--narrow">
+                <header class="slds-card__header slds-grid">
+                    <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <svg aria-hidden="true" class="slds-icon slds-icon-custom-custom15 slds-icon--small">
+                                <use xlink:href="/_slds/icons/custom-sprite/svg/symbols.svg#custom15"></use>
+                            </svg>
+                        </div>
+                        <div class="slds-media__body slds-truncate">
+                            <h2>
+                                <a href="javascript:void(0);" class="slds-text-link--reset">
+                                    <span class="slds-text-heading--small">Order status</span>
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+                    <!-- <div class="slds-no-flex">
+                          <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small" aria-haspopup="true">
+                            <svg aria-hidden="true" class="slds-button__icon">
+                              <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#down"></use>
+                            </svg>
+                            <span class="slds-assistive-text">More Options</span>
+                          </button>
+                        </div> -->
+                </header>
+
+                <div class="slds-card__body slds-text-align--Left">
+                    <div class="slds-grid slds-grid_align-space">
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                <span class="slds-form-element__label">Order Number</span>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-url class="slds-form-element__static" value={linkurl}
+                                        label={newlistrecs.fields.Name.value} tooltip="Open Order record"
+                                        target="_blank">
+                                    </lightning-formatted-url>
+                                </div>
+                            </div>
+                            <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                <span class="slds-form-element__label">Order Status</span>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-text class="slds-form-element__static"
+                                        value={newlistrecs.fields.Status__c.value}>
+                                    </lightning-formatted-text>
+                                </div>
+                            </div>
+                            <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                <span class="slds-form-element__label">Data Missing Codes</span>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-text class="slds-form-element__static"
+                                        value={newlistrecs.fields.Data_Missing_Codes__c.value}>
+                                    </lightning-formatted-text>
+                                </div>
+                            </div>
+                            <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                <span class="slds-form-element__label">Order Pending Date</span>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-date-time class="slds-form-element__static"
+                                        value={newlistrecs.fields.Order_Pending_Date__c.value}>
+                                    </lightning-formatted-date-time>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-2">
+                            <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                <span class="slds-form-element__label">Sales Support Specialist</span>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-text class="slds-form-element__static"
+                                        value={newlistrecs.fields.Opportunity_Coordinator__c.value}>
+                                    </lightning-formatted-text>
+                                </div>
+                            </div>
+                            <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                <span class="slds-form-element__label">Order Status Reason</span>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-text class="slds-form-element__static"
+                                        value={newlistrecs.fields.Status_Reason__c.value}>
+                                    </lightning-formatted-text>
+                                </div>
+                            </div>
+                            <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                <span class="slds-form-element__label">Data Missing Comments</span>
+                                <div class="slds-form-element__control">
+                                    <lightning-formatted-text class="slds-form-element__static"
+                                        value={newlistrecs.fields.Data_Missing_Comments__c.value}>
+                                    </lightning-formatted-text>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </lightning-record-view-form>
-        </div>
-    </template>
+            </article>
+        </template>
+    </div>
 </template>

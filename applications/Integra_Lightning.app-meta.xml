@@ -21,6 +21,15 @@
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Allstream</label>
     <navType>Standard</navType>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Opportunities</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+        <recordType>Opportunity.Retail</recordType>
+        <type>Flexipage</type>
+        <profile>Admin</profile>
+    </profileActionOverrides>
     <tabs>standard-home</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>standard-report</tabs>

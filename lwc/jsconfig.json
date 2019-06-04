@@ -1,29 +1,76 @@
 {
     "compilerOptions": {
-        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/orderList": [
-                "orderList/orderList.js"
+            "c/accountDetails": [
+                "accountDetails/accountDetails.js"
             ],
-            "c/parentComponent": [
-                "parentComponent/parentComponent.js"
+            "c/ejParentPage": [
+                "ejParentPage/ejParentPage.js"
+            ],
+            "c/errorPanel": [
+                "errorPanel/errorPanel.js"
+            ],
+            "c/ldsUtils": [
+                "ldsUtils/ldsUtils.js"
+            ],
+            "c/loadContractRenewalReport": [
+                "loadContractRenewalReport/loadContractRenewalReport.js"
+            ],
+            "c/navigationLink": [
+                "navigationLink/navigationLink.js"
+            ],
+            "c/oppOrderList": [
+                "oppOrderList/oppOrderList.js"
+            ],
+            "c/opportunityDetail": [
+                "opportunityDetail/opportunityDetail.js"
             ],
             "c/opportunityRetailViewForm": [
                 "opportunityRetailViewForm/opportunityRetailViewForm.js"
             ],
+            "c/opportunitySideBar": [
+                "opportunitySideBar/opportunitySideBar.js"
+            ],
+            "c/opportunitySplitInformation": [
+                "opportunitySplitInformation/opportunitySplitInformation.js"
+            ],
+            "c/opportunityTeamMemberInfo": [
+                "opportunityTeamMemberInfo/opportunityTeamMemberInfo.js"
+            ],
+            "c/opportunityWorkStepIssues": [
+                "opportunityWorkStepIssues/opportunityWorkStepIssues.js"
+            ],
+            "c/orderList": [
+                "orderList/orderList.js"
+            ],
+            "c/orderSummary": [
+                "orderSummary/orderSummary.js"
+            ],
+            "c/parentComponent": [
+                "parentComponent/parentComponent.js"
+            ],
+            "c/printOrderSummary": [
+                "printOrderSummary/printOrderSummary.js"
+            ],
+            "c/returnNavigationButton": [
+                "returnNavigationButton/returnNavigationButton.js"
+            ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
+            ],
+            "c/sample_lwc": [
+                "sample_lwc/sample_lwc.js"
+            ],
+            "c/solutionsTable": [
+                "solutionsTable/solutionsTable.js"
+            ],
+            "c/technicalForms": [
+                "technicalForms/technicalForms.js"
+            ],
+            "c/technicalFormsLocatiaonProduct": [
+                "technicalFormsLocatiaonProduct/technicalFormsLocatiaonProduct.js"
             ]
         }
-    },
-    "include": [
-        "**/*",
-        "../../../../../.sfdx/typings/lwc/**/*.d.ts"
-    ],
-    "typeAcquisition": {
-        "include": [
-            "jest"
-        ]
     }
 }

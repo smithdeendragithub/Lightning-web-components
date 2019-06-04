@@ -1,4 +1,33 @@
 <template>
     <!-- <H1>{orderid}</H1> -->
-    <img src={baseUrl}/>
+    <template if:true={showcard}>
+            
+        <article class="slds-card slds-card--narrow">
+            <header class="slds-card__header slds-grid">
+                <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <svg aria-hidden="true" class="slds-icon slds-icon-custom-custom18 slds-icon--small">
+                            <use xlink:href="/_slds/icons/custom-sprite/svg/symbols.svg#custom18"></use>
+                        </svg>
+                    </div>
+                    <div class="slds-media__body slds-truncate">
+                        <h2>
+                            <a href="javascript:void(0);" class="slds-text-link--reset">
+                                <span class="slds-text-heading--small">Sales Owned WSI On Related Order</span>
+                            </a>
+                        </h2>
+                    </div>
+                </div>
+            </header>
+            <div class="slds-card__body slds-text-align--Left">
+                <div class="slds-card__body slds-text-align--center">
+                    <img src={baseUrl} />
+                </div>
+            </div>
+        </article>
+    </template>
+    
+    <div if:false={showcard}>
+        <img src={baseUrl} />
+    </div>
 </template>
