@@ -36,7 +36,7 @@ export default class OppOrderList extends LightningElement {
     @wire(getRecord, { recordId: '$orderid', fields: FIELDS }) orderRec({ error, data }) {
 
         if (data !== undefined) {
-            console.log(JSON.stringify(data));
+            // console.log(JSON.stringify(data));
             this.hasuirecs = true;
             this.newlistrecs = data;
         }

@@ -1,3 +1,12 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-Jun-01
+* @Modified Date: 2019-Jun-01
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2837      Smithdeendra           Created/Initial Comments
+*
+-->
+
 <template>
     <div if:false={showcard}>
         <template if:true={hasrecords} iterator:or={orderlist}>
@@ -60,7 +69,7 @@
                 </header>
 
                 <div class="slds-card__body slds-text-align--Left">
-                    <div class="slds-grid slds-grid_align-space">
+                    <div class="slds-grid slds-gutters slds-grid_align-space">
                         <div class="slds-col slds-size_1-of-2">
                             <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
                                 <span class="slds-form-element__label">Order Number</span>
@@ -68,7 +77,7 @@
                                     <lightning-formatted-url class="slds-form-element__static" value={linkurl}
                                         label={newlistrecs.fields.Name.value} tooltip="Open Order record"
                                         target="_blank">
-                                    </lightning-formatted-url>
+                                    </lightning-formatted-url>  
                                 </div>
                             </div>
                             <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">

@@ -19,7 +19,7 @@ export default class OpportunityWorkStepIssues extends LightningElement {
     @track columns = columns;
     @track hasrecords = false;
     //wsirolist;
-
+    @api showcard = false;
 
     @wire(getWSIRelatedOrderList, { orderID: '$orderid' }) wiredwsirolist({ error, data }) {
         if (data) {
@@ -28,6 +28,7 @@ export default class OpportunityWorkStepIssues extends LightningElement {
             if(data !== undefined && data.length > 0){
                 this.hasrecords = true;
             }
+            console.log('check again=>'+data);
         } else if (error) {
             this.error = error;
             this.sowsiList = undefined;

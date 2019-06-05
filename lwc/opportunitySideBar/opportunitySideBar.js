@@ -8,7 +8,7 @@ export default class OpportunitySideBar extends LightningElement {
     @wire(getRecord, { recordId: '$recordId', fields: ['Opportunity.Order__c'] }) oppRecDetail({ error, data }) {
 
         if (data !== undefined) {
-            console.log(JSON.stringify(data));
+            // console.log(JSON.stringify(data));
             this.hasuirecs = true;
             this.newlistrecs = data;
         }

@@ -1,11 +1,224 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-May-28
+* @Modified Date: 2019-May-28
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2837      Smithdeendra           Created/Initial Comments
+*
+-->
+
 <template>
     <template if:true={hasrecords}>
 
         <!-- <template for:each={sowsiList} for:item="contact">
             <p key={contact.Id}>{contact.Name} => {contact.OwnerName} => {contact.ExpectedFollowUpDate}</p>
         </template> -->
-        <lightning-datatable key-field="id" data={sowsiList} columns={columns} >
-        </lightning-datatable>
+        <div if:false={showcard}>
+            <lightning-datatable key-field="id" data={sowsiList} columns={columns}>
+            </lightning-datatable>
+        </div>
+        <div if:true={showcard}>
+            <article class="slds-card slds-card--narrow">
+                <header class="slds-card__header slds-grid">
+                    <div class="slds-media slds-media--center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <svg aria-hidden="true" class="slds-icon slds-icon-custom-custom14 slds-icon--small">
+                                <use xlink:href="/_slds/icons/custom-sprite/svg/symbols.svg#custom14"></use>
+                            </svg>
+                        </div>
+                        <div class="slds-media__body slds-truncate">
+                            <h2>
+                                <a href="javascript:void(0);" class="slds-text-link--reset">
+                                    <span class="slds-text-heading--small">Sales Owned Workstep Issues</span>
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+                    <!-- <div class="slds-no-flex">
+                                  <button class="slds-button slds-button--icon-border-filled slds-button--icon-x-small" aria-haspopup="true">
+                                    <svg aria-hidden="true" class="slds-button__icon">
+                                      <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#down"></use>
+                                    </svg>
+                                    <span class="slds-assistive-text">More Options</span>
+                                  </button>
+                                </div> -->
+                </header>
+
+
+                <ul class="slds-has-dividers_around-space">
+                    <template for:each={sowsiList} for:item="rec">
+                        <!-- <li class="slds-item" key={rec.id}>
+                            <article class="slds-tile slds-tile_board">
+                                <h3 class="slds-tile__title slds-truncate" title={rec.Order}>
+                                    <a href='/${rec.Id}'>{rec.Order}</a>
+                                </h3>
+                                <div class="slds-grid slds-gutters_medium slds-grid_align-space">
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">Order</span>
+                                            <div class="slds-form-element__control">
+
+                                                <lightning-formatted-text class="slds-form-element__static"
+                                                    value={rec.Order}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">SubOrder</span>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text class="slds-form-element__static"
+                                                    value={rec.SubOrderName}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">Workstep Issue</span>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text class="slds-form-element__static"
+                                                    value={rec.Name}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">Workstep</span>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text class="slds-form-element__static"
+                                                    value={rec.WorkstepName}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">Estimated Resolution</span>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-date-time class="slds-form-element__static"
+                                                    value={rec.EstimatedResolution}>
+                                                </lightning-formatted-date-time>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">Reason</span>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text class="slds-form-element__static"
+                                                    value={rec.WorkstepName}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">Status</span>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text class="slds-form-element__static"
+                                                    value={rec.Status}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">Owner</span>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-text class="slds-form-element__static"
+                                                    value={rec.OwnerName}>
+                                                </lightning-formatted-text>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                                            <span class="slds-form-element__label">Expected Followup Date</span>
+                                            <div class="slds-form-element__control">
+                                                <lightning-formatted-date-time class="slds-form-element__static"
+                                                    value={rec.ExpectedFollowUpDate}>
+                                                </lightning-formatted-date-time>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </article>
+                        </li> -->
+
+                        <li class="slds-item" key={rec.id}>
+                            <article class="slds-tile slds-tile_board">
+                                <div class="slds-tile__detail">
+
+                                    <div class="slds-text-body_regular">
+                                        Order :
+                                        <lightning-formatted-text class="slds-text-heading_small" value={rec.OrderName}>
+                                        </lightning-formatted-text>
+                                    </div>
+
+                                    <div class="slds-text-body_regular">
+                                        SubOrder :
+                                        <lightning-formatted-text class="slds-text-heading_small"
+                                            value={rec.SubOrderName}>
+                                        </lightning-formatted-text>
+                                    </div>
+
+                                    <div class="slds-text-body_regular">
+                                        Workstep Issue :
+                                        <lightning-formatted-text class="slds-text-heading_small" value={rec.Name}>
+                                        </lightning-formatted-text>
+                                    </div>
+
+                                    <div class="slds-text-body_regular">
+                                        Workstep :
+                                        <lightning-formatted-text class="slds-text-heading_small"
+                                            value={rec.WorkstepName}>
+                                        </lightning-formatted-text>
+                                    </div>
+
+                                    <div class="slds-text-body_regular">
+                                        Reason :
+                                        <lightning-formatted-text class="slds-text-heading_small" value={rec.Reason}>
+                                        </lightning-formatted-text>
+                                    </div>
+
+                                    <div class="slds-text-body_regular">
+                                        Status :
+                                        <lightning-formatted-text class="slds-text-heading_small" value={rec.Status}>
+                                        </lightning-formatted-text>
+                                    </div>
+
+                                    <div class="slds-text-body_regular">
+                                        Owner :
+                                        <lightning-formatted-text class="slds-text-heading_small" value={rec.OwnerName}>
+                                        </lightning-formatted-text>
+                                    </div>
+
+                                    <div class="slds-text-body_regular">
+                                        Expected Followup Date :
+                                        <lightning-formatted-date-time class="slds-text-heading_small"
+                                            value={rec.ExpectedFollowUpDate}>
+                                        </lightning-formatted-date-time>
+                                    </div>
+
+                                    <div class="slds-text-body_regular">
+                                        Estimated Resolution :
+                                        <lightning-formatted-date-time class="slds-text-heading_small"
+                                            value={rec.EstimatedResolution}>
+                                        </lightning-formatted-date-time>
+                                    </div>
+
+
+
+                                </div>
+                            </article>
+                        </li>
+                    </template>
+                </ul>
+                <!-- </template> -->
+            </article>
+        </div>
+
     </template>
 
 </template>
