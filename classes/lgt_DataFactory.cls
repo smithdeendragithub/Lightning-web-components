@@ -2,6 +2,7 @@
 * @Author: Smithdeendra A P
 * @Created Date: 02-Jun-2019
 * @Modified Date: 02-Jun-2019
+* @TestClass: lgt_DataFactory_Test
 * Version     JIRA                  Author                        Comments
 * 1.0         SEAL-2879             Smithdeendra A P              Initial Comments  
 */
