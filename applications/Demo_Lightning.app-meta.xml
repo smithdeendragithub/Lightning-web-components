@@ -11,7 +11,7 @@
     </actionOverrides>
     <brand>
         <headerColor>#0070D2</headerColor>
-        <logo>ALLSTR_GE_4cP1</logo>
+        <logo>ALLSTR_GE_4cP</logo>
         <logoVersion>1</logoVersion>
         <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
     </brand>
@@ -54,5 +54,4 @@
     <tabs>Service__c</tabs>
     <tabs>Billing_Run__c</tabs>
     <uiType>Lightning</uiType>
-    <utilityBar>Smith_Test_App_UtilityBar</utilityBar>
 </CustomApplication>
