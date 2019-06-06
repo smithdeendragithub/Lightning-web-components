@@ -7,8 +7,8 @@
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-        <property name="orderid" type="String"/>
-        <property name="showcard" type="Boolean" default="false"/>
+            <property name="orderid" type="String"/>
+            <property name="showcard" type="Boolean" default="false"/>
             <objects>
                 <object>Opportunity</object>
             </objects>

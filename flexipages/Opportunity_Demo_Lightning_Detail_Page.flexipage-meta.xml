@@ -8,20 +8,16 @@
             </componentInstanceProperties>
             <componentInstanceProperties>
                 <name>numVisibleActions</name>
-                <value>9</value>
+                <value>7</value>
             </componentInstanceProperties>
             <componentName>force:highlightsPanel</componentName>
         </componentInstances>
         <componentInstances>
             <componentInstanceProperties>
-                <name>hideUpdateButton</name>
-                <value>false</value>
+                <name>hideHeader</name>
+                <value>true</value>
             </componentInstanceProperties>
-            <componentInstanceProperties>
-                <name>variant</name>
-                <value>linear</value>
-            </componentInstanceProperties>
-            <componentName>runtime_sales_pathassistant:pathAssistant</componentName>
+            <componentName>force:relatedListQuickLinksContainer</componentName>
         </componentInstances>
         <name>header</name>
         <type>Region</type>

@@ -15,9 +15,6 @@
             "c/opportunityWorkStepIssues": [
                 "opportunityWorkStepIssues/opportunityWorkStepIssues.js"
             ],
-            "c/orderList": [
-                "orderList/orderList.js"
-            ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
             ]

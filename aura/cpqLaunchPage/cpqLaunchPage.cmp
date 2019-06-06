@@ -1,9 +1,14 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-Jun-04
+* @Modified Date: 2019-Jun-04
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2837      Smithdeendra           Created/Initial Comments
+*
+-->
 <aura:component implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,lightning:isUrlAddressable">
 
   <ltng:require styles="{!$Resource.QuickActionModalStyle}" />
-  <!-- <div>
-        Place holder for CPQ
-      </div> -->
   <div class="all_Center slds-grid slds-grid_vertical slds-gutters">
     <div class="slds-col">
       <article class="slds-card">
@@ -30,86 +35,7 @@
         </div>
         <div class="slds-card__body slds-card__body_inner">Place holder for CPQ related components</div>
       </article>
-    
-  </div>
-  <!-- <div class="slds-col">
-    <article class="slds-card">
-      <div class="slds-card__header slds-grid">
-        <header class="slds-media slds-media_center slds-has-flexi-truncate">
-          <div class="slds-media__figure">
-            <span class="slds-icon_container slds-icon-standard-account" title="account">
 
-              <lightning:icon iconName="standard:account" size="medium" alternativeText="CPQ" />
-
-              <span class="slds-assistive-text">
-                <h1>Place Holder for CPQ</h1>
-              </span>
-            </span>
-          </div>
-          <div class="slds-media__body">
-            <h2 class="slds-card__header-title">
-              <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Place Holder for CPQ">
-                <span>Place Holder for CPQ</span>
-              </a>
-            </h2>
-          </div>
-        </header>
-      </div>
-      <div class="slds-card__body slds-card__body_inner">Place holder for CPQ related components</div>
-    </article>
-  </div>
-  <div class="slds-col">
-
-    <article class="slds-card">
-      <div class="slds-card__header slds-grid">
-        <header class="slds-media slds-media_center slds-has-flexi-truncate">
-          <div class="slds-media__figure">
-            <span class="slds-icon_container slds-icon-standard-account" title="account">
-
-              <lightning:icon iconName="standard:account" size="medium" alternativeText="CPQ" />
-
-              <span class="slds-assistive-text">
-                <h1>Place Holder for CPQ</h1>
-              </span>
-            </span>
-          </div>
-          <div class="slds-media__body">
-            <h2 class="slds-card__header-title">
-              <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Place Holder for CPQ">
-                <span>Place Holder for CPQ</span>
-              </a>
-            </h2>
-          </div>
-        </header>
-      </div>
-      <div class="slds-card__body slds-card__body_inner">Place holder for CPQ related components</div>
-    </article>
-  </div>
-  <div class="slds-col ">
-    <article class="slds-card">
-      <div class="slds-card__header slds-grid">
-        <header class="slds-media slds-media_center slds-has-flexi-truncate">
-          <div class="slds-media__figure">
-            <span class="slds-icon_container slds-icon-standard-account" title="account">
-
-              <lightning:icon iconName="standard:account" size="medium" alternativeText="CPQ" />
-
-              <span class="slds-assistive-text">
-                <h1>Place Holder for CPQ</h1>
-              </span>
-            </span>
-          </div>
-          <div class="slds-media__body">
-            <h2 class="slds-card__header-title">
-              <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Place Holder for CPQ">
-                <span>Place Holder for CPQ</span>
-              </a>
-            </h2>
-          </div>
-        </header>
-      </div>
-      <div class="slds-card__body slds-card__body_inner">Place holder for CPQ related components</div>
-    </article>
-  </div> -->
+    </div>
   </div>
 </aura:component>
