@@ -1,0 +1,985 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-May-23
+* @Modified Date: 2019-May-23
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2837      Smithdeendra           Created/Initial Comments
+*
+-->
+
+<template>
+
+
+    <!-- <lightning-record-view-form record-id={recordId} object-api-name="Opportunity"> -->
+
+        <lightning-accordion if:true={hasuirecs} allow-multiple-sections-open active-section-name={activeSections}>
+            <!-- Opportunity Metrics -->
+            <lightning-accordion-section name="Opp_Metrics" label="Opportunity Metrics">
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Key Ages</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-rich-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.KeyAges__c.value}>
+                                </lightning-formatted-rich-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Zayo Reference Opportunity</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Zayo_Reference_Opportunity__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Slides</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-rich-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Slides__c.value}>
+                                </lightning-formatted-rich-text>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text field-name="KeyAges__c"
+                                    class="slds-form-element_readonly lg-wdth lg-wdth"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" style="width: 95%;"
+                                    field-name="Zayo_Reference_Opportunity__c"></lightning-formatted-text>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Slides__c"
+                                    style="width: 95%;"></lightning-formatted-text>
+                            </div> -->
+                </div>
+            </lightning-accordion-section>
+
+            <!-- opportunity Information -->
+            <lightning-accordion-section name="oppinfo" label="Opportunity Information" class="slds-is-open">
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Sales Owned WSI On Related Order</span>
+                            <div class="slds-form-element__control">
+                                <c-salesownedwsionrelatedorderflag orderid={newlistrecs.fields.Order__c.value}>
+                                </c-salesownedwsionrelatedorderflag>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Opportunity Owner</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Owner.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Sales Channel</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Sales_Channel__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Account Name</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Account.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Care Organization</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Care_Organization__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Opportunity Name</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Name.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Customer Type</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Type.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Opportunity Type</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Oppty_Sub_Type__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Sell To/Through</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Sell_To_Through__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Case Number</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Case__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">New MRR</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.New_MRR_del__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">CPQ Total</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.CPQ_Total__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Turndown - Writedown MRR</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Current_MRR_del__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Turndown_Product</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Turndown_Product__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Net Difference</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Net_Difference__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Stage</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.StageName.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Close Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.CloseDate.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Forecast Category</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.ForecastCategoryName.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Probability (%)</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Probability.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Contract Signed Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Contract_Signed_Date__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Contract Signed By</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.LOA_Signed_By__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Customer Requested Due Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Customer_Requested_Due_Date__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">MRR Amount</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Amount.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">NRR/NRI</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.NRR_Amount__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Contract Term</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Term__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Contract Term End Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Contract_Term_End_Date__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Coterminous Contract Months</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Coterminous_Contract_Months__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Total Contract Amount</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Total_Contract_Amount__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">CPE Amount/NRO</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.CPE_Amount__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Opportunity Product</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Opportunity_Product__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">UC Specialist</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.UC_Specialist__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Related Opportunities</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Related_Opportunites__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="slds-col slds-size_1-of-2"> 
+                                 <div>
+                                    <span class="slds-form-element__label">Sales Owned WSI On Related Order : <h1></h1></span>
+                                </div>
+                                <div class="slds-form-element_readonly lg-wdth">
+                                    <c-salesownedwsionrelatedorderflag orderid={orderNumberId}>
+                                    </c-salesownedwsionrelatedorderflag>
+                                </div>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="OwnerId">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Sales_Channel__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="AccountId">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Care_Organization__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Name">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Type">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Oppty_Sub_Type__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Sell_To_Through__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Case__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="New_MRR_del__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="CPQ_Total__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Current_MRR_del__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Turndown_Product__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Net_Difference__c"></lightning-formatted-text>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="StageName">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="CloseDate">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="ForecastCategoryName"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Probability">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Contract_Signed_Date__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="LOA_Signed_By__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Customer_Requested_Due_Date__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Amount">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="NRR_Amount__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Term__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Contract_Term_End_Date__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Coterminous_Contract_Months__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Total_Contract_Amount__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="CPE_Amount__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Opportunity_Product__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="UC_Specialist__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Related_Opportunites__c"></lightning-formatted-text>
+                            </div> -->
+                </div>
+            </lightning-accordion-section>
+            <!-- Opportunity Action Items -->
+            <lightning-accordion-section name="oppactit" label="Opportunity Action Items" class="slds-is-open">
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Initial Appointment Set Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Initial_Appointment_Set_Date__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Initial Appointment Held Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Initial_Appointment_Held_Date__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Proposal Meeting Set Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Proposal_Meeting_Set_Date__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Proposal Meeting Held Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Proposal_Meeting_Held_Date__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Proposal Letter</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Proposal_Letter__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Next Step</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.NextStep.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Vendor Registration</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Vendor_Registration__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Business Objectives</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Business_Objectives__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Proposed Solutions</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Proposed_Solutions__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Initial_Appointment_Set_Date__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Initial_Appointment_Held_Date__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Proposal_Meeting_Set_Date__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Proposal_Meeting_Held_Date__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Proposal_Letter__c"></lightning-formatted-text>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="NextStep">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Vendor_Registration__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Business_Objectives__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Proposed_Solutions__c"></lightning-formatted-text>
+                            </div> -->
+                </div>
+            </lightning-accordion-section>
+            <!-- Additional Information -->
+            <lightning-accordion-section name="addinfo" label="Additional Information" class="slds-is-open">
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Lead Source</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.LeadSource.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Referred By</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Referred_By__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Lead Product Interest</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Product_Interest__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Lead Notes</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Lead_Notes__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Primary Campaign Source</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Campaign.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Winning ICB</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Winning_ICB__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Current Provider Local</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Current_Provider__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Current LD Provider</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Current_Provider_LD__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Lead Description</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Description_Custom__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="LeadSource">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Referred_By__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Product_Interest__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Lead_Notes__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="CampaignId">
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Winning_ICB__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Current_Provider__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Current_Provider_LD__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Description_Custom__c"></lightning-formatted-text>
+                            </div> -->
+                </div>
+            </lightning-accordion-section>
+            <!-- E-Rate Information -->
+            <lightning-accordion-section name="erinfo" label="E-Rate Information" class="slds-is-open">
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">E - Rate Opportunity</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.E_Rate_Opportunity__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">E-Rate Must Win</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.E_Rate_Must_Win__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">E-Rate Funding Year</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.E_Rate_Funding_Year__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Date 470 Filed</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Date_470_Filed__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Allowable Contract Date</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-date-time class="slds-form-element__static"
+                                    value={newlistrecs.fields.Allowable_Contract_Date__c.value}>
+                                </lightning-formatted-date-time>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">470#</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.X470__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Service Type</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Service_Type__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Bid</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Bid__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Bid Results</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Bid_Results__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">E-Rate Process Status</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.E_Rate_Process_Status__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Reason for No Bid</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Reason_for_No_Bid__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">470 Number Link</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.X470_Number_Link__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="E_Rate_Opportunity__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="E_Rate_Must_Win__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="E_Rate_Funding_Year__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Date_470_Filed__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Allowable_Contract_Date__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="X470__c">
+                                </lightning-formatted-text>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Service_Type__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Bid__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Bid_Results__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="E_Rate_Process_Status__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Reason_for_No_Bid__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="X470_Number_Link__c"></lightning-formatted-text>
+                            </div> -->
+                </div>
+            </lightning-accordion-section>
+            <!-- Split Opportunity Setup -->
+            <lightning-accordion-section name="spopse" label="Split Opportunity Setup" class="slds-is-open">
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Split Owner</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Split_Owner_1__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Split % 1</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Split_Percent_1__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Split Amount 1</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Split_Amount_1__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Opportunity Parent</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Opportunity_Parent__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Split Sub Owner 1</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Split_Owner_2__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Split % 2</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Split_Percent_2__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Split Amount 2</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Split_Amount_2__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Split_Owner_1__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Split_Percent_1__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Split_Amount_1__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Opportunity_Parent__c"></lightning-formatted-text>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Split_Owner_2__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Split_Percent_2__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Split_Amount_2__c"></lightning-formatted-text>
+                            </div> -->
+                </div>
+            </lightning-accordion-section>
+
+            <!-- Lost Opportunity Information -->
+            <lightning-accordion-section name="loopinfo" label="Lost Opportunity Information" class="slds-is-open">
+                <div class="slds-grid">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Lost Reason</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Lost_Reason__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Competitors</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Current_Competitors__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Lost Reason Other Explanation</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Lost_Reason_Other_Explanation__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div
+                                    class="slds-col slds-size_1-of-2">
+                                    <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                        field-name="Lost_Reason__c">
+                                    </lightning-formatted-text>
+                                    <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                        field-name="Current_Competitors__c"></lightning-formatted-text>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Lost_Reason_Other_Explanation__c"></lightning-formatted-text>
+                            </div> -->
+                </div>
+            </lightning-accordion-section>
+            <!-- Order Status -->
+            <lightning-accordion-section name="ordst" label="Order Status" class="slds-is-open">
+                <c-opp-order-list orderid={newlistrecs.fields.Order__c.value}>
+                </c-opp-order-list>
+            </lightning-accordion-section>
+            <!-- Sales Owned Workstep Issues -->
+            <lightning-accordion-section name="saowwois" label="Sales Owned Workstep Issues" class="slds-is-open">
+                <div class="lg-tablewidth">
+                    <c-opportunity-work-step-issues orderid={newlistrecs.fields.Order__c.value}></c-opportunity-work-step-issues>
+                </div>
+            </lightning-accordion-section>
+            <!-- System Information -->
+            <lightning-accordion-section name="sysinfo" label="System Information" class="slds-is-open">
+                <div class="slds-grid">
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Created By</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.CreatedBy.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Last Modified By</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.LastModifiedBy.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Account2</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Account2__r.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Service Country</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Service_Country__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">SF Opportunity ID</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.SF_Opportunity_ID__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Legacy Opportunity ID</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.Legacy_Opportunity_ID__c.value}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                        <div class="slds-form-element_readonly lg-wdth slds-form-element slds-form-element_stacked">
+                            <span class="slds-form-element__label">Opportunity Record Type</span>
+                            <div class="slds-form-element__control">
+                                <lightning-formatted-text class="slds-form-element__static"
+                                    value={newlistrecs.fields.RecordType.displayValue}>
+                                </lightning-formatted-text>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="CreatedById">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="LastModifiedById"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="Account2__c">
+                                </lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Service_Country__c"></lightning-formatted-text>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="SF_Opportunity_ID__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth"
+                                    field-name="Legacy_Opportunity_ID__c"></lightning-formatted-text>
+                                <lightning-formatted-text class="slds-form-element_readonly lg-wdth" field-name="RecordTypeId">
+                                </lightning-formatted-text>
+        
+                            </div> -->
+                </div>
+            </lightning-accordion-section>
+
+
+        </lightning-accordion>
+    <!-- </lightning-record-view-form> -->
+</template>

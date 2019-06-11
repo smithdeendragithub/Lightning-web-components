@@ -1,13 +1,32 @@
 {
     "compilerOptions": {
+        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/orderList": [
-                "orderList/orderList.js"
+            "c/oppOrderList": [
+                "oppOrderList/oppOrderList.js"
             ],
-            "c/parentComponent": [
-                "parentComponent/parentComponent.js"
+            "c/opportunityRetailViewForm": [
+                "opportunityRetailViewForm/opportunityRetailViewForm.js"
+            ],
+            "c/opportunitySideBar": [
+                "opportunitySideBar/opportunitySideBar.js"
+            ],
+            "c/opportunityWorkStepIssues": [
+                "opportunityWorkStepIssues/opportunityWorkStepIssues.js"
+            ],
+            "c/salesownedwsionrelatedorderflag": [
+                "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
             ]
         }
+    },
+    "include": [
+        "**/*",
+        "../../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
     }
 }

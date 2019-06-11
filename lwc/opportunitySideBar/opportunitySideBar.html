@@ -1,0 +1,25 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-Jun-03
+* @Modified Date: 2019-Jun-03
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2837      Smithdeendra           Created/Initial Comments
+*
+-->
+
+<template>
+    <div class="slds-grid slds-grid_vertical" if:true={hasuirecs}>
+        <div class="slds-col slds-m-bottom_small">
+            <c-salesownedwsionrelatedorderflag orderid={newlistrecs.fields.Order__c.value} showcard=true>
+            </c-salesownedwsionrelatedorderflag>
+        </div>
+        <div class="slds-col slds-m-bottom_small">
+            <c-opp-order-list orderid={newlistrecs.fields.Order__c.value} showcard=true>
+            </c-opp-order-list>
+        </div>
+        <div class="slds-col">
+            <c-opportunity-work-step-issues orderid={newlistrecs.fields.Order__c.value} showcard=true>
+            </c-opportunity-work-step-issues>
+        </div>
+    </div>
+</template>

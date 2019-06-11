@@ -5,7 +5,6 @@
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
     <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
     <label>Sales Product Catalog</label>
-    <logo>RK_LinkedIn__Branding/Allstream_Banner_Logo.png</logo>
     <tabs>Market_Area__c</tabs>
     <tabs>Product_Family__c</tabs>
     <tabs>SalesProduct__c</tabs>

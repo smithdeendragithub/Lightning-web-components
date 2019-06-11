@@ -3,7 +3,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Opportunities</content>
+        <content>AllStream_Opportunity_Detail_Page</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -18,9 +18,10 @@
     <description>AllStream Lightning App</description>
     <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
-    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
     <label>Allstream</label>
     <navType>Standard</navType>
+    <setupExperience>all</setupExperience>
     <tabs>standard-home</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>standard-report</tabs>

@@ -1,4 +1,0 @@
-<aura:component >
-	<div> helloWorld!</div>
-    <lightning:button onClick="myAction"/>
-</aura:component>

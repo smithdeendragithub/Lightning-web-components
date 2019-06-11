@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
-    <defaultLandingTab>standard-home</defaultLandingTab>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Opportunity_Demo_Lightning_Detail_Page</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Opportunity</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <logo>ALLSTR_GE_4cP</logo>
+        <logoVersion>1</logoVersion>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <description>NOT for UAT! For Admins only, mainly used to demo the additional lightning features to end users and receive feedback from them.</description>
+    <formFactors>Large</formFactors>
     <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
-    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
-    <label>Allstream</label>
+    <isNavPersonalizationDisabled>true</isNavPersonalizationDisabled>
+    <label>Demo Lightning</label>
+    <navType>Standard</navType>
+    <setupExperience>all</setupExperience>
+    <tabs>standard-home</tabs>
     <tabs>standard-Dashboard</tabs>
     <tabs>standard-report</tabs>
-    <tabs>standard-Chatter</tabs>
+    <tabs>standard-Feed</tabs>
     <tabs>standard-Forecasting3</tabs>
     <tabs>standard-File</tabs>
     <tabs>standard-Lead</tabs>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
     <tabs>standard-Opportunity</tabs>
-    <tabs>standard-Console</tabs>
-    <tabs>standard-Answers</tabs>
-    <tabs>standard-Workspace</tabs>
-    <tabs>standard-ContentSearch</tabs>
     <tabs>Building__c</tabs>
     <tabs>Location__c</tabs>
-    <tabs>ICB__c</tabs>
-    <tabs>Georesults_business__c</tabs>
-    <tabs>Georesults_family__c</tabs>
     <tabs>Tips</tabs>
     <tabs>Building_Contact__c</tabs>
-    <tabs>Integration_Error__c</tabs>
     <tabs>SFDC_Help_Desk</tabs>
     <tabs>Network_Maps</tabs>
     <tabs>Order_Property__c</tabs>
@@ -33,9 +44,7 @@
     <tabs>Custom_List_View__c</tabs>
     <tabs>Access_Duration__c</tabs>
     <tabs>Marketing_Content</tabs>
-    <tabs>External_User__c</tabs>
     <tabs>Integra_Contract__c</tabs>
-    <tabs>Call_Center_Settings</tabs>
     <tabs>Expense__c</tabs>
     <tabs>Allstream_Service_Order__c</tabs>
     <tabs>Allstream_Service_Order_Item__c</tabs>
@@ -44,4 +53,5 @@
     <tabs>AMP_Detail__c</tabs>
     <tabs>Service__c</tabs>
     <tabs>Billing_Run__c</tabs>
+    <uiType>Lightning</uiType>
 </CustomApplication>
