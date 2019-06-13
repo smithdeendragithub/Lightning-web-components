@@ -11,8 +11,7 @@ public with sharing class OrderTriggers {
             if(!isDelete){
                 Map<Id, Order__c> tOldMap = isUpdate ? new Map<Id, Order__c>(tOld) : new Map<Id, Order__c>();
                 if(isUpdate){
-                    checkOpportunityMove(tNew, tOldMap);
-                    canUpdateSalesComplete(tNew, tOldMap);                    
+                    checkOpportunityMove(tNew, tOldMap);                    
                 }
                 checkForCLLI(tNew, tOldMap);
                 setProjectDate(tNew, tOldMap);
@@ -32,8 +31,10 @@ public with sharing class OrderTriggers {
                     handleOwnershipChanges(tNew, tOldMap);
                     updateExpeditedAndCancelledSubOrder(tNew, tOldMap);
                     handleFeatureChanges(tNew, tOldMap);
-                    updateCaseStatus(tNew, tOldMap); //commented out for March 13 deployment
-                 }                                         
+                 }else{
+                //after insert, check the order is created from Case and if yes, copy the attachments from Case
+                    //handleOrdersFromCase(tNew, tOldMap);
+                }                                           
                 createWorkstepsIfNeeded(tNew, tOldMap);
                 evaluateOrder(tNew, tOldMap);
                 handleContractRenewalOrderType(tNew, tOldMap);                
@@ -335,7 +336,60 @@ public with sharing class OrderTriggers {
             }
         }
     }
+ /*   
+    private static void handleOrdersFromCase(List<Order__c> tNew, Map<Id, Order__c> tOldMap){
+        Map<Id, Id> caseOrders= new Map<Id, Id>();
+        Map<Id, String> feat = new Map<Id, String>();
+        List<Case> caseList = new List<Case>();
+        
+        Id integrationOnlyRecordTypeID = OrderUtils.IntegrationOnlyRecordTypeID;
+
+        for(Order__c oNew : tNew){
+            if(oNew.recordTypeId == integrationOnlyRecordTypeID && oNew.Case__c != null){ 
+                caseOrders.put(oNew.Case__c, oNew.Id);            
+            }
+        }
+        
+        List<Attachment> attList = [select id, name, body,parentid  from Attachment where ParentId in :caseOrders.keyset()];
+        List<Attachment> insertAttList = new List<Attachment>(); 
+
+        if(attList != null && attList.size()>0){
+            for(Attachment a: attList){    
+               Attachment att = new Attachment(name = a.name, body = a.body, parentid = caseOrders.get(a.parentid));
+               insertAttList.add(att);    
+             }
     
+             if(insertAttList.size() > 0){
+                insert insertAttList;
+             }
+        }
+        
+        List<Case> caList = [select Id, Subject, Description  from Case where Id in :caseOrders.keyset()];
+        List<Note> insertNoteList = new List<Note>(); 
+        
+        if(caList != null && caList.size()>0){
+            for(Case a: caList){    
+               Note note = new Note(Title = a.Subject, body = a.Description, parentid = caseOrders.get(a.Id));
+               insertNoteList.add(note);    
+             }
+    
+             if(insertNoteList.size() > 0){
+                insert insertNoteList;
+             }
+        }
+        
+        for(Case ca:[Select Id, CaseNumber, Status from Case where Id in :caseOrders.keyset()]){
+            if(ca.Status == 'New'){
+                ca.Status = 'Working';
+                caseList.add(ca);    
+            }            
+        }
+        if(caseList.size() > 0){
+            update caseList;
+         }
+
+    }
+   */     
     private static SecurityBypassProcessor bp = null;
     public static SecurityBypassProcessor BypassProcesser{
         get{
@@ -537,94 +591,4 @@ public with sharing class OrderTriggers {
         }
     
     }
-    
-    private static void canUpdateSalesComplete(List<Order__c> tNew, Map<Id, Order__c> tOldMap){
-        Map<Id, Order__c > tNewMap = new Map<Id, Order__c >(); 
-        for(Order__c oNew : tNew){
-            Order__c oOld = tOldMap.get(oNew.Id);
-//This validation is for the orders with Sales Complete change   
-            if(oNew.Opportunity__c != null && (oNew.Status__c != null && oNew.Status__c == 'Sales Complete' && oNew.Status__c != oOld.Status__c && oOld.Status__c != null)){
-                if(!tNewMap.containsKey(oNew.Opportunity__c)) {
-                    tNewMap.put(oNew.Opportunity__c, oNew);
-                }         
-            }
-        }
-        if(tNewMap.keyset().size() >0 ){
-            String userProfileName = [select Name from Profile where Id =: UserInfo.getProfileId()].Name;
-            Boolean canValidate = (userProfileName =='Sales' || userProfileName=='Custom Partner Community')?true:false;
-//This validation is for the opportunities that are owned by AEs / Partners           
-            if(canValidate){
-//The opportunities have to have Primary Contact Role              
-                Map<Id, OpportunityContactRole> oppContactRoleMap = new Map<Id, OpportunityContactRole>();
-                for(OpportunityContactRole ocr : [select OpportunityId , Id, isPrimary, role from OpportunityContactRole where IsPrimary = true and OpportunityId  in : tNewMap.keyset()]){
-                    if(!oppContactRoleMap.containsKey(ocr.OpportunityId)){
-                        oppContactRoleMap.put(ocr.OpportunityId, ocr);
-                    }
-                }
-                Boolean hasError = false;
-                for(Order__c oNew : tNewMap.values()){
-                    Order__c oOld = tOldMap.get(oNew.Id);
-                    if(oppContactRoleMap.get(oNew.Opportunity__c) == null){
-                        oNew.addError('Please complete Contact Role for the Opportunity before changing the order status to Sales Complete');
-                        hasError = true;
-                    }
-                }
-                if(!hasError){
-                    Id custProfileRtID = Schema.SObjectType.Technical_Information__c.getRecordTypeInfosByName().get('01 - Customer Profile').getRecordTypeId();
-                    Map<Id, List<Opportunity_Location__c>> oppLocationMap = new Map<Id, List<Opportunity_Location__c>>();
-
-                    for( Opportunity_Location__c ol :[Select Opportunity__c,Id, Name, (Select Id, Name,Notes__c FROM Technical_Information__r where RecordTypeId = :custProfileRtID and Demarcation_Info_Contact__c != null and Location_Contact_Email__c != null and Location_Contact_Name__c != null and Location_Contact_TN__c != null and ( (New_Billing_Account__c = true and Billing_Address__c != null and Billing_City__c != null and Billing_State__c != null and Billing_Name__c != null and Billing_Postal_Code__c != null and Billing_Country__c != null) or (Existing_Billing_Account__c = true and ICC_Subscriber_ID__c != null) )  Order By Name)
-                           From Opportunity_Location__c   Where On_Hold__c != true and Opportunity__c  in : tNewMap.keyset()]){
-                        List<Opportunity_Location__c> olList = oppLocationMap.get(ol.Opportunity__c) != null ? oppLocationMap.get(ol.Opportunity__c) : new List<Opportunity_Location__c>();
-                        olList.add(ol);
-                        oppLocationMap.put(ol.Opportunity__c,olList);
-                    }
-//All of the opportunity locations of the opportunities have to have completed customer profile. 
-                    for(Id oppId : oppLocationMap.keySet()){
-                        List<Opportunity_Location__c> olList = oppLocationMap.get(oppId) != null ? oppLocationMap.get(oppId) : new List<Opportunity_Location__c>();
-                        for(Opportunity_Location__c ol : olList){
-                            if(ol.Technical_Information__r.size() == 0){
-                                Order__c oNew = tNewMap.get(oppId);
-                                oNew.addError('Please complete Customer Profile in Technical forms for the all Opportunity Locations');
-                                break;
-                            }else{
-                                for (Technical_Information__c t : ol.Technical_Information__r){
-                                    if(t.Notes__c == null || (t.Notes__c != null && t.Notes__c == '')  ){
-                                        Order__c oNew = tNewMap.get(oppId);
-                                        oNew.addError('Please complete Customer Profile in Technical forms for the all Opportunity Locations');
-                                        break;                                    
-                                    }                                           
-                                }
-                            }
-                        }                        
-                    }
-
-                }
-           }
-        }
-    }
-
-    private static void updateCaseStatus(List<Order__c> tNew, Map<Id, Order__c> tOldMap){
-        Map<Id, Order__c > tNewMap = new Map<Id, Order__c >(); 
-        Set<Id> completeOrder = new Set<Id>();
-        Id integrationRtID = Schema.SObjectType.Order__c.getRecordTypeInfosByName().get('Integration Only Order').getRecordTypeId();
-        for(Order__c oNew : tNew){
-            Order__c oOld = tOldMap.get(oNew.Id);
-            if(oNew.recordTypeId == integrationRtID && (oNew.Order_Completion_Status__c != null && oNew.Order_Completion_Status__c == 'Complete' && oNew.Order_Completion_Status__c != oOld.Order_Completion_Status__c)){
-                    completeOrder.add(oNew.Id);
-            }
-        }
-        if(completeOrder.size() >0 ){
-            List<Case> updateCase = new List<Case>();
-            for(Case c : [Select Id, Status from Case where Order__c in :completeOrder and Status != 'Closed']){
-                c.Status ='Closed';
-                updateCase.add(c);
-            }
-            
-            if(updateCase.size()>0){
-                update updateCase;
-            }            
-        }
-    } 
-              
 }

@@ -119,7 +119,7 @@ public with sharing class Test_NewWorkstepIssue {
 	}
 	
     static List<User> getUserList(){
-        List<User> users = ([SELECT IsActive, Name, Id FROM User WHERE IsActive = true AND User_Profile__C = 'Service Delivery' limit 2]);
+        List<User> users = ([SELECT IsActive, Name, Id FROM User WHERE IsActive = true AND User_Profile__C = 'Advanced Service Delivery' limit 2]);
     	return (users.size() > 0) ? users : null;
     }
 }

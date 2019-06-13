@@ -127,7 +127,7 @@ public class ConfigureNewSolution implements TestUtils.ITestableClass {
   }
 
   public Opportunity loadOpportunity(){
-    return [select Id, Name, AccountId, Account.Name, Account.ICC_Account_Number__c, UC_Specialist__r.Name, Vendor_Registration__c from Opportunity where id = :opportunityLocationConfiguration.Opportunity_Location__r.Order__r.Opportunity__r.Id Limit 1];
+    return [select Id, Name, AccountId, Account.Name, Account.ICC_Account_Number__c, UC_Specialist__r.Name from Opportunity where id = :opportunityLocationConfiguration.Opportunity_Location__r.Order__r.Opportunity__r.Id Limit 1];
   }
 
   public void getInitialProducts(){

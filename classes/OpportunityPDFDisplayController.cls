@@ -247,10 +247,10 @@ public with sharing class OpportunityPDFDisplayController extends OpportunityPDF
 
         if(addSignature){
             if (componentName == 'MSAFrench'){
-            	op.childComponents.add(new Component.c.PDF_SignatureBlock(currentOpportunity = opp, decisionMaker = decMaker, language = 'French'));	    
+            	op.childComponents.add(new Component.c.PDF_SignatureBlock(decisionMaker = decMaker, language = 'French'));	    
             }
             else{
-                op.childComponents.add(new Component.c.PDF_SignatureBlock(currentOpportunity = opp, decisionMaker = decMaker, language = 'English'));
+                op.childComponents.add(new Component.c.PDF_SignatureBlock(decisionMaker = decMaker, language = 'English'));
             }  
         } 
         return op;

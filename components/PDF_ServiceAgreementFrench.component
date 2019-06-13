@@ -598,14 +598,6 @@
         </tr>
         </td>
         </tr>
-        <apex:outputpanel rendered="{!OR(CONTAINS(currentOpportunity.Opportunity_Product__c, 'SD WAN'),CONTAINS(currentOpportunity.Opportunity_Product__c, 'SD Internet'), CONTAINS(currentOpportunity.Opportunity_Product__c, 'SD MPLS Connect'))}" style="padding-left:5ex">
-            <tr>
-                <td>
-                	<p>Allstream attribue à ses clients de l’espace d’adressage IP conformément à sa Politique d’allocation et d’utilisation des adresses IP qui est publiée sur le site Allstream.com.</p>
-                	<p>En utilisant les services de RÉ définis par logiciel, le client reconnaît que lui et ses utilisateurs finals sont tenus de respecter la Politique d’utilisation acceptable d’Allstream qui est publiée sur le site Allstream.com.</p>
-                </td>
-            </tr>
-        </apex:outputpanel>
         <apex:outputpanel rendered="{!hasSIPTrunking}">
             <tr>
                 <td><b>En signant la présente demande de service, le client reconnaît les modalités suivantes relatives aux appels faits au service d’urgence 9-1-1 au moyen des services VoIP d’Allstream au Canada et y consent.</b></td>

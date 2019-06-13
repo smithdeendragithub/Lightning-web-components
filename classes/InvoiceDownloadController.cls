@@ -5,23 +5,13 @@ public class InvoiceDownloadController {
     public boolean hasError {get;set;}
     public string requesturl {get;set;}
     public string header {get;set;}
-    public string invoiceName {get;set;}
     
     public InvoiceDownloadController(){
         token = getToken();
     	invoiceID = Apexpages.currentPage().getParameters().get('invoiceID'); 
-        string isSummary = Apexpages.currentPage().getParameters().get('isSummary');
         Portal_Web_Service__c objWS = Portal_Web_Service__c.getValues('Allstream Invoices'); 
         string endpoint = objWS.End_Point__c; // be sure this is configured in "Remote Site Settings" 
-        string resource = '';
-        if (isSummary.equals('true')){
-            resource = objWS.Resource__c + '/summary/' + invoiceID + '/pdf'; 
-            invoiceName = 'summary-';
-        }
-        else {
-            resource = objWS.Resource__c + '/' + invoiceID + '/pdf'; 
-            invoiceName = '';
-        }
+        string resource = objWS.Resource__c + '/' + invoiceID + '/pdf'; 
         requesturl = endpoint + resource;
         header = 'bearer ' + token;
         //pdfString = getPDFString();

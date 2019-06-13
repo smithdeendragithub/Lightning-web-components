@@ -1,5 +1,4 @@
 <apex:component layout="none">
-    <apex:attribute name="currentOpportunity" description="Opportunity" type="Opportunity" required="true" />
     <apex:attribute name="decisionMaker" description="clients decision maker" type="Contact" required="true" />
     <apex:attribute name="language" description="language" type="String" required="true" />
     <apex:outputpanel rendered="{!CONTAINS(language,'English')}">
@@ -39,7 +38,7 @@
         </div>
         <div style="float:left; width:50%;">
             <div style="font-weight:bold;">
-                {!currentOpportunity.Account.Name}
+                CUSTOMER
             </div>
             <div style="float:left; width:20%;">
                 Signature:
@@ -110,7 +109,7 @@
         </div>
         <div style="float:left; width:50%;">
             <div style="font-weight:bold;">
-                {!currentOpportunity.Account.Name}
+                CLIENT
             </div>
             <div style="float:left; width:20%;">
                 Signature:

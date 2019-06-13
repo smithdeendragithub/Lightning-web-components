@@ -1,4 +1,4 @@
-<apex:page standardController="Opportunity" extensions="Opportunity_WorkstepIssuesController" showHeader="true" tabstyle="Workstep__c" lightningStylesheets="{! IF($Label.EnableLightningStyleSheets == 'Yes',true,false)}">
+<apex:page standardController="Opportunity" extensions="Opportunity_WorkstepIssuesController" showHeader="true" tabstyle="Workstep__c" >
         <apex:form >
 <a id="ninjaLink"></a>
 		<apex:outputText rendered="{!wsi.size == 0}">None</apex:outputText>

@@ -1,4 +1,4 @@
-<apex:page standardController="Opportunity" lightningStylesheets="{! IF($Label.EnableLightningStyleSheets == 'Yes',true,false)}">
+<apex:page standardController="Opportunity">
     <apex:form >
         <apex:repeat value="{!Opportunity.Orders__r}" var="o">
             <div class="bPageBlock brandSecondaryBrd bDetailBlock secondaryPalette">

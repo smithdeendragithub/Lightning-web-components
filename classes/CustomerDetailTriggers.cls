@@ -43,7 +43,7 @@ public without sharing class CustomerDetailTriggers {
                 if(isUpdate) {
                     updateSubscribers(tNew, tOldMap);
                     GlobysTransactionController.processCustomerDetailChanges(tNew, tOldMap, isDelete);
-                    PhoenixTransactionController.processCustomerDetailChanges(tNew, tOldMap, isDelete);
+                    //PhoenixTransactionController.processCustomerDetailChanges(tNew, tOldMap, isDelete);
                 }
                 else
                     validateAddresses(tNew);

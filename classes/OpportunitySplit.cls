@@ -226,7 +226,6 @@ public without sharing class OpportunitySplit {
         instanceOpty.Term__c = parentOpty.Term__c;
         instanceOpty.UC_Specialist__c = parentOpty.UC_Specialist__c;
         instanceOpty.Opportunity_Product__c = parentOpty.Opportunity_Product__c;
-        if (parentOpty.Oppty_Sub_Type__c == 'In-Flight Order Change') instanceOpty.Related_Opportunites__c = parentOpty.Related_Opportunites__c;
         
         
         return true;

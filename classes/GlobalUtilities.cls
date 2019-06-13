@@ -108,7 +108,6 @@ public class GlobalUtilities implements TestUtils.ITestableClass {
         public Contact c {get;set;}
         public String opptyRole {get;set;}
         public String recipientType {get;set;}
-        public String accRole {get;set;}
     }
     
     public static List<Recipient> LoadRecipients(Opportunity oppty) {
@@ -145,36 +144,6 @@ public class GlobalUtilities implements TestUtils.ITestableClass {
                 for( OpportunityContactRole ocr : opptyroles ) {
                     if( ocr.ContactId == c.Id ) {
                         r.opptyRole = ocr.Role;
-                    }
-                }
-                r.recipientType = RECIPIENT_TYPE_SIGNER;
-                retVal.add(r);
-            }
-        }
-        catch(Exception e) {
-            system.debug('unable to load recipients');
-            system.debug(e);
-        }       
-             
-        return retVal;
-    }
-    
-    public static List<Recipient> LoadRecipients(Pricing_Agreement__c acc) {
-        List<Recipient> retVal = new List<Recipient>();
-        
-        if( acc.Account__c == null )
-            return retVal;
-        
-        try {
-    		List<AccountContactRole> accountroles = [Select ContactId, Role From AccountContactRole Where AccountId=:acc.Account__c];
-            List<Contact> contacts = [Select Name, Email, Account.Name, AssistantName from Contact Where AccountId=:acc.Account__c];
-            
-            for(Contact c : contacts ) {
-                Recipient r = new Recipient();
-                r.c = c;
-                for( AccountContactRole acr : accountroles ) {
-                    if( acr.ContactId == c.Id ) {
-                        r.accRole = acr.Role;
                     }
                 }
                 r.recipientType = RECIPIENT_TYPE_SIGNER;

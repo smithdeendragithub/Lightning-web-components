@@ -34,24 +34,15 @@
                             <apex:selectOption itemValue="Anticipated Install" itemLabel="Anticipated Install"/>
                             <apex:selectOption itemValue="Anticipated Churn" itemLabel="Anticipated Churn"/>                            
                         </apex:selectList> 
-                    </td>                    
+                    </td>
+                    
                 </tr>                
                     <td> Please select Currency for the order</td>
                     <td><apex:selectList id="rtList" value="{!selectedCurrency}" multiselect="false" size="1">
                             <apex:selectOptions value="{!currencies}"/>
                         </apex:selectList>                
                     </td>
-                </tr>       
-                <tr>
-                    <td>Please select which quarter for this file to be applied</td>
-                    <td>
-                        <apex:selectList id="quarterList" value="{!selectedQuarter}" size="1">
-                            <apex:selectOption itemValue="current" itemLabel="Current Quarter"/>
-                            <apex:selectOption itemValue="previous" itemLabel="Previous Quarter"/>
-                        </apex:selectList> 
-                    </td>
                 </tr>                
-                         
                 <tr>
                     <td>Upload CSV file</td><td><apex:inputFile value="{!csvFileBody}" accept="csv" contentType="text/csv" /></td>
                 </tr>

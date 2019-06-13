@@ -18,7 +18,124 @@
         .helpText{
             width:auto;
         }
+    	.sidebar{
+            float:left;
+            width:20%;
+            //position:fixed;
+            top:50px;
+        }
+    	.mainPanel{
+            float:right;
+            width:80%;
+        }
     </style>
+    <div class="sidebar">
+    <apex:form >
+        <apex:actionFunction name="reactivateAccount" action="{!reactivateAccount}"/>
+        <apex:actionFunction name="createNonBillableParent" action="{!createNonBillableParent}" rerender="out" oncomplete="closeModalWaitDialog();"/>
+        <apex:actionFunction name="createNonBillableParentAndLocation" action="{!createNonBillableParentAndLocation}" rerender="out, redirectURL" oncomplete="closeModalWaitDialog();">
+            <apex:param name="formattedAddress" value=""/>
+            <apex:param name="streetNumber" value="" />
+            <apex:param name="street" value="" />
+            <apex:param name="suite" value="" />
+            <apex:param name="city" value="" />
+            <apex:param name="state" value="" />
+            <apex:param name="postalCode" value="" />
+            <apex:param name="latitude" value=""/>
+            <apex:param name="longitude" value=""/>
+        </apex:actionFunction>
+        <!--<apex:actionFunction name="createHierarchy" action="{!CreateHierarchy}" rerender="out, redirectURL" oncomplete="redirectAfterHierarchyCreation();"/>
+        <apex:actionFunction name="validateAddressesAndRedirectToOppIntegrationPage" action="{!ValidateAddressesAndRedirectToOppIntegrationPage}" rerender="out, redirectURL" oncomplete="closeModalDialog();" />-->
+        <apex:actionFunction name="sendToOpportunityGenPage" action="{!VerifyContactsAndRedirectToOppGen}" rerender="out, redirectURL" oncomplete="redirectToOppGen();"/>
+        
+        <!-- TreeView -->
+        <c:CustomerHierarchy />
+        <apex:actionFunction name="doAsynchLoad" action="{!loadNodes}" oncomplete="nodesLoaded(); return false;" rerender="jsTreeViewPanel, out">
+            <apex:param name="divID" value="" assignTo="{!loadMore_divID}"/>
+            <apex:param name="path" value="" assignTo="{!loadMore_path}"/>
+            <apex:param name="parentNodeId" value="" assignTo="{!loadMore_parentNodeId}"/>
+            <apex:param name="currentlyLoaded" value="" assignTo="{!loadMore_currentlyLoaded}"/>
+        </apex:actionFunction>
+        <apex:outputPanel id="jsTreeViewPanel">
+            <script type="text/javascript">
+                function nodesLoaded(){
+                    asynchLoadComplete({!IF(NOT(ISNULL(loadedNodes) || loadedNodes == ''), loadedNodes, "[]")});
+                }
+            </script>
+        </apex:outputPanel>
+        <script type="text/javascript">
+            jQuery(document).ready(function(){
+                loadHierarchyWindow();
+            });
+            function loadHierarchyWindow(){
+                var b = {!canLoadTree};
+                if (b == true){
+                    var t = {!AllJSONTrees};
+                    var a = {!ActionMappings};
+                    var i = {!IconMappings};
+                    registerMaps(a, i);
+                    loadTree('hierarchy', true, t['hierarchy']);
+                }
+                else{
+
+                    createHierarchyReportWindow('hierarchy', true, '{!account.Id}');
+                }   
+            }
+        </script>
+        <div id="hierarchy_block" style="display: none">
+            <h2 id="hierarchy_header">Integration Hierarchy</h2>
+            <div id="hierarchy" style="position:relative;"/> 
+            <div id="HierarchyTreeId" />
+        </div>
+    </apex:form>
+	</div>
+	<div class="mainPanel">
+        <apex:form >
+            <apex:includeLightning />    
+    		<apex:includeScript value="/lightning/lightning.out.js" />
+    		<div class="lightningUpdateService" style="display: none" id="dialog">
+           		<div id="LightningCopyBillingToServiceId" />
+			</div>
+            <div class="lightningUpdateBilling" style="display: none" id="dialog">
+           		<div id="LightningCopyServiceToBillingId" />
+			</div>
+        </apex:form>
+        <script>
+          $Lightning.use("c:AccountContainer", function() {
+            $Lightning.createComponent("c:LCC_Copy_Billing_Address_to_Service_Address_Account",
+              { recordId: "{!account.Id}", 
+                 label: "Account", 
+                 pluralLabel: "Accounts", 
+                 sObjectAPIName: "Account"
+              },
+              "LightningCopyBillingToServiceId",
+              function(cmp) {
+                 console.log('Display Lightning component in visualforce page');
+              });
+              
+              $Lightning.createComponent("c:LCC_Copy_Service_Address_to_Billing_Address_Account",
+              { recordId: "{!account.Id}", 
+                 label: "Account", 
+                 pluralLabel: "Accounts", 
+                 sObjectAPIName: "Account"
+              },
+              "LightningCopyServiceToBillingId",
+              function(cmp) {
+                 console.log('Display Lightning component in visualforce page');
+              });
+              
+               $Lightning.createComponent("c:HierarchyTree",
+              { recordId: "{!account.Id}", 
+                 label: "Account", 
+                 pluralLabel: "Accounts", 
+                 sObjectAPIName: "Account"
+              },
+              "HierarchyTreeId",
+              function(cmp) {
+                 console.log('Display Lightning component in visualforce page');
+              });
+        });
+		</script>
     <apex:outputPanel id="out">
         <!--<script>
             var integrationOnlyOrderGenerated = {!integrationOnlyOrderGenerated};
@@ -185,63 +302,7 @@
         <c:ApexDetailExtension formID="account_detail_frm" onLoad="bindAccountControls();"/>
     </apex:detail>
     </div>
-    <apex:form >
-        <apex:actionFunction name="reactivateAccount" action="{!reactivateAccount}"/>
-        <apex:actionFunction name="createNonBillableParent" action="{!createNonBillableParent}" rerender="out" oncomplete="closeModalWaitDialog();"/>
-        <apex:actionFunction name="createNonBillableParentAndLocation" action="{!createNonBillableParentAndLocation}" rerender="out, redirectURL" oncomplete="closeModalWaitDialog();">
-            <apex:param name="formattedAddress" value=""/>
-            <apex:param name="streetNumber" value="" />
-            <apex:param name="street" value="" />
-            <apex:param name="suite" value="" />
-            <apex:param name="city" value="" />
-            <apex:param name="state" value="" />
-            <apex:param name="postalCode" value="" />
-            <apex:param name="latitude" value=""/>
-            <apex:param name="longitude" value=""/>
-        </apex:actionFunction>
-        <!--<apex:actionFunction name="createHierarchy" action="{!CreateHierarchy}" rerender="out, redirectURL" oncomplete="redirectAfterHierarchyCreation();"/>
-        <apex:actionFunction name="validateAddressesAndRedirectToOppIntegrationPage" action="{!ValidateAddressesAndRedirectToOppIntegrationPage}" rerender="out, redirectURL" oncomplete="closeModalDialog();" />-->
-        <apex:actionFunction name="sendToOpportunityGenPage" action="{!VerifyContactsAndRedirectToOppGen}" rerender="out, redirectURL" oncomplete="redirectToOppGen();"/>
-        
-        <!-- TreeView -->
-        <c:CustomerHierarchy />
-        <apex:actionFunction name="doAsynchLoad" action="{!loadNodes}" oncomplete="nodesLoaded(); return false;" rerender="jsTreeViewPanel, out">
-            <apex:param name="divID" value="" assignTo="{!loadMore_divID}"/>
-            <apex:param name="path" value="" assignTo="{!loadMore_path}"/>
-            <apex:param name="parentNodeId" value="" assignTo="{!loadMore_parentNodeId}"/>
-            <apex:param name="currentlyLoaded" value="" assignTo="{!loadMore_currentlyLoaded}"/>
-        </apex:actionFunction>
-        <apex:outputPanel id="jsTreeViewPanel">
-            <script type="text/javascript">
-                function nodesLoaded(){
-                    asynchLoadComplete({!IF(NOT(ISNULL(loadedNodes) || loadedNodes == ''), loadedNodes, "[]")});
-                }
-            </script>
-        </apex:outputPanel>
-        <script type="text/javascript">
-            jQuery(document).ready(function(){
-                loadHierarchyWindow();
-            });
-            function loadHierarchyWindow(){
-                var b = {!canLoadTree};
-                if (b == true){
-                    var t = {!AllJSONTrees};
-                    var a = {!ActionMappings};
-                    var i = {!IconMappings};
-                    registerMaps(a, i);
-                    loadTree('hierarchy', true, t['hierarchy']);
-                }
-                else{
-
-                    createHierarchyReportWindow('hierarchy', true, '{!account.Id}');
-                }   
-            }
-        </script>
-        <div id="hierarchy_block" style="display: none">
-            <h2 id="hierarchy_header">Integration Hierarchy</h2>
-            <div id="hierarchy" style="position:relative;"/> 
-        </div>
-    </apex:form>
+    
     <c:AddressParser addressGeocodedFunction="addressGeocoded"/>
     <c:ModalWaitDialog />
     <div id="modalConfirmDialog">
@@ -249,6 +310,7 @@
             <span class="ui-icon ui-icon-alert" style="float:left;"></span><span id="messageText"></span><div style="clear:both;"></div>
         </div>
     </div>
+        </div>
     <style type="text/css">
         
         div.customSection div.pbCustomSubheader{
@@ -439,6 +501,34 @@
                 });
             }
             return selectedIDs;
+        }
+
+		function openCopyBillingAddressDialog(){
+        	jQuery('.lightningUpdateService').dialog({title:"Copy from Billing Address"});
+            //$('.lightningUpdate').find('.SaveButton').click(function() { $('.lightningUpdate').dialog('close'); });
+            $('.lightningUpdateService').find('.SaveButton').click(function() { 
+                $('.ui-dialog-titlebar span').text('Saving...');
+                $('.lightningUpdateService').fadeOut("slow"); 
+                setTimeout(function(){ location.reload() }, 4000); 
+            });
+            $('.lightningUpdateService').find('.CancelButton').click(function(event) { 
+                event.preventDefault();
+                $('.lightningUpdateService').dialog("close");                
+            });
+        }
+		
+		function openCopyServiceAddressDialog(){
+        	jQuery('.lightningUpdateBilling').dialog({title:"Copy from Service Address"});
+            //$('.lightningUpdate').find('.SaveButton').click(function() { $('.lightningUpdate').dialog('close'); });
+            $('.lightningUpdateBilling').find('.SaveButton').click(function() { 
+                $('.ui-dialog-titlebar span').text('Saving...');
+                $('.lightningUpdateBilling').fadeOut("slow"); 
+                setTimeout(function(){ location.reload() }, 4000); 
+            });
+            $('.lightningUpdateBilling').find('.CancelButton').click(function(event) { 
+                event.preventDefault();
+                $('.lightningUpdateBilling').dialog("close");                
+            });
         }
     </script>
 </apex:page>

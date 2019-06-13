@@ -1,22 +1,12 @@
 @isTest
 public with sharing class Mocks {
 
-    public Mocks(){
-    	List<Market_Area__c> maList = [SELECT ID FROM Market_Area__c WHERE NAME='National'];
-        if (maList.size() == 0) {
-            Market_Area__c ma = new Market_Area__c();
-            ma.Name = 'National';
-        	ma.MarketAreaExternalID__c = 'test36';
-        	insert ma; 
-        }
-    }
-    
     private User pUser;
     public User user {
     	get{
     		if(pUser == null){
     			system.debug('Building Mocks.user');
-		        Profile p_standard = [SELECT Id FROM Profile WHERE Name = 'Sales' LIMIT 1];
+		        Profile p_standard = [SELECT Id FROM Profile WHERE Name = 'Advanced Sales' LIMIT 1];
     			pUser = new User(FirstName = 'Test'
     							,LastName = 'Engineer'
     							,Email = 'standarduser@integra.com'

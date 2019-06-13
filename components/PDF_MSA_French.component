@@ -5,8 +5,8 @@
     <apex:attribute name="renderKitTestClause" description="render clause named kitTestClause" type="boolean" default="false" />
 
 <apex:variable var="currentDay" value="{!IF(DAY(TODAY()) < 10, '0', '') + TEXT(DAY(TODAY()))}"/>    <!-- dd format -->    
-<apex:variable var="currentDayOrdinal" value="{!TEXT(DAY(TODAY())) + IF(TEXT(DAY(TODAY())) = '1','er','')}"/>
-<apex:variable var="currentMonthName" value="{!CASE(MONTH(TODAY()), 1, 'janvier', 2, 'février', 3, 'mars', 4, 'avril', 5, 'mai', 6, 'juin', 7, 'juillet', 8, 'août', 9, 'septembre', 10, 'octobre', 11, 'novembre', 'décembre')}"/>    <!-- MMMM format -->
+<apex:variable var="currentDayOrdinal" value="{!TEXT(DAY(TODAY())) + IF(CASE(TEXT(DAY(TODAY())), '11', 1, '12', 1, '13', 1, 0) = 1, 'th', CASE(RIGHT(TEXT(DAY(TODAY())), 1), '1', 'st', '2', 'nd', '3', 'rd', 'th'))}"/>
+<apex:variable var="currentMonthName" value="{!CASE(MONTH(TODAY()), 1, 'January', 2, 'February', 3, 'March', 4, 'April', 5, 'May', 6, 'June', 7, 'July', 8, 'August', 9, 'September', 10, 'October', 11, 'November', 'December')}"/>    <!-- MMMM format -->
 <apex:variable var="currentYear" value="{!YEAR(TODAY())}"/>
 <apex:outputPanel layout="none" id="pepe" >
         <table width="700" border="0" cellspacing="0" cellpadding="0"
@@ -62,7 +62,7 @@
                         </td>
                     </tr>
                    <tr>
-                        <td colspan="2" class="textBlock">La présente entente intitulée Contrat de fourniture principal/Modalités de service (« <b>CFP</b> ») intervient le {!currentDayOrdinal} {!currentMonthName} {!currentYear}   (« <b>date d’entrée en vigueur</b> ») entre Allstream Business Inc. (pour les services fournis au Canada) et Allstream Business US, LLC (pour les services fournis aux États-Unis), leurs filiales et les sociétés membres de leur groupe (collectivement appelées « <b>Allstream</b> ») d’une part, et  ({!currentOpportunity.Account.Name})  (« <b>client</b> ») d’autre part, relativement à la fourniture de services de communication (« <b>services</b> ») acquis par le client de temps à autre au moyen d’une annexe relative aux services, d’une entente de service, d’un appendice d’établissement des prix, d’un bon de commande ou de toute autre méthode approuvée par <i>Allstream</i> pour l’acquisition de produits et services (collectivement, une « <b>demande de service</b> »). <i>Allstream</i> et le <i>client</i> peuvent être désignés individuellement par le terme « <b>partie</b> » et collectivement par le terme « <b>parties</b> ».</td>
+                        <td colspan="2" class="textBlock">La présente entente intitulée Contrat de fourniture principal/Modalités de service (« <b>CFP</b> ») intervient le (jour)   (mois)   20  (an)  (« <b>date d’entrée en vigueur</b> ») entre Allstream Business Inc. (pour les services fournis au Canada) et Allstream Business US, LLC (pour les services fournis aux États-Unis), leurs filiales et les sociétés membres de leur groupe (collectivement appelées « <b>Allstream</b> ») d’une part, et  (nom du client)  (« <b>client</b> ») d’autre part, relativement à la fourniture de services de communication (« <b>services</b> ») acquis par le client de temps à autre au moyen d’une annexe relative aux services, d’une entente de service, d’un appendice d’établissement des prix, d’un bon de commande ou de toute autre méthode approuvée par <i>Allstream</i> pour l’acquisition de produits et services (collectivement, une « <b>demande de service</b> »). <i>Allstream</i> et le <i>client</i> peuvent être désignés individuellement par le terme « <b>partie</b> » et collectivement par le terme « <b>parties</b> ».</td>
                     </tr>
                     <tr>
                         <td colspan="2" class="textBlock"><b><u>ARTICLE 1 - DISPOSITIONS GÉNÉRALES</u></b></td>

@@ -11,8 +11,6 @@ public class Test_AddressUtils {
  
  	static testmethod void testgetAddressFormatFromBuildingAndType(){
         Test.startTest();
-        Market_Area__c MArea = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
-        insert MArea;
         Building_Address_Format__c BAF = new Building_Address_Format__c(City__c = 'Toronto');
         insert BAF;
         Building__c b = new Building__c(City__c = 'Toronto', State__c = 'ON', Address__c = '123 Address Street', Country__c = 'US', MSAG_Address_Format__r = BAF, Tax_Main_Address_Format__r = BAF);
@@ -25,8 +23,6 @@ public class Test_AddressUtils {
  	
     static testmethod void testsetSubscriberAddressViewValues(){
         Test.startTest();
-        Market_Area__c MArea = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
-        insert MArea;
         System.AssertEquals(AddressUtils.setSubscriberAddressViewValues('Toronto','K1K 2G2', 'zipcode', 'ON', '123 Street', 'Location', 122, 1, 5, 'SomeSFDCId').Zip,'K1K 2G2-zipcode');
         System.AssertEquals(AddressUtils.setSubscriberAddressViewValues('Toronto','K1K 2G2', null, 'ON', '123 Street', 'Location', 122, 1, 5, 'SomeSFDCId', 'CA').Country,'CA');
         
@@ -53,8 +49,6 @@ public class Test_AddressUtils {
  
     static testmethod void testsetSubscriberAddressViewValuesFromCustomerDetailFieldSet(){
         Test.startTest();
-        Market_Area__c MAreaNational = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
-        insert MAreaNational;
         Market_Area__c MArea = new Market_Area__c(ICCMarketAreaID__c = 12, MarketAreaExternalID__c = 'ExternalID12345');
         insert MArea;
         Customer_Detail__c CD = new Customer_Detail__c(Market_Area__r = MArea, Market_Area__c = MArea.Id);
@@ -74,8 +68,6 @@ public class Test_AddressUtils {
  	
     static testmethod void testgetSFSubscriberAddressViewsFromCustomerDetail(){
         Test.startTest();
-        Market_Area__c MAreaNational = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
-        insert MAreaNational;
         Market_Area__c MArea = new Market_Area__c(ICCMarketAreaID__c = 12, MarketAreaExternalID__c = 'ExternalID12345');
         insert MArea;
         Customer_Detail__c CD = new Customer_Detail__c(Market_Area__r = MArea, Market_Area__c = MArea.Id, First_Name__c = 'FName', Last_Name__c = 'LName');
@@ -96,8 +88,6 @@ public class Test_AddressUtils {
  	
     static testmethod void testupdateCustomerDetailAddressSet(){
         Test.startTest();
-        Market_Area__c MArea = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
-        insert MArea;
         Customer_Detail__c CD = new Customer_Detail__c();
         AddressUtils.updateCustomerDetailAddressSet(CD, 'Billing_Main_FAKE', 'CA', 'K3K 2L2', 'ON', '123 Street', 'RoomSuite', 'OverrideName', 'CA');
         System.assertEquals(CD.Billing_Main_Postal_Code__c, null);
@@ -113,8 +103,6 @@ public class Test_AddressUtils {
 
     static testmethod void testvalidateAndClearCustomerDetailAddresses(){
         Test.startTest();
-        Market_Area__c MArea = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
-        insert MArea;
         List<Customer_Detail__c> details = new List<Customer_Detail__c>();
         Set<Id> CustomerIDs = new Set<Id>();
         for (Integer i = 0; i < 5; ++i){
@@ -143,8 +131,6 @@ public class Test_AddressUtils {
     }
     
     static testmethod void testvalidateAndSetCustomerDetailAddresses(){
-        Market_Area__c MArea = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
-        insert MArea;
         Test.startTest();
         Map<Id, Map<String,String>> mapping = new Map<Id, Map<String,String>>();
         List<Customer_Detail__c> details = new List<Customer_Detail__c>();

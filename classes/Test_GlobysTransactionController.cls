@@ -8,7 +8,7 @@ public with sharing class Test_GlobysTransactionController {
     static testMethod void testChangeLegacyIDChildCustomerDetail() {
         Mocks testData = new Mocks();
          
-        
+        test.startTest();
         
         Customer_Detail__c cdParent = test_setupTestData('Parent', testData.loc.Id, testData.parentAccount, testData.serviceLocation, false);
         cdParent.Market_Area__c = MARKET_AREA_NATIONAL;
@@ -19,7 +19,7 @@ public with sharing class Test_GlobysTransactionController {
         
         Service_Location__c childServiceLocation = new Service_Location__c(Account__c = testData.parentAccount.Id, Name = 'Child Test Loc', Location__c = testData.loc.Id);
 		insert childServiceLocation;
- 		test.startTest();
+ 		
         Customer_Detail__c cdChild = test_setupTestData('Child', testData.loc.Id, testData.parentAccount, childServiceLocation, true);
         cdChild.Acquired_Company_Biller__c = 'IBIS';
         cdChild.Legacy_ID__c = '00000123145';
@@ -38,7 +38,7 @@ public with sharing class Test_GlobysTransactionController {
     static testMethod void testChangeBillerChildCustomerDetail() {
         Mocks testData = new Mocks();
          
-        
+        test.startTest();
         
         Customer_Detail__c cdParent = test_setupTestData('Parent', testData.loc.Id, testData.parentAccount, testData.serviceLocation, false);
         cdParent.Market_Area__c = MARKET_AREA_NATIONAL;
@@ -49,7 +49,7 @@ public with sharing class Test_GlobysTransactionController {
         
         Service_Location__c childServiceLocation = new Service_Location__c(Account__c = testData.parentAccount.Id, Name = 'Test Loc', Location__c = testData.loc.Id);
 		insert childServiceLocation;
- 		test.startTest();
+ 		
         Customer_Detail__c cdChild = test_setupTestData('Child', testData.loc.Id, testData.parentAccount, childServiceLocation, true);
         cdChild.Acquired_Company_Biller__c = 'IBIS';
         cdChild.Legacy_ID__c = '00000123145';
@@ -67,7 +67,9 @@ public with sharing class Test_GlobysTransactionController {
     
      static testMethod void testClearChildCustomerDetail() {
         Mocks testData = new Mocks();
-                
+         
+        test.startTest();
+        
         Customer_Detail__c cdParent = test_setupTestData('Parent', testData.loc.Id, testData.parentAccount, testData.serviceLocation, false);
         cdParent.Market_Area__c = MARKET_AREA_NATIONAL;
         cdParent.BPID__c = '12345';
@@ -78,7 +80,6 @@ public with sharing class Test_GlobysTransactionController {
         Service_Location__c childServiceLocation = new Service_Location__c(Account__c = testData.parentAccount.Id, Name = 'Test Loc', Location__c = testData.loc.Id);
 		insert childServiceLocation;
  		
-        test.startTest();
         Customer_Detail__c cdChild = test_setupTestData('Child', testData.loc.Id, testData.parentAccount, childServiceLocation, true);
         cdChild.Acquired_Company_Biller__c = 'IBIS';
         cdChild.Legacy_ID__c = '00000123145';
@@ -98,7 +99,7 @@ public with sharing class Test_GlobysTransactionController {
     static testMethod void testChangeParentCustomerDetail() {
         Mocks testData = new Mocks();
          
-        
+        test.startTest();
         
         Customer_Detail__c cdParent = test_setupTestData('Parent', testData.loc.Id, testData.parentAccount, testData.serviceLocation, false);
         cdParent.Market_Area__c = MARKET_AREA_NATIONAL;
@@ -109,7 +110,7 @@ public with sharing class Test_GlobysTransactionController {
         
         Service_Location__c childServiceLocation = new Service_Location__c(Account__c = testData.parentAccount.Id, Name = 'Test Loc', Location__c = testData.loc.Id);
 		insert childServiceLocation;
- 		test.startTest();
+ 		
         Customer_Detail__c cdChild = test_setupTestData('Child', testData.loc.Id, testData.parentAccount, childServiceLocation, true);
         cdChild.Acquired_Company_Biller__c = 'IBIS';
         cdChild.Legacy_ID__c = '00000123145';
@@ -128,7 +129,7 @@ public with sharing class Test_GlobysTransactionController {
     static testMethod void testClearParentCustomerDetail() {
         Mocks testData = new Mocks();
          
-        
+        test.startTest();
 
         testData.serviceLocation.Billable__c = false;
         update testData.serviceLocation;
@@ -143,7 +144,7 @@ public with sharing class Test_GlobysTransactionController {
         
         Service_Location__c childServiceLocation = new Service_Location__c(Account__c = testData.parentAccount.Id, Name = 'Child', Location__c = testData.loc.Id, Billable__c = true);
 		insert childServiceLocation;
- 		test.startTest();
+ 		
         Customer_Detail__c cdChild = test_setupTestData('Child', testData.loc.Id, testData.parentAccount, childServiceLocation, true);
         cdChild.Acquired_Company_Biller__c = 'IBIS';
         cdChild.Legacy_ID__c = '00000123145';

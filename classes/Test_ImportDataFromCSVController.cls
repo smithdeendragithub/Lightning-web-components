@@ -10,16 +10,15 @@ public with sharing class Test_ImportDataFromCSVController extends TestUtils.Tes
     
     private static void getTestData(){
         testData = new Mocks();
-		//Market_Area__c ma = testData.marketArea;
-        //ma.Name = 'National';
-        //update ma;
-        Market_Area__c ma = [SELECT Id FROM Market_Area__c WHERE Name='National'];
+		Market_Area__c ma = testData.marketArea;
+        ma.Name = 'National';
+        update ma;
         Account a = testData.parentAccount;
         
         Customer_Detail__c detail = new Customer_Detail__c(ICC_Subscriber_ID__c = '-9999'
                                                             ,Customer_Main_Address__c = testData.loc.Id
                                                             ,Service_Address__c = testData.loc.Id
-                                                            ,Market_Area__c = ma.Id
+                                                            ,Market_Area__c = testData.marketArea.Id
                                                             ,Legacy_Id__c = '468475');
         insert detail;
         

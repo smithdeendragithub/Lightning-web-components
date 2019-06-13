@@ -117,7 +117,7 @@ public with sharing class ManageLocationConfigurationsController implements Test
 										            (Select Id, RecordTypeId, Name FROM Technical_Information__r Order By Name) 
 													,Service_Location__r.Id, Service_Location__r.Name, Service_Location__r.Location__r.Name, Service_Location__r.Customer_Detail__r.Government_Contract_Type__c
 										            From Opportunity_Location__c 
-										            Where Order__r.Opportunity__c = :opportunity.Id and On_Hold__c != true
+										            Where Order__r.Opportunity__c = :opportunity.Id
 										            Order By Opportunity__r.Account.ParentId, Name]) {
 			opportunityLocations.add(new OpportunityLocation(l));
         }

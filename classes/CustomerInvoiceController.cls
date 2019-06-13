@@ -80,32 +80,30 @@ public class CustomerInvoiceController {
             Map<String, Object> meta = (Map<String, Object>) JSON.deserializeUntyped(response.getBody());
             if (meta.get('error') == null){
             	totalElements = String.ValueOf(meta.get('totalElements'));
-                numberOfPages = String.ValueOf(meta.get('totalPages'));
-                List<Object> contents = (List<Object>) meta.get('content');
-                        
-                contentList = new List<Content>();
-                for (Object obj : contents){
-                    Map<String, Object> m = (Map<String, Object>) obj;
-                    Content c = new Content();
-                    c.id = String.ValueOf(m.get('id'));
-                    c.invoiceNum = String.valueOf(m.get('invoiceNum'));
-                    c.invoiceDt = String.valueOf(m.get('invoiceDt'));
-                    c.billingAccountNum = String.valueOf(m.get('billingAccountNum'));
-                    c.balanceForwardAmt = (m.get('balanceForwardAmt') == null) ? '0.00' : String.valueOf(Decimal.valueOf(String.valueOf(m.get('balanceForwardAmt'))).setScale(2));
-                    c.paymentReceivedAmt = (m.get('paymentReceivedAmt') == null) ? '0.00' : String.valueOf(Decimal.valueOf(String.valueOf(m.get('paymentReceivedAmt'))).setScale(2));
-                    c.paymentDueDt = (m.get('paymentDueDt') == null) ? 'N/A' : String.valueOf(m.get('paymentDueDt'));
-                    c.lastPaymentDt = (m.get('lastPaymentDt') == null) ? 'N/A' : String.valueOf(m.get('lastPaymentDt'));
-                    c.balanceDueAmt = (m.get('balanceDueAmt') == null) ? '0.00' : String.valueOf(Decimal.valueOf(String.valueOf(m.get('balanceDueAmt'))).setScale(2));
-                    c.netAmt = (m.get('netAmt') == null) ? '0.00' : String.valueOf(Decimal.valueOf(String.valueOf(m.get('netAmt'))).setScale(2));
-                    c.gstAmt = (m.get('gstAmt') == null) ? '0.00' : String.valueOf(Decimal.valueOf(String.valueof(m.get('gstAmt'))).setScale(2));
-                    c.pstAmt = (m.get('pstAmt') == null) ? '0.00' : String.valueOf(Decimal.valueOf(String.valueOf(m.get('pstAmt'))).setScale(2));
-                    c.hstAmt = (m.get('hstAmt') == null) ? '0.00' : String.valueOf(Decimal.valueOf(String.valueOf(m.get('hstAmt'))).setScale(2));
-                    c.lpcAmt = (m.get('lpcAmt') == null) ? '0.00' : String.valueOf(m.get('lpcAmt'));
-                    c.hasSummaryInvoice = String.valueOf(m.get('hasSummaryInvoice'));
-                    c.URL = 'apex/DownloadPDF?invoiceID=' + c.id + '&isSummary=false';
-                    c.summaryInvoiceURL = 'apex/DownloadPDF?invoiceID=' + c.id + '&isSummary=true';
-                    contentList.add(c);
-                }    
+            numberOfPages = String.ValueOf(meta.get('totalPages'));
+            List<Object> contents = (List<Object>) meta.get('content');
+                    
+            contentList = new List<Content>();
+            for (Object obj : contents){
+                Map<String, Object> m = (Map<String, Object>) obj;
+                Content c = new Content();
+                c.id = String.ValueOf(m.get('id'));
+                c.invoiceNum = String.valueOf(m.get('invoiceNum'));
+                c.invoiceDt = String.valueOf(m.get('invoiceDt'));
+                c.billingAccountNum = String.valueOf(m.get('billingAccountNum'));
+                c.balanceForwardAmt = String.valueOf(m.get('balanceForwardAmt'));
+                c.paymentReceivedAmt = String.valueOf(m.get('paymentReceivedAmt'));
+                c.paymentDueDt = String.valueOf(m.get('paymentDueDt'));
+                c.lastPaymentDt = String.valueOf(m.get('lastPaymentDt'));
+                c.balanceDueAmt = String.valueOf(m.get('balanceDueAmt'));
+                c.netAmt = String.valueOf(m.get('netAmt'));
+				c.gstAmt = String.valueof(m.get('gstAmt'));
+				c.pstAmt = String.valueOf(m.get('pstAmt'));
+				c.hstAmt = String.valueOf(m.get('hstAmt'));
+				c.lpcAmt = String.valueOf(m.get('lpcAmt'));
+                c.URL = 'apex/DownloadPDF?invoiceID=' + c.id;
+                contentList.add(c);
+            }    
             }
                 
         }
@@ -146,8 +144,6 @@ public class CustomerInvoiceController {
         public String pstAmt {get;set;}
         public String hstAmt {get;set;}
         public String lpcAmt {get;set;}
-        public String hasSummaryInvoice {get;set;}
-        public String summaryInvoiceURL {get;set;}
     }
      
 }

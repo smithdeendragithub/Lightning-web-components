@@ -286,8 +286,7 @@ public with sharing class ServiceLocationExtensionController extends CustomerDet
                 cdList.add(detail);
                 
                 for(Customer_Detail__c cd : cdList)
-                    cd.Customer_Account_Manager__c = camID;
-                    //detail.Customer_Account_Manager__c = camID;
+                    detail.Customer_Account_Manager__c = camID;
                 
                 update cdList;
             }
@@ -317,15 +316,6 @@ public with sharing class ServiceLocationExtensionController extends CustomerDet
                 update updatedAccounts;
             
             update branchLocations;
-            
-            if (detail.Acquired_Company_Biller__c == 'Phoenix'){
-                // Update Legacy ID from new parent Account
-            	List<Customer_Detail__c> cd = [SELECT ICC_Subscriber_ID__c FROM Customer_Detail__c WHERE Parent_Account__c=:newAccountId AND Parent_Customer__c=null];
-            	if (cd.size() > 0){
-            		detail.Legacy_ID__c = cd[0].ICC_Subscriber_ID__c;
-                	update detail;
-            	}    
-            }
         }
         
         return doUpdate ? refresh() : null;

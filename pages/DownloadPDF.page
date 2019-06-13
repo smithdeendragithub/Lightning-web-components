@@ -49,7 +49,7 @@
                     var url = URL.createObjectURL(newBlob);
                     var link=document.createElement('a');
                     link.href=window.URL.createObjectURL(newBlob);
-                    link.download="{!invoiceName}invoice-{!invoiceID}";
+                    link.download="invoice-{!invoiceID}";
                     link.click();
                     window.open(url);
                     window.close();

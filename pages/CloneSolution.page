@@ -69,7 +69,7 @@
     </style>
        <link href="{!URLFOR($Resource.productResources, 'formStyle.css')}" rel="stylesheet" type="text/css"/>
     
-    
+	
 
     <!-- <link href="http://dl.dropbox.com/u/3825602/Centerstance/Integra/Configure-Products/formStyle.css" rel="stylesheet" type="text/css" /> --> 
     <script type="text/javascript">
@@ -148,24 +148,21 @@
             holderDiv.dialog('open');
         }
     
-        function validateUCSpecialist(solutionId){
+     	function validateUCSpecialist(solutionId){
             var queryResult = sforce.connection.query("Select Id, SPC_Sales_Product__r.Name, PP_Sales_Product__c, Group_Name__c From OLI__c Where OpportunityLocationConfiguration__c = '" + solutionId + "'");
             var records = queryResult.getArray("records");
-            
-            var queryResult1 = sforce.connection.query("select UC_Specialist__r.Name,Vendor_Registration__c from Opportunity Where Id='{!opportunityID}' limit 1");
-            var ucRecord = queryResult1.getArray("records");
-            var ucSpecial = ucRecord[0].UC_Specialist__r;
-            var vendorRegister = ucRecord[0].Vendor_Registration__c;
-        
             for (i=0; i < records.length; i++)
             { 
                 if (records[i].PP_Sales_Product__c.includes("UC")){
-                    if (ucSpecial == null || vendorRegister == null) {
-                        return false;
+                    queryResult = sforce.connection.query("select UC_Specialist__r.Name from Opportunity Where Id='{!opportunityID}' limit 1");
+            		var ucRecord = queryResult.getArray("records");
+            		var ucSpecial = ucRecord[0].UC_Specialist__r;
+                  	if (ucSpecial == null) {
+            			return false;
                     }
-                    else {
-                        return true;
-                    }    
+            		else {
+            			return true;
+            		}    
                 }
             }
             return true
@@ -174,8 +171,8 @@
 
         function verifySolutionsSelected(solutionId,canCloneToNew){
             if (!validateUCSpecialist(solutionId)){
-                alert('You must provide both an UC Specialist and Vendor Registration in the opportunity in order to clone a solution with UC components.');
-                return false;
+            	alert('You must select an UC Specialist in the opportunity in order to clone a solution with UC components.');
+             	return false;
             }
             if(jQuery("[id$='selSolutionsTo'] option:selected").length > 0){
                 var sols = eval({!cloneableSolutionsJSON});

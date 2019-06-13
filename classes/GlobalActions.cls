@@ -3,6 +3,7 @@ global class GlobalActions {
 		return createBuildOrder(buildingID, false);
     }
     
+@AuraEnabled
     webService static Id CreateAdditionalBuildOrder(Id orderID, boolean extraOrder) {
         List<Order__c> ord = [select Id, Building__c, Location__c from Order__c where Id =: orderID];
 		return createBuildOrder(ord[0].Building__c, true);

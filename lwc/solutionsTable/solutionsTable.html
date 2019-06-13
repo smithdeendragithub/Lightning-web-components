@@ -1,0 +1,79 @@
+<template>
+    {solutionData}
+    <lightning-datatable if:true={hasRecords}
+            data={solutionData}
+            columns={columns}
+            key-field="name">
+    </lightning-datatable>
+</template>
+
+
+
+<!-- <template>
+    <table aria-multiselectable="true" class="slds-table slds-table_bordered slds-table_fixed-layout slds-table_resizable-cols" role="grid">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Name">Name</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Term">Term</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Active">Active</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="MRC Total">MRC Total</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="NRC Total">NRC Total</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Approval Status">Approval Status</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="slds-hint-parent">
+            </tr>
+        </tbody>
+    </table>
+</template> -->
+    <!-- <template for:each={solutionData} for:item="nextOrder">
+        <template for:each={nextOrder.sols} for:item='s1'>
+                <div key={s1.rawSolution.Id}>{s1.rawSolution.Name}</div>
+        </template>
+    </template> -->
+
+<!-- <template> -->
+    <!-- <template iterator:obj={solutionData}>
+        <template iterator:s1={obj.sols}>
+            <p key={s1.rawOrder.Id}>Hello</p>
+        </template>
+    </template> -->
+    <!-- <template for:each={solutionData} for:item="solution">
+        <template for:each={solution.sols} for:item="s1">
+            <p key={s1.rawOrder.Id}>{s1.rawOrder.Name}</p>
+        </template>
+    </template> -->
+
+    <!-- <template for:each={solutionNames} for:item="solution">
+        <p key={solution.key}>{solution.value}</p>
+    </template>
+    <template for:each={solutionTerms} for:item="solution">
+            <p key={solution.key}>{solution.value}</p>
+    </template>
+    <template for:each={solutionActive} for:item="solution">
+            <p key={solution.key}>{solution.value}</p>
+    </template>
+    <template for:each={solutionMRC} for:item="solution">
+            <p key={solution.key}>{solution.value}</p>
+    </template>
+    <template for:each={solutionNRC} for:item="solution">
+            <p key={solution.key}>{solution.value}</p>
+    </template>
+    <template for:each={solutionApproval} for:item="solution">
+            <p key={solution.key}>{solution.value}</p>
+    </template>
+
+</template> -->

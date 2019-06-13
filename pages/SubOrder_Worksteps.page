@@ -21,8 +21,9 @@
                    rendered="{!$ObjectType.Workstep__c.Createable}"
                    />
                    
-               <apex:commandButton value="Show All Worksteps (toggle)" onclick="filterZero(); return false;" style="margin:5px 5px 5px 0;" rerender="worksteps"/>
-               <apex:actionFunction action="{!toggleZeroWorksteps}" name="toggleZeroWorksteps" rerender="worksteps"></apex:actionFunction>
+               <apex:commandButton value="Filter Non-Applicable Worksteps" 
+                   onclick="toggleZeroDuration(); return false"
+                   />
             </apex:form>
             </div>
         </div>
@@ -41,19 +42,20 @@
             rendered="{!$ObjectType.Workstep__c.Createable}"
             />
             
-        <apex:commandButton id="filterZero" value="Show All Worksteps (toggle)" onclick="filterZero(); return false;" style="margin:5px 5px 5px 0;" rerender="worksteps"/>
-         <apex:actionFunction action="{!toggleZeroWorksteps}" name="toggleZeroWorksteps" rerender="worksteps"></apex:actionFunction>
-         
+        <apex:commandButton value="Filter Non-Applicable Worksteps" 
+            onclick="toggleZeroDuration(); return false"
+            style="margin:5px 5px 5px 0;"
+            />
             
         <apex:commandButton value="Open Worksteps in New Window" 
             onclick="window.open('../apex/SubOrder_Worksteps?id={!Sub_Order__c.Id}&so=true'); return false"
             style="margin:5px 5px 5px 0;"
             />
     </apex:form>    
-     <apex:form id="worksteps">
+     <apex:form >
      <apex:outputPanel layout="block" style="{!IF(standAlonePage, 'width:100%;height:100%', 'overflow:auto;width:100%;height:150px')}">
         <apex:pageBlock id="worksteps_list">                
-            <apex:pageBlockTable value="{! defaultWorksteps}" var="ws" rendered="{!defaultWorksteps != null}" >
+            <apex:pageBlockTable value="{! Worksteps}" var="ws">
 
                 <apex:column headerValue="Action"
                     styleClass="{!IF( ws.Duration__c = 0, 'zeroDuration', '')}" 
@@ -377,9 +379,4 @@
 <apex:includeScript value="{!$Resource.SubOrderWorkstepsScript}"/>
 
     </apex:pageblock>
-    <script>
-    function filterZero(){  
-        toggleZeroWorksteps();
-    }
-    </script>
 </apex:page>

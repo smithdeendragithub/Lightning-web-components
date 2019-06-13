@@ -465,7 +465,7 @@
                 </div>
                 <div class="panel-body">
                     {{#if RequireUCSpecialist}}
-                     <b>You must provide both an UC Specialist and Vendor Registration in Opportunity before adding UC Components!</b><br />
+                     <b>You must select an UC Specialist in Opportunity before adding UC Components!</b><br />
                     {{/if}}
                     {{#each AdditionalProdsNeeded}}
                     {{#if @first}}Additional Layer-on Products Required:{{/if}}
@@ -714,7 +714,7 @@
                     $('ul[class="nav navbar-nav"]').css({'float':'none'});
 
                     //create the masterObject
-                    masterObj = masterObject.create($, eval({!jsonIniProds}), eval({!jsonTerms}), '{!market}', '{!configId}', eval({!jsonSLocSelections}), eval({!jsonLocSelections}), eval({!jsonSPCSortConfigMap}), {!disableValidations},'{!opp.UC_Specialist__r.Name}','{!opp.Vendor_Registration__c}');
+                    masterObj = masterObject.create($, eval({!jsonIniProds}), eval({!jsonTerms}), '{!market}', '{!configId}', eval({!jsonSLocSelections}), eval({!jsonLocSelections}), eval({!jsonSPCSortConfigMap}), {!disableValidations},'{!opp.UC_Specialist__r.Name}');
                     //clear the session storaget
                     masterObj.clearSessionStorage();
                     //hide validation button if disabled
@@ -1281,11 +1281,10 @@
                 disableValidations: false,
                 hiddenProductIds: eval({!jsonHiddenProductIds}),
                 ucSpecialist: null,
-                vendorRegistration: null,
                 ucSpecialistValidationNotMet: false,
                 $: jQuery,
 
-                create: function(jQuery, iniProdsObj, termsObj, mkt, confId, sLocSelections, locSelections, spcSortConfigMap, disableValidations, ucSpecialist, vendorRegistration){
+                create: function(jQuery, iniProdsObj, termsObj, mkt, confId, sLocSelections, locSelections, spcSortConfigMap, disableValidations, ucSpecialist){
                     var mo = Object.create(this);
                     mo.$ = jQuery;
                     mo.iniProds = iniProdsObj;
@@ -1301,7 +1300,6 @@
                     mo.spcSortConfigMap = spcSortConfigMap;
                     mo.disableValidations = disableValidations;
                     mo.ucSpecialist = ucSpecialist;
-                    mo.vendorRegistration = vendorRegistration;
                     //create templates
                     mo.templates.panel = Handlebars.compile(mo.$('#panel-template').html());
                     mo.templates.dropdown = Handlebars.compile(mo.$('#dropdown-template').html());
@@ -2976,23 +2974,15 @@
                     }
                 },
                 validateUCSpecialist: function(){
-                    var queryResult = sforce.connection.query("select UC_Specialist__r.Name,Vendor_Registration__c from Opportunity Where Id='{!opp.Id}' limit 1");
+                    var queryResult = sforce.connection.query("select UC_Specialist__r.Name from Opportunity Where Id='{!opp.Id}' limit 1");
                     var records = queryResult.getArray("records");
                     var ucSpecial = records[0].UC_Specialist__r;
-                    var vendorRegister = records[0].Vendor_Registration__c;
                     if (ucSpecial == null) {
                         masterObj.ucSpecialist = "";
                     }
                     else {
                         masterObj.ucSpecialist = ucSpecial.Name;
                     }
-                    if (vendorRegister == null) {
-                        masterObj.vendorRegistration = "";
-                    }
-                    else {
-                        masterObj.vendorRegistration = vendorRegister;
-                    }
-                    
                     
                     var allDataObjs = masterObj.getAllDataObjs();
                     masterObj.preReqValidationsNotMet = {};
@@ -3017,7 +3007,7 @@
                             if(allDataObjs != null){
                                 for(var key in allDataObjs){
                                     if(prodsConfigured.hasOwnProperty(key)){
-                                        if (key.includes("UC") && (masterObj.ucSpecialist == '' || masterObj.vendorRegistration == '')){
+                                        if (key.includes("UC") && masterObj.ucSpecialist == ''){
                                             masterObj.ucSpecialistValidationNotMet = true;
                                         }
                                         else{

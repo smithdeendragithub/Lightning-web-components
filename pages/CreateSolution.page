@@ -1,4 +1,4 @@
-<apex:page controller="ManageLocationProductsController"  tabstyle="Opportunity" cache="false" lightningStylesheets="{! IF($Label.EnableLightningStyleSheets == 'Yes',true,false)}">
+<apex:page controller="ManageLocationProductsController" standardStylesheets="false" tabstyle="Opportunity" cache="false">
   
     <apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-1.6.2.min.js')}" />
     <apex:includeScript value="{!URLFOR($Resource.jquery_ui_1_8_16_custom, 'js/jquery-ui-1.8.16.custom.min.js')}" />

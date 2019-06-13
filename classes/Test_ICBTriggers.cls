@@ -33,7 +33,7 @@ public with sharing class Test_ICBTriggers {
      }
      
      static testMethod void testICBBeforeUpsertTrigger(){
-        Mocks testData = new Mocks();
+        
         List<ICB__c> l = getICBList();
         
         ICB__c icb1 = l.get(0);
@@ -43,7 +43,6 @@ public with sharing class Test_ICBTriggers {
         system.debug(icb2);
         icb2.OwnerId = getStandardUser().Id;
         icb2.Product__c = 'SIP';
-        icb2.Opportunity__c = testData.opportunity.Id;
         system.debug(icb2);
         system.assertNotEquals(icb1.OwnerId, icb2.OwnerId);
         

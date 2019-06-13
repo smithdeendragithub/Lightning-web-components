@@ -74,8 +74,8 @@ public with sharing class Test_ILECOppGeneration extends TestUtils.TestClass {
 		ApexPages.currentPage().getParameters().put('longitude', '-122.6532694');
         ApexPages.currentPage().getParameters().put('country', 'CA');
         ApexPages.currentPage().getParameters().put('accountId', TestData.parentAccount.Id);
-        //Market_Area__c MArea = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
-        //insert MArea;
+        Market_Area__c MArea = new Market_Area__c(MarketAreaExternalID__c = '12345', Name = 'National');
+        insert MArea;
         
         ILECOpportunityGeneration instance = new ILECOpportunityGeneration();
         System.AssertNotEquals(instance.AddProduct(), null);         

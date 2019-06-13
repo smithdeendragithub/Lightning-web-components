@@ -30,23 +30,10 @@ global class Test_CustomerInvoice {
     	PageReference pageRef = Page.DownloadPDF;
         Test.setCurrentPage(pageRef);
         ApexPages.currentPage().getParameters().put('invoiceID','335051');
-        ApexPages.currentPage().getParameters().put('isSummary','false');
         Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
         InvoiceDownloadController controller = new InvoiceDownloadController();
         String pdfJSON = controller.getPDFString();
-        test.stopTest();
-    }
-    
-    public static testMethod void testInvoiceDownloadControllerSummary(){
-        test.startTest();
-    	PageReference pageRef = Page.DownloadPDF;
-        Test.setCurrentPage(pageRef);
-        ApexPages.currentPage().getParameters().put('invoiceID','335051');
-        ApexPages.currentPage().getParameters().put('isSummary','true');
-        Test.setMock(HttpCalloutMock.class, new MockHttpResponseGenerator());
-        InvoiceDownloadController controller = new InvoiceDownloadController();
-        String pdfJSON = controller.getPDFString();
-        test.stopTest();
+        
     }
     
  

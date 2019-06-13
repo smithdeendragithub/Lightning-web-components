@@ -173,12 +173,12 @@ public with sharing class WorkstepTriggers {
         
         List<Sub_Order__c> soList = null;
         if(setSubOrderValues){
-            soList = [SELECT Id, Order__c, External_Order__c, External_Order__r.Type__c, External_Products__c, Service_Location__c, Service_Location__r.Customer_Detail__c, Service_Location__r.Account__r.Customer_Detail__c   FROM Sub_Order__c WHERE Id IN :soWSMap.keySet()];
+            soList = [SELECT Id, Order__c, External_Order__c, External_Order__r.Type__c, External_Products__c  FROM Sub_Order__c WHERE Id IN :soWSMap.keySet()];
             for(Sub_Order__c so : soList) ords.put(so.Order__c, null);
         }
         
         if(ords.size() > 0){
-            ords = new Map<Id, Order__c>([SELECT Account__c, Opportunity__c, Opportunity__r.AccountId, Opportunity__r.Id, RecordType.DeveloperName, Care_Organization__c, (Select Type__c from Order_Properties__r where Type__c = 'Install Order') FROM Order__c where Id in : ords.keyset()]);
+            ords = new Map<Id, Order__c>([SELECT Account__c, Opportunity__c, Opportunity__r.AccountId, Opportunity__r.Id, RecordType.DeveloperName, (Select Type__c from Order_Properties__r where Type__c = 'Install Order') FROM Order__c where Id in : ords.keyset()]);
             if(updateOrders.size() > 0){
                 for(Order__c ord : ords.values()){
                     if(updateOrders.contains(ord.Id)){

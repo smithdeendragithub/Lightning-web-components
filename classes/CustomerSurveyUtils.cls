@@ -24,11 +24,9 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
     public static final String RECOMMEND_ALLSTREAM_SURVEY_NAME = 'Would you recommend Allstream';
     public static final String RECOMMEND_ALLSTREAM_REMINDER_SURVEY_NAME = 'Would you recommend Allstream Reminder';
     public static final String ALLSTREAM_CUSTOMER_CARE_SURVEY_NAME = 'Allstream Customer Care Survey';
-    public static final String ALLSTREAM_CUSTOMER_SATISFACTION_SURVEY_NAME='Allstream Customer Satisfaction Survey';
     
-    public Enum SurveyType { SALES_EXPERIENCE_WON, SALES_EXPERIENCE_LOST, POST_INSTALL, CUSTOMER_ACCOUNT_MANAGER, ACCOUNT_CONSULTANT, CUSTOMER_CARE, RECOMMEND_ALLSTREAM_SURVEY_NAME, RECOMMEND_ALLSTREAM_REMINDER_SURVEY_NAME, POST_INSTALL_UC, ALLSTREAM_CUSTOMER_CARE,ALLSTREAM_CUSTOMER_SATISFACTION }       
+    public Enum SurveyType { SALES_EXPERIENCE_WON, SALES_EXPERIENCE_LOST, POST_INSTALL, CUSTOMER_ACCOUNT_MANAGER, ACCOUNT_CONSULTANT, CUSTOMER_CARE, RECOMMEND_ALLSTREAM_SURVEY_NAME, RECOMMEND_ALLSTREAM_REMINDER_SURVEY_NAME, POST_INSTALL_UC, ALLSTREAM_CUSTOMER_CARE }       
     
-    private static Set<Id> custDetailIdsForSurvey {get;set;}
     private static Id zMarketingOrgWideId = null;
     public static Id MarketingOrgWideId{
         get{
@@ -285,14 +283,8 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
         Integer daysBetweenCSSurveys = getSurveyDelay('CustomerCare');
         Map<Id,Date>LastCSSurveyedDateByAcctId = getLastSurveyedDates(acctIds, CUSTOMER_CARE_SURVEY_NAME);
         
-        for (Id CaseID: contactsByCaseId.keySet()) {
-            Set<Contact> contacts =  contactsByCaseId.get(CaseID);
-            for (Contact contact: contacts)
-                contactIds.add(contact.id);
-        }
         Map<Id,Date>LastNewCSSurveyedDateByContactId = getLastSurveyedDatesByContact(contactIds, ALLSTREAM_CUSTOMER_CARE_SURVEY_NAME);
 
-        
         for(SurveyCreatorParams param : params){
             param.contacts = contactsByCaseId.get(param.daObject.Id);
             if(param.SurveyType == SurveyType.CUSTOMER_ACCOUNT_MANAGER){
@@ -328,11 +320,8 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
         return new SurveyCreator().Create(surveysToSend, fails);
     }
     
-    
     private static List<SurveyCreatorParams> getOrdersToSurvey(List<Sub_Order__c> soList, Map<Id, Order__c> Ords, Map<Id, List<Workstep__c>> soWSMap){
         List<SurveyCreatorParams> ret = new List<SurveyCreatorParams>();
-        custDetailIdsForSurvey = new Set<Id>();
-        Set<String> excludeWholeSaleCareOrgs = new Set<String>(CustomSettingUtils.getProcessConfigurationValues('SurveyExclude', 'WholesaleCareOrg'));
         if(!CustomSettingUtils.getOverrideSettingValue('Send Post Install Survey')){
             for (Sub_Order__c so : soList) {
                 Order__c ord = ords.get(so.order__c);
@@ -340,22 +329,18 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
                     String wsName = ws.Name.toLowerCase();  //todo: we shouldn't be string checking a modifyable name
                     if (wsName == ('Confirm Customer Acceptance').toLowerCase()) {
                         if(ord != null && so.External_Order__r != null && so.External_Order__r.Type__c == 'Install Order'){
-                            if((so.External_Products__c != null && so.External_Products__c.contains('UC Cloud')) || !excludeWholeSaleCareOrgs.contains(ord.Care_Organization__c)){
-                                SurveyCreatorParams param = new SurveyCreatorParams();
-                                param.daObject = ord;
-                                param.OpportunityId = ord.Opportunity__c;
-                                param.AccountId = OrderUtils.getAccountIdFromOrder(ord);
-                                param.orderId = ord.Id;
-                                if(so.External_Products__c != null && so.External_Products__c.contains('UC Cloud')){
-                                    param.SurveyType = SurveyType.POST_INSTALL_UC;
-                                }else{
-                                    //param.SurveyType = SurveyType.POST_INSTALL;
-                                    param.SurveyType = SurveyType.ALLSTREAM_CUSTOMER_SATISFACTION;
-                                }
+                            SurveyCreatorParams param = new SurveyCreatorParams();
+                            param.daObject = ord;
+                            param.OpportunityId = ord.Opportunity__c;
+                            param.AccountId = OrderUtils.getAccountIdFromOrder(ord);
+                            if(so.External_Products__c != null && so.External_Products__c.contains('UC Cloud')){
+                                param.SurveyType = SurveyType.POST_INSTALL_UC;
+                            }else{
+                                param.SurveyType = SurveyType.POST_INSTALL;
+                            }
+                            if(so.External_Products__c != null && so.External_Products__c.contains('UC Cloud')){//TODO Feb 4.. for now, we are sedning out surveys for UC products. Once they decide to do otherwise, change code here
                                 ret.add(param);
-                                custDetailIdsForSurvey.add(so.Service_Location__r.Customer_Detail__c);
-                                custDetailIdsForSurvey.add(so.Service_Location__r.Account__r.Customer_Detail__c);
-                            }    
+                            }
                         }
                     }
                 }
@@ -367,16 +352,12 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
     private static Map<Id, List<Survey__c>> crtSvysFrmOrds(List<SurveyCreatorParams> params){
         List<SurveyCreatorParams> surveysToSend = new List<SurveyCreatorParams>();
         List<Order__c> Ords = new List<Order__c>();
-        Set<Id> acctIds = new Set<Id>();
-        Set<Id> orderIds = new Set<Id>();         
+        Set<Id> acctIds = new Set<Id>();        
         for(SurveyCreatorParams  param : params){
             Ords.add((order__c)param.daObject);
             Id actId = param.AccountId;
             if(actId != null)
                 acctIds.add(actId);
-            if(param.orderId != null){
-                orderIds.add(param.orderId);
-            }                
         }
         Map<Id, Set<Contact>> contactsByOrdId = getSurveyableContactsForOrder(Ords);
             
@@ -385,9 +366,6 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
         
         Integer daysBetweenUCSurveys = getSurveyDelay('PostInstallUC');
         Map<Id,Date> LastUCSurveyedDateByAcctId = getLastSurveyedDates(acctIds, ALLSTREAM_INSTALLATION_SURVEY_NAME);
-        
-        Integer daysBetweenNonUCSurveys = 0; //SEAL-2267, no delay for non UC survey
-        Map<Id,Date> lastUCSurveyedDateByOrderId = getLastSurveyedDatesByOrder(orderIds, ALLSTREAM_CUSTOMER_SATISFACTION_SURVEY_NAME);
         
         for(SurveyCreatorParams param : params){
             param.Contacts = contactsByOrdId.get(param.daObject.Id);
@@ -401,11 +379,6 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
                     LastSurveyedDateByAcctID.put(param.AccountId, Date.today());
                     surveysToSend.add(param);
                 }
-            }else if(param.SurveyType == SurveyType.ALLSTREAM_CUSTOMER_SATISFACTION ){
-                if(param.AccountId != null && canSurvey(daysBetweenNonUCSurveys, lastUCSurveyedDateByOrderId.get(param.daObject.Id))){
-                    lastUCSurveyedDateByOrderId.put(param.daObject.Id, Date.today());
-                    surveysToSend.add(param);
-                }                
             }
         }
         List<SurveyCreatorParams> fails = new List<SurveyCreatorParams>();
@@ -485,7 +458,7 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
         for(Id cid : contacts){
             if(etID != null){
                 Messaging.SingleEmailMessage email = ApexUtils.createTemplatedEmailMessage(cid, etID, parentObjectID);
-                if (TemplateName == RECOMMEND_ALLSTREAM_SURVEY_NAME.replaceAll(' ', '_') || TemplateName == RECOMMEND_ALLSTREAM_REMINDER_SURVEY_NAME.replaceAll(' ', '_') || TemplateName == ALLSTREAM_CUSTOMER_CARE_SURVEY_NAME.replaceAll(' ', '_') || TemplateName == ALLSTREAM_CUSTOMER_SATISFACTION_SURVEY_NAME.replaceAll(' ', '_'))
+                if (TemplateName == RECOMMEND_ALLSTREAM_SURVEY_NAME.replaceAll(' ', '_') || TemplateName == RECOMMEND_ALLSTREAM_REMINDER_SURVEY_NAME.replaceAll(' ', '_') || TemplateName == ALLSTREAM_CUSTOMER_CARE_SURVEY_NAME.replaceAll(' ', '_'))
                     email.setOrgWideEmailAddressId(CustomerExperienceOrgWideId);
                 else If(TemplateName == ALLSTREAM_INSTALLATION_SURVEY_NAME.replaceAll(' ', '_'))
                     email.setOrgWideEmailAddressId(AllstreamInstallationOrgWideId);
@@ -532,18 +505,6 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
         }
         return ret;
     }
-
-    private static Map<Id, Date> getLastSurveyedDatesByOrder(Set<Id> orderIds, String svyName){
-        Map<Id, Date> ret = new Map<Id, Date>();
-        for(Id oid : orderIds) ret.put(oid, null);
-        List<AggregateResult> svys = [select max(Sent_Date__c) sd, Order__c from Survey__c where Name = :svyName and Order__c in :orderIds group by Order__c];
-        for(AggregateResult svy : svys){
-            Id oid = String.valueOf(svy.get('Order__c'));
-            Date d = Date.valueOf(svy.get('sd'));
-            ret.put(oid, d);
-        }
-        return ret;
-    }    
     
     private static Integer getSurveyDelay(String svyNm){
         Integer daysBetweenSurveys = 30; //default value
@@ -575,18 +536,17 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
             if(actId != null)
                 OrdIdByAccountId.put(actId, ord.Id);
         }
-        
         List<Contact> cs = new List<Contact>();
-        cs = [select (Select Contact_Type__c from Customer_Contacts__r where Customer_Detail__c in :custDetailIdsForSurvey and Contact_Type__c = 'Responsible Party'), c.Name, c.Email, c.HasOptedOutOfEmail, c.Default_Responsible_Party__c, c.AccountId, c.Default_Contact_Types__c from Contact c where c.AccountId in :OrdIdByAccountId.keyset()];
+        cs = [select (Select Contact_Type__c from Customer_Contacts__r), c.Name, c.Email, c.HasOptedOutOfEmail, c.Default_Responsible_Party__c, c.AccountId, c.Default_Contact_Types__c from Contact c where c.AccountId in :OrdIdByAccountId.keyset()];
         for(Contact c : cs){
             Id ordId = OrdIdByAccountId.get(c.AccountId);
             Set<Contact> cts = ContactsByOrdId.get(ordId);
             if(cts == null) cts = new Set<Contact>();
-            if(c.Customer_Contacts__r.size() >0 && !cts.contains(c)){
+            if(!cts.contains(c) && (c.Default_Responsible_Party__c || (c.Default_Contact_Types__c != null && ( c.Default_Contact_Types__c.contains('Local Contact') || c.Default_Contact_Types__c.contains('Authorized User')))))
                 cts.add(c);
-            }
             ContactsByOrdId.put(ordId, cts);
         }
+        
         return ContactsByOrdId;
     }
     
@@ -632,7 +592,6 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
         public Id AccountId {get;Set;}
         public Id OpportunityId {get;Set;}
         public Id CaseId {get;Set;}
-        public Id orderId {get;Set;} 
         public Set<Contact> Contacts {get;Set;}
                         
         public SurveyCreatorParams(){
@@ -641,7 +600,6 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
             AccountId = null;
             OpportunityId = null;
             CaseId = null;
-            orderId = null;
             contacts = null;
         }
     }
@@ -700,10 +658,7 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
             }
             else if(param.SurveyType == SurveyType.POST_INSTALL_UC){
                 SurveyName = ShortName = ALLSTREAM_INSTALLATION_SURVEY_NAME;
-            }
-            else if(param.SurveyType == SurveyType.ALLSTREAM_CUSTOMER_SATISFACTION){
-                SurveyName = ShortName = ALLSTREAM_CUSTOMER_SATISFACTION_SURVEY_NAME;
-            }
+            }            
             if(param.contacts == null || param.contacts.size() == 0){
                 Survey__c newSurvey = new Survey__c();
                 newSurvey.Name = ShortName;
@@ -712,7 +667,6 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
                 newSurvey.Account__c = param.AccountId;
                 newSurvey.Opportunity__c = param.OpportunityId;
                 newSurvey.Case__c = param.CaseId;
-                 newSurvey.Order__c = param.orderId;
                 newSurvey.Surveyed_Contact__c = null;
                 ret.add(newSurvey);
             }
@@ -726,7 +680,6 @@ public without sharing class CustomerSurveyUtils extends TestUtils.TestClass {
                         newSurvey.Account__c = param.AccountId;
                         newSurvey.Opportunity__c = param.OpportunityId;
                         newSurvey.Case__c = param.CaseId;
-                        newSurvey.Order__c = param.orderId;
                         newSurvey.Surveyed_Contact__c = contact.Id;
                         ret.add(newSurvey); 
                     }

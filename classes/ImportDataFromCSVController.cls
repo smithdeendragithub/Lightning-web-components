@@ -6,10 +6,8 @@ public with sharing class ImportDataFromCSVController {
     public boolean readSuccess {get;set;}
     public List<SelectOption> currencies {get; set;}
     public String selectedCurrency {get; set;}    
-    public String selectedFileType {get; set;} 
-    public String selectedQuarter {get; set;}    
+    public String selectedFileType {get; set;}    
     public Integer numOfRenewal {get; set;}  
-    Integer year, minQ, maxQ;
 
     Order__c ordObj;
     String orderDataAsString;
@@ -212,15 +210,25 @@ public with sharing class ImportDataFromCSVController {
    
   
   private List<Order__c> getSameContractOrders(Id reportyTypeId, Set<String> contractIds, String contractStatus) {
-        calcaulteDateCriteria();                
+        Date today = Date.today();
+        Integer q;
+        
+        if(today.month() != 3 && today.month() != 6 && today.month() != 9 && today.month() != 12){
+            q = math.round((today.month())/3)*3;
+        }else{
+            q = math.round((today.month()-1)/3)*3;
+        }
+        Integer minQ = q + 1;
+        Integer maxQ = q + 3;
+        
         List<Order__c> sameOrders;
         if(contractStatus == 'Anticipated Install'){
-           sameOrders=  [Select Id, Name, Contract_ID__c, createdDate, Order_ID_for_Install_Contract__c from Order__c where CALENDAR_YEAR(createdDate) = :year
+           sameOrders=  [Select Id, Name, Contract_ID__c, createdDate, Order_ID_for_Install_Contract__c from Order__c where CALENDAR_YEAR(createdDate) = :today.year()
                 and CALENDAR_MONTH(createdDate) >= :minQ and CALENDAR_MONTH(createdDate) <= :maxQ and RecordTypeId =:reportyTypeId
                 and Order_ID_for_Install_Contract__c in :contractIds and Contract_Status__c = :contractStatus];
 
         }else{
-           sameOrders= [Select Id, Name, Contract_ID__c, createdDate, Order_ID_for_Install_Contract__c from Order__c where CALENDAR_YEAR(createdDate) = :year
+           sameOrders= [Select Id, Name, Contract_ID__c, createdDate, Order_ID_for_Install_Contract__c from Order__c where CALENDAR_YEAR(createdDate) = :today.year()
                 and CALENDAR_MONTH(createdDate) >= :minQ and CALENDAR_MONTH(createdDate) <= :maxQ and RecordTypeId =:reportyTypeId
                 and Contract_ID__c in :contractIds and Contract_Status__c = :contractStatus];
 
@@ -228,47 +236,32 @@ public with sharing class ImportDataFromCSVController {
         
         return sameOrders;
   
-    }
-    private void calcaulteDateCriteria(){
+  }
+  
+  private List<Order__c> getAnticipatedOrdersForSameContract(Id reportyTypeId, Set<String> contractIds, String contractStatus) {
         Date today = Date.today();
-        Integer q;        
-        year = today.year();
+        Integer q;
         
         if(today.month() != 3 && today.month() != 6 && today.month() != 9 && today.month() != 12){
             q = math.round((today.month())/3)*3;
         }else{
             q = math.round((today.month()-1)/3)*3;
         }
-        minQ = q + 1;
-        maxQ = q + 3;
+        Integer minQ = q + 1;
+        Integer maxQ = q + 3;
         
-        //calculate previous quarter
-        if(selectedQuarter == 'previous'){
-            if(q==0){        
-                minQ = minQ+9;
-                maxQ = maxQ+9; 
-                year = year-1;
-            }else if(q==3 ||q==6 ||q==9 ){
-                minQ = minQ-3;
-                maxQ = maxQ-3;      
-            }
-        }   
-  }
-  
-  private List<Order__c> getAnticipatedOrdersForSameContract(Id reportyTypeId, Set<String> contractIds, String contractStatus) {
-        calcaulteDateCriteria();
         String antiContractStatus;
         List<Order__c> antiOrders ;
         if(contractStatus == 'Actual Install'){
            antiContractStatus = 'Anticipated Install';
-           antiOrders =   [Select Id, Name, Contract_ID__c, createdDate, Order_ID_for_Install_Contract__c from Order__c where CALENDAR_YEAR(createdDate) = :year
+           antiOrders =   [Select Id, Name, Contract_ID__c, createdDate, Order_ID_for_Install_Contract__c from Order__c where CALENDAR_YEAR(createdDate) = :today.year()
                 and CALENDAR_MONTH(createdDate) >= :minQ and CALENDAR_MONTH(createdDate) <= :maxQ and RecordTypeId =:reportyTypeId
                 and Order_ID_for_Install_Contract__c in :contractIds and Contract_Status__c = :antiContractStatus];
            
            
         }else if(contractStatus == 'Actual Churn'){
            antiContractStatus = 'Anticipated Churn';    
-           antiOrders =   [Select Id, Name, Contract_ID__c, createdDate, Order_ID_for_Install_Contract__c from Order__c where CALENDAR_YEAR(createdDate) = :year
+           antiOrders =   [Select Id, Name, Contract_ID__c, createdDate, Order_ID_for_Install_Contract__c from Order__c where CALENDAR_YEAR(createdDate) = :today.year()
                 and CALENDAR_MONTH(createdDate) >= :minQ and CALENDAR_MONTH(createdDate) <= :maxQ and RecordTypeId =:reportyTypeId
                 and Contract_ID__c in :contractIds and Contract_Status__c = :antiContractStatus];
 

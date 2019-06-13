@@ -13,8 +13,8 @@ public class GlobysTransactionController {
     private static Id zMarketAreaNational = null;
 	public static Id MarketAreaNational{
 		get{
-            if (UserInfo.getOrganizationId() == '00Dm000000055agEAA') {
-				//This id will change each time the sandbox is refreshed and is unique to the sandbox
+            if (UserInfo.getOrganizationId() == '00Dm000000055ag') {
+				//Dev - this id will change each time the sandbox is refreshed
                 zMarketAreaNational = 'a0Jm0000006odFs';
             } 
             else
@@ -25,6 +25,7 @@ public class GlobysTransactionController {
 	}
     
     public static void processCustomerDetailChanges(List<Customer_Detail__c> tNew, Map<Id, Customer_Detail__c> tOldMap, Boolean isDelete) {
+
         List<Globys_Transaction__c> insertGT = new List<Globys_Transaction__c>();
         Map<Id, List<Customer_Detail__c>> childCDs = new Map<Id, List<Customer_Detail__c>>();
         Map<Id, List<Customer_Detail__c>> parentCDs = new Map<Id, List<Customer_Detail__c>>();
@@ -34,20 +35,13 @@ public class GlobysTransactionController {
 
             Customer_Detail__c oldDetail = tOldMap.get(cDetail.Id);
             if (cDetail.Market_Area__c != MarketAreaNational && oldDetail.Market_Area__c != MarketAreaNational) continue; //only applies to National
-            //let's think about a billable parent that is integrated where a non-billable parent is added above.
-            //For the original parent, it would not have a parent_customer__r originally but now does
-            //If that is the case, there is nothing to unlink but we need to create a link from original parent to
-            //the new non-billable grandparent.
-            if (cDetail.Parent_Customer__c == null && oldDetail.Parent_Customer__c != null && cDetail.Billable__c == true) {
-            	//change parent was done and this customer detail is now a new account structure
-            	//just unlink the old relationship for now
-                parentCDs.put(oldDetail.Parent_Customer__c, new List<Customer_Detail__c>());
-            } else if (cDetail.Parent_Customer__c == null) { //this is the CD associated directly to the account
+
+            if (cDetail.Parent_Customer__c == null) { //this is the CD associated directly to the account
             	childCDs.put(cDetail.id, new List<Customer_Detail__c>());
             } else { //we are working with billable parents, we don't want non-billable children
                 if (cDetail.Billable__c == true) {
                 	parentCDs.put(cDetail.parent_customer__c, new List<Customer_Detail__c>());
-                    if (cDetail.parent_customer__c != oldDetail.Parent_Customer__c && oldDetail.Parent_Customer__c != null)
+                    if (cDetail.parent_customer__c != oldDetail.Parent_Customer__c)
                         parentCDs.put(oldDetail.Parent_Customer__c, new List<Customer_Detail__c>());
                 }
             }
@@ -76,16 +70,7 @@ public class GlobysTransactionController {
             if (cDetail.Market_Area__c != MarketAreaNational && oldDetail.Market_Area__c != MarketAreaNational) continue; //only applies to National
 			If (cDetail.ICC_Subscriber_ID__c == null) continue; //we don't care about non-integrated Customer Details
 
-            if (cDetail.Parent_Customer__c == null && oldDetail.Parent_Customer__c != null) {
-                //change parent making this CD a new account structure - unlink from old parent
-                insertGT.add(createGlobysTransaction('unlink', 
-                                                     oldDetail.Account_Business_Party_ID__c == null ? oldDetail.ICC_Subscriber_ID__c : oldDetail.Account_Business_Party_ID__c, 
-                                                     oldDetail.parent_customer__c, 
-                                                     cDetail.Legacy_ID__c, 
-                                                     cDetail.Id, 
-                                                     cDetail.Acquired_Company_Biller__c, 
-                                                     oldDetail.Account_Business_Party_ID__c == null ? 'ICCS': 'BPID'));
-            } else if (cDetail.Parent_Customer__c == null) {
+            if (cDetail.Parent_Customer__c == null) {
                 if (cDetail.BPID__c != oldDetail.BPID__c || cDetail.Market_Area__c != oldDetail.Market_Area__c || cDetail.ICC_Subscriber_ID__c != oldDetail.ICC_Subscriber_ID__c)
                     insertGT.addall(processBPIDChanges(cDetail, oldDetail, isDelete, childCDs.get(cDetail.id)));
             } else {
@@ -150,7 +135,7 @@ public class GlobysTransactionController {
     	}
         
         for (Customer_Detail__c childDetail: childCDs) {
-            if (unlinkMarketArea == true && oldDetail.id != null)
+            if (unlinkMarketArea == true)
                 insertGT.add(createGlobysTransaction('unlink', oldDetail.Account_Business_Party_ID__c, oldDetail.id, childDetail.Legacy_ID__c, childDetail.Id, childDetail.Acquired_Company_Biller__c, unlinkParentSource));
             else if (linkMarketArea == true)
                 insertGT.add(createGlobysTransaction('link', cDetail.Account_Business_Party_ID__c, cDetail.id, childDetail.Legacy_ID__c, childDetail.Id, childDetail.Acquired_Company_Biller__c, linkParentSource));
@@ -172,9 +157,8 @@ public class GlobysTransactionController {
         String unlinkParentIdentifier, unlinkParentIdentifierSource = null;
         
         List<Globys_Transaction__c> insertGT = new List<Globys_Transaction__c>{};
-   
 		if (parentCDs == null || parentCDs.size() < 1) return insertGT;
-
+        
         Customer_Detail__c parentCD = parentCDs[0];
         if (String.isBlank(parentCD.BPID__c)) {
 			linkParentIdentifier = parentCD.ICC_Subscriber_ID__c;
@@ -196,11 +180,12 @@ public class GlobysTransactionController {
         }
             
         //if this customer detail is no longer National, then remove all information from Globys
-        if (oldDetail.Market_Area__c == MarketAreaNational && cDetail.Market_Area__c != MarketAreaNational && oldDetail.Parent_Customer__c != null) 
+        if (oldDetail.Market_Area__c == MarketAreaNational && cDetail.Market_Area__c != MarketAreaNational) 
             insertGT.add(createGlobysTransaction('unlink', unlinkParentIdentifier, oldDetail.Parent_Customer__c, oldDetail.Legacy_ID__c, oldDetail.Id, oldDetail.Acquired_Company_Biller__c, unlinkParentIdentifierSource));    
 
         //handle change of legacy ids & biller
         if (cDetail.Legacy_ID__c != oldDetail.Legacy_ID__c || cDetail.Acquired_Company_Biller__c != oldDetail.Acquired_Company_Biller__c || cDetail.ICC_Subscriber_ID__c != oldDetail.ICC_Subscriber_ID__c || cDetail.Parent_Customer__c != oldDetail.Parent_Customer__c) {
+        //if (cDetail.Legacy_ID__c != oldDetail.Legacy_ID__c || cDetail.Acquired_Company_Biller__c != oldDetail.Acquired_Company_Biller__c || cDetail.ICC_Subscriber_ID__c != oldDetail.ICC_Subscriber_ID__c || (unlinkParentIdentifierSource == 'ICCS' && cDetail.Parent_Customer__c != oldDetail.Parent_Customer__c)) {            
             String linkBiller, linkLegacyID = null;
             String unlinkBiller, unlinkLegacyID = null;
             if (cDetail.ICC_Subscriber_ID__c != oldDetail.ICC_Subscriber_ID__c) {
@@ -231,7 +216,7 @@ public class GlobysTransactionController {
             	if (linkLegacyID != null || linkBiller != null) 
                 	insertGT.add(createGlobysTransaction('link', linkParentIdentifier, cDetail.Parent_Customer__c, linkLegacyID, cDetail.Id, cDetail.Acquired_Company_Biller__c, linkParentIdentifierSource));
             
-            	if (unlinkLegacyID != null || unlinkBiller != null &&  oldDetail.Parent_Customer__c != null) 
+            	if (unlinkLegacyID != null || unlinkBiller != null) 
                 	insertGT.add(createGlobysTransaction('unlink', unlinkParentIdentifier, oldDetail.Parent_Customer__c, unlinkLegacyID, cDetail.Id, oldDetail.Acquired_Company_Biller__c, unlinkParentIdentifierSource));
             }
         }       
@@ -243,10 +228,7 @@ public class GlobysTransactionController {
         Globys_Transaction__c gTransaction = new Globys_Transaction__c();
         gTransaction.Action__c = action;
         gTransaction.Child_Identifer__c = childIdentifier;
-        if (biller == 'Phoenix')
-            gTransaction.Child_Legacy_Biller__c = 'ICCS';
-        else 
-        	gTransaction.Child_Legacy_Biller__c = biller;
+        gTransaction.Child_Legacy_Biller__c = biller;
         gTransaction.Child_Subscriber__c = childSubscriber;
         gTransaction.Parent_Identifier__c = parentIdentifier;
         gTransaction.Parent_Subscriber__c = parentSubscriber;

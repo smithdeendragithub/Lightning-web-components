@@ -14,7 +14,7 @@
         <td>
             <table width="700" border="0" cellspacing="0" cellpadding="0" > 
                 <tr>
-                 <td width="500"><div class="subTitle">Addendum to the Service Order<br />
+                 <td width="500"><div class="subTitle">Addendum to the Masters Service Agreement<br />
                                                         Business Downturn - Location Closure</div></td>
                     <td>
                         <table align="left" width="100px" class="topRightSmall" border="0" cellspacing="0" cellpadding="0">
@@ -40,37 +40,38 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="textBlock">
-                        This addendum (“Addendum”) is executed as of the <u>{!currentDayOrdinal}</u> day of <u>{!currentMonthName}</u>, <u>{!currentYear}</u> (the “Effective Date”), 
-                        by and between the Customer and Allstream Business Inc. and/or Allstream Business US, LLC. through its subsidiaries ("<b>Allstream</b>") 
-                        and <u>{!CurrentOpportunity.Account.Name}</u> (“Customer”), to supplement the Service Order for Services dated <u>{!currentMonthName}</u> &nbsp; <u>{!currentDay}</u>, <u>{!currentYear}</u>. 
-                        In the event of any inconsistencies between the MSA, the Service Order and this Addendum, the terms and conditions of this Addendum shall prevail.
-					</td>
+                        This Addendum to the Service Agreement and the Master Service Agreement 
+                        (this “Addendum”) is executed as of the <u>{!currentDayOrdinal}</u> day of <u>{!currentMonthName}</u>, 
+                        <u>{!currentYear}</u> (the “Effective Date”), by and between the Customer and Allstream Business Inc. 
+                        and/or Allstream Business US, LLC. through its subsidiaries ("<b>Allstream</b>")  
+                        and <u>{!CurrentOpportunity.Account.Name}</u>(“Customer”), to supplement the Service Agreement 
+                        dated <u>{!currentMonthName}</u> &nbsp; <u>{!currentDay}</u>, <u>{!currentYear}</u> 
+                        (the “Service Agreement”), and the Master Service Agreement into which it is incorporated 
+                        and made a part thereof (the “MSA”) (both the MSA and Service Agreement are collectively referred 
+                        herein as the “Agreement”). For the purposes of this Addendum, Company or Customer may be individually 
+                        referred to as a “Party” and collectively as “Parties.” Capitalized terms not defined herein shall have the 
+                        meaning as defined in the Service Agreement and the MSA.                        
+                      </td>
                 </tr>
                 <tr>
                 <td colspan="2"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="textBlock"><b>WHEREAS</b>, the Parties have entered into a Service Order for the provision of Services as described in the Service Order.</td>
-                </tr>
-                <tr>
-                <td colspan="2"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="textBlock"><b>WHEREAS</b>, the Parties have entered into a Service Order for the provision of Services as described in the Service Order, 
-                    together with the MSA that sets out the terms and conditions for the delivery of service described in the Services Order, and;</td>
+                    <td colspan="2" class="textBlock"><b>WHEREAS</b>, the Parties have entered into a Service Agreement for the provision of Services as described in the Service Agreement, 
+                    together with the MSA that sets out the terms and conditions for the delivery of service described in the Services Agreement, and;</td>
                 </tr>
                 <tr>
                  <td colspan="2"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="textBlock"><b>WHEREAS</b>, the Parties seek to supplement the terms of Service Order and the MSA to address the unique needs of 
+                    <td colspan="2" class="textBlock"><b>WHEREAS</b>, the Parties seek to supplement the terms of Service Agreement and the MSA to address the unique needs of 
                     Customer and the unique circumstances of service as more specifically set forth below.</td>
                 </tr>
                 <tr>
                  <td colspan="2"></td>
                 </tr>
                 <tr>
-                    <td colspan="2" class="textBlock"><b>NOW, THEREFORE</b>, in consideration of the mutual promises and covenants contained in the Service Order and the MSA, 
+                    <td colspan="2" class="textBlock"><b>NOW, THEREFORE</b>, in consideration of the mutual promises and covenants contained in the Service Agreement and the MSA, 
                     and for other good and valuable consideration, the receipt and sufficiency of which are hereby acknowledged, the Parties hereby mutually agree as follows:</td>
                 </tr>
                 <tr>
@@ -78,7 +79,7 @@
                 </tr>
                 <tr>
                    <td width="25px">&nbsp;</td>
-                   <td class="textBlock">1. Notwithstanding anything to the contrary in the MSA, if (a) Customer experiences a decrease in gross revenue over a 
+                   <td class="textBlock">1. Notwithstanding anything to the contrary in Section 2.3 of the MSA, if (a) Customer experiences a decrease in gross revenue over a 
                    twelve (12) consecutive month period (the “Downturn Period”) when compared with the prior twelve (12) consecutive month period, of twenty percent (20%) 
                    or more (a “Business Downturn”), (b) the completion of the Downturn Period occurs after the completion of the first twelve (12) months of the Services Term, 
                    and (c) due to such Business Downturn, Customer requires a termination of  Services at a single location (the “Downturn Location”), for a period of ninety (90) 
@@ -89,7 +90,7 @@
                    If Customer does not make such election within ninety (90) days after the completion of the Downturn Period, the right to early termination under this paragraph 
                    will lapse. Furthermore, if (a) Customer ports services to another carrier or provider with respect to such Downturn Location, or (b) closes the Downturn Location 
                    to move the operations to a new location without using Allstream Services at such new location (assuming Allstream Services are available at such new location), 
-                   Allstream will assess full early termination charges as outlined in the MSA.  Customer shall not have the right to terminate Services under this 
+                   Allstream will assess full early termination charges as outlined in Section 2.3 of the MSA.  Customer shall not have the right to terminate Services under this 
                    paragraph for more than one location over the entire Services Term.</td>
                 </tr>
                 <tr>
@@ -97,7 +98,7 @@
                 </tr>
                 <tr>
                    <td width="25px">&nbsp;</td>
-                   <td class="textBlock">2. Except as specifically set forth in this Addendum, the terms and conditions of Service Order and the MSA shall remain 
+                   <td class="textBlock">2. Except as specifically set forth in this Addendum, the terms and conditions of Service Agreement and the MSA shall remain 
                    unmodified and in full force and effect.</td>
                 </tr>
                 <tr>

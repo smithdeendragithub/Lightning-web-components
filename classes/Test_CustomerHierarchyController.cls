@@ -43,7 +43,7 @@ public class Test_CustomerHierarchyController {
     }
     
     static testmethod void testGetIntegrationHierarchiesFromIDs2(){
-        
+        Test.startTest();
         Mocks Testdata = new Mocks();            
         Testdata.parentAccountContact.Default_Responsible_Party__c = true;
         update Testdata.parentAccountContact;
@@ -67,7 +67,7 @@ public class Test_CustomerHierarchyController {
         insert service;
         OpportunityContactRole OCR = new OpportunityContactRole(OpportunityId = op.Id, ContactId = Testdata.parentAccountContact.Id);
         insert OCR;
-        Test.startTest();
+        
         CustomerHierarchyController.TreeViewImplementation inst = new CustomerHierarchyController.TreeViewImplementation(Testdata.parentAccount.Id);
         List<TreeNode> Result = inst.getNodes();
         System.assertNotEquals(result, new List<TreeNode>());

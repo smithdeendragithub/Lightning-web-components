@@ -80,7 +80,7 @@
                 var contentTable = $('[cid$="contentTable"]').parent('table').eq(0).DataTable({
                     //enables results highlight
                     searchHighlight: true,
-                    order: [[1,'desc']],
+                    order: [[2,'desc']],
                     //sets record lengths to show in picklist
                     aLengthMenu: [
                         [10, 25, 50, 100, 200, -1],
@@ -183,19 +183,16 @@
                     <apex:column value="{!content.billingAccountNum}" headerValue="Billing Account #" onclick="showDetail('{!content.id}');"/>
                     <apex:column value="{!content.balanceForwardAmt}" headerValue="Balance Forward Amt" onclick="showDetail('{!content.id}');"/>
                     <apex:column value="{!content.paymentReceivedAmt}" headerValue="Payment Received Amt" onclick="showDetail('{!content.id}');"/>
-                    <apex:column value="{!content.paymentDueDt}" headerValue="Payment Due Dt" onclick="showDetail('{!content.id}');"/>
-                    <apex:column value="{!content.lastPaymentDt}" headerValue="Last Payment Dt" onclick="showDetail('{!content.id}');"/>
+                    <apex:column value="{!content.paymentDueDt}" headerValue="Payment Due Date" onclick="showDetail('{!content.id}');"/>
+                    <apex:column value="{!content.lastPaymentDt}" headerValue="Last Payment Date" onclick="showDetail('{!content.id}');"/>
                     <apex:column value="{!content.balanceDueAmt}" headerValue="Balance Due Amt" onclick="showDetail('{!content.id}');"/>
                    	<apex:column value="{!content.netAmt}" headerValue="Net Amt" onclick="showDetail('{!content.id}');"/>
                    	<apex:column value="{!content.gstAmt}" headerValue="GST Amt" onclick="showDetail('{!content.id}');"/>
                    	<apex:column value="{!content.pstAmt}" headerValue="PST Amt" onclick="showDetail('{!content.id}');"/>
                    	<apex:column value="{!content.hstAmt}" headerValue="HST Amt" onclick="showDetail('{!content.id}');"/>
                    	<apex:column value="{!content.lpcAmt}" headerValue="LPC Amt" onclick="showDetail('{!content.id}');"/>
-                    <apex:column headerValue="Invoice">
+                    <apex:column headerValue="Invoice PDF">
                         <apex:outputLink value="/{!content.URL}" target="_blank">PDF</apex:outputLink> 
-                    </apex:column>
-                    <apex:column headerValue="Summary">
-                        <apex:outputLink value="/{!content.summaryInvoiceURL}" target="_blank" rendered="{!content.hasSummaryInvoice == 'true'}">PDF</apex:outputLink> 
                     </apex:column>
                 </apex:pageBlockTable>  
             </div>

@@ -42,6 +42,9 @@ public with sharing class Test_CustomerIntegration extends TestUtils.TestClass {
 	static testMethod void testCustomerDetails(){
 		
 		CustomerIntegrationController cic = getTestData(true, true);
+		
+		test.startTest();
+		
 		system.assert(string.isEmpty(cic.noIntegrationReason), string.format('No integration reason expected to be empty but found "{0}"', new List<String>{cic.noIntegrationReason}));
 		
     	cic.updateCustomerDetails();
@@ -146,7 +149,7 @@ public with sharing class Test_CustomerIntegration extends TestUtils.TestClass {
 			//cd.ICC_Subscriber_ID__c = '-999';
 			//update cd;
 		}
-		test.startTest();
+		
 		if(integrationOnlyMode){
 			ord = new Order__c(Account__c = a.Id, RecordTypeId = OrderUtils.IntegrationOnlyRecordTypeID);
 			insert ord;
@@ -175,7 +178,7 @@ public with sharing class Test_CustomerIntegration extends TestUtils.TestClass {
 			
 			RecordType oppProdManual = [select Id from RecordType where sObjectType='Opportunity_Product__c' and DeveloperName='Manual_Entry'];
 			Opportunity_Product__c oppProd = new Opportunity_Product__c(Opportunity__c=o.Id, Primary_Service_Location__c=sLoc.Id, Sales_Product__c='Some Product', RecordTypeId=oppProdManual.Id, Solution__c=testData.lstconfig[0].Id);
-				//Hack
+			test.startTest();	//Hack
 			insert oppProd;
 			
 			ord = testData.order;

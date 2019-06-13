@@ -29,7 +29,6 @@ public with sharing abstract class CustomerDetailBaseController extends TreeView
                         ,Market_Type__r.Name
                         ,Care_Organization__r.Name
                         ,Service_Address__c
-                  		,Acquired_Company_Biller__c
                         from Customer_Detail__c where Id =: cdID];
         
         

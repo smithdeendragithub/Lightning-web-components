@@ -1,3 +1,66 @@
 <template>
-    
+    <template for:each={approvalData} for:item="data">
+        <lightning-accordion allow-multiple-sections-open key={data.approval}>
+            <lightning-accordion-section name="approval" label={data.approval}>
+            </lightning-accordion-section>
+            <lightning-accordion-section name="approvalStatus" label={data.approvalStatus}>
+                <template for:each={data.rawSolution} for:item="rawSol">
+                    <lightning-accordion allow-multiple-sections-open key={rawSol.approvalStatus}>
+                        <lightning-accordion-section name="" label={rawSol.approvalStatus}>
+                            <template for:each={rawSol.locationIds} for:item="location">
+                                <lightning-accordion allow-multiple-sections-open key={location.Name}>
+                                    <lightning-accordion-section name="location" label={location.Name}>
+                                        <lightning-record-view-form record-id={location.Id} object-api-name="Service_Location__c">
+                                            <div class="slds-grid">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <lightning-output-field field-name="Name"></lightning-output-field>
+                                                    <lightning-output-field field-name="ICC_Subscriber_ID__c"></lightning-output-field>
+                                                    <lightning-output-field field-name="Building__r.Address__c"> </lightning-output-field>
+                                                    <lightning-output-field field-name="Location__r.Building__r.City__c"> </lightning-output-field>
+                                                    <lightning-output-field field-name="Location__r.Building__r.State__c"> </lightning-output-field>
+                                                    <lightning-output-field field-name="Acquired_Company_or_Biller__c"></lightning-output-field>
+                                                    <lightning-output-field field-name="BillingID__c"></lightning-output-field>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <lightning-output-field field-name="Phone_c"></lightning-output-field>
+                                                    <lightning-output-field field-name="Net_Classification__c"></lightning-output-field>
+                                                    <lightning-output-field field-name="Billable__c"></lightning-output-field>
+                                                    <lightning-output-field field-name="Building_Status__c"></lightning-output-field>
+                                                    <lightning-output-field field-name="CloseDate"></lightning-output-field>
+                                                    <lightning-output-field field-name="Legacy_ID__c"></lightning-output-field>
+                                                </div>
+                                            </div>
+                                        </lightning-record-view-form>
+                                    </lightning-accordion-section>
+                                </lightning-accordion>
+                            </template>
+                            <lightning-accordion allow-multiple-sections-open key={rawSol.opportunityLocationId}>
+                                <lightning-accordion-section name="Opportunity Location Details" label="Opportunity Location Details">
+                                    <lightning-record-view-form record-id={rawSol.opportunityLocationId} object-api-name="Opportunity_Location__c">
+                                        <div class="slds-grid">
+                                            <div class="slds-col slds-size_1-of-2">
+                                                <lightning-output-field field-name="Order__c"></lightning-output-field>
+                                                <lightning-output-field field-name="MRC_Total__c"></lightning-output-field>
+                                                <lightning-output-field field-name="Status__c"> </lightning-output-field>
+                                            </div>
+                                            <div class="slds-col slds-size_1-of-2">
+                                                <lightning-output-field field-name="On_Hold__c"></lightning-output-field>
+                                                <lightning-output-field field-name="NRC_Total__c"></lightning-output-field>
+                                                <lightning-output-field field-name="CreatedBy"></lightning-output-field>
+                                                <lightning-output-field field-name="Term__c"></lightning-output-field>
+                                            </div>
+                                        </div>
+                                    </lightning-record-view-form>
+                                </lightning-accordion-section>
+                            </lightning-accordion>
+                        </lightning-accordion-section>
+                    </lightning-accordion>
+                    <!-- <lightning-accordion allow-multiple-sections-open>
+                        <lightning-accordion-section name="Order Line Items" label="Order Line Items">
+                        </lightning-accordion-section>
+                    </lightning-accordion> -->
+                </template>
+            </lightning-accordion-section>
+        </lightning-accordion>
+    </template>
 </template>

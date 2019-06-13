@@ -75,7 +75,6 @@ public without sharing class DSUtils implements TestUtils.ITestableClass {
 		public Map<String, String> customFields { get; private set; }
 		
 		public EnvelopeRequest(String subject, String message, String senderEmail){
-            System.debug('EvelopeRequest');
 			this.Subject = subject;
 			this.Message = message;
 			this.SenderEmail = senderEmail;
@@ -294,7 +293,7 @@ public without sharing class DSUtils implements TestUtils.ITestableClass {
 		Id statusID = null;
 		
 		if(esr.Success){
-            Integer maxSubjectLength = dsfs__DocuSign_Status__c.fields.dsfs__Subject__c.getDescribe().getLength();
+			Integer maxSubjectLength = dsfs__DocuSign_Status__c.fields.dsfs__Subject__c.getDescribe().getLength();
 			String subject = esr.EnvelopeStatus.Subject != null && (esr.EnvelopeStatus.Subject.length() > maxSubjectLength) ? esr.EnvelopeStatus.Subject.substring(0, maxSubjectLength) : esr.EnvelopeStatus.Subject;
 			
             dsfs__DocuSign_Status__c status = new dsfs__DocuSign_Status__c(
@@ -308,9 +307,8 @@ public without sharing class DSUtils implements TestUtils.ITestableClass {
 			
 			for(Id rID : relatedObjectIDs != null ? relatedObjectIDs : new Set<Id>()){
 				String sObjName = SchemaUtils.GetSObjectNameByID(rID);
-                if(sObjName == 'Opportunity') status.dsfs__Opportunity__c = rID;
+				if(sObjName == 'Opportunity') status.dsfs__Opportunity__c = rID;
 				if(sObjName == 'PDF__c') status.PDF__c = rID;
-                if(sObjName == 'Pricing_Agreement__c') status.Pricing_Agreement__c = rID;
 			}
 			
             insert status;

@@ -599,14 +599,6 @@
         </tr>
         </td>
         </tr>
-        <apex:outputpanel rendered="{!OR(CONTAINS(currentOpportunity.Opportunity_Product__c, 'SD WAN'),CONTAINS(currentOpportunity.Opportunity_Product__c, 'SD Internet'), CONTAINS(currentOpportunity.Opportunity_Product__c, 'SD MPLS Connect'))}" style="padding-left:5ex">
-            <tr>
-                <td>
-                	<p>Allstream assigns IP space for use by its customers in accordance with Allstream’s IP Allocation and Usage Policy as posted on Allstream.com.</p>
-                	<p>By using SD-WAN Services, the Customer acknowledges that it and its End Users are responsible for compliance with Allstream’s Acceptable Use Policy posted on Allstream.com.</p>
-                </td>
-            </tr>
-        </apex:outputpanel>
         <apex:outputpanel rendered="{!hasSIPTrunking}">
             <tr>
                 <td>By signing this Service Order, the Customer acknowledges and consents to the following Terms relating to 9-1-1 Emergency Calls Using Allstream's VoIP Based Services in Canada.</td>

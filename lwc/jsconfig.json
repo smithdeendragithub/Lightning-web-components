@@ -1,13 +1,71 @@
 {
     "compilerOptions": {
+        "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/accountDetails": [
+                "../../lwc/accountDetails/accountDetails.js"
+            ],
+            "c/customLinks": [
+                "customLinks/customLinks.js"
+            ],
+            "c/opportunityDetail": [
+                "opportunityDetail/opportunityDetail.js"
+            ],
+            "c/opportunitySplitInformation": [
+                "opportunitySplitInformation/opportunitySplitInformation.js"
+            ],
+            "c/opportunityTeamMemberInfo": [
+                "opportunityTeamMemberInfo/opportunityTeamMemberInfo.js"
+            ],
             "c/orderList": [
                 "orderList/orderList.js"
             ],
             "c/parentComponent": [
                 "parentComponent/parentComponent.js"
+            ],
+            "c/printOrderSummary": [
+                "printOrderSummary/printOrderSummary.js"
+            ],
+            "c/sample_lwc": [
+                "../../lwc/sample_lwc/sample_lwc.js"
+            ],
+            "c/solutionsTable": [
+                "solutionsTable/solutionsTable.js"
+            ],
+            "c/ejParentPage": [
+                "../../lwc/ejParentPage/ejParentPage.js"
+            ],
+            "c/loadContractRenewalReport": [
+                "../../lwc/loadContractRenewalReport/loadContractRenewalReport.js"
+            ],
+            "c/opportunityRetailViewForm": [
+                "../../lwc/opportunityRetailViewForm/opportunityRetailViewForm.js"
+            ],
+            "c/opportunityWorkStepIssues": [
+                "../../lwc/opportunityWorkStepIssues/opportunityWorkStepIssues.js"
+            ],
+            "c/orderSummary": [
+                "../../lwc/orderSummary/orderSummary.js"
+            ],
+            "c/returnNavigationButton": [
+                "../../lwc/returnNavigationButton/returnNavigationButton.js"
+            ],
+            "c/salesownedwsionrelatedorderflag": [
+                "../../lwc/salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
+            ],
+            "c/jquery": [
+                "../../staticresources/Dynatree/jquery/jquery.js"
             ]
         }
+    },
+    "include": [
+        "**/*",
+        "../../../../../.sfdx/typings/lwc/**/*.d.ts"
+    ],
+    "typeAcquisition": {
+        "include": [
+            "jest"
+        ]
     }
 }
