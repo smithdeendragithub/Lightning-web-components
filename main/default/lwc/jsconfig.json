@@ -3,6 +3,15 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/cpqMainDisplayAccessAvailabilityTable": [
+                "cpqMainDisplayAccessAvailabilityTable/cpqMainDisplayAccessAvailabilityTable.js"
+            ],
+            "c/cpqMainPage": [
+                "cpqMainPage/cpqMainPage.js"
+            ],
+            "c/mathDisplay": [
+                "mathDisplay/mathDisplay.js"
+            ],
             "c/oppOrderList": [
                 "oppOrderList/oppOrderList.js"
             ],
@@ -17,9 +26,6 @@
             ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
-            ],
-            "c/cpqMainPage": [
-                "cpqMainPage/cpqMainPage.js"
             ]
         }
     },

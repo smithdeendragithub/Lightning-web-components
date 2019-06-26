@@ -1,0 +1,59 @@
+<template>
+    <div if:true={sameBuilding}>
+        <div if:true={hasrecords} class={cssClass}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Carrier NNI">Carrier NNI</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Access Technology Name">Access Technology Name</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Minimum Bandwidth">Minimum Bandwidth</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Maximum Bandwidth (Mbps)">Maximum Bandwidth (Mbps)</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Minimum Required Revenue">Minimum Required Revenue</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Status">Status</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={recordsToDisplay} for:item="rec">
+                        <tr class="slds-hint-parent" key={rec.Id}>
+                            <td data-label="Account Name">
+                                <div class="slds-truncate" title="Carrier__c">{rec.Carrier__c}</div>
+                            </td>
+                            <td data-label="Close Date">
+                                <div class="slds-truncate" title="Access_Technology_Name__c">
+                                    {rec.Access_Technology_Name__c}</div>
+                            </td>
+                            <td data-label="Prospecting">
+                                <div class="slds-truncate" title="Minimum_Bandwidth__c">{rec.Minimum_Bandwidth__c}</div>
+                            </td>
+                            <td data-label="Confidence">
+                                <div class="slds-truncate" title="Maximum_Bandwidth__c">{rec.Maximum_Bandwidth__c}</div>
+                            </td>
+                            <td data-label="Amount">
+                                <div class="slds-truncate" title="Minimum_Required_Revenue__c">
+                                    {rec.Minimum_Required_Revenue__c}</div>
+                            </td>
+                            <td data-label="Amount">
+                                <div class="slds-truncate" title="Status__c">{rec.Status__c}</div>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <div if:false={hasrecords} class={cssNoRecClass}>
+            <p>{norecdisplay}</p>
+        </div>
+    </div>
+</template>

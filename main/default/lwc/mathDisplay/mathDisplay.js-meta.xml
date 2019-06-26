@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="mathDisplay">
+    <apiVersion>45.0</apiVersion>
+    <isExposed>false</isExposed>
+    <!-- <targets>
+        <target>lightning__RecordPage</target>
+        <target>lightning__AppPage</target>
+        <target>lightning__HomePage</target>
+    </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage,lightning__AppPage,lightning__HomePage">
+            <property name="inputvalueone" type="Integer" label="value1"/>
+            <property name="inputvaluetwo" type="Integer" label="value2"/>
+            <property name="arithmeticOperation" type="String" label="Type of arithmetic operation"/>
+        </targetConfig>
+    </targetConfigs> -->
+</LightningComponentBundle>

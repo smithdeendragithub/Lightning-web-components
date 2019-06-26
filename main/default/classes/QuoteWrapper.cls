@@ -34,27 +34,27 @@ public with sharing class QuoteWrapper {
           return cleanString;
       }
         
-        public OLI__c rawOLI {get;set;}
-        public String printDescription {get;set;} 
-        public List<SelectOption> groupselectOption{get;set;}
-        public String selectedgroup{get;set;}
+        @AuraEnabled public OLI__c rawOLI {get;set;}
+        @AuraEnabled public String printDescription {get;set;} 
+        @AuraEnabled public List<SelectOption> groupselectOption{get;set;}
+        @AuraEnabled public String selectedgroup{get;set;}
     }
 
     public class Product {
-        public string Name {get;set;}
-        public string FrenchName {get;set;}
-        public string ProductId {get;set;}
-        public string SFDCId {get;set;}
-        public string externalID{get;set;}
-        public String productFamilyId{get;set;}
-        public String Salesproduct{get;set;}  
-        public String salesproductgroup{get;set;}
-        public List<QuoteLineItem> lines {get;set;}
-    	public Map<string,List<QuoteLineItem>> linesMap {get;set;}
-        public Set<String> lstoftagname{get;set;}
-        public Decimal total {get;set;}
-        public boolean validatePickVal{get;set;}
-        public Decimal NRCTotal {get;Set;}
+        @AuraEnabled public string Name {get;set;}
+        @AuraEnabled public string FrenchName {get;set;}
+        @AuraEnabled public string ProductId {get;set;}
+        @AuraEnabled public string SFDCId {get;set;}
+        @AuraEnabled public string externalID{get;set;}
+        @AuraEnabled public String productFamilyId{get;set;}
+        @AuraEnabled public String Salesproduct{get;set;}  
+        @AuraEnabled public String salesproductgroup{get;set;}
+        @AuraEnabled public List<QuoteLineItem> lines {get;set;}
+    	  @AuraEnabled public Map<string,List<QuoteLineItem>> linesMap {get;set;}
+        @AuraEnabled public Set<String> lstoftagname{get;set;}
+        @AuraEnabled public Decimal total {get;set;}
+        @AuraEnabled public boolean validatePickVal{get;set;}
+        @AuraEnabled public Decimal NRCTotal {get;Set;}
         public Product() {
           lines = new List<QuoteLineItem>();
         }
@@ -71,11 +71,11 @@ public with sharing class QuoteWrapper {
     }
     
     public class ProductFamily {
-      public string Name {get;set;}
-      public string SFDCId {get;set;}
-      public List<Product> products {get;set;}
-      public List<SPC_Product__c> spcproducts{get;set;}
-      public Decimal total {get;set;}
+      @AuraEnabled public string Name {get;set;}
+      @AuraEnabled public string SFDCId {get;set;}
+      @AuraEnabled public List<Product> products {get;set;}
+      @AuraEnabled public List<SPC_Product__c> spcproducts{get;set;}
+      @AuraEnabled public Decimal total {get;set;}
       
       public ProductFamily(string in_Name, Id in_Id ) {
         Name = in_Name;

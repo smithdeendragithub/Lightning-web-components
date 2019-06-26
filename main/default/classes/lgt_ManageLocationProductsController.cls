@@ -4,6 +4,7 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     private static final String ERR_MSG_INSUFFICIENT_ACCESS_ACCOUNT_COLO = 'You do not have sufficient privileges to update the COLO.';
     private static final String DEFAULT_CONFIGURATION_NAME = 'Default Solution';
     
+    @AuraEnabled
     public String getDefaultConfigName() {
         return DEFAULT_CONFIGURATION_NAME;
     }
@@ -18,15 +19,15 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     
     //Holds default opportunity location used when creating a location solution
     @AuraEnabled
-    public String defaultOpportunityLocation {get; set;}
+    public String defaultOpportunityLocation {get;set;}
     
     //Holds instance of opportunity for which this controller manages location products
     @AuraEnabled
-    public Opportunity opportunity { get; private set; }
+    public Opportunity opportunity { get;set; }
     
     //Holds the list of available locations to the UI
     @AuraEnabled
-    public List<OpportunityLocation> opportunityLocations { get; private set; }
+    public List<OpportunityLocation> opportunityLocations { get;set; }
     
     //Holds the name of the image
     @AuraEnabled
@@ -37,15 +38,15 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     @AuraEnabled
     public String helpText {get;set;}
     @AuraEnabled
-    public String scoreHelpText {get;Set;}
+    public String scoreHelpText {get;set;}
     
     //used to hack around no dml in constructor
     @AuraEnabled
-    public Boolean saveOpp {get; private set;}
+    public Boolean saveOpp {get;set;}
     
     //Holds a value indicating if the deal was scored.
     @AuraEnabled
-    public Boolean isScored {get;Set;}
+    public Boolean isScored {get;set;}
     
     //Holds the friendly score percentage
     @AuraEnabled
@@ -66,17 +67,17 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     
     //holds the relationship between buildings and the baa records
     @AuraEnabled
-    public Map<Id, List<Building_Access_Availability__c>> BaaByBldgId {get; private Set;}
+    public Map<Id, List<Building_Access_Availability__c>> BaaByBldgId {get;  Set;}
     
     private List<Id> oppLocIds {get;set;}
     
     //Holds the list of available select locations to the UI
     @AuraEnabled
-    public Service_Location__c selectLocations { get; private set; }
+    public Service_Location__c selectLocations { get;set; }
     
     //Holds select options for available terms
     //made this public and added the getter/setter because the page needs this property.  (KIT)
-    @AuraEnabled
+   
     public List<SelectOption> termSelectOptions {get;set;}
     
     private List<SelectOption> bandwidthSelectOptions;
@@ -128,10 +129,10 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     }
     
     @AuraEnabled
-    public Boolean salesManagerApprovable {get; private set;}
+    public Boolean salesManagerApprovable {get;set;}
     
     @AuraEnabled
-    public Boolean canLinkToSolution{ get{ return CustomSettingUtils.currentUserHasCustomPermission('Can_Link_To_Solution__c'); } }
+    public Boolean canLinkToSolution{get{ return CustomSettingUtils.currentUserHasCustomPermission('Can_Link_To_Solution__c'); } }
     
     //public List<Id> invalidNewSolutionIds {get;Set;}
     
@@ -147,8 +148,12 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
 
     public lgt_ManageLocationProductsController(Id OpportunityId) {
         //initialize controller
-        inCtor = true;
+        this.inCtor = true;
         init(opportunityId);
+    }
+    public lgt_ManageLocationProductsController() {
+        //initialize controller
+        this.inCtor = true;
     }
     
     public PageReference SendApprovalRequest(){
@@ -211,7 +216,9 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     /**
 * Action method that updates an account's colo- Obsolete only the test was using this 2.27.2013
 *
-* @param AccountId */ public String AccountId_updateColo{get; set;}/*
+* @param AccountId */ 
+@AuraEnabled
+public String AccountId_updateColo{get; set;}/*
 *       the Id of the account whose colo should be updated
 */
     public PageReference updateColo() {
@@ -236,7 +243,8 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     /**
 * Action method for deleting expired line items from an opportunity configuration.
 *
-* @param configId */ public String ConfigId_deleteExpiredLineItems {get; set;} /*
+* @param configId */ @AuraEnabled 
+public String ConfigId_deleteExpiredLineItems {get; set;} /*
 *           the Id of the opportunity configuration whose expired line items will be deleted
 */
     public PageReference deleteExpiredLineItems(){
@@ -266,7 +274,7 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
         pageReference.setRedirect(true);
         return pageReference;
     }
-    
+    @AuraEnabled
     public string param_accountId {get;set;}
     
     public PageReference updateSolutionTerm() {
@@ -283,18 +291,19 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
         throw new ManageLocationProductsControllerException('Unable to find configuration to update term!!!');
     }
     
+    @AuraEnabled
     public String  selectTerm {get;set;}
-    
+    @AuraEnabled
     public String  selectBandwidth {get;set;}
 
-    
+    @AuraEnabled
     public String newSolutionName {get;set;}
   
-    
+    @AuraEnabled
     public Boolean displayOnPDF {get;set;}
- 
+ @AuraEnabled
     public String param_locationId {get;set;}
-    public String param_orderId {get;set;}
+   @AuraEnabled public String param_orderId {get;set;}
     
     public PageReference gotoCostCompare() {
         PageReference pageRef = Page.CostComparison;
@@ -378,7 +387,7 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
         badDeal = false;
         doScoring = CustomSettingUtils.getOverrideSettingValue('Enable Deal Scoring');
         BlockPDFGen = CustomSettingUtils.getOverrideSettingValue('Block PDF Gen For Bad Deals');
-        returnURL = ApexPages.currentPage().getParameters().get('retURL');
+       // returnURL = ApexPages.currentPage().getParameters().get('retURL');
         
         newSolutionName = 'Default Solution';
         selectTerm = '36';
