@@ -5,7 +5,9 @@
 .alignTextRight{
   /*text-align: right;*/
 }
-
+.customButtonWrap{
+  line-height: 1.6;
+}
 .tooltip {
   border-bottom: 1px dotted #000000;
   color: #000000;
