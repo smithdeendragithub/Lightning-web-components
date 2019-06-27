@@ -81,6 +81,7 @@
 
 .classic table td, .classic table th .tooltip {
   border-bottom: none;
+  white-space: normal;
 }
 
 a:hover .classic {

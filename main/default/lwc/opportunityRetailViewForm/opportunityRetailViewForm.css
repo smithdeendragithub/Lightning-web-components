@@ -5,3 +5,9 @@
     width:98%;
     align-self:auto;
 }
+button.section-control.slds-button.slds-button_reset.slds-accordion__summary-action {
+    background-color: aquamarine !important
+}
+lightning-accordion-section.sampl.slds-accordion__list-item section div h2 {
+    background-color: lightslategray !important;
+}

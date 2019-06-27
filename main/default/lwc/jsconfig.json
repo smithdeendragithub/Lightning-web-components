@@ -26,6 +26,9 @@
             ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
+            ],
+            "c/cpqMainDispayApprovalRequestDate": [
+                "cpqMainDispayApprovalRequestDate/cpqMainDispayApprovalRequestDate.js"
             ]
         }
     },
