@@ -29,6 +29,9 @@
             ],
             "c/cpqMainDispayApprovalRequestDate": [
                 "cpqMainDispayApprovalRequestDate/cpqMainDispayApprovalRequestDate.js"
+            ],
+            "c/cpqMainDisplayActiveImage": [
+                "cpqMainDisplayActiveImage/cpqMainDisplayActiveImage.js"
             ]
         }
     },

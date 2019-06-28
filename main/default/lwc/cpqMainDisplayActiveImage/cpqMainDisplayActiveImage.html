@@ -1,0 +1,15 @@
+<template>
+    <div class="slds-grid">
+        <div class="slds-col slds-size--1-of-7" if:true={displayurlone}>
+            <img src={urlOne} />
+        </div>
+        <div class="slds-col slds-size--1-of-7" if:true={displayurltwo}>
+            <img src={urlTwo} />
+        </div>
+        <div class="slds-col slds-size--6-of-7">
+            <lightning-formatted-url value={displayValue} label={displayValue}>
+
+            </lightning-formatted-url>
+        </div>
+    </div>
+</template>

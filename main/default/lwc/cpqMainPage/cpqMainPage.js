@@ -2,7 +2,8 @@
 import { LightningElement, track, api, wire } from 'lwc';
 import getWrapperObject from '@salesforce/apex/lgt_UIHandler.retrieveWrapperData';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
-import TERMOPTIONS from '@salesforce/schema/Opportunity.Term__c'; 
+import TERMOPTIONS from '@salesforce/schema/Opportunity.Term__c';
+import SOLUTIONRELATEDSR from '@salesforce/resourceUrl/productResources';
 const accessAvailabilityColumns = [
     { label: 'Carrier NNI', fieldName: 'Carrier__c', type: 'text' },
     { label: 'Access Technology Name', fieldName: 'Access_Technology_Name__c', type: 'text' },
@@ -24,6 +25,8 @@ export default class CpqMainPage extends LightningElement {
     @track cssClass = 'slds-hide';
     showaccess = 'Show Access Availability';
     hideaccess = 'Hide Access Availability';
+    activeImg = SOLUTIONRELATEDSR + '/images/activeIcon.png';
+    inactiveImg = SOLUTIONRELATEDSR + '/images/inactiveIcon.png';
 
     @wire(getPicklistValues, { recordTypeId: '0121A000000QeQBQA0', fieldApiName: TERMOPTIONS }) termList;
     
