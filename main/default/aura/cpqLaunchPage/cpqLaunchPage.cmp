@@ -1,0 +1,13 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-Jun-04
+* @Modified Date: 2019-Jun-04
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2837      Smithdeendra           Created/Initial Comments
+*
+-->
+<aura:component
+  implements="force:hasRecordId,force:lightningQuickActionWithoutHeader,flexipage:availableForAllPageTypes,lightning:isUrlAddressable">
+  <ltng:require styles="{!$Resource.QuickActionModalStyle}" />
+  <c:cpqMainPage opptyId="{!v.recordId}" />
+</aura:component>

@@ -1,0 +1,469 @@
+<template>
+    <div if:true={hasrecords}>
+        <article class="slds-card">
+            <!-- <div class="slds-card__header slds-grid">
+                <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-account"
+                            title="Configure Products For '{wrapperRecord.opportunity.Name}'">
+                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                                <use xlink:href="/_slds/icons/standard-sprite/svg/symbols.svg#account"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Configure Products For
+                                {wrapperRecord.opportunity.Name}</span>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <h2 class="slds-card__header-title" style="float: left;">
+                            <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Accounts">
+                                <span>Configure Products For {wrapperRecord.opportunity.Name}</span>
+                            </a>
+                        </h2>
+                        
+                    </div>
+                </header>
+            </div> -->
+            <div class="slds-card__body slds-card__body_inner">
+                <table border="0">
+                    <tr>
+                        <td>
+                            <div class="slds-text-heading_medium">Configure Products For
+                                {wrapperRecord.opportunity.Name}</div>
+                        </td>
+                        <!-- <td style="font-weight:bold;">
+                            <div style="width:100px;float:right;text-align:right;">
+
+                                <lightning-formatted-number value={wrapperRecord.opportunity.Amount}
+                                    maximum-fraction-digits="2" minimum-fraction-digits="2">
+                                </lightning-formatted-number>
+                            </div>
+                            <div style="float:right;">
+                                Total MRC:
+                            </div>
+                            <div style="clear:both;"></div>
+                            <div style="width:100px;float:right;text-align:right;">
+
+                                <lightning-formatted-number value={wrapperRecord.opportunity.NRR_Amount__c}
+                                    maximum-fraction-digits="2" minimum-fraction-digits="2">
+                                </lightning-formatted-number>
+
+                            </div>
+                            <div style="float:right;">
+                                Total NRC:
+                            </div>
+                            <div style="clear:both;"></div>
+                        </td> -->
+                    </tr>
+                </table>
+            </div>
+        </article>
+        <lightning-layout>
+            <lightning-layout-item padding="around-small" size="10">
+                <template for:each={wrapperRecord.opportunityLocations} for:item="oppLocRec">
+                    <div class="slds-section slds-is-open" key={oppLocRec.buildingId}>
+                        <h4 class="slds-section__title">
+                            <button aria-expanded="true" class="slds-button slds-section__title-action">
+                                <div style="width: -webkit-fill-available;">
+                                    <div style="float:left">
+                                        <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                                            aria-hidden="true">
+                                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                                        </svg>
+                                    </div>
+                                    <div class="slds-text-body_regular" style="float:left;">
+                                        <lightning-formatted-url value={oppLocRec.buildingRedirect}
+                                            tooltip="Go to Location" label={oppLocRec.displayName} target="_blank">
+                                        </lightning-formatted-url>
+                                    </div>
+                                    <div class="slds-text-body_regular" style="float:right;" onclick={handleToggleClick}
+                                        id={oppLocRec.buildingId}>
+                                        {showaccess}
+                                    </div>
+                                </div>
+                            </button>
+                        </h4>
+                        <div>
+                            <template for:each={baabybldgid} for:item="keyValue">
+                                <c-cpq-main-display-access-availability-table key={keyValue.key}
+                                    records-to-display={keyValue.value} opp-location-buildg-id={oppLocRec.buildingId}
+                                    building-rec-id={keyValue.key}>
+                                </c-cpq-main-display-access-availability-table>
+                            </template>
+                            <div class="slds-box slds-grid slds-grid_vertical">
+                                <div class="slds-col slds-p-bottom_small" style="text-align: end;">
+                                    <lightning-button-group>
+                                        <lightning-button label="Place On Hold" if:false={oppLocRec.rawLocation.On_Hold__c}></lightning-button>
+                                        <lightning-button label="Set Providers"></lightning-button>
+                                        <lightning-button label="Take Off Hold" if:true={oppLocRec.rawLocation.On_Hold__c}></lightning-button>
+                                        <lightning-button label="Turn Downs"></lightning-button>
+                                        <lightning-button label="Cost Comparison" disabled></lightning-button>
+                                    </lightning-button-group>
+                                </div>
+                                <div class="slds-col slds-p-bottom_small">
+                                    <table
+                                        class="slds-float_right slds-table slds-table_column-5-wrap slds-table_cell-buffer slds-table_bordered">
+                                        <thead>
+                                            <tr class="slds-line-height_reset">
+                                                <th scope="col">
+                                                    <div class="slds-truncate" title="Solution">Solution</div>
+                                                </th>
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate" title="Term">Term (Months)
+                                                    </div>
+                                                </th>
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate slds-align_absolute-center"
+                                                        title="Actions">
+                                                        Actions</div>
+                                                </th>
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate slds-align_absolute-center"
+                                                        title="Products">
+                                                        Products
+                                                    </div>
+                                                </th>
+                                                <th class="" scope="col">
+                                                    <div class="slds-truncate slds-align_absolute-center"
+                                                        title="Status">
+                                                        Status
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <template for:each={oppLocRec.solutions} for:item="solRec">
+
+                                                <tr class="slds-box slds-hint-parent" key={solRec.rawSolution.Id}
+                                                    if:true={solRec.rawSolution.Id}>
+
+                                                    <td data-label="col1" style="width: 24.5%">
+                                                        <div class="slds-truncate">
+                                                            <lightning-formatted-url value={solRec.rawSolution.Id}
+                                                                label={solRec.rawSolution.Name}>
+                                                            </lightning-formatted-url>
+                                                            <lightning-input type="checkbox" label="Display On Proposal"
+                                                                value={solRec.rawSolution.Display_on_Solution__c}
+                                                                onchange={handleChange}>
+                                                            </lightning-input>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="col2" style="width: 20%">
+                                                        <div class="slds-grid_Vertical slds-truncate">
+                                                            <!-- <div class="slds-col slds-size_1-of-3"></div> -->
+                                                            <div class="slds-col slds-size_2-of-3" if:true={solRec.hasLineItems}>
+                                                                <select class="slds-select" disabled>
+                                                                    <template for:each={termList.data.values}
+                                                                        for:item="listViewItem">
+                                                                        <option key={listViewItem.value}>
+                                                                            {listViewItem.value}</option>
+                                                                    </template>
+                                                                </select>
+                                                            </div>
+                                                            <div class="slds-col slds-size_2-of-3" if:false={solRec.hasLineItems}>
+                                                                    <select class="slds-select">
+                                                                        <template for:each={termList.data.values}
+                                                                            for:item="listViewItem">
+                                                                            <option key={listViewItem.value}>
+                                                                                {listViewItem.value}</option>
+                                                                        </template>
+                                                                    </select>
+                                                                </div>
+                                                            <div class="slds-col slds-size_1-of-3"> <lightning-formatted-date-time
+                                                                value={solRec.rawSolution.Contract_Term_End_Date__c}>
+                                                            </lightning-formatted-date-time></div>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="col3" align="center" style="width: 19.5%">
+                                                        <div class="slds-grid">
+                                                            <!-- <div class="slds-col slds-size_1-of-4"></div> -->
+                                                            <div class="slds-col">
+                                                                <div class="slds-grid_Vertical">
+                                                                    <div
+                                                                        class="slds-col slds-p-top_xx-small slds-p-bottom_xx-small slds-p-left_x-small slds-p-right_x-small">
+                                                                        <button
+                                                                            class="slds-button slds-button_stretch slds-button_text-destructive">Remove
+                                                                            Expired Items</button>
+                                                                    </div>
+                                                                    <div
+                                                                        class="slds-col slds-p-top_xx-small slds-p-bottom_xx-small slds-p-left_x-small slds-p-right_x-small">
+                                                                        <button
+                                                                            class="slds-button slds-button_stretch slds-button_neutral">View/Configure</button>
+                                                                    </div>
+                                                                    <div
+                                                                        class="slds-col slds-p-top_xx-small slds-p-bottom_xx-small slds-p-left_x-small slds-p-right_x-small">
+                                                                        <button
+                                                                            class="slds-button slds-button_stretch slds-button_neutral slds-truncate">Clone
+                                                                            To Another Solution</button>
+                                                                    </div>
+                                                                    <div
+                                                                        class="slds-col slds-p-top_xx-small slds-p-bottom_xx-small slds-p-left_x-small slds-p-right_x-small">
+                                                                        <button
+                                                                            class="slds-button slds-button_stretch slds-button_neutral">Rename</button>
+                                                                    </div>
+                                                                    <div
+                                                                        class="slds-col slds-p-top_xx-small slds-p-bottom_xx-small slds-p-left_x-small slds-p-right_x-small">
+                                                                        <button
+                                                                            class="slds-button slds-button_stretch slds-button_neutral">Set
+                                                                            Proposal Display Order
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="slds-col slds-size_1-of-3"></div> -->
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="col4" style="width: 30%">
+                                                        <div>
+                                                            <div if:true={solRec.hasLineItems}
+                                                                class="slds-box slds-box_x-small">
+                                                                <table
+                                                                    class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                                                    <thead>
+                                                                        <tr class="slds-line-height_reset">
+                                                                            <th class="" scope="col">
+                                                                                <div class="slds-truncate"
+                                                                                    title="Product">
+                                                                                    Product</div>
+                                                                            </th>
+                                                                            <th class="" scope="col">
+                                                                                <div class="slds-truncate" title="MRC">
+                                                                                    MRC
+                                                                                </div>
+                                                                            </th>
+                                                                            <th class="" scope="col">
+                                                                                <div class="slds-truncate" title="NRC">
+                                                                                    NRC
+                                                                                </div>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <template for:each={solRec.productFamilies}
+                                                                        for:item="nextFamily">
+                                                                        <template for:each={nextFamily.products}
+                                                                            for:item="nextProduct">
+                                                                            <tr key={nextProduct.SFDCId}>
+                                                                                <td>
+                                                                                    <lightning-formatted-text
+                                                                                        value={nextProduct.Name}>
+                                                                                    </lightning-formatted-text>
+                                                                                </td>
+                                                                                <td class="alignTextRight">
+                                                                                    <a class="tooltip" href="#">
+                                                                                        <lightning-formatted-number
+                                                                                            maximum-fraction-digits="2"
+                                                                                            minimum-fraction-digits="2"
+                                                                                            value={nextProduct.total}>
+                                                                                        </lightning-formatted-number>
+                                                                                        <span class="classic">
+                                                                                            <table>
+                                                                                                <template
+                                                                                                    for:each={nextProduct.lines}
+                                                                                                    for:item="nextLine">
+                                                                                                    <tr
+                                                                                                        key={nextLine.rawOLI.PP_Product_Pricing_Name__c}>
+                                                                                                        <td>{nextLine.rawOLI.PP_Product_Pricing_Name__c}
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <lightning-formatted-number
+                                                                                                                maximum-fraction-digits="2"
+                                                                                                                minimum-fraction-digits="2"
+                                                                                                                value={nextLine.rawOLI.Qty__c}>
+                                                                                                            </lightning-formatted-number>
+                                                                                                        </td>
+                                                                                                        <td>
+                                                                                                            <lightning-formatted-number
+                                                                                                                maximum-fraction-digits="2"
+                                                                                                                minimum-fraction-digits="2"
+                                                                                                                value={nextLine.rawOLI.MRC_Total__c}>
+                                                                                                            </lightning-formatted-number>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                </template>
+                                                                                            </table>
+                                                                                        </span>
+                                                                                    </a>
+                                                                                </td>
+                                                                                <td class="alignTextRight">
+                                                                                    <lightning-formatted-number
+                                                                                        maximum-fraction-digits="2"
+                                                                                        minimum-fraction-digits="2"
+                                                                                        value={nextProduct.NRCTotal}>
+                                                                                    </lightning-formatted-number>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </template>
+                                                                    </template>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="customTableHead slds-truncate"
+                                                                                title="subproduct">
+                                                                                Sub Total
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="alignTextRight">
+                                                                            <lightning-formatted-number
+                                                                                minimum-fraction-digits="2"
+                                                                                maximum-fraction-digits="2"
+                                                                                value={solRec.rawSolution.MRC_Total__c}>
+                                                                            </lightning-formatted-number>
+                                                                        </td>
+                                                                        <td class="alignTextRight">
+                                                                            <lightning-formatted-number
+                                                                                minimum-fraction-digits="2"
+                                                                                maximum-fraction-digits="2"
+                                                                                value={solRec.rawSolution.NRC_Total__c}>
+                                                                            </lightning-formatted-number>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            Turndowns
+                                                                        </td>
+                                                                        <td class="alignTextRight">
+                                                                            <lightning-formatted-number
+                                                                                minimum-fraction-digits="2"
+                                                                                maximum-fraction-digits="2"
+                                                                                value={oppLocRec.rawLocation.Turndown_Total__c}>
+                                                                            </lightning-formatted-number>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>
+                                                                            <div class="customTableHead slds-truncate"
+                                                                                title="Total">
+                                                                                Total
+                                                                            </div>
+                                                                        </td>
+                                                                        <td class="alignTextRight">
+                                                                            <!-- <lightning-formatted-number
+                                                                                                        minimum-fraction-digits="2"
+                                                                                                        maximum-fraction-digits="2"
+                                                                                                        value={solRec.rawSolution.MRC_Total__c}>
+                                                                                                    </lightning-formatted-number> -->
+                                                                            <c-math-display
+                                                                                inputvalueone={solRec.rawSolution.MRC_Total__c}
+                                                                                inputvaluetwo={oppLocRec.rawLocation.Turndown_Total__c}
+                                                                                arithmetic-operation="minus">
+                                                                            </c-math-display>
+                                                                        </td>
+                                                                        <td class="alignTextRight">
+                                                                            <lightning-formatted-number
+                                                                                minimum-fraction-digits="2"
+                                                                                maximum-fraction-digits="2"
+                                                                                value={solRec.rawSolution.NRC_Total__c}>
+                                                                            </lightning-formatted-number>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td data-label="col5" style="width: 5%">
+                                                        <div class="slds-grid_Vertical">
+                                                            <div class="slds-col slds-truncate">
+                                                                <lightning-formatted-text value={solRec.approvalStatus}>
+                                                                </lightning-formatted-text>
+                                                            </div>
+                                                            <div class="slds-col slds-truncate">
+                                                                <lightning-formatted-date-time
+                                                                    value={solRec.approvalDate}>
+                                                                </lightning-formatted-date-time>
+                                                            </div>
+                                                            <div class="slds-col slds-truncate">
+                                                                <lightning-formatted-text value={solRec.approver}>
+                                                                </lightning-formatted-text>
+                                                            </div>
+                                                            <div class="slds-col slds-truncate">
+                                                                <c-cpq-main-dispay-approval-request-date
+                                                                    solution-active={solRec.rawSolution.Active__c}
+                                                                    cmpt-count={solRec.cmptCount} mgr-count={solRec.mgrCount} icb-count={solRec.icbCount}
+                                                                    approval-requested={solRec.approvalRequested} approval-request-date={solRec.approvalRequestDate}>
+                                                                </c-cpq-main-dispay-approval-request-date>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                </tr>
+
+                                            </template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="2" style="position: fixed; left: 81.5%; top: 20.5%;">
+
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td data-label="col3" align="center">
+                                    <div class="slds-grid">
+                                        <div class="slds-col">
+                                            <div class="slds-grid_Vertical">
+                                                <div class="customTableHead slds-box slds-box_x-small slds-col">
+                                                    <div class="slds-grid">
+                                                        <div class="slds-col slds-grid_Vertical">
+                                                            <div class="slds-align_absolute-right">Total MRC:</div>
+                                                            <div class="slds-align_absolute-right">Total NRC:</div>
+                                                        </div>
+                                                        <div class="slds-col slds-grid_Vertical">
+                                                            <div class="slds-align_absolute-right">
+                                                                <lightning-formatted-number
+                                                                    value={wrapperRecord.opportunity.Amount}
+                                                                    maximum-fraction-digits="2"
+                                                                    minimum-fraction-digits="2">
+                                                                </lightning-formatted-number>
+                                                            </div>
+                                                            <div class="slds-align_absolute-right">
+                                                                <lightning-formatted-number
+                                                                    value={wrapperRecord.opportunity.NRR_Amount__c}
+                                                                    maximum-fraction-digits="2"
+                                                                    minimum-fraction-digits="2">
+                                                                </lightning-formatted-number>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="slds-col slds-p-around--x-small"></div>
+                                                <div class="slds-col">
+                                                    <button
+                                                        class="slds-button slds-button_stretch slds-button_neutral">New
+                                                        Solution</button>
+                                                </div>
+                                                <div class="slds-col">
+                                                    <button
+                                                        class="slds-button slds-button_stretch slds-button_neutral">Return
+                                                        to Opportunity</button>
+                                                </div>
+                                                <div class="slds-col">
+                                                    <button
+                                                        class="customButtonWrap slds-button slds-button_stretch slds-button_neutral">Clone
+                                                        From Another Opportunity</button>
+                                                </div>
+                                                <div class="slds-col">
+                                                    <button
+                                                        class="slds-button slds-button_stretch slds-button_neutral">Technical
+                                                        Forms</button>
+                                                </div>
+                                                <div class="slds-col">
+                                                    <button
+                                                        class="slds-button slds-button_stretch slds-button_neutral">Create
+                                                        Forms</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </lightning-layout-item>
+        </lightning-layout>
+    </div>
+
+</template>
