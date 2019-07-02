@@ -3,8 +3,14 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/cpqMainDispayApprovalRequestDate": [
+                "cpqMainDispayApprovalRequestDate/cpqMainDispayApprovalRequestDate.js"
+            ],
             "c/cpqMainDisplayAccessAvailabilityTable": [
                 "cpqMainDisplayAccessAvailabilityTable/cpqMainDisplayAccessAvailabilityTable.js"
+            ],
+            "c/cpqMainDisplayActiveImage": [
+                "cpqMainDisplayActiveImage/cpqMainDisplayActiveImage.js"
             ],
             "c/cpqMainPage": [
                 "cpqMainPage/cpqMainPage.js"
@@ -26,12 +32,6 @@
             ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
-            ],
-            "c/cpqMainDispayApprovalRequestDate": [
-                "cpqMainDispayApprovalRequestDate/cpqMainDispayApprovalRequestDate.js"
-            ],
-            "c/cpqMainDisplayActiveImage": [
-                "cpqMainDisplayActiveImage/cpqMainDisplayActiveImage.js"
             ]
         }
     },

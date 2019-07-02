@@ -70,5 +70,37 @@ export default class CpqMainPage extends LightningElement {
         });
 
     }
+    
+    handlePlaceOnHold(event) {
+        let LocationIdToHold = event.data.locId;
+        placeLocationOnHOld({ inputObject: this.wrapperRecord, locationId: LocationIdToHold })
+            .then(result =>{
+                this.wrapperRecord = result;
+            })
+            .catch(error =>{
+                this.error =error;
+            });
+        
+        // tempWrapperRecord ({ error, data }) {
+        //     if (data) {
+        //         this.error = undefined;
+        //         if (data !== undefined) {
+        //             this.hasrecords = true;
+        //             this.wrapperRecord = data;
+        //             if (data.BaaByBldgId) {
+        //                 // eslint-disable-next-line guard-for-in
+        //                 for (let keyvalue in data.BaaByBldgId) {
+        //                     //let testMap = [];
+        //                     this.baabybldgid.push({ key: keyvalue, value: data.BaaByBldgId[keyvalue] });
+        //                 }
+        //             }
+        //         }
+        //     } else if (error) {
+        //         this.error = error;
+        //         this.wrapperRecord = undefined;
+        //     }
+        // }
+
+    }
 
 }

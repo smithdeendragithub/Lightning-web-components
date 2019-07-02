@@ -324,7 +324,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         return pageRef;
     }
     
-    public PageReference placeOnHold() {
+    public void placeOnHold(String param_locationId) {
         OpportunityLocation loc = findLocation(param_locationId);
         loc.rawLocation.On_Hold__c = true;
         update loc.rawLocation;
@@ -343,7 +343,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         List<Opportunity> opportunities = [Select Id, Name, Deal_Score__c, AccountId, Account.Name, Account.ICC_Account_Number__c, RecordTypeId, Term__c, OwnerId,CPQ_Total__c,CPQ_NRC_Total__c,MRC_Floor_Total__c,CPQ_MRC_List_Total__c, Amount, NRR_Amount__c, (Select Id From Opportunity_Sites__r) From Opportunity Where Id = :this.Opportunity.Id];
         this.opportunity = opportunities.get(0);
         setUpProductFamily();
-        return null;
+        // return null;
     }
     
     public PageReference takeOffHold() {
@@ -628,7 +628,9 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         }
     }
     
+    @AuraEnabled
     public List<OLI__c> expiredLineItemlst{get;set;}
+    
     public void setUpExpiredItems(List<OLI__c> allexistingOli){
         Map<String, Boolean> componentNameToExpireBoolean = new Map<String, Boolean>();
         
@@ -642,7 +644,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
                 componentNameToExpireBoolean.put(spcP.Price_id__c,spcP.Is_Expired__c);
         }
         
-        expiredLineItemlst = new List<OLI__c>();
+        this.expiredLineItemlst = new List<OLI__c>();
         for(OpportunityLocation op:opportunityLocations){
             LIst<OLI__c> existingOLI = new List<OLI__c>();
             for(Solution sol:op.solutions){

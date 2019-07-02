@@ -13,6 +13,17 @@ public with sharing class lgt_UIHandler {
             throw new AuraHandledException(e.getMessage());
         }
     }
+    @AuraEnabled (cacheable=true)
+    public static lgt_ManageLocationProductsController placeLocationOnHOld(lgt_ManageLocationProductsController inputObject, String locationId) {
+        try{ 
+           //inputObject.placeOnHold(locationId);
+            return inputObject;
+        }
+        catch(Exception e){
+            System.debug(Logginglevel.ERROR, e.getMessage());
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
     // public class uiWrapper{
     //     @AuraEnabled
     //     public  Map<String,lgt_ManageLocationProductsController> sampleMap {get;set;}

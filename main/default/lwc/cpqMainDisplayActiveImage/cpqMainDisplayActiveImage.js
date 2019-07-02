@@ -4,6 +4,7 @@ export default class CpqMainDisplayActiveImage extends LightningElement {
     @api inputOne;
     @api inputTwo;
     @api displayValue;
+    @api recordUrlId;
     @api urlOne;
     @api urlTwo;
 
@@ -21,5 +22,9 @@ export default class CpqMainDisplayActiveImage extends LightningElement {
             returnvalue = true;
         }
         return returnvalue;
+    }
+
+    get recordUrl(){
+        return '/'+this.recordUrlId;
     }
 }

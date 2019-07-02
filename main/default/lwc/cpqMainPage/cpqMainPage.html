@@ -119,7 +119,8 @@
                                                                 <c-cpq-main-display-active-image
                                                                     input-one={solRec.rawSolution.Active__c}
                                                                     input-two={oppLocRec.rawLocation.On_Hold__c}
-                                                                    url-one={activeImg} url-two={inactiveImg} display-value={solRec.rawSolution.Name}>
+                                                                    url-one={activeImg} url-two={inactiveImg} display-value={solRec.rawSolution.Name}
+                                                                    record-url-id={solRec.rawSolution.Id}>
                                                                 </c-cpq-main-display-active-image>
                                                                <br/>
                                                             <lightning-input type="checkbox" label="Display On Proposal"
