@@ -1,3 +1,12 @@
+/*
+* @Author: Smithdeendra A P
+* @Created Date: 18-Jun-2019
+* @Modified Date: 18-Jun-2019
+* @TestClass: lgt_DataFactory_Test
+* Version     JIRA                  Author                        Comments
+* 1.0         SEAL-2934            Smithdeendra A P              Initial Comments  
+* 1.1         SEAL-3030/3031       Smithdeendra A P              updated method place on Hold and take of hold.
+*/
 public with sharing class lgt_ManageLocationProductsController implements TestUtils.ITestableClass {
     
     private static final String PARAMETER_OPPORTUNITY_ID = 'opportunityId';
@@ -77,7 +86,7 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     
     //Holds select options for available terms
     //made this public and added the getter/setter because the page needs this property.  (KIT)
-   
+    
     public List<SelectOption> termSelectOptions {get;set;}
     
     private List<SelectOption> bandwidthSelectOptions;
@@ -145,7 +154,7 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
         }
     }
     
-
+    
     public lgt_ManageLocationProductsController(Id OpportunityId) {
         //initialize controller
         this.inCtor = true;
@@ -217,8 +226,8 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
 * Action method that updates an account's colo- Obsolete only the test was using this 2.27.2013
 *
 * @param AccountId */ 
-@AuraEnabled
-public String AccountId_updateColo{get; set;}/*
+    @AuraEnabled
+    public String AccountId_updateColo{get; set;}/*
 *       the Id of the account whose colo should be updated
 */
     public PageReference updateColo() {
@@ -244,7 +253,7 @@ public String AccountId_updateColo{get; set;}/*
 * Action method for deleting expired line items from an opportunity configuration.
 *
 * @param configId */ @AuraEnabled 
-public String ConfigId_deleteExpiredLineItems {get; set;} /*
+    public String ConfigId_deleteExpiredLineItems {get; set;} /*
 *           the Id of the opportunity configuration whose expired line items will be deleted
 */
     public PageReference deleteExpiredLineItems(){
@@ -288,22 +297,22 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         }
         
         //we should never get here (assumes no concurrency)
-        throw new ManageLocationProductsControllerException('Unable to find configuration to update term!!!');
+        throw new lgt_ManageLocationProductsControllerException('Unable to find configuration to update term!!!');
     }
     
     @AuraEnabled
     public String  selectTerm {get;set;}
     @AuraEnabled
     public String  selectBandwidth {get;set;}
-
+    
     @AuraEnabled
     public String newSolutionName {get;set;}
-  
+    
     @AuraEnabled
     public Boolean displayOnPDF {get;set;}
- @AuraEnabled
+    @AuraEnabled
     public String param_locationId {get;set;}
-   @AuraEnabled public String param_orderId {get;set;}
+    @AuraEnabled public String param_orderId {get;set;}
     
     public PageReference gotoCostCompare() {
         PageReference pageRef = Page.CostComparison;
@@ -324,11 +333,11 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         return pageRef;
     }
     
-    public PageReference placeOnHold() {
+    public void placeOnHold(String param_locationId) {
+        
         OpportunityLocation loc = findLocation(param_locationId);
         loc.rawLocation.On_Hold__c = true;
         update loc.rawLocation;
-        
         //Get those active opp products
         List<Opportunity_Product__c> oppProds = GetOppProducts(loc.rawLocation.id,true);
         if(oppProds != null){
@@ -336,17 +345,16 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
                 op.Active__c = false;
         }
         
-        ScoreDeal();
+       // ScoreDeal();
         update oppProds;
-        
         //refresh the opp
         List<Opportunity> opportunities = [Select Id, Name, Deal_Score__c, AccountId, Account.Name, Account.ICC_Account_Number__c, RecordTypeId, Term__c, OwnerId,CPQ_Total__c,CPQ_NRC_Total__c,MRC_Floor_Total__c,CPQ_MRC_List_Total__c, Amount, NRR_Amount__c, (Select Id From Opportunity_Sites__r) From Opportunity Where Id = :this.Opportunity.Id];
         this.opportunity = opportunities.get(0);
-        setUpProductFamily();
-        return null;
+       // setUpProductFamily();
+        // return null;
     }
     
-    public PageReference takeOffHold() {
+    public void takeOffHold(String param_locationId) {
         
         OpportunityLocation loc = findLocation(param_locationId);
         loc.rawLocation.On_Hold__c = false;
@@ -363,15 +371,13 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
             }
         }
         
-        ScoreDeal();
-        
+       // ScoreDeal();
         update oppProdsUpdate;
-        
         //refresh the opp
         List<Opportunity> opportunities = [Select Id, Name, Deal_Score__c, AccountId, Account.Name, Account.ICC_Account_Number__c, RecordTypeId, Term__c, OwnerId,CPQ_Total__c,CPQ_NRC_Total__c,MRC_Floor_Total__c,CPQ_MRC_List_Total__c, Amount, NRR_Amount__c, (Select Id From Opportunity_Sites__r) From Opportunity Where Id = :this.Opportunity.Id];
         this.opportunity = opportunities.get(0);
-        setUpProductFamily();
-        return null;
+        //setUpProductFamily();
+        //return null;
     }
     
     private List<Opportunity_Product__c> GetOppProducts(id oppLocId, boolean active){
@@ -387,20 +393,20 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         badDeal = false;
         doScoring = CustomSettingUtils.getOverrideSettingValue('Enable Deal Scoring');
         BlockPDFGen = CustomSettingUtils.getOverrideSettingValue('Block PDF Gen For Bad Deals');
-       // returnURL = ApexPages.currentPage().getParameters().get('retURL');
+        // returnURL = ApexPages.currentPage().getParameters().get('retURL');
         
         newSolutionName = 'Default Solution';
         selectTerm = '36';
         //String opportunityId = Apexpages.currentPage().getParameters().get(PARAMETER_OPPORTUNITY_ID);
         
         if(opportunityId == null || opportunityId == '') {
-            throw new ManageLocationProductsControllerException('Missing or invalid opportunity ID.');
+            throw new lgt_ManageLocationProductsControllerException('Missing or invalid opportunity ID.');
         }
         
         //get/validate the opportunity
         List<Opportunity> opportunities = [Select Id, Name, Deal_Score__c, AccountId, Account.Name, Account.ICC_Account_Number__c, Account.Owners_Sales_Channel__c, RecordTypeId, Term__c, Contract_Term_End_Date__c, OwnerId,CPQ_Total__c,CPQ_NRC_Total__c,MRC_Floor_Total__c,CPQ_MRC_List_Total__c, Amount, NRR_Amount__c, (Select Id From Opportunity_Sites__r) From Opportunity Where Id = :opportunityId];
         if(opportunities.size() != 1) {
-            throw new ManageLocationProductsControllerException('Missing or invalid opportunity ID.');
+            throw new lgt_ManageLocationProductsControllerException('Missing or invalid opportunity ID.');
         }
         else {
             this.opportunity = opportunities.get(0);
@@ -628,7 +634,9 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         }
     }
     
+    @AuraEnabled
     public List<OLI__c> expiredLineItemlst{get;set;}
+    
     public void setUpExpiredItems(List<OLI__c> allexistingOli){
         Map<String, Boolean> componentNameToExpireBoolean = new Map<String, Boolean>();
         
@@ -642,7 +650,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
                 componentNameToExpireBoolean.put(spcP.Price_id__c,spcP.Is_Expired__c);
         }
         
-        expiredLineItemlst = new List<OLI__c>();
+        this.expiredLineItemlst = new List<OLI__c>();
         for(OpportunityLocation op:opportunityLocations){
             LIst<OLI__c> existingOLI = new List<OLI__c>();
             for(Solution sol:op.solutions){
@@ -730,14 +738,14 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         return;
     }
     
-   public OpportunityLocation findLocationByServLocation(Id servLocId){
+    public OpportunityLocation findLocationByServLocation(Id servLocId){
         for(OpportunityLocation loc : this.opportunityLocations) {
             if(loc.rawLocation.Service_Location__r.Id == servLocId) return loc;
         }
         return null;
     }
     
-   public PageReference cancelSolution() {
+    public PageReference cancelSolution() {
         //reload ManageLocationProducts page
         PageReference pageReference = null;
         if(!String.isEmpty(returnURL)){
@@ -818,7 +826,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         catch(Exception e){
             System.debug(e.getMessage());
             System.debug(e.getStackTraceString());
-            throw new ManageLocationProductsControllerException('Unable to create new solution.  Be sure all required fields are filled in on opportunity.');            
+            throw new lgt_ManageLocationProductsControllerException('Unable to create new solution.  Be sure all required fields are filled in on opportunity.');            
         }
         
         //reload ManageLocationProducts page
@@ -874,7 +882,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         }
         
         //we should never get here (assumes no concurrency)
-        throw new ManageLocationProductsControllerException('Unable to find configuration to update name!!!');
+        throw new lgt_ManageLocationProductsControllerException('Unable to find configuration to update name!!!');
     }
     
     public pageReference makeSolutionActive() {
@@ -1142,6 +1150,8 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
 */
     public class OpportunityLocation {
         
+        public OpportunityLocation(){}
+        
         @AuraEnabled 
         public Opportunity_Location__c rawLocation {get;set;}
         @AuraEnabled
@@ -1213,6 +1223,8 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
 * View object for displaying Opportunity Locations Configurations
 */
     public class Solution {
+        
+        public Solution(){}
         
         @AuraEnabled 
         public OpportunityLocationConfiguration__c rawSolution { get;set;}
@@ -1403,8 +1415,8 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
         Integer scoreNum = 0;
         Integer badNum = 0;
         Decimal badPercent = 0.0;
-        isScored = false;
-        for(OpportunityLocation op : opportunityLocations){
+        this.isScored = false;
+        for(OpportunityLocation op : this.opportunityLocations){
             op.Score();
             if(!op.rawLocation.On_Hold__c && op.canBeScored){
                 isScored = true;
@@ -1418,7 +1430,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
             score = score / decimal.valueOf(scoreNum);
         }
         if(score == null) score = 0.0;
-        if(doScoring && isScored){
+        if(this.doScoring && this.isScored){
             Green_Light_Scoring__c glc = CustomSettingUtils.GetGreenLightScoringForScore(score);
             scoreName = glc.Image_Name__c;
             scoreHelpText = glc.Help_Text__c;
@@ -1426,7 +1438,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
             scorePercent = String.valueOf(score.setScale(2, RoundingMode.HALF_UP));
             if(opportunity.Deal_Score__c != score) saveOpp = true;
         }
-        if(!isScored){
+        if(!this.isScored){
             score = -1.0;
             Green_Light_Scoring__c glc = CustomSettingUtils.GetGreenLightScoringForScore(score);
             scoreName = glc == null ? 'noscore' : glc.Image_Name__c;
@@ -1434,7 +1446,7 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
             helpText = glc == null ? '' : glc.Help_Text__c;
             scorePercent = String.valueOf(score.setScale(2, RoundingMode.HALF_UP));
         }
-        if(BlockPDFGen){
+        if(this.BlockPDFGen){
             badDeal = false;
             Bad_Deal_Percentage_Text__c bdpt = CustomSettingUtils.GetBadDealPercentageText(badPercent);
             if(bdpt != null){
@@ -1443,14 +1455,14 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
                 helpText = bdpt == null? '' : bdpt.text__c;
             }
         }
-        if(inCtor == null) inCtor = false;
-        if(!inCtor) saveScore(score);
+        if(this.inCtor == null) this.inCtor = false;
+        if(!this.inCtor) saveScore(score);
         return score;
     }
     
     public pageReference saveScoreToOpp(){
         //this whole thing is shady and should be revisited at some point.
-        inCtor = false;
+        this.inCtor = false;
         scoreDeal();
         return null;
     }
@@ -1458,13 +1470,13 @@ public String ConfigId_deleteExpiredLineItems {get; set;} /*
     private void saveScore(Decimal score){
         Decimal s = score;
         if(s == null) s = ScoreDeal();
-        if(saveOpp){
-            opportunity.deal_score__c = s;
-            update opportunity;
+        if(this.saveOpp){
+            this.opportunity.deal_score__c = s;
+            update this.opportunity;
         }
     }
     
-    public class ManageLocationProductsControllerException extends Exception { }
+    public class lgt_ManageLocationProductsControllerException extends Exception { }
     
     /* TestUtils.ITestableClass methods */
     public TestUtils.TestClass getTestClass(){ return new Test_ManageLocationProducts(); }

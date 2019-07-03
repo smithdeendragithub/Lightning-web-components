@@ -1,28 +1,15 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-Jun-23
+* @Modified Date: 2019-July-03
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2934      Smithdeendra           Created/Initial Comments
+* 1.1           SEAL-3030/3031 Smithdeendra           updated code with Place on Hold and Take off Hold task builds.
+*
+-->
 <template>
     <div if:true={hasrecords}>
-        <article class="slds-card">
-            <!-- <div class="slds-card__header slds-grid">
-                <header class="slds-media slds-media_center slds-has-flexi-truncate">
-                    <div class="slds-media__figure">
-                        <span class="slds-icon_container slds-icon-standard-account"
-                            title="Configure Products For '{wrapperRecord.opportunity.Name}'">
-                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
-                                <use xlink:href="/_slds/icons/standard-sprite/svg/symbols.svg#account"></use>
-                            </svg>
-                            <span class="slds-assistive-text">Configure Products For
-                                {wrapperRecord.opportunity.Name}</span>
-                        </span>
-                    </div>
-                    <div class="slds-media__body">
-                        <h2 class="slds-card__header-title" style="float: left;">
-                            <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Accounts">
-                                <span>Configure Products For {wrapperRecord.opportunity.Name}</span>
-                            </a>
-                        </h2>
-                        
-                    </div>
-                </header>
-            </div> -->
+        <article class="slds-card">          
             <div class="slds-card__body slds-card__body_inner">
                 <table border="0">
                     <tr>
@@ -30,29 +17,6 @@
                             <div class="slds-text-heading_medium">Configure Products For
                                 {wrapperRecord.opportunity.Name}</div>
                         </td>
-                        <!-- <td style="font-weight:bold;">
-                            <div style="width:100px;float:right;text-align:right;">
-
-                                <lightning-formatted-number value={wrapperRecord.opportunity.Amount}
-                                    maximum-fraction-digits="2" minimum-fraction-digits="2">
-                                </lightning-formatted-number>
-                            </div>
-                            <div style="float:right;">
-                                Total MRC:
-                            </div>
-                            <div style="clear:both;"></div>
-                            <div style="width:100px;float:right;text-align:right;">
-
-                                <lightning-formatted-number value={wrapperRecord.opportunity.NRR_Amount__c}
-                                    maximum-fraction-digits="2" minimum-fraction-digits="2">
-                                </lightning-formatted-number>
-
-                            </div>
-                            <div style="float:right;">
-                                Total NRC:
-                            </div>
-                            <div style="clear:both;"></div>
-                        </td> -->
                     </tr>
                 </table>
             </div>
@@ -62,9 +26,10 @@
                 <template for:each={wrapperRecord.opportunityLocations} for:item="oppLocRec">
                     <div class="slds-section slds-is-open" key={oppLocRec.buildingId}>
                         <h4 class="slds-section__title">
-                            <button aria-expanded="true" class="slds-button slds-section__title-action">
+                            <button aria-expanded="true" class="slds-button slds-section__title-action"
+                                aria-controls={oppLocRec.rawLocation.Id}>
                                 <div style="width: -webkit-fill-available;">
-                                    <div style="float:left">
+                                    <div style="float:left" onclick={toggleSection}>
                                         <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
                                             aria-hidden="true">
                                             <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
@@ -82,7 +47,7 @@
                                 </div>
                             </button>
                         </h4>
-                        <div>
+                        <div id={oppLocRec.rawLocation.Id} aria-hidden="false" class="slds-section__content">
                             <template for:each={baabybldgid} for:item="keyValue">
                                 <c-cpq-main-display-access-availability-table key={keyValue.key}
                                     records-to-display={keyValue.value} opp-location-buildg-id={oppLocRec.buildingId}
@@ -92,9 +57,14 @@
                             <div class="slds-box slds-grid slds-grid_vertical">
                                 <div class="slds-col slds-p-bottom_small" style="text-align: end;">
                                     <lightning-button-group>
-                                        <lightning-button label="Place On Hold" if:false={oppLocRec.rawLocation.On_Hold__c}></lightning-button>
+                                        <lightning-button label="Place On Hold"
+                                            if:false={oppLocRec.rawLocation.On_Hold__c} onclick={handlePlaceOnHold}
+                                            aria-label={oppLocRec.rawLocation.Id}></lightning-button>
                                         <lightning-button label="Set Providers"></lightning-button>
-                                        <lightning-button label="Take Off Hold" if:true={oppLocRec.rawLocation.On_Hold__c}></lightning-button>
+                                        <lightning-button label="Take Off Hold"
+                                            if:true={oppLocRec.rawLocation.On_Hold__c}
+                                            aria-label={oppLocRec.rawLocation.Id} onclick={handleTakeOffOnHold}>
+                                        </lightning-button>
                                         <lightning-button label="Turn Downs"></lightning-button>
                                         <lightning-button label="Cost Comparison" disabled></lightning-button>
                                     </lightning-button-group>
@@ -132,25 +102,27 @@
                                         </thead>
                                         <tbody>
                                             <template for:each={oppLocRec.solutions} for:item="solRec">
-
                                                 <tr class="slds-box slds-hint-parent" key={solRec.rawSolution.Id}
                                                     if:true={solRec.rawSolution.Id}>
-
                                                     <td data-label="col1" style="width: 24.5%">
-                                                        <div class="slds-truncate">
-                                                            <lightning-formatted-url value={solRec.rawSolution.Id}
-                                                                label={solRec.rawSolution.Name}>
-                                                            </lightning-formatted-url>
-                                                            <lightning-input type="checkbox" label="Display On Proposal"
-                                                                value={solRec.rawSolution.Display_on_Solution__c}
-                                                                onchange={handleChange}>
-                                                            </lightning-input>
-                                                        </div>
+                                                        <c-cpq-main-display-active-image
+                                                            input-one={solRec.rawSolution.Active__c}
+                                                            input-two={oppLocRec.rawLocation.On_Hold__c}
+                                                            url-one={activeImg} url-two={inactiveImg}
+                                                            display-value={solRec.rawSolution.Name}
+                                                            record-url-id={solRec.rawSolution.Id}>
+                                                        </c-cpq-main-display-active-image>
+                                                        <br />
+                                                        <lightning-input type="checkbox" label="Display On Proposal"
+                                                            value={solRec.rawSolution.Display_on_Solution__c}
+                                                            onchange={handleChange}>
+                                                        </lightning-input>
                                                     </td>
                                                     <td data-label="col2" style="width: 20%">
                                                         <div class="slds-grid_Vertical slds-truncate">
                                                             <!-- <div class="slds-col slds-size_1-of-3"></div> -->
-                                                            <div class="slds-col slds-size_2-of-3" if:true={solRec.hasLineItems}>
+                                                            <div class="slds-col slds-size_2-of-3"
+                                                                if:true={solRec.hasLineItems}>
                                                                 <select class="slds-select" disabled>
                                                                     <template for:each={termList.data.values}
                                                                         for:item="listViewItem">
@@ -159,21 +131,24 @@
                                                                     </template>
                                                                 </select>
                                                             </div>
-                                                            <div class="slds-col slds-size_2-of-3" if:false={solRec.hasLineItems}>
-                                                                    <select class="slds-select">
-                                                                        <template for:each={termList.data.values}
-                                                                            for:item="listViewItem">
-                                                                            <option key={listViewItem.value}>
-                                                                                {listViewItem.value}</option>
-                                                                        </template>
-                                                                    </select>
-                                                                </div>
-                                                            <div class="slds-col slds-size_1-of-3"> <lightning-formatted-date-time
-                                                                value={solRec.rawSolution.Contract_Term_End_Date__c}>
-                                                            </lightning-formatted-date-time></div>
+                                                            <div class="slds-col slds-size_2-of-3"
+                                                                if:false={solRec.hasLineItems}>
+                                                                <select class="slds-select">
+                                                                    <template for:each={termList.data.values}
+                                                                        for:item="listViewItem">
+                                                                        <option key={listViewItem.value}>
+                                                                            {listViewItem.value}</option>
+                                                                    </template>
+                                                                </select>
+                                                            </div>
+                                                            <div class="slds-col slds-size_1-of-3">
+                                                                <lightning-formatted-date-time
+                                                                    value={solRec.rawSolution.Contract_Term_End_Date__c}>
+                                                                </lightning-formatted-date-time>
+                                                            </div>
                                                         </div>
                                                     </td>
-                                                    <td data-label="col3" align="center" style="width: 19.5%">
+                                                    <td data-label="col3" align="center" style="width: 15.5%">
                                                         <div class="slds-grid">
                                                             <!-- <div class="slds-col slds-size_1-of-4"></div> -->
                                                             <div class="slds-col">
@@ -335,11 +310,6 @@
                                                                             </div>
                                                                         </td>
                                                                         <td class="alignTextRight">
-                                                                            <!-- <lightning-formatted-number
-                                                                                                        minimum-fraction-digits="2"
-                                                                                                        maximum-fraction-digits="2"
-                                                                                                        value={solRec.rawSolution.MRC_Total__c}>
-                                                                                                    </lightning-formatted-number> -->
                                                                             <c-math-display
                                                                                 inputvalueone={solRec.rawSolution.MRC_Total__c}
                                                                                 inputvaluetwo={oppLocRec.rawLocation.Turndown_Total__c}
@@ -358,7 +328,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td data-label="col5" style="width: 5%">
+                                                    <td data-label="col5" style="width: 9%">
                                                         <div class="slds-grid_Vertical">
                                                             <div class="slds-col slds-truncate">
                                                                 <lightning-formatted-text value={solRec.approvalStatus}>
@@ -376,8 +346,11 @@
                                                             <div class="slds-col slds-truncate">
                                                                 <c-cpq-main-dispay-approval-request-date
                                                                     solution-active={solRec.rawSolution.Active__c}
-                                                                    cmpt-count={solRec.cmptCount} mgr-count={solRec.mgrCount} icb-count={solRec.icbCount}
-                                                                    approval-requested={solRec.approvalRequested} approval-request-date={solRec.approvalRequestDate}>
+                                                                    cmpt-count={solRec.cmptCount}
+                                                                    mgr-count={solRec.mgrCount}
+                                                                    icb-count={solRec.icbCount}
+                                                                    approval-requested={solRec.approvalRequested}
+                                                                    approval-request-date={solRec.approvalRequestDate}>
                                                                 </c-cpq-main-dispay-approval-request-date>
                                                             </div>
                                                         </div>
@@ -395,7 +368,6 @@
                 </template>
             </lightning-layout-item>
             <lightning-layout-item padding="around-small" size="2" style="position: fixed; left: 81.5%; top: 20.5%;">
-
                 <div>
                     <table>
                         <tbody>
@@ -465,5 +437,4 @@
             </lightning-layout-item>
         </lightning-layout>
     </div>
-
 </template>
