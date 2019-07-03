@@ -1,28 +1,15 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-Jun-23
+* @Modified Date: 2019-July-03
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2934      Smithdeendra           Created/Initial Comments
+* 1.1           SEAL-3030/3031 Smithdeendra           updated code with Place on Hold and Take off Hold task builds.
+*
+-->
 <template>
     <div if:true={hasrecords}>
-        <article class="slds-card">
-            <!-- <div class="slds-card__header slds-grid">
-                <header class="slds-media slds-media_center slds-has-flexi-truncate">
-                    <div class="slds-media__figure">
-                        <span class="slds-icon_container slds-icon-standard-account"
-                            title="Configure Products For '{wrapperRecord.opportunity.Name}'">
-                            <svg class="slds-icon slds-icon_small" aria-hidden="true">
-                                <use xlink:href="/_slds/icons/standard-sprite/svg/symbols.svg#account"></use>
-                            </svg>
-                            <span class="slds-assistive-text">Configure Products For
-                                {wrapperRecord.opportunity.Name}</span>
-                        </span>
-                    </div>
-                    <div class="slds-media__body">
-                        <h2 class="slds-card__header-title" style="float: left;">
-                            <a href="javascript:void(0);" class="slds-card__header-link slds-truncate" title="Accounts">
-                                <span>Configure Products For {wrapperRecord.opportunity.Name}</span>
-                            </a>
-                        </h2>
-                        
-                    </div>
-                </header>
-            </div> -->
+        <article class="slds-card">          
             <div class="slds-card__body slds-card__body_inner">
                 <table border="0">
                     <tr>
@@ -30,7 +17,6 @@
                             <div class="slds-text-heading_medium">Configure Products For
                                 {wrapperRecord.opportunity.Name}</div>
                         </td>
-
                     </tr>
                 </table>
             </div>
@@ -40,9 +26,10 @@
                 <template for:each={wrapperRecord.opportunityLocations} for:item="oppLocRec">
                     <div class="slds-section slds-is-open" key={oppLocRec.buildingId}>
                         <h4 class="slds-section__title">
-                            <button aria-expanded="true" class="slds-button slds-section__title-action">
+                            <button aria-expanded="true" class="slds-button slds-section__title-action"
+                                aria-controls={oppLocRec.rawLocation.Id}>
                                 <div style="width: -webkit-fill-available;">
-                                    <div style="float:left">
+                                    <div style="float:left" onclick={toggleSection}>
                                         <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
                                             aria-hidden="true">
                                             <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
@@ -60,7 +47,7 @@
                                 </div>
                             </button>
                         </h4>
-                        <div>
+                        <div id={oppLocRec.rawLocation.Id} aria-hidden="false" class="slds-section__content">
                             <template for:each={baabybldgid} for:item="keyValue">
                                 <c-cpq-main-display-access-availability-table key={keyValue.key}
                                     records-to-display={keyValue.value} opp-location-buildg-id={oppLocRec.buildingId}
@@ -71,10 +58,13 @@
                                 <div class="slds-col slds-p-bottom_small" style="text-align: end;">
                                     <lightning-button-group>
                                         <lightning-button label="Place On Hold"
-                                            if:false={oppLocRec.rawLocation.On_Hold__c}></lightning-button>
+                                            if:false={oppLocRec.rawLocation.On_Hold__c} onclick={handlePlaceOnHold}
+                                            aria-label={oppLocRec.rawLocation.Id}></lightning-button>
                                         <lightning-button label="Set Providers"></lightning-button>
                                         <lightning-button label="Take Off Hold"
-                                            if:true={oppLocRec.rawLocation.On_Hold__c}></lightning-button>
+                                            if:true={oppLocRec.rawLocation.On_Hold__c}
+                                            aria-label={oppLocRec.rawLocation.Id} onclick={handleTakeOffOnHold}>
+                                        </lightning-button>
                                         <lightning-button label="Turn Downs"></lightning-button>
                                         <lightning-button label="Cost Comparison" disabled></lightning-button>
                                     </lightning-button-group>
@@ -115,19 +105,18 @@
                                                 <tr class="slds-box slds-hint-parent" key={solRec.rawSolution.Id}
                                                     if:true={solRec.rawSolution.Id}>
                                                     <td data-label="col1" style="width: 24.5%">
-                                                        
-                                                                <c-cpq-main-display-active-image
-                                                                    input-one={solRec.rawSolution.Active__c}
-                                                                    input-two={oppLocRec.rawLocation.On_Hold__c}
-                                                                    url-one={activeImg} url-two={inactiveImg} display-value={solRec.rawSolution.Name}
-                                                                    record-url-id={solRec.rawSolution.Id}>
-                                                                </c-cpq-main-display-active-image>
-                                                               <br/>
-                                                            <lightning-input type="checkbox" label="Display On Proposal"
-                                                                value={solRec.rawSolution.Display_on_Solution__c}
-                                                                onchange={handleChange}>
-                                                            </lightning-input>
-                                                        
+                                                        <c-cpq-main-display-active-image
+                                                            input-one={solRec.rawSolution.Active__c}
+                                                            input-two={oppLocRec.rawLocation.On_Hold__c}
+                                                            url-one={activeImg} url-two={inactiveImg}
+                                                            display-value={solRec.rawSolution.Name}
+                                                            record-url-id={solRec.rawSolution.Id}>
+                                                        </c-cpq-main-display-active-image>
+                                                        <br />
+                                                        <lightning-input type="checkbox" label="Display On Proposal"
+                                                            value={solRec.rawSolution.Display_on_Solution__c}
+                                                            onchange={handleChange}>
+                                                        </lightning-input>
                                                     </td>
                                                     <td data-label="col2" style="width: 20%">
                                                         <div class="slds-grid_Vertical slds-truncate">
@@ -321,11 +310,6 @@
                                                                             </div>
                                                                         </td>
                                                                         <td class="alignTextRight">
-                                                                            <!-- <lightning-formatted-number
-                                                                                                        minimum-fraction-digits="2"
-                                                                                                        maximum-fraction-digits="2"
-                                                                                                        value={solRec.rawSolution.MRC_Total__c}>
-                                                                                                    </lightning-formatted-number> -->
                                                                             <c-math-display
                                                                                 inputvalueone={solRec.rawSolution.MRC_Total__c}
                                                                                 inputvaluetwo={oppLocRec.rawLocation.Turndown_Total__c}
@@ -384,7 +368,6 @@
                 </template>
             </lightning-layout-item>
             <lightning-layout-item padding="around-small" size="2" style="position: fixed; left: 81.5%; top: 20.5%;">
-
                 <div>
                     <table>
                         <tbody>
@@ -454,5 +437,4 @@
             </lightning-layout-item>
         </lightning-layout>
     </div>
-
 </template>
