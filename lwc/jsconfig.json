@@ -4,7 +4,10 @@
         "baseUrl": ".",
         "paths": {
             "c/accountDetails": [
-                "../../lwc/accountDetails/accountDetails.js"
+                "accountDetails/accountDetails.js"
+            ],
+            "c/contactDetails": [
+                "contactDetails/contactDetails.js"
             ],
             "c/customLinks": [
                 "customLinks/customLinks.js"
@@ -14,9 +17,6 @@
             ],
             "c/opportunitySplitInformation": [
                 "opportunitySplitInformation/opportunitySplitInformation.js"
-            ],
-            "c/opportunityTeamMemberInfo": [
-                "opportunityTeamMemberInfo/opportunityTeamMemberInfo.js"
             ],
             "c/orderList": [
                 "orderList/orderList.js"
@@ -56,6 +56,9 @@
             ],
             "c/jquery": [
                 "../../staticresources/Dynatree/jquery/jquery.js"
+            ],
+            "c/cpqMainPage": [
+                "../../lwc/cpqMainPage/cpqMainPage.js"
             ]
         }
     },

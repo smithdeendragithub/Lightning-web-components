@@ -6,9 +6,9 @@ public with sharing class lgt_printOrderController implements TestUtils.ITestabl
     public Opportunity opportunity {get; private set;}
     public Map<Id, List<Directory_Listing__c>> DirectoryListing {get; set;}
     public boolean hasDirectoryListing {get; set;}
-    public List<Contact> contacts {get; set;}
-    public List<Contact> contactTypes {get; set;}
-    public Map<Id, List<Technical_Information__c>> techInfos {get; private set;}
+    @AuraEnabled public List<Contact> contacts {get; set;}
+    @AuraEnabled public List<Contact> contactTypes {get; set;}
+    @AuraEnabled public Map<Id, List<Technical_Information__c>> techInfos {get; private set;}
     public Map<Id, List<Phone_Location_Matrix__c>> matrices {get; private set;}
     public Map<Id, List<Voicemail_Menu_Option__c>> vmos {get; private set;}
     public Map<Id, List<NNS_Num__c>> nnss {get; private set;}
@@ -20,10 +20,10 @@ public with sharing class lgt_printOrderController implements TestUtils.ITestabl
     private String oppID {get; private set;}
     private String solutionID {get; private set;}
     public static final String DEFAULT_RESPONSIBLE_PARTY = 'Default Responsible Party';
-    public List<contactWrapper> conWrap {get; set;}
-    public List<OpportunityTeamMember> opportunityTeams {get; set;}
+    @AuraEnabled public List<contactWrapper> conWrap {get; set;}
+    @AuraEnabled public List<OpportunityTeamMember> opportunityTeams {get; set;}
     
-    public Map<Id,featureWrapper> currentOppLocFeats {get;set;}
+    @AuraEnabled public Map<Id,featureWrapper> currentOppLocFeats {get;set;}
     
     public lgt_printOrderController(String opportunityId, String solutionId){
         try{
@@ -515,8 +515,8 @@ mholcombe commented out didn't see the original page even using this
     
     public contactWrapper contactWrap{get;set;}
     public class contactWrapper{
-        public Contact contact{get;set;}
-        public String contactRole{get;set;}
+        @AuraEnabled public Contact contact{get;set;}
+        @AuraEnabled public String contactRole{get;set;}
         public contactWrapper(Contact c, string role){
             contact = c;
             contactRole = role;

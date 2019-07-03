@@ -1,66 +1,187 @@
 <template>
     <template for:each={approvalData} for:item="data">
-        <lightning-accordion allow-multiple-sections-open key={data.approval}>
-            <lightning-accordion-section name="approval" label={data.approval}>
-            </lightning-accordion-section>
-            <lightning-accordion-section name="approvalStatus" label={data.approvalStatus}>
+        <div class="slds-section slds-is-open" key={data.approval}>
+            <h3 class="slds-section__title">
+                <button aria-controls={data.approval} aria-expanded="true" class="slds-button slds-section__title-action">
+                <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                    aria-hidden="true">
+                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                </svg>
+                <span class="slds-truncate" title="Section Title">{data.approval}</span>
+                </button>
+            </h3>
+            <div aria-hidden="false" class="slds-section__content test" id={data.approval}>
+            </div>
+        </div>
+        <div class="slds-section slds-is-open" key={data.approval}>
+            <h3 class="slds-section__title">
+                <button aria-controls={data.approvalStatus} aria-expanded="true" class="slds-button slds-section__title-action">
+                <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                    aria-hidden="true">
+                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                </svg>
+                <span class="slds-truncate" title="Section Title">{data.approvalStatus}</span>
+                </button>
+            </h3>
+            <div aria-hidden="false" class="slds-section__content test" id={data.approvalStatus}>
                 <template for:each={data.rawSolution} for:item="rawSol">
-                    <lightning-accordion allow-multiple-sections-open key={rawSol.approvalStatus}>
-                        <lightning-accordion-section name="" label={rawSol.approvalStatus}>
-                            <template for:each={rawSol.locationIds} for:item="location">
-                                <lightning-accordion allow-multiple-sections-open key={location.Name}>
-                                    <lightning-accordion-section name="location" label={location.Name}>
-                                        <lightning-record-view-form record-id={location.Id} object-api-name="Service_Location__c">
-                                            <div class="slds-grid">
-                                                <div class="slds-col slds-size_1-of-2">
-                                                    <lightning-output-field field-name="Name"></lightning-output-field>
-                                                    <lightning-output-field field-name="ICC_Subscriber_ID__c"></lightning-output-field>
-                                                    <lightning-output-field field-name="Building__r.Address__c"> </lightning-output-field>
-                                                    <lightning-output-field field-name="Location__r.Building__r.City__c"> </lightning-output-field>
-                                                    <lightning-output-field field-name="Location__r.Building__r.State__c"> </lightning-output-field>
-                                                    <lightning-output-field field-name="Acquired_Company_or_Biller__c"></lightning-output-field>
-                                                    <lightning-output-field field-name="BillingID__c"></lightning-output-field>
-                                                </div>
-                                                <div class="slds-col slds-size_1-of-2">
-                                                    <lightning-output-field field-name="Phone_c"></lightning-output-field>
-                                                    <lightning-output-field field-name="Net_Classification__c"></lightning-output-field>
-                                                    <lightning-output-field field-name="Billable__c"></lightning-output-field>
-                                                    <lightning-output-field field-name="Building_Status__c"></lightning-output-field>
-                                                    <lightning-output-field field-name="CloseDate"></lightning-output-field>
-                                                    <lightning-output-field field-name="Legacy_ID__c"></lightning-output-field>
-                                                </div>
-                                            </div>
+                <div class="slds-section slds-is-open" key={rawSol.approvalStatus}>
+                    <h3 class="slds-section__title">
+                        <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                            <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                            aria-hidden="true">
+                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                            </svg>
+                            <span class="slds-truncate" title="Section Title">{rawSol.approvalStatus}</span>
+                        </button>
+                    </h3>
+                    <div aria-hidden="false" class="slds-section__content test" id={rawSol.approvalStatus}>
+                        <template for:each={rawSol.locationIds} for:item="location">
+                            <div class="slds-section slds-is-open" key={location.Name}>
+                            <h3 class="slds-section__title dark-heading">
+                                <span class="slds-truncate slds-p-horizontal_small" title="Section Title">{location.Name}</span>
+                            </h3>
+                            <div aria-hidden="false" class="slds-section__content">
+                                <div class="slds-grid">
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning-record-view-form density="compact" record-id={location.Id} object-api-name="Service_Location__c">
+                                        <lightning-output-field field-name="Name"></lightning-output-field>
+                                        <lightning-output-field field-name="ICC_Subscriber_ID__c"></lightning-output-field>
                                         </lightning-record-view-form>
-                                    </lightning-accordion-section>
-                                </lightning-accordion>
-                            </template>
-                            <lightning-accordion allow-multiple-sections-open key={rawSol.opportunityLocationId}>
-                                <lightning-accordion-section name="Opportunity Location Details" label="Opportunity Location Details">
-                                    <lightning-record-view-form record-id={rawSol.opportunityLocationId} object-api-name="Opportunity_Location__c">
-                                        <div class="slds-grid">
-                                            <div class="slds-col slds-size_1-of-2">
-                                                <lightning-output-field field-name="Order__c"></lightning-output-field>
-                                                <lightning-output-field field-name="MRC_Total__c"></lightning-output-field>
-                                                <lightning-output-field field-name="Status__c"> </lightning-output-field>
-                                            </div>
-                                            <div class="slds-col slds-size_1-of-2">
-                                                <lightning-output-field field-name="On_Hold__c"></lightning-output-field>
-                                                <lightning-output-field field-name="NRC_Total__c"></lightning-output-field>
-                                                <lightning-output-field field-name="CreatedBy"></lightning-output-field>
-                                                <lightning-output-field field-name="Term__c"></lightning-output-field>
-                                            </div>
+                                        <lightning-record-view-form density="compact" record-id={location.buildingId} object-api-name="Building__c">
+                                        <lightning-output-field field-name="Address__c"> </lightning-output-field>
+                                        <lightning-output-field field-name="City__c"> </lightning-output-field>
+                                        <lightning-output-field field-name="State__c"> </lightning-output-field>
+                                        </lightning-record-view-form>
+                                        <lightning-record-view-form density="compact" record-id={location.Id} object-api-name="Service_Location__c">
+                                        <lightning-output-field field-name="Acquired_Company_or_Biller__c"></lightning-output-field>
+                                        <lightning-output-field field-name="BillingID__c"></lightning-output-field>
+                                        </lightning-record-view-form>
+                                    </div>
+                                    <div class="slds-col slds-size_1-of-2">
+                                        <lightning-record-view-form density="compact" record-id={location.Id} object-api-name="Service_Location__c">
+                                        <lightning-output-field field-name="Phone__c"></lightning-output-field>
+                                        <lightning-output-field field-name="Net_Classification__c"></lightning-output-field>
+                                        <lightning-output-field field-name="Billable__c"></lightning-output-field>
+                                        </lightning-record-view-form>
+                                        <lightning-record-view-form density="compact" record-id={location.buildingId} object-api-name="Building__c">
+                                        <lightning-output-field field-name="Status__c"> </lightning-output-field>
+                                        <lightning-output-field field-name="Postal_Code__c"> </lightning-output-field>
+                                        </lightning-record-view-form>
+                                        <lightning-record-view-form density="compact" record-id={location.customerDetailId} object-api-name="Customer_Detail__c">
+                                        <lightning-output-field field-name="BPID__c"> </lightning-output-field>
+                                        </lightning-record-view-form>
+                                        <lightning-record-view-form density="compact" record-id={location.Id} object-api-name="Service_Location__c">
+                                        <lightning-output-field field-name="Legacy_ID__c"></lightning-output-field>
+                                        </lightning-record-view-form>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <div class="slds-section slds-is-open test" key={data.approval}>
+                    <h3 class="slds-section__title dark-heading">
+                        <span class="slds-truncate slds-p-horizontal_small" title="Section Title">Opportunity Location Details</span>
+                    </h3>
+                    <div aria-hidden="false" class="slds-section__content">
+                        <lightning-record-view-form density="compact" record-id={rawSol.opportunityLocationId} object-api-name="Opportunity_Location__c">
+                            <div class="slds-grid">
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-output-field field-name="Order__c"></lightning-output-field>
+                                <lightning-output-field field-name="MRC_Total__c"></lightning-output-field>
+                                <lightning-output-field field-name="Status__c"> </lightning-output-field>
+                            </div>
+                            <div class="slds-col slds-size_1-of-2">
+                                <lightning-output-field field-name="On_Hold__c"></lightning-output-field>
+                                <lightning-output-field field-name="NRC_Total__c"></lightning-output-field>
+                                <lightning-output-field field-name="CreatedBy"></lightning-output-field>
+                                <lightning-output-field field-name="Term__c"></lightning-output-field>
+                            </div>
+                            </div>
+                        </lightning-record-view-form>
+                    </div>
+                </div>
+                <div class="slds-section slds-is-open" key={data.approval}>
+                    <h3 class="slds-section__title">
+                        <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                            <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                            aria-hidden="true">
+                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                            </svg>
+                            <span class="slds-truncate" title="Section Title">Order Line Items</span>
+                        </button>
+                    </h3>
+                    <div aria-hidden="false" class="slds-section__content test" id={data.approval}>
+                        <template for:each={rawSol.orderLineItems} for:item="oli">
+                            <div class="slds-section slds-is-open" key={oli.name}>
+                            <h3 class="slds-section__title slds-theme_shade dark-heading">
+                                <span class="slds-truncate slds-p-horizontal_small" title="Section Title">{oli.name}</span>
+                            </h3>
+                            <div aria-hidden="false" class="slds-section__content">
+                                <template for:each={oli.products} for:item="product">
+                                    <div class="slds-section slds-is-open test" key={product.Name}>
+                                        <h3 class="slds-section__title slds-theme_shade ">
+                                        <span class="slds-truncate slds-p-horizontal_small " title="Section Title">{product.Name}</span>
+                                        </h3>
+                                        <div aria-hidden="false" class="slds-section__content ">
+                                        <div class="slds-p-around_medium lgc-bg">
+                                            <lightning-datatable
+                                                key-field={product.Name}
+                                                data={product.oliLines}
+                                                columns={columns}>
+                                            </lightning-datatable>
                                         </div>
-                                    </lightning-record-view-form>
-                                </lightning-accordion-section>
-                            </lightning-accordion>
-                        </lightning-accordion-section>
-                    </lightning-accordion>
-                    <!-- <lightning-accordion allow-multiple-sections-open>
-                        <lightning-accordion-section name="Order Line Items" label="Order Line Items">
-                        </lightning-accordion-section>
-                    </lightning-accordion> -->
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <lightning-accordion allow-multiple-sections-open active-section-name={activeSections} key={rawSol.approvalStatus}>
+                </lightning-accordion>
+                <div class="slds-section slds-is-open" key={rawSol.techInfoApproval}>
+                    <h3 class="slds-section__title">
+                        <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                            <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                            aria-hidden="true">
+                            <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                            </svg>
+                            <span class="slds-truncate" title="Section Title">{rawSol.techInfoApproval}</span>
+                        </button>
+                    </h3>
+                    <div aria-hidden="false" class="slds-section__content test" id={rawSol.techInfoApproval}>
+                        <template for:each={rawSol.techInfo} for:item="info">
+                            <div class="slds-section slds-is-open " key={info.Id}>
+                            <h3 class="slds-section__title">
+                                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action dark-heading">
+                                    <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                                        aria-hidden="true">
+                                        <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                                    </svg>
+                                    <span class="slds-truncate" title="Section Title">{info.Name}</span>
+                                </button>
+                            </h3>
+                            <div aria-hidden="false" class="slds-section__content" id={info.Name}>
+                                <lightning-record-form
+                                    density="auto"
+                                    record-id={info.Id}
+                                    object-api-name="Technical_Information__c"
+                                    record-type-id={info.RecordTypeId}
+                                    layout-type="Full"
+                                    columns="2"
+                                    mode="readonly">
+                                </lightning-record-form>
+                            </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
                 </template>
-            </lightning-accordion-section>
-        </lightning-accordion>
+            </div>
+        </div>
     </template>
 </template>

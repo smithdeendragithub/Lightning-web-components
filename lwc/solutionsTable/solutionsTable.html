@@ -1,7 +1,6 @@
 <template>
-    {solutionData}
-    <lightning-datatable if:true={hasRecords}
-            data={solutionData}
+    <lightning-datatable
+            data={data}
             columns={columns}
             key-field="name">
     </lightning-datatable>

@@ -4,13 +4,14 @@ import OPPID_FIELD from '@salesforce/schema/Opportunity.SF_Opportunity_ID__c';
 import ORDER_FIELD from '@salesforce/schema/Opportunity.Order__c';
 import ORDERNUMBER_FIELD from '@salesforce/schema/Order__c.Name';
 
-
+const activeAccordions = ['orderNumberDisplay', 'Account', 'Contacts', 'sfOppId', 'Orders']
 export default class PrintOrderSummary extends LightningElement {
     @api recordId;
     @track sfOppId;
     @track order = '';
     @track orderNumber;
     @track orderNumberDisplay;
+    @track activeSections = activeAccordions;
 
     @wire(getRecord, {recordId: '$recordId', fields: [OPPID_FIELD, ORDER_FIELD]})
     opportunityRecord({error, data}) {
@@ -27,5 +28,9 @@ export default class PrintOrderSummary extends LightningElement {
             this.orderNumber = data.fields.Name.value;
             this.orderNumberDisplay = this.orderNumber + " - Solutions";
         }
+    }
+
+    toggleSection(event){
+        event.target.parentNode.parentElement.classList.toggle("slds-is-open");
     }
 }

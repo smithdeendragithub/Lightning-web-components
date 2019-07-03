@@ -1,27 +1,93 @@
 <template>
-        <lightning-accordion allow-multiple-sections-open>
-            <lightning-accordion-section name="A" label={orderNumberDisplay}>
-                <c-solutions-table></c-solutions-table>
-            </lightning-accordion-section>
-    
-            <lightning-accordion-section name="B" label="Account">
-                <c-account-details></c-account-details>
-            </lightning-accordion-section>
-    
-            <lightning-accordion-section name="C" label="Contacts">
-                <p>This is the content area for section C.</p>
-                <p>Nulla ornare ipsum felis, vel aliquet dui blandit vel. Integer accumsan velit quis mauris pharetra, nec sollicitudin dui eleifend. Cras condimentum odio mi, nec ullamcorper arcu ullamcorper sed. Proin massa arcu, rutrum a ullamcorper nec, hendrerit in sem. Etiam tempus eros ut lorem tincidunt, id condimentum nulla molestie. Morbi hendrerit elit pretium, ultrices neque non, ullamcorper justo. Quisque vel nisi eget eros efficitur semper. Nulla pulvinar venenatis quam vitae efficitur. Nam facilisis sollicitudin quam ac imperdiet.</p>
-            </lightning-accordion-section>
-
-            <lightning-accordion-section name="C" label={sfOppId}>
-                <c-opportunity-detail></c-opportunity-detail>
-                <c-opportunity-team-member-info oppid={recordId}></c-opportunity-team-member-info>
-                <c-opportunity-split-information></c-opportunity-split-information>
-            </lightning-accordion-section>
-
-            <lightning-accordion-section name="C" label="Orders">
-                <c-order-list number={orderNumber}></c-order-list>
-            </lightning-accordion-section>
-
-        </lightning-accordion>
-    </template>
+        <div class="slds-section slds-is-open">
+           <h3 class="slds-section__title">
+              <button aria-controls="solutionTable" aria-expanded="true" class="slds-button slds-section__title-action" onclick={toggleSection}>
+                 <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                    aria-hidden="true">
+                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                 </svg>
+                 <span class="slds-truncate" title="Section Title">{orderNumberDisplay}</span>
+              </button>
+           </h3>
+           <div aria-hidden="false" class="slds-section__content test" id="solutionTable">
+              <c-solutions-table></c-solutions-table>
+           </div>
+        </div>
+        <div class="slds-section slds-is-open">
+           <h3 class="slds-section__title">
+              <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" onclick={toggleSection}>
+                 <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                    aria-hidden="true">
+                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                 </svg>
+                 <span class="slds-truncate" title="Section Title">Account</span>
+              </button>
+           </h3>
+           <div aria-hidden="false" class="slds-section__content test" id="accountDetails">
+              <c-account-details></c-account-details>
+           </div>
+        </div>
+        <div class="slds-section slds-is-open">
+           <h3 class="slds-section__title">
+              <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" onclick={toggleSection}>
+                 <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                    aria-hidden="true">
+                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                 </svg>
+                 <span class="slds-truncate" title="Section Title">Contacts</span>
+              </button>
+           </h3>
+           <div aria-hidden="false" class="slds-section__content test" id="contacts">
+              <c-contact-details></c-contact-details>
+           </div>
+        </div>
+        <div class="slds-section slds-is-open">
+           <h3 class="slds-section__title">
+              <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" onclick={toggleSection}>
+                 <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                    aria-hidden="true">
+                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                 </svg>
+                 <span class="slds-truncate" title="Section Title">{sfOppId}</span>
+              </button>
+           </h3>
+           <div aria-hidden="false" class="slds-section__content test" id="oppDetails">
+              <c-opportunity-detail></c-opportunity-detail>
+              <c-opportunity-team-member-info oppid={recordId}></c-opportunity-team-member-info>
+              <c-opportunity-split-information></c-opportunity-split-information>
+           </div>
+        </div>
+        <div class="slds-section slds-is-open">
+           <h3 class="slds-section__title">
+              <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" onclick={toggleSection}>
+                 <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left"
+                    aria-hidden="true">
+                    <use xlink:href="/_slds/icons/utility-sprite/svg/symbols.svg#switch"></use>
+                 </svg>
+                 <span class="slds-truncate" title="Section Title">Orders</span>
+              </button>
+           </h3>
+           <div aria-hidden="false" class="slds-section__content test" id="orders">
+              <c-order-list number={orderNumber}></c-order-list>
+           </div>
+        </div>
+        <!-- <lightning-accordion-section name='Account' label="Account">
+           <c-account-details></c-account-details>
+           </lightning-accordion-section>
+           
+           <lightning-accordion-section name='Contacts' label="Contacts">
+           <c-contact-details></c-contact-details>
+           </lightning-accordion-section>
+           
+           <lightning-accordion-section name='sfOppId' label={sfOppId}>
+           <c-opportunity-detail></c-opportunity-detail>
+           <c-opportunity-team-member-info oppid={recordId}></c-opportunity-team-member-info>
+           <c-opportunity-split-information></c-opportunity-split-information>
+           </lightning-accordion-section>
+           
+           <lightning-accordion-section name='Orders' label="Orders">
+           <c-order-list number={orderNumber}></c-order-list>
+           </lightning-accordion-section>
+           
+           </lightning-accordion> -->
+     </template>

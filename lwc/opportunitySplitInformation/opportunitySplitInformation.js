@@ -1,3 +1,6 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 
-export default class OpportunitySplitInformation extends LightningElement {}
+const activeAccordions = ['Split Information'];
+export default class OpportunitySplitInformation extends LightningElement {
+    @track activeSections = activeAccordions;
+}

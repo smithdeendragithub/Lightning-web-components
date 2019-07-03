@@ -1,3 +1,6 @@
-import { LightningElement } from 'lwc';
+import { LightningElement, track } from 'lwc';
 
-export default class OpportunityDetail extends LightningElement {}
+const activeAccordions = ['Detail'];
+export default class OpportunityDetail extends LightningElement {
+    @track activeSections = activeAccordions;
+}
