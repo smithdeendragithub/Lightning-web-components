@@ -9,7 +9,7 @@
 -->
 <template>
     <div if:true={hasrecords}>
-        <article class="slds-card">          
+        <article class="slds-card">
             <div class="slds-card__body slds-card__body_inner">
                 <table border="0">
                     <tr>
@@ -22,7 +22,7 @@
             </div>
         </article>
         <lightning-layout>
-            <lightning-layout-item padding="around-small" size="10">
+            <lightning-layout-item padding="around-small" size="10" class="main">
                 <template for:each={wrapperRecord.opportunityLocations} for:item="oppLocRec">
                     <div class="slds-section slds-is-open" key={oppLocRec.buildingId}>
                         <h4 class="slds-section__title">
@@ -36,8 +36,9 @@
                                         </svg>
                                     </div>
                                     <div class="slds-text-body_regular" style="float:left;">
-                                        <lightning-formatted-url value={oppLocRec.buildingRedirect}
-                                            tooltip="Go to Location" label={oppLocRec.displayName} target="_blank">
+                                        <lightning-formatted-url class="truncateLocationHeader"
+                                            value={oppLocRec.buildingRedirect} tooltip={oppLocRec.displayName}
+                                            label={oppLocRec.displayName} target="_blank">
                                         </lightning-formatted-url>
                                     </div>
                                     <div class="slds-text-body_regular" style="float:right;" onclick={handleToggleClick}
@@ -60,7 +61,7 @@
                                         <lightning-button label="Place On Hold"
                                             if:false={oppLocRec.rawLocation.On_Hold__c} onclick={handlePlaceOnHold}
                                             aria-label={oppLocRec.rawLocation.Id}></lightning-button>
-                                        <lightning-button label="Set Providers"></lightning-button>
+                                        <lightning-button label="Set Providers" onclick={openmodal}></lightning-button>
                                         <lightning-button label="Take Off Hold"
                                             if:true={oppLocRec.rawLocation.On_Hold__c}
                                             aria-label={oppLocRec.rawLocation.Id} onclick={handleTakeOffOnHold}>
@@ -68,6 +69,40 @@
                                         <lightning-button label="Turn Downs"></lightning-button>
                                         <lightning-button label="Cost Comparison" disabled></lightning-button>
                                     </lightning-button-group>
+                                    <!-- Set Providers Modal Starts-->
+                                        <template if:true={openmodel}>
+                                            <div>
+                                                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01"
+                                                    aria-modal="true" aria-describedby="modal-content-id-1"
+                                                    class="slds-modal slds-fade-in-open slds-align_absolute-center">
+                                                    <div class="slds-modal__container">
+                                                        <header class="slds-modal__header">
+                                                            <button
+                                                                class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                                                                title="Close" onclick={closeModal}>
+                                                                <lightning-icon icon-name="utility:close" size="medium">
+                                                                </lightning-icon>
+                                                                <span class="slds-assistive-text">Close</span>
+                                                            </button>
+                                                            <h2 class="slds-text-heading_medium slds-hyphenate">Set Providers</h2>
+                                                        </header>
+                                                        <div class="slds-modal__content slds-p-around_medium">
+                                                            <center>
+                                                                <lightning-input value={oppLocRec.rawLocation.Current_Provider_Local__c} label="Current Provider Local :"></lightning-input>
+                                                                <lightning-input value={oppLocRec.rawLocation.Current_LD_Provider__c} label="Current LD Provider :"></lightning-input>
+                                                                <lightning-input value={oppLocRec.rawLocation.Current_Toll_Free_Provider__c} label="Toll Free Provider :"></lightning-input>
+                                                            </center>
+                                                            <lightning-button label="Cancel" variant="neutral"
+                                                                onclick={closeModal}></lightning-button>
+                                                            <lightning-button label="Save" variant="brand"
+                                                                onclick={saveMethod}></lightning-button>
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                        </template>
+                                    <!-- Set Providers Modal Ends -->
+
                                 </div>
                                 <div class="slds-col slds-p-bottom_small">
                                     <table
@@ -222,7 +257,7 @@
                                                                                         value={nextProduct.Name}>
                                                                                     </lightning-formatted-text>
                                                                                 </td>
-                                                                                <td class="alignTextRight">
+                                                                                <td class="">
                                                                                     <a class="tooltip" href="#">
                                                                                         <lightning-formatted-number
                                                                                             maximum-fraction-digits="2"
@@ -258,7 +293,7 @@
                                                                                         </span>
                                                                                     </a>
                                                                                 </td>
-                                                                                <td class="alignTextRight">
+                                                                                <td class="">
                                                                                     <lightning-formatted-number
                                                                                         maximum-fraction-digits="2"
                                                                                         minimum-fraction-digits="2"
@@ -275,14 +310,14 @@
                                                                                 Sub Total
                                                                             </div>
                                                                         </td>
-                                                                        <td class="alignTextRight">
+                                                                        <td class="">
                                                                             <lightning-formatted-number
                                                                                 minimum-fraction-digits="2"
                                                                                 maximum-fraction-digits="2"
                                                                                 value={solRec.rawSolution.MRC_Total__c}>
                                                                             </lightning-formatted-number>
                                                                         </td>
-                                                                        <td class="alignTextRight">
+                                                                        <td class="">
                                                                             <lightning-formatted-number
                                                                                 minimum-fraction-digits="2"
                                                                                 maximum-fraction-digits="2"
@@ -294,7 +329,7 @@
                                                                         <td>
                                                                             Turndowns
                                                                         </td>
-                                                                        <td class="alignTextRight">
+                                                                        <td class="">
                                                                             <lightning-formatted-number
                                                                                 minimum-fraction-digits="2"
                                                                                 maximum-fraction-digits="2"
@@ -309,14 +344,14 @@
                                                                                 Total
                                                                             </div>
                                                                         </td>
-                                                                        <td class="alignTextRight">
+                                                                        <td class="">
                                                                             <c-math-display
                                                                                 inputvalueone={solRec.rawSolution.MRC_Total__c}
                                                                                 inputvaluetwo={oppLocRec.rawLocation.Turndown_Total__c}
                                                                                 arithmetic-operation="minus">
                                                                             </c-math-display>
                                                                         </td>
-                                                                        <td class="alignTextRight">
+                                                                        <td class="">
                                                                             <lightning-formatted-number
                                                                                 minimum-fraction-digits="2"
                                                                                 maximum-fraction-digits="2"
@@ -367,12 +402,12 @@
                     </div>
                 </template>
             </lightning-layout-item>
-            <lightning-layout-item padding="around-small" size="2" style="position: fixed; left: 81.5%; top: 20.5%;">
+            <lightning-layout-item padding="around-small" size="2" class="sidebar">
                 <div>
                     <table>
                         <tbody>
                             <tr>
-                                <td data-label="col3" align="center">
+                                <td data-label="col1" align="center">
                                     <div class="slds-grid">
                                         <div class="slds-col">
                                             <div class="slds-grid_Vertical">
@@ -384,17 +419,15 @@
                                                         </div>
                                                         <div class="slds-col slds-grid_Vertical">
                                                             <div class="slds-align_absolute-right">
-                                                                <lightning-formatted-number
-                                                                    value={wrapperRecord.opportunity.Amount}
+                                                                <lightning-formatted-number value={totalMRC}
                                                                     maximum-fraction-digits="2"
-                                                                    minimum-fraction-digits="2">
+                                                                    minimum-fraction-digits="2" id="totalMRC">
                                                                 </lightning-formatted-number>
                                                             </div>
                                                             <div class="slds-align_absolute-right">
-                                                                <lightning-formatted-number
-                                                                    value={wrapperRecord.opportunity.NRR_Amount__c}
+                                                                <lightning-formatted-number value={totalNRC}
                                                                     maximum-fraction-digits="2"
-                                                                    minimum-fraction-digits="2">
+                                                                    minimum-fraction-digits="2" id="totalNRC">
                                                                 </lightning-formatted-number>
                                                             </div>
                                                         </div>

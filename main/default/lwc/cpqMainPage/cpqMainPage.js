@@ -32,6 +32,22 @@ export default class CpqMainPage extends LightningElement {
     hideaccess = 'Hide Access Availability';
     activeImg = SOLUTIONRELATEDSR + '/images/activeIcon.png';
     inactiveImg = SOLUTIONRELATEDSR + '/images/inactiveIcon.png';
+    @track totalMRC;
+    @track totalNRC;
+
+    /* Modal Window Starts*/
+    @track openmodel = false;
+    openmodal() {
+        this.openmodel = true
+    }
+    closeModal() {
+        this.openmodel = false
+    } 
+    saveMethod() {
+        alert('save method invoked');
+        this.closeModal();
+    }
+    /* Modal Window closes */
 
     @wire(getPicklistValues, { recordTypeId: '0121A000000QeQBQA0', fieldApiName: TERMOPTIONS }) termList;
 
@@ -44,6 +60,8 @@ export default class CpqMainPage extends LightningElement {
             if (data !== undefined) {
                 this.hasrecords = true;
                 this.wrapperRecord = data;
+                this.totalMRC = data.opportunity.Amount;
+                this.totalNRC = data.opportunity.NRR_Amount__c;
                 if (data.BaaByBldgId) {
                     // eslint-disable-next-line guard-for-in
                     for (let keyvalue in data.BaaByBldgId) {
@@ -83,14 +101,18 @@ export default class CpqMainPage extends LightningElement {
                     this.template.querySelectorAll('c-cpq-main-display-access-availability-table').forEach(element => {
                         element.parentNode.removeChild(element);
                     });
-                    refreshApex(this.retrievedValue);
+                    
 
                     this.dispatchEvent(new ShowToastEvent({
                         "title": "Success!",
                         "message": "Location Placed on Hold Successfully",
                         "variant": "success"
                     }));
+
                 }
+                // eslint-disable-next-line no-debugger
+                debugger;
+                return refreshApex(this.retrievedValue);
             })
             .catch(error => {
                 this.error = error;
@@ -115,6 +137,9 @@ export default class CpqMainPage extends LightningElement {
                         "variant": "success"
                     }));
                 }
+                // eslint-disable-next-line no-debugger
+                debugger;
+                return refreshApex(this.retrievedValue);
             })
             .catch(error => {
                 this.error = error;
