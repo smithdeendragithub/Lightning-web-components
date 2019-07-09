@@ -32,6 +32,9 @@
             ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
+            ],
+            "c/cpqMainSetProviders": [
+                "cpqMainSetProviders/cpqMainSetProviders.js"
             ]
         }
     },

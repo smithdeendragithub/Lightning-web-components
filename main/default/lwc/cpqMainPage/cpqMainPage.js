@@ -7,7 +7,7 @@ import { refreshApex } from '@salesforce/apex';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 import TERMOPTIONS from '@salesforce/schema/Opportunity.Term__c';
 import SOLUTIONRELATEDSR from '@salesforce/resourceUrl/productResources';
-import { ShowToastEvent } from 'lightning/platformShowToastEvent'
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 const accessAvailabilityColumns = [
     { label: 'Carrier NNI', fieldName: 'Carrier__c', type: 'text' },
     { label: 'Access Technology Name', fieldName: 'Access_Technology_Name__c', type: 'text' },
@@ -35,19 +35,6 @@ export default class CpqMainPage extends LightningElement {
     @track totalMRC;
     @track totalNRC;
 
-    /* Modal Window Starts*/
-    @track openmodel = false;
-    openmodal() {
-        this.openmodel = true
-    }
-    closeModal() {
-        this.openmodel = false
-    } 
-    saveMethod() {
-        alert('save method invoked');
-        this.closeModal();
-    }
-    /* Modal Window closes */
 
     @wire(getPicklistValues, { recordTypeId: '0121A000000QeQBQA0', fieldApiName: TERMOPTIONS }) termList;
 
@@ -101,7 +88,7 @@ export default class CpqMainPage extends LightningElement {
                     this.template.querySelectorAll('c-cpq-main-display-access-availability-table').forEach(element => {
                         element.parentNode.removeChild(element);
                     });
-                    
+
 
                     this.dispatchEvent(new ShowToastEvent({
                         "title": "Success!",
@@ -150,5 +137,19 @@ export default class CpqMainPage extends LightningElement {
     toggleSection(event) {
         event.target.parentNode.parentElement.parentNode.parentElement.classList.toggle("slds-is-open");
     }
-
+    refreshData() {
+        this.dispatchEvent(new ShowToastEvent({
+            "title": "Success!",
+            "message": "Providers Info updated successfully",
+            "variant": "success"
+        }));
+        return refreshApex(this.retrievedValue);
+    }
+    setProviderError() {
+        this.dispatchEvent(new ShowToastEvent({
+            "title": "Error!",
+            "message": "Some Error Occured ! Providers Info not updated, Please contact your Salesforce Admin",
+            "variant": "error"
+        }));
+    }
 }

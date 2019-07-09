@@ -5,6 +5,7 @@
 * Version     	JIRA           Author                 Comments
 * 1.0         	SEAL-2934      Smithdeendra           Created/Initial Comments
 * 1.1           SEAL-3030/3031 Smithdeendra           updated code with Place on Hold and Take off Hold task builds.
+* 1.2         	SEAL-2801      Smithdeendra           updated Set Providers button with new child component
 *
 -->
 <template>
@@ -15,7 +16,7 @@
                     <tr>
                         <td>
                             <div class="slds-text-heading_medium">Configure Products For
-                                {wrapperRecord.opportunity.Name}</div>
+                                <strong> {wrapperRecord.opportunity.Name}</strong></div>
                         </td>
                     </tr>
                 </table>
@@ -60,48 +61,27 @@
                                     <lightning-button-group>
                                         <lightning-button label="Place On Hold"
                                             if:false={oppLocRec.rawLocation.On_Hold__c} onclick={handlePlaceOnHold}
-                                            aria-label={oppLocRec.rawLocation.Id}></lightning-button>
-                                        <lightning-button label="Set Providers" onclick={openmodal}></lightning-button>
+                                            aria-label={oppLocRec.rawLocation.Id}>
+                                        </lightning-button>
                                         <lightning-button label="Take Off Hold"
                                             if:true={oppLocRec.rawLocation.On_Hold__c}
                                             aria-label={oppLocRec.rawLocation.Id} onclick={handleTakeOffOnHold}>
                                         </lightning-button>
+                                        <!-- Set Providers button and Modal Starts-->
+                                        <c-cpq-main-set-providers
+                                            localprovider={oppLocRec.rawLocation.Current_Provider_Local__c}
+                                            locationid={oppLocRec.rawLocation.Id}
+                                            tfprovider={oppLocRec.rawLocation.Current_Toll_Free_Provider__c}
+                                            ldprovider={oppLocRec.rawLocation.Current_LD_Provider__c}
+                                            onsetprovidersuccess={refreshData} onsetprovidererror={setProviderError}>
+                                        </c-cpq-main-set-providers>
+                                        <!-- Set Providers button and Modal Ends-->
                                         <lightning-button label="Turn Downs"></lightning-button>
                                         <lightning-button label="Cost Comparison" disabled></lightning-button>
                                     </lightning-button-group>
-                                    <!-- Set Providers Modal Starts-->
-                                        <template if:true={openmodel}>
-                                            <div>
-                                                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01"
-                                                    aria-modal="true" aria-describedby="modal-content-id-1"
-                                                    class="slds-modal slds-fade-in-open slds-align_absolute-center">
-                                                    <div class="slds-modal__container">
-                                                        <header class="slds-modal__header">
-                                                            <button
-                                                                class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
-                                                                title="Close" onclick={closeModal}>
-                                                                <lightning-icon icon-name="utility:close" size="medium">
-                                                                </lightning-icon>
-                                                                <span class="slds-assistive-text">Close</span>
-                                                            </button>
-                                                            <h2 class="slds-text-heading_medium slds-hyphenate">Set Providers</h2>
-                                                        </header>
-                                                        <div class="slds-modal__content slds-p-around_medium">
-                                                            <center>
-                                                                <lightning-input value={oppLocRec.rawLocation.Current_Provider_Local__c} label="Current Provider Local :"></lightning-input>
-                                                                <lightning-input value={oppLocRec.rawLocation.Current_LD_Provider__c} label="Current LD Provider :"></lightning-input>
-                                                                <lightning-input value={oppLocRec.rawLocation.Current_Toll_Free_Provider__c} label="Toll Free Provider :"></lightning-input>
-                                                            </center>
-                                                            <lightning-button label="Cancel" variant="neutral"
-                                                                onclick={closeModal}></lightning-button>
-                                                            <lightning-button label="Save" variant="brand"
-                                                                onclick={saveMethod}></lightning-button>
-                                                        </div>
-                                                    </div>
-                                                </section>
-                                            </div>
-                                        </template>
-                                    <!-- Set Providers Modal Ends -->
+
+                                    <div>
+                                    </div>
 
                                 </div>
                                 <div class="slds-col slds-p-bottom_small">
@@ -411,7 +391,7 @@
                                     <div class="slds-grid">
                                         <div class="slds-col">
                                             <div class="slds-grid_Vertical">
-                                                <div class="customTableHead slds-box slds-box_x-small slds-col">
+                                                <div class="customTableHead slds-box slds-col">
                                                     <div class="slds-grid">
                                                         <div class="slds-col slds-grid_Vertical">
                                                             <div class="slds-align_absolute-right">Total MRC:</div>

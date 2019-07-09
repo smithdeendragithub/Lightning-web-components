@@ -28,7 +28,6 @@ export default class OpportunityWorkStepIssues extends LightningElement {
             if(data !== undefined && data.length > 0){
                 this.hasrecords = true;
             }
-            console.log('check again=>'+data);
         } else if (error) {
             this.error = error;
             this.sowsiList = undefined;

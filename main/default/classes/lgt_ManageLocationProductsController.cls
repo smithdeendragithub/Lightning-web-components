@@ -1,11 +1,12 @@
 /*
 * @Author: Smithdeendra A P
 * @Created Date: 18-Jun-2019
-* @Modified Date: 18-Jun-2019
+* @Modified Date: 08-July-2019
 * @TestClass: lgt_DataFactory_Test
 * Version     JIRA                  Author                        Comments
 * 1.0         SEAL-2934            Smithdeendra A P              Initial Comments  
 * 1.1         SEAL-3030/3031       Smithdeendra A P              updated method place on Hold and take of hold.
+* 1.2         SEAL-2801            Smithdeendra A P              updated method setProviders.
 */
 public with sharing class lgt_ManageLocationProductsController implements TestUtils.ITestableClass {
     
@@ -824,8 +825,6 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
             //createDefaultDirectoryListing(oppLocs); //DL is created when there is DL product
         }
         catch(Exception e){
-            System.debug(e.getMessage());
-            System.debug(e.getStackTraceString());
             throw new lgt_ManageLocationProductsControllerException('Unable to create new solution.  Be sure all required fields are filled in on opportunity.');            
         }
         
@@ -842,29 +841,45 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
         return pageReference;
     }
     
-    public PageReference setProviders() {
-        string oppLocID = Apexpages.currentPage().getParameters().get('oppLocID');
-        string ldProvider = Apexpages.currentPage().getParameters().get('ldProvider');
-        string localProvider = Apexpages.currentPage().getParameters().get('localProvider');
-        string tfProvider = Apexpages.currentPage().getParameters().get('tollFreeProvider');
-        
-        List<Technical_Information__c> technicalInformations = [select id from Technical_Information__c where recordtype.Name ='05 – Toll Free Services' and Opportunity_Site__c =:oppLocID];
-        for (Technical_Information__c t : technicalInformations){
-            t.Toll_Free_Provider__c = tfProvider; 
+    public static void setProviders(string oppLocID, string ldProvider, string localProvider, string tfProvider) {
+    	Boolean updateable = false;
+
+    	List < Technical_Information__c > technicalInformations = [select id, Toll_Free_Provider__c from Technical_Information__c where recordtype.Name = '05 – Toll Free Services' and Opportunity_Site__c = : oppLocID];
+    	if (null != ldProvider || '' != ldProvider) {
+    		updateable = true;
+    		for (Technical_Information__c t: technicalInformations) {
+    			t.Toll_Free_Provider__c = tfProvider;
+    		}
+    	}
+    	
+    	if (updateable) {
+    		update technicalInformations;
+    		updateable = false;
+    	}
+    	
+    	// Opportunity_Location__c olcToUpdate = new Opportunity_Location__c(id=oppLocID,Current_LD_Provider__c=ldProvider,Current_Provider_Local__c=localProvider,Current_Toll_Free_Provider__c=tfProvider);
+    	Opportunity_Location__c olcToUpdate = new Opportunity_Location__c();
+    	olcToUpdate.Id = Id.valueOf(oppLocID);
+    	if (null != ldProvider || '' != ldProvider) {
+    		olcToUpdate.Current_LD_Provider__c = ldProvider;
+    		updateable = true;
+    	}
+
+    	if (null != localProvider || '' != localProvider) {
+    		olcToUpdate.Current_Provider_Local__c = localProvider;
+    		updateable = true;
+    	}
+
+    	if (null != tfProvider || '' != tfProvider) {
+    		olcToUpdate.Current_Toll_Free_Provider__c = tfProvider;
+    		updateable = true;
+    	}
+
+    	if (updateable){
+            update olcToUpdate;
         }
-        update technicalInformations;
-        
-        for(OpportunityLocation opportunityLocation : this.opportunityLocations) {
-            if(opportunityLocation.rawLocation.Id == oppLocID) {
-                opportunityLocation.rawLocation.Current_LD_Provider__c = ldProvider;
-                opportunityLocation.rawLocation.Current_Provider_Local__c = localProvider;
-                opportunityLocation.rawLocation.Current_Toll_Free_Provider__c = tfProvider;
-                update opportunityLocation.rawLocation;
-                break;
-            }
-        }
-        
-        return null;
+    		
+
     }
     
     public pageReference renameSolution() {

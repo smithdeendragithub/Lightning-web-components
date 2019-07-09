@@ -1,0 +1,42 @@
+<!--
+* @Author: Smithdeendra A P
+* @Created Date: 2019-July-08
+* @Modified Date: 2019-July-08
+* Version     	JIRA           Author                 Comments
+* 1.0         	SEAL-2801      Smithdeendra           Created/Initial Comments
+*
+-->
+<template>
+    <lightning-button label="Set Providers" onclick={openmodal}></lightning-button>
+    <template if:true={openmodel}>
+        <section role="dialog" class="slds-modal slds-modal_small slds-fade-in-open slds-align_absolute-center">
+            <div class="slds-box slds-box--xx-small">
+                <header class="slds-modal__header">
+                    <button
+                        class="slds-button slds-button_icon slds-modal__close slds-button_icon slds-icon_container slds-icon-text-error"
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="action:close" size="x-small" class=" slds-icon-text-error">
+                        </lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-text-heading_medium slds-hyphenate">Set Providers</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium">
+                    <lightning-input class="slds-form-element slds-text-align--left" value={localprovider}
+                        label="Current Provider Local :" data-key="localprovider"></lightning-input>
+                    <lightning-input class="slds-form-element slds-text-align--left" value={ldprovider}
+                        label="Current LD Provider :" data-key="ldprovider"></lightning-input>
+                    <lightning-input class="slds-form-element slds-text-align--left" value={tfprovider}
+                        label="Toll Free Provider :" data-key="tfprovider"></lightning-input>
+                    <lightning-button label="Save" variant="brand" onclick={saveMethod}
+                        class="slds-float_right slds-p-left_x-small slds-p-top_x-small">
+                    </lightning-button>
+                    <lightning-button label="Cancel" variant="neutral" onclick={closeModal}
+                        class="slds-float_right slds-p-left_x-small slds-p-top_x-small">
+                    </lightning-button>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

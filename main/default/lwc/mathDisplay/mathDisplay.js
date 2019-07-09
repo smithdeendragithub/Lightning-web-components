@@ -7,9 +7,6 @@ export default class MathDisplay extends LightningElement {
     retValue;
 
     get resultValue(){
-        console.log('inputvalueone => '+this.inputvalueone);
-        console.log('inputvaluetwo => '+this.inputvaluetwo);
-        console.log('arithmeticOperation => '+this.arithmeticOperation);
         if(this.inputvalueone !== undefined && this.inputvaluetwo !== undefined)
         switch(this.arithmeticOperation){
             case 'add':

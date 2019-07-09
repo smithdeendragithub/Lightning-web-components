@@ -108,13 +108,13 @@ button.slds-button.slds-section__title-action, .slds-table thead th {
 }
 
 .sidebar {
-  width: 14%;
+  width: 16%;
   height: 28vh;
   min-height: 200px;
   /* overflow: auto; */
   position: -webkit-sticky;
   position: sticky;
-  top: 7.1%;
+  top: 4.9%;
 }
 
 /* .main, .sidebar {
@@ -126,7 +126,7 @@ button.slds-button.slds-section__title-action, .slds-table thead th {
  }  */
 
 .main {
-  width: 86%;
+  width: 85%;
   /* height: 200vh; */
   /* min-height: 1000px; */
   display: flex;
