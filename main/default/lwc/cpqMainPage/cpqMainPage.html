@@ -73,7 +73,7 @@
                                             locationid={oppLocRec.rawLocation.Id}
                                             tfprovider={oppLocRec.rawLocation.Current_Toll_Free_Provider__c}
                                             ldprovider={oppLocRec.rawLocation.Current_LD_Provider__c}
-                                            onsetprovidersuccess={refreshData} onsetprovidererror={setProviderError}>
+                                            onsetprovidersuccess={setProviderSuccess} onsetprovidererror={setProviderError}>
                                         </c-cpq-main-set-providers>
                                         <!-- Set Providers button and Modal Ends-->
                                         <lightning-button label="Turn Downs"></lightning-button>

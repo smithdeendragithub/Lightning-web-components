@@ -84,25 +84,10 @@ export default class CpqMainPage extends LightningElement {
         placeLocationOnHOld({ inputObject: this.wrapperRecord, locationId: LocationIdToHold })
             // eslint-disable-next-line no-unused-vars
             .then(result => {
-                if (result !== undefined) {
-                    this.template.querySelectorAll('c-cpq-main-display-access-availability-table').forEach(element => {
-                        element.parentNode.removeChild(element);
-                    });
-
-
-                    this.dispatchEvent(new ShowToastEvent({
-                        "title": "Success!",
-                        "message": "Location Placed on Hold Successfully",
-                        "variant": "success"
-                    }));
-
-                }
-                // eslint-disable-next-line no-debugger
-                debugger;
-                return refreshApex(this.retrievedValue);
+                this.refreshData(result,'Location Placed on Hold Successfully','success');
             })
             .catch(error => {
-                this.error = error;
+                this.refreshData(error,'Some Error Occured ! Location on Hold was not successful, Please contact your Salesforce Admin','error');
             });
     }
 
@@ -111,25 +96,10 @@ export default class CpqMainPage extends LightningElement {
         takeLocationOffHold({ inputObject: this.wrapperRecord, locationId: LocationIdToHold })
             // eslint-disable-next-line no-unused-vars
             .then(result => {
-
-                if (result !== undefined) {
-                    this.template.querySelectorAll('c-cpq-main-display-access-availability-table').forEach(element => {
-                        element.parentNode.removeChild(element);
-                    });
-                    refreshApex(this.retrievedValue);
-
-                    this.dispatchEvent(new ShowToastEvent({
-                        "title": "Success!",
-                        "message": "Location Taken Off from Hold Successfully",
-                        "variant": "success"
-                    }));
-                }
-                // eslint-disable-next-line no-debugger
-                debugger;
-                return refreshApex(this.retrievedValue);
+                this.refreshData(result,'Location Taken Off from Hold Successfully','success');
             })
             .catch(error => {
-                this.error = error;
+                this.refreshData(error,'Some Error Occured ! Location Taken Off from Hold was not successful, Please contact your Salesforce Admin','error');
             });
 
     }
@@ -137,19 +107,33 @@ export default class CpqMainPage extends LightningElement {
     toggleSection(event) {
         event.target.parentNode.parentElement.parentNode.parentElement.classList.toggle("slds-is-open");
     }
-    refreshData() {
-        this.dispatchEvent(new ShowToastEvent({
-            "title": "Success!",
-            "message": "Providers Info updated successfully",
-            "variant": "success"
-        }));
-        return refreshApex(this.retrievedValue);
+    
+    refreshData(result,tstMsg,tstVariant) {
+        if (result !== undefined) {
+
+            this.template.querySelectorAll('c-cpq-main-display-access-availability-table').forEach(element => {
+                // eslint-disable-next-line @lwc/lwc/no-inner-html
+                element.parentElement.previousSibling.lastChild.lastChild.lastChild.innerHTML = this.showaccess;
+                element.parentNode.removeChild(element);
+                // eslint-disable-next-line no-debugger
+                debugger;
+            });
+
+            this.dispatchEvent(new ShowToastEvent({
+                "title": tstVariant === 'success'? 'Success!':'Error!',
+                "message": tstMsg,
+                "variant": tstVariant
+            }));
+        }
+
+        refreshApex(this.retrievedValue);
     }
+
+    setProviderSuccess(){
+        this.refreshData(true,'Providers Info updated successfully','success');
+    }
+
     setProviderError() {
-        this.dispatchEvent(new ShowToastEvent({
-            "title": "Error!",
-            "message": "Some Error Occured ! Providers Info not updated, Please contact your Salesforce Admin",
-            "variant": "error"
-        }));
+        this.refreshData(true,'Some Error Occured ! Providers Info not updated, Please contact your Salesforce Admin','error');
     }
 }
