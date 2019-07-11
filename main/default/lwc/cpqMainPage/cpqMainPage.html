@@ -5,7 +5,7 @@
 * Version     	JIRA           Author                 Comments
 * 1.0         	SEAL-2934      Smithdeendra           Created/Initial Comments
 * 1.1           SEAL-3030/3031 Smithdeendra           updated code with Place on Hold and Take off Hold task builds.
-* 1.2         	SEAL-2801      Smithdeendra           updated Set Providers button with new child component
+* 1.2         	SEAL-2801      Smithdeendra           updated Set Providers button with new child
 *
 -->
 <template>
@@ -73,16 +73,17 @@
                                             locationid={oppLocRec.rawLocation.Id}
                                             tfprovider={oppLocRec.rawLocation.Current_Toll_Free_Provider__c}
                                             ldprovider={oppLocRec.rawLocation.Current_LD_Provider__c}
-                                            onsetprovidersuccess={setProviderSuccess} onsetprovidererror={setProviderError}>
+                                            onsetprovidersuccess={setProviderSuccess}
+                                            onsetprovidererror={setProviderError}>
                                         </c-cpq-main-set-providers>
                                         <!-- Set Providers button and Modal Ends-->
-                                        <lightning-button label="Turn Downs"></lightning-button>
+                                        <lightning-button label="Turn Downs"
+                                            if:false={oppLocRec.rawLocation.Service_Location__r.ICC_Subscriber_ID__c}
+                                            data-isrecordtype={wrapperRecord.isRecordTypeChange}
+                                            data-locationid={oppLocRec.rawLocation.Id} onclick={turndownHandler}>
+                                        </lightning-button>
                                         <lightning-button label="Cost Comparison" disabled></lightning-button>
                                     </lightning-button-group>
-
-                                    <div>
-                                    </div>
-
                                 </div>
                                 <div class="slds-col slds-p-bottom_small">
                                     <table

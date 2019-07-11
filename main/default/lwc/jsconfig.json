@@ -15,6 +15,9 @@
             "c/cpqMainPage": [
                 "cpqMainPage/cpqMainPage.js"
             ],
+            "c/cpqMainSetProviders": [
+                "cpqMainSetProviders/cpqMainSetProviders.js"
+            ],
             "c/mathDisplay": [
                 "mathDisplay/mathDisplay.js"
             ],
@@ -32,9 +35,6 @@
             ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
-            ],
-            "c/cpqMainSetProviders": [
-                "cpqMainSetProviders/cpqMainSetProviders.js"
             ]
         }
     },

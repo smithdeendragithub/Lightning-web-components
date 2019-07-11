@@ -20,7 +20,7 @@ export default class CpqMainSetProviders extends LightningElement {
         let jslocalprovider, jsldprovider, jstfprovider;
         while (childElmt) {
             if (childElmt.tagName !== 'LIGHTNING-BUTTON') {
-                switch (childElmt.getAttribute("data-key")) {
+                switch (childElmt.dataset.key) {
                     case 'localprovider':
                         jslocalprovider = childElmt.value;
                         break;

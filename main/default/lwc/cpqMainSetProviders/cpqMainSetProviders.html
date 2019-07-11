@@ -7,7 +7,7 @@
 *
 -->
 <template>
-    <lightning-button label="Set Providers" onclick={openmodal}></lightning-button>
+    <button class="slds-button slds-button_neutral" onclick={openmodal}>Set Providers</button>
     <template if:true={openmodel}>
         <section role="dialog" class="slds-modal slds-modal_small slds-fade-in-open slds-align_absolute-center">
             <div class="slds-box slds-box--xx-small">
@@ -21,7 +21,7 @@
                     </button> -->
                     <h2 class="slds-text-heading_medium slds-hyphenate">Set Providers</h2>
                 </header>
-                <div draggable="true" class="slds-modal__content slds-p-around_medium">
+                <div draggable="false" class="slds-modal__content slds-p-around_medium">
                     <lightning-input class="slds-form-element slds-text-align--left" value={localprovider}
                         label="Current Provider Local :" data-key="localprovider"></lightning-input>
                     <lightning-input class="slds-form-element slds-text-align--left" value={ldprovider}

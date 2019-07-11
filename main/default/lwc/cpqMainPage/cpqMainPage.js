@@ -84,10 +84,10 @@ export default class CpqMainPage extends LightningElement {
         placeLocationOnHOld({ inputObject: this.wrapperRecord, locationId: LocationIdToHold })
             // eslint-disable-next-line no-unused-vars
             .then(result => {
-                this.refreshData(result,'Location Placed on Hold Successfully','success');
+                this.refreshData(result, 'Location Placed on Hold Successfully', 'success');
             })
             .catch(error => {
-                this.refreshData(error,'Some Error Occured ! Location on Hold was not successful, Please contact your Salesforce Admin','error');
+                this.refreshData(error, 'Some Error Occured ! Location on Hold was not successful, Please contact your Salesforce Admin', 'error');
             });
     }
 
@@ -96,10 +96,10 @@ export default class CpqMainPage extends LightningElement {
         takeLocationOffHold({ inputObject: this.wrapperRecord, locationId: LocationIdToHold })
             // eslint-disable-next-line no-unused-vars
             .then(result => {
-                this.refreshData(result,'Location Taken Off from Hold Successfully','success');
+                this.refreshData(result, 'Location Taken Off from Hold Successfully', 'success');
             })
             .catch(error => {
-                this.refreshData(error,'Some Error Occured ! Location Taken Off from Hold was not successful, Please contact your Salesforce Admin','error');
+                this.refreshData(error, 'Some Error Occured ! Location Taken Off from Hold was not successful, Please contact your Salesforce Admin', 'error');
             });
 
     }
@@ -107,8 +107,8 @@ export default class CpqMainPage extends LightningElement {
     toggleSection(event) {
         event.target.parentNode.parentElement.parentNode.parentElement.classList.toggle("slds-is-open");
     }
-    
-    refreshData(result,tstMsg,tstVariant) {
+
+    refreshData(result, tstMsg, tstVariant) {
         if (result !== undefined) {
 
             this.template.querySelectorAll('c-cpq-main-display-access-availability-table').forEach(element => {
@@ -116,24 +116,36 @@ export default class CpqMainPage extends LightningElement {
                 element.parentElement.previousSibling.lastChild.lastChild.lastChild.innerHTML = this.showaccess;
                 element.parentNode.removeChild(element);
                 // eslint-disable-next-line no-debugger
-                debugger;
+                //debugger;
             });
 
-            this.dispatchEvent(new ShowToastEvent({
-                "title": tstVariant === 'success'? 'Success!':'Error!',
-                "message": tstMsg,
-                "variant": tstVariant
-            }));
+            this.displayToast(tstVariant, tstMsg);
         }
 
         refreshApex(this.retrievedValue);
     }
 
-    setProviderSuccess(){
-        this.refreshData(true,'Providers Info updated successfully','success');
+    setProviderSuccess() {
+        this.refreshData(true, 'Providers Info updated successfully', 'success');
     }
 
     setProviderError() {
-        this.refreshData(true,'Some Error Occured ! Providers Info not updated, Please contact your Salesforce Admin','error');
+        this.refreshData(true, 'Some Error Occured ! Providers Info not updated, Please contact your Salesforce Admin', 'error');
+    }
+
+    displayToast(tstVariant, tstMsg) {
+        this.dispatchEvent(new ShowToastEvent({
+            "title": tstVariant === 'success' ? 'Success!' : 'Error!',
+            "message": tstMsg,
+            "variant": tstVariant
+        }));
+    }
+    turndownHandler(event) {
+        if (event.target.dataset.isrecordtype) {
+            this.displayToast('success', 'Place Holder for Turn Down = ' + event.target.dataset.locationid);
+        }
+        else {
+            this.displayToast('error', 'Turndowns are only available for Opportunities of Change type. Please return to the Opportunity and change the Opportunity Record Type to \'Change\'.');
+        }
     }
 }
