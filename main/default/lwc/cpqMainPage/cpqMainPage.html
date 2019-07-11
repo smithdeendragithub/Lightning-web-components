@@ -78,9 +78,11 @@
                                         </c-cpq-main-set-providers>
                                         <!-- Set Providers button and Modal Ends-->
                                         <lightning-button label="Turn Downs"
-                                            if:false={oppLocRec.rawLocation.Service_Location__r.ICC_Subscriber_ID__c}
+                                            if:true={oppLocRec.rawLocation.Service_Location__r.ICC_Subscriber_ID__c}
                                             data-isrecordtype={wrapperRecord.isRecordTypeChange}
-                                            data-locationid={oppLocRec.rawLocation.Id} onclick={turndownHandler}>
+                                            data-locationid={oppLocRec.rawLocation.Id}
+                                            data-iccsubid={oppLocRec.rawLocation.Service_Location__r.ICC_Subscriber_ID__c}
+                                            onclick={turndownHandler} onload={testHandler}>
                                         </lightning-button>
                                         <lightning-button label="Cost Comparison" disabled></lightning-button>
                                     </lightning-button-group>
@@ -120,7 +122,7 @@
                                             <template for:each={oppLocRec.solutions} for:item="solRec">
                                                 <tr class="slds-box slds-hint-parent" key={solRec.rawSolution.Id}
                                                     if:true={solRec.rawSolution.Id}>
-                                                    <td data-label="col1" style="width: 24.5%">
+                                                    <td data-label="col1" style="width: 25%" class="slds-p-around--none">
                                                         <c-cpq-main-display-active-image
                                                             input-one={solRec.rawSolution.Active__c}
                                                             input-two={oppLocRec.rawLocation.On_Hold__c}
@@ -134,7 +136,7 @@
                                                             onchange={handleChange}>
                                                         </lightning-input>
                                                     </td>
-                                                    <td data-label="col2" style="width: 20%">
+                                                    <td data-label="col2" style="width: 15%" class="slds-p-around--none">
                                                         <div class="slds-grid_Vertical slds-truncate">
                                                             <!-- <div class="slds-col slds-size_1-of-3"></div> -->
                                                             <div class="slds-col slds-size_2-of-3"
@@ -164,7 +166,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td data-label="col3" align="center" style="width: 15.5%">
+                                                    <td data-label="col3" align="center" style="width: 15%" class="slds-p-around--none">
                                                         <div class="slds-grid">
                                                             <!-- <div class="slds-col slds-size_1-of-4"></div> -->
                                                             <div class="slds-col">
@@ -203,7 +205,7 @@
                                                             <!-- <div class="slds-col slds-size_1-of-3"></div> -->
                                                         </div>
                                                     </td>
-                                                    <td data-label="col4" style="width: 30%">
+                                                    <td data-label="col4" style="width: 35%">
                                                         <div>
                                                             <div if:true={solRec.hasLineItems}
                                                                 class="slds-box slds-box_x-small">
@@ -344,13 +346,13 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td data-label="col5" style="width: 9%">
-                                                        <div class="slds-grid_Vertical">
+                                                    <td data-label="col5" style="width: 10%" class="slds-p-around--none slds-text-align--center">
+                                                        <div class="slds-grid_Vertical slds-p-bottom--none slds-p-right_none">
                                                             <div class="slds-col slds-truncate">
                                                                 <lightning-formatted-text value={solRec.approvalStatus}>
                                                                 </lightning-formatted-text>
                                                             </div>
-                                                            <div class="slds-col slds-truncate">
+                                                            <div class="slds-col slds-text-color_success slds-col slds-truncate">
                                                                 <lightning-formatted-date-time
                                                                     value={solRec.approvalDate}>
                                                                 </lightning-formatted-date-time>
@@ -371,9 +373,7 @@
                                                             </div>
                                                         </div>
                                                     </td>
-
                                                 </tr>
-
                                             </template>
                                         </tbody>
                                     </table>

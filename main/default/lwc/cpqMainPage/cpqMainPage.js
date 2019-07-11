@@ -148,4 +148,9 @@ export default class CpqMainPage extends LightningElement {
             this.displayToast('error', 'Turndowns are only available for Opportunities of Change type. Please return to the Opportunity and change the Opportunity Record Type to \'Change\'.');
         }
     }
+    testHandler(event){
+        console.log(event);
+        // eslint-disable-next-line no-debugger
+        debugger;
+    }
 }
