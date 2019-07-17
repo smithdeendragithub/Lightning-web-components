@@ -3,6 +3,7 @@ import { LightningElement, track, api, wire } from 'lwc';
 import getWrapperObject from '@salesforce/apex/lgt_UIHandler.retrieveWrapperData';
 import takeLocationOffHold from '@salesforce/apex/lgt_UIHandler.takeLocationOffHold';
 import placeLocationOnHOld from '@salesforce/apex/lgt_UIHandler.placeLocationOnHOld';
+import removeExpiredItems from '@salesforce/apex/lgt_UIHandler.removeExpireLineItems';
 import { refreshApex } from '@salesforce/apex';
 import { getPicklistValues } from 'lightning/uiObjectInfoApi';
 import TERMOPTIONS from '@salesforce/schema/Opportunity.Term__c';
@@ -148,9 +149,23 @@ export default class CpqMainPage extends LightningElement {
             this.displayToast('error', 'Turndowns are only available for Opportunities of Change type. Please return to the Opportunity and change the Opportunity Record Type to \'Change\'.');
         }
     }
-    testHandler(event){
-        console.log(event);
-        // eslint-disable-next-line no-debugger
-        debugger;
+    handleRemoveExpiredItems(event) {
+        if (event.target.dataset.hasexpireditems) {
+            removeExpiredItems({ inputObject: this.wrapperRecord, solutionId: event.target.dataset.solutionId })
+                // eslint-disable-next-line no-unused-vars
+                .then(result => {
+                    this.refreshData(result, 'Expired Items Removed Successfully', 'success');
+                })
+                .catch(error => {
+                    this.refreshData(error, 'Some Error Occured ! Location on Hold was not successful, Please contact your Salesforce Admin', 'error');
+                });
+        }
     }
+    handleDisplayOnProposal(event) {
+        if (event.target.dataset.solutionId !== undefined || event.target.dataset.solutionId != null) {
+            console.log(event.target.dataset.solutionId);
+            console.log(event.target.checked);
+        }
+    }
+
 }

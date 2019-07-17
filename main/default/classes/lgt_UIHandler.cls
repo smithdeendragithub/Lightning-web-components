@@ -7,6 +7,7 @@
 * 1.0         SEAL-2934            Smithdeendra A P              Initial Comments  
 * 1.1         SEAL-3030/3031       Smithdeendra A P              Create method placeLocationOnHOld & takeLocationOffHold.
 * 1.2         SEAL-2801            Smithdeendra A P              Create method setProviders.
+* 1.3         SEAL-2907            Smithdeendra A P              Create method initiateFeaturesDataSet.
 */
 public with sharing class lgt_UIHandler {
     @AuraEnabled (cacheable=true)
@@ -52,5 +53,30 @@ public with sharing class lgt_UIHandler {
             throw new AuraHandledException(e.getMessage());
         }
     }    
+
+    @AuraEnabled
+    public static void removeExpireLineItems(lgt_ManageLocationProductsController inputObject, String solutionId) {
+        try{ 
+            inputObject.deleteExpiredLineItems(solutionId);
+        }
+        catch(Exception e){
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
+
+    @AuraEnabled
+    public static lgt_ManageFeaturesScheduleController initiateFeaturesDataSet(Id featureScheduleRecId){
+        lgt_ManageFeaturesScheduleController featureTFDataSet;
+        try
+        { 
+            featureTFDataSet = new lgt_ManageFeaturesScheduleController(featureScheduleRecId);
+            System.debug('success :=>'+featureTFDataSet);
+        }
+        catch(Exception e)
+        {
+            throw new AuraHandledException(e.getMessage());
+        }
+        return featureTFDataSet ;
+    }   
 
 }

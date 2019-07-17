@@ -35,6 +35,18 @@
             ],
             "c/salesownedwsionrelatedorderflag": [
                 "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
+            ],
+            "c/featureSchedule": [
+                "featureSchedule/featureSchedule.js"
+            ],
+            "c/pubsub": [
+                "pubsub/pubsub.js"
+            ],
+            "c/featureScheduledetail": [
+                "featureScheduledetail/featureScheduledetail.js"
+            ],
+            "c/featurescheduleTF": [
+                "featurescheduleTF/featurescheduleTF.js"
             ]
         }
     },

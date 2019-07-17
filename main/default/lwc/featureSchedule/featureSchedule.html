@@ -1,0 +1,478 @@
+<template>
+  <!-- Error Banner Starts -->
+    <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_warning" role="alert" if:true={error}>
+        <span class="slds-assistive-text">warning</span>
+        <span class="slds-icon_container slds-icon-utility-warning slds-m-right_x-small" title="Description of icon when needed">
+          <svg class="slds-icon slds-icon_x-small" aria-hidden="true">
+            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#warning"></use>
+          </svg>
+        </span>
+        <h2>Your browser is outdated. Your Salesforce experience may be degraded.
+          <a href="javascript:void(0);">More Information</a>
+        </h2>
+        <div class="slds-notify__close">
+          <button class="slds-button slds-button_icon slds-button_icon-small" title="Close">
+            <svg class="slds-button__icon" aria-hidden="true">
+              <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+            </svg>
+            <span class="slds-assistive-text">Close</span>
+          </button>
+        </div>
+      </div>
+      <!-- Error banner ends -->
+  <div if:true={hasrecords}>
+      <lightning-button-group>
+          <lightning-button label="Save"
+              if:false={hasOrphanOLIs} onclick={handleNumberSelected}>
+          </lightning-button>
+          <lightning-button label="Save & Exit" if:false={hasOrphanOLIs}>
+          </lightning-button>
+          <lightning-button label="Cancel">
+          </lightning-button>
+      </lightning-button-group>
+  </div>
+  
+  <!-- <p if:true={hasRecords}>
+      {details}
+  </p> -->
+<!-- <lightning-input-rich-text value={getdetails}></lightning-input-rich-text> -->
+        <!-- <lightning-card title="Feature Schedule" icon-name="custom:custom14">
+            <div class="slds-m-around_medium">
+            <lightning-card title="General Information" icon-name="custom:custom14">
+
+                <div class="slds-grid slds-gutters">
+                        <div class="slds-col">
+                                <span><div class="slds-text-body_regular">Telephone Number:</div>
+                                    <div class="slds-form-element">
+                                            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left-right">
+                                              <svg class="slds-icon slds-input__icon slds-input__icon_left slds-icon-text-default" aria-hidden="true">
+                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                                              </svg>
+                                              <input type="text" id="text-input-id-11" placeholder="" class="slds-input" />
+                                              <button class="slds-button slds-button_icon slds-input__icon slds-input__icon_right" title="Clear">
+                                                <svg class="slds-button__icon slds-icon-text-light" aria-hidden="true">
+                                                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#clear"></use>
+                                                </svg>
+                                                <span class="slds-assistive-text">Clear</span>
+                                              </button>
+                                            </div>
+                                          </div> </span>
+                        </div>
+                        <div class="slds-col">
+                                <span><div class="slds-text-body_regular">Line Type:</div>
+                                    <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                            <select class="slds-select" id="select-01">
+                                            <option value="">Please select</option>
+                                            <option>12</option>
+                                            <option>24</option>
+                                            <option>36</option>
+                                            <option>48</option>
+                                            <option>60</option>
+                                            <option>120</option>
+                                            <option>Month to Month</option>
+                                            <option>Coterminous</option>
+                                            </select>
+                                            </div>
+                                            </div>
+                                            </div></span>
+                        </div>
+                        
+                        <div class="slds-col">
+                                <span><div class="slds-text-body_regular">Line Use:</div>
+                                    <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                            <select class="slds-select" id="select-02">
+                                            <option value="">Please select</option>
+                                            <option>12</option>
+                                            <option>24</option>
+                                            <option>36</option>
+                                            <option>48</option>
+                                            <option>60</option>
+                                            <option>120</option>
+                                            <option>Month to Month</option>
+                                            <option>Coterminous</option>
+                                            </select>
+                                            </div>
+                                            </div>
+                                            </div>   </span>
+                        </div>
+                        
+                        <div class="slds-col">
+                                <span><div class="slds-text-body_regular">Call Blocking:</div>
+                                    <div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                            <div class="slds-select_container">
+                                            <select class="slds-select" id="select-03">
+                                            <option value="">Please select</option>
+                                            <option>12</option>
+                                            <option>24</option>
+                                            <option>36</option>
+                                            <option>48</option>
+                                            <option>60</option>
+                                            <option>120</option>
+                                            <option>Month to Month</option>
+                                            <option>Coterminous</option>
+                                            </select>
+                                            </div>
+                                            </div>
+                                            </div>   </span>
+                        </div>
+                        
+                      </div>
+                    </lightning-card>
+                      <lightning-card title="Services" icon-name="custom:custom14">
+    
+                      <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                    <span>
+                                        <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                  <div class="slds-checkbox">
+                                                        <span class="slds-form-element__label">Allows Compression:</span>
+                                                    <input type="checkbox" name="options" id="checkbox-44" value="checkbox-44" checked="" />
+                                                    <label class="slds-checkbox__label" for="checkbox-44">
+                                                      <span class="slds-checkbox_faux"></span>
+                                                    </label>
+                                                  </div>
+                                                </div>
+                                              </div>   </span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">3 Way Calling:</span>
+                                                <input type="checkbox" name="options" id="checkbox-2" value="checkbox-2" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-2">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div> </span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">DSL:</span>
+                                                <input type="checkbox" name="options" id="checkbox-3" value="checkbox-3" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-3">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                      </div>
+
+                      <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                    <span>
+                                        <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                  <div class="slds-checkbox">
+                                                        <span class="slds-form-element__label">Multi Line Hunting:</span>
+                                                    <input type="checkbox" name="options" id="checkbox-45" value="checkbox-45" checked="" />
+                                                    <label class="slds-checkbox__label" for="checkbox-45">
+                                                      <span class="slds-checkbox_faux"></span>
+                                                      
+                                                    </label>
+                                                  </div>
+                                                </div>
+                                              </div>   </span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Speed Calling - 8:</span>
+                                                <input type="checkbox" name="options" id="checkbox-4" value="checkbox-4" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-4">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Call Forward Variable:</span>
+                                                <input type="checkbox" name="options" id="checkbox-5" value="checkbox-5" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-5">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                      </div>
+
+                      <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Last Call Return:</span>
+                                                <input type="checkbox" name="options" id="checkbox-46" value="checkbox-46" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-46">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                  
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">     Continuous Redial:</span>
+                                                <input type="checkbox" name="options" id="checkbox-6" value="checkbox-6" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-6">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">International Calling - Standard (Max: 6):</span>
+                                                <input type="checkbox" name="options" id="checkbox-7" value="checkbox-7" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-7">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                      </div>
+
+                      <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Anonymous Call Rejection:</span>
+                                                <input type="checkbox" name="options" id="checkbox-47" value="checkbox-47" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-47">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                  
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Selective Call Rejection:</span>
+                                                <input type="checkbox" name="options" id="checkbox-8" value="checkbox-8" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-8">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Voice Messaging - Premium (Max: 1):</span>
+                                                <input type="checkbox" name="options" id="checkbox-9" value="checkbox-9" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-9">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                      </div>
+
+                      <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Call Forward Busy:</span>
+                                                <input type="checkbox" name="options" id="checkbox-48" value="checkbox-48" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-48">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                  
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Series Line Hunting:</span>
+                                                <input type="checkbox" name="options" id="checkbox-10" value="checkbox-10" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-10">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Call Blocking - 1+ allows 800 (Max: 1):</span>
+                                                <input type="checkbox" name="options" id="checkbox-11" value="checkbox-11" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-11">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                      </div>
+
+                      <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Call Waiting:</span>
+                                                <input type="checkbox" name="options" id="checkbox-49" value="checkbox-49" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-49">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                  
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Call Forward No Answer:</span>
+                                                <input type="checkbox" name="options" id="checkbox-12" value="checkbox-12" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-12">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Caller ID Name & Number:</span>
+                                                <input type="checkbox" name="options" id="checkbox-13" value="checkbox-13" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-13">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                      </div>
+
+                      <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Call Transfer:</span>
+                                                <input type="checkbox" name="options" id="checkbox-50" value="checkbox-50" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-50">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                  
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Remote Access Call Forwarding:</span>
+                                                <input type="checkbox" name="options" id="checkbox-14" value="checkbox-14" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-14">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Voice Messaging - Premium:</span>
+                                                <input type="checkbox" name="options" id="checkbox-15" value="checkbox-15" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-15">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                      </div>
+
+                      <div class="slds-grid slds-gutters">
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Circular Line Hunting:</span>
+                                                <input type="checkbox" name="options" id="checkbox-1" value="checkbox-1" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-1">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                  
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">Caller ID Number:</span>
+                                                <input type="checkbox" name="options" id="checkbox-16" value="checkbox-16" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-16">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                            <div class="slds-col">
+                                    <span><div class="slds-form-element">
+                                            <div class="slds-form-element__control">
+                                              <div class="slds-checkbox">
+                                                    <span class="slds-form-element__label">International Calling - Standard (Max: 1):</span>
+                                                <input type="checkbox" name="options" id="checkbox-17" value="checkbox-17" checked="" />
+                                                <label class="slds-checkbox__label" for="checkbox-17">
+                                                  <span class="slds-checkbox_faux"></span>
+                                                </label>
+                                              </div>
+                                            </div>
+                                          </div></span>
+                            </div>
+                      </div>
+
+
+                    </lightning-card>
+            </div>
+        </lightning-card>
+     -->
+</template>

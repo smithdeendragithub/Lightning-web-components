@@ -257,14 +257,14 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
     public String ConfigId_deleteExpiredLineItems {get; set;} /*
 *           the Id of the opportunity configuration whose expired line items will be deleted
 */
-    public PageReference deleteExpiredLineItems(){
+    public void deleteExpiredLineItems(String lineItemToRemove){
         //if we have items to delete
-        if(!expiredLineItemlst.isEmpty()){
+        if(! this.expiredLineItemlst.isEmpty()){
             //get children to delete (assumes only one level hierarchy)
             List<OLI__c> childrenToDelete = new List<OLI__c>();
             Set<OLI__c> eli = new Set<OLI__c>();
-            for(OLI__c expiredLineItem : expiredLineItemlst) {
-                if(expiredLineItem.OpportunityLocationConfiguration__c == ConfigId_deleteExpiredLineItems){
+            for(OLI__c expiredLineItem : this.expiredLineItemlst) {
+                if(expiredLineItem.OpportunityLocationConfiguration__c == lineItemToRemove){
                     childrenToDelete.addAll(expiredLineItem.Opportunity_Line_Items__r);
                     eli.add(expiredLineItem);
                 }
@@ -277,28 +277,32 @@ public with sharing class lgt_ManageLocationProductsController implements TestUt
             
             delete new List<OLI__c>(eli);
         }
-        
-        //reload page
-        PageReference pageReference = Page.ManageLocationProducts;
-        pageReference.getParameters().put(PARAMETER_OPPORTUNITY_ID, this.opportunity.Id);
-        pageReference.setRedirect(true);
-        return pageReference;
+     
     }
     @AuraEnabled
     public string param_accountId {get;set;}
     
-    public PageReference updateSolutionTerm() {
+    public void updateSolutionTerm(String param_solutionId,Boolean displayOnProposal) {
+        try{
+          
+        List<OpportunityLocationConfiguration__c> olcListToUpdate = new List<OpportunityLocationConfiguration__c>();
         for(OpportunityLocation opportunityLocation : this.opportunityLocations) {
             for(Solution nextSolution : opportunityLocation.solutions) {
                 if(nextSolution.rawSolution.Id == param_solutionId) {
-                    update nextSolution.rawSolution;
-                    return null;
+                    nextSolution.rawSolution.Display_on_Solution__c = displayOnProposal;
+                    olcListToUpdate.add(nextSolution.rawSolution);
+                    //break;
                 }
             }
         }
         
+          if(!olcListToUpdate.isEmpty())
+            update olcListToUpdate;
+        }
         //we should never get here (assumes no concurrency)
-        throw new lgt_ManageLocationProductsControllerException('Unable to find configuration to update term!!!');
+        catch (Exception e){
+            throw new lgt_ManageLocationProductsControllerException('Unable to find configuration to update term!!!');
+            }
     }
     
     @AuraEnabled
