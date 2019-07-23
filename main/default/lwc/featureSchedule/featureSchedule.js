@@ -32,7 +32,19 @@ export default class FeatureSchedule extends LightningElement {
         alert('Alert sample');
     }
 
-    handleNumberSelected(){
-        fireEvent(this.pageRef,'phoneNumberSelected','Hurray!');
+    handleNumberSelected(event){
+        // console.log(JSON.stringify(event.target.dataset.inputobject));
+        // let valueToSend;
+        // for (let inputvalue of this.featuresScheduleDataSet.TelephoneNumbers) {
+           
+        //     if(undefined !== inputvalue.cn && inputvalue.cn.Id === event.target.dataset.dataId){
+        //         valueToSend = inputvalue;
+        //     }
+        //   }
+         // console.log(valueToSend);
+        fireEvent(this.pageRef,'phoneNumberSelected',{"recordObject":this.featuresScheduleDataSet,"dataId":event.target.dataset.dataId});
+    }
+    cancelButton(event){
+        fireEvent(this.pageRef,'phoneNumberSelected',event)
     }
 }

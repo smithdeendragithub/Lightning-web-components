@@ -1,5 +1,30 @@
 <template>
     <div if:true={hasrecords}>
-        {inputObject}
+        <template if:true={inputObject}>
+            <lightning-input label="Telephone Number" value={inputObject.cn.Name} if:true={inputObject.cn.Name}>
+            </lightning-input>
+            <!-- <lightning-input label="Line Type" value={inputObject.cn.Opportunity_Line_Item__c}
+                if:true={inputObject.cn.Opportunity_Line_Item__c}></lightning-input> -->
+            <!-- <lightning-input label="Line Use" value={inputObject.cn.Line_Use__c} if:true={inputObject.cn.Line_Use__c}>
+            </lightning-input> -->
+            <c-util-select-options object-list={lto} selected-value={inputObject.cn.Opportunity_Line_Item__c}
+                element-label="Line Type">
+            </c-util-select-options>
+            <c-util-select-options object-list={luo} selected-value={inputObject.cn.Line_Use__c}
+                element-label="Line Use">
+            </c-util-select-options>
+            <c-util-select-options object-list={cbo} selected-value={inputObject.cn.Call_Blocking__c}
+                element-label="Call Blocking">
+            </c-util-select-options>
+            <!-- <lightning-input label="Call Blocking" value={inputObject.cn.Call_Blocking__c}
+                if:true={inputObject.cn.Call_Blocking__c}>
+            </lightning-input> -->
+            <br>
+            <template if:true={inputObject.features} for:each={inputObject.features} for:item="featureRec">
+                <div key={inputObject.cn.Id} class="slds-box">
+                    Place holder for features info display "inputObject.features"
+                </div>
+            </template>
+        </template>
     </div>
 </template>

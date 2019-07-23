@@ -1,0 +1,16 @@
+<template>
+    <div if:true={hasValue}>
+        <label class="slds-form-element__label">{elementLabel}</label>
+        <select class="slds-select">
+            <option value="--Select--">--Select--</option>
+            <template for:each={generatedMap} for:item="lineuseoption" if:true={objectList}>
+                <option selected key={lineuseoption.key} value={lineuseoption.key} if:true={lineuseoption.selected}>
+                    {lineuseoption.value}
+                </option>
+                <option key={lineuseoption.key} value={lineuseoption.key} if:false={lineuseoption.selected}>
+                    {lineuseoption.value}
+                </option>
+            </template>
+        </select>
+    </div>
+</template>

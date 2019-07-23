@@ -18,6 +18,15 @@
             "c/cpqMainSetProviders": [
                 "cpqMainSetProviders/cpqMainSetProviders.js"
             ],
+            "c/featureSchedule": [
+                "featureSchedule/featureSchedule.js"
+            ],
+            "c/featureScheduledetail": [
+                "featureScheduledetail/featureScheduledetail.js"
+            ],
+            "c/featurescheduleTF": [
+                "featurescheduleTF/featurescheduleTF.js"
+            ],
             "c/mathDisplay": [
                 "mathDisplay/mathDisplay.js"
             ],
@@ -33,20 +42,14 @@
             "c/opportunityWorkStepIssues": [
                 "opportunityWorkStepIssues/opportunityWorkStepIssues.js"
             ],
-            "c/salesownedwsionrelatedorderflag": [
-                "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
-            ],
-            "c/featureSchedule": [
-                "featureSchedule/featureSchedule.js"
-            ],
             "c/pubsub": [
                 "pubsub/pubsub.js"
             ],
-            "c/featureScheduledetail": [
-                "featureScheduledetail/featureScheduledetail.js"
+            "c/salesownedwsionrelatedorderflag": [
+                "salesownedwsionrelatedorderflag/salesownedwsionrelatedorderflag.js"
             ],
-            "c/featurescheduleTF": [
-                "featurescheduleTF/featurescheduleTF.js"
+            "c/utilSelectOptions": [
+                "utilSelectOptions/utilSelectOptions.js"
             ]
         }
     },
