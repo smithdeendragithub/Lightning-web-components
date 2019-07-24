@@ -5,10 +5,14 @@
 * @TestClass: lgt_DataFactory_Test
 * Version     JIRA                  Author                        Comments
 * 1.0         SEAL-2907            Smithdeendra A P              Initial Comments.
+* 1.1         SEAL-2907            Smithdeendra A P              added new wrapper class wrapFieldSet and new variable fieldSetJSON.
 */
 public with sharing class lgt_ManageFeaturesScheduleController implements TestUtils.ITestableClass{
     
     @AuraEnabled public Technical_Information__c currentTI {get;set;}
+    
+   // @AuraEnabled List<Schema.FieldSetMember> fieldsetList {get;set;}
+    @AuraEnabled public List<wrapFieldSet> fieldsetList {get;set;}
     @AuraEnabled public String DebugString {get;set;}
     @AuraEnabled public FeaturesScheduleValidations validations; 
     @AuraEnabled public List<OLI__c> products;
@@ -60,7 +64,9 @@ public with sharing class lgt_ManageFeaturesScheduleController implements TestUt
             this.fieldFocusId = 'nothing yet';
             this.currentTI = tempTIObjList[0];//(Technical_Information__c)stdController.getRecord();
             this.DebugString = this.currentTI.id;
+            this.fieldsetList = new List<wrapFieldSet>();
             this.initScreen();
+            
         }
         else{
             throw new SObjectException('Not a valid technical information record id');
@@ -69,6 +75,9 @@ public with sharing class lgt_ManageFeaturesScheduleController implements TestUt
     
     public void initScreen() {
         System.debug('MNK ManageFeatureSceduleController initScreen start');
+        for(Schema.FieldSetMember fsm : Schema.SObjectType.CN__c.fieldSets.CN.Fields)
+            this.fieldsetList.add(new wrapFieldSet(fsm));
+           //this.fieldsetList =  Schema.SObjectType.CN__c.fieldSets.CN.Fields;
         this.DebugString = this.currentTI.id;
         this.TelephoneFeatures = new Map<Id, List<CN_Feature__c> >();
         this.TelephoneNumbers = new List<wrapNumber>();
@@ -1134,14 +1143,7 @@ public with sharing class lgt_ManageFeaturesScheduleController implements TestUt
             this.features = new List<wrapFeature>();
         }
     }
-    // public static void createCallBlockSelectOptions() {
-    //     // buffer
-    //     //List<SelectOption> selectOptions = new List<SelectOption>();
-    //     // grab the picklist entries
-    //     List<Schema.PicklistEntry> picklistEntries = ;
-    //     // map to select options
-        
-    // }
+
     public class wrapFeature {
         //Feature Specific
         @AuraEnabled public CN_Feature__c feature {get;set;}
@@ -1188,5 +1190,18 @@ public with sharing class lgt_ManageFeaturesScheduleController implements TestUt
         return new Test_ManageFeaturesSchedule();
     }
     
+    public class wrapFieldSet {
+        @AuraEnabled public Boolean dbRequired {get;set;}
+        @AuraEnabled public String fieldPath {get;set;}
+        @AuraEnabled public String label {get;set;}
+        @AuraEnabled public Boolean required {get;set;}
+        public wrapFieldSet(){}
+        public wrapFieldSet(Schema.FieldSetMember fsm) {
+            this.dbRequired = fsm.dbRequired;
+            this.fieldPath = String.valueOf(fsm.fieldPath);
+            this.label = String.valueOf(fsm.label);
+            this.required = fsm.required;
+        }
+    }
     
 }

@@ -4,9 +4,7 @@ import { registerListener, unregisterAllListeners } from 'c/pubsub';
 export default class FeatureScheduledetail extends LightningElement {
     @track hasrecords = false;
     @track inputObject;
-    @track luo;
-    @track lto;
-    @track cbo;
+    @track luo; lto; cbo; fsl; fl;
     @wire(CurrentPageReference) pageRef;
 
     connectedCallback() {
@@ -33,6 +31,12 @@ export default class FeatureScheduledetail extends LightningElement {
         }
         if (undefined !== payload.recordObject.callBlocklines) {
             this.cbo = payload.recordObject.callBlocklines;
+        }
+        if (undefined !== payload.recordObject.fieldsetList) {
+            this.fsl = payload.recordObject.fieldsetList;
+        }
+        if (undefined !== payload.recordObject.displayFeatures) {
+            this.fl = payload.recordObject.displayFeatures;
         }
         for (let inputvalue of payload.recordObject.TelephoneNumbers) {
             if (undefined !== inputvalue.cn && inputvalue.cn.Id === payload.dataId) {

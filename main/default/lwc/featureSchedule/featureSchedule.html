@@ -51,7 +51,25 @@
               </template>
             </lightning-layout-item>
             <lightning-layout-item size="6" class="slds-box">
-              Place holder for Select All
+              <template if:true={featuresScheduleDataSet.fieldsetList} for:each={featuresScheduleDataSet.fieldsetList}
+                for:item="fieldSetRecord">
+                <div if:true={fieldSetRecord.fieldPath} key={fieldSetRecord.fieldPath}>
+                  <div if:true={fieldSetRecord.label}>
+                    <lightning-button label={fieldSetRecord.label} variant="base" onclick={handleNumberSelected}
+                      data-data-id={fieldSetRecord.fieldPath}>
+                    </lightning-button>
+                  </div>
+                </div>
+              </template>
+              <template if:true={featuresScheduleDataSet.displayFeatures} for:each={featuresScheduleDataSet.displayFeatures}
+              for:item="displayFeatureRec">
+              
+                <div key={displayFeatureRec.displayTitle} if:true={displayFeatureRec.displayTitle}>
+                  <lightning-button label={displayFeatureRec.displayTitle} variant="base" onclick={handleNumberSelected}
+                    data-data-id={displayFeatureRec.displayTitle}>
+                  </lightning-button>
+                </div>
+            </template>
             </lightning-layout-item>
           </lightning-layout>
         </lightning-layout-item>

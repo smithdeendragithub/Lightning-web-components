@@ -1,30 +1,54 @@
 <template>
     <div if:true={hasrecords}>
         <template if:true={inputObject}>
-            <lightning-input label="Telephone Number" value={inputObject.cn.Name} if:true={inputObject.cn.Name}>
-            </lightning-input>
-            <!-- <lightning-input label="Line Type" value={inputObject.cn.Opportunity_Line_Item__c}
-                if:true={inputObject.cn.Opportunity_Line_Item__c}></lightning-input> -->
-            <!-- <lightning-input label="Line Use" value={inputObject.cn.Line_Use__c} if:true={inputObject.cn.Line_Use__c}>
-            </lightning-input> -->
-            <c-util-select-options object-list={lto} selected-value={inputObject.cn.Opportunity_Line_Item__c}
-                element-label="Line Type">
-            </c-util-select-options>
-            <c-util-select-options object-list={luo} selected-value={inputObject.cn.Line_Use__c}
-                element-label="Line Use">
-            </c-util-select-options>
-            <c-util-select-options object-list={cbo} selected-value={inputObject.cn.Call_Blocking__c}
-                element-label="Call Blocking">
-            </c-util-select-options>
-            <!-- <lightning-input label="Call Blocking" value={inputObject.cn.Call_Blocking__c}
-                if:true={inputObject.cn.Call_Blocking__c}>
-            </lightning-input> -->
-            <br>
-            <template if:true={inputObject.features} for:each={inputObject.features} for:item="featureRec">
-                <div key={inputObject.cn.Id} class="slds-box">
-                    Place holder for features info display "inputObject.features"
+            <div class="slds-box slds-grid slds-wrap">
+                <div class="slds-col slds-size--1-of-2 slds-p-horizontal--small">
+                    <lightning-input label="Telephone Number" value={inputObject.cn.Name} if:true={inputObject.cn.Name}>
+                    </lightning-input>
                 </div>
-            </template>
+                <div class="slds-col slds-size--1-of-2 slds-p-horizontal--small">
+                    <c-util-select-options object-list={lto} selected-value={inputObject.cn.Opportunity_Line_Item__c}
+                        element-label="Line Type">
+                    </c-util-select-options>
+                </div>
+                <div class="slds-col slds-size--1-of-2 slds-p-horizontal--small">
+                    <c-util-select-options object-list={luo} selected-value={inputObject.cn.Line_Use__c}
+                        element-label="Line Use">
+                    </c-util-select-options>
+                </div>
+                <div class="slds-col slds-size--1-of-2 slds-p-horizontal--small">
+                    <c-util-select-options object-list={cbo} selected-value={inputObject.cn.Call_Blocking__c}
+                        element-label="Call Blocking">
+                    </c-util-select-options>
+                </div>
+            </div>
+            <div class="slds-box slds-grid slds-wrap">
+                <template if:true={fsl} for:each={fsl} for:item="fieldsetrec">
+                    <label class="slds-checkbox_toggle slds-col slds-size--1-of-3" key={fieldsetrec.fieldPath}>
+                        <span>{fieldsetrec.label}</span>
+                        <input type="checkbox" checked="" />
+                        <span data-checkbox-id={fieldsetrec.fieldPath} class="slds-checkbox_faux_container"
+                            aria-live="assertive">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-checkbox_on">Enabled</span>
+                            <span class="slds-checkbox_off">Disabled</span>
+                        </span>
+                    </label>
+                </template>
+                <template if:true={fl} for:each={fl} for:item="featureRec">
+                    <label class="slds-checkbox_toggle slds-col slds-size--1-of-3" key={featureRec.childrenNumber}>
+                        <span>{featureRec.displayTitle}
+                            {featureRec.displaySubtitle}</span>
+                        <input type="checkbox" checked="" />
+                        <span data-checkbox-id={featureRec.displayTitle} class="slds-checkbox_faux_container"
+                            aria-live="assertive">
+                            <span class="slds-checkbox_faux"></span>
+                            <span class="slds-checkbox_on">Enabled</span>
+                            <span class="slds-checkbox_off">Disabled</span>
+                        </span>
+                    </label>
+                </template>
+            </div>
         </template>
     </div>
 </template>
